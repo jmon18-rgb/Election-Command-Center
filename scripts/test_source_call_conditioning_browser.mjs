@@ -28,9 +28,9 @@ if(server)await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;con
 try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const [width,height]of [[1366,900],[390,844]]){
-  const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce',serviceWorkers:'block'}),page=await context.newPage(),errors=[],external=[],served=new Map(),servedChecks=[],servedFailures=[];
+  const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce',serviceWorkers:'block'}),page=await context.newPage(),errors=[],external=[],served=new Map(),requestedPins=new Set(),servedChecks=[],servedFailures=[];
   page.on('pageerror',e=>errors.push(e.message));
-  if(dashboard)context.on('response',response=>{const url=new URL(response.url());if(url.origin!==dashboard.origin)return;const file=url.pathname===dashboard.pathname?'index.html':url.pathname.startsWith(dashboard.pathname)?url.pathname.slice(dashboard.pathname.length):null;if(!pinFiles.includes(file))return;
+  if(dashboard)context.on('response',response=>{const url=new URL(response.url());if(url.origin!==dashboard.origin)return;const file=url.pathname===dashboard.pathname?'index.html':url.pathname.startsWith(dashboard.pathname)?url.pathname.slice(dashboard.pathname.length):null;if(!pinFiles.includes(file)||requestedPins.has(file))return;requestedPins.add(file);
    servedChecks.push(response.body().then(body=>{assert.equal(response.status(),200,'Actual published pinned response succeeds: '+file);assert(body.equals(pinned[file]),'Actual served bytes match final origin/main: '+file);served.set(file,sha256(body));}).catch(error=>servedFailures.push(error.message)));});
   await page.clock.install({time:new Date('2026-10-28T19:00:00Z')});
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(dashboard?u.origin===dashboard.origin&&u.pathname.startsWith(dashboard.pathname):u.hostname==='127.0.0.1')return route.continue();external.push(u.hostname);return route.abort();});

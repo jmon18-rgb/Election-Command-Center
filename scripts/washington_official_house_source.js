@@ -29,6 +29,16 @@
   if(!count(out.dem_votes+out.rep_votes+out.other_votes))throw Error('Unsafe official vote aggregate');
   return out;
  }
+ function publicationProblem(stamp,published,now){
+  for(const s of [stamp,published]){
+   const t=Date.parse(s);
+   if(!/(?:Z|[+-]\d\d:\d\d)$/.test(s||'')||!Number.isFinite(t)||t>now+15*60000||now-t>180*60000)
+    return 'Missing/future/stale official WA publication time';
+  }
+  return Date.parse(published)<Date.parse(stamp)?'Official publication precedes results snapshot':null;
+ }
+ function postcloseCurrent(total,stamp,now){return count(total)&&Boolean(closes?.allowed('WA-03',total,stamp,now));}
+ function publicationCurrent(stamp,published,total,now=Date.now()){return Number.isFinite(now)&&publicationProblem(stamp,published,now)===null&&postcloseCurrent(total,stamp,now);}
  function parse(raw,reference,{source_url=URL,now=Date.now()}={}){
   if(source_url!==URL||!Number.isFinite(now))throw Error('Unverified official WA source/clock');
   const e=raw?.election,b=raw?.ballotItemWithBreakdown;
@@ -46,12 +56,7 @@
   if(byName.size!==7||new Set(byName.values()).size!==7||names.some(n=>!byName.has(n))||
     [...byName.values()].some(f=>!/^53\d{3}$/.test(f)))throw Error('Invalid independent WA county identities');
   const stamp=e.asOf,published=e.publishDate;
-  for(const s of [stamp,published]){
-   const t=Date.parse(s);
-   if(!/(?:Z|[+-]\d\d:\d\d)$/.test(s||'')||!Number.isFinite(t)||t>now+15*60000||now-t>180*60000)
-    throw Error('Missing/future/stale official WA publication time');
-  }
-  if(Date.parse(published)<Date.parse(stamp))throw Error('Official publication precedes results snapshot');
+  const problem=publicationProblem(stamp,published,now);if(problem)throw Error(problem);
   const summary=counts(b.summaryResults?.ballotOptions),seen=new Set();
   const overview=raw.ballotItems?.filter(r=>r.id===ID);
   if(!Array.isArray(overview)||overview.length!==1||overview[0].publishPublicElectionId!=='20261103'||
@@ -70,7 +75,7 @@
   for(const key of ['dem_votes','rep_votes','other_votes'])
    if(counties.reduce((s,r)=>s+r[key],0)!==summary[key])throw Error('Official county/district candidate sums disagree');
   const total=summary.dem_votes+summary.rep_votes+summary.other_votes;
-  if(!count(b.voteTotal)||b.voteTotal!==total||!closes?.allowed('WA-03',total,stamp,now))
+  if(!count(b.voteTotal)||b.voteTotal!==total||!postcloseCurrent(total,stamp,now))
    throw Error('Wrong total or pre-close official WA counts');
   return {status:total?'VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED':'NO_REPORTED_VOTES',
    source_url:URL,race_code:'WA-03',snapshot_updated_at:stamp,source_published_at:published,
@@ -78,5 +83,5 @@
    county_identities_matched:7,counties,live_votes_accepted:total>0,
    method_split_reported:false,completion_verified:false,may_move_national_needle:false};
  }
- return Object.freeze({URL,parse});
+ return Object.freeze({URL,parse,publicationCurrent});
 });

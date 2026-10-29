@@ -1,5 +1,17 @@
 # JackStradamus · development plan
 
+## October29 active candidate — bounded WA updates and stalled-source freshness
+
+The independently reviewed WA extension is now integrated: original receipt and
+native-clock rules, frozen compiler-used estimate footprint, exact current checks
+and no added requests. A real stalled-collector CURRENT admission defect found
+in browser review is corrected using those same original rules. Final1366/390
+full browser suites pass, with source-hash wrapping and visible reading-position
+regressions fixed; finish protected PR and final published verification. VA stays
+hard pending its missing typed source cells. All80 core checks pass; model target,
+3k draws, ESS and acceptance limits remain unchanged. Source/human/calibration and
+no-paid archive gates remain open; this candidate is not a release claim.
+
 ## October29 current work — released conditional support; extend verified scheduling
 
 PR530 is verified published on finalmain79a25ed3/Pages40841913579: exact-head37

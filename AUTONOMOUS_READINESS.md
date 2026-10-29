@@ -1,5 +1,19 @@
 # Election Night production-readiness assignment
 
+## Active implementation — bounded official WA snapshot scheduling
+
+The reviewed WA policy/pure native+receipt helpers and compiler-used remaining
+projection are integrated. Optional projection absence disables ASOF only; fresh
+CURRENT counts retain their original path. Actual browser review found a stalled
+collector could retain an expired WA envelope and a newly completed CURRENT frame
+could reuse it. Root added original-rule input filtering, completed-WA validity
+checks and exact compiler-used footprint identity in RAM. Independent source
+review and final1366/390 full browser suites pass, including actual-controller
+expiry and visible reading-position regressions. Exact-head protected review and
+publication remain required.
+All80 core checks pass; no math/draw/ESS/source/request/paid change. VA stays hard.
+Do not replay530 or treat this candidate as released. Preserve guide/human nulls.
+
 ## Current verified release530 — continue the ready WA scheduling extension
 
 530tested2d8a4840 passed all37parents/52latest49SUCCESS3declaredPRSKIP/0external,

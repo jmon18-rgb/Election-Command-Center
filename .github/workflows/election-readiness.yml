@@ -156,3 +156,29 @@ jobs:
           name: celebration-browser-previews
           path: artifacts/readiness/celebration-*.png
           if-no-files-found: warn
+  official-wa-snapshot-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        width: [1366, 390]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the pinned browser runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Official WA captured estimates and compatible count updates stay usable and guarded
+        run: node scripts/test_joint_official_snapshot_browser.mjs ${{ matrix.width }}
+      - name: Upload bounded official snapshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-wa-snapshot-browser-${{ matrix.width }}
+          path: artifacts/readiness/ui-review/worker-official-snapshot/
+          if-no-files-found: warn
+          retention-days: 7

@@ -1,5 +1,27 @@
 # Readiness progress
 
+## Bounded official WA scheduling — implemented, review pending
+
+Production candidate promotes the reviewed pure receipt/native predicates and
+frozen originally USED remaining-estimate projection into the existing scheduler.
+61civic and38official policy groups, original WA clock boundary equivalence and
+all80 core checks pass. The numerical model, draws, ESS, source eligibility and
+request budgets are unchanged; VA remains hard refresh. Browser review exposed
+an actual stalled-collector defect: expired WA could reenter a new CURRENT frame.
+Frame-input freshness and completed-WA validity now reuse the original rules;
+the compiler's exact used-sensitivity token detects individual-row expiry.
+Actual-controller expiry regression passes. Phone review additionally exposed a
+long source-hash overflow and a95.625px visible-card shift while focus remained
+offscreen. Scoped wrapping and synchronous visible-card anchoring correct those
+findings. Final Edge1366/390 full suites pass on index259c9c23/test78b4c3fe:
+10marked PRIMARY/PUBLIC completions per viewport,21hard negatives, quiet receipt/
+used-row expiry, strict visible-card/offscreen/focus guards and nooverflow.
+Disabling the new anchor reproduces the95.625px jump; actual closure is-0.375px.
+Protected exact-head review and publication remain pending.
+The integrated DOM suite also passes before these final layout-only corrections.
+Remote first-response verifier dedup is carried with this source change; original
+assertions and required assets remain. Guide/human results/archive OFF unchanged.
+
 ## PR530 resource-aware calls and completed-snapshot scheduling — verified published
 
 Tested2d8a4840cd32c915a95a7008791fdd4f58607214 passed all37 workflow parents,

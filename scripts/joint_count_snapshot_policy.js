@@ -22,6 +22,13 @@
  const neCountyKeys=new Set(['county','county_fips','osborn_votes','ricketts_votes','other_votes','other_candidates','vote_method','completion_verified']);
  const nePeople=Object.freeze({220702:['Pete Ricketts','Republican'],220703:['Mike Marvin','Legal Marijuana Now'],
   220704:['Robin Richards','Nebraska Working People'],220705:['Chuck Conboy','America First'],220706:['Dan Osborn','Independent']});
+ const waURL='https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a';
+ const waTransport='https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-results-cache/data/washington_house_03_official_latest.json';
+ const waKeys=new Set([...snapshotKeys,'source_published_at','collection_fetched_at','transport_url','collection_selected_payload_sha256',
+  'collection_payload_integrity_verified','collection_original_response_sha256','collection_original_response_hash_recomputed','transport_note',
+  'remaining_status','official_remaining','remaining_revision']);
+ const waEnvelopeKeys=new Set([...envelopeKeys,'remaining_geography']);
+ const hash=x=>typeof x==='string'&&/^[a-f0-9]{64}$/.test(x);
  const own=(x,k)=>Object.prototype.hasOwnProperty.call(x,k),plain=x=>x!==null&&typeof x==='object'&&!Array.isArray(x)&&
   (Object.getPrototypeOf(x)===Object.prototype||Object.getPrototypeOf(x)===null);
  const outcome=(kind,reason)=>Object.freeze({kind,reason});
@@ -92,7 +99,66 @@
     if(!count(sum)||roster.get(id).votes!==sum)return false;}
   }return true;
  }
- function classify(previous,next,{now,validateEnvelope}={}){
+ function deepCopy(value){if(value===null||typeof value!=='object')return value;return Array.isArray(value)?value.map(deepCopy):Object.fromEntries(Object.keys(value).map(key=>[key,deepCopy(value[key])]));}
+ function deepFreeze(value){if(value&&typeof value==='object'){for(const child of Object.values(value))deepFreeze(child);Object.freeze(value);}return value;}
+ const hasRemaining=s=>own(s,'official_remaining')||own(s,'remaining_revision')||s.remaining_status!=='NO_REMAINING_SOURCE';
+ function footprint(compiled){const used=compiled?.official_remaining_sensitivity;return plain(used)&&Array.isArray(used.county_fips)&&used.county_fips.length>0&&
+  used.whole_counties===used.county_fips.length&&new Set(used.county_fips).size===used.county_fips.length?used:null;}
+ function capturedUsage(envelope,at,validateEnvelope,washington){
+  if(!Number.isFinite(at)||typeof washington?.remainingCapture!=='function'||typeof washington?.remainingCurrent!=='function')return null;
+  const compiled=validateEnvelope(envelope,at),used=footprint(compiled);
+  if(compiled?.schema!=='national-county-likelihood-v1'||compiled.code!=='WA-03'||compiled.source_url!==waURL||!used)return null;
+  const projection=washington.remainingCapture(envelope.snapshot.remaining_revision,used.county_fips,envelope.snapshot.snapshot_updated_at);
+  if(!projection||washington.remainingCurrent(projection,at)!==true)return null;
+  return {projection:deepCopy(projection),likelihood_footprint:deepCopy(used)};
+ }
+ // Retain the original compiler's used sensitivity footprint at capture,
+ // not all available rows or a later max clock. This is not final ESS admission.
+ // This creates only typed RAM metadata; no native/raw response is copied.
+ function captureRemainingUsage(frame,{validateEnvelope,washington}={}){
+  try{if(!plain(frame)||!valueTree(frame)||typeof validateEnvelope!=='function'||!Number.isFinite(frame.payload?.args?.now)||!Array.isArray(frame.payload?.envelopes))return null;
+   const rows=frame.payload.envelopes.filter(e=>e?.snapshot?.race_code==='WA-03');if(rows.length>1)return null;
+   if(!rows.length||!hasRemaining(rows[0].snapshot))return deepFreeze({});
+   const used=capturedUsage(rows[0],frame.payload.args.now,validateEnvelope,washington);return used?deepFreeze({'WA-03':used}):null;
+  }catch{return null;}
+ }
+ function remainingPair(old,fresh,previous,next,admissions,now,validateEnvelope,washington){
+  const a=old.snapshot,b=fresh.snapshot;
+  if(!hasRemaining(a)&&!hasRemaining(b))return (!own(previous,'remainingUsage')||same(previous.remainingUsage,{}))&&(!own(next,'remainingUsage')||same(next.remainingUsage,{}));
+  if(!hasRemaining(a)||!hasRemaining(b)||a.remaining_status!=='VALIDATED_WHOLE_COUNTY_ESTIMATES'||b.remaining_status!==a.remaining_status||
+   !a.official_remaining||!b.official_remaining||!a.remaining_revision||!b.remaining_revision||
+   !same(a.official_remaining,b.official_remaining)||!same(a.remaining_revision,b.remaining_revision)||
+   typeof washington?.remainingCapture!=='function'||typeof washington?.remainingCurrent!=='function')return false;
+  const frozen=capturedUsage(old,previous.payload.args.now,validateEnvelope,washington),incoming=capturedUsage(fresh,next.payload.args.now,validateEnvelope,washington);
+  if(!frozen||!incoming||!same(previous.remainingUsage,{'WA-03':frozen})||!same(next.remainingUsage,{'WA-03':incoming})||
+   washington.remainingCurrent(frozen.projection,now)!==true||washington.remainingCurrent(incoming.projection,now)!==true||
+   !same(omit(frozen.projection,['counts_stamp']),omit(incoming.projection,['counts_stamp']))||!same(frozen.likelihood_footprint,incoming.likelihood_footprint))return false;
+  return same(footprint(admissions[0]),frozen.likelihood_footprint)&&same(footprint(admissions[1]),incoming.likelihood_footprint);
+ }
+ function officialPair(old,fresh,previous,next,admissions,now,validateEnvelope,washington){
+  const a=old.snapshot,b=fresh.snapshot,dynamic=['snapshot_updated_at','source_published_at','collection_fetched_at','collection_selected_payload_sha256','collection_original_response_sha256','counties'];
+  if(typeof washington?.receiptCurrent!=='function'||typeof washington?.publicationCurrent!=='function'||!only(a,waKeys)||!only(b,waKeys)||
+   a.race_code!=='WA-03'||b.race_code!==a.race_code||a.source_url!==waURL||b.source_url!==waURL||a.transport_url!==waTransport||b.transport_url!==waTransport||
+   !same(omit(a,dynamic),omit(b,dynamic))||a.status!=='VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED'||a.live_votes_accepted!==true||
+   a.timestamp_scope!=='official_state_snapshot_not_independent_county_batch_publication_times'||a.method_split_reported!==false||a.completion_verified!==false||a.may_move_national_needle!==false||
+   a.collection_payload_integrity_verified!==true||b.collection_payload_integrity_verified!==true||a.collection_original_response_hash_recomputed!==false||b.collection_original_response_hash_recomputed!==false||
+   !hash(a.collection_selected_payload_sha256)||!hash(b.collection_selected_payload_sha256)||
+   ![a.collection_original_response_sha256,b.collection_original_response_sha256].every(value=>value===null||hash(value))||
+   !Array.isArray(a.counties)||!Array.isArray(b.counties)||a.counties.length!==7||b.counties.length!==7||a.counties.some((row,i)=>!countyPair(row,b.counties[i],false)))return false;
+  for(const snapshot of [a,b]){const total=snapshot.counties.reduce((n,row)=>n+row.dem_votes+row.rep_votes+row.other_votes,0);
+   if(!count(total)||washington.receiptCurrent(snapshot.collection_fetched_at,now)!==true||
+    washington.publicationCurrent(snapshot.snapshot_updated_at,snapshot.source_published_at,total,now)!==true)return false;}
+  for(const key of ['snapshot_updated_at','source_published_at','collection_fetched_at'])if(!Number.isFinite(stamp(a[key]))||!Number.isFinite(stamp(b[key]))||stamp(b[key])<stamp(a[key]))return false;
+  const vectorChanged=!same(a.counties,b.counties),nativeChanged=vectorChanged||a.snapshot_updated_at!==b.snapshot_updated_at||a.source_published_at!==b.source_published_at;
+  if(vectorChanged&&stamp(b.snapshot_updated_at)<=stamp(a.snapshot_updated_at))return false;
+  if(nativeChanged&&(a.collection_selected_payload_sha256===b.collection_selected_payload_sha256||stamp(b.collection_fetched_at)<=stamp(a.collection_fetched_at)))return false;
+  // A refetch may change unselected response bytes. Its original hash remains
+  // opaque/unrecomputed here; it cannot authenticate or alter selected counts.
+  if(!nativeChanged&&(a.collection_selected_payload_sha256!==b.collection_selected_payload_sha256||
+   a.collection_original_response_sha256!==b.collection_original_response_sha256&&stamp(b.collection_fetched_at)<=stamp(a.collection_fetched_at)))return false;
+  return remainingPair(old,fresh,previous,next,admissions,now,validateEnvelope,washington);
+ }
+ function classify(previous,next,{now,validateEnvelope,washington}={}){
   try{
    if(!Number.isFinite(now)||typeof validateEnvelope!=='function')return hard('CURRENT_ADMISSION_VALIDATOR_REQUIRED');
    if(!plain(previous)||!plain(next)||!valueTree(previous)||!valueTree(next))return hard('INVALID_FRAME_VALUE');
@@ -110,22 +176,25 @@
    const seen=new Set();
    for(let i=0;i<a.envelopes.length;i++){
     const old=a.envelopes[i],fresh=b.envelopes[i];
-    if(!only(old,envelopeKeys)||!only(fresh,envelopeKeys)||!plain(old.snapshot)||!plain(fresh.snapshot)||
+    const isWA=old?.snapshot?.race_code==='WA-03',keys=isWA?waEnvelopeKeys:envelopeKeys;
+    if(!only(old,keys)||!only(fresh,keys)||!plain(old.snapshot)||!plain(fresh.snapshot)||
      old.rehearsal===true||fresh.rehearsal===true||!same(omit(old,['snapshot']),omit(fresh,['snapshot'])))return hard('EVIDENCE_CONTRACT_CHANGED');
     const code=old.snapshot.race_code;
-    // Official caches/remaining estimates need their own shorter receipt and
-    // method-cell validation. They deliberately retain the old hard path.
-    if(!own(routes,code))return hard('SOURCE_REQUIRES_HARD_REFRESH');
+    // Official paths need the original pure admission guards. Unsupported
+    // cache routes and unknown source contracts retain the hard path.
+    if(!own(routes,code)&&!isWA)return hard('SOURCE_REQUIRES_HARD_REFRESH');
+    if(isWA&&(typeof washington?.receiptCurrent!=='function'||typeof washington?.publicationCurrent!=='function'))return hard('SOURCE_REQUIRES_HARD_REFRESH');
     if(seen.has(code)||fresh.snapshot.race_code!==code)return hard('EVIDENCE_SET_CHANGED');seen.add(code);
-    for(const envelope of [old,fresh]){
+    const admissions=[];for(const envelope of [old,fresh]){
      const validated=validateEnvelope(envelope,now);
      if(!validated||validated.schema!=='national-county-likelihood-v1'||validated.code!==code||
       validated.source_url!==envelope.snapshot.source_url||validated.as_of!==envelope.snapshot.snapshot_updated_at)return hard('CURRENT_ADMISSION_FAILED');
+     admissions.push(validated);
     }
-    if(!snapshotPair(old.snapshot,fresh.snapshot))return hard('COUNT_OR_SOURCE_REVISION_CHANGED');
+    if(isWA?!officialPair(old,fresh,previous,next,admissions,now,validateEnvelope,washington):!snapshotPair(old.snapshot,fresh.snapshot))return hard('COUNT_OR_SOURCE_REVISION_CHANGED');
    }
    return outcome('MONOTONE_COUNTS_ONLY','SAME_CONTRACT_NONDECREASING_COUNTS_AND_CLOCKS');
   }catch{return hard('CURRENT_ADMISSION_FAILED');}
  }
- return Object.freeze({VERSION:'joint-count-snapshot-policy-v1',classify});
+ return Object.freeze({VERSION:'joint-count-snapshot-policy-v2',classify,captureRemainingUsage});
 });

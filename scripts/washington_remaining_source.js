@@ -10,10 +10,19 @@
  const english=x=>Array.isArray(x)&&x.length===1&&x[0].languageId==='en'?x[0].text:null;
  const time=x=>{if(typeof x!=='string'||!/^2026-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,7})?(?:Z|[+-]\d{2}:\d{2})$/.test(x))return NaN;
   if(new Date(Date.UTC(+x.slice(0,4),+x.slice(5,7)-1,+x.slice(8,10))).toISOString().slice(0,10)!==x.slice(0,10))return NaN;return Date.parse(x);};
+ function receiptCurrent(fetchedAt,now=Date.now()){const fetched=time(fetchedAt);return Number.isFinite(now)&&Number.isFinite(fetched)&&fetched<=now+60000&&now-fetched<=1800000;}
+ function countyClockReason(reportedAt,now,fetched,paired){
+  const at=time(reportedAt);let reason=null;
+  if(!Number.isFinite(at))reason='MISSING_REPORT_CLOCK';
+  else if(now<close||at<close||!Number.isFinite(paired)||paired<close)reason='PRE_CLOSE_OR_UNPAIRED_COUNTS';
+  else if(at>now+300000||at>fetched+300000||now-at>1800000||Math.abs(at-paired)>900000)reason='STALE_FUTURE_OR_UNPAIRED_CLOCK';
+  return reason;
+ }
+ function countyCurrent(reportedAt,{now=Date.now(),fetched_at,counts_stamp}={}){return receiptCurrent(fetched_at,now)&&countyClockReason(reportedAt,now,time(fetched_at),time(counts_stamp))===null;}
  function parse(record,{now=Date.now(),counts_stamp}={}){
   if(!Number.isFinite(now)||record?.schema!=='official-wa-remaining-collection-v1'||record.source_url!==URL)throw Error('Unverified remaining source/election');
   const fetched=time(record.fetched_at),paired=time(counts_stamp);
-  if(!Number.isFinite(fetched)||fetched>now+60000||now-fetched>1800000)throw Error('Stale/future remaining collection');
+  if(!receiptCurrent(record.fetched_at,now))throw Error('Stale/future remaining collection');
   if(record.status==='SOURCE_UNAVAILABLE'&&record.payload===null)return {status:'REMAINING_UNAVAILABLE',counties:[]};
   if(record.status!=='COLLECTED_OFFICIAL_ESTIMATES'||record.http_status!==200||!record.payload||JSON.stringify(record.payload).length>1000000)throw Error('Unbounded/unverified remaining payload');
   const d=record.payload,s=d.data?.[0],g=s?.groups?.[0];
@@ -23,10 +32,7 @@
   for(const x of g.children){const pin=identities.find(c=>c.id===x.id);
    if(!pin||seen.has(x.id)||english(x.name)!==pin.name||x.children!==null||!Number.isSafeInteger(x.value)||x.value<0||x.value>10000000)throw Error('Remaining county matrix/value drift');
    seen.add(x.id);if(!whole.includes(pin.county_fips))continue;
-   const at=time(x.lastUpdated);let reason=null;
-   if(!Number.isFinite(at))reason='MISSING_REPORT_CLOCK';
-   else if(now<close||at<close||!Number.isFinite(paired)||paired<close)reason='PRE_CLOSE_OR_UNPAIRED_COUNTS';
-   else if(at>now+300000||at>fetched+300000||now-at>1800000||Math.abs(at-paired)>900000)reason='STALE_FUTURE_OR_UNPAIRED_CLOCK';
+   const reason=countyClockReason(x.lastUpdated,now,fetched,paired);
    if(reason)excluded.push({county_fips:pin.county_fips,reason});else counties.push({county_fips:pin.county_fips,county:pin.name,estimated_ballots_left:x.value,reported_at:x.lastUpdated});
   }
   return {status:counties.length?'VALIDATED_WHOLE_COUNTY_ESTIMATES':'NO_USABLE_REMAINING_ESTIMATES',source_url:URL,counties,excluded,calibrated:false,scope:'SIX_WHOLE_COUNTIES_ONLY_THURSTON_EXCLUDED'};
@@ -49,5 +55,5 @@
   }
   return Object.freeze({accept,key});
  }
- return Object.freeze({URL,parse,whole,identities,time,createRevision});
+ return Object.freeze({URL,parse,whole,identities,time,createRevision,receiptCurrent,countyCurrent});
 });
