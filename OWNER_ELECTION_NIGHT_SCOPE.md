@@ -1,6 +1,11 @@
 # Personal election-night dashboard — owner scope, October 27
 
-## October 29 owner layout correction — integrated early indicators, release pending
+## October29 — requested visual correction delivered in PR535
+
+The Poop Meter is now part of one Early indicators panel before the19personalneedles. Full-blown shit isLEFT through Turtling/Skid marks to CleanRIGHT; four original stained-underwear SVGs replace emoji. The top is shorter and more graphical; full reasons, coverage, source context and all32watchraces remain available through the shared drawer. Existing18route/17eligibleD-R rules and forecasts/calls remain unchanged. Published1366/390all157assertions and23pins eachPASS on finalmain4e7c3656/Pages40953771565,24changedpublicfiles/coherencePASS. Humanacceptance/calibration/actualpositive/sourcecoverage remain open. Guideoriginal11tasks unchanged; one22ndcomponent/addendum records this released scope.
+
+
+## Historical PR535 preparation — now verified above
 
 The owner requests one integrated early-indicator/Poop Meter panel, Full-blown shit on the LEFT through Clean undies on the RIGHT, original stained-underwear illustrations, and a cleaner graphical top. The new panel precedes19needles; detailed explanations stay in one shared disclosure. Semantic stage indices, currentness and18route/17D-R/32watch contracts are unchanged. EN-only chrome is compact; model/results status remains visible and all5source states reachable. Modes/Refresh/preview/watch controls are44px. Saved-layout review measured phone forecast start722→476px and meter15850→1982px.
 

@@ -1,13 +1,20 @@
 # Election-night usability and visual review
 
-### PR535 corrected wake-status visibility — new exact-head gate required
+## October29 — PR535 integrated-panel/header review VERIFIED PUBLISHED
+
+PublishedHTTPS Edge1366x900/390x844 passes all157assertions and23uniqueGit-pinned responses each: one Early indicators panel before19needles, reverse identity-selected underwear art, shared32watch/evidence drawer, compact header/first-screen graphic,44px controls/all5reachable feeds, keyboard focus, all4stages/withholding and nooverflow. Actualheld-worker invalidation preserves heading0/−0.5px, focus/open drawer and exact accepted3koutput. Initial desktop−24/phone−42.5 findings and trace retained. Initial7f8CI caught hidden wake-denial status; correctedsummarybadge passed originalassertions and off/lateoff guards.
+
+All35parents/55jobs52SUCCESS3declaredSKIP/0external passed; finalmain4e7c3656/Pages40953771565/24changedpublicfiles/coherencePASS. Ordinary27readonly reload retains2024/privatecontrols/status/archive/modeARIA and13identities; initialwrongorderselector qualified and corrected. Known0viewport/inputlimits not retried; no ordinarygeometry/model-equality or physical-device/human claim. Fictionalexamples have yellow simulation banners. Oneverifiedaddendum/component21→22; guide1.0/11humanresults unchanged. Proof ui-review/pr535-published-3f4c/integrated-early-indicators/ and auditedoutcome.
+
+
+### Historical PR535 wake-status repair — verified by the release above
 
 Initial7f8b2926 failed both Cartogram operator parents on the original requirement that denied wake-lock status remains visible with Display options closed. The compact header had moved the full status into its drawer. A small explicit-state badge now remains in the summary for active/denied/unsupported/released opt-in states; the full original explanations stay in the drawer, and OFF/late-after-OFF badges remain hidden. All five original messages and native request/release/retry ordering are byte-preserved; independent11-group review passes. No permission or OS-setting change.
 
 The original full hierarchy tasks now pass1366/390 with every assertion retained. The unified journey adds the same controlled denial→closed-visible-badge→Off sequence before header measurement:157assertions passbothwidths, including all previous148. Failedhead/logs retained, no rerun/waiver/timeoutincrease. Sourceindex6d6cf1c7; corrected protected gate/publication still required. Numerical/classifier/rate/collector/routes/calls/music unchanged.
 
 
-## October 29 owner layout correction — integrated early indicators, release pending
+## Historical PR535 preparation — now verified above
 
 The owner requests one integrated early-indicator/Poop Meter panel, Full-blown shit on the LEFT through Clean undies on the RIGHT, original stained-underwear illustrations, and a cleaner graphical top. The new panel precedes19needles; detailed explanations stay in one shared disclosure. Semantic stage indices, currentness and18route/17D-R/32watch contracts are unchanged. EN-only chrome is compact; model/results status remains visible and all5source states reachable. Modes/Refresh/preview/watch controls are44px. Saved-layout review measured phone forecast start722→476px and meter15850→1982px.
 

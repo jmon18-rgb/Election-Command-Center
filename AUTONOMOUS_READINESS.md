@@ -1,13 +1,24 @@
 # Election Night production-readiness assignment
 
-### PR535 corrected wake-status visibility — new exact-head gate required
+## October 29 — PR535 verified published: integrated early indicators and cleaner graphics
+
+Tested head3f4cbe7da19bd819bc304abb06aefc51b19c7c27 passed all 35 applicable workflow parents and 55 latest jobs (52 SUCCESS, 3 declared nonapplicable PR deployment skips), with exact check/job agreement, zero external statuses and clean mergeability. Protected merge3e7d793d89f31922567548b377b589caa7b4e554; final current main4e7c36569d0cf725c31e76717dd42bba5dbd2e17, Pages40953771565 SUCCESS. All 24 changed public/index files matched origin/main at21:01:52.617Z without retry;13 coherence checks/current index/no_credit passed. Main remained unchanged after published tasks at21:03:40.477Z.
+
+One 2026 Early indicators panel precedes the19 personal needles, with the same32-race watch and shared evidence drawer. Four original underwear SVGs run Full-blown shit on the LEFT through Turtling/Skid marks to Clean on the RIGHT. Semantic indices and rules are unchanged. The shorter header retains source/model/context/experimental labels,44px primary controls and all five reachable feeds. Published1366/390 tasks passed all157 assertions and23 unique source pins each, including keyboard use, warnings/withholding, exact live-output isolation and no overflow. Actual pending-reader movement was0/−0.5px with focus and drawer preserved. Fictional examples are visibly marked; providers were blocked.
+
+Initial7f8 failed both original Cartogram wake-denial visibility assertions. The corrected summary badge preserves original messages and native request order; both parents passed on3f4. Original failures and reader traces remain immutable. No rerun, waiver, deadline, sample or assertion cut. Ordinary27 read-only reload retained2024 and private checkbox/status/archive/mode-ARIA equality;13 identities matched. The initial wrong order selector is qualified and preserved; the corrected actual meter order passes. No ordinary geometry, interaction, across-reload forecast equality or empirical/human/positive-delivery claim.
+
+Original guide1.0 and eleven human scopes/hash/NOT_RUN/null results remain unchanged. ONE component21→22 appended after publication; ledger SHA95ba6382f992eed15c1d61bca0714d8c0226c176d2c1847099f345b32d002812. Outcome pr535-published-outcome-20261029.json SHAee5618589bff94bdab6b80e30699b4c7531517008ab107776279218196b190a6; independent audit979e6db0. Original outcome and path-only corrective sidecar retained. No pending535 gate. Carry this proof in one unpublished docs checkpoint with the next source change; never push solely to restart CI. The owner layout task is complete; source, calibration, human, positive-delivery and capacity fields remain open.
+
+
+### Historical PR535 wake-status repair — verified by the release above
 
 Initial7f8b2926 failed both Cartogram operator parents on the original requirement that denied wake-lock status remains visible with Display options closed. The compact header had moved the full status into its drawer. A small explicit-state badge now remains in the summary for active/denied/unsupported/released opt-in states; the full original explanations stay in the drawer, and OFF/late-after-OFF badges remain hidden. All five original messages and native request/release/retry ordering are byte-preserved; independent11-group review passes. No permission or OS-setting change.
 
 The original full hierarchy tasks now pass1366/390 with every assertion retained. The unified journey adds the same controlled denial→closed-visible-badge→Off sequence before header measurement:157assertions passbothwidths, including all previous148. Failedhead/logs retained, no rerun/waiver/timeoutincrease. Sourceindex6d6cf1c7; corrected protected gate/publication still required. Numerical/classifier/rate/collector/routes/calls/music unchanged.
 
 
-## October 29 owner layout correction — integrated early indicators, release pending
+## Historical PR535 preparation — now verified above
 
 The owner requests one integrated early-indicator/Poop Meter panel, Full-blown shit on the LEFT through Clean undies on the RIGHT, original stained-underwear illustrations, and a cleaner graphical top. The new panel precedes19needles; detailed explanations stay in one shared disclosure. Semantic stage indices, currentness and18route/17D-R/32watch contracts are unchanged. EN-only chrome is compact; model/results status remains visible and all5source states reachable. Modes/Refresh/preview/watch controls are44px. Saved-layout review measured phone forecast start722→476px and meter15850→1982px.
 

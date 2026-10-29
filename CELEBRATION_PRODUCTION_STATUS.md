@@ -1,5 +1,10 @@
 # Celebration production inventory - October 27, 2026
 
+## October29 — PR535 integrated warning artwork, celebration authority unchanged
+
+Four original decorative underwear SVGs now make the shared Early indicators/Poop Meter scale graphical: Full-blown shitLEFT, then Turtling/Skid marks, CleanRIGHT. It is an editorial current matched-performance display; it does not grant a call or earned celebration. Existing whole owner-image finales, native-recording fish motion, ad-free original/local audio, optionalYouTube and allqueue/retraction/mute/reducedmotion guards remain unchanged. PR535 finalmain4e7c3656/Pages40953771565/24publicfiles/coherence and actual1366/390all157/23pinsPASS. No unchanged media demos or guide rebuild; human listening remainsNOT_RUN. One22ndverifiedcomponent/addendum records only the new layout scope.
+
+
 ## October 29 — PR534 verified published: Poop Meter, county comparisons and celebration finales
 
 PR534 tested cbcf30ec6ab60144485e42fac0f642a33bb16620 passed all 35 applicable workflow parents and 55 latest jobs (52 SUCCESS / 3 declared nonapplicable PR deployment skips), with matching check/job identities, zero external statuses and clean mergeability. Protected merge 7cd60db79a40c830f8909603c19035c8ba78c215; final current main 5322e5e6320000441fb585b5ba7ffb49ac9d14df, Pages 40939361659 SUCCESS. All 57 changed public/index files matched origin/main at 19:24:26Z, no failures/retries; 13 coherence checks/index/no_credit passed. Main was rechecked unchanged after published tasks at 19:29:40Z. No waiver, successful-job rerun, sample/case/assertion cut or deadline increase.
