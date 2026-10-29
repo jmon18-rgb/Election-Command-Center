@@ -109,8 +109,20 @@ try{
   // A wheel-away reader retains keyboard focus elsewhere, but does not consent
   // to being scrolled back when a later accepted response restores that node.
   await page.evaluate(()=>{const card=review.host.querySelector('[data-race="NE-SEN"]');card.querySelector('[data-disclosure="expectation"]').open=true;card.querySelector('[data-disclosure="areas"]').open=true;card.querySelector('[data-disclosure="areas"] > summary').focus();PersonalElectionFocus.setPending(review.host);});
-  await page.mouse.wheel(0,1200);await page.waitForFunction(()=>document.activeElement.getBoundingClientRect().bottom<0);
-  const wheelBefore=await page.evaluate(()=>scrollY);await page.evaluate(()=>review.draw(review.update.result));const wheelAfter=await page.evaluate(()=>scrollY);
+  const wheelStart=await page.evaluate(()=>({y:scrollY,maxScroll:Math.max(0,document.documentElement.scrollHeight-innerHeight)})),wheelTarget=Math.min(wheelStart.maxScroll,wheelStart.y+1200);
+  await page.mouse.wheel(0,1200);await page.waitForFunction(target=>Math.abs(scrollY-target)<=1,wheelTarget);await page.waitForFunction(()=>document.activeElement.getBoundingClientRect().bottom<0);
+  const wheelBeforeDiagnostic=await page.evaluate(()=>{
+   window.__readPendingWheel=()=>{const active=document.activeElement,box=active.getBoundingClientRect();return {y:scrollY,maxScroll:Math.max(0,document.documentElement.scrollHeight-innerHeight),documentHeight:document.documentElement.scrollHeight,hostHeight:review.host.getBoundingClientRect().height,hostMinHeight:review.host.style.minHeight,activeTag:active.tagName,activeRace:active.closest('[data-race]')?.dataset.race||null,activeGeometry:{top:box.top,bottom:box.bottom,height:box.height},viewport:innerHeight};};
+   return window.__readPendingWheel();
+  });
+  const wheelRenderDiagnostic=await page.evaluate(()=>{
+   const calls=[],originalBy=window.scrollBy,originalTo=window.scrollTo;
+   window.scrollBy=function(...args){calls.push({method:'scrollBy',args});return originalBy.apply(this,args);};window.scrollTo=function(...args){calls.push({method:'scrollTo',args});return originalTo.apply(this,args);};
+   try{review.draw(review.update.result);return {afterSynchronousRender:window.__readPendingWheel(),explicitScrollCalls:calls};}finally{window.scrollBy=originalBy;window.scrollTo=originalTo;}
+  });
+  const wheelDiagnostic={before:wheelBeforeDiagnostic,...wheelRenderDiagnostic,after:await page.evaluate(()=>window.__readPendingWheel())};
+  const wheelBefore=wheelDiagnostic.before.y,wheelAfter=wheelDiagnostic.after.y;
+  writeFileSync(resolve(out,'wheel-away-diagnostic-'+width+'.json'),JSON.stringify({at:new Date().toISOString(),channel:process.env.BROWSER_CHANNEL||'chromium',browser_version:browser.version(),requested_wheel_delta:1200,wheel_start:wheelStart,settled_wheel_target:wheelTarget,helper_sha256:hash(sourceBytes['scripts/personal_election_focus.js']),...wheelDiagnostic},null,2)+'\n',{flag:'wx'});
   assert(Math.abs(wheelAfter-wheelBefore)<=1,'Accepted response cannot scroll a wheel-away reader back to retained focus');
   proofs.push({width,height,old_victory_hidden_visually_and_from_accessibility:true,model_chunks_aria_hidden_inert:true,disclosure_DOM_and_open_state_retained:true,card_height_retained:true,pending_scroll_delta:pendingScrollDelta,accepted_watch_focus_below_toolbar:true,heading_bridge_preserves_original_semantic_bookmark:true,accepted_response_same_reader_restored:true,reader_moved_no_focus_steal:true,wheel_away_scroll_delta:wheelAfter-wheelBefore,announcement_style_return_during_and_after_pending:true,removed_explanation_same_race_heading:true,watch_navigation_and_owner_references_usable:true,history_open_sources_retained:true,horizontal_overflow:false,native_provider_gets:0});
   await context.close();

@@ -5210,6 +5210,12 @@ async function jointNationalPreview(){
  }catch{if(version===nationalPreviewVersion){status.textContent='Simulated preview unavailable; live source reporting remains separate.';jointCancelNationalPreview();jointPreviewPending(false);}}
 }
 function jointStartNationalPreview(){nationalPreviewPromise=jointNationalPreview();return nationalPreviewPromise;}
+async function jointRehearsalWhenIdle(){
+ for(;;){await jointWhenIdle();const pending=nationalPreviewPromise;await pending;
+  if(document.hidden||enModeYear!==2026||!$('#enNationalRehearsal')?.open||jointUnavailableKey||!jointBasis)return;
+  if(pending===nationalPreviewPromise&&!nationalPreviewNeedsRefresh&&!jointActiveKey&&jointRefreshTimer===null)return;
+ }
+}
 $('#enNationalRehearsal')?.addEventListener('toggle',()=>{
  if(!$('#enNationalRehearsal').open){jointCancelNationalPreview();return;}
  nationalPreviewStep=0;nationalPreviewHistory=window.PersonalElectionFocus?.createHistory({simulated:true});void jointStartNationalPreview();
