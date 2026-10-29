@@ -970,6 +970,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 
 
 /* One early-indicator panel: stage identities keep their original meaning. */
+.en-wake-badge{display:inline-flex;align-items:center;margin-left:7px;padding:2px 5px;border:1px solid #986d38;border-radius:5px;color:#ffdc9a;font-size:10px;line-height:1.25;white-space:nowrap}.en-wake-badge[data-state=ACTIVE]{border-color:#397f6c;color:#9ce4ce}.en-wake-badge[hidden]{display:none!important}
 .en-early-panel{margin:16px 0;padding:16px;border:1px solid #35566d;border-radius:16px;background:linear-gradient(135deg,#12293b,#101d30);min-width:0}
 .en-early-panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.en-early-panel-head h3{margin:3px 0 0;font-size:1.1rem}.en-early-panel-head .label{font-size:9px;color:#95cfcf}.en-early-scope{font-size:10px;line-height:1.45;color:#b9c9dd;text-align:right}
 .en-poop-meter{margin:0;padding:0;border:0;background:none;color:#f8fafc;min-width:0}.en-poop-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;min-height:26px}.en-poop-top h4{margin:0;font-size:.82rem;color:#b9cde2;font-weight:750}.en-poop-level{font-size:.96rem;margin:0;font-weight:800;text-align:right;line-height:1.35;min-height:1.35em}
@@ -1263,7 +1264,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <div class="en-quick-actions" aria-label="Election Night quick actions">
  <button id="enFishPreview" type="button" class="en-quick-fish" aria-label="Rehearse Fish Head breaking news">🐟 Preview news</button>
  <details id="enDisplayOptions" class="en-display-options">
-  <summary><strong>Display options</strong></summary>
+  <summary><strong>Display options</strong><span id="enWakeBadge" class="en-wake-badge" role="status" hidden></span></summary>
   <p id="enWakeStatus" role="status">Keep this tab visible; browser/OS may still sleep</p>
   <button id="enScreenAwake" type="button" class="chip" aria-pressed="false">Keep display awake</button>
  </details>
@@ -8956,11 +8957,21 @@ function enSwitch(year,office,preferredKey=null){
 // own power management. Never claim a lock was granted until it was.
 let enWakeWanted=false,enWakeToken=null;
 const enWakeButton=$('#enScreenAwake'),enWakeMessage=$('#enWakeStatus');
+function enRenderWakeState(message,state){
+ enWakeMessage.textContent=message;
+ const badge=$('#enWakeBadge');if(!badge)return;
+ const labels={ACTIVE:'Awake',DENIED:'Wake denied',UNSUPPORTED:'Wake unsupported',RELEASED:'Wake released'};
+ const label=labels[state]||'';badge.textContent=label;badge.title=message;badge.dataset.state=state;
+ // The detailed explanation stays in the drawer. Only an opted-in current
+ // state is surfaced; an old rejection cannot label a later OFF selection.
+ badge.hidden=!enWakeWanted||!label;
+}
+
 async function enSyncWake(){
  if(!enWakeWanted||document.visibilityState!=='visible')return;
  if(enWakeToken)return;
  if(typeof navigator==='undefined'||typeof navigator.wakeLock?.request!=='function'){
-  enWakeMessage.textContent='Wake Lock unsupported · change laptop sleep settings';
+  enRenderWakeState('Wake Lock unsupported · change laptop sleep settings','UNSUPPORTED');
   return;
  }
  try{
@@ -8969,16 +8980,16 @@ async function enSyncWake(){
    await lock.release();return;
   }
   enWakeToken=lock;
-  enWakeMessage.textContent='Display wake lock active · keep this tab visible';
+  enRenderWakeState('Display wake lock active · keep this tab visible','ACTIVE');
   if(typeof lock.addEventListener==='function')lock.addEventListener('release',()=>{
    if(enWakeToken===lock)enWakeToken=null;
    if(enWakeWanted){
-    enWakeMessage.textContent='Wake lock released · rechecking when tab visible';
+    enRenderWakeState('Wake lock released · rechecking when tab visible','RELEASED');
     if(document.visibilityState==='visible')void enSyncWake();
    }
   });
  }catch(e){
-  enWakeMessage.textContent='Display wake lock denied · adjust laptop power settings';
+  enRenderWakeState('Display wake lock denied · adjust laptop power settings','DENIED');
  }
 }
 enWakeButton.addEventListener('click',()=>{
@@ -8989,7 +9000,7 @@ enWakeButton.addEventListener('click',()=>{
  else{
   const lock=enWakeToken;enWakeToken=null;
   if(lock)void lock.release().catch(()=>{});
-  enWakeMessage.textContent='Wake lock off · laptop may sleep';
+  enRenderWakeState('Wake lock off · laptop may sleep','OFF');
  }
 });
 // Recover the full live source cycle promptly when a laptop wakes, Wi-Fi
