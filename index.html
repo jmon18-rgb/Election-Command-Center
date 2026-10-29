@@ -969,12 +969,20 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 @media(prefers-reduced-motion:reduce){.en-early-weather-cloud{animation:none}.en-fish-talking .fish-anchor-mouth,.en-fish-talking .fish-anchor-jaw{transition:none}}
 
 
-/* Relative-performance display: fixed four stages; unknown has no selected stage. */
-.en-poop-meter{margin:14px 0;padding:18px;border:1px solid var(--border,#334155);border-radius:16px;background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,41,59,.8));color:var(--text,#f8fafc)}
-.en-poop-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:baseline}.en-poop-top h3{margin:0;font-size:1.35rem}.en-poop-kicker{margin:0;color:#cbd5e1;font-size:.85rem}.en-poop-level{font-size:1.05rem;margin:10px 0 6px;font-weight:800;min-height:1.6em}
-.en-poop-scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:12px 0;padding:0;list-style:none}.en-poop-scale li{position:relative;border:1px solid #475569;border-radius:10px;padding:10px 5px;text-align:center;font-size:.82rem;font-weight:700;color:#a8b3c5;background:#172033;min-width:0;overflow-wrap:anywhere;opacity:.65}.en-poop-scale li span{display:block;font-size:1.6rem;line-height:1.3;margin-bottom:4px}.en-poop-scale li[data-selected="true"]{opacity:1;color:#fff;border:2px solid var(--poop-tone,#cbd5e1);padding:9px 4px;box-shadow:0 0 18px color-mix(in srgb,var(--poop-tone,#cbd5e1) 22%,transparent)}
-.en-poop-scale li:nth-child(1){--poop-tone:#5eead4}.en-poop-scale li:nth-child(2){--poop-tone:#fde68a}.en-poop-scale li:nth-child(3){--poop-tone:#fb923c}.en-poop-scale li:nth-child(4){--poop-tone:#f87171}.en-poop-meter p{line-height:1.5}.en-poop-reason{margin:8px 0;color:#e2e8f0}.en-poop-coverage{font-size:.84rem;color:#b8c5d7;margin:6px 0}.en-poop-rules{font-size:.84rem;color:#cbd5e1;margin-top:10px}.en-poop-rules summary{cursor:pointer;min-height:44px;display:flex;align-items:center}.en-poop-rules ul{padding-left:22px}.en-poop-rules li{margin:6px 0}
-@media(max-width:500px){.en-poop-meter{padding:14px}.en-poop-scale{gap:4px}.en-poop-scale li{font-size:.73rem;padding:9px 3px}.en-poop-scale li[data-selected="true"]{padding:8px 2px}.en-poop-scale li span{font-size:1.4rem}}
+/* One early-indicator panel: stage identities keep their original meaning. */
+.en-wake-badge{display:inline-flex;align-items:center;margin-left:7px;padding:2px 5px;border:1px solid #986d38;border-radius:5px;color:#ffdc9a;font-size:10px;line-height:1.25;white-space:nowrap}.en-wake-badge[data-state=ACTIVE]{border-color:#397f6c;color:#9ce4ce}.en-wake-badge[hidden]{display:none!important}
+.en-early-panel{margin:16px 0;padding:16px;border:1px solid #35566d;border-radius:16px;background:linear-gradient(135deg,#12293b,#101d30);min-width:0}
+.en-early-panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}.en-early-panel-head h3{margin:3px 0 0;font-size:1.1rem}.en-early-panel-head .label{font-size:9px;color:#95cfcf}.en-early-scope{font-size:10px;line-height:1.45;color:#b9c9dd;text-align:right}
+.en-poop-meter{margin:0;padding:0;border:0;background:none;color:#f8fafc;min-width:0}.en-poop-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;min-height:26px}.en-poop-top h4{margin:0;font-size:.82rem;color:#b9cde2;font-weight:750}.en-poop-level{font-size:.96rem;margin:0;font-weight:800;text-align:right;line-height:1.35;min-height:1.35em}
+.en-poop-scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0 8px;padding:0;list-style:none}.en-poop-scale li{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;border:1px solid #395267;border-radius:11px;padding:8px 4px;text-align:center;font-size:.8rem;font-weight:750;line-height:1.25;color:#b9c5d4;background:#101e30;min-width:0;overflow-wrap:anywhere;opacity:.75}.en-poop-icon{display:block;width:56px;height:56px;max-width:100%;flex-shrink:0}.en-poop-tile-label{display:block;min-height:1.25em}.en-poop-scale li[data-selected="true"]{opacity:1;color:#fff;border:2px solid var(--poop-tone,#cbd5e1);padding:7px 3px;background:color-mix(in srgb,var(--poop-tone,#cbd5e1) 9%,#101e30);box-shadow:0 0 16px color-mix(in srgb,var(--poop-tone,#cbd5e1) 16%,transparent)}
+.en-poop-scale [data-poop-stage="FULL_BLOWN_SHIT"]{--poop-tone:#fa8587}.en-poop-scale [data-poop-stage="TURTLING"]{--poop-tone:#ffad63}.en-poop-scale [data-poop-stage="SKID_MARKS"]{--poop-tone:#ffe08a}.en-poop-scale [data-poop-stage="CLEAN_UNDIES"]{--poop-tone:#6fe0c9}.en-poop-glance{font-size:.78rem;line-height:1.4;color:#b7c9da;margin:6px 0 0;min-height:1.4em}
+.en-early-panel p{line-height:1.5}.en-poop-reason{margin:10px 0;color:#e2e8f0}.en-poop-coverage{font-size:.8rem;color:#b8c5d7;margin:6px 0}.en-poop-rules{font-size:.82rem;color:#cbd5e1;margin:8px 0}.en-poop-rules>summary{cursor:pointer;min-height:44px;display:flex;align-items:center}.en-poop-rules ul{padding-left:21px}.en-poop-rules li{margin:6px 0}
+#electionNight #enEarlyIndicatorPanel .en-early-desk{margin:12px 0 0;border:0;border-top:1px solid #31495f;border-radius:0;padding:0;background:transparent}#electionNight #enEarlyIndicatorPanel .en-early-heading{min-height:44px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:4px 12px;padding:9px 0}#electionNight #enEarlyIndicatorPanel .en-early-heading strong{font-size:.82rem}#electionNight #enEarlyIndicatorPanel .en-early-heading small{margin:0;font-size:.72rem;color:#abc2d5}#electionNight #enEarlyIndicatorPanel .en-early-desk[open] .en-early-heading{margin-bottom:6px}
+.en-early-shortcuts{display:flex;flex-wrap:wrap;gap:8px}.en-early-shortcuts button{min-height:44px;padding:8px 12px;border:1px solid #50718d;border-radius:8px;background:#19374d;color:#e4f2ff;font-size:12px;font-weight:750;cursor:pointer}.en-early-shortcuts button:disabled{opacity:.55;cursor:default}.en-early-shortcuts button:focus-visible,.en-early-heading:focus-visible,.en-poop-rules>summary:focus-visible{outline:2px solid #fff0a4;outline-offset:3px}
+/* Election Night keeps the global source states, but drops repeated branding. */
+body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active-page="electionNight"] .feed-command-strip{margin-top:12px;margin-bottom:8px}body[data-active-page="electionNight"] .tabs{margin-top:4px;margin-bottom:15px}#electionNight>.sectionhead{margin-bottom:7px;align-items:flex-start}#electionNight>.sectionhead .detail{font-size:11px;line-height:1.5;margin-top:4px}#electionNight #enChecked{font-size:10px;white-space:nowrap}#electionNight :is(#enMode2026,#enMode2024,#enRefresh){min-height:44px}#electionNight .en-quick-actions{gap:7px;margin:5px 0 9px;align-items:flex-start}#electionNight .en-quick-fish{min-height:44px;padding:8px 11px;font-size:12px}#electionNight .en-display-options>summary,#electionNight .en-fish-settings>summary{display:flex;align-items:center;min-height:44px;padding:7px 9px;font-size:12px;cursor:pointer}#electionNight .en-display-options>summary:before,#electionNight .en-fish-settings>summary:before{content:'▸';margin-right:5px}#electionNight .en-display-options[open]>summary:before,#electionNight .en-fish-settings[open]>summary:before{content:'▾'}#electionNight .en-display-options p{font-size:11px;max-width:280px;margin:8px 0}#electionNight .en-fish-settings{padding:0}#jointNightPanelSnapshotStatus{font-size:11px;line-height:1.4;margin:7px 0}#electionNight .en-nmap-intro{font-size:11px;line-height:1.45;margin:8px 0}
+@media(max-width:650px){body[data-active-page="electionNight"] .feed-strip-title{flex-basis:auto;margin:0;font-size:8px;gap:4px}body[data-active-page="electionNight"] .feed-command-strip{gap:5px;padding:6px 8px}body[data-active-page="electionNight"] .feed-glance{font-size:9px;padding:4px 5px;min-height:36px}body[data-active-page="electionNight"] .feed-strip-details{margin-left:auto}body[data-active-page="electionNight"] .feed-strip-details>summary{min-height:36px;display:flex;align-items:center}body[data-active-page="electionNight"] .feed-command-strip:not(:has(.feed-strip-details[open])) :is(#feedPolls,#feedNews,#feedSecurity){display:none}}
+@media(max-width:500px){.en-early-panel{padding:12px}.en-early-panel-head{margin-bottom:10px}.en-early-panel-head h3{font-size:1.05rem}.en-poop-top h4{font-size:.75rem}.en-poop-level{font-size:.82rem;max-width:64%}.en-poop-scale{gap:5px}.en-poop-scale li{font-size:.7rem;padding:7px 3px}.en-poop-scale li[data-selected="true"]{padding:6px 2px}.en-poop-icon{width:48px;height:48px}.en-poop-tile-label{min-height:2.5em}.en-poop-glance{font-size:.72rem}#electionNight #enChecked{font-size:9px}#electionNight>.sectionhead{gap:6px}#electionNight>.sectionhead>div{min-width:0}#electionNight>.sectionhead h2{letter-spacing:.1em}#electionNight .en-quick-fish{font-size:11px;padding:7px 9px}#electionNight .en-display-options>summary,#electionNight .en-fish-settings>summary{font-size:11px;padding:7px 8px}#electionNight .joint-title{gap:8px}#electionNight .joint-title .label{font-size:8px}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -1252,14 +1260,15 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 </section>
 <section id="integrity" class="page"><div class="sectionhead"><h2>Bullshittery Index</h2><span class="tiny">Evidence-first reporting</span></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Documented issue monitoring</span><span class="tiny">Sourced cases only · not a national audit</span></div><p id="bullCoverageSummary" class="detail">Checking evidence-ledger coverage…</p><p id="integrityFeedStatus" class="tiny" role="status">Checking live reports and curated incident coverage…</p><div id="bullScoreStates" class="bs-state-scores"><span class="empty">Loading incident scorecards…</span></div><details class="bs-method"><summary>What exactly is being estimated?</summary><p><strong>Two separate figures:</strong> the 0–100 score is an operational monitoring priority. The percentage is our rough, subjective probability that the named incident prevents <strong>at least 100 otherwise-eligible people</strong> from casting a countable ballot after ordinary remedies and review. Neither measures election fraud or who wins.</p><p>The probabilities are judgmental working estimates with deliberately broad ranges: registration backlog 12% (3–30%), ten-county Sunday-hours change 10% (2–25%), voter-list litigation without a demonstrated access effect 1% (0.1–5%). They are not historically calibrated. The records/county counts show the scale of the issue, not how many ballots will be lost. Each figure will be revised when processing reports, alternative access and actual voting data arrive. <a href="https://github.com/jmon18-rgb/Election-Command-Center/blob/main/BULLSHITTERY.md" target="_blank" rel="noopener noreferrer">Full assumptions ↗</a></p></details></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Voter impact · evidence ledger</span><span class="tag">COUNTS REQUIRE SOURCES</span></div><p class="detail">Track potentially exposed voters or ballots separately from confirmed effects and remedies. Unknown is not zero. Overlapping incidents are never added into a statewide total.</p><div class="toolrow"><select id="impactState" aria-label="Filter state voter impact"><option value="">All monitored states</option></select><select id="impactStatus" aria-label="Filter evidence status"><option value="">All evidence statuses</option><option value="unverified_report">Unverified report</option><option value="documented_action">Documented action</option><option value="officially_confirmed">Officially confirmed</option><option value="court_finding">Court finding</option><option value="resolved">Resolved</option></select></div><div id="impactSummary" class="statusline">Loading sourced impact ledger…</div><div id="impactCases" class="racecards racecards-wide"></div><p class="methodline">Counts preserve their units (voters, ballots, registrations, records). Potential exposure does not imply disenfranchisement, fraud, or an election outcome change.</p></div><div class="card" style="margin-bottom:16px"><div class="row"><span class="label">Incoming integrity reports · verification queue</span><span class="tag">NOT VERIFIED</span></div><p class="detail">Automatically collected leads requiring original documents. Numbers in headlines are not confirmed voter-impact counts.</p><div id="integrityQueueSummary" class="statusline">Checking verification queue…</div><div id="integrityQueue" class="racecards racecards-wide"></div></div><div class="grid"><div class="card seven"><div class="row"><span class="label">Documented developments</span><span class="tag">FEED PENDING</span></div><div class="toolrow"><input type="search" id="securitySearch" placeholder="Search voter rolls, ICE, courts…"><select id="securityOrder" aria-label="Sort news"><option value="recent">Newest first</option><option value="oldest">Oldest first</option></select></div><div class="statusline" id="securityCount">No articles loaded yet.</div><div id="security" class="empty">No articles loaded yet. These are automatically collected news leads, not verified incidents.</div></div><div class="card five"><span class="label">Monitoring priorities</span><div class="item"><strong>Voter rolls and registration</strong><small>Eligibility challenges, list maintenance, notices, and court orders.</small></div><div class="item"><strong>Federal agency activity</strong><small>Documented actions that may affect voting access, including ICE.</small></div><div class="item"><strong>Threats and disruptions</strong><small>Cyber incidents, polling-place threats, and official responses.</small></div><div class="item"><strong>Litigation and oversight</strong><small>Injunctions, appeals, election procedures, and implementation.</small></div></div></div><div class="note">An allegation is not a verified incident. Every report should distinguish evidence, disputed claims, and unresolved questions.</div></section>
 <section id="electionNight" class="page">
-<div class="sectionhead"><div><h2>Election Night</h2><p class="detail">Unofficial, source-attributed vote counts, verified for consistency. Watch state-reported counts as they arrive. Rehearse with the 2024 archives before election night.</p></div><span class="tiny" id="enChecked">Not connected yet</span></div>
+<div class="sectionhead"><div><h2>Election Night</h2><p class="detail">Source-attributed returns · verified calls · experimental forecasts.</p></div><span class="tiny" id="enChecked">Not connected yet</span></div>
 <div class="en-quick-actions" aria-label="Election Night quick actions">
- <button id="enFishPreview" type="button" class="en-quick-fish">🐟 Rehearse Fish Head breaking news</button>
+ <button id="enFishPreview" type="button" class="en-quick-fish" aria-label="Rehearse Fish Head breaking news">🐟 Preview news</button>
  <details id="enDisplayOptions" class="en-display-options">
-  <summary><strong>Display options</strong><span id="enWakeStatus" role="status">Keep this tab visible; browser/OS may still sleep</span></summary>
+  <summary><strong>Display options</strong><span id="enWakeBadge" class="en-wake-badge" role="status" hidden></span></summary>
+  <p id="enWakeStatus" role="status">Keep this tab visible; browser/OS may still sleep</p>
   <button id="enScreenAwake" type="button" class="chip" aria-pressed="false">Keep display awake</button>
  </details>
- <details class="en-fish-settings"><summary>Fish Head sound</summary>
+ <details class="en-fish-settings"><summary aria-label="Fish Head sound">Sound</summary>
   <button id="enFishVoice" type="button" aria-pressed="true">Sound: on</button>
   <p>Your Fish Head MP3 plays on every new breaking-results alert. Preview once to enable sound in browsers that block automatic audio.</p>
  </details>
@@ -1314,10 +1323,89 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
  </div>
  <section class="en-national-map-panel" aria-label="2026 nationwide forecast map">
  <div class="en-nc-map-head"><div><span class="tiny">ELECTION NIGHT · LINKED FORECAST</span><h3>The national race map</h3></div><span class="en-nc-map-mark">50-STATE RACE MAP</span></div>
- <p class="en-nmap-intro">Senate contests or one competitive House district per state. Colors show <strong>model win chances</strong>, not counted vote leaders. Select a state to explore its race.</p>
+ <p class="en-nmap-intro">Colors show <strong>model chances</strong>, not counted leaders. Select a state.</p>
  <div id="enNationalNeedleMap"><p>Loading linked nationwide forecast map…</p></div>
 </section>
  </div>
+ <section id="enEarlyIndicatorPanel" class="en-early-panel" aria-labelledby="enEarlyIndicatorTitle">
+  <header class="en-early-panel-head"><div><span class="label">EARLY RETURNS</span><h3 id="enEarlyIndicatorTitle">Early indicators</h3></div><span class="en-early-scope">Relative performance<br>not win odds</span></header>
+  <section id="enPoopMeter" class="en-poop-meter" aria-labelledby="enPoopTitle" data-stage="UNRATED">
+   <div class="en-poop-top"><h4 id="enPoopTitle">The Poop Meter</h4><p id="enPoopLevel" class="en-poop-level" role="status" aria-live="polite">Waiting for usable returns</p></div>
+   <ol class="en-poop-scale" aria-label="Underperformance warning scale, from worst on the left to best on the right">
+  <li data-poop-stage="FULL_BLOWN_SHIT" data-selected="false"><svg xmlns="http://www.w3.org/2000/svg" class="en-poop-icon" width="56" height="56" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M12 21H52L56 51L37 54L32 39L27 54L8 51L12 21Z" fill="#F4F8F4" stroke="#31546E" stroke-width="2.6"/>
+ <path d="M14 26L12 46M50 26L52 46M12 47L26 49M38 49L52 47" stroke="#A8C4CC" stroke-width="2"/>
+ <path d="M22 26C25 23 29 27 32 26C37 22 43 27 44 33C48 33 49 37 46 41C45 45 48 49 44 51C40 55 35 48 32 46C28 49 27 55 22 52C19 50 21 46 18 43C13 38 17 34 20 33C18 30 19 28 22 26Z" fill="#A86A3E" stroke="#69462F" stroke-width="2"/>
+ <path d="M24 29C28 32 36 27 40 31M21 38C26 41 31 36 37 39M35 45L41 48" stroke="#D0A16D" stroke-width="2.4"/>
+ <path d="M15 47C12 50 11 54 14 56C17 58 20 55 20 52M45 48C47 50 46 54 49 55C53 55 54 52 52 49" fill="#A86A3E" stroke="#69462F" stroke-width="2"/>
+ <ellipse cx="28" cy="59" rx="17" ry="2.6" fill="#805236"/>
+ <circle cx="55" cy="57" r="2.4" fill="#A86A3E"/>
+ <circle cx="7" cy="41" r="2" fill="#A86A3E"/>
+ <rect x="10" y="14" width="44" height="10" rx="3" fill="#8AC7E0" stroke="#31546E" stroke-width="2.6"/>
+ <path d="M16 18H48" stroke="#D7F1FA" stroke-width="2"/>
+ <path d="M47 7L49 3M54 11L59 9M15 6L12 3" stroke="#FFD985" stroke-width="2.2"/>
+</svg>
+<span class="en-poop-tile-label">Full-blown shit</span></li>
+  <li data-poop-stage="TURTLING" data-selected="false"><svg xmlns="http://www.w3.org/2000/svg" class="en-poop-icon" width="56" height="56" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M12 21H52L56 51L37 54L32 39L27 54L8 51L12 21Z" fill="#F4F8F4" stroke="#31546E" stroke-width="2.6"/>
+ <path d="M14 26L12 46M50 26L52 46M12 47L26 49M38 49L52 47" stroke="#A8C4CC" stroke-width="2"/>
+ <path d="M22 29C24 24 40 24 42 29C45 35 40 41 32 42C24 41 19 35 22 29Z" fill="#E9D5B7" stroke="#B69B78" stroke-width="1.8"/>
+ <path d="M23 35C28 39 36 39 41 35" stroke="#B69B78" stroke-width="1.8"/>
+ <path d="M23 19C21 15 25 12 28 12C26 8 29 7 31 4C38 6 38 10 37 12C42 13 44 17 41 21L23 21Z" fill="#A86A3E" stroke="#69462F" stroke-width="2"/>
+ <path d="M29 11C31 12 34 12 37 12" stroke="#C99862" stroke-width="1.7"/>
+ <ellipse cx="29" cy="16" rx="3.1" ry="3.6" fill="#F4F8F4"/>
+ <ellipse cx="37" cy="16" rx="3.1" ry="3.6" fill="#F4F8F4"/>
+ <circle cx="29.8" cy="16.8" r="1.5" fill="#243B4B"/>
+ <circle cx="36.2" cy="16.8" r="1.5" fill="#243B4B"/>
+ <rect x="10" y="20" width="44" height="8" rx="3" fill="#8AC7E0" stroke="#31546E" stroke-width="2.6"/>
+ <path d="M16 23H48M32 28V36" stroke="#D7F1FA" stroke-width="2"/>
+ <path d="M16 10L13 6M48 10L51 6" stroke="#FFD985" stroke-width="2.2"/>
+</svg>
+<span class="en-poop-tile-label">Turtling</span></li>
+  <li data-poop-stage="SKID_MARKS" data-selected="false"><svg xmlns="http://www.w3.org/2000/svg" class="en-poop-icon" width="56" height="56" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M12 21H52L56 51L37 54L32 39L27 54L8 51L12 21Z" fill="#F4F8F4" stroke="#31546E" stroke-width="2.6"/>
+ <path d="M14 26L12 46M50 26L52 46M32 26V37M12 47L26 49M38 49L52 47" stroke="#A8C4CC" stroke-width="2"/>
+ <path d="M27 27C29 25 32 27 33 30L40 43C41 46 38 49 35 46L27 34C25 31 25 29 27 27Z" fill="#B47A4A"/>
+ <path d="M29 29L37 44" stroke="#815033" stroke-width="4.6"/>
+ <path d="M34 29L41 39M24 32L28 40" stroke="#D2AC76" stroke-width="1.8"/>
+ <rect x="10" y="14" width="44" height="10" rx="3" fill="#8AC7E0" stroke="#31546E" stroke-width="2.6"/>
+ <path d="M16 18H48" stroke="#D7F1FA" stroke-width="2"/>
+ <path d="M32 24C28 19 25 24 32 26C39 24 36 19 32 24ZM32 26L29 30M32 26L35 30" stroke="#31546E" stroke-width="1.8"/>
+ <path d="M47 7L50 4M52 10L57 9" stroke="#FFD985" stroke-width="2.2"/>
+</svg>
+<span class="en-poop-tile-label">Skid marks</span></li>
+  <li data-poop-stage="CLEAN_UNDIES" data-selected="false"><svg xmlns="http://www.w3.org/2000/svg" class="en-poop-icon" width="56" height="56" viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false" stroke-linecap="round" stroke-linejoin="round">
+ <path d="M12 21H52L56 51L37 54L32 39L27 54L8 51L12 21Z" fill="#F4F8F4" stroke="#31546E" stroke-width="2.6"/>
+ <path d="M14 26L12 46M50 26L52 46M32 26V37M12 47L26 49M38 49L52 47" stroke="#A8C4CC" stroke-width="2"/>
+ <rect x="10" y="14" width="44" height="10" rx="3" fill="#8AC7E0" stroke="#31546E" stroke-width="2.6"/>
+ <path d="M16 18H48" stroke="#D7F1FA" stroke-width="2"/>
+ <path d="M32 24C28 19 25 24 32 26C39 24 36 19 32 24ZM32 26L29 30M32 26L35 30" stroke="#31546E" stroke-width="1.8"/>
+ <path d="M54 3L56 8L61 10L56 12L54 17L52 12L47 10L52 8L54 3Z" fill="#FFD985" stroke="#C69846" stroke-width="1.5"/>
+ <path d="M6 29L7.5 32.5L11 34L7.5 35.5L6 39L4.5 35.5L1 34L4.5 32.5L6 29Z" fill="#FFD985"/>
+ <circle cx="46" cy="5" r="1.8" fill="#D7F1FA"/>
+</svg>
+<span class="en-poop-tile-label">Clean undies</span></li>
+   </ol>
+   <p id="enPoopGlance" class="en-poop-glance">Awaiting usable comparisons</p>
+  </section>
+  <details class="en-early-desk" id="enEarlySignalsDetails" aria-label="Early election night signals">
+   <summary class="en-early-heading"><strong>Watch races &amp; inspect the signal</strong><small>32 races · KY-06 / IN-05 / FL-SEN first</small></summary>
+   <div id="enEarlySignals" class="en-early-shortcuts">
+    <button type="button" id="enEarlyWatchOpen">Open the shared race watch ↗</button>
+    <button type="button" id="enEarlyWeatherPreview">Preview “storm brewing”</button>
+   </div>
+   <p id="enEarlyHealth" class="en-live-note" role="status">Waiting for source-validated early results…</p>
+   <p id="enPoopReason" class="en-poop-reason">At least two states need usable matched returns before this meter gets a rating.</p>
+   <p id="enPoopCoverage" class="en-poop-coverage">Covered evidence only · not national win odds.</p>
+ <details class="en-poop-rules"><summary>What puts us on the scale?</summary>
+  <p>The same admitted county evidence used by the needles supplies this display. The 32-race watch also includes races whose matched inputs are still missing. Neither display adds another adjustment to the model.</p>
+  <ul><li><strong>Clean undies:</strong> at least two covered states have usable comparisons and no qualified Democratic underperformance warning.</li><li><strong>Skid marks:</strong> a warning in one state, or conflicting overperformance and underperformance.</li><li><strong>Turtling:</strong> warnings in at least two states, with no qualified opposing positive signal.</li><li><strong>Full-blown shit:</strong> at least three states fall at least 5 points short of expectations across every supplied method scenario, with no qualified positive signal.</li></ul>
+  <p>Editorial thresholds, not calibrated odds: noticeable means at least 3 margin points across every method scenario. Each comparison needs at least 10,000 matched two-party votes, three reporting areas and 0.5% of historical reference turnout. Nebraska’s Osborn/Ricketts axis is excluded from Democratic-performance warnings. Partial geography and reporting order can mislead; “Clean” is not a Democratic-win forecast. Pending, stale or insufficient evidence stays unrated.</p>
+ </details>
+   <p class="en-live-note">Winning is not required to outperform. In the same reporting areas, an expected R+25 margin reporting R+20 is D+5 versus expectations. Raw early totals alone cannot establish that comparison.</p>
+   <p class="en-live-note">Provisional weather bulletins use matched performance across states. They are separate from verified race wins and add no second adjustment to the national needle. The 32-race watch retains all 21 owner House references.</p>
+  </details>
+ </section>
  <aside class="en-input-health" aria-label="Results freshness and coverage">
   <strong>Results coverage &amp; freshness</strong>
   <p id="enAllOfficeSummary" role="status">2024 archived rehearsal · real 2026 vote counts begin November 3</p>
@@ -1631,34 +1719,6 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
  <div id="enWatchError" class="en-watch-error" role="status"></div>
  <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
  </details>
-<section id="enPoopMeter" class="en-poop-meter" aria-labelledby="enPoopTitle" data-stage="UNRATED">
- <div class="en-poop-top"><h3 id="enPoopTitle">The Poop Meter</h3><p class="en-poop-kicker">EARLY RETURNS · PERFORMANCE VS EXPECTATIONS</p></div>
- <p id="enPoopLevel" class="en-poop-level" role="status" aria-live="polite">Waiting for usable returns</p>
- <ol class="en-poop-scale" aria-label="Underperformance warning scale">
-  <li data-poop-stage="CLEAN_UNDIES" data-selected="false"><span aria-hidden="true">🩲</span>Clean undies</li>
-  <li data-poop-stage="SKID_MARKS" data-selected="false"><span aria-hidden="true">😬</span>Skid marks</li>
-  <li data-poop-stage="TURTLING" data-selected="false"><span aria-hidden="true">🐢</span>Turtling</li>
-  <li data-poop-stage="FULL_BLOWN_SHIT" data-selected="false"><span aria-hidden="true">💩</span>Full-blown shit</li>
- </ol>
- <p id="enPoopReason" class="en-poop-reason">At least two states need usable matched returns before this meter gets a rating.</p>
- <p id="enPoopCoverage" class="en-poop-coverage">Covered evidence only · not national win odds.</p>
- <details class="en-poop-rules"><summary>What puts us on the scale?</summary>
-  <p>The same admitted county evidence used by the needles supplies this display. The 32-race watch also includes races whose matched inputs are still missing. Neither display adds another adjustment to the model.</p>
-  <ul><li><strong>Clean undies:</strong> at least two covered states have usable comparisons and no qualified Democratic underperformance warning.</li><li><strong>Skid marks:</strong> a warning in one state, or conflicting overperformance and underperformance.</li><li><strong>Turtling:</strong> warnings in at least two states, with no qualified opposing positive signal.</li><li><strong>Full-blown shit:</strong> at least three states fall at least 5 points short of expectations across every supplied method scenario, with no qualified positive signal.</li></ul>
-  <p>Editorial thresholds, not calibrated odds: noticeable means at least 3 margin points across every method scenario. Each comparison needs at least 10,000 matched two-party votes, three reporting areas and 0.5% of historical reference turnout. Nebraska’s Osborn/Ricketts axis is excluded from Democratic-performance warnings. Partial geography and reporting order can mislead; “Clean” is not a Democratic-win forecast. Pending, stale or insufficient evidence stays unrated.</p>
- </details>
-</section>
-<details class="en-early-desk" id="enEarlySignalsDetails" aria-label="Early election night signals">
- <summary class="en-early-heading"><span><strong>Early indicators · one shared watch</strong>
- <small>KY-06 · IN-05 · FL-SEN · all 21 House references</small></span></summary>
- <p class="en-live-note">Winning is not required to outperform. In the same reporting areas, an expected R+25 margin reporting R+20 is D+5 versus expectations. Raw early totals alone cannot establish that comparison.</p>
- <p id="enEarlyHealth" class="en-live-note" role="status">Waiting for source-validated early results…</p>
- <div id="enEarlySignals" class="en-early-shortcuts">
-  <button type="button" id="enEarlyWatchOpen">Open the shared early-indicator watch ↗</button>
-  <button type="button" id="enEarlyWeatherPreview">Preview “storm brewing”</button>
- </div>
- <p class="en-live-note">Provisional weather bulletins use matched performance across states. They are separate from verified race wins and add no second adjustment to the national needle.</p>
-</details>
 <aside class="en-early-weather-toast" id="enEarlyWeatherToast" hidden aria-live="polite" aria-label="Provisional early-indicator bulletin">
  <div class="en-early-weather-cloud" aria-hidden="true">☁</div>
  <div><small id="enEarlyWeatherKicker">EARLY WEATHER DESK · PROVISIONAL</small><h3 id="enEarlyWeatherTitle">A storm is brewing</h3><p id="enEarlyWeatherBody"></p><strong>Encouraging local evidence · not a race win or national call</strong></div>
@@ -5295,6 +5355,7 @@ function jointFrameSnapshot(inputs,key){
 }
 function jointFrameCurrent(frame,epoch){return epoch===jointRequestEpoch&&!document.hidden&&frame.key===jointFrameKey(jointValidatedFrameInputs());}
 function jointInvalidateModel(key,message='Updating forecast in the background…',hard=false){
+ const invalidate=()=>{
  if(typeof enIndicatorWithdraw==='function')enIndicatorWithdraw();
  if(!hard&&jointModelPending&&jointPendingKey===key&&!jointAsOfSnapshot)return;
  jointClearCountSnapshots();
@@ -5313,6 +5374,11 @@ function jointInvalidateModel(key,message='Updating forecast in the background�
  if($('#jointRunStatus'))$('#jointRunStatus').textContent=message;
  jointSnapshotLabels();
  enRenderExportControls();
+ };
+ // Preserve the visible reader across the whole synchronous invalidation,
+ // including the forecast needle/footer and headline above the race cards.
+ if(typeof jointPreserveSnapshotReader==='function')return jointPreserveSnapshotReader(invalidate,enModeYear===2026&&!document.hidden&&typeof enIsVisible==='function'&&enIsVisible());
+ return invalidate();
 }
 function jointFallbackBundleValid(value,request){
   // Self-contained so the page can retain this exact guard when either optional
@@ -7933,7 +7999,13 @@ const enIndicatorWeather=window.ElectionNightEarlyWeather?.create({render:enIndi
 function enIndicatorBlocked(){return Boolean($('#enMilestoneSpotlight')?.open||!$('#enFishToast')?.hidden||$('#enNationalRehearsal')?.open);}
 function enIndicatorWithdraw(){enIndicatorWeather?.update({active:false});enIndicatorStopChime();if(document.hidden||typeof enIsVisible!=='function'||!enIsVisible()||enModeYear!==2026)enIndicatorRenderPoop({active:false,current:false,context:null});}
 function enIndicatorSyncControls(){
- if((enModeYear!==2026||jointModelPending)&&typeof enIndicatorRenderPoop==='function')enIndicatorRenderPoop({active:enModeYear===2026,current:false,context:null});
+ if((enModeYear!==2026||jointModelPending)&&typeof enIndicatorRenderPoop==='function'){
+  const withhold=()=>enIndicatorRenderPoop({active:enModeYear===2026,current:false,context:null});
+  // This panel now precedes the race cards. Its expanded evidence can resize
+  // during an immediate invalidation, before the ordinary render guard.
+  if(typeof jointPreserveSnapshotReader==='function')jointPreserveSnapshotReader(withhold,enModeYear===2026&&!document.hidden&&typeof enIsVisible==='function'&&enIsVisible());
+  else withhold();
+ }
  const open=$('#enEarlyWatchOpen'),preview=$('#enEarlyWeatherPreview'),host=$('#enPersonalFocus'),archive=enModeYear!==2026;
  const ready=!archive&&!jointModelPending&&host&&!host.hidden&&Boolean(host.querySelector('.early-watch'));
  if(open){open.disabled=!ready;open.title=archive?'Select 2026 Results above to open this watch.':ready?'Open the shared early-indicator watch.':'The early watch is preparing; it will be available when this calculation finishes.';}
@@ -7952,6 +8024,8 @@ function enIndicatorRenderPoop(view){
  write('enPoopLevel',value?.label||'Waiting for usable returns');
  write('enPoopReason',value?.reason||'The matched-performance helper is unavailable. No warning level is inferred.');
  const races=value?.matched_races||[],states=value?.matched_states||[];
+ const compactContext=view?.context==='LOCAL_RESEARCH_VARIANT'?'Your local context':view?.context==='PUBLIC'?'Public context':'Context unavailable';
+ write('enPoopGlance',races.length?states.length+' matched state'+(states.length===1?'':'s')+' · '+races.length+' race'+(races.length===1?'':'s')+' · '+compactContext:compactContext+' · rating withheld');
  const coverage=Number.isInteger(value?.connected_route_count)&&Number.isInteger(value?.eligible_route_count)?value.connected_route_count+' connected county routes; '+value.eligible_route_count+' eligible D/R comparisons.':'County coverage unavailable.';
  write('enPoopCoverage',(view?.context==='LOCAL_RESEARCH_VARIANT'?'Your local comparison context · ':view?.context==='PUBLIC'?'Public comparison context · ':'Comparison context unavailable · ')+races.length+' contributing races across '+states.length+' states'+(races.length?': '+races.join(', '):'')+'. '+coverage+' Covered matched areas only, not national win odds.');
 }
@@ -8883,11 +8957,21 @@ function enSwitch(year,office,preferredKey=null){
 // own power management. Never claim a lock was granted until it was.
 let enWakeWanted=false,enWakeToken=null;
 const enWakeButton=$('#enScreenAwake'),enWakeMessage=$('#enWakeStatus');
+function enRenderWakeState(message,state){
+ enWakeMessage.textContent=message;
+ const badge=$('#enWakeBadge');if(!badge)return;
+ const labels={ACTIVE:'Awake',DENIED:'Wake denied',UNSUPPORTED:'Wake unsupported',RELEASED:'Wake released'};
+ const label=labels[state]||'';badge.textContent=label;badge.title=message;badge.dataset.state=state;
+ // The detailed explanation stays in the drawer. Only an opted-in current
+ // state is surfaced; an old rejection cannot label a later OFF selection.
+ badge.hidden=!enWakeWanted||!label;
+}
+
 async function enSyncWake(){
  if(!enWakeWanted||document.visibilityState!=='visible')return;
  if(enWakeToken)return;
  if(typeof navigator==='undefined'||typeof navigator.wakeLock?.request!=='function'){
-  enWakeMessage.textContent='Wake Lock unsupported · change laptop sleep settings';
+  enRenderWakeState('Wake Lock unsupported · change laptop sleep settings','UNSUPPORTED');
   return;
  }
  try{
@@ -8896,16 +8980,16 @@ async function enSyncWake(){
    await lock.release();return;
   }
   enWakeToken=lock;
-  enWakeMessage.textContent='Display wake lock active · keep this tab visible';
+  enRenderWakeState('Display wake lock active · keep this tab visible','ACTIVE');
   if(typeof lock.addEventListener==='function')lock.addEventListener('release',()=>{
    if(enWakeToken===lock)enWakeToken=null;
    if(enWakeWanted){
-    enWakeMessage.textContent='Wake lock released · rechecking when tab visible';
+    enRenderWakeState('Wake lock released · rechecking when tab visible','RELEASED');
     if(document.visibilityState==='visible')void enSyncWake();
    }
   });
  }catch(e){
-  enWakeMessage.textContent='Display wake lock denied · adjust laptop power settings';
+  enRenderWakeState('Display wake lock denied · adjust laptop power settings','DENIED');
  }
 }
 enWakeButton.addEventListener('click',()=>{
@@ -8916,7 +9000,7 @@ enWakeButton.addEventListener('click',()=>{
  else{
   const lock=enWakeToken;enWakeToken=null;
   if(lock)void lock.release().catch(()=>{});
-  enWakeMessage.textContent='Wake lock off · laptop may sleep';
+  enRenderWakeState('Wake lock off · laptop may sleep','OFF');
  }
 });
 // Recover the full live source cycle promptly when a laptop wakes, Wi-Fi
