@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T20:56:04.258850Z",
+  "updated_at": "2026-10-29T20:58:42.808631Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -289,6 +289,25 @@
       "topic_hints": [
         "ballot_access",
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "de372cf7f3a48f6cd177",
+      "title": "N.Y. attorney general\u2019s warning about ICE at polling places sparks political dis\u00adagreement ahead of Election Day - Spectrum News",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPSm5CWjNheVNGZFZBWE51cVg2a1k5NXFKNjZDbEo5alp5T09LMFV1d1lHZXFUNFlqWURGOE0yckdoNmZfeU84WXM5anpJMFl4VE40R1VkaE0yWlBmd2hVYkFyVmJNY1luVWhoNkZnU1BUZGxhbTdwM1RvRzZFTUd6dWhsZVpJXzA0Tkc3RjEyV1JVWlVkMnRrVTUxUzFjR3RHendYWjFDWGdPbzFHVTJTSnpzYmFoeDhhRFhIWkJZTnhLU3JfblVEZ0l6ZVl2a3BHRDRFUXpUWHQtUk1tci1Vd0JvdXRFZERnNWFMb3I1SG5kcFptVDh3Y3pQQ19ZMnlVY0E?oc=5",
+      "publisher": "Spectrum News",
+      "published_at": "2026-10-29T17:34:00Z",
+      "detected_at": "2026-10-29T20:58:42.808631Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5012,24 +5031,6 @@
       ],
       "topic_hints": [
         "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9d6b257b24d0905b1fbd",
-      "title": "Federal judge lifts all blocks on Trump mail-in ballots executive order - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNRy04Q2xhT2NLTnYwZ3c5UTlQZUhjejc5WTN0U2F1TEpFdm0wOHJ3WHZmQ3lZbG5jdV9ISkZucmMxUHdvZnczMHBydGV6OUNVUU9yRVI3YzZuUkF6UTA4MjlwRWdpTDZfZ3B6ZjZldHYzWjQ2T0NNcmt2c0pEdWtUQ0k3R09VNXBRSHh3b1VyYnZrODVxaDE1aXpWak5hd1Rja0I2Zlp30gGrAUFVX3lxTE14RXJENTlqSkFXc3Qycmd5YnBZNkFVVjRmWTBuN1NWVXQ3d3kwcjd5LUhRY2xWQ25qWS1BVDNHM0YzeXJhRmFuMV96elpWakMxVmtyUUlEdXlpejhXTW5wUmljWXV1LUpxZVMyU0dDQTdNb2tjdVN6eGZYZlpyX21UbVNia3U4UzhSUzlfWGk3YktncnBTWEZLclhOOUxWWk5vVFlPWmRqMW8xRQ?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-17T05:49:03Z",
-      "detected_at": "2026-10-17T07:42:37.076000Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
