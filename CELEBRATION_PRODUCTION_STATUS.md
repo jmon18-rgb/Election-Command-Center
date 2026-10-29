@@ -1,5 +1,14 @@
 # Celebration production inventory - October 27, 2026
 
+### Initial review failures repaired — corrected protected head required
+
+Initial d30efae1 finished with35parents32SUCCESS/3FAILURE and55jobs49SUCCESS/3declaredSKIP/3FAILURE; no rerun/cancel/waiver. Mobile guard's old remote-image literal and open-tab test's old exact heartbeat string were stale. They now verify the exact localJPEG/attribution and execute the actual60000ms callback; all original geometry/clock/source safeguards and new negative controls pass.
+
+The phase CI reader precondition failed before the layout action; its exact CI interleaving remains unknown. Separately, one zero-draw actual-component counterexample confirmed a real H4→same-race-summary focus change during normal redraw. Genuine heading bookmarks now carry part:'heading'; pending summary bookmarks and user-selected controls retain precedence. The original non-atomic phase reader fixture/pose/focus/COMPACT/2px assertions remain unchanged and now pass both sizes with0px movement. All original Personal browser assertions remain, with additive heading/pending/resume controls.
+
+Final Personal source2d51ae7c/Git100a079d92bf is independently reviewed. Final indexdb773177d96b5af540e9aac8f3ce6e7abe728d05f3c7e8ebf605923b8089be27 retains the same timing/native-media/data/model behavior plus this heading fix. All99 portable checks, full Personal browser, original phase15pins and combined160assertions/24pins pass on the frozen corrected runtime. One earlier full Personal run has uncaptured starting-source identity and is explicitly not used as final proof; no mid-run mutation claim. The corrected head must pass all exact-head CI/publication gates; no release/guide append yet.
+
+
 ## Owner follow-up in progress — original Fish Head and timed night presentation
 
 The exact previously referenced Realistic Fish Head JPEG is now local:41,844bytes,478×569,SHA256d75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06. Both announcement surfaces use that unchanged still and the original native recording. Substitute SVGs/default animation control are removed; playback, queues, calls and music retain their existing authority. Native-audio/image/error and legacy tall-layout tests pass both sizes; all99 portable checks and the combined160-assertion/24-pin journey pass. Full exact-head CI and protected publication are still required.

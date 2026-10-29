@@ -25,6 +25,36 @@ try{
   const same=await page.evaluate(()=>Array.from(document.querySelectorAll('#enPersonalFocus article')).filter(e=>e.dataset.race!=='AK-SEN').every(e=>{
    const r=jointLastResult.race_probabilities.find(x=>x.race_code===e.dataset.race);return e.querySelector('svg').getAttribute('aria-label').includes(r.dem_beats_rep_pct.toFixed(1)+' percent');}));assert(same);
   const liveBefore=await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities));
+  // Normal source-status redraws must retain an actual race heading. A pending
+  // heading used as a temporary summary anchor must retain the summary instead.
+  // Reuse this already-computed model; these component checks make no new draws.
+  const headingRedraw=await page.evaluate(()=>{
+   const api=PersonalElectionFocus,host=document.querySelector('#enPersonalFocus'),code='IA-SEN',inputBefore=JSON.stringify({result:jointLastResult,baseline:jointPulseBaseline});
+   const card=()=>host.querySelector('[data-race="'+code+'"]'),heading=()=>card().querySelector('h4'),summary=()=>card().querySelector('[data-disclosure="margin"] > summary'),redraw=()=>renderPersonalElectionFocus();
+   heading().focus({preventScroll:true});const originalHeading=heading(),bookmark=api.captureFocus(host),targetIsHeading=api.focusTarget(host,bookmark)===originalHeading;redraw();
+   const normal={bookmark,targetIsHeading,tag:document.activeElement.tagName,sameRace:document.activeElement===heading(),oldDisconnected:!originalHeading.isConnected};
+   api.setPending(host);const pendingHeading=api.captureFocus(host);api.focusTarget(host,pendingHeading)?.focus({preventScroll:true});redraw();
+   const resumedHeading={bookmark:pendingHeading,tag:document.activeElement.tagName,sameRace:document.activeElement===heading()};
+   summary().focus({preventScroll:true});const summaryBookmark=api.captureFocus(host);api.setPending(host);const anchorIsHeading=document.activeElement===heading(),pendingSummary=api.captureFocus(host);api.focusTarget(host,pendingSummary)?.focus({preventScroll:true});redraw();
+   const resumedSummary={bookmark:summaryBookmark,pendingBookmark:pendingSummary,anchorIsHeading,tag:document.activeElement.tagName,sameSummary:document.activeElement===summary()};
+   summary().focus({preventScroll:true});api.setPending(host);const outside=document.querySelector('#enMode2026');outside.focus({preventScroll:true});redraw();
+   const movedOutsideRetained=document.activeElement===outside;
+   heading().focus({preventScroll:true});api.setPending(host);api.focusTarget(host,api.captureFocus(host))?.focus({preventScroll:true});const other=host.querySelector('[data-race="NE-SEN"] > h4');other.focus({preventScroll:true});redraw();
+   const movedOtherRaceRetained=document.activeElement===host.querySelector('[data-race="NE-SEN"] > h4');
+   // An arbitrary focused card control keeps the old null-disclosure behavior;
+   // only the actual semantic H4 acquires the heading marker.
+   const control=document.createElement('button');control.textContent='Fictional component-only control';card().append(control);control.focus({preventScroll:true});const controlBookmark=api.captureFocus(host);redraw();
+   const unrelatedControl={bookmark:controlBookmark,firstSummary:document.activeElement===card().querySelector('details > summary')};
+   return {normal,resumedHeading,resumedSummary,movedOutsideRetained,movedOtherRaceRetained,unrelatedControl,inputsUnchanged:inputBefore===JSON.stringify({result:jointLastResult,baseline:jointPulseBaseline})};
+  });
+  assert.deepEqual(headingRedraw.normal.bookmark,{kind:'race',race:'IA-SEN',disclosure:null,part:'heading'});
+  assert.deepEqual(headingRedraw.normal,{bookmark:headingRedraw.normal.bookmark,targetIsHeading:true,tag:'H4',sameRace:true,oldDisconnected:true},'A normal redraw retains the same semantic race heading, not the first summary');
+  assert.deepEqual(headingRedraw.resumedHeading,{bookmark:headingRedraw.normal.bookmark,tag:'H4',sameRace:true},'An explicit pending heading bookmark resumes the heading');
+  assert.deepEqual(headingRedraw.resumedSummary,{bookmark:{kind:'race',race:'IA-SEN',disclosure:'margin'},pendingBookmark:{kind:'race',race:'IA-SEN',disclosure:'margin'},anchorIsHeading:true,tag:'SUMMARY',sameSummary:true},'A pending H4 anchor resumes its original summary rather than becoming a heading bookmark');
+  assert.equal(headingRedraw.movedOutsideRetained,true,'A user who leaves the pending card keeps their new control');
+  assert.equal(headingRedraw.movedOtherRaceRetained,true,'A user who moves to another race heading keeps the new race');
+  assert.deepEqual(headingRedraw.unrelatedControl,{bookmark:{kind:'race',race:'IA-SEN',disclosure:null},firstSummary:true},'Unrelated null-disclosure card controls retain their previous restoration behavior');
+  assert.equal(headingRedraw.inputsUnchanged,true,'Semantic focus restoration cannot change the accepted model or polling baseline');
   const ia=page.locator('#enPersonalFocus [data-race="IA-SEN"]'),distribution=ia.locator('.personal-focus-margin');
   assert.equal(await distribution.count(),1,'Current shared simulation supplies a selected race range');
   assert.equal(await page.locator('#enPersonalFocus [data-race="AK-SEN"] .personal-focus-margin').count(),0);

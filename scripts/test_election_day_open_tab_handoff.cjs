@@ -54,8 +54,34 @@ assert.equal(check(boundary+60000),false,
 assert.equal(context.changes.length,2);
 assert.match(html,/function enReconnectAfterInterruption\(force=false\)\{[\s\S]*?if\(enElectionNightAutoHandoff\(now\)\)return true;/,
  'Normal 60-second laptop wake checks must invoke Election Day handoff');
-assert.match(html,/setInterval\(\(\)=>\{enReconnectAfterInterruption\(\)\},60000\)/,
- 'An unattended visible tab needs its existing 60-second heartbeat');
+// Execute the actual registered heartbeat instead of requiring one exact
+// callback spelling. It may also invoke the optional display-only clock.
+const heartbeatLines=html.split(/\r?\n/).filter(line=>line.includes('setInterval(')&&line.includes('enReconnectAfterInterruption('));
+assert.equal(heartbeatLines.length,1,'Exactly one shared unattended-tab heartbeat is registered');
+const heartbeatSource=heartbeatLines[0];
+function checkHeartbeat(source,ready){
+ const calls=[],registrations=[];
+ vm.runInNewContext(source,{
+  setInterval(callback,interval){registrations.push({callback,interval});},
+  enReconnectAfterInterruption(){calls.push('reconnect');},
+  enNightPresentationReady:ready,
+  enUpdateNightPresentation(){calls.push('presentation');}
+ });
+ assert.equal(registrations.length,1,'One actual heartbeat registration');
+ assert.equal(registrations[0].interval,60000,'Original60-second cadence is retained');
+ assert.equal(typeof registrations[0].callback,'function');
+ registrations[0].callback();
+ assert.deepEqual(calls,ready?['reconnect','presentation']:['reconnect'],
+  'The registered callback retains original reconnect once and only ticks presentation when ready');
+ return calls;
+}
+checkHeartbeat(heartbeatSource,false);checkHeartbeat(heartbeatSource,true);
+const withoutReconnect=heartbeatSource.replace('enReconnectAfterInterruption();','');
+assert.notEqual(withoutReconnect,heartbeatSource);
+assert.throws(()=>checkHeartbeat(withoutReconnect,true),{code:'ERR_ASSERTION'},'Removing original reconnect is rejected');
+const wrongInterval=heartbeatSource.replace('60000','60001');
+assert.notEqual(wrongInterval,heartbeatSource);
+assert.throws(()=>checkHeartbeat(wrongInterval,false),{code:'ERR_ASSERTION'},'Changing cadence is rejected');
 assert.match(html,/enMode2024'\)\.addEventListener\('click',[\s\S]*?enElectionNightManualArchive=true;/,
  'Manual archive button must stop automatic switches');
 assert.match(html,/enArchiveSource'\)\.addEventListener\('change',[\s\S]*?enElectionNightManualArchive=true;/,

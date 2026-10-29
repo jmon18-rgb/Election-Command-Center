@@ -191,7 +191,7 @@
   const watch=target.closest('.early-watch');if(watch){const race=target.closest('[data-watch-race]')?.dataset.watchRace||null;return race?{kind:'watch',race}:{kind:'watch',race:null,part:target===watch.querySelector('h3')?'heading':'list'};}
   if(target.dataset.personalJump)return {kind:'jump',race:target.dataset.personalJump};
   const card=target.closest('.personal-focus-card');
-  if(card)return {kind:'race',race:card.dataset.race,disclosure:target.closest('summary')?.parentElement.dataset.disclosure||null};
+  if(card)return {kind:'race',race:card.dataset.race,disclosure:target.closest('summary')?.parentElement.dataset.disclosure||null,...(target===card.querySelector('h4')?{part:'heading'}:{})};
   const history=target.closest('.personal-focus-history');
   if(history)return {kind:'history',entry:target.closest('.personal-focus-history-entry')?.dataset.historyEntry||null};
   if(target.closest('.personal-focus-rating-key'))return {kind:'ratings'};
@@ -214,6 +214,7 @@
   if(bookmark.kind==='race'){
    const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===bookmark.race);
    const pending=pendingViews.get(host);if(pending){pending.bookmark={...bookmark};pending.anchor=card?.querySelector('h4')||null;return pending.anchor;}
+   if(bookmark.part==='heading')return card?.querySelector('h4')||null;
    const disclosure=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===bookmark.disclosure);
    return disclosure?.querySelector(':scope > summary')||card?.querySelector('h4')||null;
   }
@@ -367,6 +368,8 @@
   const activeCard=host.ownerDocument.activeElement?.closest?.('.personal-focus-card');
   const focusedRace=resumed?.kind==='race'?resumed.race:activeCard&&host.contains(activeCard)&&!active.dataset.personalWatchReturn&&!active.dataset.personalCountyResults?activeCard.dataset.race:null;
   const focusedDisclosure=resumed?.kind==='race'?resumed.disclosure:focusedRace?active.closest('summary')?.parentElement.dataset.disclosure:null;
+  // A pending H4 can represent an earlier disclosure; its saved bookmark wins.
+  const focusedHeading=resumed?resumed.kind==='race'&&resumed.part==='heading':Boolean(focusedRace&&active===activeCard?.querySelector('h4'));
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   const simulated=data.some(x=>x.simulated);
@@ -444,7 +447,7 @@
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
   for(const summary of host.querySelectorAll('.personal-focus-card summary'))summary.addEventListener('click',event=>activatePersonalDisclosure(host,summary,event));
   if(['watch','watch-pin','jump','card-link','watch-return','county-link'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
-  if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||(focusedDisclosure?card?.querySelector('h4'):card?.querySelector('details > summary'))||card?.querySelector('h4'))?.focus({preventScroll:true});}
+  if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(focusedHeading?card?.querySelector('h4'):target?.querySelector('summary')||(focusedDisclosure?card?.querySelector('h4'):card?.querySelector('details > summary'))||card?.querySelector('h4'))?.focus({preventScroll:true});}
   if(pendingReaderVisible&&host.contains(doc.activeElement)){
    const rect=doc.activeElement.getBoundingClientRect(),top=(doc.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;
    if(rect.top<top||rect.bottom>doc.defaultView.innerHeight-8)doc.defaultView.scrollBy(0,rect.top-top);
