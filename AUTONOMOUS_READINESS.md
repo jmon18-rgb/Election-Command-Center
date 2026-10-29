@@ -1,5 +1,52 @@
 # Election Night production-readiness assignment
 
+## October29 PR531 VERIFIED PUBLISHED — bounded Washington scheduling
+
+Tested0c0fd16528f054d9fe3f9dc8d28a98be7eafc2ac passed ALL38 workflow parents;
+57latest jobs53SUCCESS/4declared nonapplicable PRSKIP/0external, clean/mergeable.
+Protected mergea2f13bae; finalCURRENTmain6d5573ef17db7dcbe1479c76d6fff4fed9fdc98e/
+Pages40869590314SUCCESS. All34changed public/currentindex checks match origin/main
+12:01:10.856Z; coherence13/currentindex/no_creditPASS; main unchanged12:06:18.479Z.
+Automatic briefing superseded merge-head Pages; no manualcancel/rerun/waiver.
+
+Released original-rule WA publication/receipt guards, deep-frozen actual USED
+remaining-estimate footprint, and safe completed-ASOF updates. Quiet CURRENT
+expiry also removes expired evidence while collector callbacks are stalled.
+Phone source hashes wrap; visible semantic race-card reading stays in place
+without pulling an offscreen or moved reader. Exact numerical helper67db/engine04/
+kernel,3k draws/hardESS/30s, routes/requests/budgets/calls/celebrations unchanged.
+
+Actual published HTTPS Edge1366/390: each two WA streams/ten paired completions/
+21hard negatives, quiet receipt and individual-used-row expiry, current catchup,
+missing-helper safeCURRENT, keyboard/reader/nooverflow PASS. Normal2026 entry with
+automatic repository privateHouse+coherentPUBLIC passes original strict four-outcome
+geometry.15actual response pins/no website body overrides/providers blocked/0nativeGET.
+Controlled20s WorkerRESULT delivery is not physical-phone or genuine-positive proof.
+Ordinary27 readonlyreload currentassets/privateDOMprefs+archive equality; retained
+2024archive. Known0viewport/inputlimits not retried; no ordinary interactive/geometry
+or acrossreload forecast-equality claim. All seven previews marked/frozen15 untouched.
+
+The two failed old heads remain immutable. Cartogram readiness now waits for an
+accepted CURRENT before the same71 assertions; exact initial geometry cause remains
+unestablished. The fullDOM18m failure led to measured owned-ID lookup improvement,
+not numerical changes or test cuts. Final CI fullDOM40867673998/job123426457913
+PASS7m29 with the same18m deadline. All original assertions/samples/cases retained.
+Proofs pr531-exacthead-gate.json, pr531-published-{integrity,coherence-origin-main,
+ordinary-20261029,outcome-20261029} and ui-review/pr531-published/.
+
+Original guide1.0/eleven human scopes/resultsNOT_RUN/null/hashes unchanged; only
+531addendum/ONEcomponent17->18 appended with immutablepre531bytecopy/receipt.
+LedgerSHA 937762cc84f608a21a029fcbcf89adaa1661eb2cfab3c0175ee5eab955111711. Human/assistive/listening,
+independent calibration and actual positive delivery stay open; archive remains OFF.
+
+NEXT ready engineering: promote the reviewed ignored Virginia typed candidate/method/
+native-clock projection and original predicates, early owned-input capture, RAM-only
+output quarantine and compact recorded-lineage codec. VA remains HARD until actual
+integration, full-app guards and protected publication; no new GET or guessed TTL.
+Reuse asof-virginia-projection/integrated_v3 and lineage-compact receipts; do not replay
+531/530 proofs or push this docs checkpoint solely to restart CI. Earlier candidate
+wording below is historical and superseded by this verified release.
+
 ## PR531 measured full-DOM lookup correction — new protected gate required
 
 The failed ccc64bac18m gate is retained. Profiling ruled out the unlinked primary
