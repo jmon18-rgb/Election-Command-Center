@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T05:55:15.573487Z",
+  "updated_at": "2026-10-29T07:11:24.349142Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -262,6 +262,24 @@
     }
   ],
   "items": [
+    {
+      "id": "1eb53e88f4f27e907bcd",
+      "title": "US midterms: FBI, ICE agents will not serve as election monitors, DOJ says - The Times of India",
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPOGNuS2p6bmlIYzZaaDItM3pyNU8yU0VVaV9JYkFuNG1wVC1kMTBuLVJvNEVOM3ZaNlpES1FiOGZWbllrYTlISEpiVjViN0JFX3hMdXQ5TDc2eHpvdDRneEdLWDRNNDRUdGlieHhxTUIxMlMzSnNCMF9SZzVkR2loeXlIb2lNaWktcXBBSE5mZVhFaWZaYUlHbElMVVdRNmNfRDdETWRaOVNFaS0zQW5lRU81azRkZUItN00wSUpINzc4Uktodk5Yemh6RmhLWFlPamJXTjNDVHJMZ9IB3wFBVV95cUxOdTc0MHhOYjJ5X1JNSE9BdVRac0NSNWlFaF91M0NUM3NJU1YtYWh5cXBRVjAzLWpUQXV0Skw1eDRqMzczU0V2TnlfRUNkVExVZGF4NzRwR21UOEpPN3pSLXZSY0hQc3FsTkp6RVRxbjNuR3otd2sxYk5pRkNJV1RYeGhaSl9VMklPS2M2VFhmMkhtWk9EU2pHa21ETHJEY0d0WUozNG1lcDZFd2NFMzZKRExMalhEcHFmdzFvMFBpak9JclM1WUh0OVVHdzZNVV9BWnNmTkFtcS04RDZTSjFj?oc=5",
+      "publisher": "The Times of India",
+      "published_at": "2026-10-29T06:59:00Z",
+      "detected_at": "2026-10-29T07:11:24.349142Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "f8330d445709a7b54a28",
       "title": "India: Mass Voter Roll Exclusions Deeply Flawed - Human Rights Watch",
@@ -5031,26 +5049,6 @@
       "headline_numbers_unverified": [
         "26 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ee72f6b0f5429439c603",
-      "title": "Election officials issue ICE guidance for polls - Wisconsin Law Journal",
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxObVNmZnd4V29CbU5XZVNGeG1hWFU2bGgydUUzOHRaM0RCeVJzek1PQWVXcC1fNXNtZ2pZbmprMEFwa2FaRXRQZzBWTGlQcHY2NF9OSU1jemctSU1fV1BkS0JzRDlBeVBUX1JtczZ0NmVzLTFkaUhmYVJvTXVlbnpIa0VSV0JLWUp0MXROcFFn?oc=5",
-      "publisher": "Wisconsin Law Journal",
-      "published_at": "2026-10-16T11:40:14Z",
-      "detected_at": "2026-10-16T11:45:42.271414Z",
-      "state_hints": [
-        "WI"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
