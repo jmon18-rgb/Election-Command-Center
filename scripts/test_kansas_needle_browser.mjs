@@ -4,6 +4,13 @@ import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..');
+// Source UI can settle before a background forecast; numeric comparisons use
+// the latest accepted frame without changing any source request or clock.
+async function waitForAcceptedModel(page){
+ await page.waitForFunction(()=>typeof jointWhenIdle==='function'&&jointBasis);
+ await page.evaluate(()=>jointWhenIdle());
+ await page.waitForFunction(()=>Boolean(jointForecastResult()?.probabilities&&jointPulseBaseline?.probabilities&&!jointModelPending));
+}
 const reference=JSON.parse(readFileSync(resolve(root,'data/kansas_county_fips_reference.json')));
 const history=JSON.parse(readFileSync(resolve(root,'data/kansas_senate_county_facts_official.json')));
 const types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg','.jpg':'image/jpeg'};
@@ -46,11 +53,13 @@ try{
   await page.waitForFunction(()=>document.querySelector('[data-ks="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-ks="chance"]').textContent(),'—');
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:KS-SEN:v1'),null,'Provider test votes never persist a source revision');
+  await waitForAcceptedModel(page);
   const national=await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities));
   scenario='red';await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
   await host.locator('[data-ks="refresh"]').click();
   await page.waitForFunction(()=>Boolean(window.enKansasPilotController?.status().projection));
   const first=await page.evaluate(()=>enKansasPilotController.status().projection.dem_win_probability);
+  await waitForAcceptedModel(page);
   const starting=await page.evaluate(()=>({used:enKansasPilotController.status().projection.assumptions.prior_margin_points,
    linked:jointPulseBaseline.race_probabilities.find(r=>r.race_code==='KS-SEN').model_dem_margin_points}));
   assert.equal(starting.used,starting.linked,'Kansas uses the same underlying starting margin as its linked race model');
@@ -63,6 +72,7 @@ try{
   scenario='blue';await page.clock.setSystemTime(new Date('2026-11-04T03:07:00Z'));
   await host.locator('[data-ks="refresh"]').click();
   await page.waitForFunction(first=>window.enKansasPilotController?.status().projection?.dem_win_probability>first+.3,first);
+  await waitForAcceptedModel(page);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),national);
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:KS-SEN:v1')!==null,true,'Validated positive inputs persist ordering metadata');
   scenario='withdrawn';await page.clock.setSystemTime(new Date('2026-11-04T03:07:15Z'));

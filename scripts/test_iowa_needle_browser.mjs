@@ -4,6 +4,13 @@ import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..');
+// Source UI can settle before a background forecast; numeric comparisons use
+// the latest accepted frame without changing any source request or clock.
+async function waitForAcceptedModel(page){
+ await page.waitForFunction(()=>typeof jointWhenIdle==='function'&&jointBasis);
+ await page.evaluate(()=>jointWhenIdle());
+ await page.waitForFunction(()=>Boolean(jointForecastResult()?.probabilities&&jointPulseBaseline?.probabilities&&!jointModelPending));
+}
 const reference=JSON.parse(readFileSync(resolve(root,'data/iowa_county_fips_reference.json')));
 const history=JSON.parse(readFileSync(resolve(root,'data/iowa_senate_county_modes_official.json')));
 const types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg','.jpg':'image/jpeg'};
@@ -61,11 +68,13 @@ try{
   await page.waitForFunction(()=>document.querySelector('#enIowaRaceNeedle [data-iowa="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-iowa="chance"]').textContent(),'—','Real provider test flag excludes even positive fixture votes');
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:IA-SEN:v1'),null,'Provider test votes never persist a source revision');
+  await waitForAcceptedModel(page);
   const national=await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities));
   scenario='live-r';await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(()=>Boolean(window.enIowaPilotController?.status().projection));
   const first=await page.evaluate(()=>window.enIowaPilotController.status().projection.dem_win_probability);
+  await waitForAcceptedModel(page);
   const starting=await page.evaluate(()=>({used:enIowaPilotController.status().projection.assumptions.prior_margin_points,
    linked:jointPulseBaseline.race_probabilities.find(r=>r.race_code==='IA-SEN').model_dem_margin_points}));
   assert.equal(starting.used,starting.linked,'The race needle starts at the linked model margin, not a different poll-only center');
@@ -80,6 +89,7 @@ try{
   await host.locator('[data-iowa="refresh"]').click();
   await page.waitForFunction(first=>window.enIowaPilotController?.status().projection?.dem_win_probability>first+.01,first);
   assert.notEqual(await host.locator('[data-iowa="chance"]').textContent(),'—');
+  await waitForAcceptedModel(page);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),national,
    'Iowa partial-return probabilities cannot feed its posterior back into the polling prior');
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:IA-SEN:v1')!==null,true,'Validated positive inputs persist ordering metadata');
