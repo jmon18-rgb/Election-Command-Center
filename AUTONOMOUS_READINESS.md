@@ -2,13 +2,40 @@
 
 ## Current ready implementation — resource-aware proposals and fallback validation
 
+HOLD publication for confirmed continuous-update liveness: existing latest-key
+cancellation can keep forecasts pending indefinitely under legal staggered
+monotone county updates and a20s controlled real-worker delivery boundary.
+Five completed frames were canceled across six updates, then quiet recovery
+passed. Fix requires explicit source-versioned last-completed/as-of display,
+not stale-as-current admission or relaxed correction/call/context/freshness
+guards. No physical-device/source-positive claim. Numerical67db is independently
+ready for exact-head CI while this separate application repair is implemented.
+
+Final reviewed candidate67dbbac7 is copied locally, with helper26c1be0c0e7a and
+worker7cf38e984669; engine/controller/kernel unchanged from the reviewed candidate.
+It uses one input-derived occupancy solve per transport/party phase, then explicit
+approximate count-odds guidance. Exact p/q restores every actual call factor in
+the unchanged target. Independent n11/two-stage110-prefix, n8/80,640-path,
+moment/root/phase/replay/core proofs pass. Complete four-output host frames pass
+balanced20.12s/interleaved17.92s, all3k/ESS/call/accounting/61-node guards intact.
+Transfer/run the portable proofs, commit this actual deadline repair, then finish
+all applicable NEW-head checks and final publication. Failed fb9/8d stay unmerged;
+no rerun, waiver, test removal or timeout increase. No further invented quota.
+
+Do not mergefb9afbf5 either: readiness40821687757/job123275371977 passed
+near_complete27,060ms then failed balanced_partial at30,007.6ms. The 30s/3k/
+four-output/six-case gate is unchanged. Current038f42 source stays frozen while
+a general lower-dimensional full-support proposal guide is reviewed, with all
+real call evidence and normalizers retained in the exact target. No failed-head
+rerun/waiver; no arbitrary call-count cutoff or fitted probability adjustment.
+
 Do not merge8d83acb0: its actual readiness browser failed the 30-second complete
 frame deadline (40818570806/job123265380282), while all other latest jobs passed.
 Failed head is retained/unmerged, with no rerun/waiver/time increase. Reviewed
 party-grouped proposal and exact scratch reuse are in ignored prototypes pending
 final integration and fresh exact-head checks; published529 remains current.
 
-Integrate the reviewed helper038f42b6/engine04a9163b candidate through protected
+Integrate the reviewed helper67dbbac7/engine04a9163b candidate through protected
 review. Exact indexed p/q, duplicate slots, RNG, raw replay/consumer equality,
 packet ownership, pre-allocation reservation and finalizer lifetime have
 independent checks. The fixed fictional 200-call case now has usable support;

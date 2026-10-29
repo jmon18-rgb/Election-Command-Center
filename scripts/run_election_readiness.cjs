@@ -13,6 +13,7 @@ const checks = [
   ['Main-safe exact worker runner and missing-helper covariance withholding', 'test_joint_model_worker_main_api.cjs'],
   ['Validated-call numerical proposal, exact allocation and hard support guards', 'test_source_call_conditioning.cjs'],
   ['Resource-guided indexed call proposal preserves the exact original target and workspace bound', 'test_source_call_resource_law.cjs'],
+  ['Declared-occupancy guide, successive indexed proposals and per-transport phase isolation', 'test_source_call_occupancy_guide.cjs'],
   ['Private transport cache preserves every replay value and releases bounded packet buffers', 'test_chamber_private_transport_cache.cjs'],
   ['Validated-call whole-election transport, replay, baseline and consumer isolation', 'test_chamber_source_call_conditioning.cjs'],
   ['One frozen county target with validated calls, final support and fallback', 'test_national_call_conditioning.cjs'],

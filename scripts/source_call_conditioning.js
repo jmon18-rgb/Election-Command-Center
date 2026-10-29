@@ -76,6 +76,56 @@ let adjoint=work.adjA;adjoint.fill(0);adjoint[A*width+B]=1;const logGradients=gr
 module.exports={partition};
 
 return module.exports;})();
+const occupancyGuide=(()=>{const module={exports:{}};
+'use strict';
+const finite=x=>typeof x==='number'&&Number.isFinite(x),fail=code=>{const error=Error(code);error.code=code;throw error;};
+function createWorkspace(capacity){if(!Number.isInteger(capacity)||capacity<1||capacity>64)fail('MOMENT_WORKSPACE_BOUND');return {capacity,rows:Array.from({length:6},()=>new Float64Array(capacity+1)),last:{},root:{},activity:{},evaluations:0};}
+function evaluate(weights,remaining,current,oppositeCount,t,workspace,includeLogCoefficient=true){
+ const n=remaining.length;if(n>workspace.capacity||!finite(t)||oppositeCount<0||oppositeCount>=n)fail('INVALID_MOMENT_GUIDE_INPUT');
+ const exp=Math.exp(-Math.abs(t)),u=t>=0?exp/(1+exp):1/(1+exp),s=t>=0?1/(1+exp):exp/(1+exp);
+ if(!(u>0&&s>0))fail('MOMENT_ACTIVITY_NUMERICAL_SUPPORT');
+ let F=workspace.rows[0],H=workspace.rows[1],J=workspace.rows[2],nextF=workspace.rows[3],nextH=workspace.rows[4],nextJ=workspace.rows[5];for(let i=0;i<6;i++)workspace.rows[i].fill(0);F[0]=1;let logScale=0;
+ for(let i=0;i<n;i++){
+  nextF.fill(0);nextH.fill(0);nextJ.fill(0);const row=weights[remaining[i]],dc=s*row[current],base=u+dc,opp=u*row[1-current];let scale=0;
+  for(let k=0;k<=Math.min(oppositeCount,i+1);k++){
+   const f=F[k],h=H[k],j=J[k];nextF[k]=base*f+(k?opp*F[k-1]:0);nextH[k]=base*h+dc*f+(k?opp*H[k-1]:0);nextJ[k]=base*j+2*dc*h+dc*f+(k?opp*J[k-1]:0);scale=Math.max(scale,nextF[k]);
+  }
+  if(!(scale>0)||!finite(scale))fail('MOMENT_COEFFICIENT_NUMERICAL_SUPPORT');
+  for(let k=0;k<=oppositeCount;k++){nextF[k]/=scale;nextH[k]/=scale;nextJ[k]/=scale;}if(includeLogCoefficient)logScale+=Math.log(scale);
+  const oldF=F,oldH=H,oldJ=J;F=nextF;H=nextH;J=nextJ;nextF=oldF;nextH=oldH;nextJ=oldJ;
+ }
+ if(!(F[oppositeCount]>0))fail('MOMENT_OPPOSITE_COUNT_NUMERICAL_SUPPORT');
+ const mean=H[oppositeCount]/F[oppositeCount],variance=J[oppositeCount]/F[oppositeCount]-mean*mean;
+ if(!finite(mean)||!finite(variance))fail('NONFINITE_MOMENT_GUIDE');workspace.evaluations++;
+ const last=workspace.last;last.mean=mean;last.variance=variance;last.varianceReliable=variance>0;last.u=u;last.s=s;last.logCoefficient=includeLogCoefficient?Math.log(F[oppositeCount])+logScale+n*(t>0?t+Math.log1p(Math.exp(-t)):Math.log1p(Math.exp(t))):null;return last;
+}
+function finish(workspace,t,moments,error,iteration,start){const out=workspace.root;out.t=t;out.u=moments.u;out.s=moments.s;out.mean=moments.mean;out.residual=error;out.iterations=iteration+1;out.evaluations=workspace.evaluations-start;return out;}
+function solve(weights,remaining,current,oppositeCount,target,workspace,previous=null){
+ const n=remaining.length,M=n-oppositeCount;if(!Number.isInteger(target)||target<=0||target>=M)fail('INVALID_MOMENT_OCCUPANCY_TARGET');
+ let lowLog=Infinity,highLog=-Infinity;for(const id of remaining){const value=weights[id]?.[current];if(!(value>0&&value<=1))fail('INVALID_MOMENT_GUIDE_SCORE');const log=Math.log(value);lowLog=Math.min(lowLog,log);highLog=Math.max(highLog,log);}
+ const logOdds=Math.log(target/(M-target));let low=logOdds-highLog,high=logOdds-lowLog,t=finite(previous)&&previous>=low&&previous<=high?previous:low+(high-low)/2;
+ const start=workspace.evaluations;
+ for(let iteration=0;iteration<80;iteration++){
+  const moments=evaluate(weights,remaining,current,oppositeCount,t,workspace,false),error=moments.mean-target;
+  if(Math.abs(error)<=64*Number.EPSILON*n||low===high)return finish(workspace,t,moments,error,iteration,start);
+  if(error>0)high=t;else low=t;
+  let next=moments.varianceReliable?t-error/moments.variance:NaN;if(!finite(next)||next<=low||next>=high)next=low+(high-low)/2;
+  if(next===t||high-low<=32*Number.EPSILON*(1+Math.abs(t)))return finish(workspace,t,moments,error,iteration,start);t=next;
+ }
+ fail('MOMENT_OCCUPANCY_NOT_CONVERGED');
+}
+
+function countOdds(weights,remaining,current,oppositeCount,target,workspace,initialT,initialCount){
+ const M=remaining.length-oppositeCount;if(!Number.isInteger(target)||target<=0||target>=M||!finite(initialT)||!Number.isInteger(initialCount)||initialCount<1)fail('INVALID_COUNT_ODDS_GUIDE');
+ let lowLog=Infinity,highLog=-Infinity;for(const id of remaining){const value=weights[id]?.[current];if(!(value>0&&value<=1))fail('INVALID_MOMENT_GUIDE_SCORE');const log=Math.log(value);lowLog=Math.min(lowLog,log);highLog=Math.max(highLog,log);}
+ const logOdds=Math.log(target/(M-target)),low=logOdds-highLog,high=logOdds-lowLog,t=Math.max(low,Math.min(high,initialT+Math.log(target/initialCount))),exp=Math.exp(-Math.abs(t)),u=t>=0?exp/(1+exp):1/(1+exp),s=t>=0?1/(1+exp):exp/(1+exp);
+ if(!(u>0&&s>0)||!finite(t))fail('MOMENT_ACTIVITY_NUMERICAL_SUPPORT');
+ const out=workspace.activity;out.t=t;out.u=u;out.s=s;out.mean=null;out.residual=null;out.iterations=0;out.evaluations=0;out.exact_later_occupancy_claim=false;return out;
+}
+
+module.exports={createWorkspace,evaluate,solve,countOdds};
+
+return module.exports;})();
 const lookahead=(()=>{const module={exports:{}};const require=name=>{if(name==='./partition3_fast.cjs')return redrawPartition;throw Error('UNEXPECTED_STATIC_REDRAW_DEPENDENCY');};
 'use strict';
 // Separate cost experiment: one fixed D/R group Normal is a moment-matched
@@ -100,8 +150,26 @@ function groupScores(values,signs,rows,means,logCDF){
  return {logs,weights:logs.map(row=>[Math.exp(row[0]),Math.exp(row[1]),1])};
 }
 function stage(scores,counts,sign,remaining,currentLogs,work){
- const size=remaining.length,weights=work.weights;weights.length=size;for(let i=0;i<size;i++)weights[i]=scores.weights[remaining[i]];
- const gradients=partition(weights,counts,{leaveOneOut:true,relativeOnly:true,gradientOutput:work.gradients,gradientOnly:true}),logs=work.logs;let max=-Infinity;
+ const size=remaining.length,weights=work.weights;weights.length=size;
+// Only a genuinely two-dimensional future guide is reduced. The current
+// party's declared occupancy sets a positive activity by exact one-dimensional
+// moments; opposite-party availability remains finite. This is a proposal
+// approximation only: all actual likelihoods and indexed p/q stay exact.
+const reduceGuide=counts[0]>1&&counts[1]>1&&counts[2]>1;let guideCounts=counts;
+if(reduceGuide){
+ if(!work.oppositeWeights){work.oppositeWeights=Array.from({length:remaining.length},()=>[1,1,1]);work.guideCounts=[0,0,0];work.occupancy=occupancyGuide.createWorkspace(remaining.length);}
+ const current=sign>0?0:1,opposite=1-current,target=counts[current]+1;
+// One initial exact moment root, then declared count-odds transport.
+// Later heterogeneous pools use an approximate proposal activity only;
+// the original target and every actual indexed q correction stay exact.
+const samePhase=work.activityParty===current&&work.activityUncalled===counts[2]&&work.activityOpposite===counts[opposite]&&work.activityInitialCount>0&&finite(work.activityInitialT);let activity;
+if(samePhase)activity=occupancyGuide.countOdds(scores.weights,remaining,current,counts[opposite],target,work.occupancy,work.activityInitialT,work.activityInitialCount);
+else{activity=occupancyGuide.solve(scores.weights,remaining,current,counts[opposite],target,work.occupancy,null);work.activityInitialT=activity.t;work.activityInitialCount=target;}
+work.logActivity=activity.t;work.activityCount=target;work.activityParty=current;work.activityUncalled=counts[2];work.activityOpposite=counts[opposite];guideCounts=work.guideCounts;
+ guideCounts[0]=opposite===0?counts[0]:0;guideCounts[1]=opposite===1?counts[1]:0;guideCounts[2]=counts[2]+counts[opposite===0?1:0];
+ for(let i=0;i<size;i++){const row=work.oppositeWeights[i],original=scores.weights[remaining[i]];row[0]=opposite===0?activity.u*original[0]:activity.u;row[1]=opposite===1?activity.u*original[1]:activity.u;row[2]=activity.u+activity.s*original[current];weights[i]=row;}
+}else for(let i=0;i<size;i++)weights[i]=scores.weights[remaining[i]];
+const gradients=partition(weights,guideCounts,{leaveOneOut:true,relativeOnly:true,gradientOutput:work.gradients,gradientOnly:true}),logs=work.logs;let max=-Infinity;
  for(let i=0;i<size;i++){logs[i]=(currentLogs?currentLogs[i]:scores.logs[remaining[i]][sign>0?0:1])+gradients[i];max=Math.max(max,logs[i]);}
  const q=work.q;let sum=0;
  for(let i=0;i<size;i++){q[i]=Math.exp(logs[i]-max);if(!(q[i]>0))throw Error('MOMENT_LOOKAHEAD_Q_SUPPORT');sum+=q[i];}
@@ -119,7 +187,7 @@ const firstSign=counts[0]<=counts[1]?1:-1,calledOrder=[];
 for(const sign of [firstSign,-firstSign])for(let seat=0;seat<values.length;seat++)if(signs[seat]===sign)calledOrder.push(seat);
 // Stage buffers belong only to this one synchronous transport. Active
 // prefixes are overwritten before use and never returned or retained.
-const stageWork={weights:[],current:new Float64Array(values.length),logs:new Float64Array(values.length),q:new Float64Array(values.length),gradients:new Float64Array(values.length),max:0,sum:0};
+const stageWork={weights:[],current:new Float64Array(values.length),logs:new Float64Array(values.length),q:new Float64Array(values.length),gradients:new Float64Array(values.length),oppositeWeights:null,guideCounts:null,occupancy:null,logActivity:null,activityCount:null,activityInitialT:null,activityInitialCount:null,activityParty:null,activityUncalled:null,activityOpposite:null,max:0,sum:0};
 for(const seat of calledOrder){
   counts[signs[seat]>0?0:1]--;const current=stageWork.current;for(let i=0;i<remaining.length;i++){const id=remaining[i];current[i]=logProbability(seat,values[id],id,signs[seat]);}const p=stage(scores,counts,signs[seat],remaining,current,stageWork);let choice=remaining.length-1;
   if(remaining.length>1){const u=uniforms[cursor++];let cumulative=0;for(let i=0;i<remaining.length;i++){cumulative+=p.q[i]/p.sum;if(u<cumulative){choice=i;break;}}}

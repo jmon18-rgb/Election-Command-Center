@@ -50,6 +50,22 @@ remain in the original race order, once each. This changes proposal Q and can
 change seeded conditional estimates; it does not change the target or the
 unchanged no-call path.
 
+When all three future categories have more than one member, repeated full
+two-dimensional coefficient work is replaced by a one-dimensional occupancy
+guide. The opposite-party count remains explicit. A positive activity for the
+current party is initially solved from the declared count and guide probabilities
+using exact first/second occupancy moments and an input-derived bracket. A common
+row scale preserves relative leave-one coefficients. Subsequent stages in that
+same transport/party phase use the homogeneous count-odds continuation, clamped
+to the fresh bracket. This is approximate guidance for heterogeneous rows;
+later stages do not claim their occupancy mean has been solved exactly.
+
+All actual future call factors remain in the target. The categorical proposal
+probability is corrected exactly, regardless of the guide approximation. The
+original zero/one-degree fast paths remain in use. The Gaussian shared-factor
+guide retains its full resource partition, prepared once per plan. There is no
+fitted coefficient, evidence cutoff, softened call or change to the support floor.
+
 The shared Gaussian proposal uses the corresponding resource partition rather
 than treating all called redraw rows as independent bags of unlimited values.
 Its derivative step follows floating-point precision and existing scales;
@@ -135,6 +151,11 @@ are neither returned nor retained in the workspace cache. Other private
 coefficient callers keep their original default return behavior; no public
 model API is added. Scratch reuse preserves the party-ordered proposal's exact
 arithmetic and outputs while avoiding per-called-row buffer allocation.
+
+Occupancy moment rows, initial activity and phase anchors are also owned by one
+transport. Phase checks prevent reuse across parties or incompatible counts;
+fresh transports start without an activity. Neither moment buffers nor activity
+anchors enter public results, caches or persistent storage.
 
 If the conditional law is unsupported or final sampling support is insufficient,
 the result explicitly withholds call covariance transfer. Existing validated

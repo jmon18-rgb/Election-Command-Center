@@ -12,6 +12,7 @@ on:
       - 'scripts/test_joint_model_worker*'
       - 'scripts/test_source_call_conditioning*'
       - 'scripts/test_source_call_resource_law.cjs'
+      - 'scripts/test_source_call_occupancy_guide.cjs'
       - 'scripts/test_source_call_full_frame_browser.mjs'
       - 'scripts/test_chamber_private_transport_cache.cjs'
       - 'scripts/test_chamber_source_call_conditioning.cjs'
@@ -52,6 +53,7 @@ jobs:
           node scripts/test_chamber_control_model.cjs
           node scripts/test_source_call_conditioning.cjs
           node scripts/test_source_call_resource_law.cjs
+          node scripts/test_source_call_occupancy_guide.cjs
           node scripts/test_chamber_private_transport_cache.cjs
           node scripts/test_chamber_source_call_conditioning.cjs
           node scripts/test_national_call_conditioning.cjs

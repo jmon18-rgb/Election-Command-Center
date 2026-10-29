@@ -2,6 +2,34 @@
 
 ## Reviewed candidate — resource-aware call proposals and public-output admission
 
+Separate hands-on scheduling review confirms a liveness defect: six legal
+monotone updates from three compiled county routes (each at least60s apart,
+staggered20s) canceled five completed real-worker frames under a controlled20s
+delivery delay. Forecasts remained pending until updates paused. This is
+scheduling evidence, not physical-phone speed or actual source delivery.
+ui-review/worker-monotone-liveness/monotone-cadence.json and the saved assessment
+preserve the finding. Publication also needs a guarded, source-versioned
+last-completed snapshot path; corrections, calls, private context, settings,
+freshness, hidden/archive and current-input safety must remain hard guards.
+
+Reviewed67dbbac7 now addresses the balanced-frame failure with an initial
+occupancy solve and analytic count-odds continuation used only as proposal Q.
+All actual winner-event normalizers, the original indexed prior, frozen county
+target, 3k draws and hard support floor remain intact. Independent n11 laws
+cover both reduced stages and110 ordered prefixes, alongside the retained n8
+80,640-path law, moment/root assertions, phase isolation, deterministic replay
+and all five original core suites. Both complete host frames pass with four
+supported outputs: balanced20.12s and interleaved17.92s, under the unchanged30s.
+This is a meaningful bounded cost improvement; fresh exact-head protected CI
+and published verification remain required. No phone/calibration claim follows.
+
+Headfb9afbf5 also remains UNMERGED: the directly affected near-complete
+frame passed27,060ms, but balanced-partial1366 exceeded the same deadline at
+30,007.6ms (40821687757/job123275371977). No rerun, waiver, time increase,
+sample/output reduction or case removal. See pr530-failed-fb9-balanced-deadline.json.
+An independently checked lower-dimensional full-support proposal guide is now
+being evaluated; all actual call normalizers and evidence remain in the target.
+
 Protected head8d83acb0 is NOT releasable: readiness40818570806/browser
 123265380282 exceeded the unchanged 30-second Worker deadline on the original
 near-complete frame (30,005.8ms). All other latest jobs passed; the precise
