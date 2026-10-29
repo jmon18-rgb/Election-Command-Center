@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T07:11:24.349142Z",
+  "updated_at": "2026-10-29T08:12:07.337858Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -151,17 +151,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "59f13e02a04f01f36ecc",
-      "headline": "Why the 26 secretary of state races this November matter more than they did before Trump\u2019s drive to assert federal authority over elections - Cobb Courier",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "aa38e4e452516fd5af20",
       "headline": "Will ICE agents play a role in the 2026 US midterm elections? - Al Jazeera",
       "possibly_related_articles": 2,
@@ -259,6 +248,17 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "8bbb654bbd9b1dfd5c44",
+      "headline": "The Phantom Voter Intimidation Threat - National Review",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -290,6 +290,24 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4c49b458937dbc039eb5",
+      "title": "Peter Schweizer: Inside Homeland Security\u2019s Push to Clean Up Voter Rolls Before Election Day - Breitbart News",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNZkxucV9PeXVRUmdTRFlLWlI2ZFotcExSTXlDS2lkMFlBVHdabGNIQ0tsbEhMMk92MUpZRkRDSXRyYXBKM0ZqVjQ2ajRpaHJ4Q0w1T29FT21sRHd2UzMtd3pOZVpYNDBUaTFtbmRxd1RuV2N0M2lXT0VEN0VHZGFBTjdNOC1QVWFfLUZqeHZIa2NMYVlNcXpDdEJMUGRjNTFiVDhTaW4yVTlaMi15eXNDYktrdFNXSkxmc0p5WldXem5yUXVrUDVKYkRrMDhKM215TUsw0gHYAUFVX3lxTE9VdzR0X01yYjVIb0lnYXNvSmFxeWszeVQ5c0Jwa3czdWJ4OTk4MVNHQ2V6LVRlOTI3T2hTU29pUmxXejNpNkt5czVuMkpfTUwzX3dLdURXM096dFg2R0hlYkNVSHJHTktVQUhMQ2FxTWQ1TGNsTTg4RUl3ZkpFbHhnVTItSHdlZWd0REg2by1ZakVuemJhVHNYZHQ4SllwMzJGMTJzTVlYbkRUREFfTGtCUTdrYzBTWFlBSEhZWGdtUmQtd2Vfd2pFa0t0VEY5ejFBQ1cwSFozXw?oc=5",
+      "publisher": "Breitbart News",
+      "published_at": "2026-10-29T02:23:59Z",
+      "detected_at": "2026-10-29T08:12:07.337858Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5030,25 +5048,6 @@
         "registration"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "dd4c24ff5e65c667280b",
-      "title": "Why the 26 secretary of state races this November matter more than they did before Trump\u2019s drive to assert federal authority over elections - The Conversation",
-      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNYjZDS0ZMNGlTdjFJMmY1SU9HMzBKMld6QUczNkVrdXBDQnRYTThtWk5ib1VkSTZPclI2MWV2d3h5Q3ZXVXJwLXB0RVZkYWlKazU3ZjRvTTUyUFMyeUhDRGZqOHBRVl9HaXZVeGk5YVd5cV84YkI5VEFIZEtqaTkxcTRuYzBHMFo4UUpZeEczSWZ0aUVsOV83MGdXb0dDOF9PYzNWTnlUdUFOSWRJaklqa3lzOVhyd2JmSXR4OV81eHpoVzFYdU1kcFF2bEVTOFlHRDVwLXJsc3FJajZfMDFkSjJ0M0RpWU1HcE9aLWFGV1R6VmJ5d2pLWjNEY0ZnU3A0b3BV?oc=5",
-      "publisher": "The Conversation",
-      "published_at": "2026-10-16T12:22:48Z",
-      "detected_at": "2026-10-16T12:57:30.116480Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "26 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
