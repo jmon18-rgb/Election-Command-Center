@@ -1,5 +1,53 @@
 # Readiness progress
 
+## PR529 VERIFIED PUBLISHED — background computation and current-reader integrity
+
+Tested718c5b30350377e68c50952431299c9a29e95367 passed ALL43 applicable workflow
+parents;61latestjobs56SUCCESS/5declarednonapplicablePRSKIP/0external/current
+clean/mergeable. FullDOM40807762496/job123230665223, readiness40807762475/core
+123230664068 and national40807762561/job123230664734 SUCCESS. Merge27bcefe63;
+finalCURRENTmain3458125b466476a6588e8e68e363cc8a6f7d286b/Pages40809478884
+SUCCESS. EarliermergeheadPages40808961488 was automatically superseded by the
+normal briefing, not manually cancelled. All51changedpublicfiles/currentindex
+match03:00:08.525Z fromorigin/mainblobs; publiccoherence/index/no_credit PASS.
+Main rechecked unchanged03:03:18Z after the published browser/ordinary checks.
+
+The exact numerical helper/engine/kernel now run in a fingerprinted same-origin
+worker with latest-input/source/context atomic admission. Old odds, winners and
+drivers are withheld immediately on changed inputs; the call/celebration ledger
+and request cadence remain unchanged. A compatible exact no-call reference keeps
+IA/KS/TX source adapters usable during pending display withdrawal. Terminal
+worker timeout does not trigger an automatic main-thread retry. Main fallback
+is explicit; Refresh now can deliberately retry. Personal, national and simulated
+driver readers retain semantic focus/disclosure/scroll across pending work,
+announcements and accepted replacement. Red Dawn is no longer labeled R both.
+
+Actual published HTTPS Edge1366x900/390x844 full-app worker/correction/withdrawal/
+private-PUBLIC/rehearsal/hidden/archive/timeout/no-retry/prior/reader/overflow
+assertions PASS, all providers blocked and no local HTML/script route override.
+Ordinary27 readonlyreload shows all current script identities/order and unchanged
+private preference controls/context-status text, remaining2024archive. Known
+zero-viewport/input limits were not retried: no ordinary interactive/geometry or
+across-reload outlook-equality claim. All7previews retained/frozen15 untouched.
+
+8ed159's three early IA/KS/TX fixture baseline reads and a63's compositor-wheel/
+current-rehearsal scope failures are preserved. Every original assertion remains;
+16existingbrowserfixtures/fullDOM await accepted frames, the wheel proof awaits
+actual gesture completion. Chrome+Edge bothsizes pass; no timeout increase,
+Worker-disable workaround, successful-job rerun, waiver or failed-head merge.
+Proof pr529-exacthead-gate/integrity/coherence/ordinary/outcome, scoped published
+app directory and original failure/investigation receipts. Guide1.0/eleven human
+scopes/hashes/NOT_RUN/null unchanged; one scoped529component15->16 append only.
+Ledger SHA bce401cede1c276517eb80f0734b6e81dadba26768f6ba80753c8cb0e970d4a1.
+
+Next real R0 task: separately reviewed allocation look-ahead and private replay
+cache. Ignored candidates improve fixed fictional late-call support but require
+complete actual-browser private+PUBLIC+eligible-research frame <=30s, exact target/
+RNG/indexed-law/consumer/integrity/memory-lifetime proofs before promotion. They
+are NOT included in529. Production200call covariance remains correctly WITHHELD;
+math/engineering proof does not establish empirical calibration or positive2026
+delivery. R1/R2/R3/R4/human gates remain individually open; no date-based freeze.
+
 ## Background-model implementation — October28/29 protected review pending
 
 The ready R0 responsiveness task now runs the exact current helper/engine/kernel

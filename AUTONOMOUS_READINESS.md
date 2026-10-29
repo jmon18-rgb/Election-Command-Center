@@ -1,5 +1,32 @@
 # Election Night production-readiness assignment
 
+## PR529 VERIFIED PUBLISHED — next engineering is allocation support
+
+718c5b30 passed ALL43parents/61latestjobs56SUCCESS5declaredPRnonappSKIP/0external/
+clean; merge27bcefe6, finalCURRENTmain3458125b/Pages40809478884SUCCESS. All51
+changedpublishedfiles/currentindex/origin-maincoherence/no_credit verified.
+Actual published Edge1366/390 full-app worker, stale callbacks, correction/
+withdrawal, atomic private/PUBLIC, source reference, hidden/archive/rehearsal,
+timeout/no automatic retry and reader continuity PASS. Ordinary27 readonlyreload
+retained private preferences/status and2024archive; known input/viewport limitation
+not retried/no interactive or geometry claim. Seven previews preserved/frozen15
+untouched. Reuse pr529 receipts; do not reimplement/replay this completed slice.
+
+All numerical3core sources,3k draws, seed, target, hardESS, source/celebration
+eligibility and native budgets/cadence remain unchanged. Earlier failed heads
+and precise scope/gesture investigations are retained; no assertions removed,
+timeout increase, waiver or rerun. Original guide1.0/eleven human tasks/hashes/
+NOT_RUN/null unchanged; scoped component proof15->16, currentledgerSHA
+bce401cede1c276517eb80f0734b6e81dadba26768f6ba80753c8cb0e970d4a1.
+
+Next: integrate only a separately reviewed, genuinely ready allocation proposal/
+private replay-cache improvement after exact p/q/indexed law/original RNG/full
+consumer/packet-integrity/private-memory-lifetime proof and complete actual
+browser private+PUBLIC+eligible-House frame under fixed30s. Current prototypes
+stay ignored; no new coefficient, call cutoff, tempering, floor reduction or
+calibration claim. Production200call case still WITHHELD/all winners retained.
+Do not let missing sources, human dates or billing freeze independent readywork.
+
 ## R0 background worker implemented — finish protected release
 
 Background computation and latest-only atomic frame admission are implemented;

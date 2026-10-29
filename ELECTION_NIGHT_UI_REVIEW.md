@@ -1,5 +1,25 @@
 # Election-night usability and visual review
 
+## PR529 pending-frame/read-return component — verified published
+
+Actual published HTTPS app at finalmain3458125b/Pages40809478884 passed scoped
+Edge1366x900/390x844 worker and pending reader tasks, using real workers plus
+explicitly fictional RAM-only observations with providers blocked. Obsolete
+current odds/call-driver claims disappear before the refresh debounce; accepted
+frames restore the same reader, including national and simulated driver links,
+without pulling a reader who moved elsewhere. Nested NE areas/history, queued
+announcement handoff and completed wheel gestures pass Chrome/Edge bothsizes.
+No original assertion was removed; the former compositor/async scope failures
+and exact fixes remain in the pr529 investigation receipts.
+
+Ordinary27 verification was readonlyreload/script ordering/preference-control
+and context-status equality only; archive2024 retained and known zero-viewport/
+input limits not retried. No ordinary geometry/interaction acceptance or across-
+reload forecast equality is claimed. The original guide1.0/eleven human tasks/
+hashes/NOT_RUN/null remain unchanged; only a scoped529addendum/component proof
+was appended, ledgerSHA bce401cede1c276517eb80f0734b6e81dadba26768f6ba80753c8cb0e970d4a1.
+Human comprehension/assistive/listening/fullR8 acceptance remains open.
+
 ## PR528 VERIFIED PUBLISHED — conditional-call context and explicit withholding
 
 New call-conditioned ranges identify broader validated-call context separately
