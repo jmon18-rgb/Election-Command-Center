@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-29T14:13:58.767736+00:00",
+  "updated_at": "2026-10-29T15:09:30.121975+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 854,
+      "available_in_source": 855,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1279,
+      "available_in_source": 1280,
       "records_examined": 300
     },
     "governor": {
@@ -18,9 +18,66 @@
     }
   },
   "matched_primary_observations": 339,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "AR-SEN",
+      "poll_id": "641ee852-f596-4554-a4f7-c74286914371"
+    },
+    {
+      "race_code": "PA-07",
+      "poll_id": "7ddc4e8f-d77d-4963-a7ac-90ce15892315"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "PA-07",
+      "race_type": "house",
+      "state": "PA",
+      "poll_id": "7ddc4e8f-d77d-4963-a7ac-90ce15892315",
+      "question_id": "bfa3739c-2006-423a-8b56-42878643cf95",
+      "pollster": "Muhlenberg College",
+      "dem_name": "Bob Brooks",
+      "rep_name": "Ryan E. Mackenzie",
+      "dem": 49.0,
+      "rep": 43.0,
+      "margin": 6.0,
+      "field_end": "2026-10-15",
+      "field_start": "2026-10-06",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T10:44:00",
+      "posted_source_time": "10/29/26 10:44",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.muhlenberg.edu/muhlenberg-now/pa-7th-congressional-survey-october-2026/",
+      "sample_population": "lv",
+      "sample_size": 529,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AR-SEN",
+      "race_type": "senate",
+      "state": "AR",
+      "poll_id": "641ee852-f596-4554-a4f7-c74286914371",
+      "question_id": "2e1b0d01-6660-4ce8-ba99-84990932443b",
+      "pollster": "GrayHouse",
+      "dem_name": "Hallie Shoffner",
+      "rep_name": "Tom Cotton",
+      "dem": 39.0,
+      "rep": 55.0,
+      "margin": -16.0,
+      "field_end": "2026-10-28",
+      "field_start": "2026-10-27",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T10:37:00",
+      "posted_source_time": "10/29/26 10:37",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.grayhouse.com/post/arkansas-senate-poll-october-2026-cotton",
+      "sample_population": "lv",
+      "sample_size": 509,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MN-GOV",
       "race_type": "governor",

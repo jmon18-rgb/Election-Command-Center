@@ -1,23 +1,23 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-29T14:14:02.416186Z",
+  "polling_generated_at": "2026-10-29T15:09:34.580955Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 8.17,
   "generic_implied_vs_2024_presidential_swing_points": 9.875,
-  "independent_polling_estimated_presidential_to_race_swing_points": 9.697,
-  "bottom_up_implied_national_margin_points": 7.991,
-  "bottom_up_minus_generic_environment_points": -0.179,
+  "independent_polling_estimated_presidential_to_race_swing_points": 9.779,
+  "bottom_up_implied_national_margin_points": 8.074,
+  "bottom_up_minus_generic_environment_points": -0.096,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
-  "total_qualifying_races": 17,
+  "total_qualifying_races": 18,
   "states_with_qualified_races": 15,
   "trimmed_states_each_tail": 1,
-  "qualifying_house_races": 3,
+  "qualifying_house_races": 4,
   "qualifying_senate_races": 14,
   "excluded": {
-    "inadequate_polling": 86,
+    "inadequate_polling": 85,
     "stale": 0,
     "not_competitive": 3,
     "missing_geography": 0
@@ -49,14 +49,14 @@
       "swing_points": 5.229
     },
     {
-      "state": "PA",
-      "number_qualifying_races": 1,
-      "swing_points": 6.478
-    },
-    {
       "state": "FL",
       "number_qualifying_races": 1,
       "swing_points": 6.892
+    },
+    {
+      "state": "PA",
+      "number_qualifying_races": 2,
+      "swing_points": 7.554
     },
     {
       "state": "GA",
