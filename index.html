@@ -1784,7 +1784,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_indicator_status.js?v=0d84acf916ed"></script>
 <script src="./scripts/election_night_early_weather.js?v=def635952113"></script>
-<script src="./scripts/personal_election_focus.js?v=f3bc2027846e"></script>
+<script src="./scripts/personal_election_focus.js?v=df86d0042c66"></script>
 <script src="./scripts/election_night_reconciliation.js?v=395ee89c6934"></script>
 <script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
@@ -7015,13 +7015,27 @@ window.enCelebrationPlayer=enCelebrationPlayer;
 
 const enFishAnimateKey='electionNightFishAnimateV1';
 try{$('#enFishAnimate').checked=localStorage.getItem(enFishAnimateKey)!=='off';}catch{}
+function enFishPrepareStill(host){
+ const image=host?.querySelector?.('.en-fish-still');if(!image||host.dataset.animate!=='false')return;
+ const src=image.getAttribute('src');
+ // A display:none lazy image may expose intrinsic dimensions while complete is
+ // still false and never reach the ready selector. An explicit static choice
+ // must finish loading/decoding the SAME existing asset, without changing URL.
+ image.loading='eager';
+ const sync=()=>{
+  if(host.querySelector('.en-fish-still')!==image||image.getAttribute('src')!==src)return;
+  host.dataset.photoReady=String(Boolean(image.complete&&image.naturalWidth>0));
+ };
+ try{const decoded=image.decode?.();if(decoded&&typeof decoded.then==='function')decoded.then(sync,sync);else sync();}catch{sync();}
+}
+
 function enFishApplyAnimation(){
  const enabled=$('#enFishAnimate').checked;
- for(const [kind,id]of [['bulletin','enFishTalking'],['celebration','enCelebrationFishTalking']]){const host=$('#'+id);host.dataset.animate=String(enabled);enAnnouncementMotionStop(kind);if(enabled)enAnnouncementMotionStart(kind,{resume:true});}
+ for(const [kind,id]of [['bulletin','enFishTalking'],['celebration','enCelebrationFishTalking']]){const host=$('#'+id);host.dataset.animate=String(enabled);enAnnouncementMotionStop(kind);if(enabled)enAnnouncementMotionStart(kind,{resume:true});else enFishPrepareStill(host);}
 }
 for(const id of ['enFishTalking','enCelebrationFishTalking']){const host=$('#'+id),image=host.querySelector('.en-fish-still');const sync=()=>{host.dataset.photoReady=String(Boolean(image.complete&&image.naturalWidth>0));};image.addEventListener('load',sync);image.addEventListener('error',sync);sync();}
 $('#enFishAnimate').addEventListener('change',()=>{try{localStorage.setItem(enFishAnimateKey,$('#enFishAnimate').checked?'on':'off');}catch{}enFishApplyAnimation();});
-for(const id of ['enFishTalking','enCelebrationFishTalking'])$('#'+id).dataset.animate=String($('#enFishAnimate').checked);
+for(const id of ['enFishTalking','enCelebrationFishTalking']){const host=$('#'+id);host.dataset.animate=String($('#enFishAnimate').checked);if(!$('#enFishAnimate').checked)enFishPrepareStill(host);}
 document.addEventListener('visibilitychange',()=>{if(document.hidden){enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');}});
 window.addEventListener('pagehide',()=>{enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');});
 
@@ -7870,9 +7884,12 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)enIndicator
 window.addEventListener('pagehide',enIndicatorWithdraw);
 setInterval(()=>{
  if(typeof enIndicatorCollect!=='function')return;
- const view=enIndicatorCollect();enIndicatorPublish(view);
+ const view=enIndicatorCollect();
  const key=JSON.stringify({rows:view.rows,summary:view.summary,current:view.current,active:view.active,context:view.context});
- if(key!==enIndicatorViewKey){enIndicatorViewKey=key;if(!jointModelPending&&enModeYear===2026&&view.active)renderPersonalElectionFocus();}
+ const update=()=>{enIndicatorPublish(view);if(key!==enIndicatorViewKey){enIndicatorViewKey=key;if(!jointModelPending&&enModeYear===2026&&view.active)renderPersonalElectionFocus();}};
+ // The current-source tick can redraw the same cards outside a model publish.
+ // Reuse the established visible-reader ownership, including offscreen focus.
+ if(view.active&&typeof jointPreserveSnapshotReader==='function')jointPreserveSnapshotReader(update);else update();
 },1000);
 
 function enWatchStatus(item){

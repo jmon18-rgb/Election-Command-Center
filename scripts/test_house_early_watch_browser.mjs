@@ -33,8 +33,10 @@ try{browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL
  const bookmark=await page.evaluate(()=>{const host=document.querySelector('#enPersonalFocus');return PersonalElectionFocus.captureFocus(host);});assert.deepEqual(bookmark,{kind:'watch',race:'FL-04'});
  await page.keyboard.press('Space');assert.equal(await fl.evaluate(e=>e.open),false);await page.keyboard.press('Enter');assert.equal(await fl.evaluate(e=>e.open),true);
  await fl.screenshot({path:resolve(out,`district-${width}.png`)});
- // The only watch row with an existing personal card gets an evidence jump, not an invented route.
- assert.deepEqual(await watch.locator('[data-personal-card-link]').evaluateAll(es=>es.map(e=>e.dataset.personalCardLink)),['VA-02']);
+ // The original21 reference subset still has exactly its original VA02 link.
+ // Every added shared-watch link must correspond to an already-existing needle.
+ const linkScope=await page.evaluate(()=>{const links=Array.from(document.querySelectorAll('#enPersonalFocus .early-watch [data-personal-card-link]'),e=>e.dataset.personalCardLink),refs=new Set(HouseEarlyWatchReference.districts.map(x=>x.code)),personal=new Set([...PersonalElectionFocus.SENATE.map(x=>x+'-SEN'),...PersonalElectionFocus.HOUSE]);return {links,original:links.filter(code=>refs.has(code)),expected:ElectionNightIndicatorStatus.records.filter(x=>personal.has(x.code)).map(x=>x.code)};});
+ assert.deepEqual(linkScope.original,['VA-02']);assert.equal(new Set(linkScope.links).size,linkScope.links.length);assert.deepEqual(linkScope.links.slice().sort(),linkScope.expected.slice().sort());
  const va=watch.locator('[data-watch-race="VA-02"]'),vaCard=page.locator('#enPersonalFocus [data-race="VA-02"]');await va.locator(':scope > summary').click();
  const evidenceLink=va.locator('[data-personal-card-link="VA-02"]');await evidenceLink.focus();await page.evaluate(()=>renderPersonalElectionFocus());
  assert.equal(await evidenceLink.evaluate(e=>e===document.activeElement),true,'Watch evidence link keeps semantic focus across a normal redraw');

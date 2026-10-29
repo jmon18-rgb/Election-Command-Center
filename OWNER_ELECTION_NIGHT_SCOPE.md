@@ -1,5 +1,12 @@
 # Personal election-night dashboard — owner scope, October 27
 
+## October 29 owner acceptance checklist from the supplied requirements photo
+
+Success means: current accurate race results across the country; interpretation against fundamentals, polls and historical area expectations; important races together with honest area/remaining-vote context; and consistent, funny celebrations with animation, pictures and music. The photo is a private requirements reference, not a public artwork asset; no unrelated browser content is incorporated.
+
+The practical delivery floor is useful connected results, explicit unavailable/stale coverage, current matched comparisons only where supported, one shared race/watch view and reliable optional celebrations. Comprehensive nationwide matched inputs, universally known outstanding ballots and historically validated national inference remain stretch gaps. Current scope includes seven personal Senate own-count paths (the six original owner paths plus Texas); MI/MN/MS/AK and KY-06/IN-05/FL-SEN matched inputs remain open. The latest permitted Indiana original HTML attempt returned403 at2026-10-29T17:16:27Z and is now stopped with no alternate route or retry. More engineering usage cannot substitute for missing admissible data or independent held-out chronologies.
+
+
 ## October 29 direct owner follow-up — one early watch and visible image finales
 
 The owner requests KY-06, IN-05 and FL-SEN prominently, overperformance before a win, distinct provisional “storm brewing” fun alerts, one consistent early roster, animation followed by the supplied pictures, a speaking fish, better John Brown identification and event-specific funny music. The current implementation unifies the original 15 and 21 reference lists plus FL-SEN into 32 unique races. All 21 exact Cook/FLIPR rows and the 19 personal needles remain; references are not fitted likelihoods. Pin/unpin, editorial county guides and existing official links survive in the shared watch. The old raw district-versus-poll ranking now opens that same watch.

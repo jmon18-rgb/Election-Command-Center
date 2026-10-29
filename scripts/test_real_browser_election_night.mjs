@@ -57,9 +57,19 @@ try{
   await page.locator('#enFishToast').waitFor({state:'visible',timeout:10000});
   assert.match(await page.locator('#enFishMode').innerText(),/REHEARSAL/,
     name+': Mock Fish interruption must never masquerade as live results');
+  assert(await page.locator('#enFishTalking .fish-anchor-svg').isVisible(),name+': Original animated fish anchor is the default');
+  // Retain every original tall-still framing/control assertion through the
+  // actual static-picture preference, rather than measuring its hidden fallback.
+  await page.locator('#enFishAnimate').uncheck();
   await page.waitForFunction(
    ()=>document.querySelector('#enFishToast .en-fish-art img')?.naturalHeight===700,
    {timeout:10000});
+  // Intrinsic dimensions can precede completion for a hidden lazy image.
+  // Await the actual static choice, then keep every original framing assertion.
+  await page.waitForFunction(()=>{
+   const host=document.querySelector('#enFishTalking'),img=host?.querySelector('.en-fish-still');
+   return host?.dataset.animate==='false'&&host.dataset.photoReady==='true'&&img?.complete&&img.naturalWidth>0&&getComputedStyle(img).display!=='none';
+  },null,{timeout:10000});
   const fish=await page.locator('#enFishToast .en-fish-art img').evaluate(img=>{
    const box=img.getBoundingClientRect(),style=getComputedStyle(img);
    return {naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight,
