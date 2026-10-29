@@ -1,5 +1,37 @@
 # Election Night production-readiness assignment
 
+## Current verified release530 — continue the ready WA scheduling extension
+
+530tested2d8a4840 passed all37parents/52latest49SUCCESS3declaredPRSKIP/0external,
+clean/mergeable. Merge4c3092ce; finalCURRENTmain79a25ed3/Pages40841913579SUCCESS.
+All40changed public/index files match origin/main after an authorized transport
+retry; initial failure preserved. Origin/main coherence13checks/index/no_credit
+PASS. Actual published1366/390 model/public-guard/paired-ASOF/15hard-negative/
+source-clock/history/keyboard/visible-offscreen reader tasks pass. Original
+remote observer's duplicate worker-target failure is retained; ignored first-pin
+response copies preserve all assertions/required bytes and pass. No product
+change, CI rerun, waiver, timeout or sample reduction for that verifier fix.
+
+Strict16civic coalescing and exact-target resource-aware call proposals are
+released. Official WA/VA/cache/remaining still HARD. Ordinary27readonly asset/
+private-control/status/archive preservation verified; no ordinary geometry or
+interactive claim. Seven previews marked/frozen15untouched. Original guide1.0/
+eleven human scopes/results/hashes unchanged; component17 appended with immutable
+pre530copy/receipt, ledgerSHA dd88663ba0ecf01191b441a0771ebeca4bda823342daa0a2b129885f0c835708.
+
+NEXT executable task: promote the independently reviewed ignored WA extension
+only after actual app integration, relevant portable/browser tests and protected
+release. Reuse asof-official-extension/ final receipts: exact receipt/native
+freshness helpers, three pinned candidate cells and originally used remaining
+footprint/value/current-clock checks.61retained civic+38official groups pass;
+not application acceptance or production support. VA remains HARD pending its
+missing typed per-candidate/method/locality-election-clock projection. Carry the
+remote response-dedup harness fix with that coherent source change. No new GETs,
+source discovery, eligibility/budget change, calibration or paid archive activation.
+
+The following candidate text records completed investigation; its pending530
+gates are superseded by this verified release.
+
 ## Current ready implementation — resource-aware proposals and fallback validation
 
 HOLD publication for confirmed continuous-update liveness: existing latest-key

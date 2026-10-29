@@ -1,15 +1,22 @@
 # JackStradamus · development plan
 
-## October29 current work — improve conditional support without changing the target
+## October29 current work — released conditional support; extend verified scheduling
 
-PR529 background computation is verified published on main3458125b. The next
-ready model change uses a resource-aware proposal for many called redraw seats,
-with exact indexed probability correction and a bounded private replay cache.
-Independent numerical/replay reviews pass; complete fictional four-output
-worker frames meet the unchanged desktop deadline. Protected review and
-published verification remain pending. A discovered malformed-output fallback
-defect is included in the same coherent release. No empirical calibration or
-full-night support guarantee follows from these checks.
+PR530 is verified published on finalmain79a25ed3/Pages40841913579: exact-head37
+parents/49applicable latest jobs pass;40changed public/index files and origin/main
+coherence pass. Resource-aware exact-target proposals and bounded replay improve
+fixed200-call support; all six four-output3k/ESS frames meet the same30s deadline.
+Actual published1366/390 output guards and source-versioned completed snapshots
+remain usable through strict civic count streams, with15hard negatives and reader
+continuity verified. No calibration, physical-phone or full-night support claim.
+
+NEXT ready task is the independently reviewed ignored WA official scheduling
+prototype: exact native/receipt freshness and frozen used-estimate footprint
+checks, then page integration/portable and browser tests/protected publication.
+Current production WA/VA/cache/remaining still HARD. VA lacks typed individual
+candidate/method/native-clock projection and stays HARD. No new source request
+or unchanged discovery is needed. Reuse receipts; carry the remote verifier's
+first-response dedup fix with that coherent source change.
 
 PR527 already delivered same-joint margin ranges, private ad-free audio and the
 exact supplied Abbott image. PR528 delivered full-factor source-call conditioning.
@@ -173,7 +180,7 @@ Owner scope update: needle adjustments and the celebration production backlog ar
 | --- | --- | --- | --- |
 | R8 / navigation/model focus repair525 verified; human acceptance open | Full owner interpretation and visual acceptance | Watch-to-existing-card/expectation and same-row/Texas returns, semantic announcement/redraw identity, desktop row/phone heading and offscreen reading-position retention released. Reuse actual1366/390 and ordinary semantic proofs; real task feedback reopens engineering immediately. | Exactdc9b5ef9/all37parents; finalmaincbcf2af2/Pages40761231025/served40761325033/27changedfiles verified. Ordinary0viewport/no geometry claim; human interpretation/assistive NOT_RUN, Oct30 target not start gate. |
 | R7 / Texas/watch523 and distributions527 VERIFIED PUBLISHED | Personal race needles and evening trend | Eleven Senate/eight pivotal House cards, exact owner references, distinct verified-call surprise patterns and bounded history are released; contextual navigation fixed525. PR527 adds median/middle50/90 from the same conditioned draws, with no probability/source change. | Finalmain3ec89d17/Pages40790586312/all44changedfiles/coherence PASS. Actual published1366/390 range/disclosure/isolation tasks pass. Ordinary input tool-limited, no geometry claim. MI/MN/MS/AK county connections remain missing, AK last. |
-| R0 / background-worker529 VERIFIED PUBLISHED; allocation support next | Needle methodology and truthful assumptions | Existing validated winners now condition shared factors with exact proposal correction, one frozen bounded county target and engine-owned whole-election replay under hard ESS>=.5n. No new source/eligibility/coefficient. Background worker529 is released with exact-asset computation, strict current-frame/retraction/context/lifecycle guards and semantic reading continuity. Allocation look-ahead/private replay cache remain ignored until exact-law/RNG/consumer/integrity/memory-lifetime and complete fixed30s browser-frame proofs pass. | 529tested718c5b30/all43parents/61jobs56SUCCESS5nonappSKIP; finalmain3458125b/Pages40809478884/51changedfiles/coherence PASS. Published1366/390 worker/context/retraction/reader/lifecycle/overflow pass; ordinary readonly only. Production200call support remains withheld; exact no-call/no_credit/state budgets retained. R2 calibration open. |
+| R0 / resource-aware calls and strict civic ASOF530 VERIFIED PUBLISHED; WA extension next | Needle methodology and truthful assumptions | Exact-target finite-allocation/Gaussian proposals and bounded private replay improve fixed200-call support without changing draws, likelihood, no_credit or hard ESS. One-running/latest-queued civic counts show captured ASOF clocks; corrections/calls/context/expiry/errors remain HARD. Next integrate reviewed WA native/receipt/used-estimate guards; VA requires missing typed cells/clocks. | 530tested2d8a4840/all37parents/52jobs49SUCCESS3nonappSKIP; finalmain79a25ed3/Pages40841913579/40changedfiles/coherence PASS. All six four-output3k fixed30s CI frames and actual published1366/390 paired stream/15hard-negative/reader/output-guard tasks pass. Official/cache/remaining production paths remain HARD. No empirical calibration, physical-phone or full-night guarantee; R2/human/positive delivery open. |
 | R1 / research tooling519 released; admission gates open | Four missing requested Senate connections | MS246rows/82counties/three candidates, documented alias and importer resolved. New metadata-only lineage ties exact saved blob to publisher commitc7e31f42 dated2021-01-18. Reuse-policy inventory did not establish rights. Next distinct explicit source-file rights/native-certification/current2026 package; no solved-route repeats. MI/MN403 STOP; AK last. | Six public fictional/reference and eight local-original tests PASS; no raw/derived table published. SourceSHA c6fe2553…; processed-file-lineage/receipt saved locally. No native certification/election chronology/current2026/runtime/calibration admission;81004invalid. |
 | R2 / decision recorded; evidence gate open | Predictive validation evidence and evaluation | Formal Oct28 decision snapshot recorded: NO-GO for calibrated national acceptance on zero independent chronological datasets/held-outs; metrics not estimable. Reopen only for a genuinely admissible new package. Use the saved specification for the smallest admissible held-out evaluation using contemporaneous expectations, real early/middle/late captures, correct geography and source-error uncertainty. Pursue a bounded new source route only if it can satisfy a named missing field. Reuse evaluation tools; add only missing necessary evaluation capability. | Reproducible margin error, interval coverage, probability scores and baseline comparison on admitted data; national transfer assessed separately. Oct28 no-go/missing-data decision delivered locally and recorded in acceptance; predictive validation itself remains unmet. Synthetic stress evidence stays separate; never fit and evaluate on the same cases. No guaranteed calibrated acceptance. |
 | R3 / pack ready; human acceptance open | Stable owner rehearsal handoff | Local operator pack v1.0: two-page PDF and responsive HTML at output/pdf/election-night-operator-guide-7e4b163d.*, plus owner-handoff-acceptance-ledger-20261028.json. Eleven task rows map saved evidence and retain human NOT_RUN/resultNULL. Print rendering and local1366/390 guide semantics/keyboard/no-overflow/hash checks pass. Use this concise pack for the real operator session; detailed draftv.9 remains reference. | Oct29 human laptop/phone tasks and actual assistive acceptance still open; exact revision/context/results/defects required. Existing engineering and published rehearsal proof does not complete human handoff or fullOct30review. |

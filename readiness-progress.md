@@ -1,5 +1,40 @@
 # Readiness progress
 
+## PR530 resource-aware calls and completed-snapshot scheduling — verified published
+
+Tested2d8a4840cd32c915a95a7008791fdd4f58607214 passed all37 workflow parents,
+52latest jobs49SUCCESS/3declared nonapplicable PR skips and0external statuses;
+clean/mergeable. Merge4c3092ce; finalCURRENTmain79a25ed3c15be814cd8c954a33e8743f08397327,
+Pages40841913579SUCCESS. All40changed public files/index match origin/main;
+initial restricted-network failures and the authorized affected-only retry are
+both preserved. Origin/main coherence13checks/currentindex/no_creditPASS.
+
+Actual published Edge1366/390 call/range/context/retraction/support tests,
+public-output/missing-asset guards and paired ASOF streams PASS. Each stream
+publishes five marked completions across six legal updates, then exact CURRENT;
+15hard negatives, synchronous/missing-policy fallback, frozen clocks/history and
+visible/offscreen/moved-reader guards pass. A duplicate terminated-worker response
+affected only the remote verifier: first-response asset dedup retains every
+original assertion and required byte check; failures and independent reviews
+remain. No product/CI waiver, timeout increase or test reduction.
+
+Ordinary27readonly reload preserves private controls/status/archive classes and
+loads current assets; known hidden0viewport/input limits were not retried. Seven
+previews marked; frozen15untouched. Proof pr530-published-outcome-20261029.json,
+exacthead/integrity-retry/coherence/ordinary and ui-review/pr530-published/.
+Guide1.0/eleven human task scopes/results/hashes unchanged; one addendum/component
+appended16→17, ledgerSHA dd88663ba0ecf01191b441a0771ebeca4bda823342daa0a2b129885f0c835708.
+
+NEXT ready engineering: integrate independently reviewed ignored WA ASOF
+prototype/pure native+receipt guards and frozen used-estimate projection.
+Current production coalescing remains16civic-only; WA/VA/cache/remaining inputs
+still hard refresh. VA needs missing individual-candidate/method/native-clock
+projection before extension. No source re-probe, calibration/physical-phone/
+positive-delivery/human signoff or archive activation is implied.
+
+The investigation below is completed history; its pending gates are superseded
+by the verified release above.
+
 ## Reviewed candidate — resource-aware call proposals and public-output admission
 
 Separate hands-on scheduling review confirms a liveness defect: six legal

@@ -1,5 +1,21 @@
 # National needle acceptance decision — October 27, 2026
 
+## PR530 conditional support and scheduling — verified, empirical gates unchanged
+
+Resource-aware indexed allocation/Gaussian proposals now support the fixed
+fictional200-call cases while preserving the original target, exact correction,
+3000draws, hard ESS>=.5n and unchanged30s deadline. All six complete four-output
+CI frames pass25.87–26.74s; other concentrated/unsupported cases still withhold.
+No-call hashes, Independent no_credit and fixed source/state shares remain.
+
+Strict16civic compatible-count scheduling shows source-versioned ASOF results
+instead of repeatedly cancelling completed work. Corrections, calls, expiry,
+private/settings/lifecycle and errors remain hard invalidations; official caches
+and remaining estimates retain the hard path. Actual published1366/390 paired
+stream/clock/guard/reader tests pass, finalmain79a25ed3/Pages40841913579.
+These are numerical and engineering proofs, not empirical calibration,
+physical-phone speed, genuine positive2026 delivery or human acceptance.
+
 ## PR529 background-computation component — verified, empirical gates unchanged
 
 The unchanged numerical pipeline now computes in an isolated worker. Exact718c5b30
