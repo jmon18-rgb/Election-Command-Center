@@ -182,3 +182,29 @@ jobs:
           path: artifacts/readiness/ui-review/worker-official-snapshot/
           if-no-files-found: warn
           retention-days: 7
+  official-va-snapshot-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    strategy:
+      fail-fast: false
+      matrix:
+        width: [1366, 390]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the pinned browser runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Typed VA source clocks, hidden corrections and paired completed snapshots stay guarded
+        run: node scripts/test_joint_virginia_snapshot_browser.mjs ${{ matrix.width }}
+      - name: Upload bounded Virginia snapshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: official-va-snapshot-browser-${{ matrix.width }}
+          path: artifacts/readiness/ui-review/worker-virginia-snapshot/
+          if-no-files-found: warn
+          retention-days: 7

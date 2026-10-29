@@ -1,5 +1,37 @@
 # Readiness progress
 
+## October29 active candidate — typed Virginia updates and complete recorded lineage
+
+The reviewed VA producer/policy and compact-lineage code is integrated on
+readiness/virginia-typed-snapshot; no release claim yet. Original native parse
+output/selected-body comparison is preserved. The cache owns record+reference
+before async hashing and keeps all candidate/method cells and native clocks in
+RAM. CURRENT and compatible-ASOF checks reuse original predicates; corrections,
+changed calls/context, hidden/archive and expiry remain hard invalidations.
+
+Local83core checks pass, including all original VA source/cache/collector/900draw
+bridge suites,40new producer groups,61Civic+38WA+63VA policy cases and compact
+AR2lineage23groups/144contexts(max372 under unchanged600). All24old prototype
+counterexamples remain covered. Full numerical/frame identities are unshortened;
+recorded16role hash components are captured once and reused by history/audit.
+Missing codec blocks new records while the forecast remains available.
+
+Independent actual-source counterexamples found worker diagnostic RAW metadata
+and missing-codec audit identity gaps. Whole-output/schema/key guards and frozen
+frame lineage close both; original failures and8focused closure controls saved.
+Controller42groups/actualEdge1366+390public-boundary faults pass; civic390/WA390
+and source-call both-size regressions pass after decoding the SAMEexact recorded
+asset hashes. All original assertions/pins are retained; codec gets an added pin.
+Final matching-source VA1366/390 source/stream/expiry/reader tests PASS: five paired
+ASOF completions/13hard negatives/three actual stalled-controller expiry cases each.
+Frozen testSHA74fcfdcb8e61; all20actual source pins match the tested candidate.
+
+Next finish all exact-head parents/jobs/statuses, protected merge,
+finalCURRENTmainPages/servedbytes and appropriatepublishedbrowser verification.
+No new nativeGET, draw/seed/target/ESS/30s/request/cadence/call/celebration change.
+ArchiveOFF; original guide/human scopes/resultsNOT_RUN/null untouched. The531
+release below remains the deployed baseline until this candidate is verified.
+
 ## October29 PR531 VERIFIED PUBLISHED — bounded Washington scheduling
 
 Tested0c0fd16528f054d9fe3f9dc8d28a98be7eafc2ac passed ALL38 workflow parents;

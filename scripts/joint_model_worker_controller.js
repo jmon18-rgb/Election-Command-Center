@@ -12,7 +12,7 @@
   // Self-contained so the page can retain this exact guard when either optional
   // worker asset fails. Private input payloads are intentionally NOT inspected.
   const endingKeys=['blue_tsunami','blue_wave','shrug','red_dawn'];
-  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum']);
+  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum','typed_usage','native_usage']);
   const safeTag=value=>typeof value==='string'&&/^[A-Z0-9_:-]{1,100}$/.test(value);
   function publicFields(item,path){
    if(item===null||item===undefined||typeof item==='string'||typeof item==='boolean')return true;
@@ -20,6 +20,7 @@
    if(typeof item!=='object'||ArrayBuffer.isView(item))return false;
    const tag=Object.prototype.toString.call(item);
    if(!['[object Object]','[object Array]'].includes(tag)||path.has(item))return false;
+   if(['validated-va02-native-usage-v1','already-admitted-va02-typed-usage-v2'].includes(item.schema))return false;
    path.add(item);
    try{return Object.entries(item).every(([key,child])=>!rawKeys.has(key)&&publicFields(child,path));}
    finally{path.delete(item);} // Acyclic result/baseline aliases are legitimate.

@@ -28,6 +28,13 @@
   'collection_payload_integrity_verified','collection_original_response_sha256','collection_original_response_hash_recomputed','transport_note',
   'remaining_status','official_remaining','remaining_revision']);
  const waEnvelopeKeys=new Set([...envelopeKeys,'remaining_geography']);
+ const vaURL='https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7';
+ const vaTransport='https://raw.githubusercontent.com/jmon18-rgb/Election-Command-Center/official-virginia-results-cache/data/virginia_house_02_official_latest.json';
+ const vaKeys=new Set([...snapshotKeys,'source_last_updated','source_published_at','source_test_data','model_method_scope','authoritative_race_call',
+  'collection_fetched_at','transport_url','collection_selected_payload_sha256','collection_payload_integrity_verified','collection_original_response_sha256',
+  'collection_original_response_hash_recomputed','transport_note','typed_usage']);
+ const vaCountyKeys=new Set([...countyKeys,'methods']);
+ const vaClocks=['snapshot_updated_at','election_as_of','source_published_at','source_last_updated'];
  const hash=x=>typeof x==='string'&&/^[a-f0-9]{64}$/.test(x);
  const own=(x,k)=>Object.prototype.hasOwnProperty.call(x,k),plain=x=>x!==null&&typeof x==='object'&&!Array.isArray(x)&&
   (Object.getPrototypeOf(x)===Object.prototype||Object.getPrototypeOf(x)===null);
@@ -158,7 +165,39 @@
    a.collection_original_response_sha256!==b.collection_original_response_sha256&&stamp(b.collection_fetched_at)<=stamp(a.collection_fetched_at)))return false;
   return remainingPair(old,fresh,previous,next,admissions,now,validateEnvelope,washington);
  }
- function classify(previous,next,{now,validateEnvelope,washington}={}){
+ function virginiaProjectionStatic(p){return {...omit(p,['collection_fetched_at','selected_hash','native','localities']),localities:p.localities.map(row=>({...omit(row,['reported_at','candidates']),candidates:row.candidates.map(person=>({...omit(person,['votes','methods']),methods:person.methods.map(method=>omit(method,['votes'])).sort((a,b)=>a.id.localeCompare(b.id))})).sort((a,b)=>a.native_id.localeCompare(b.native_id))})).sort((a,b)=>a.county_fips.localeCompare(b.county_fips))};}
+ function virginiaSnapshotStatic(s){return {...omit(s,['typed_usage','collection_fetched_at','collection_selected_payload_sha256','collection_original_response_sha256','snapshot_updated_at','source_last_updated','source_published_at','counties']),counties:s.counties.map(row=>({...omit(row,['dem_votes','rep_votes','other_votes','methods']),methods:Object.keys(row.methods).sort()})).sort((a,b)=>a.county_fips.localeCompare(b.county_fips))};}
+ // Original parser-produced cells/clocks survive aggregate projection loss.
+ // The injected helpers bind fixed native IDs and exact original current rules;
+ // a selected-payload hash is never authentication of original HTTP bytes.
+ function virginiaPair(a,b,now,virginia){
+  if(typeof virginia?.current!=='function'||typeof virginia?.matchesSnapshot!=='function'||!only(a,vaKeys)||!only(b,vaKeys)||
+   a.race_code!=='VA-02'||b.race_code!==a.race_code||a.source_url!==vaURL||b.source_url!==vaURL||a.transport_url!==vaTransport||b.transport_url!==vaTransport||
+   [a,b].some(s=>s.status!=='VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED'||s.live_votes_accepted!==true||s.method_split_reported!==true||
+    s.timestamp_scope!=='official_contest_reporting_snapshot_not_independent_locality_batch_capture'||s.source_test_data!==false||
+    s.completion_verified!==false||s.may_move_national_needle!==false||s.authoritative_race_call!==false||
+    s.collection_payload_integrity_verified!==true||s.collection_original_response_hash_recomputed!==false||!hash(s.collection_selected_payload_sha256)||
+    !(s.collection_original_response_sha256===null||hash(s.collection_original_response_sha256))||!plain(s.typed_usage)||
+    !Array.isArray(s.counties)||s.counties.length!==8||s.counties.some(row=>!only(row,vaCountyKeys))))return false;
+  const p=a.typed_usage,q=b.typed_usage;
+  if(virginia.matchesSnapshot(p,a)!==true||virginia.matchesSnapshot(q,b)!==true||virginia.current(p,now)!==true||virginia.current(q,now)!==true||
+   !same(virginiaProjectionStatic(p),virginiaProjectionStatic(q))||!same(virginiaSnapshotStatic(a),virginiaSnapshotStatic(b)))return false;
+  const oldReceipt=stamp(p.collection_fetched_at),newReceipt=stamp(q.collection_fetched_at);
+  if(!Number.isFinite(oldReceipt)||!Number.isFinite(newReceipt)||newReceipt<oldReceipt||vaClocks.some(k=>stamp(q.native[k])<stamp(p.native[k])))return false;
+  let changed=false;const incoming=new Map(q.localities.map(row=>[row.county_fips,row]));
+  for(const row of p.localities){const next=incoming.get(row.county_fips);if(!next)return false;
+   const oldAt=stamp(row.reported_at),newAt=stamp(next.reported_at);if(!Number.isFinite(oldAt)||!Number.isFinite(newAt)||newAt<oldAt)return false;
+   let rowChanged=false;const people=new Map(next.candidates.map(person=>[person.native_id,person]));
+   for(const person of row.candidates){const fresh=people.get(person.native_id);if(!fresh||fresh.votes<person.votes)return false;if(fresh.votes!==person.votes)rowChanged=true;
+    const methods=new Map(fresh.methods.map(method=>[method.id,method]));for(const method of person.methods){const freshMethod=methods.get(method.id);if(!freshMethod||freshMethod.votes<method.votes)return false;if(freshMethod.votes!==method.votes)rowChanged=true;}}
+   if(rowChanged&&!(newAt>oldAt))return false;changed=changed||rowChanged;
+  }
+  if(changed)return newReceipt>oldReceipt&&p.selected_hash!==q.selected_hash&&vaClocks.every(k=>stamp(q.native[k])>stamp(p.native[k]));
+  // The first VA slice accepts unchanged selected content/refetches, while
+  // unexplained source-only changes retain the hard refresh boundary.
+  return p.selected_hash===q.selected_hash&&same(p.native,q.native)&&same(p.localities,q.localities)&&a.collection_original_response_sha256===b.collection_original_response_sha256;
+ }
+ function classify(previous,next,{now,validateEnvelope,washington,virginia}={}){
   try{
    if(!Number.isFinite(now)||typeof validateEnvelope!=='function')return hard('CURRENT_ADMISSION_VALIDATOR_REQUIRED');
    if(!plain(previous)||!plain(next)||!valueTree(previous)||!valueTree(next))return hard('INVALID_FRAME_VALUE');
@@ -176,14 +215,15 @@
    const seen=new Set();
    for(let i=0;i<a.envelopes.length;i++){
     const old=a.envelopes[i],fresh=b.envelopes[i];
-    const isWA=old?.snapshot?.race_code==='WA-03',keys=isWA?waEnvelopeKeys:envelopeKeys;
+    const isWA=old?.snapshot?.race_code==='WA-03',isVA=old?.snapshot?.race_code==='VA-02',keys=isWA?waEnvelopeKeys:envelopeKeys;
     if(!only(old,keys)||!only(fresh,keys)||!plain(old.snapshot)||!plain(fresh.snapshot)||
      old.rehearsal===true||fresh.rehearsal===true||!same(omit(old,['snapshot']),omit(fresh,['snapshot'])))return hard('EVIDENCE_CONTRACT_CHANGED');
     const code=old.snapshot.race_code;
     // Official paths need the original pure admission guards. Unsupported
     // cache routes and unknown source contracts retain the hard path.
-    if(!own(routes,code)&&!isWA)return hard('SOURCE_REQUIRES_HARD_REFRESH');
+    if(!own(routes,code)&&!isWA&&!isVA)return hard('SOURCE_REQUIRES_HARD_REFRESH');
     if(isWA&&(typeof washington?.receiptCurrent!=='function'||typeof washington?.publicationCurrent!=='function'))return hard('SOURCE_REQUIRES_HARD_REFRESH');
+    if(isVA&&(typeof virginia?.current!=='function'||typeof virginia?.matchesSnapshot!=='function'))return hard('SOURCE_REQUIRES_HARD_REFRESH');
     if(seen.has(code)||fresh.snapshot.race_code!==code)return hard('EVIDENCE_SET_CHANGED');seen.add(code);
     const admissions=[];for(const envelope of [old,fresh]){
      const validated=validateEnvelope(envelope,now);
@@ -191,10 +231,10 @@
       validated.source_url!==envelope.snapshot.source_url||validated.as_of!==envelope.snapshot.snapshot_updated_at)return hard('CURRENT_ADMISSION_FAILED');
      admissions.push(validated);
     }
-    if(isWA?!officialPair(old,fresh,previous,next,admissions,now,validateEnvelope,washington):!snapshotPair(old.snapshot,fresh.snapshot))return hard('COUNT_OR_SOURCE_REVISION_CHANGED');
+    if(isVA?!virginiaPair(old.snapshot,fresh.snapshot,now,virginia):isWA?!officialPair(old,fresh,previous,next,admissions,now,validateEnvelope,washington):!snapshotPair(old.snapshot,fresh.snapshot))return hard('COUNT_OR_SOURCE_REVISION_CHANGED');
    }
    return outcome('MONOTONE_COUNTS_ONLY','SAME_CONTRACT_NONDECREASING_COUNTS_AND_CLOCKS');
   }catch{return hard('CURRENT_ADMISSION_FAILED');}
  }
- return Object.freeze({VERSION:'joint-count-snapshot-policy-v2',classify,captureRemainingUsage});
+ return Object.freeze({VERSION:'joint-count-snapshot-policy-v3',classify,captureRemainingUsage});
 });
