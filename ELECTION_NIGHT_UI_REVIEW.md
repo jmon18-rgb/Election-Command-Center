@@ -1,5 +1,20 @@
 # Election-night usability and visual review
 
+## PR527 VERIFIED PUBLISHED — ranges, private audio and full owner artwork
+
+Same-draw median/middle50/90 and explicit scale/help are now visible. Shared
+native-summary activation keeps the activated control below the toolbar without
+background redraw scroll theft; existing expectation stays the first disclosure.
+Actual published Edge1366/390 normal controls/keyboard/redraw/call removal,
+native synthetic audio persistence/teardown/eight delayed handler races at EACH
+size and exact full Abbott image+AI-fiction label pass with no overflow. No real
+YouTube/election-provider request; no human interpretation/listening acceptance.
+Final currentmain3ec89d17/Pages40790586312/44changedfiles/coherence verified.
+Proof pr527-published-ed5bb48a/. Ordinary27 new controls present/private context
+retained, but hidden-panel CDP mouse and keyboard activation did not return it
+from restored2024archive; no ordinary interactive/geometry success claimed.
+Preserve frozen15/all7previews; do not repeat unchanged tool-limit attempts.
+
 ## PR525 VERIFIED PUBLISHED — October28 owner-journey/focus pass
 
 Shared VA02watch->existingneedle/expectation->sameexpandedrow and Texas local

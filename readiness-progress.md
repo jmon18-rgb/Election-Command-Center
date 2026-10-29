@@ -1,5 +1,38 @@
 # Readiness progress
 
+## PR527 VERIFIED PUBLISHED — October28 owner ranges, ad-free files and exact art
+
+Tested ed5bb48a4d7eaf8fa258b0dad2d59cc5dec3f9e1 passed all37 workflow
+parents/52latestjobs49SUCCESS3nonapplicableSKIP/0external, clean and mergeable.
+Merge b1b41aff3ba7f8ad21bf463ff564a0c83288fe7f; final current main
+3ec89d1722df48d738759ea1b9fddeab7acbfdb3/Pages40790586312 SUCCESS.
+All44 changed public files/index match origin/main at00:01:08.796Z; initial
+restricted-network failures are retained, affected-only network retry passes.
+Current-main public coherence/index/no_credit PASS; main rechecked unchanged.
+
+Actual published Edge1366x900/390x844 personal ranges/help/keyboard/redraw,
+popup/call withdrawal, native synthetic audio playback/exact-byte persistence/
+teardown, full supplied Abbott art+AI-fiction label and eight delayed real-IDB
+save/remove/info races at EACH size PASS, election providers/real YouTube blocked.
+No calibration/actual-recording/human-listening claim. Original scores are the
+ad-free fallback; files remain private to this browser. Optional YouTube stays.
+Exact supplied JPEG SHA e9d6360032b79c75156b490aaf62bd9250479d54e4444225c5d6bc313dc29c3d.
+Proof pr527-exacthead-gate.json, pr527-published-affected-retry-1793232068803.json,
+pr527-published-coherence-origin-main-network.txt and pr527-published-ed5bb48a/.
+
+Ordinary IAB27 reload exposes new audio controls but restores2024archive. CDP
+mouse times out; Enter/Space focus current-results without changing its mode.
+No error log, private preferences/context retained, no ordinary interactive or
+geometry success claimed. Actual published Edge proves changed rendering and
+controls. All seven delivered previews marked, frozen15 untouched; billing29
+handoff retained. Do not retry unchanged ordinary input/tool limitation.
+
+R0 source-call conditional mathematics now has full-factor and realistic redraw-
+bag proposal/replay numerical support; engine+fixed county-target candidates are
+being implemented separately. Calls remain existing validated D/R inputs only;
+no-call legacy outputs, no_credit, state budgets and hard ESS floor preserved.
+This is an internal executable engineering task, not a date/source/human block.
+
 ## October28 latest direct steering — ad-free soundtrack and supplied Abbott image
 
 Owner reports YouTube ads spoil the mood; this supersedes the fresh-YouTube
