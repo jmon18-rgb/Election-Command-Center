@@ -101,6 +101,16 @@ w.fetch=async (url)=>{
 };
 w.console.error=(...parts)=>errors.push(parts.map(String).join(' '));
 function get(selector){const el=w.document.querySelector(selector);assert(el,'Missing '+selector);return el}
+function assertOwnedLookupIdsUnique(window,label){
+ const owned=new Set(window.eval('__testOwnedLookupIds()'));
+ assert(owned.size>0,'Owned app ID lookup registry must be initialized: '+label);
+ const counts=new Map();
+ for(const node of window.document.querySelectorAll('[id]')){
+  const id=node.id;if(owned.has(id))counts.set(id,(counts.get(id)||0)+1);
+ }
+ const duplicates=[...counts].filter(([,n])=>n>1).map(([id])=>id).sort();
+ assert.deepEqual(duplicates,[],'Owned app IDs must remain unique: '+label);
+}
 async function settle(){
  for(let n=0;n<150;n++){
   await new Promise(resolve=>setTimeout(resolve,20));
@@ -191,7 +201,9 @@ function __testSeedStaleOhioSenate(){
 }
 // Test-only access to lexical source state, never exposed by production.
 function __testOpenAmericaPending(){return enOpenAmericaReader.pending()}
-function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
+function __testWatchedOfficePending(){return enWatchRefreshPending.size}
+function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
+ assertOwnedLookupIdsUnique(w,'primary initial');
  assert.equal(w.ElectionNightTransport.createPool(4,64).status().concurrency_limit,4);
  assert.match(w.eval('enCivicFetchJson.toString()'),/enCivicRequestPool\.run/,
   'All overlapping manual and automatic sweeps must share bounded fetches');
@@ -3143,7 +3155,8 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  const resumeModules=[...html.matchAll(resumeModulePattern)].map(match=>match[1]);
  assert(resumeModules.length>=25,'Reload must include every linked election runtime dependency');
  for(const module of resumeModules)rw.eval(read(module));
- rw.eval(scripts[0]);
+ rw.eval(scripts[0]+'\nfunction __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}');
+ assertOwnedLookupIdsUnique(rw,'resume initial');
  const rg=selector=>{const el=rw.document.querySelector(selector);
     assert(el,'Missing resume UI element '+selector);return el};
  assert.equal(rw.eval('enResumeRestore()'),true,
@@ -3197,6 +3210,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  // Allow the second page's normal asynchronous article/research fetches to
  // settle before tearing down jsdom; an unmounted DOM is not a browser page.
  await new Promise(resolve=>setTimeout(resolve,100));
+ assertOwnedLookupIdsUnique(rw,'resume final');
  resumed.window.close();
 
  // Both election-night CSV exports must include only actual source data,
@@ -3491,6 +3505,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.equal(get('#updates').textContent,previousNewsDisplay);
  fixtures['briefing.json']=newsNext;
 
+ assertOwnedLookupIdsUnique(w,'primary final');
  assert.equal(errors.length,0,'Application emitted errors: '+errors.slice(0,4).join(' | '));
  console.log('Dashboard DOM integration passed: exact TX-SEN/TX-GOV poll drilldowns, race labels, linked joint-model race odds and DDHQ removal, dated news feed, and no script errors.');
  dom.window.close();

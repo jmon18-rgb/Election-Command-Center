@@ -1,5 +1,116 @@
 # Readiness progress
 
+## PR531 measured full-DOM lookup correction — new protected gate required
+
+The failed ccc64bac18m gate is retained. Profiling ruled out the unlinked primary
+snapshot policy and found repeated whole-document ID traversal. Only the global
+UI lookup changed:283 verified static-owned IDs use the standards-mode DOM ID
+index; unknown/dynamic IDs, compound/escaped/invalid/coercible selectors and
+quirks mode retain the original selector path. No element cache is retained.
+
+On exact failed-CI merge2e09d555 +the same six offline builders, every original
+DOM assertion/3k draw setting passed.119,575 chosen lookups matched the original
+node exactly;2,976 render-phase+927eval+4initial/final scans found zero duplicate
+owned IDs. Optimized unprofiled fullDOM passed371.43s locally. Validation13m24
+included comparison/scanning overhead, so this is scoped evidence, not a universal
+speed or physical-phone claim. Numerical helper67db/engine04/kernel and every
+original sample/assertion/case/deadline remain unchanged. A persistent initial/
+final both-window owned-ID invariant is added from the same proven checks; eight
+focused positive/negative cases pass and every original assertion is preserved.
+Proof pr531-dom-profile/exact-2e09-id-lookup/candidate-proof.json. New exact-head
+all-parent/job/status gate, protected merge and final publication remain required.
+
+## PR531 ccc64bac — hold merge for actual full-DOM deadline
+
+Current ccc64bac50e2e624a496b307cb471f4a38ef0362 passes37 of38 workflow parents,
+including both new official-WA browser matrices and corrected Cartogram entry.
+Validate-dashboard40855409857/browser123385500118 exceeded its unchanged18m
+job budget; authoritative annotation and full log are preserved. No final DOM
+pass appeared. Failed head is not merged, rerun, waived or given more time.
+Prior530 on the SAME Ubuntu26.04.1/image took15m30.881 from final preliminary
+unit pass to DOM pass; current reached18m53.505 before kill without that pass.
+Setup/build steps took~6s in both, so neither migration nor installation is an
+established cause. Root's earlier local unrebuilt-corpus DOM passed.
+
+Actual profiling is in ignored pr531-dom-profile/. The primary outside-only DOM
+fixture never loads the snapshot policy/NCL/worker/controller, so the measured
+2.16–6.63ms ancillary no-WA traversal is NOT the main timeout attribution.
+Intervals are stubbed. Numerical source remains frozen until a measured exact
+optimization is justified; retain all original samples/assertions/cases/18m.
+Independent VA typed producer/comparator and compact-lineage candidates remain
+ignored/reviewed prototypes only; VA stays HARD and531 stays unpublished.
+
+## PR531 protected-review follow-up — accepted-frame entry measurement
+
+Initial e8ce7c50 failed Cartogram40853739332/operatorjob123379374557 on the
+phone direct-entry four-outcome glance. The old predicate counted four precreated
+nodes before any accepted forecast. Controlled1s real-Worker delivery proves that
+premature readiness on Chrome/Edge; it does NOT establish the exact CI geometry
+cause, which was not reproduced locally. The fixture now waits actual idle,
+accepted CURRENT/private context and complete map/personal content before the
+SAME all-four-onscreen assertion. All71 original assertion calls/order remain;
+both widths pass Chrome/Edge and corrected delayed delivery. Failure diagnostics
+are added. No product change, timeout/sample/tolerance cut, rerun or waiver.
+Failed-head log and hierarchy-async-entry-repair receipt are retained; a new full
+exact-head protected gate and publication are required.
+
+## Bounded official WA scheduling — implemented, review pending
+
+Production candidate promotes the reviewed pure receipt/native predicates and
+frozen originally USED remaining-estimate projection into the existing scheduler.
+61civic and38official policy groups, original WA clock boundary equivalence and
+all80 core checks pass. The numerical model, draws, ESS, source eligibility and
+request budgets are unchanged; VA remains hard refresh. Browser review exposed
+an actual stalled-collector defect: expired WA could reenter a new CURRENT frame.
+Frame-input freshness and completed-WA validity now reuse the original rules;
+the compiler's exact used-sensitivity token detects individual-row expiry.
+Actual-controller expiry regression passes. Phone review additionally exposed a
+long source-hash overflow and a95.625px visible-card shift while focus remained
+offscreen. Scoped wrapping and synchronous visible-card anchoring correct those
+findings. Final Edge1366/390 full suites pass on index259c9c23/test78b4c3fe:
+10marked PRIMARY/PUBLIC completions per viewport,21hard negatives, quiet receipt/
+used-row expiry, strict visible-card/offscreen/focus guards and nooverflow.
+Disabling the new anchor reproduces the95.625px jump; actual closure is-0.375px.
+Protected exact-head review and publication remain pending.
+The integrated DOM suite also passes before these final layout-only corrections.
+Remote first-response verifier dedup is carried with this source change; original
+assertions and required assets remain. Guide/human results/archive OFF unchanged.
+
+## PR530 resource-aware calls and completed-snapshot scheduling — verified published
+
+Tested2d8a4840cd32c915a95a7008791fdd4f58607214 passed all37 workflow parents,
+52latest jobs49SUCCESS/3declared nonapplicable PR skips and0external statuses;
+clean/mergeable. Merge4c3092ce; finalCURRENTmain79a25ed3c15be814cd8c954a33e8743f08397327,
+Pages40841913579SUCCESS. All40changed public files/index match origin/main;
+initial restricted-network failures and the authorized affected-only retry are
+both preserved. Origin/main coherence13checks/currentindex/no_creditPASS.
+
+Actual published Edge1366/390 call/range/context/retraction/support tests,
+public-output/missing-asset guards and paired ASOF streams PASS. Each stream
+publishes five marked completions across six legal updates, then exact CURRENT;
+15hard negatives, synchronous/missing-policy fallback, frozen clocks/history and
+visible/offscreen/moved-reader guards pass. A duplicate terminated-worker response
+affected only the remote verifier: first-response asset dedup retains every
+original assertion and required byte check; failures and independent reviews
+remain. No product/CI waiver, timeout increase or test reduction.
+
+Ordinary27readonly reload preserves private controls/status/archive classes and
+loads current assets; known hidden0viewport/input limits were not retried. Seven
+previews marked; frozen15untouched. Proof pr530-published-outcome-20261029.json,
+exacthead/integrity-retry/coherence/ordinary and ui-review/pr530-published/.
+Guide1.0/eleven human task scopes/results/hashes unchanged; one addendum/component
+appended16→17, ledgerSHA dd88663ba0ecf01191b441a0771ebeca4bda823342daa0a2b129885f0c835708.
+
+NEXT ready engineering: integrate independently reviewed ignored WA ASOF
+prototype/pure native+receipt guards and frozen used-estimate projection.
+Current production coalescing remains16civic-only; WA/VA/cache/remaining inputs
+still hard refresh. VA needs missing individual-candidate/method/native-clock
+projection before extension. No source re-probe, calibration/physical-phone/
+positive-delivery/human signoff or archive activation is implied.
+
+The investigation below is completed history; its pending gates are superseded
+by the verified release above.
+
 ## Reviewed candidate — resource-aware call proposals and public-output admission
 
 Separate hands-on scheduling review confirms a liveness defect: six legal

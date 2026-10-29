@@ -1,5 +1,22 @@
 # Election-night usability and visual review
 
+## PR530 completed-snapshot reading component — verified published
+
+Finalmain79a25ed3/Pages40841913579; exact2d8a4840 all37parents/49applicable latest
+jobs pass. Published Edge1366/390 retains a useful explicitly marked completed
+calculation through compatible civic count updates, with captured source clocks
+and frozen history provenance. Five completions/six arrivals,15hard negatives,
+actual missing-policy/synchronous fallback and private/PUBLIC pairing pass.
+The measured39035px reader shift is fixed with visible semantic ownership;
+offscreen or moved readers are not pulled. Clock disclosure/keyboard/nooverflow
+and original model/public-output tests pass. Remote first-pin response dedup fixes
+a verifier target-lifecycle issue without dropping required assertions/bytes.
+
+Ordinary27readonly asset/private-status/archive preservation only; known0viewport
+limits remain. Original guide1.0/eleven human tasks/NOT_RUN/null unchanged; scoped
+530addendum/component17 only. Human/assistive/listening acceptance remains open.
+Proof pr530-published-outcome-20261029.json and ui-review/pr530-published/.
+
 ## PR529 pending-frame/read-return component — verified published
 
 Actual published HTTPS app at finalmain3458125b/Pages40809478884 passed scoped

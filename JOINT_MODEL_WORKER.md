@@ -51,10 +51,33 @@ must be nondecreasing; changed counts require a newer source publication clock.
 Both old and new envelopes must still pass installed admission at the current
 time, checked again before commit and while a completed frame is displayed.
 Decreases, unknown metadata and unsupported inputs retain immediate withholding.
-The first slice supports only the16 installed civic county contracts. Official
-WA/VA caches and remaining-ballot supplements retain the hard refresh path:
-their shorter receipt and method-cell rules cannot be replaced by the broader
-county publication-age check. This is not an all-source liveness guarantee.
+The supported count-only scheduling paths are the16 installed civic county
+contracts and the bounded official WA-03 path. Washington reuses the original
+native publication/post-close and collector-receipt predicates. All three pinned
+candidate buckets, source/transport identities, integrity metadata, geography and
+method contract must agree. This adds no native request, source eligibility or
+numerical likelihood. VA and unsupported mixed sources retain hard refreshes;
+their aggregate does not preserve every original candidate/method/clock cell.
+This is not an all-source liveness guarantee.
+
+For a Washington remaining supplement, the frame captures the actual compiler's
+USED county footprint at its original calculation clock, with a deep-frozen RAM
+projection of those rows and their original receipt/report/count-pair clocks.
+Before reuse, the policy independently recomputes that projection, checks EACH
+originally used row at NOW, and requires unchanged supplement, values and used
+footprint. A newer maximum county clock cannot keep an older used row alive.
+Changed, added, removed or partly expired sensitivity takes the hard path.
+Missing optional projection helpers disable ASOF reuse without removing otherwise
+valid current counts. This capture is neither final ESS admission nor original
+response-byte authentication.
+
+A stalled collector can still expose its previously accepted envelope. The page
+therefore also checks the original Washington receipt/native predicates when
+building EVERY calculation frame. The existing validity timer rechecks completed
+Washington CURRENT frames as well as ASOF frames. Expired counts are excluded
+before new work; a changed compiler-used remaining footprint invalidates the old
+frame and recalculates with the still-eligible inputs. Its exact footprint token
+is ephemeral RAM data and is never persisted or sent as a second likelihood.
 
 Captured inputs remain in RAM. Existing local history records only whitelisted
 derived results, source provenance and captured/completed clocks; it never
@@ -64,8 +87,12 @@ Source counts, the validated call
 ledger and celebration eligibility remain independent. Personal disclosure DOM
 is retained, with obsolete derived content hidden and inert. The reader keeps a
 semantic bookmark and scroll position; accepted results restore the same control
-or its race heading when the explanation disappears. A user who moves away is
-not pulled back. The national pointer is neutral while unavailable.
+or its race heading when the explanation disappears. When keyboard focus is
+offscreen but a personal race card is actually visible, a synchronous layout
+anchor preserves that visible card without focusing it. It restores only while
+the original focus owner still owns the update; no visible personal card means
+no anchor. Full source hashes wrap inside the captured-clock disclosure. A user
+who moves away is not pulled back. The national pointer is neutral while unavailable.
 
 If workers or their static assets are unavailable, the same pure computation can
 run synchronously with an explicit compatibility message. It retains all draws
@@ -99,3 +126,12 @@ case without changing its target or hard support floor. Its complete private,
 public and two-House-research worker frame is tested against the unchanged
 30-second deadline. Other concentrated cases still withhold; neither background
 execution nor these synthetic results guarantee full-night conditional learning.
+
+## Interface lookup cost
+
+The interface uses direct ID lookup only for283 fixed, verified-unique global
+anchors in standards-mode HTML. Other selectors preserve the existing CSS query
+path; elements are never cached. Exact failed-CI-corpus DOM validation compares
+every chosen node with the original selector and checks owned-ID uniqueness.
+This reduces repeated traversal without changing model inputs, numerical code,
+random draws or time limits. Local timings do not guarantee device performance.

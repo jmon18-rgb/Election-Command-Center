@@ -554,6 +554,7 @@ button.model-race-row:hover{background:#182b42}button.model-race-row[aria-presse
 .joint-audit{margin:12px 0 5px;border-top:1px solid #3c546c;padding-top:9px}
 .joint-audit summary{font-size:11px;color:#b9d9fa;cursor:pointer;font-weight:650}
 .joint-audit .joint-note{padding:0 2px}
+#jointHomeSnapshotClocks .joint-note,#jointNightSnapshotClocks .joint-note{overflow-wrap:anywhere}
 
 /* One shared source heartbeat, without five duplicate full-height status panels. */
 .feed-command-strip{display:flex;align-items:center;flex-wrap:wrap;gap:7px;margin:0 0 13px;padding:9px 10px;background:#101b2b;border:1px solid #2c4057;border-radius:10px}
@@ -1626,10 +1627,11 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/competitive_source_cadence.js?v=10199a39b629"></script>
 <script src="./scripts/wisconsin_house_county_source.js?v=6c3ef7b151b8"></script>
 <script src="./scripts/wisconsin_house_evidence.js?v=74eb656ba330"></script>
-<script src="./scripts/washington_official_house_source.js?v=468847f8a559"></script>
-<script src="./scripts/washington_remaining_source.js?v=9db3bb46dde1"></script>
+<script src="./scripts/washington_official_house_source.js?v=4d98a8fe062c"></script>
+<script src="./scripts/washington_remaining_source.js?v=a106231b5d51"></script>
 <script src="./scripts/washington_remaining_scenarios.js?v=1a313f060a7e"></script>
-<script src="./scripts/washington_official_cache.js?v=9e70e19d2ffe"></script>
+<script src="./scripts/washington_official_cache.js?v=b02890ee5301"></script>
+<script src="./scripts/washington_remaining_usage.js?v=dcb4f1f71271"></script>
 <script src="./scripts/maine_civic_county_source.js?v=467a4cfdd030"></script>
 <script src="./scripts/maine_senate_evidence.js?v=9b1ed4738e4b"></script>
 <script src="./scripts/nebraska_civic_county_source.js?v=4f46b5459b61"></script>
@@ -1652,8 +1654,8 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
 <script src="./scripts/chamber_control_model.js?v=d98ce3f4cdf1"></script>
-<script src="./scripts/joint_model_worker.js?v=7cf38e984669"></script>
-<script src="./scripts/joint_count_snapshot_policy.js?v=e8398c5f02f9"></script>
+<script src="./scripts/joint_model_worker.js?v=61e86d6ca1f0"></script>
+<script src="./scripts/joint_count_snapshot_policy.js?v=949c09bf3688"></script>
 <script src="./scripts/joint_model_worker_controller.js?v=2e98c11352ee"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
@@ -1669,7 +1671,9 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/texas_civic_county_source.js?v=39f7fc1483ca"></script>
 <script src="./scripts/texas_needle_view.js?v=05b3161eac7e"></script>
 <script>
-const $=s=>document.querySelector(s);
+// Owned app ID fast path only: these283fixed IDs must remain unique. Other selectors retain querySelector; no element cache.
+const appUniqueLookupIds=new Set(["ballotDem","ballotDemLabel","ballotRep","ballotRepLabel","bullCoverageSummary","bullDailyPulse","bullScoreStates","changesSince","countdown","electorateLabDetails","enActivityBox","enActivityFeed","enAdvancedLab","enAlertClear","enAlertCount","enAlertDesktop","enAlertItems","enAlertPermission","enAllOfficeSummary","enArchiveIntro","enArchiveOutcome","enArchiveSource","enArchiveSourceLabel","enCalls","enCandidateList","enCelebrationAnnouncement","enCelebrationCaption","enCelebrationFish","enCelebrationIcon","enCelebrationLine","enCelebrationLocalAudio","enCelebrationLocalChoose","enCelebrationLocalFile","enCelebrationLocalName","enCelebrationLocalRemove","enCelebrationMusicLabel","enCelebrationMusicMode","enCelebrationMusicQuick","enCelebrationOnlinePlayer","enCelebrationOnlineStatus","enCelebrationOriginal","enCelebrationPreviewChoice","enCelebrationSound","enCelebrationStage","enCelebrationVideoInput","enCelebrationVideoLink","enCelebrationVideoSave","enCelebrationVisual","enCelebrationsOpen","enChecked","enConnection","enCoverageReconciliation","enDLeads","enDetailMeta","enDetailSummary","enDetailTitle","enDistrictPulse","enEarlyHealth","enEarlySignals","enExportChanges","enExportResults","enExportStatus","enFishAudio","enFishAudioStatus","enFishDismiss","enFishHeadline","enFishMode","enFishPlayClip","enFishPreview","enFishSource","enFishToast","enFishVoice","enForecastOdds","enHealthHeadline","enHealthRows","enInspectSources","enIowaRaceNeedle","enJohnBrownPosterTitle","enKansasRaceNeedle","enLiveCoverageTriage","enMilestoneArt","enMilestoneClose","enMilestoneDescription","enMilestoneDesk","enMilestoneGrid","enMilestoneKicker","enMilestonePoster","enMilestonePunch","enMilestoneSource","enMilestoneSpotlight","enMilestoneTitle","enMode2024","enMode2026","enNationalArizonaHouse06Source","enNationalMaineSource","enNationalMichiganHouse07Source","enNationalNebraskaSource","enNationalNeedleMap","enNationalNext","enNationalOhioSource","enNationalPennsylvaniaHouse07Source","enNationalPennsylvaniaHouse08Source","enNationalPreviewChances","enNationalPreviewNeedle","enNationalRehearsal","enNationalRows","enNationalSenate","enNationalSouthCarolinaSource","enNationalStage","enNationalSummary","enNationalToggle","enNationalVirginiaHouse02Source","enNationalWashingtonHouseSource","enNowcastRows","enNowcastSummary","enOfficeGovernor","enOfficeHouse","enOfficeSenate","enOfficialBackstopsList","enOhioOfficialCountyDesk","enPersonalFocus","enPersonalFocusPreview","enPinArea","enPollReference","enRLeads","enRaceDeskDetails","enRaceHeading","enRaceList","enRaces","enRefresh","enRehearsalNext","enRehearsalPanel","enRehearsalPrev","enRehearsalReset","enRehearsalRows","enRehearsalStage","enRehearsalToggle","enScreenAwake","enSearch","enSourceDesk","enSourceReadiness","enStatus","enTexasRaceNeedle","enTsunamiMeme","enTsunamiPreview","enWakeStatus","enWatchCount","enWatchError","enWatchForm","enWatchInput","enWatchItems","feedModel","feedResults","forecastGateList","forecastGateStatus","freshness","genericDelta","genericDetail","genericFresh","genericMargin","healthDot","healthText","houseSwingDistribution","houseSwingNote","houseSwingSummary","impactState","integrityFeedStatus","jackRadar","jointError","jointHomeCorrelationDetails","jointHomeShadow","jointNightCorrelationDetails","jointNightNeedle","jointNightPanel","jointNightShadow","jointRunStatus","jointSwing","labDemo","labHispanicShare","labHispanicShift","labNoncollegeShare","labNoncollegeShift","labReset","labResults","labRun","labScope","labState","labStatus","mississippiSenateWatch","mississippiWatchAsOf","modelBack","modelBoard","modelChart","modelChartNote","modelCloseTotal","modelDemName","modelDemPct","modelDetail","modelDetailCaption","modelDetailEyebrow","modelDetailStats","modelDetailTitle","modelDetailsFooter","modelEngineTag","modelEvidenceList","modelEvidenceNote","modelHistoryContext","modelOddsBar","modelOddsContext","modelOddsNumbers","modelOddsReconciliation","modelOfficeTitle","modelPollAll","modelPollIncluded","modelPollRows","modelPollStatus","modelProbabilityCoverage","modelRaceTotal","modelRepName","modelRepPct","modelThinTotal","modelTrendChange","modelTrendChart","modelTrendNote","modelUpdated","newPolls","newsFeedStatus","pollLeadNote","pollLeadSummary","pollLeadTrack","privateContextClear","privateContextComparison","privateContextEnabled","privateContextFiles","privateContextHouse","privateContextRemember","privateContextStatus","pulseAsOf","raceCount","raceList","raceNewest","racePulse","raceSearch","raceSort","raceStatus","raceTable","raceWorkbench","seatHistoricalBar","seatHistoricalCount","seatHouseBar","seatHouseCount","seatInventoryAsOf","seatInventoryNote","seatRedistrictingNote","seatSenateBar","seatSenateCount","seatTwoCycleNote","security","securityCount","securityOrder","securitySearch","senateBacktestNote","senateBacktestRaces","senateBacktestSummary","senateBiasNote","senateBiasRows","senateBiasSummary","senateHistoryStatus","senateTideAsOf","senateTideRaces","updated","wireCount","wireCoverage","wireModel","wireMore","wireOffice","wireResults","wireSearch","wireSponsor","wireSubstateCount","wireSubstateSignals","wireUpdated","wireWindow"]);
+const $=s=>typeof s==='string'&&document.compatMode==='CSS1Compat'&&/^#[A-Za-z_][A-Za-z0-9_-]*$/.test(s)&&appUniqueLookupIds.has(s.slice(1))?document.getElementById(s.slice(1)):document.querySelector(s);
 // Shared polling snapshot is read by the early Briefing renderer.
 let latestSenateEstimates=null;
 function activatePage(tab,updateUrl){
@@ -4871,10 +4875,19 @@ for(const id of ['jointHomeShadow','jointNightShadow']){
 }
 function jointForecastResult(){return jointLastResult}
 function jointBaselineForecastResult(){return jointPublicResult}
-function jointCountyEvidence(){
+function jointCountyEvidence(now=Date.now()){
  if(enModeYear!==2026)return [];
  return [window.enNebraskaSenateController,window.enSouthCarolinaSenateController,window.enMichiganHouse07Controller,window.enPennsylvaniaHouse08Controller,window.enVirginiaHouse02Controller,window.enArizonaHouse06Controller,window.enPennsylvaniaHouse07Controller,window.enOhioSenateController,window.enMaineSenateController,window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController,window.enWisconsinHouseController,window.enWisconsinHouse03Controller,window.enMichiganHouse04Controller,window.enPennsylvaniaHouse10Controller,window.enNewYorkHouse17Controller,window.enWashingtonHouse03Controller]
-  .map(c=>c?.status().evidence).filter(Boolean);
+  .map(c=>c?.status().evidence).filter(Boolean).filter(envelope=>{
+   if(envelope.snapshot?.race_code!=='WA-03')return true;
+   // A pending collector refresh can retain an old envelope. Reuse the original
+   // receipt/publication admission rules at the calculation clock as well.
+   const rules=jointWashingtonCurrentRules(),snapshot=envelope.snapshot;
+   try{const total=snapshot.counties.reduce((n,row)=>n+row.dem_votes+row.rep_votes+row.other_votes,0);
+    return Boolean(rules&&rules.receiptCurrent(snapshot.collection_fetched_at,now)===true&&
+     rules.publicationCurrent(snapshot.snapshot_updated_at,snapshot.source_published_at,total,now)===true);
+   }catch{return false;}
+  });
 }
 function jointCurrentSignature(){
  const snaps=['House','Senate','Governor'].map(office=>
@@ -4898,7 +4911,7 @@ function jointModelCodeRevision(){return ['source_call_conditioning','chamber_co
 function jointRecordedCodeRevision(){return jointWorkerCodeRevision().split('|').map(src=>src.replace('./scripts/','').replace('.js?v=','@')).join('|');}
 function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,jointIndependentControlOptions.independentSenateCredit,
  jointRecordedCodeRevision(),jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
- jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()?jointPrivateHouse:false].join('|');}
+ jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()&&jointPrivateHouse?1:0].join('|');}
 function renderPersonalElectionFocus(){
  if(jointModelPending){const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;if(!host.hidden)window.PersonalElectionFocus?.setPending(host);}return;}
  try{window.PersonalElectionFocus?.render($('#enPersonalFocus'),jointLastResult,jointPulseBaseline,
@@ -4910,9 +4923,23 @@ let jointModelPending=false,jointPendingKey='',jointActiveKey='',jointModelPromi
 let jointPriorReference=null;
 let jointActiveFrame=null,jointQueuedCountFrame=null,jointCompletedFrame=null,jointAsOfSnapshot=null,jointAsOfTimer=null;
 function jointCountSnapshotContext(){return JSON.stringify([enModeYear,enOfficeSnapshots,enOfficeErrors,enCivicByWatch,enCivicErrors,Date.now()>=Date.parse('2026-11-03T05:00:00Z')]);}
+function jointWashingtonCurrentRules(){
+ const cache=window.WashingtonOfficialCache,native=window.WashingtonOfficialHouseSource;
+ const names=['washington_official_cache','washington_official_house_source'];
+ const tagged=names.every(name=>{const nodes=document.querySelectorAll('script[src*="/'+name+'.js?"]');return nodes.length===1&&new RegExp('^\\./scripts/'+name+'\\.js\\?v=[a-f0-9]{12}$').test(nodes[0].getAttribute('src')||'');});
+ return tagged&&typeof cache?.receiptCurrent==='function'&&typeof native?.publicationCurrent==='function'?
+  Object.freeze({receiptCurrent:cache.receiptCurrent,publicationCurrent:native.publicationCurrent}):null;
+}
+function jointCountSnapshotOptions(now){
+ const rules=jointWashingtonCurrentRules(),usage=window.WashingtonRemainingUsage;
+ const nodes=document.querySelectorAll('script[src*="/washington_remaining_usage.js?"]');
+ const ready=rules&&nodes.length===1&&/^\.\/scripts\/washington_remaining_usage\.js\?v=[a-f0-9]{12}$/.test(nodes[0].getAttribute('src')||'')&&typeof usage?.capture==='function'&&typeof usage?.current==='function';
+ return {now,validateEnvelope:(envelope,at)=>{if(!Number.isFinite(at))throw Error('EXPLICIT_COUNT_ADMISSION_CLOCK_REQUIRED');return window.NationalCountyLikelihood.compile(envelope,{now:at});},
+  washington:ready?Object.freeze({...rules,remainingCapture:usage.capture,remainingCurrent:usage.current}):null};
+}
 function jointCountCompatible(previous,next){
  if(document.hidden||enModeYear!==2026||!window.JointCountSnapshotPolicy||!window.NationalCountyLikelihood?.compile)return false;
- try{const now=Date.now();return window.JointCountSnapshotPolicy.classify(previous,next,{now,validateEnvelope:envelope=>window.NationalCountyLikelihood.compile(envelope,{now})}).kind==='MONOTONE_COUNTS_ONLY';}catch{return false;}
+ try{return window.JointCountSnapshotPolicy.classify(previous,next,jointCountSnapshotOptions(Date.now())).kind==='MONOTONE_COUNTS_ONLY';}catch{return false;}
 }
 function jointSnapshotInfo(frame,bundle){
  const used=new Set((bundle.diagnostics?.used||[]).map(row=>row.code)),iso=value=>typeof value==='string'&&Number.isFinite(Date.parse(value))?value:null;
@@ -4944,14 +4971,35 @@ function jointClearCountSnapshots(){
  if(jointAsOfTimer!==null){clearInterval(jointAsOfTimer);jointAsOfTimer=null;}
 }
 function jointPreserveSnapshotReader(action,enabled=true){
- const host=$('#enPersonalFocus'),saved=enabled?window.PersonalElectionFocus?.captureReadingPosition?.(host):null;
- const result=action();window.PersonalElectionFocus?.restoreReadingPosition?.(host,saved);return result;
+ const host=$('#enPersonalFocus'),focus=window.PersonalElectionFocus,doc=host?.ownerDocument,view=doc?.defaultView;
+ const saved=enabled?focus?.captureReadingPosition?.(host):null;
+ // Keyboard focus may be outside the visible reading position. Capture one
+ // actually visible race card at the reading midpoint as a layout anchor,
+ // preferring a visible card start over a clipped predecessor. Never focus it.
+ const active=doc?.activeElement,bookmark=enabled&&!saved?focus?.captureFocus?.(host,active):null;
+ const toolbar=(doc?.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;
+ const visible=enabled&&!saved?Array.from(host?.querySelectorAll('.personal-focus-card')||[]).map(node=>({node,rect:node.getBoundingClientRect()})).filter(({rect:r})=>r.width>0&&r.height>0&&r.bottom>toolbar&&r.top<view.innerHeight):[];
+ const middle=(toolbar+(view?.innerHeight||toolbar))/2;
+ const card=(visible.find(({rect:r})=>r.top<=middle&&r.bottom>middle)||visible.find(({rect:r})=>r.top>=toolbar)||visible[0])?.node||null;
+ const viewport=card?{race:card.dataset.race,top:card.getBoundingClientRect().top}:null;
+ const result=action();
+ if(saved)focus?.restoreReadingPosition?.(host,saved);
+ else if(viewport&&(bookmark?focus?.focusTarget?.(host,bookmark)===doc.activeElement:active===doc.activeElement)){
+  const current=Array.from(host.querySelectorAll('.personal-focus-card')).find(node=>node.dataset.race===viewport.race);
+  if(current&&!current.closest('[inert]')){const rect=current.getBoundingClientRect(),delta=rect.top-viewport.top;if(rect.width>0&&rect.height>0&&Number.isFinite(delta)&&Math.abs(delta)>.1)view.scrollBy(0,delta);}
+ }
+ return result;
 }
 function jointMarkAsOf(){
  if(jointCompletedFrame&&jointLastResult)jointPreserveSnapshotReader(()=>{jointAsOfSnapshot=jointCompletedFrame.snapshotInfo;jointCacheKey='';jointModelPending=false;jointSnapshotLabels();renderPersonalElectionFocus();});
+ jointWatchFrameValidity();
+}
+function jointWatchFrameValidity(){
  if(jointAsOfTimer===null)jointAsOfTimer=setInterval(()=>{
   const held=[jointCompletedFrame,jointActiveFrame,jointQueuedCountFrame].filter(Boolean);if(!held.length)return;
   let latest=null;try{const inputs=jointValidatedFrameInputs();latest=jointFrameSnapshot(inputs,jointFrameKey(inputs));}catch{}
+  // A completed CURRENT frame also ages while a cache request is stalled.
+  if(!jointAsOfSnapshot&&latest&&held.every(frame=>frame.key===latest.key))return;
   if(!latest||held.some(frame=>!jointCountCompatible(frame,latest))){const key=latest?.key||jointPendingKey||jointActiveKey;jointInvalidateModel(key,'Count or call input freshness changed; recalculating from eligible sources…',true);void jointRender();}
  },1000);
 }
@@ -4979,7 +5027,7 @@ function jointPreservePendingLayout(){
  }
 }
 function jointReleasePendingLayout(){for(const [node,value]of jointPendingLayout)node.style.minHeight=value;jointPendingLayout.clear();}
-function jointWorkerCodeRevision(){return ['election_night_poll_closings_2026','washington_remaining_source','washington_remaining_scenarios','source_call_conditioning','chamber_control_model','national_county_likelihood','joint_model_worker','joint_count_snapshot_policy','joint_model_worker_controller'].map(name=>document.querySelector('script[src*="/'+name+'.js?"]')?.getAttribute('src')||'').join('|');}
+function jointWorkerCodeRevision(){return ['election_night_poll_closings_2026','washington_remaining_source','washington_remaining_scenarios','source_call_conditioning','chamber_control_model','national_county_likelihood','joint_model_worker','joint_count_snapshot_policy','joint_model_worker_controller','washington_official_cache','washington_official_house_source','washington_remaining_usage'].map(name=>document.querySelector('script[src*="/'+name+'.js?"]')?.getAttribute('src')||'').join('|');}
 function jointWorkerAssetsMatch(){return window.JointModelWorkerRunner?.MODEL_REVISION===jointModelCodeRevision()&&
  window.JointModelWorkerRunner.IMPORTS.every(asset=>document.querySelector('script[src*="/'+asset.name+'.js?"]')?.getAttribute('src')==='./scripts/'+asset.name+'.js?v='+asset.stamp);}
 function jointWorkerController(){return window.JointModelWorkerController?.create({
@@ -4998,8 +5046,13 @@ function jointValidatedFrameInputs(){
  let live,rows,descriptive;
  try{live=jointLiveObservations();rows=jointPulseRows;descriptive=jointDescriptiveReturns;}
  finally{jointPulseRows=oldRows;jointDescriptiveReturns=oldDescriptive;}
- const now=Date.now(),envelopes=enModeYear===2026?jointCountyEvidence():[];
- const eligibility=envelopes.map(envelope=>{try{window.NationalCountyLikelihood?.compile(envelope,{now});return [envelope?.snapshot?.race_code,Boolean(window.NationalCountyLikelihood)];}catch{return [envelope?.snapshot?.race_code,false];}});
+ const now=Date.now(),envelopes=enModeYear===2026?jointCountyEvidence(now):[];
+ const eligibility=envelopes.map(envelope=>{try{const compiled=window.NationalCountyLikelihood?.compile(envelope,{now}),code=envelope?.snapshot?.race_code;
+  // The original compiler may stop using an individually expired supplement
+  // row while retaining valid counts. Keep that exact used footprint in RAM so
+  // a completed frame cannot silently outlive its remaining sensitivity.
+  return code==='WA-03'?[code,Boolean(compiled),compiled?.official_remaining_sensitivity||null]:[code,Boolean(compiled)];
+ }catch{return [envelope?.snapshot?.race_code,false];}});
  return {now,live,rows,descriptive,envelopes,eligibility};
 }
 function jointFrameKey(inputs){
@@ -5022,8 +5075,12 @@ function jointFrameSnapshot(inputs,key){
  const payload={basis:jointBasis,publicBasis:jointUsesPrivateContext()?jointBasisPublic:null,envelopes:inputs.envelopes,variants,
   args:{...jointIndependentControlOptions,contextKey,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,now:inputs.now,nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:inputs.live}};
  const clone=value=>typeof structuredClone==='function'?structuredClone(value):JSON.parse(JSON.stringify(value));
- return {key,contextKey,modelRevision:jointModelCodeRevision(),frameKind:enModeYear===2024?'POLLING_ARCHIVE_BASELINE':'LIVE',
+ const frame={key,contextKey,modelRevision:jointModelCodeRevision(),frameKind:enModeYear===2024?'POLLING_ARCHIVE_BASELINE':'LIVE',
   payload:clone(payload),countContext:jointCountSnapshotContext(),input_at:new Date(inputs.now).toISOString(),sourceRows:clone(inputs.rows),descriptiveRows:clone(inputs.descriptive),historyRevision:jointHistoryRevision(),pollingAt:jointBasis.generated_from_sources?.model_polling_at};
+ // Ancillary scheduling provenance only. It is never sent to the worker or
+ // stored in history; failure disables official ASOF, not CURRENT computation.
+ try{frame.remainingUsage=window.JointCountSnapshotPolicy?.captureRemainingUsage?.(frame,jointCountSnapshotOptions(inputs.now))??null;}catch{frame.remainingUsage=null;}
+ return frame;
 }
 function jointFrameCurrent(frame,epoch){return epoch===jointRequestEpoch&&!document.hidden&&frame.key===jointFrameKey(jointValidatedFrameInputs());}
 function jointInvalidateModel(key,message='Updating forecast in the background…',hard=false){
@@ -5164,7 +5221,7 @@ function jointRender(force=false){
   frame.snapshotInfo=jointSnapshotInfo(frame,bundle);jointCompletedFrame=frame;jointAsOfSnapshot=asOf?frame.snapshotInfo:null;
   jointWorkerCompatibility=compatibility;jointModelPending=false;jointPendingKey=asOf?latest.key:'';jointUnavailableKey='';jointErrorMessage=null;jointCacheKey=asOf?'':key;
   if(asOf)jointQueuedCountFrame=latest;else if(jointAsOfTimer!==null){clearInterval(jointAsOfTimer);jointAsOfTimer=null;}
-  if(jointApplyFrame(frame,bundle)!==true)return {status:'UNAVAILABLE'};jointSnapshotLabels();if(asOf)jointMarkAsOf();
+  if(jointApplyFrame(frame,bundle)!==true)return {status:'UNAVAILABLE'};jointSnapshotLabels();if(asOf)jointMarkAsOf();else if(frame.payload.envelopes.some(envelope=>envelope.snapshot?.race_code==='WA-03'))jointWatchFrameValidity();
   return {status:asOf?'AS_OF':'READY',snapshot:asOf?frame.snapshotInfo:undefined};
   },preserveReader);
  };

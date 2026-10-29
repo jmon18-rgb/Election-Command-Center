@@ -1,5 +1,91 @@
 # Election Night production-readiness assignment
 
+## PR531 measured full-DOM lookup correction — new protected gate required
+
+The failed ccc64bac18m gate is retained. Profiling ruled out the unlinked primary
+snapshot policy and found repeated whole-document ID traversal. Only the global
+UI lookup changed:283 verified static-owned IDs use the standards-mode DOM ID
+index; unknown/dynamic IDs, compound/escaped/invalid/coercible selectors and
+quirks mode retain the original selector path. No element cache is retained.
+
+On exact failed-CI merge2e09d555 +the same six offline builders, every original
+DOM assertion/3k draw setting passed.119,575 chosen lookups matched the original
+node exactly;2,976 render-phase+927eval+4initial/final scans found zero duplicate
+owned IDs. Optimized unprofiled fullDOM passed371.43s locally. Validation13m24
+included comparison/scanning overhead, so this is scoped evidence, not a universal
+speed or physical-phone claim. Numerical helper67db/engine04/kernel and every
+original sample/assertion/case/deadline remain unchanged. A persistent initial/
+final both-window owned-ID invariant is added from the same proven checks; eight
+focused positive/negative cases pass and every original assertion is preserved.
+Proof pr531-dom-profile/exact-2e09-id-lookup/candidate-proof.json. New exact-head
+all-parent/job/status gate, protected merge and final publication remain required.
+
+## PR531 ccc64bac — hold merge for actual full-DOM deadline
+
+Current ccc64bac50e2e624a496b307cb471f4a38ef0362 passes37 of38 workflow parents,
+including both new official-WA browser matrices and corrected Cartogram entry.
+Validate-dashboard40855409857/browser123385500118 exceeded its unchanged18m
+job budget; authoritative annotation and full log are preserved. No final DOM
+pass appeared. Failed head is not merged, rerun, waived or given more time.
+Prior530 on the SAME Ubuntu26.04.1/image took15m30.881 from final preliminary
+unit pass to DOM pass; current reached18m53.505 before kill without that pass.
+Setup/build steps took~6s in both, so neither migration nor installation is an
+established cause. Root's earlier local unrebuilt-corpus DOM passed.
+
+Actual profiling is in ignored pr531-dom-profile/. The primary outside-only DOM
+fixture never loads the snapshot policy/NCL/worker/controller, so the measured
+2.16–6.63ms ancillary no-WA traversal is NOT the main timeout attribution.
+Intervals are stubbed. Numerical source remains frozen until a measured exact
+optimization is justified; retain all original samples/assertions/cases/18m.
+Independent VA typed producer/comparator and compact-lineage candidates remain
+ignored/reviewed prototypes only; VA stays HARD and531 stays unpublished.
+
+## Active implementation — bounded official WA snapshot scheduling
+
+The reviewed WA policy/pure native+receipt helpers and compiler-used remaining
+projection are integrated. Optional projection absence disables ASOF only; fresh
+CURRENT counts retain their original path. Actual browser review found a stalled
+collector could retain an expired WA envelope and a newly completed CURRENT frame
+could reuse it. Root added original-rule input filtering, completed-WA validity
+checks and exact compiler-used footprint identity in RAM. Independent source
+review and final1366/390 full browser suites pass, including actual-controller
+expiry and visible reading-position regressions. Exact-head protected review and
+publication remain required.
+All80 core checks pass; no math/draw/ESS/source/request/paid change. VA stays hard.
+Do not replay530 or treat this candidate as released. Preserve guide/human nulls.
+
+## Current verified release530 — continue the ready WA scheduling extension
+
+530tested2d8a4840 passed all37parents/52latest49SUCCESS3declaredPRSKIP/0external,
+clean/mergeable. Merge4c3092ce; finalCURRENTmain79a25ed3/Pages40841913579SUCCESS.
+All40changed public/index files match origin/main after an authorized transport
+retry; initial failure preserved. Origin/main coherence13checks/index/no_credit
+PASS. Actual published1366/390 model/public-guard/paired-ASOF/15hard-negative/
+source-clock/history/keyboard/visible-offscreen reader tasks pass. Original
+remote observer's duplicate worker-target failure is retained; ignored first-pin
+response copies preserve all assertions/required bytes and pass. No product
+change, CI rerun, waiver, timeout or sample reduction for that verifier fix.
+
+Strict16civic coalescing and exact-target resource-aware call proposals are
+released. Official WA/VA/cache/remaining still HARD. Ordinary27readonly asset/
+private-control/status/archive preservation verified; no ordinary geometry or
+interactive claim. Seven previews marked/frozen15untouched. Original guide1.0/
+eleven human scopes/results/hashes unchanged; component17 appended with immutable
+pre530copy/receipt, ledgerSHA dd88663ba0ecf01191b441a0771ebeca4bda823342daa0a2b129885f0c835708.
+
+NEXT executable task: promote the independently reviewed ignored WA extension
+only after actual app integration, relevant portable/browser tests and protected
+release. Reuse asof-official-extension/ final receipts: exact receipt/native
+freshness helpers, three pinned candidate cells and originally used remaining
+footprint/value/current-clock checks.61retained civic+38official groups pass;
+not application acceptance or production support. VA remains HARD pending its
+missing typed per-candidate/method/locality-election-clock projection. Carry the
+remote response-dedup harness fix with that coherent source change. No new GETs,
+source discovery, eligibility/budget change, calibration or paid archive activation.
+
+The following candidate text records completed investigation; its pending530
+gates are superseded by this verified release.
+
 ## Current ready implementation — resource-aware proposals and fallback validation
 
 HOLD publication for confirmed continuous-update liveness: existing latest-key

@@ -3,8 +3,10 @@ import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
+import {createHash} from 'node:crypto';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..'),out=resolve(root,process.env.UI_REVIEW_OUTPUT_DIR||'artifacts/readiness/ui-review');
+const sourcePins=Object.fromEntries(['index.html','scripts/joint_model_worker.js','scripts/joint_model_worker_controller.js','scripts/joint_count_snapshot_policy.js','scripts/personal_election_focus.js'].map(file=>[file,createHash('sha256').update(readFileSync(resolve(root,file))).digest('hex')]));
 const server=createServer((req,res)=>{
  const file=resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname).replace(/\/$/,'/index.html'));
  if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile())return res.writeHead(404).end();
@@ -20,10 +22,12 @@ try{
   await page.route('**/*',r=>new URL(r.request().url()).hostname==='127.0.0.1'?r.continue():r.abort());
   await page.goto('http://127.0.0.1:'+server.address().port+'/',{waitUntil:'domcontentloaded'});
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
-  await page.waitForFunction(()=>jointLastResult?.probabilities&&document.querySelectorAll('#enNationalNeedleMap .en-nmap-state').length===50&&document.querySelector('#enPersonalFocus article'));
+  async function waitForAcceptedGlance(){await page.evaluate(()=>jointWhenIdle());await page.waitForFunction(()=>jointLastResult?.probabilities&&!jointModelPending&&Boolean(jointCacheKey)&&jointCacheKey===jointFrameKey(jointValidatedFrameInputs())&&document.querySelectorAll('#jointNightNeedle .four-needle-outcome').length===4&&document.querySelectorAll('#enNationalNeedleMap .en-nmap-state').length===50&&document.querySelector('#enPersonalFocus article'));}
+  await waitForAcceptedGlance();
   async function readGlance(){return page.evaluate(()=>{const bar=document.querySelector('#electionNight .en-toolbar').getBoundingClientRect(),cells=[...document.querySelectorAll('#jointNightNeedle .four-needle-outcome')].map(e=>{const r=e.getBoundingClientRect();return {text:e.innerText,top:r.top,bottom:r.bottom,left:r.left,right:r.right};});return {mode:document.querySelector('#enMode2026').getAttribute('aria-pressed'),focus:document.activeElement.id,toolbarBottom:bar.bottom,height:innerHeight,width:innerWidth,cells};});}
   function assertGlance(g){assert.equal(g.mode,'true');assert.equal(g.cells.length,4);assert(g.cells.every(c=>c.top>=g.toolbarBottom-2&&c.bottom<=g.height&&c.left>=0&&c.right<=g.width),'All four chances are actually on screen together below controls, not merely CSS-visible');}
-  const entryGlance=await readGlance();assertGlance(entryGlance);
+  async function saveGlanceFailure(phase,glance){const state=await page.evaluate(()=>({scrollY,scrollMax:document.documentElement.scrollHeight-innerHeight,year:enModeYear,modelPending:jointModelPending,hasAcceptedResult:Boolean(jointLastResult?.probabilities),cacheCurrent:Boolean(jointCacheKey)&&jointCacheKey===jointFrameKey(jointValidatedFrameInputs()),controllerStatus:jointModelController?.state().status,activeWorker:Boolean(jointActiveFrame),queued:Boolean(jointQueuedCountFrame),mapStates:document.querySelectorAll('#enNationalNeedleMap .en-nmap-state').length,personalCards:document.querySelectorAll('#enPersonalFocus article').length,needleState:document.querySelector('#jointNightPanel')?.dataset.modelSnapshotState,viewport:{width:innerWidth,height:innerHeight}}));const path=resolve(out,'glance-failure-'+phase+'-'+width);writeFileSync(path+'.json',JSON.stringify({phase,width,source_sha256:sourcePins,glance,state,at:new Date().toISOString()},null,2));await page.screenshot({path:path+'.png'});}
+  const entryGlance=await readGlance();try{assertGlance(entryGlance);}catch(error){await saveGlanceFailure('entry',entryGlance);throw error;}
   assert.equal(entryGlance.focus,'enMode2026','Entering night controls retains a visible keyboard starting point');
   assert(await page.locator('#jointNightPanel .en-input-health').evaluate(e=>Boolean(e.compareDocumentPosition(document.querySelector('#enPersonalFocus'))&Node.DOCUMENT_POSITION_FOLLOWING)),'Consequential coverage warning precedes the long personal roster');
   assert.equal(await page.locator('#enNationalNeedleMap svg.en-geographic-map').count(),1,'Pinned Census geometry is rendered, not the tile fallback');
@@ -135,8 +139,8 @@ try{
   await page.locator('#enMode2024').click();assert.equal(await page.locator('.en-national-map-panel').isHidden(),true);
   assert.equal(await page.locator('#enRaceDiagnosticDetails').isHidden(),true);assert.equal(await page.locator('#smartNightDesk').isHidden(),true);assert.equal(await page.locator('.en-input-health').isVisible(),true);
   await page.goto('http://127.0.0.1:'+server.address().port+'/?glance=direct#electionNight',{waitUntil:'domcontentloaded'});await page.locator('#enMode2026').click();
-  await page.waitForFunction(()=>document.querySelectorAll('#jointNightNeedle .four-needle-outcome').length===4);
-  const deepLinkGlance=await readGlance();assertGlance(deepLinkGlance);receipt[receipt.length-1].deepLinkGlance=deepLinkGlance;
+  await waitForAcceptedGlance();
+  const deepLinkGlance=await readGlance();try{assertGlance(deepLinkGlance);}catch(error){await saveGlanceFailure('direct',deepLinkGlance);throw error;}receipt[receipt.length-1].deepLinkGlance=deepLinkGlance;
   await page.screenshot({path:resolve(out,'glance-direct-'+width+'.png')});
   await context.close();console.log(width+'px hierarchy operator tasks PASS');
  }
