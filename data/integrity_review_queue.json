@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-29T02:05:42.046310Z",
+  "updated_at": "2026-10-29T02:53:16.940747Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 63
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 65
   },
   "advisory_related_headlines": [
     {
@@ -310,6 +310,25 @@
       "publisher": "Houston Public Media",
       "published_at": "2026-10-28T20:56:23Z",
       "detected_at": "2026-10-28T23:48:08.782047Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e7766200e31addb7e424",
+      "title": "Civil rights organizations sue Texas secretary of state, DPS director over voter registration delays - Houston Public Media",
+      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxPRzhmTWZfR3AwU3R2NFFYakNjTEllYTBWMktDeWd4cm9yRkxfekJCQUtHUldKZ0NvdjZjWUduVmJWN2VlRTUzRzFrbGF3eHJzVFpSa2dGWmoyTHJZMndQOUxURldjRGlxSjgyM0lIXzdFNWRRcmdaeEYwd1dxX1lqNTJwMzhUQ2ppM2N5b1MzR1ViOTlpS2lGNlFYRlZMZUVyZTlULXp3bHhjM1FPeEhXWUVSa05qZS04VmRwWWppdE5ZMGVyaUlvcHg3YjFCRjBkUXBHdmR5RE5oQ1hxMGJyY0FBOHpRWmdwNjNGX1psWkxiZ21BMV94c21rNHpaQdIBhgJBVV95cUxPT3dFaUVEa3Y0SERZeDVYTGk1eFpyWm9KNTJSX3N3NzJQWmFpSV91Q0NIanhaeEtadmVGblB6UmNoUDhKdHFjTjM5ejJsdmlBUVhiM0xFeDBtU3RJNHFvNjlESk1WRlVZSVpvbUhvNXpidzU0WXBGMjlNYXJPSUIzZlZaakQxaWJmUDhtcFlUTHBZSmY4OGgtSk5naXcxbUU0aHhQWFZNc3JyRmM1Y0x3RkVtR2JsYkJJUk14UnZER0wtWUJXZTRDOVFkblRUdWw5R1dzcXBENUNlNVdzMzNscFNWYmQ4Z0plb212cUc5a3pfa1VnZVJwSXhGdWZNVHhKRC1oVUxB?oc=5",
+      "publisher": "Houston Public Media",
+      "published_at": "2026-10-28T20:56:23Z",
+      "detected_at": "2026-10-29T02:53:16.940747Z",
       "state_hints": [
         "TX"
       ],
@@ -5032,27 +5051,6 @@
         "registration"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "749c7038548874796c2a",
-      "title": "Elon Musk settles fraud lawsuits over his $1 million giveaways to 2024 election voters - CNN",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPY3NaSElROHFDY0RYdkNaMmYxMFZTUE1VOUc5NzE2eGtlTWJaSS1nejFxWk9rVnhqcEx4cHdYcG1zVU9uSWRrQVVQZkFSSFYxOWxsM3F4Y1dISlZYb3M4aDI4ZHk3Q3hEQU1DRnBNQ0dRblktM3BBaXpIdzBmS285N3VHMmwzUjFVYl84Q1JjYmlBTk9LMGswdFAwSkQ?oc=5",
-      "publisher": "CNN",
-      "published_at": "2026-10-16T03:39:00Z",
-      "detected_at": "2026-10-16T10:46:30.571437Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "1 million",
-        "2024 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
