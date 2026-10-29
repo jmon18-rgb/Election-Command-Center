@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T03:58:05.481807Z",
+  "updated_at": "2026-10-29T04:58:13.692909Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -280,6 +280,26 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "a81a047402b78a91a5db",
+      "title": "Judge blocks Trump admin from forcing California to set aside ballots - Politico",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPT042dWQ5bjRfbHh0LUZrNGRldjk4Q3ZQMVYtSHVwQ01ZajZpdkw0NzdzSGJUMmwydmtLRXVnTEd3MmwxQ2d4STRrU3Fic3FwbVpUbjduTlNEYTNiaG5XRzE0aXBHcXNLMm83VWJiTlQ2bUhaQmhDT2pUSmR1SnFYNVIzWTRlM2otbHI1WXYyb0xTM2xIVXBmZQ?oc=5",
+      "publisher": "Politico",
+      "published_at": "2026-10-29T01:20:00Z",
+      "detected_at": "2026-10-29T04:58:13.692909Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "11cd90159865b8ea8b7f",
       "title": "Judge denies the Justice Department's bid to stop processing California ballots - NPR",
       "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5UcC1DM1UxS3ZmV0ZaNG9McHNXRUpQeXRBNFF1a3FxcFRMRlVnampVcldOYW0tMENNOE9WQTJzLUM1TkstRFVrZVd0SXRHSUFaUHNDaW9qZ3Mzc0NGNUFockZSYVpGdWlOZlpTYlUwOHpoV2ZMNFc4aWJiMXNyU0E?oc=5",
@@ -351,6 +371,23 @@
       ],
       "topic_hints": [
         "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1ac18739120a19e30f5c",
+      "title": "How dirty tricks harm, and institutional safeguards protect, the integrity of US elections - Brookings",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOeUFWU1ZqOVlGdkt2NS1hbjVKU05mZGpuckliRk1BdGRRM3JTVkZtUHpMbVUyb1pRcUc2YUxBTlJraWxQSVN1RXJrQko0ZkJxMDBPWVUyQWVRTUVnMHpLYmJxYWM1V0tFUVllQXMyMTNDQVFXT1JXRFBTMG5jVnpzZGRUWHA5SzctRmJHRk9wblJsX3VKZGNOdlB3aTUtWjd1ME1iV011Yi05dExseU5ISWkxdGJFdGkzTjU3YkhVb3BqZw?oc=5",
+      "publisher": "Brookings",
+      "published_at": "2026-10-28T20:21:22Z",
+      "detected_at": "2026-10-29T04:58:13.692909Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5012,42 +5049,6 @@
       "topic_hints": [
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e0ed8d7cc0a018fc23ac",
-      "title": "Elections Commission: Clerks should call lawyers if federal law enforcement shows up at polls - WPR",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBVWGN0SWxrb0V0NVdQQ1JUZmFCeWtDRVl2MHVqWkFiek5HQVNxa252Z3JvdjRMcjQtRDlUYzA4Z2ZYYkNsT2xoSjFZd21VSnlyM01ia0NQbFNfSUk4WWtkcjM4QUVCYWtkRWVIeHhqOU03eUZCLXJXOGp1bVNESm8?oc=5",
-      "publisher": "WPR",
-      "published_at": "2026-10-16T10:00:00Z",
-      "detected_at": "2026-10-16T14:47:56.717861Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3bfb838f97df4fcad457",
-      "title": "DOJ Takes California to Court Over Potential Noncitizen Voting - Liberty Nation News",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxNWml2NG9WenlBTEVDT2FwcncxU3NtYXhDeVBJd1pvYU9INERqODhCX2x1bkt6WDc0NndrYkJkMnBBZFNvV1RpNFRabll5MnBRQ0x2aXVZMXpMUHMtZnBZWEYzRzZFR0dFYmxhWUdGdldhY0VINEN4aDFMTXJSd21HbU5oUzV5UWRlaWlEMHV5Z0djMUZLVi1fQw?oc=5",
-      "publisher": "Liberty Nation News",
-      "published_at": "2026-10-16T09:55:03Z",
-      "detected_at": "2026-10-16T10:46:30.571437Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
