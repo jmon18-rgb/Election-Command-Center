@@ -1,7 +1,7 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-10-29T00:50:15.261800Z",
+  "polling_generated_at": "2026-10-29T01:11:17.124062Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 8.35,
@@ -17,9 +17,9 @@
   "qualifying_house_races": 3,
   "qualifying_senate_races": 14,
   "excluded": {
-    "inadequate_polling": 86,
+    "inadequate_polling": 85,
     "stale": 0,
-    "not_competitive": 2,
+    "not_competitive": 3,
     "missing_geography": 0
   },
   "state_swing_samples": [
