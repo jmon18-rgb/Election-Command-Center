@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-29T10:58:33.600918+00:00",
+  "updated_at": "2026-10-29T11:55:13.211689+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 851,
+      "available_in_source": 854,
       "records_examined": 300
     },
     "house": {
@@ -13,51 +13,183 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 957,
+      "available_in_source": 960,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 320,
-  "newly_injected_into_model": 9,
+  "matched_primary_observations": 329,
+  "newly_injected_into_model": 6,
   "injected_poll_ids": [
     {
-      "race_code": "AL-02",
-      "poll_id": "f9ade38b-c074-44c3-9537-e4a114925d62"
+      "race_code": "MA-GOV",
+      "poll_id": "d75f0973-c7ad-4835-9163-1eae53b68db0"
     },
     {
-      "race_code": "KS-GOV",
-      "poll_id": "cc6fe4a3-b999-4be6-9fd5-388faf9938b1"
+      "race_code": "MA-SEN",
+      "poll_id": "d75f0973-c7ad-4835-9163-1eae53b68db0"
     },
     {
-      "race_code": "KS-SEN",
-      "poll_id": "cc6fe4a3-b999-4be6-9fd5-388faf9938b1"
+      "race_code": "NH-GOV",
+      "poll_id": "9ca6ae7a-4091-4042-b3a3-d89b4b491a41"
     },
     {
-      "race_code": "ME-GOV",
-      "poll_id": "d65e372a-89eb-4af1-9f7b-88ee5d8975a4"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "d65e372a-89eb-4af1-9f7b-88ee5d8975a4"
-    },
-    {
-      "race_code": "MI-GOV",
-      "poll_id": "e05bf93a-250d-4ff3-bc42-01804850b159"
-    },
-    {
-      "race_code": "MI-SEN",
-      "poll_id": "e05bf93a-250d-4ff3-bc42-01804850b159"
+      "race_code": "NH-SEN",
+      "poll_id": "9ca6ae7a-4091-4042-b3a3-d89b4b491a41"
     },
     {
       "race_code": "TX-GOV",
-      "poll_id": "136e2129-b776-4f8f-af7b-672c60515804"
+      "poll_id": "fed5cc59-dd90-4943-88f8-a52dcb154bdc"
     },
     {
       "race_code": "TX-SEN",
-      "poll_id": "136e2129-b776-4f8f-af7b-672c60515804"
+      "poll_id": "fed5cc59-dd90-4943-88f8-a52dcb154bdc"
     }
   ],
   "observations": [
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "fed5cc59-dd90-4943-88f8-a52dcb154bdc",
+      "question_id": "db8ad677-bbad-43ba-9551-81de412aeb5e",
+      "pollster": "Barbara Jordan Public Policy Research and Survey Center",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 49.0,
+      "rep": 47.0,
+      "margin": 2.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T07:31:00",
+      "posted_source_time": "10/29/26 07:31",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://static1.squarespace.com/static/67aa7aa3e284b002cd6a420e/t/6ae28aaadbf6636957aa51e7/1793231530759/TSUStatewideOct2026.pdf",
+      "sample_population": "lv",
+      "sample_size": 2000,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-GOV",
+      "race_type": "governor",
+      "state": "TX",
+      "poll_id": "fed5cc59-dd90-4943-88f8-a52dcb154bdc",
+      "question_id": "5142f6ee-3197-430d-9779-eff5f6c6bea2",
+      "pollster": "Barbara Jordan Public Policy Research and Survey Center",
+      "dem_name": "Gina Hinojosa",
+      "rep_name": "Greg Abbott",
+      "dem": 47.0,
+      "rep": 50.0,
+      "margin": -3.0,
+      "field_end": "2026-10-25",
+      "field_start": "2026-10-21",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T07:31:00",
+      "posted_source_time": "10/29/26 07:31",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://static1.squarespace.com/static/67aa7aa3e284b002cd6a420e/t/6ae28aaadbf6636957aa51e7/1793231530759/TSUStatewideOct2026.pdf",
+      "sample_population": "lv",
+      "sample_size": 2000,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MA-SEN",
+      "race_type": "senate",
+      "state": "MA",
+      "poll_id": "d75f0973-c7ad-4835-9163-1eae53b68db0",
+      "question_id": "e00e1be9-dd09-4642-a7fa-2dfebf8ea8c5",
+      "pollster": "UMass Lowell",
+      "dem_name": "Ed Markey",
+      "rep_name": "John Deaton",
+      "dem": 55.0,
+      "rep": 26.0,
+      "margin": 29.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-07",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T07:22:00",
+      "posted_source_time": "10/29/26 07:22",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://polling-averages.newsdev.nyt.net/polls/9ca6ae7a-4091-4042-b3a3-d89b4b491a41",
+      "sample_population": "lv",
+      "sample_size": 850,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MA-GOV",
+      "race_type": "governor",
+      "state": "MA",
+      "poll_id": "d75f0973-c7ad-4835-9163-1eae53b68db0",
+      "question_id": "f335d5d7-6191-40ab-bb42-52a7ab43f23b",
+      "pollster": "UMass Lowell",
+      "dem_name": "Maura Healey",
+      "rep_name": "Mike Minogue",
+      "dem": 57.0,
+      "rep": 29.0,
+      "margin": 28.0,
+      "field_end": "2026-10-18",
+      "field_start": "2026-10-07",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T07:22:00",
+      "posted_source_time": "10/29/26 07:22",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://polling-averages.newsdev.nyt.net/polls/9ca6ae7a-4091-4042-b3a3-d89b4b491a41",
+      "sample_population": "lv",
+      "sample_size": 850,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NH-SEN",
+      "race_type": "senate",
+      "state": "NH",
+      "poll_id": "9ca6ae7a-4091-4042-b3a3-d89b4b491a41",
+      "question_id": "2efc158b-7114-4c9c-8bd4-6929f8f2c048",
+      "pollster": "UMass Lowell",
+      "dem_name": "Chris Pappas",
+      "rep_name": "John Sununu",
+      "dem": 48.0,
+      "rep": 41.0,
+      "margin": 7.0,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T07:17:00",
+      "posted_source_time": "10/29/26 07:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.uml.edu/news/press-releases/2026/102826-new-england-polls.aspx",
+      "sample_population": "lv",
+      "sample_size": 600,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "NH-GOV",
+      "race_type": "governor",
+      "state": "NH",
+      "poll_id": "9ca6ae7a-4091-4042-b3a3-d89b4b491a41",
+      "question_id": "4707384d-e8db-4647-aa55-dbb2c5d4f21a",
+      "pollster": "UMass Lowell",
+      "dem_name": "Cinde Warmington",
+      "rep_name": "Kelly Ayotte",
+      "dem": 42.0,
+      "rep": 48.0,
+      "margin": -6.0,
+      "field_end": "2026-10-19",
+      "field_start": "2026-10-02",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T07:17:00",
+      "posted_source_time": "10/29/26 07:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.uml.edu/news/press-releases/2026/102826-new-england-polls.aspx",
+      "sample_population": "lv",
+      "sample_size": 600,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "AL-02",
       "race_type": "house",
