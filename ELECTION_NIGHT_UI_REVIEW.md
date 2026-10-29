@@ -1,5 +1,19 @@
 # Election-night usability and visual review
 
+## PR528 VERIFIED PUBLISHED — conditional-call context and explicit withholding
+
+New call-conditioned ranges identify broader validated-call context separately
+from a race's own admitted returns; called races still have no invented final
+margin. Unsupported transfer visibly says WITHHELD while valid winners remain.
+ActualpublishedEdge1366/390 normalcontrols/keyboard/scroll/ranges/corrections/
+exactwithdrawal/late200callWITHHELD/allvalidwinners/liveisolation/nooverflow PASS.
+All33assertions retained; electionproviders/YouTube blocked, no human acceptance.
+Finalmain81287cc9/Pages40796639027/38changedfiles/coherence/no_credit verified.
+Ordinary27 readonlyreload proves versions/order/privateDOMstatus retention only;
+known0viewportinput limitation not retried, no ordinaryinteraction/geometry claim.
+Proof pr528-published-9879e0df/source-calls/ and pr528-published-ordinary-20261028.json.
+Human eleven-task guide1.0/NOT_RUN/null retained with scoped528addendum only.
+
 ## PR527 VERIFIED PUBLISHED — ranges, private audio and full owner artwork
 
 Same-draw median/middle50/90 and explicit scale/help are now visible. Shared

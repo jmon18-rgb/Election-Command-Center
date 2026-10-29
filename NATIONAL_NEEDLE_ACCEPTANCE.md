@@ -1,8 +1,8 @@
 # National needle acceptance decision — October 27, 2026
 
-## Conditional winner-event implementation — R0 candidate, separate from R2
+## Conditional winner-event implementation — R0 released528, separate from R2
 
-The concrete source-call gap is being repaired in a separate release after527:
+PR528 repairs the concrete source-call gap in a separate verified release:
 existing validated winner events condition shared election factors rather than
 only fixing the called race's seat. Exact proposal correction, original discrete
 redraw law, one fixed bounded county target and a hard final ESS floor protect
