@@ -27,10 +27,12 @@
   // failures so later beats use their SVG immediately instead of flickering.
   if(host&&phase==='announcement')failedArtwork.delete(host);
   clear(host);
-  if(host&&id==='abbott'&&['scene','complete'].includes(phase)){
-   if(ownerArtwork&&typeof ownerArtwork.url==='string'&&/^(?:\.\/)?assets\/celebration-owner-abbott\.jpg(?:\?v=[a-f0-9]{8,64})?$/.test(ownerArtwork.url)&&typeof ownerArtwork.alt==='string'&&ownerArtwork.alt.trim()&&ownerArtwork.alt.length<=500&&!failedArtwork.get(host)?.has(ownerArtwork.url))return renderAbbottOwnerArtwork(host,{phase,beat,preview,ownerArtwork});
-   return renderAbbott(host,{phase,beat,preview});
-  }
+  const ownerFiles={abbott:'celebration-owner-abbott.jpg',graham:'celebration-owner-graham.jpg',blansas:'celebration-owner-kansas.jpg',mississippi:'celebration-owner-mississippi.jpg'};
+  const ownerFile=ownerFiles[id],ownerUrl=ownerArtwork?.url;
+  const ownerPath=typeof ownerUrl==='string'?(ownerUrl.startsWith('./')?ownerUrl.slice(2):ownerUrl):'';
+  const ownerMatch=ownerPath.match(/^assets\/([^?]+)(?:\?v=[a-f0-9]{8,64})?$/);
+  if(host&&phase==='complete'&&ownerFile&&ownerMatch?.[1]===ownerFile&&typeof ownerArtwork.alt==='string'&&ownerArtwork.alt.trim()&&ownerArtwork.alt.length<=500&&!failedArtwork.get(host)?.has(ownerUrl))return renderOwnerArtwork(host,{id,phase,beat,preview,ownerArtwork});
+  if(host&&id==='abbott'&&['scene','complete'].includes(phase))return renderAbbott(host,{phase,beat,preview});
   if(host&&id==='mississippi'&&['scene','complete'].includes(phase))return renderMississippi(host,{phase,beat,preview});
   if(host&&id==='blansas'&&['scene','complete'].includes(phase))return renderKansas(host,{phase,beat,preview});
   if(host&&id==='graham'&&['scene','complete'].includes(phase))return renderGraham(host,{phase,beat,preview});
@@ -85,22 +87,19 @@
   }}
   return true;
  }
- function renderAbbottOwnerArtwork(host,{phase,beat,preview,ownerArtwork}){
-  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
-  const doc=host.ownerDocument,figure=doc.createElement('figure'),image=doc.createElement('img'),caption=doc.createElement('figcaption');
-  figure.className='en-celebration-owner-art';figure.setAttribute('data-layer','owner-abbott-artwork');
+ function renderOwnerArtwork(host,{id,phase,beat,preview,ownerArtwork}){
+  const index=2,doc=host.ownerDocument,figure=doc.createElement('figure'),image=doc.createElement('img'),caption=doc.createElement('figcaption');
+  figure.className='en-celebration-owner-art';figure.setAttribute('data-layer','owner-'+id+'-artwork');
   image.className='en-celebration-owner-image';image.setAttribute('alt',ownerArtwork.alt);image.setAttribute('decoding','async');
-  caption.className='en-celebration-owner-label';caption.textContent='AI-GENERATED · FICTIONAL POLITICAL SATIRE · '+(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL');
+  caption.className='en-celebration-owner-label';caption.textContent=((id==='abbott'||ownerArtwork.aiGenerated===true)?'AI-GENERATED · ':'')+'OWNER-SUPPLIED · FICTIONAL POLITICAL SATIRE · '+(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL');
   figure.append(image,caption);
   const restoreAria={present:host.hasAttribute('aria-hidden'),value:host.getAttribute('aria-hidden')};
-  host.setAttribute('aria-hidden','false');finish(host,figure,[],'abbott',index,phase);
+  host.setAttribute('aria-hidden','false');finish(host,figure,[],id,index,phase);
   const state=states.get(host);state.restoreAria=restoreAria;
   const fail=()=>{
-   // A delayed error from an earlier beat/story must not repaint a cleared or
-   // replaced host. Failure retains the original scene at this exact beat.
    if(states.get(host)!==state||!host.contains(image))return;
    if(!failedArtwork.has(host))failedArtwork.set(host,new Set());failedArtwork.get(host).add(ownerArtwork.url);
-   clear(host);renderAbbott(host,{phase,beat,preview});
+   render(host,{id,phase,beat,preview,ownerArtwork:null});
   };
   state.dispose=()=>image.removeEventListener('error',fail);image.addEventListener('error',fail);
   image.setAttribute('src',ownerArtwork.url);return true;
@@ -160,24 +159,44 @@
   return finish(host,svg,animated,'mississippi',index,phase);
  }
  // Original satirical ghost vocabulary from assets/milestone-blansas.svg.
+ // Original civilian John Brown silhouette and Harpers Ferry engine-house cue.
+ // Brown's1859 story is distinct from the later Civil War/Union-blue satire.
  function renderKansas(host,{phase,beat,preview}){
   const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
   const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
   const text=(label,x,y,size=28,color='#e9f8ff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
-  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Fictional Kansas Senate celebration: satirical John Brown ghost and blue ink covering an old rebel emblem; '+(preview?'simulated preview':'source-reported unofficial call'),'data-scene':'blansas','data-beat':index}),animated=[];
-  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#13243b'}),text('KANSAS · U.S. SENATE',490,43,23,'#9bdcff'));
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Fictional Kansas Senate ghost-story satire: abolitionist John Brown with swept white hair, long beard and civilian frock coat beside an1859 Harpers Ferry engine house; later Union-blue symbolism is a fictional juxtaposition, not a claim that Brown served in the Civil War; '+(preview?'simulated preview':'source-reported unofficial call'),'data-scene':'blansas','data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#101d32'}),el('path',{d:'M0 450Q245 405 490 445T980 430V540H0Z',fill:'#153b52'}),text('KANSAS · U.S. SENATE',490,43,23,'#9bdcff'));
   if(index<2){
-   svg.append(text(index===0?'JOHN BROWN HAS ENTERED':'THE INK IS BLUE',490,105,36),el('rect',{x:95,y:164,width:790,height:266,rx:14,fill:'#5c4a52',stroke:'#a7c6d9','stroke-width':7,'data-layer':'kansas-poster-board'}));
-   const emblem=el('g',{'data-layer':'old-rebel-emblem'});emblem.append(el('rect',{x:575,y:205,width:250,height:150,rx:10,fill:'#963f50'}),el('path',{d:'M600 225L800 335M800 225L600 335',stroke:'#c6a7ad','stroke-width':14}),text('JOHNNY REB',700,395,23,'#efcbd0'));svg.append(emblem);
+   svg.append(text(index===0?'JOHN BROWN HAS ENTERED':'THE INK IS BLUE',490,101,36),el('rect',{x:75,y:140,width:830,height:310,rx:18,fill:'#203146',stroke:'#8bbbd6','stroke-width':5,'data-layer':'kansas-poster-board'}));
+   const ferry=el('g',{'data-layer':'harpers-ferry-1859'});
+   ferry.append(el('path',{d:'M95 241L227 183 360 241Z',fill:'#ad795e',stroke:'#e0b18b','stroke-width':4}),el('rect',{x:107,y:241,width:240,height:167,fill:'#8d5147',stroke:'#d8a48e','stroke-width':4}),el('path',{d:'M190 214V176H211V214M205 170V145',stroke:'#b3c8cf','stroke-width':7,fill:'none'}),el('path',{d:'M129 408V296Q129 261 164 261T199 296V408M223 408V296Q223 261 258 261T293 296V408',fill:'#253645',stroke:'#d8a48e','stroke-width':7}),el('path',{d:'M118 250H337M118 319H337M118 365H337',stroke:'#b37162','stroke-width':3,opacity:.6}),text('HARPERS FERRY',211,219,19,'#f6dfc1'),text('1859',226,435,26,'#f6dfc1'));svg.append(ferry);
+   const emblem=el('g',{'data-layer':'old-rebel-emblem'});emblem.append(el('rect',{x:599,y:192,width:253,height:188,rx:13,fill:'#8d3e4d',stroke:'#c28b98','stroke-width':4}),el('path',{d:'M625 217L827 350M827 217L625 350',stroke:'#c6a7ad','stroke-width':14}),text('JOHNNY REB',726,416,28,'#efcbd0'));svg.append(emblem);
    if(index===1){
-    const ink=el('g',{'data-layer':'kansas-ink-wash'});ink.append(el('rect',{x:99,y:168,width:782,height:258,rx:12,fill:'#087ccb'}),text('KANSAS',615,310,53,'#d4f4ff'));svg.append(ink);
+    const ink=el('g',{'data-layer':'kansas-ink-wash'});ink.append(el('rect',{x:576,y:171,width:302,height:255,rx:15,fill:'#087ccb',stroke:'#77d8ff','stroke-width':4}),text('UNION BLUE',727,301,38,'#e2f7ff'),text('THE INK IS BLUE',727,344,23,'#bdefff'));
+    for(const x of [637,682,727,772,817])ink.append(el('path',{d:star,transform:'translate('+x+' 230) scale(.6)',fill:'#dbf7ff'}));svg.append(ink);
     animated.push({node:ink,frames:[{opacity:0,transform:'translateX(-160px)'},{opacity:1,transform:'translateX(0)'}],duration:850});
-    [[560,190],[840,220],[790,413]].forEach(([x,y],i)=>{const drop=el('g',{transform:'translate('+x+' '+y+')'}),splash=el('g',{'data-layer':'blue-ink-splash',style:'transform-box:fill-box;transform-origin:center'});splash.append(el('path',{d:'M0-25L8-10 27-9 15 4 20 24 0 15-20 24-15 4-27-9-8-10Z',fill:'#5dd2ff'}));drop.append(splash);svg.append(drop);animated.push({node:splash,frames:[{opacity:0,transform:'scale(.1)'},{opacity:1,transform:'scale(1.3)'},{opacity:1,transform:'scale(1)'}],duration:600,delay:300+i*180});});
+    [[560,190],[870,220],[840,427]].forEach(([x,y],i)=>{const drop=el('g',{transform:'translate('+x+' '+y+')'}),splash=el('g',{'data-layer':'blue-ink-splash',style:'transform-box:fill-box;transform-origin:center'});splash.append(el('path',{d:'M0-25L8-10 27-9 15 4 20 24 0 15-20 24-15 4-27-9-8-10Z',fill:'#5dd2ff'}));drop.append(splash);svg.append(drop);animated.push({node:splash,frames:[{opacity:0,transform:'scale(.1)'},{opacity:1,transform:'scale(1.3)'},{opacity:1,transform:'scale(1)'}],duration:600,delay:300+i*180});});
    }
-   const position=el('g',{transform:'translate(285 280) scale(.7)'}),ghost=el('g',{'data-layer':'john-brown-ghost',style:'transform-box:fill-box;transform-origin:center'});
-   ghost.append(el('path',{d:'M-117 128q1-83 70-100L0 18l56 19q61 13 75 91',fill:'#d8e5e9',stroke:'#163049','stroke-width':8}),el('path',{d:'M-67-28q-20-70 0-113h134q22 50 0 113',fill:'#2b3d4c'}),el('rect',{x:-92,y:-152,width:184,height:18,rx:9,fill:'#253444'}),el('ellipse',{cx:0,cy:-45,rx:64,ry:78,fill:'#dcc6ad'}),el('path',{d:'M-64-28q10 71 51 96L0 144 34 71q45-27 31-104L19 30 0 49l-24-23Z',fill:'#ddeaf2'}),el('path',{d:'M-61-50q23-10 45 0M18-50q22-10 45 0',stroke:'#26313d','stroke-width':8}));position.append(ghost);svg.append(position);
+   const position=el('g',{transform:'translate(399 285)'}),ghost=el('g',{'data-layer':'john-brown-ghost',style:'transform-box:fill-box;transform-origin:center'});
+   ghost.append(
+    el('path',{d:'M-136 154L-124 91Q-113 48-64 34L-31 24H33L66 35Q113 46 125 90L137 154Z',fill:'#172736',stroke:'#8ec0d4','stroke-width':5,'data-layer':'civilian-frock-coat'}),
+    el('path',{d:'M-57 38L-29 26 0 61 30 26 59 39 33 87 0 69-34 87Z',fill:'#ecdfca'}),
+    el('path',{d:'M-76 43L-27 28-40 102-12 152H-90ZM76 43L28 28 39 102 12 152H91Z',fill:'#334553',stroke:'#6d8b99','stroke-width':3}),
+    el('path',{d:'M-14 57L0 50 16 57 5 77 12 117H-12L-5 77Z',fill:'#161c24'}),
+    el('path',{d:'M-75-35Q-95-46-88-67Q-105-87-85-102Q-99-127-74-132Q-77-152-51-145Q-35-165-15-150Q7-167 25-149Q49-164 58-143Q84-146 80-122Q102-111 85-93Q98-73 78-48L72-31Z',fill:'#e5e5dc',stroke:'#9aaeb3','stroke-width':4,'data-layer':'john-brown-swept-hair'}),
+    el('path',{d:'M-58-101Q-23-124 3-115Q31-123 59-99L64-45Q60-4 32 17L-28 17Q-60-3-64-45Z',fill:'#d6af88',stroke:'#6c655f','stroke-width':3}),
+    el('path',{d:'M-63-96L-40-118-19-110 0-128 24-112 44-117 66-91-48-98Z',fill:'#f0eee2'}),
+    el('path',{d:'M-52-67L-14-76M14-76L51-66',fill:'none',stroke:'#edece1','stroke-width':12,'stroke-linecap':'round'}),
+    el('path',{d:'M-48-62L-20-65M20-65L47-61',fill:'none',stroke:'#413e3c','stroke-width':4,'stroke-linecap':'round'}),
+    el('circle',{cx:-31,cy:-61,r:3.5,fill:'#172431'}),el('circle',{cx:31,cy:-61,r:3.5,fill:'#172431'}),
+    el('path',{d:'M3-68L-7-34 12-29M-47-38L-36-26M38-26L48-40',fill:'none',stroke:'#8a715e','stroke-width':4,'stroke-linecap':'round'}),
+    el('path',{d:'M-63-35L-48-13-24-20 0-10 24-20 49-13 64-35Q68 3 50 42Q39 69 14 84L-6 91Q-34 80-49 52Q-66 25-64 8Z',fill:'#e5e4d8',stroke:'#adbab7','stroke-width':3,'data-layer':'john-brown-long-beard'}),
+    el('path',{d:'M-30-18Q0-38 31-18M-21-11L-2-8 21-12',fill:'none',stroke:'#b8c1b9','stroke-width':6,'stroke-linecap':'round'}),
+    el('path',{d:'M-42 3L-29 42M-22 4L-12 65M0 1V77M21 4L12 66M43 3L29 42',fill:'none',stroke:'#bbc9c4','stroke-width':3,'stroke-linecap':'round'})
+   );position.append(ghost);svg.append(position);
    if(index===0)animated.push({node:ghost,frames:[{opacity:0,transform:'translateY(35px)'},{opacity:1,transform:'translateY(0)'}],duration:900});
-   svg.append(text('ILLUSTRATIVE CELEBRATION ART · SATIRE',490,480,22,'#a8d7e9'));
+   svg.append(text('FICTIONAL GHOST STORY · NOT A HISTORICAL SCENE',490,483,22,'#a8d7e9'));
   }else{
    const card=el('g',{'data-layer':'kansas-victory-card',style:'transform-box:fill-box;transform-origin:center'});card.append(el('rect',{x:100,y:135,width:780,height:275,rx:25,fill:'#087ccb',stroke:'#96e5ff','stroke-width':6}),text('BLANSAS',490,220,62),text('KANSAS SENATE',490,288,39,'#c4efff'),text('THE INK IS BLUE',490,353,33));svg.append(card,text("JOHN BROWN'S GHOST APPROVES · SATIRE",490,478,24,'#a8d7e9'));
    animated.push({node:card,frames:[{opacity:0,transform:'scale(.9)'},{opacity:1,transform:'scale(1)'}],duration:750});
@@ -185,7 +204,6 @@
   svg.append(text(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,17,'#b9d9ed'));
   return finish(host,svg,animated,'blansas',index,phase);
  }
- // Original fictional stage props; no real venue, conduct or private identity.
  function renderGraham(host,{phase,beat,preview}){
   const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
   const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};

@@ -1,0 +1,17 @@
+'use strict';
+const assert=require('node:assert/strict'),api=require('./election_night_announcement_motion.js');
+function eventHost(){const listeners=new Map();return{listeners,addEventListener(t,f){if(!listeners.has(t))listeners.set(t,new Set());listeners.get(t).add(f);},removeEventListener(t,f){listeners.get(t)?.delete(f);},emit(t){for(const f of [...listeners.get(t)||[]])f();}};}
+const audio=Object.assign(eventHost(),{paused:false,ended:false,muted:false,volume:1}),media=Object.assign(eventHost(),{matches:false}),properties=new Map(),element={style:{setProperty(k,v){properties.set(k,v);}},dataset:{}};
+let sourceCount=0,captures=0,stoppedTracks=0,wave=128,frames=new Map(),number=0,active=true;
+audio.captureStream=()=>{captures++;const track={stop(){stoppedTracks++;}};return{getAudioTracks:()=>[track],getTracks:()=>[track]};};
+const destination={},context={state:'running',destination,createMediaElementSource(){throw Error('Native audio must never be rerouted');},createMediaStreamSource(){sourceCount++;return{connect(){},disconnect(){}};},createGain(){return{gain:{value:1},connect(){},disconnect(){}};},createAnalyser(){return{fftSize:256,getByteTimeDomainData(buffer){buffer.fill(wave);},connect(){},disconnect(){}};}};
+const options={audio,element,getContext:()=>context,isActive:()=>active,motionQuery:media,requestFrame(fn){frames.set(++number,fn);return number;},cancelFrame(id){frames.delete(id);}},motion=api.create(options);
+function paint(){const [id,fn]=frames.entries().next().value;frames.delete(id);fn();return fn;}
+assert(motion.start());paint();assert.equal(properties.get('--fish-speech-level'),'0.000');assert.equal(element.dataset.speaking,'false');wave=160;const stale=paint();assert(+properties.get('--fish-speech-level')>0);assert.equal(element.dataset.speaking,'true');
+audio.paused=true;audio.emit('pause');assert.equal(frames.size,0);assert.equal(properties.get('--fish-speech-level'),'0');stale();assert.equal(frames.size,0,'Old frame cannot revive after pause');
+audio.paused=false;audio.emit('playing');assert.equal(sourceCount,2,'Replays use a disposable captured copy, never an element source');paint();media.matches=true;media.emit('change');assert.equal(frames.size,0);assert.equal(element.dataset.speaking,'false');media.matches=false;media.emit('change');assert.equal(frames.size,1);
+context.state='suspended';paint();assert.equal(frames.size,0);assert.equal(audio.paused,false,'Suspending analysis never pauses native playback');context.state='running';assert(motion.start());active=false;paint();assert.equal(frames.size,0,'Hidden/replaced/closed presentation stops on next frame');
+for(const event of ['ended','error','emptied']){active=true;audio.ended=false;assert(motion.start());audio.emit(event);assert.equal(frames.size,0);assert.equal(properties.get('--fish-speech-level'),'0');}
+motion.destroy();for(const listeners of audio.listeners.values())assert.equal(listeners.size,0);assert.equal(media.listeners.get('change').size,0);assert.equal(motion.start(),false);
+const before=sourceCount,unavailable=api.create({...options,getContext:()=>({state:'suspended'})});assert.equal(unavailable.start(),false);assert.equal(sourceCount,before);unavailable.destroy();assert.equal(stoppedTracks,captures,'Every captured analysis track is released');
+console.log('Announcement motion PASS: actual-energy/silence, native-output isolation, analysis suspend fallback, replay/pause/end/error/hidden/reduced-motion/stale-frame cleanup; no phoneme or human-listening claim.');

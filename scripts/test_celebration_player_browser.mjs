@@ -1,24 +1,47 @@
 // Actual browser playback mechanics; media completion and calls are simulated.
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
-import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';
+import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
+import {createHash} from 'node:crypto';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
-const root=resolve(import.meta.dirname,'..');
+const root=resolve(process.env.DASHBOARD_TEST_ROOT||resolve(import.meta.dirname,'..'));
 const out=resolve(process.env.UI_REVIEW_OUTPUT_DIR||resolve(root,'artifacts/readiness'));mkdirSync(out,{recursive:true});
+const freezeFiles=['index.html','scripts/election_night_celebration_scene.js','scripts/election_night_celebration_player.js'],frozen=Object.fromEntries(freezeFiles.map(file=>[file,readFileSync(resolve(root,file))]));
 const types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg','.jpg':'image/jpeg'};
 const server=createServer((req,res)=>{
  const file=resolve(root,'.'+decodeURIComponent(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':new URL(req.url,'http://localhost').pathname));
  if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}
- res.writeHead(200,{'content-type':types[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));
+ res.writeHead(200,{'content-type':types[extname(file)]||'application/octet-stream'});res.end(frozen[file.slice(root.length+1).split(sep).join('/')]||readFileSync(file));
 });
 await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
-let browser;
+let browser,currentPage;
+
+// Original static SVG endpoint assertions remain on a separate real renderer
+// component: the actual popup now correctly skips straight to its finale when
+// reduced motion is enabled. Explicit null owner art tests original SVG fallback.
+async function reducedEndpoint(page,visual){
+ await page.evaluate(()=>{
+  const original=document.querySelector('#enCelebrationVisual'),host=document.createElement('div'),id=original.dataset.celebrationScene,beat=Number(original.dataset.beat);
+  host.id='celebrationReducedEndpoint';host.className='en-celebration-visual';host.setAttribute('aria-label','Isolated original scene reduced-motion endpoint');document.querySelector('#enMilestoneSpotlight').append(host);
+  const render=(phase,index)=>ElectionNightCelebrationScene.render(host,{id,phase,beat:index,preview:true,ownerArtwork:null});render('scene',beat);
+  const timers=[];for(let next=beat+1;next<=2;next++)timers.push(setTimeout(()=>render('scene',next),(next-beat)*2400));timers.push(setTimeout(()=>render('complete',2),(3-beat)*2400));
+  window.__reducedEndpoint={host,timers,musicEpoch:enCelebrationMusicEpoch};
+ });
+ return page.locator('#celebrationReducedEndpoint');
+}
+async function reducedModal(page,id){
+ const state=await page.evaluate(()=>({phase:document.querySelector('#enCelebrationStage').dataset.phase,epochUnchanged:enCelebrationMusicEpoch===__reducedEndpoint.musicEpoch,announcementPaused:document.querySelector('#enCelebrationAnnouncement').paused,level:document.querySelector('#enCelebrationFishTalking').style.getPropertyValue('--fish-speech-level')||'0'}));
+ assert.equal(state.phase,'complete','Actual modal dynamically skips to its finale');assert.equal(state.epochUnchanged,true,'Finale does not cancel selected/pending soundtrack');assert.equal(state.announcementPaused,true);assert.equal(Number(state.level),0);
+ if(['graham','blansas','mississippi'].includes(id)){const image=page.locator('#enCelebrationVisual img.en-celebration-owner-image');await image.waitFor();await image.evaluate(img=>img.decode());}
+}
+async function clearReducedEndpoint(page){await page.evaluate(()=>{if(!window.__reducedEndpoint)return;for(const id of __reducedEndpoint.timers)clearTimeout(id);ElectionNightCelebrationScene.clear(__reducedEndpoint.host);__reducedEndpoint.host.remove();delete window.__reducedEndpoint;});}
+
 try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1440,390]){
   const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
-  const page=await context.newPage(),errors=[];
+  const page=await context.newPage(),errors=[];currentPage=page;
   page.on('pageerror',e=>errors.push(e.message));
   await page.clock.install();
   await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
@@ -33,6 +56,9 @@ try{
   // Keep media pending so the test can explicitly exercise ended/error/rejection.
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});
   const titles=await page.evaluate(()=>Object.fromEntries(window.ElectionNightSignals.MILESTONES.map(x=>[x.id,x.title])));
+  // Explicit optional-scene absence tests original poster/emoji fallback AFTER
+  // announcement. Restore the real helper before all retained animation tasks.
+  await page.evaluate(()=>{window.__ownerFallbackScene=window.ElectionNightCelebrationScene;window.ElectionNightCelebrationScene=undefined;});
   // Exercise the first poster request, before it can be in the decoded-image cache.
   await page.route('**/assets/celebration-owner-mississippi.jpg*',route=>route.abort());
   await page.route('**/assets/milestone-mississippi.svg',route=>route.abort());
@@ -42,27 +68,29 @@ try{
   // the owner's requested YouTube tracks. The separate popup drill covers them.
   await page.locator('#enCelebrationMusicQuick').click();
   assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original');
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
   await page.locator('#enMilestonePoster').waitFor({state:'hidden'});
   assert.equal(await page.locator('#enMilestoneArt').isVisible(),true);
   assert.equal(await page.locator('#enMilestoneTitle').isVisible(),true,'A missing poster preserves the readable story and controls');
   await page.locator('#enMilestoneClose').click();
   await page.unroute('**/assets/milestone-mississippi.svg');
   await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.mississippi}).click();
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
   await page.waitForFunction(()=>document.querySelector('#enMilestonePoster').src.endsWith('milestone-mississippi.svg'));
   await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
   assert.equal(await page.locator('#enMilestonePoster').isVisible(),true,'Missing uploaded art falls back to the existing local illustration');
   await page.locator('#enMilestoneClose').click();
   await page.unroute('**/assets/celebration-owner-mississippi.jpg*');
+  await page.evaluate(()=>{window.ElectionNightCelebrationScene=window.__ownerFallbackScene;delete window.__ownerFallbackScene;});
   for(const id of ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','tsunami']){
    await page.emulateMedia({reducedMotion:['talarico','abbott','mississippi','blansas','graham','nebraska','blue_corn','maine','ohio','blexas','tsunami'].includes(id)?'no-preference':'reduce'});
    if(id==='tsunami')await page.locator('#enTsunamiPreview').click();
    else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[id]}).click();
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement');
-   assert.equal(await page.locator('#enCelebrationFish').isHidden(),false);
+   assert.equal(await page.locator('#enCelebrationFishTalking').isHidden(),false,'Announcement fish frame remains visible with the original SVG default');
    if(['mississippi','blansas','graham'].includes(id)){
     await page.locator('#enMilestonePoster').evaluate(img=>img.decode());
-    const posterBox=await page.locator('#enMilestonePoster').boundingBox();
-    assert(posterBox.width<=width&&posterBox.height<=900*.52+2,'Supplied poster remains contained during announcement');
+    assert.equal(await page.locator('#enMilestonePoster').isHidden(),true,'Owner image is reserved for the finale after the animation');
    }
    await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'scene');
@@ -72,7 +100,7 @@ try{
     assert.match(await thumbnail.getAttribute('src'),/celebration-owner-graham\.jpg\?v=90f3e5c8fdee$/,'Thumbnail must share the owner artwork revision');
    }
    if(['ohio','blexas','tsunami'].includes(id)){
-    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    let visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     const spec={ohio:{first:'ohio-buckeye',middle:'ohio-blue-lightning',last:'ohio-special-finale',music:'Buckeye blue-shock riff'},blexas:{first:'blexas-illustrative-texas',middle:'blexas-office-star',last:'blexas-two-call-finale',music:'Two-star victory fanfare'},tsunami:{first:'tsunami-theatrical-wave',middle:'tsunami-lawn-sign',last:'tsunami-preview-finale',music:'The rising tide finale'}}[id];
     assert.equal(await visual.locator('[data-layer="'+spec.first+'"]').count(),1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
@@ -82,8 +110,10 @@ try{
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="'+spec.middle+'"]').count(),id==='blexas'?2:1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     if(id==='ohio'){assert.equal(await visual.locator('[data-layer="ohio-cracked-shell"]').count(),2);assert.match(await visual.locator('[data-layer="ohio-cracked-shell"]').first().getAttribute('style'),/translateX\(-60px\)/);}
     if(id==='blexas')assert.match(await visual.innerText(),/SENATE.*GOVERNOR.*TWO SEPARATE STATEWIDE CALLS/s);
     if(id==='tsunami')assert.match(await visual.locator('[data-layer="tsunami-lawn-sign"]').getAttribute('style'),/rotate\(18deg\)/);
@@ -95,7 +125,7 @@ try{
     await visual.screenshot({path:resolve(out,`celebration-${id}-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='maine'){
-    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    let visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.locator('[data-layer="maine-broom-hat"]').count(),1);
     assert.match(await visual.innerText(),/COLLINS/);
     assert.match(await visual.innerText(),/THEATRICAL SENDOFF.*ORIGINAL PARODY/);
@@ -106,8 +136,10 @@ try{
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="maine-change-breeze"]').count(),1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     assert.match(await visual.locator('[data-layer="maine-broom-hat"]').getAttribute('style'),/translate\(430px,-90px\)/,'Reduced motion retains the exit endpoint');
     await visual.screenshot({path:resolve(out,`celebration-maine-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="maine-next-chapter"]').count(),1);
@@ -115,7 +147,7 @@ try{
     await visual.screenshot({path:resolve(out,`celebration-maine-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='blue_corn'){
-    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    let visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.locator('[data-layer="iowa-corn-ear"]').count(),1);
     assert.equal(await visual.locator('[data-layer="first-blue-kernel"]').count(),1);
     assert.equal(await visual.locator('[data-layer="corn-kernel"]').count(),20);
@@ -129,8 +161,10 @@ try{
     await page.clock.runFor(2400);assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.match(await visual.innerText(),/BLUE KERNELS EVERYWHERE/);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     assert.equal(await visual.locator('[data-layer="corn-kernel"]').evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).fill==='rgb(128, 216, 255)')),true,'Reduced motion retains all blue kernels');
     await visual.screenshot({path:resolve(out,`celebration-iowa-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="iowa-blue-corn-finale"]').count(),1);
@@ -138,7 +172,7 @@ try{
     await visual.screenshot({path:resolve(out,`celebration-iowa-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='nebraska'){
-    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    let visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.locator('[data-layer="coach-tom-osborne"]').count(),1);
     assert.match(await visual.innerText(),/COACH TOM OSBORNE/);
     assert.match(await visual.innerText(),/FICTIONAL SIDELINE REACTION/);
@@ -152,8 +186,10 @@ try{
     assert.equal(await visual.locator('[data-layer="blue-confetti"] rect').count(),16);
     assert.match(await visual.innerText(),/COMEDY SCOREBOARD.*NOT VOTE TOTALS/);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     assert.equal(await visual.locator('[data-layer="absurd-scoreboard"]').isVisible(),true);
     await visual.screenshot({path:resolve(out,`celebration-nebraska-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="nebraska-independent-finale"]').count(),1);
@@ -161,7 +197,7 @@ try{
     await visual.screenshot({path:resolve(out,`celebration-nebraska-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='graham'){
-    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    let visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.locator('[data-layer="farewell-disco-ball"]').count(),1);
     assert.equal(await visual.locator('[data-layer="graham-neon-marquee"]').count(),1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
@@ -173,23 +209,27 @@ try{
     assert.equal(await visual.locator('[data-layer="incumbent-stage-pass"]').count(),1);
     assert.equal(await visual.locator('[data-layer="stage-exit"]').count(),1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     assert.match(await visual.locator('[data-layer="incumbent-stage-pass"]').getAttribute('style'),/translateX\(400px\)/,'Reduced motion retains the theatrical exit endpoint');
     await visual.screenshot({path:resolve(out,`celebration-graham-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="graham-finale"]').count(),1);
     await visual.screenshot({path:resolve(out,`celebration-graham-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='talarico'){
-    const visual=page.locator('#enCelebrationVisual');
+    let visual=page.locator('#enCelebrationVisual');
     assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.getAttribute('data-beat'),'0');
     assert.equal(await visual.locator('[data-layer="blue-horns"]').count(),1);
     assert.equal(await page.locator('#enCelebrationIcon').isHidden(),true);
     assert.equal(await page.locator('#enMilestonePoster').isHidden(),true);
     assert.equal(await visual.evaluate(host=>host.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});
     await visual.screenshot({path:resolve(out,`celebration-talarico-beat0-${width}.png`)});
     await page.clock.runFor(2400);
@@ -205,10 +245,12 @@ try{
     await visual.screenshot({path:resolve(out,`celebration-talarico-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='abbott'){
-    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    let visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.evaluate(host=>host.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     assert.equal(await visual.locator('[data-layer="campaign-sign"]').count(),1);
     assert.equal(await visual.locator('[data-layer="falling-tree"]').count(),1);
     assert.match(await page.locator('#enCelebrationMusicLabel').innerText(),/Original score.*campaign-sign exit march/);
@@ -219,7 +261,7 @@ try{
     await visual.screenshot({path:resolve(out,`celebration-abbott-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='blansas'){
-    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    let visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.locator('[data-layer="john-brown-ghost"]').count(),1);
     assert.equal(await visual.locator('[data-layer="old-rebel-emblem"]').count(),1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
@@ -230,15 +272,17 @@ try{
     assert.equal(await visual.locator('[data-layer="kansas-ink-wash"]').count(),1);
     assert.equal(await visual.locator('[data-layer="blue-ink-splash"]').count(),3);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     assert.match(await visual.innerText(),/KANSAS/);
     await visual.screenshot({path:resolve(out,`celebration-kansas-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="kansas-victory-card"]').count(),1);
     await visual.screenshot({path:resolve(out,`celebration-kansas-beat2-${width}.png`)});
     await page.clock.runFor(2500);
    }else if(id==='mississippi'){
-    const visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
+    let visual=page.locator('#enCelebrationVisual');assert.equal(await visual.isVisible(),true);
     assert.equal(await visual.locator('[data-layer="retired-mascot-prop"]').count(),1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
     assert.match(await visual.innerText(),/SIMULATED PREVIEW/);
@@ -249,8 +293,10 @@ try{
     assert.equal(await visual.getAttribute('data-beat'),'1');
     assert.equal(await visual.locator('[data-layer="mascot-storage-crate"]').count(),1);
     assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length>0),true);
+    visual=await reducedEndpoint(page,visual);
     await page.emulateMedia({reducedMotion:'reduce'});
-    await page.waitForFunction(()=>document.querySelector('#enCelebrationVisual').getAnimations({subtree:true}).length===0);
+    await page.waitForFunction(()=>document.querySelector('#celebrationReducedEndpoint').getAnimations({subtree:true}).length===0);
+    await reducedModal(page,id);
     assert.match(await visual.locator('[data-layer="retired-mascot-prop"]').getAttribute('style'),/translate\(700px,250px\)/,'Static reduced-motion frame retains the prop in storage');
     await visual.screenshot({path:resolve(out,`celebration-mississippi-beat1-${width}.png`)});
     await page.clock.runFor(2400);assert.equal(await visual.locator('[data-layer="mississippi-victory-card"]').count(),1);
@@ -260,6 +306,7 @@ try{
     assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true,'Other stories retain their existing presentation');
     await page.clock.runFor(7300);
    }
+   await clearReducedEndpoint(page);
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
    assert.equal(await page.evaluate(()=>enCelebrationPlayer.state().active),null);
    if(['mississippi','blansas','graham'].includes(id))assert.equal(await page.locator('#enMilestoneSource .en-scene-credit').count(),1,'Scene attribution does not accumulate across beats');
@@ -278,8 +325,10 @@ try{
     if(ownerArt){
      assert.match(await page.locator('#enMilestoneSource').innerText(),/Owner-supplied fictional artwork/);
      assert.match(src,/\?v=[a-f0-9]{12}$/);
-     if(await page.locator('#enMilestonePoster').isVisible()){const box=await page.locator('#enMilestonePoster').boundingBox();assert(box.width<=width&&box.height<=900*.52+2,'Uploaded art is contained without cropping or mobile overflow');}
-     else assert.equal(await page.locator('#enCelebrationVisual').isVisible(),true,'A hidden uploaded poster is replaced by its dedicated scene');
+     const ownerImage=page.locator('#enCelebrationVisual img.en-celebration-owner-image');await ownerImage.waitFor();await ownerImage.evaluate(img=>img.decode());
+     assert.equal(await ownerImage.getAttribute('src'),src,'Finale retains the exact supplied image URL');assert.equal(await ownerImage.evaluate(img=>getComputedStyle(img).objectFit),'contain');
+     const box=await ownerImage.boundingBox();assert(box.width<=width&&box.height<=900*.52+2,'Uploaded art is contained without cropping or mobile overflow');
+     assert.equal(await page.locator('#enMilestonePoster').isHidden(),true);assert.equal(await page.locator('#enCelebrationVisual').isVisible(),true,'The finale shows the supplied owner image after its dedicated animation');
     }
     if(id==='graham')assert.match(src,/\?v=[a-f0-9]{12}$/,'Changed incumbent artwork must not reuse an old cached image');
     if(id==='graham')assert.doesNotMatch(await page.locator('#enMilestonePoster').getAttribute('alt'),/lindsey/i);
@@ -349,6 +398,8 @@ try{
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve()});
   await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.talarico}).click();
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  await page.locator('#enCelebrationSkip').click();
+  assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
   assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true);
   assert.equal(await page.locator('#enCelebrationIcon').isVisible(),true);
   assert.equal(await page.locator('#enMilestonePoster').isVisible(),true);
@@ -357,6 +408,8 @@ try{
   if(sceneId==='tsunami')await page.locator('#enTsunamiPreview').click();
   else await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles[sceneId]}).click();
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  await page.locator('#enCelebrationSkip').click();
+  assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
   assert.equal(await page.locator('#enCelebrationVisual').isHidden(),true);
   if(sceneId==='tsunami'){
    assert.equal(await page.locator('#enTsunamiMeme').isVisible(),true,'Missing wave renderer retains original preview poster');
@@ -379,4 +432,8 @@ try{
   console.log(`${width}px: full preview roster, announcement ordering, autoplay failure, mute, skip and responsive layout PASS`);
   await context.close();
  }
+}catch(error){
+ const suffix=Date.now();try{await currentPage?.screenshot({path:resolve(out,'failure-'+suffix+'.png')});}catch{}
+ let state=null;try{state=await currentPage?.evaluate(()=>({phase:document.querySelector('#enCelebrationStage')?.dataset.phase,story:document.querySelector('#enCelebrationPreviewChoice')?.value,ownerImage:Boolean(document.querySelector('#enCelebrationVisual img')),isolated:Boolean(document.querySelector('#celebrationReducedEndpoint'))}));}catch{}
+ writeFileSync(resolve(out,'failure-'+suffix+'.json'),JSON.stringify({at:new Date().toISOString(),error:String(error),state,source_sha256:Object.fromEntries(freezeFiles.map(file=>[file,createHash('sha256').update(frozen[file]).digest('hex')]))},null,2)+'\n');throw error;
 }finally{await browser?.close();await new Promise(ok=>server.close(ok));}

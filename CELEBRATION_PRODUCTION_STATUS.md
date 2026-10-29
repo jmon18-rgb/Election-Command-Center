@@ -1,5 +1,18 @@
 # Celebration production inventory - October 27, 2026
 
+## October 29 owner follow-up — integrated candidate; protected publication pending
+
+Actual defect: the original scene renderer kept returning an SVG at complete, hiding Graham/Kansas/Mississippi pictures despite their successful load; Abbott showed its picture before the animation. The revised sequence is announcement →3 original beats → whole supplied picture. Skip and reduced motion reach the same finale; a queued story leaves the picture visible for the existing 2400 ms beat before advancing. Token, stale error, withdrawal, mute, queue and reading-return guards remain. All 4 exact supplied JPEGs and their fiction labels are retained; failed images use the same-event SVG.
+
+John Brown now has swept white hair, a long beard, civilian frock coat/lapels and a Harpers Ferry 1859 engine-house cue with later Union-blue ink. It is explicitly a fictional ghost-story satire, not a historical scene or a claim that Brown wore a Civil War uniform. The supplied Kansas painting is unchanged. The static SVG preserves local title/description and a fingerprinted fallback.
+
+Two original inline fish anchors follow the actual announcement recording's energy using a captureStream analysis copy and a zero-gain branch. Native MP 3 playback is never rerouted; failed/suspended analysis leaves sound independent and the fish still. Close/mute/skip/replacement/reduced motion/hidden and stale resume epochs reset movement. This is energy-responsive mouth/jaw motion, not phoneme alignment, generated speech or human listening acceptance. The original Commons still and attribution remain as the optional static presentation when available.
+
+Eleven visible soundtrack picks accompany the existing playable ad-free original scores and private per-event file selection. Commercial/fight-song recordings are not bundled, downloaded or ripped. YouTube remains explicit optional playback and may contain ads. Graham: Last Dance; Mississippi: Hit the Road Jack; Texas Senate: owner-selected Eyes of Texas; Abbott: owner-selected Walk This Way. Other suggestions and original fallbacks are named in the popup.
+
+Local actual Edge 1366/390 four-image/skip/reduced/queued-finale/late callbacks, all 11 retained stories, native announcement energy/jaw movement, local audio persistence and reading/ratings regressions pass. Human appearance/listening/assistive acceptance remains NOT_RUN. Exact final-head CI and published-byte/browser acceptance are still required.
+
+
 ## PR527 VERIFIED PUBLISHED — ad-free local soundtracks and supplied Abbott art
 
 Owner's ad complaint supersedes earlier YouTube-default text. Fresh playback

@@ -1,5 +1,12 @@
 # Election Night production-readiness assignment
 
+## October 29 — direct owner early-indicator and celebration follow-up, protected release pending
+
+Implemented one 32-race early watch with KY-06/IN-05/FL-SEN first, actual CURRENT matched-source binding, separate raw/call status and explicitly provisional multi-state weather. Retained 21 reference rows, 19 needles, county guides, official links and Pin/unpin. Required matched inputs for the three priority races remain open; no invented overperformance. Supplied four pictures follow three animation beats with Skip/reduced-motion/queued finale; original fish SVG follows the actual recording through analysis-only capture, Brown/Harpers Ferry art clarified, 11 soundtrack picks visible with ad-free originals/local files. No numerical/source/earned-call eligibility change.
+
+Local core 91 PASS; actual Edge desktop/phone new early-watch/image/native-MP3 and retained media/ratings/reading checks PASS. Full-DOM fourth run reached final error guard with only jsdom missing scrollBy; viewport shim added beside existing scrollTo, fifth full run in progress. Initial SVG accessibility/format and isolated harness dependency/mode corrections retain original failures and all migrated original assertions. No deadline/sample/ESS/assertion cut, native source retry, paid action or archive activation. Next: finish exact-head CI, protected merge, final CURRENT-main Pages, origin/main changed-byte and actual published browser verification, then one scoped guide addendum. Frozen15/billing29 left untouched after earlier denied access; six accessible deliverables marked; private CSV/preferences preserved.
+
+
 ## October29 PR533 VERIFIED PUBLISHED — county-aware proposal
 
 Tested e671d5f0 passed all37current-head workflow parents and56latest jobs

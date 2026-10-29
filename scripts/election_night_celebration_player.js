@@ -19,7 +19,7 @@
   tsunami:[['🌊','A VERY LARGE WAVE','Preview the grand finale.'],['🌊 🌊','PLEASE SECURE YOUR LAWN SIGNS','The tide has theatrical ambitions.'],['💙','BLUE TSUNAMI','Preview only until national conditions can be verified.']]
  });
  function create({render=()=>{},announce=done=>done(),music=()=>{},valid=()=>true,
-  setTimer=setTimeout,clearTimer=clearTimeout,onIdle=()=>{}}={}){
+  setTimer=setTimeout,clearTimer=clearTimeout,onIdle=()=>{},reducedMotion=()=>false}={}){
   let active=null,queue=[],timer=null,token=0;
   function clear(){if(timer!==null)clearTimer(timer);timer=null;}
   function state(){return {active:active?.item.id||null,preview:active?.demo||false,pending:queue.length};}
@@ -34,20 +34,40 @@
    if(!active){onIdle();return;}
    const current=token,entry=active;
    render(entry.item,entry.demo,'announcement',null);
-   let started=false;
+   let started=false,finaleShown=false;
    function scene(index){
     if(current!==token||active!==entry)return;
     if(!entry.demo&&!valid(entry.item)){render(entry.item,false,'revoked',null);next();return;}
     const frames=STORIES[entry.item.id];
-    if(index>=frames.length){render(entry.item,entry.demo,'complete',frames.at(-1));next('complete');return;}
+    if(index>=frames.length){
+     if(finaleShown)return;finaleShown=true;clear();
+     render(entry.item,entry.demo,'complete',frames.at(-1));
+     // A queued next story must not erase the owner-photo finale in the same
+     // task before the browser can paint it. Single final stories persist.
+     if(queue.length){timer=setTimer(()=>{
+      if(current!==token||active!==entry)return;
+      if(!entry.demo&&!valid(entry.item)){render(entry.item,false,'revoked',null);next();return;}
+      next('complete');
+     },2400);}else next('complete');
+     return;
+    }
     render(entry.item,entry.demo,'scene',frames[index]);
     timer=setTimer(()=>scene(index+1),2400);
    }
    function begin(){
     if(started||current!==token||active!==entry)return;
     if(!entry.demo&&!valid(entry.item)){render(entry.item,false,'revoked',null);next();return;}
-    started=true;clear();music(entry.item.id);scene(0);
+    started=true;clear();music(entry.item.id);
+    let reduced=false;try{reduced=reducedMotion()===true;}catch{}
+    scene(reduced?STORIES[entry.item.id].length:0);
    }
+   entry.finish=()=>{
+    if(current!==token||active!==entry)return false;
+    if(finaleShown)return false;
+    if(!entry.demo&&!valid(entry.item)){render(entry.item,false,'revoked',null);next();return false;}
+    if(!started){started=true;clear();music(entry.item.id);}
+    scene(STORIES[entry.item.id].length);return true;
+   };
    // Media ended/error/autoplay rejection may finish announcement; a bounded
    // fallback ensures that a stalled recording cannot deadlock the queue.
    timer=setTimer(begin,5500);
@@ -65,7 +85,8 @@
    queue=queue.filter(x=>x.demo||x.item.id!==id);
    if(active&&!active.demo&&active.item.id===id){render(active.item,false,'revoked',null);next();}
   }
-  return Object.freeze({enqueue,stop,revoke,state});
+  function skip(){return Boolean(active?.finish?.());}
+  return Object.freeze({enqueue,stop,revoke,state,skip});
  }
  return Object.freeze({STORIES,create});
 });

@@ -1,5 +1,10 @@
 # JackStradamus · development plan
 
+## October29 owner follow-up — implementation in final local/protected validation
+
+Unify the early-signal lists into32 races with KY-06/IN-05/FL-SEN first, current matched overperformance and distinct provisional multi-state weather; retain21 exact owner references,19 personal needles, county guides and Pin/unpin. Required matched inputs for the three priority races remain explicitly pending. Repair all4 supplied-image finales after animation, add Skip/reduced motion and native-recording fish-mouth movement, show11 soundtrack picks and clarify John Brown/Harpers Ferry art. No model/source/call eligibility expansion. Core91checks pass; actual local desktop/phone feature and retained media/reading checks pass. Final full-DOM, exact-head all-workflow gate and verified publication remain required; existing human/calibration/source/capacity gates stay open.
+
+
 ## October29 PR533 VERIFIED PUBLISHED — county-aware proposal
 
 Tested e671d5f0 passed all37current-head workflow parents and56latest jobs
