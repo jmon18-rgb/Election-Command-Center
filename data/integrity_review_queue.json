@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T20:58:42.808631Z",
+  "updated_at": "2026-10-29T21:54:01.820909Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -260,6 +260,61 @@
     }
   ],
   "items": [
+    {
+      "id": "956ba347370141a936fe",
+      "title": "5 expert takeaways on 2026 midterm election security - PBS",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQbWNPNjFyak9mY0pqSmpja3lVTG5NVTlrQzA1aUZpYm5lZlFaOU16Q3h6OHhaS1ZkbXozSmVCSE9tMW53MEp1MGFRUFpOSUQyVVR5U3JTYXQ3cjZtMUtyM09LR2ZuaXVPTVNXRTN2dWp1d2lpOGVMbUVOeTU4VFJ3ZUpRcEJoR2RfRGV2MWhOblJFZXVD0gGaAUFVX3lxTE5vd3MzU0h0aDUwOG9JakdXbFpMMkp5aUtVRDBWVlFOamRkVjl1WWMwMFNwaVJFY2sxLTlIell0NkJvWm1ac2tUZFdnTUhfbDRvSEJXWVEtMURUd21RS0hieDRHN1I0QVRENElwTk1KZnBMLTRsX3dXY0hjS2p3QnpJbzZkbnl4b3l2NU5qZUI3VUd3V0Njclc3bmc?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-10-29T21:35:11Z",
+      "detected_at": "2026-10-29T21:54:01.820909Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "5 ",
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ef1decee969899cba0a9",
+      "title": "Federal agents are ending up at polling places for reasons unrelated to the election - Scripps News",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNTEhCU2J6M1JxNW5uY1dkQU1zVzgwSkFYWWpNOHF1eW1RN1lYaEFCLWV1WHBSbUZ3UlBpQnd3TW9zWVFMQk1IaEphbTdSeWlYWnVabTlDakhQbkI0a3VxdjR5R011WWZIOUlFY1lLUTcxWXQwdkt4alU0MDdPaS1SWklHeXRmSm84SjFWZUFPQ3F2MW0xSlZ4ZTMzUGFaQVI0TXFIX1NxLUpYODIzS3V2aUhpblRoaVZDaDZrNktadEp5VmlXcmpyeWdJY0ZHeVFYNnJSRWhB?oc=5",
+      "publisher": "Scripps News",
+      "published_at": "2026-10-29T20:46:09Z",
+      "detected_at": "2026-10-29T21:54:01.820909Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "120380bf485b1f418d41",
+      "title": "How the Election Integrity Network Is Undermining Elections - American Oversight",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOQUNRWFBVTDZhWUxaanZwVlhEMEtDTFRvUkxVU3pGWGdEb0tXV2dIR3FhNTlMQk53TFktVjFnTi1xMGpwY2hFYV92LVJzTWQ2V2M4Q01mZDFmWDhTeUtnNXRKTmZnRE1mREtnZjVOa29KWHNCdUdzUThsbXhuWUhMdVhXd1JsZE5uelMwSXAxMkJSbTNn?oc=5",
+      "publisher": "American Oversight",
+      "published_at": "2026-10-29T19:58:42Z",
+      "detected_at": "2026-10-29T21:54:01.820909Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "663187b5137418d03661",
       "title": "N.Y. AG's warning about ICE at polling places sparks political disagreement - Spectrum News",
@@ -4979,60 +5034,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "318b726bf8d7cfff85b7",
-      "title": "Election security, or stripping citizens\u2019 voting rights? FAQs about the amendment on Kansans\u2019 ballots - The Lawrence Times",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9JTlNnWkNoS0drSm9hWGhrUklzMmNhWVBrRUw3SFFhUGplWmlPM0RxNzRUVWxTcVZTWWxmLUVUVU5pNUpXdHEwS2x6bWF4QWJRRGw0Q2NpZWg0bHhmZ191S0Itbm80OXJURGJHOTdLNnpVcTU5WGc?oc=5",
-      "publisher": "The Lawrence Times",
-      "published_at": "2026-10-17T16:33:35Z",
-      "detected_at": "2026-10-17T16:42:26.776700Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c01889f81a3f5c39508c",
-      "title": "Supreme Court allows Trump to implement parts of his mail-in voting executive order - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLUpWVmxZNkVNNGxlamhNRjkteVhjUVJNMXhDQ3Vyc3V3UkdTVEcyeUM0ZnEzTUlJQXRYMUZsNkZ5LTN5Q0VzWDFrVmVFSVlpOFBSaEpwa19qd0Q4SExzankxMEpIQjMxT2k5R0Z3emE0cDFCNng3V3lwVjBQUDg1NNIBhgFBVV95cUxOWGtmd1BpZ1U2QlJOeTZIcXhKMTVTOVFEZDJKcDJPS1NzX2NsOG1RT2w2TkpUMDkwTWY1QzlZcGt4LVlmNV9NZlFVUG04S0Y1U2hUSUdFSk5sUlFId1VsZzlnd1JvOGlWQnY2LThiN1J6cjZDSjdSWHd3elNWS3FpYWJqMXFnUQ?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-17T13:10:06Z",
-      "detected_at": "2026-10-17T18:43:32.374309Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ee984dc4438660907df1",
-      "title": "Nevada begins early voting after DOJ\u2019s noncitizen voter crusade fizzled out - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPR1Fyd291T1IwOFoyNDJueWQ3aG9KYzFoalJ0U2tHNXRkeUQ1VHFqd3ZfUGJjMWNueDNpX3ZDVGFyNU9PLW80ZjI5MVlPSzZRSDhYcmt1VDFHOTAzdXlNQ19RMmtNQnZwNzJMRzhxRUJhQmlzeWo3aVMxS19MYlZINDVfMzBHbnlUOWxJdER1U2dKeUFjZW9KQ0Jwa3VsMmhVcHdhNTZYSUtDMGU5Q18tZ0N0cjA4eUZVd1BV?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-17T10:01:06Z",
-      "detected_at": "2026-10-17T10:42:09.090115Z",
-      "state_hints": [
-        "NV"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

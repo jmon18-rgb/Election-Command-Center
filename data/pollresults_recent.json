@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T20:58:43.452161+00:00",
+  "updated_at": "2026-10-29T21:54:02.568985+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,13 +13,18 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 965,
+      "available_in_source": 966,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 349,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "MI-GOV",
+      "poll_id": "b8ae6e54-601a-409d-aa76-8fcaf9a3636c"
+    }
+  ],
   "observations": [
     {
       "race_code": "MI-SEN",
@@ -825,6 +830,30 @@
       "dem": 51.0,
       "rep": 44.0,
       "margin": 7.0,
+      "field_end": "2026-10-27",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T17:10:00",
+      "posted_source_time": "10/28/26 17:10",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.cbsnews.com/detroit/news/el-sayed-widens-lead-rogers-michigan-senate-poll/",
+      "sample_population": "lv",
+      "sample_size": 636,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MI-GOV",
+      "race_type": "governor",
+      "state": "MI",
+      "poll_id": "b8ae6e54-601a-409d-aa76-8fcaf9a3636c",
+      "question_id": "328b8800-2d4c-4278-9538-980fbbaa7f3b",
+      "pollster": "Mitchell Research & Communications",
+      "dem_name": "Jocelyn Benson",
+      "rep_name": "John James",
+      "dem": 49.0,
+      "rep": 44.0,
+      "margin": 5.0,
       "field_end": "2026-10-27",
       "field_start": "2026-10-26",
       "posted_date": "2026-10-28",
