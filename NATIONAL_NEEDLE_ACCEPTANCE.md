@@ -1,5 +1,17 @@
 # National needle acceptance decision — October 27, 2026
 
+## Conditional winner-event implementation — R0 candidate, separate from R2
+
+The concrete source-call gap is being repaired in a separate release after527:
+existing validated winner events condition shared election factors rather than
+only fixing the called race's seat. Exact proposal correction, original discrete
+redraw law, one fixed bounded county target and a hard final ESS floor protect
+the joint calculation. Unsupported transfer is explicitly withheld while valid
+winner accounting remains. Same-election outputs/whole original no-call hashes,
+independent Gaussian identities and exact indexed-allocation tests are numerical
+evidence; none establishes held-out accuracy or calibration. See
+SOURCE_CALL_CONDITIONING.md. Source/call eligibility and R2 admission stay intact.
+
 ## October28 direct owner sophistication work
 
 Selected-race empirical margin distributions are an additive candidate display

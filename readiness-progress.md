@@ -1,5 +1,75 @@
 # Readiness progress
 
+## October28 R0 conditional-call implementation — protected review next
+
+PR528 initial6bb92b92 passed36parents/48jobs; fullDOM40793713865/job123184910678
+failed its existing UT04 lead-change assumption after CI rebuilt today's polling
+bundle. Original assertion now uses explicit fictional crossing range; actual
+bundle coverage/office/all other assertions retained, positive/negative controls
+PASS. Failedhead never merges/reruns/waives; no timeout increase.
+Independent review also justified exact duplicate-value memoization and analytic
+integration of unused called-local margins: old weights/seeds/captures/all public
+outputs/optionalconsumers remain EXACT, required margins always materialized,
+no private NaN leaks. Published code remains unchanged pending correctedhead.
+Optimized actualEdge1366/390 200-call case takes3023/2842ms and correctly WITHHOLDS
+covariance for lowESS, all winners retained; six-call case1321/1208ms. This is a
+remaining synchronous responsiveness/proposal-support limit, not a waived gate
+or a guarantee of full-night covariance learning. Future worker/look-ahead work
+is a distinct executable improvement; do not claim every engineering row blocked.
+
+New helper/engine/kernel now condition existing validated winner events through
+the SAME joint factors and indexed redraw law, with exact proposal correction.
+Original no-call outputs are pinned by immutable fictional whole-output hashes;
+one fixed original count target/alpha and engine-owned finalization prevent
+double weighting/unweighted replay. HARD final ESS>=.5n; unsupported covariance
+is visibly withheld while validated winners/count accounting remain. Eligibility,
+no_credit,18sources/state shares/reporting61-node integral are unchanged.
+
+Independent exact-law/normal/fixed-target/finalizer reviews PASS. Review exposed
+and fixed arbitrary public unweighted replay, helper-before-kernel ordering and
+PUBLIC comparison context. Actual Edge1366/390 normal range/context/keyboard/
+correction/retraction/WITHHELD/live-isolation/overflow tasks PASS. Production
+3000-particle coordinator cost1191/1239ms including driver; six mixed fictional
+calls with28/38/52bags1279/1410ms on this desktop host, not physical-phone speed.
+Source/engine/kernel tests and original model tests PASS. Core initial smoke
+failed its isolated VM's missing new require dependency; actual versioned helper
+is now loaded and affected smoke PASS with every original check retained.
+Initial fullDOM still running; exact-head CI/publication not yet claimed.
+SOURCE_CALL_CONDITIONING.md documents bounded continuation and open calibration.
+
+## PR527 VERIFIED PUBLISHED — October28 owner ranges, ad-free files and exact art
+
+Tested ed5bb48a4d7eaf8fa258b0dad2d59cc5dec3f9e1 passed all37 workflow
+parents/52latestjobs49SUCCESS3nonapplicableSKIP/0external, clean and mergeable.
+Merge b1b41aff3ba7f8ad21bf463ff564a0c83288fe7f; final current main
+3ec89d1722df48d738759ea1b9fddeab7acbfdb3/Pages40790586312 SUCCESS.
+All44 changed public files/index match origin/main at00:01:08.796Z; initial
+restricted-network failures are retained, affected-only network retry passes.
+Current-main public coherence/index/no_credit PASS; main rechecked unchanged.
+
+Actual published Edge1366x900/390x844 personal ranges/help/keyboard/redraw,
+popup/call withdrawal, native synthetic audio playback/exact-byte persistence/
+teardown, full supplied Abbott art+AI-fiction label and eight delayed real-IDB
+save/remove/info races at EACH size PASS, election providers/real YouTube blocked.
+No calibration/actual-recording/human-listening claim. Original scores are the
+ad-free fallback; files remain private to this browser. Optional YouTube stays.
+Exact supplied JPEG SHA e9d6360032b79c75156b490aaf62bd9250479d54e4444225c5d6bc313dc29c3d.
+Proof pr527-exacthead-gate.json, pr527-published-affected-retry-1793232068803.json,
+pr527-published-coherence-origin-main-network.txt and pr527-published-ed5bb48a/.
+
+Ordinary IAB27 reload exposes new audio controls but restores2024archive. CDP
+mouse times out; Enter/Space focus current-results without changing its mode.
+No error log, private preferences/context retained, no ordinary interactive or
+geometry success claimed. Actual published Edge proves changed rendering and
+controls. All seven delivered previews marked, frozen15 untouched; billing29
+handoff retained. Do not retry unchanged ordinary input/tool limitation.
+
+R0 source-call conditional mathematics now has full-factor and realistic redraw-
+bag proposal/replay numerical support; engine+fixed county-target candidates are
+being implemented separately. Calls remain existing validated D/R inputs only;
+no-call legacy outputs, no_credit, state budgets and hard ESS floor preserved.
+This is an internal executable engineering task, not a date/source/human block.
+
 ## October28 latest direct steering — ad-free soundtrack and supplied Abbott image
 
 Owner reports YouTube ads spoil the mood; this supersedes the fresh-YouTube

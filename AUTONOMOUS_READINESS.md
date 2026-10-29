@@ -1,5 +1,48 @@
 # Election Night production-readiness assignment
 
+## Current R0 source-call candidate integrated — finish protected release
+
+Branch readiness/source-call-conditioning carries PR527 proof checkpointca7c7d5f
+plus actual helper/engine/kernel integration and portable tests. Engine-owned
+finalizer validates private original weights/packet integrity/context, combines
+ONE fixed county target, enforces HARDfinalESS>=.5n and internally resamples.
+No public selected-seed replay can emit CONDITIONED. Independent review fixed
+helper-before-kernel load order and PUBLIC comparison context. New margin tags,
+broader-call-versus-own-returns copy, visibleWITHHELD warning and helper-inclusive
+cache/history/audit fingerprints are wired. Original no-call hashes, fixed state
+budgets/no_credit/source eligibility remain. See SOURCE_CALL_CONDITIONING.md.
+All focused tests/actual1366/390 browser tasks and numerical reviews pass; initial
+core smoke's VM now loads ACTUAL new helper, affected check passes. FullDOM and
+all exact-head workflow parents/latestjobs/external statuses plus protected merge,
+CURRENTmainPages/changedbytes/appropriatepublishedbrowser remain required.
+Do not mistake numerical/engineering evidence for predictive calibration.
+
+## PR527 published; next concrete R0 model implementation
+
+PR527 final testeded5bb48a/all37parents/49applicablejobs/0external passed and
+merged b1b41aff. Final currentmain3ec89d17/Pages40790586312 SUCCESS; all44
+changedfiles/currentindex match origin/main, coherence/no_credit PASS. Actual
+published Edge1366/390 same-draw median/middle50/90, local native audio storage/
+playback/teardown/eightasync races each, full exactAbbottJPEG+AI-fictionlabel,
+call/withdrawal/keyboard/isolation/overflow tests PASS. YouTube is optional;
+fresh ad-free local files/original scores supersede all old fresh-YouTube text.
+No recording downloaded; no more photo question. Original guide/human tasks
+stay unchanged. Ordinary27 reload/current-results input is tool-limited (2024
+archive remains,0viewport); privatepreferences/context preserved, no ordinary
+interaction/geometry claim. Seven previews marked, frozen15 untouched,29handoff.
+Reuse pr527-published-ed5bb48a receipts; never replay unchanged demonstrations.
+
+Continue candidate source-call conditional learning: full relevant Gaussian
+factor/discrete without-replacement proposal with exact importance correction,
+frozen original county target/count-only alpha, one combined whole-election
+resample and HARD final ESS>=.5n; never temper call evidence to pass ESS or expose
+raw proposal probabilities. Typed packet provenance/replay and explicit numeric-
+support WITHHELD fallback preserve validated winner accounting. No-call path
+must retain exact original outputs, independent no_credit and all state budgets.
+Engine/kernel candidates in ignored conditional-call-candidate/ are coordinated
+subagent work, not published code. Root integrates/tests/reviews/releases them
+separately when ready. Numerical correctness is not empirical calibration.
+
 ## October28 current owner steering — ad-free files, exact Abbott image, models
 
 PR527's latest update supersedesca5ef385: restore fresh ad-free mode,

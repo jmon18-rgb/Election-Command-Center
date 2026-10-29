@@ -234,8 +234,15 @@ async function main(){
  });
  const engineCode=codes.find(x=>x.url.startsWith('./scripts/chamber_control_model.js?'));
  assert(engineCode,'Missing JS chamber model');
+ const callCode=codes.find(x=>x.url.startsWith('./scripts/source_call_conditioning.js?'));
+ assert(callCode,'Missing versioned source-call proposal helper');
+ const callMod={exports:{}};
+ vm.runInNewContext(callCode.code,{module:callMod,exports:callMod.exports,console,Math,
+  Date,Set,Map,Float64Array,Uint8Array,Uint32Array,ArrayBuffer,Object,Number,String},
+  {filename:'source_call_conditioning.js',timeout:5000});
  const mod={exports:{}};
  vm.runInNewContext(engineCode.code,{module:mod,exports:mod.exports,console,Math,
+  require:name=>{assert.equal(name,'./source_call_conditioning.js');return callMod.exports;},
   Date,Set,Map,Uint8Array,Uint32Array,ArrayBuffer,Object,Number,String},
   {filename:'chamber_control_model.js',timeout:5000});
  const engine=mod.exports;

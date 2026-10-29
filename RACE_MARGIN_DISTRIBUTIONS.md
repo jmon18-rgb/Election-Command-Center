@@ -1,5 +1,14 @@
 # Same-joint race margin distributions
 
+The separate conditional-call candidate adds explicit
+`VALIDATED_CALL_IMPORTANCE_RESAMPLED` and `CALL_AND_COUNTY_IMPORTANCE_RESAMPLED`
+provenance tags. Its uncalled ranges follow the same final weighted elections
+as national outcomes; called races still have no invented final margin. The
+display identifies broader validated-call context separately from own admitted
+county returns and warns when covariance transfer is withheld. This does not
+calibrate the ranges. See SOURCE_CALL_CONDITIONING.md for the fixed target and
+sampling-support contract.
+
 The personal needles can now show a median and middle50%/90% range from the
 same complete-election draws that produce their win chances. These are model
 scenarios, not a calibrated final-vote interval or an estimate of ballots left.

@@ -48,6 +48,8 @@ assert.match(html,/<script src="\.\/scripts\/civicapi_house_2026_adapter\.js\?v=
  'Exactly scoped 2026 House adapter must load before the Election Night application');
 assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?v=[0-9a-f]{12}"><\/script>/,
  'Version-pin the Senate engine: uncached index must never reuse the obsolete 2020 candidate model');
+assert(html.indexOf('src="./scripts/source_call_conditioning.js?')<html.indexOf('src="./scripts/national_county_likelihood.js?'),
+ 'The actual county kernel must capture the source-call helper before app startup');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
 const virtualConsole=new VirtualConsole();
@@ -158,6 +160,7 @@ async function settle(){
   'Source-attributed 506-race gap triage must load before Election Night dashboard');
  w.eval(read('scripts/election_night_rehearsal.js'));
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
+ w.eval(read('scripts/source_call_conditioning.js'));
  w.eval(read('scripts/chamber_control_model.js'));
  assert(w.ChamberControlModel,'Joint Senate/House model must load before app');
  w.eval(read('scripts/official_admission_audit.js'));
@@ -1177,7 +1180,20 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  const evidenceHouse=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"house")');
  assert(evidenceHouse.length>=3);
  assert(evidenceHouse.every(x=>x.scope==='house'&&/^[A-Z]{2}-\d{2}$/.test(x.race_code)));
- assert(evidenceHouse.some(x=>x.race_code==='UT-04'&&x.signal==='Weighting changes the lead'));
+ // The live bundle is rebuilt under today's polling-firm policy in CI.
+ // Its UT-04 weighting range can legitimately stop crossing zero. Pin this
+ // behavior assertion to an explicit fictional range while retaining the
+ // actual-bundle office/coverage checks above and every lead-change assertion.
+ {
+  const weightingFixture={is_election_forecast:false,house:[{
+   race_code:'UT-04',status:'multi_poll',dem_minus_rep:1,state_name:'Utah',
+   independent_pollsters:1,partisan_pollsters:1,contributing_pollsters:2,
+   poll_diagnostics:{latest_poll_age_days:2,model_sensitivity:{
+    alternative_margin_min:-2,alternative_margin_max:3,independent_only_margin:-2}}
+  }]};
+  const evidenceHouse=w.eval('modelEvidenceWatchItems('+JSON.stringify(weightingFixture)+',"house")');
+  assert(evidenceHouse.some(x=>x.race_code==='UT-04'&&x.signal==='Weighting changes the lead'));
+ }
  const evidenceGov=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"governor")');
  assert(evidenceGov.length>=2);
  assert(evidenceGov.every(x=>x.scope==='governor'&&x.race_code.endsWith('-GOV')));

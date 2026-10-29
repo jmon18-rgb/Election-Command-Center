@@ -1,5 +1,23 @@
 # Celebration production inventory - October 27, 2026
 
+## PR527 VERIFIED PUBLISHED — ad-free local soundtracks and supplied Abbott art
+
+Owner's ad complaint supersedes earlier YouTube-default text. Fresh playback
+is ad-free: per-event browser-local audio or the existing original score. Files
+stay in IndexedDB, never upload; native controls support manual Play. YouTube
+remains explicit optional playback. No commercial recording is copied/bundled.
+Exact supplied371979-byte JPEG is displayed whole with visible AI-fiction label;
+same-beat SVG fallback/stale errors/ARIA/retry cache preserve all11 productions.
+
+Testeded5bb48a/all37parents; finalmain3ec89d17/Pages40790586312SUCCESS/44changed
+published files+index/coherence PASS. Actual published Edge1366/390 synthetic WAV
+decoding/playback/persistence/mute/close/replacement/withdrawal/removal and eight
+delayed realIDB races each pass; full art/reducedmotion/Escape/nooverflow pass.
+Original11-story score/fallback assertions also pass. Human listening/assistive
+acceptance remains NOT_RUN; synthetic PCM is not the requested commercial track.
+Proof pr527-published-ed5bb48a/. Ordinary27 has a documented input/0viewport
+limitation; no ordinary geometry or interactive success claimed for this release.
+
 ## October28 latest owner steering — ad-free files and exact Abbott art candidate
 
 YouTube ads prompted a new direction: fresh settings use ad-free playback, not
