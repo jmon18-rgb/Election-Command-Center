@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T11:58:59.646707Z",
+  "updated_at": "2026-10-29T13:11:05.746090Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -263,6 +263,25 @@
   ],
   "items": [
     {
+      "id": "f596c7eda598aed03a7d",
+      "title": "Specter of Noncitizen Voting Haunts Stormy Midterm Forecast - The Washington Stand",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNRWFLU0NRVUFSdjhRaUdFVklfeUNlUW9yMzlVUHUyN0V2Y0ZCbTAwT21yR3gwcmJfWnFEZzFfb0tpRFFVWEM1TldFZ0xiZ0xzeEZ3WVNZeGhVTy1lM29ZTjNqMG9mOEhleGI0N0VlVnAxMFV4Yk9TLUpxUXRaWUNCcGNjMFphMTdDVlVLMHM5ekp0RTZ3TWZWdFFtVQ?oc=5",
+      "publisher": "The Washington Stand",
+      "published_at": "2026-10-29T12:26:52Z",
+      "detected_at": "2026-10-29T13:11:05.746090Z",
+      "state_hints": [
+        "WA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "2544a7aaed60b6522a38",
       "title": "TPM\u2019s Comprehensive Guide To How Senate Swing States Certify Their Elections\u2014And How Bad Actors Might Screw With It - Talking Points Memo",
       "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPQ2Uyc01uTHo4UWtnNmkyMVFSMDNsUUV0U2dTODh5Yi1BaHI4RnlXTTFXaDF0dDFweU0talNueUdmR2dFYzU2QmNBTTVRQjZuNWdxSHZDeU8yV0JhdGJYaDJMVThVTFdVZVNPR2RpWkk4cXZoSnhVcmFhNmZNTFRNd0ZBYw?oc=5",
@@ -360,6 +379,25 @@
       "published_at": "2026-10-29T08:49:00Z",
       "detected_at": "2026-10-29T10:58:32.974166Z",
       "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a104ceee25ad47ad85f0",
+      "title": "What you need to know about voter intimidation in Pennsylvania - Spotlight PA",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQT3dXU3I1VS04eEp1MVhwVkNYUVZhQ3dhaHJOdjNTNkYxYTJvaTVLTjdNaGtLUkozaVdrOVdiNGFWcGcwdm42Vzc4RXJQQmF6VnZjVHlyTFh2TWhEZlVUeTRjQlFNSnVFYllUY3dSWVJFTGNsWFUtTVRCaDU2X3lRSEw0TkE1c2JXN1VTb2UtOWdKQnRpVDkyYWVIMDhWNjRzUWdOeVMyU3ZwQm9GeE5nV0hKRFo3Q0VoMDVvYi1rSnVlTHNoLVd5Qg?oc=5",
+      "publisher": "Spotlight PA",
+      "published_at": "2026-10-29T08:00:00Z",
+      "detected_at": "2026-10-29T13:11:05.746090Z",
+      "state_hints": [
+        "PA"
+      ],
       "topic_hints": [
         "security"
       ],
@@ -4991,44 +5029,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5c99d47eac6835b2d611",
-      "title": "DOJ's California lawsuit may violate court order against Trump's voter roll crusade, voting groups warn - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxQRXMybE8wN1BCb2tLX25NWTZfMmE2TTdMcWZ5T01zSk1mcFBoMTBOdk5waFhlWXBPd2RYZTBuTzVNSFJxQjFyNXh6Ri1MRll6RDFpbHktc1MxQTI5VEtsM0pnNWJoMWo2QVhZSVdpSTZtS2NQSWhVbE5vM1UxcE1pQ1RHS1A2bUFqQkwzNjN5QUU5a3c5eXZDYzNFTnNUc1V6N0MwZnRQZUttN1p4NEJqeHZnbjA1R1hzbVp0MHlCVFd2SFlKWG9YWXdnVXduSWZMQ3JFZzRCVmhCMjV2UVE?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-16T15:11:27Z",
-      "detected_at": "2026-10-16T15:45:32.075276Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "54c7662fa7f71378e1ed",
-      "title": "State Elections Board Sending Letters to Potential Non-Citizens on Voter Rolls - The Pilot Newspaper",
-      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxNMXZJeVZURTU4RVJwQkVoTkowVFBsTDBJYkI0QXBlNy16NmtDQnB6bHYzUzFyYWpoRWhqa0VfOENYcTZ2bC0tTTladUZrbEQ3R0Z3MUo3TzM5TElINmxZdnM4RzNHb2NFd1FJYkxBaG5rYUJJT1RHUFUtMnUwN3pocXJDWWFmODktSnhucnNZRlRoVU9jNjNadGxDYnhCakpTMVliMmZuV3ozTmp3VlBwa2hGcnRlekF3SERsMUVLRUZUYWxKeWdCVkVQT1pJX0NkZWJkRnE0b09FT1ZpMWVwT0xmeTlNSlg5bWVHT0dQWQ?oc=5",
-      "publisher": "The Pilot Newspaper",
-      "published_at": "2026-10-16T14:47:00Z",
-      "detected_at": "2026-10-16T15:45:32.075276Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
