@@ -33,6 +33,7 @@ const checks = [
   ['Captured announcement energy cannot reroute native audio', 'test_election_night_announcement_motion.cjs'],
   ['Actual page motion resumes remain guarded across hide, close and replacement', 'test_election_night_announcement_binding.cjs'],
   ['Static fish choice decodes only its current image and retains fallback on async errors', 'test_election_night_static_still.cjs'],
+  ['Current reduced-motion preference preserves announcement-first playback across delayed native events', 'test_election_night_reduced_motion.cjs'],
   ['Encrypted first-night originals and free-capacity activation guards', 'test_official_native_archive.cjs'],
   ['VA exact-original sink in the actual publisher and zero-GET bootstrap', 'test_virginia_native_archive_wiring.cjs'],
   ['AK official ballot identity and unsupported-call exclusion', 'test_alaska_senate_ballot_guard.cjs'],

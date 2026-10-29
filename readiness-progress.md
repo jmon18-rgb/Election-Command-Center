@@ -1,5 +1,10 @@
 # Readiness progress
 
+### PR534 preference-event correction — next exact-head gate required
+
+Repaired9d7038c5 passed WA/VA both widths and the long pr-tests browser, but the focused owner-finale job exposed a delayed native reduced-motion event skipping a newly started announcement. This is a real phase/current-preference defect, not an assertion to waive. The corrected handler reads the CURRENT query, skips only a scene, and leaves announcement MP3/completion/error untouched; the existing player chooses the reduced finale after announcement. Actual owner-finale and native-MP3 tasks pass1366/390 with all original assertions plus deferred/stale/current event boundaries; actual handler+player unit and independent source review pass. Initial9d failure and two test-precondition failures are preserved. Core registration is now93. No new media URL, source, model, timeout/sample cut or audio rerouting. Next: all applicable checks on the new committed head, final CURRENT-main Pages/bytes/published browser/one guide addendum.
+
+
 ## October 29 — direct owner early-indicator and celebration follow-up, protected release pending
 
 Implemented one 32-race early watch with KY-06/IN-05/FL-SEN first, actual CURRENT matched-source binding, separate raw/call status and explicitly provisional multi-state weather. Retained 21 reference rows, 19 needles, county guides, official links and Pin/unpin. Required matched inputs for the three priority races remain open; no invented overperformance. Supplied four pictures follow three animation beats with Skip/reduced-motion/queued finale; original fish SVG follows the actual recording through analysis-only capture, Brown/Harpers Ferry art clarified, 11 soundtrack picks visible with ad-free originals/local files. No numerical/source/earned-call eligibility change.

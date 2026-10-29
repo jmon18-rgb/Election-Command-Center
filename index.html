@@ -7049,7 +7049,16 @@ function enMilestoneShow(item,demo=false){
  return enCelebrationPlayer.enqueue(item,demo);
 }
 $('#enCelebrationSkip').addEventListener('click',()=>enCelebrationPlayer.skip?.());
-window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener?.('change',event=>{if(event.matches){enCelebrationPlayer.skip?.();if(typeof enAnnouncementMotionStop==='function'){enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');}}});
+const enCelebrationMotionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
+function enCelebrationApplyMotionPreference(){
+ // An asynchronously delivered change event describes its earlier preference.
+ // Only the CURRENT preference may finish a current animation; announcements
+ // retain their MP3 and hand off through the player's existing completion path.
+ if(!enCelebrationMotionQuery.matches)return;
+ if($('#enCelebrationStage')?.dataset.phase==='scene')enCelebrationPlayer.skip?.();
+ if(typeof enAnnouncementMotionStop==='function'){enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');}
+}
+enCelebrationMotionQuery.addEventListener?.('change',enCelebrationApplyMotionPreference);
 $('#enCelebrationSound').addEventListener('click',()=>{
  enFishSoundEnabled=!enFishSoundEnabled;
  try{localStorage.setItem(enFishSoundKey,enFishSoundEnabled?'on':'off')}catch{}

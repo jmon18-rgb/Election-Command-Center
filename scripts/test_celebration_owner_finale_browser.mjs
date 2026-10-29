@@ -11,6 +11,20 @@ try{const{chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright'
  for(const [width,height]of [[1366,900],[390,844]]){
   const context=await browser.newContext({viewport:{width,height},reducedMotion:'no-preference',serviceWorkers:'block'}),page=await context.newPage(),errors=[],blocked=[],served=new Map(),reserved=new Set(),checks=[],failures=[];
   if(dashboard)page.on('response',response=>{const u=new URL(response.url());if(u.origin!==dashboard.origin||!u.pathname.startsWith(dashboard.pathname))return;const file=u.pathname===dashboard.pathname?'index.html':u.pathname.slice(dashboard.pathname.length);if(!files.includes(file)||reserved.has(file))return;reserved.add(file);checks.push(response.body().then(body=>{assert.equal(response.status(),200);assert(body.equals(frozen[file]),'Actual published bytes '+file);served.set(file,createHash('sha256').update(body).digest('hex'));}).catch(error=>failures.push(error.message)));});
+  // Hold only the actual page celebration preference listener's delivery.
+  // MediaQueryList.matches remains the real browser preference throughout.
+  await page.addInitScript(()=>{
+   const original=window.matchMedia.bind(window),delivery={hold:false,events:[],executed:0};
+   window.__celebrationMotionDelivery=delivery;
+   window.matchMedia=query=>{
+    const media=original(query);if(String(query).replace(/\s/g,'')!=='(prefers-reduced-motion:reduce)')return media;
+    const add=media.addEventListener.bind(media);
+    Object.defineProperty(media,'addEventListener',{configurable:true,value(type,listener,options){
+     if(type!=='change'||typeof listener!=='function'||!String(listener).includes('enCelebrationPlayer.skip'))return add(type,listener,options);
+     return add(type,event=>{const deliver=()=>{listener.call(media,event);delivery.executed++;};if(delivery.hold)delivery.events.push({matches:event.matches,deliver});else deliver();},options);
+    }});return media;
+   };
+  });
   await context.route('**/*',route=>{const u=new URL(route.request().url());if(dashboard?u.origin===dashboard.origin&&u.pathname.startsWith(dashboard.pathname):u.hostname==='127.0.0.1')return route.continue();blocked.push(u.hostname);return route.abort();});page.on('pageerror',error=>errors.push(error.message));await page.clock.install({time:new Date('2026-10-29T16:00:00Z')});
   await page.goto(dashboard?.href||'http://127.0.0.1:'+server.address().port+'/#electionNight',{waitUntil:'domcontentloaded'});await page.locator('#enMode2026').click();await page.waitForFunction(()=>jointLastResult?.probabilities);await page.evaluate(()=>jointWhenIdle());if(dashboard){await page.waitForFunction(()=>jointPrivateSource==='repository'&&jointUsesPrivateContext()&&jointPublicResult?.probabilities&&!jointModelPending);await page.evaluate(()=>jointWhenIdle());}await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now()+1000)));const liveBefore=await page.evaluate(()=>JSON.stringify(jointLastResult));
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});
@@ -26,8 +40,36 @@ try{const{chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright'
   // A normal Skip control must bypass both a pending announcement and scene
   // timers. A late MP3 ended event must not start a replacement animation.
   await select('graham');await page.locator('#enCelebrationSkip').click();assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');await owner('graham');await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));await page.clock.runFor(32);assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');
-  await page.emulateMedia({reducedMotion:'reduce'});await select('abbott');await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');await owner('abbott');assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length),0);
+  // Deliver a genuine earlier native preference event during a NEW preview's
+  // announcement. This scheduling seam never changes current query.matches.
+  await page.evaluate(()=>{__celebrationMotionDelivery.hold=true;__celebrationMotionDelivery.events=[];});
+  await page.emulateMedia({reducedMotion:'reduce'});await page.clock.runFor(32);
+  await page.waitForFunction(()=>__celebrationMotionDelivery.events.some(e=>e.matches));
+  await select('abbott');
+  const announcementBefore=await page.evaluate(()=>{const a=document.querySelector('#enCelebrationAnnouncement');window.__reducedAnnouncementEnded=a.onended;window.__reducedPauseCount=0;window.__reducedOriginalPause=a.pause;a.pause=function(){__reducedPauseCount++;return __reducedOriginalPause.call(this);};return{phase:document.querySelector('#enCelebrationStage').dataset.phase,ended:typeof a.onended};});
+  assert.deepEqual(announcementBefore,{phase:'announcement',ended:'function'});
+  await page.evaluate(()=>{const event=__celebrationMotionDelivery.events.splice(0,1)[0];event.deliver();});
+  assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'announcement','Deferred reduce event must preserve the replacement announcement');
+  assert.deepEqual(await page.evaluate(()=>({same_ended:document.querySelector('#enCelebrationAnnouncement').onended===__reducedAnnouncementEnded,pauses:__reducedPauseCount})),{same_ended:true,pauses:0},'Reduced motion never consumes or pauses the current announcement');
+  await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').pause=__reducedOriginalPause;__celebrationMotionDelivery.hold=false;});
+  await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete');await owner('abbott');assert.equal(await visual.evaluate(e=>e.getAnimations({subtree:true}).length),0);
   await page.keyboard.press('Escape');assert.equal(await popup.isHidden(),true);await page.clock.runFor(8000);assert.equal(await popup.isHidden(),true,'Old image/scene timers cannot reopen dismissed popup');
+  // A delayed "reduce" event cannot finish a scene after the current browser
+  // preference has returned to no-preference. A fresh true change still skips.
+  await page.evaluate(()=>{__celebrationMotionDelivery.hold=true;__celebrationMotionDelivery.events=[];});
+  await page.emulateMedia({reducedMotion:'no-preference'});await page.clock.runFor(32);
+  await page.waitForFunction(()=>__celebrationMotionDelivery.events.some(e=>!e.matches));
+  await page.emulateMedia({reducedMotion:'reduce'});await page.clock.runFor(32);
+  await page.waitForFunction(()=>__celebrationMotionDelivery.events.some(e=>e.matches));
+  await page.emulateMedia({reducedMotion:'no-preference'});await page.clock.runFor(32);
+  await page.waitForFunction(()=>__celebrationMotionDelivery.events.filter(e=>!e.matches).length===2);
+  await select('mississippi');await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
+  assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'scene');
+  await page.evaluate(()=>{const event=__celebrationMotionDelivery.events.find(e=>e.matches);event.deliver();__celebrationMotionDelivery.events=[];__celebrationMotionDelivery.hold=false;__celebrationMotionDelivery.executed=0;});
+  assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'scene','An old event cannot override the current no-preference query');
+  await page.emulateMedia({reducedMotion:'reduce'});await page.clock.runFor(32);
+  await page.waitForFunction(()=>__celebrationMotionDelivery.executed>0);
+  assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'complete','Current reduced preference immediately finishes an active scene');await owner('mississippi');await page.keyboard.press('Escape');
   await page.emulateMedia({reducedMotion:'no-preference'});await select('graham');await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));await page.locator('#enCelebrationSkip').click();await owner('graham');await page.locator('#enCelebrationPreviewChoice').selectOption('mississippi');assert.equal(await visual.locator('img').count(),0,'Replacement clears old finale immediately');await page.keyboard.press('Escape');
   // Separate explicitly fictional component queue: real renderer/player and
   // original JPEGs, with no changes to the live eligibility/source functions.
@@ -36,7 +78,7 @@ try{const{chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright'
   await page.clock.runFor(7200);assert.deepEqual(await page.evaluate(()=>__ownerQueue.trace.at(-1).phase),'complete');await page.evaluate(()=>__ownerQueue.host.querySelector('img').decode());await page.clock.runFor(32);const queuePhoto=await page.evaluate(()=>({id:__ownerQueue.host.dataset.celebrationScene,has_image:Boolean(__ownerQueue.host.querySelector('img')),active:__ownerQueue.player.state().active}));assert.deepEqual(queuePhoto,{id:'graham',has_image:true,active:'graham'});
   await page.clock.runFor(2367);assert.equal(await page.evaluate(()=>__ownerQueue.host.dataset.celebrationScene),'graham');await page.clock.runFor(1);assert.equal(await page.evaluate(()=>__ownerQueue.host.dataset.celebrationScene),'blansas');
   const queueTiming=await page.evaluate(()=>{const data={first_complete:__ownerQueue.trace.find(row=>row.id==='graham'&&row.phase==='complete').at,next_announcement:__ownerQueue.trace.find(row=>row.id==='blansas'&&row.phase==='announcement').at};__ownerQueue.player.stop();ElectionNightCelebrationScene.clear(__ownerQueue.host);__ownerQueue.host.remove();delete window.__ownerQueue;return data;});assert.equal(queueTiming.next_announcement-queueTiming.first_complete,2400);
-  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult)),liveBefore);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);assert.deepEqual(errors,[]);if(dashboard){await Promise.all(checks);assert.deepEqual(failures,[]);assert.deepEqual([...served.keys()].sort(),files.slice().sort());}reports.push({width,height,sequences,skip_to_finale:true,reduced_motion_instant_finale:true,replacement_close_late_media_safe:true,queued_owner_photo_painted_before_next_story:true,queue_timing:queueTiming,live_model_unchanged:true,horizontal_overflow:false,blocked_external_requests:blocked.length,...(dashboard?{actual_served_pinned_sha256:Object.fromEntries(served)}:{})});await context.close();
+  assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult)),liveBefore);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);assert.deepEqual(errors,[]);if(dashboard){await Promise.all(checks);assert.deepEqual(failures,[]);assert.deepEqual([...served.keys()].sort(),files.slice().sort());}reports.push({width,height,sequences,skip_to_finale:true,reduced_motion_instant_finale:true,deferred_preference_announcement_preserved:true,stale_preference_event_ignored:true,current_midscene_reduction_finishes:true,replacement_close_late_media_safe:true,queued_owner_photo_painted_before_next_story:true,queue_timing:queueTiming,live_model_unchanged:true,horizontal_overflow:false,blocked_external_requests:blocked.length,...(dashboard?{actual_served_pinned_sha256:Object.fromEntries(served)}:{})});await context.close();
  }
  if(dashboard)assert.equal(execFileSync('git',['rev-parse','origin/main'],{cwd:root,encoding:'utf8'}).trim(),main);const proof={schema:'actual-owner-finale-ordering-browser-v1',at:new Date().toISOString(),status:'PASS',source_sha256:Object.fromEntries(files.map(file=>[file,createHash('sha256').update(frozen[file]).digest('hex')])),reports,...(dashboard?{actual_published_bytes_verified:true,final_main:main,pages_run:Number(process.env.DASHBOARD_TEST_PAGES_RUN),published_origin:dashboard.href,local_server:false}:{local_server:true}),native_provider_GETs:0,human_listening:'NOT_RUN',scope:'Changed four supplied-image finale productions, normalcontrols and mechanical announcement lifecycle in actual app. Published mode verifies actual served bytes without HTML/script response overrides. No all11 creative replay, calls or model inputs modified.'};writeFileSync(resolve(out,'owner-finale-browser.json'),JSON.stringify(proof,null,2)+'\n');console.log(JSON.stringify({status:proof.status,widths:reports.map(row=>row.width),proof:resolve(out,'owner-finale-browser.json')}));
 }finally{await browser?.close();if(server)await new Promise(ok=>server.close(ok));}
