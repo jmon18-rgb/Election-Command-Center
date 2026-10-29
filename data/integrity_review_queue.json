@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T13:30:10.850175Z",
+  "updated_at": "2026-10-29T14:13:58.099642Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -276,6 +276,26 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "849a616efe087d01a70d",
+      "title": "NJ-11 Election 2026: Meet the Candidates - The Montclair Pod",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1tWVJ1N2FCejJJdWFqcUZTdDA1THB1V2NVb0hwR0x1VXlPMk9HQk9UUzVhWjRDLTNlcXE4ZF8zUXdpNjZaN0RfNTdMejlLbDNJcXBYSGFtRHRkRGM?oc=5",
+      "publisher": "The Montclair Pod",
+      "published_at": "2026-10-29T10:10:57Z",
+      "detected_at": "2026-10-29T14:13:58.099642Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "11 ",
+        "2026"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5012,23 +5032,6 @@
       "topic_hints": [
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "fa95cc746fad7e3b0dff",
-      "title": "Republican officials brag about their voter purges - People's World",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQUlVaeVNqc3YtZjVwMlI1aEFEOHlPRVV1R1hXeGxoTnplZzNSMTRZaFFhNjRiN3hXNjZJOGl5YWh4TzNiVVNxYUN4UWlZTkticlhRaVpDWDVfYmM2YmRyT0JaX0RwdmlRMHdFRmVQdzRTazAxOTFCSlBBdWdxenlyMURwNXpsTERzakIzaHBvME1yQQ?oc=5",
-      "publisher": "People's World",
-      "published_at": "2026-10-16T16:50:18Z",
-      "detected_at": "2026-10-16T17:43:19.909831Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
