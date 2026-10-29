@@ -19,6 +19,7 @@ const checks = [
   ['Original WA receipt/native/used-estimate current rules and browser-safe projection', 'test_washington_asof_current_rules.cjs'],
   ['Lossless VA candidate-method clocks, original native predicates and owned async cache inputs', 'test_virginia_official_usage.cjs'],
   ['Typed VA monotone updates retain exact source-clock and hidden-correction guards', 'test_joint_virginia_snapshot_policy.cjs'],
+  ['Actual official controllers preserve admission, provenance and withdrawal audit', 'test_official_admission_controller.cjs'],
   ['Recorded asset lineage roundtrips, explicit absence and fixed history cap', 'test_recorded_asset_lineage.cjs'],
   ['Private transport cache preserves every replay value and releases bounded packet buffers', 'test_chamber_private_transport_cache.cjs'],
   ['Validated-call whole-election transport, replay, baseline and consumer isolation', 'test_chamber_source_call_conditioning.cjs'],

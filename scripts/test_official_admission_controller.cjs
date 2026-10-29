@@ -13,10 +13,11 @@ const auditApi=require(path.join(candidate,'official_admission_audit.js'));
  const clock={value:Date.parse('2026-11-04T04:10:00Z')};class TestDate extends Date{static now(){return clock.value;}}
  const window={document:{hidden:false},localStorage:{getItem:()=>null,setItem:()=>{}},ElectionNightPollClosings2026:require(path.join(root,'scripts/election_night_poll_closings_2026.js'))};
  window.WashingtonOfficialHouseSource=require(path.join(root,'scripts/washington_official_house_source.js'));
- window.VirginiaOfficialHouseSource=require(path.join(root,'scripts/virginia_official_house_source.js'));
  window.WashingtonRemainingSource=require(path.join(root,'scripts/washington_remaining_source.js'));
- const context=vm.createContext({window,Date:TestDate,crypto:crypto.webcrypto,TextEncoder,setTimeout:()=>1,clearTimeout:()=>{}});
+ const context=vm.createContext({window,Date:TestDate,crypto:crypto.webcrypto,TextEncoder,structuredClone,setTimeout:()=>1,clearTimeout:()=>{}});
  vm.runInContext(fs.readFileSync(path.join(root,'scripts/competitive_source_revision.js'),'utf8'),context);
+ if(code==='VA-02')for(const name of ['virginia_official_usage.js','virginia_official_house_source.js'])
+  vm.runInContext(fs.readFileSync(path.join(root,'scripts',name),'utf8'),context);
  vm.runInContext(read(cacheName),context);
  vm.runInContext(fs.readFileSync(path.join(root,'scripts',controllerName),'utf8'),context);
  const record=code==='WA-03'?await require(path.join(root,'scripts/washington_test_fixture.cjs')).fixture({stamp:'2026-11-04T04:05:00Z'}):require(path.join(root,'scripts/virginia_house_02_test_fixture.cjs')).cacheFixture({stamp:'2026-11-04T04:05:00Z'});
