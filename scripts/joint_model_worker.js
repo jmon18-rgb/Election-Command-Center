@@ -56,20 +56,22 @@
      result.senate_independent_credit_mode!=='no_credit'||!plain(result.probabilities)||!Array.isArray(result.race_probabilities))return false;
   const probabilities=['blue_tsunami','blue_wave','shrug','red_dawn'].map(key=>result.probabilities[key]);
   if(probabilities.some(value=>!finite(value)||value<0||value>100)||Math.abs(probabilities.reduce((sum,value)=>sum+value,0)-100)>.05)return false;
-  // Keep optional-result quarantine at least as strict as final admission:
-  // malformed research output cannot discard an otherwise valid primary.
-  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum']);
+  return publicValue(result);
+ }
+ function publicValue(value){
+  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum','typed_usage','native_usage']);
   function publicFields(item,path){
    if(item===null||item===undefined||typeof item==='string'||typeof item==='boolean')return true;
    if(typeof item==='number')return Number.isFinite(item);
    if(typeof item!=='object'||ArrayBuffer.isView(item))return false;
    const tag=Object.prototype.toString.call(item);
    if(!['[object Object]','[object Array]'].includes(tag)||path.has(item))return false;
+   if(['validated-va02-native-usage-v1','already-admitted-va02-typed-usage-v2'].includes(item.schema))return false;
    path.add(item);
    try{return Object.entries(item).every(([key,child])=>!rawKeys.has(key)&&publicFields(child,path));}
    finally{path.delete(item);} // Acyclic result/baseline aliases are legitimate.
   }
-  try{return publicFields(result,new WeakSet());}catch{return false;}
+  try{return publicFields(value,new WeakSet());}catch{return false;}
  }
  function compute(basis,envelopes,args){
   const bundle=self.NationalCountyLikelihood.condition(self.ChamberControlModel,basis,envelopes,args);
@@ -100,7 +102,11 @@
   // This prevents mixing a private forecast with a previous public baseline.
   const p=request.payload,primary=compute(p.basis,p.envelopes,p.args);
   const publicComparison=p.publicBasis?compute(p.publicBasis,p.envelopes,{...p.args,contextKey:'PUBLIC'}):null;
-  return {...primary,publicComparison,variants:variantsFor(request,primary)};
+  const output={...primary,publicComparison,variants:variantsFor(request,primary)};
+  // Guard the entire output, including diagnostics, before any Worker message
+  // or MAIN runner return can carry source-only input metadata.
+  if(!publicValue(output))throw Error('INVALID_MODEL_RESULT');
+  return output;
  }
  // Safe as a normal MAIN script: register a pure synchronous fallback API,
  // without imports, message handlers or postMessage calls on the page.

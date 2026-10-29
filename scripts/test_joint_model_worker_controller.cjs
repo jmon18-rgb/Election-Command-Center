@@ -169,7 +169,7 @@ async function main(){
   for(const raw of [new Float64Array([1,2]),new ArrayBuffer(8),new DataView(new ArrayBuffer(8)),foreign.typed,foreign.buffer,foreign.view]){
    const out=bundle();out.diagnostics.deep={raw};assert.equal(api.validBundle(out,input),false,'Reject raw buffer/view across realms');
   }
-  for(const key of ['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum']){
+  for(const key of ['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum','typed_usage','native_usage']){
    const out=bundle();out.result.deep={[key]:[1]};assert.equal(api.validBundle(out,input),false,'Raw proposal/private key '+key+' cannot escape');
   }
   const cyclic=bundle();cyclic.diagnostics.back=cyclic;assert.equal(api.validBundle(cyclic,input),false,'Reject a true public-output cycle');
@@ -188,6 +188,24 @@ async function main(){
   assert.equal(worker.match(keys)?.[0],controller.match(keys)?.[0],'Known raw/cache private field names remain identical');
   assert.match(worker,/result\.samples!==samples/);assert.match(worker,/coherent\(bundle\.result,args\.samples\)/);assert.match(worker,/coherent\(result,3000\)/,'Optional runner result must retain its fixed3k sample budget');cases++;
  }
+  {
+   const html=readFileSync(resolve(__dirname,'../index.html'),'utf8').replaceAll('\r\n','\n');
+   const body=html.slice(html.indexOf('function jointFallbackBundleValid('),html.indexOf('function jointPublicBundleValid(')).trim(),inline=vm.runInNewContext('('+body+')');
+   const input=request('RAW_VIRGINIA_METADATA',{payload:{...request().payload,publicBasis:{fake:true},variants:[{id:'house_shadow',basis:{fake:true}}]}});
+   for(const key of ['typed_usage','native_usage'])for(const place of ['result','baseline','diagnostics','publicResult','publicBaseline','publicDiagnostics','variant']){
+    const candidate=bundle(1,true,['house_shadow']);
+    const host={result:candidate.result,baseline:candidate.baseline,diagnostics:candidate.diagnostics,publicResult:candidate.publicComparison.result,publicBaseline:candidate.publicComparison.baseline,publicDiagnostics:candidate.publicComparison.diagnostics,variant:candidate.variants.house_shadow.result}[place];
+    host.nested={[key]:{candidate_method_cells:[[1,2]],native_clocks:['FICTIONAL']}};
+    for(const validate of [api.validBundle,inline])assert.equal(validate(candidate,input),false,'Virginia original-input metadata cannot escape through '+place+'/'+key);
+   }
+   for(const schema of ['validated-va02-native-usage-v1','already-admitted-va02-typed-usage-v2'])for(const place of ['result','baseline','diagnostics','publicResult','publicBaseline','publicDiagnostics','variant']){
+    const candidate=bundle(1,true,['house_shadow']);
+    const host={result:candidate.result,baseline:candidate.baseline,diagnostics:candidate.diagnostics,publicResult:candidate.publicComparison.result,publicBaseline:candidate.publicComparison.baseline,publicDiagnostics:candidate.publicComparison.diagnostics,variant:candidate.variants.house_shadow.result}[place];
+    host.arbitrary_alias={schema,localities:[]};
+    for(const validate of [api.validBundle,inline])assert.equal(validate(candidate,input),false,'Raw VA schema alias cannot escape through '+place);
+   }
+   cases++;
+  }
  console.log('Model worker controller PASS: '+cases+' synthetic lifecycle cases; latest-only queue, immutable input snapshot, single active worker, exact identity, stale-result/fallback rejection, correction/context/settings/hidden/archive handling and atomic public/variant results. No speed/calibration claim.');
 }
 main().catch(error=>{console.error(error);process.exitCode=1;});

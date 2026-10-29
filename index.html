@@ -1640,8 +1640,9 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/south_carolina_senate_evidence.js?v=67ed6f853d33"></script>
 <script src="./scripts/ohio_civic_county_source.js?v=6a499abd6030"></script>
 <script src="./scripts/ohio_senate_evidence.js?v=3525b126d247"></script>
-<script src="./scripts/virginia_official_house_source.js?v=cfe9adfd37e0"></script>
-<script src="./scripts/virginia_official_cache.js?v=f2d15dd438b7"></script>
+<script src="./scripts/virginia_official_usage.js?v=01f662ea5e75"></script>
+<script src="./scripts/virginia_official_house_source.js?v=4ae5d012e356"></script>
+<script src="./scripts/virginia_official_cache.js?v=460394251164"></script>
 <script src="./scripts/virginia_official_transport.js?v=5f83bee198e7"></script>
 <script src="./scripts/virginia_house_02_evidence.js?v=7e7276e317f1"></script>
 <script src="./scripts/arizona_house_06_evidence.js?v=999153c74611"></script>
@@ -1654,9 +1655,10 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
 <script src="./scripts/chamber_control_model.js?v=d98ce3f4cdf1"></script>
-<script src="./scripts/joint_model_worker.js?v=61e86d6ca1f0"></script>
-<script src="./scripts/joint_count_snapshot_policy.js?v=949c09bf3688"></script>
-<script src="./scripts/joint_model_worker_controller.js?v=2e98c11352ee"></script>
+<script src="./scripts/joint_model_worker.js?v=9e4befecc71a"></script>
+<script src="./scripts/recorded_asset_lineage.js?v=11a33d968f4c"></script>
+<script src="./scripts/joint_count_snapshot_policy.js?v=e929d5be3a7a"></script>
+<script src="./scripts/joint_model_worker_controller.js?v=d9df5fd007aa"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
@@ -4879,6 +4881,12 @@ function jointCountyEvidence(now=Date.now()){
  if(enModeYear!==2026)return [];
  return [window.enNebraskaSenateController,window.enSouthCarolinaSenateController,window.enMichiganHouse07Controller,window.enPennsylvaniaHouse08Controller,window.enVirginiaHouse02Controller,window.enArizonaHouse06Controller,window.enPennsylvaniaHouse07Controller,window.enOhioSenateController,window.enMaineSenateController,window.enIowaPilotController,window.enKansasPilotController,window.enTexasPilotController,window.enWisconsinHouseController,window.enWisconsinHouse03Controller,window.enMichiganHouse04Controller,window.enPennsylvaniaHouse10Controller,window.enNewYorkHouse17Controller,window.enWashingtonHouse03Controller]
   .map(c=>c?.status().evidence).filter(Boolean).filter(envelope=>{
+   if(envelope.snapshot?.race_code==='VA-02'){
+    // Reuse the exact original native/receipt clocks on the immutable projection
+    // at every calculation clock, including while a collector request stalls.
+    const rules=jointVirginiaCurrentRules(),snapshot=envelope.snapshot;
+    try{return Boolean(rules&&rules.matchesSnapshot(snapshot.typed_usage,snapshot)===true&&rules.current(snapshot.typed_usage,now)===true);}catch{return false;}
+   }
    if(envelope.snapshot?.race_code!=='WA-03')return true;
    // A pending collector refresh can retain an old envelope. Reuse the original
    // receipt/publication admission rules at the calculation clock as well.
@@ -4908,9 +4916,15 @@ function jointMarginSummaryCodes(){
  return focus?[...new Set([...focus.SENATE.map(state=>state+'-SEN'),...focus.HOUSE,...(focus.WATCH?.districts||[]).map(row=>row.code)])]:undefined;
 }
 function jointModelCodeRevision(){return ['source_call_conditioning','chamber_control_model','national_county_likelihood'].map(name=>document.querySelector('script[src*="/'+name+'.js?"]')?.getAttribute('src')||'').join('|');}
-function jointRecordedCodeRevision(){return jointWorkerCodeRevision().split('|').map(src=>src.replace('./scripts/','').replace('.js?v=','@')).join('|');}
-function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,jointIndependentControlOptions.independentSenateCredit,
- jointRecordedCodeRevision(),jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
+function jointRecordedCodeRevision(){
+ const codec=window.RecordedAssetLineage,nodes=document.querySelectorAll('script[src*="/recorded_asset_lineage.js?"]');
+ if(codec?.VERSION!=='AR2'||typeof codec.encodeWorkerRevision!=='function'||nodes.length!==1||!/^\.\/scripts\/recorded_asset_lineage\.js\?v=[a-f0-9]{12}$/.test(nodes[0].getAttribute('src')||''))return null;
+ try{const value=codec.encodeWorkerRevision(jointWorkerCodeRevision()+'|'+nodes[0].getAttribute('src'));return typeof value==='string'&&value.length>0?value:null;}catch{return null;}
+}
+function jointHistoryRevision(preview=false,recorded=jointRecordedCodeRevision()){
+ if(typeof recorded!=='string'||!recorded)return null;
+ return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,jointIndependentControlOptions.independentSenateCredit,
+ recorded,jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
  jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()&&jointPrivateHouse?1:0].join('|');}
 function renderPersonalElectionFocus(){
  if(jointModelPending){const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;if(!host.hidden)window.PersonalElectionFocus?.setPending(host);}return;}
@@ -4930,12 +4944,19 @@ function jointWashingtonCurrentRules(){
  return tagged&&typeof cache?.receiptCurrent==='function'&&typeof native?.publicationCurrent==='function'?
   Object.freeze({receiptCurrent:cache.receiptCurrent,publicationCurrent:native.publicationCurrent}):null;
 }
+function jointVirginiaCurrentRules(){
+ const native=window.VirginiaOfficialHouseSource,cache=window.VirginiaOfficialCache,usage=window.VirginiaOfficialUsage;
+ const names=['virginia_official_house_source','virginia_official_cache','virginia_official_usage'];
+ const tagged=names.every(name=>{const nodes=document.querySelectorAll('script[src*="/'+name+'.js?"]');return nodes.length===1&&new RegExp('^\\./scripts/'+name+'\\.js\\?v=[a-f0-9]{12}$').test(nodes[0].getAttribute('src')||'');});
+ return tagged&&typeof native?.clockCurrent==='function'&&typeof native?.currentClocks==='function'&&typeof cache?.receiptCurrent==='function'&&typeof usage?.current==='function'&&typeof usage?.matchesSnapshot==='function'&&typeof usage?.valid==='function'?
+  Object.freeze({current:(projection,now)=>usage.current(projection,now,{native,cache}),matchesSnapshot:(projection,snapshot)=>usage.matchesSnapshot(projection,snapshot,{native,cache})}):null;
+}
 function jointCountSnapshotOptions(now){
  const rules=jointWashingtonCurrentRules(),usage=window.WashingtonRemainingUsage;
  const nodes=document.querySelectorAll('script[src*="/washington_remaining_usage.js?"]');
  const ready=rules&&nodes.length===1&&/^\.\/scripts\/washington_remaining_usage\.js\?v=[a-f0-9]{12}$/.test(nodes[0].getAttribute('src')||'')&&typeof usage?.capture==='function'&&typeof usage?.current==='function';
  return {now,validateEnvelope:(envelope,at)=>{if(!Number.isFinite(at))throw Error('EXPLICIT_COUNT_ADMISSION_CLOCK_REQUIRED');return window.NationalCountyLikelihood.compile(envelope,{now:at});},
-  washington:ready?Object.freeze({...rules,remainingCapture:usage.capture,remainingCurrent:usage.current}):null};
+  washington:ready?Object.freeze({...rules,remainingCapture:usage.capture,remainingCurrent:usage.current}):null,virginia:jointVirginiaCurrentRules()};
 }
 function jointCountCompatible(previous,next){
  if(document.hidden||enModeYear!==2026||!window.JointCountSnapshotPolicy||!window.NationalCountyLikelihood?.compile)return false;
@@ -5027,7 +5048,7 @@ function jointPreservePendingLayout(){
  }
 }
 function jointReleasePendingLayout(){for(const [node,value]of jointPendingLayout)node.style.minHeight=value;jointPendingLayout.clear();}
-function jointWorkerCodeRevision(){return ['election_night_poll_closings_2026','washington_remaining_source','washington_remaining_scenarios','source_call_conditioning','chamber_control_model','national_county_likelihood','joint_model_worker','joint_count_snapshot_policy','joint_model_worker_controller','washington_official_cache','washington_official_house_source','washington_remaining_usage'].map(name=>document.querySelector('script[src*="/'+name+'.js?"]')?.getAttribute('src')||'').join('|');}
+function jointWorkerCodeRevision(){return ['election_night_poll_closings_2026','washington_remaining_source','washington_remaining_scenarios','source_call_conditioning','chamber_control_model','national_county_likelihood','joint_model_worker','joint_count_snapshot_policy','joint_model_worker_controller','washington_official_cache','washington_official_house_source','washington_remaining_usage','virginia_official_house_source','virginia_official_cache','virginia_official_usage'].map(name=>document.querySelector('script[src*="/'+name+'.js?"]')?.getAttribute('src')||'').join('|');}
 function jointWorkerAssetsMatch(){return window.JointModelWorkerRunner?.MODEL_REVISION===jointModelCodeRevision()&&
  window.JointModelWorkerRunner.IMPORTS.every(asset=>document.querySelector('script[src*="/'+asset.name+'.js?"]')?.getAttribute('src')==='./scripts/'+asset.name+'.js?v='+asset.stamp);}
 function jointWorkerController(){return window.JointModelWorkerController?.create({
@@ -5075,8 +5096,9 @@ function jointFrameSnapshot(inputs,key){
  const payload={basis:jointBasis,publicBasis:jointUsesPrivateContext()?jointBasisPublic:null,envelopes:inputs.envelopes,variants,
   args:{...jointIndependentControlOptions,contextKey,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,now:inputs.now,nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:inputs.live}};
  const clone=value=>typeof structuredClone==='function'?structuredClone(value):JSON.parse(JSON.stringify(value));
- const frame={key,contextKey,modelRevision:jointModelCodeRevision(),frameKind:enModeYear===2024?'POLLING_ARCHIVE_BASELINE':'LIVE',
-  payload:clone(payload),countContext:jointCountSnapshotContext(),input_at:new Date(inputs.now).toISOString(),sourceRows:clone(inputs.rows),descriptiveRows:clone(inputs.descriptive),historyRevision:jointHistoryRevision(),pollingAt:jointBasis.generated_from_sources?.model_polling_at};
+ const recordedCodeRevision=jointRecordedCodeRevision();
+ const frame={key,contextKey,recordedCodeRevision,modelRevision:jointModelCodeRevision(),frameKind:enModeYear===2024?'POLLING_ARCHIVE_BASELINE':'LIVE',
+  payload:clone(payload),countContext:jointCountSnapshotContext(),input_at:new Date(inputs.now).toISOString(),sourceRows:clone(inputs.rows),descriptiveRows:clone(inputs.descriptive),historyRevision:jointHistoryRevision(false,recordedCodeRevision),pollingAt:jointBasis.generated_from_sources?.model_polling_at};
  // Ancillary scheduling provenance only. It is never sent to the worker or
  // stored in history; failure disables official ASOF, not CURRENT computation.
  try{frame.remainingUsage=window.JointCountSnapshotPolicy?.captureRemainingUsage?.(frame,jointCountSnapshotOptions(inputs.now))??null;}catch{frame.remainingUsage=null;}
@@ -5105,7 +5127,7 @@ function jointFallbackBundleValid(value,request){
   // Self-contained so the page can retain this exact guard when either optional
   // worker asset fails. Private input payloads are intentionally NOT inspected.
   const endingKeys=['blue_tsunami','blue_wave','shrug','red_dawn'];
-  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum']);
+  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum','typed_usage','native_usage']);
   const safeTag=value=>typeof value==='string'&&/^[A-Z0-9_:-]{1,100}$/.test(value);
   function publicFields(item,path){
    if(item===null||item===undefined||typeof item==='string'||typeof item==='boolean')return true;
@@ -5113,6 +5135,7 @@ function jointFallbackBundleValid(value,request){
    if(typeof item!=='object'||ArrayBuffer.isView(item))return false;
    const tag=Object.prototype.toString.call(item);
    if(!['[object Object]','[object Array]'].includes(tag)||path.has(item))return false;
+   if(['validated-va02-native-usage-v1','already-admitted-va02-typed-usage-v2'].includes(item.schema))return false;
    path.add(item);
    try{return Object.entries(item).every(([key,child])=>!rawKeys.has(key)&&publicFields(child,path));}
    finally{path.delete(item);} // Acyclic result/baseline aliases are legitimate.
@@ -5221,7 +5244,7 @@ function jointRender(force=false){
   frame.snapshotInfo=jointSnapshotInfo(frame,bundle);jointCompletedFrame=frame;jointAsOfSnapshot=asOf?frame.snapshotInfo:null;
   jointWorkerCompatibility=compatibility;jointModelPending=false;jointPendingKey=asOf?latest.key:'';jointUnavailableKey='';jointErrorMessage=null;jointCacheKey=asOf?'':key;
   if(asOf)jointQueuedCountFrame=latest;else if(jointAsOfTimer!==null){clearInterval(jointAsOfTimer);jointAsOfTimer=null;}
-  if(jointApplyFrame(frame,bundle)!==true)return {status:'UNAVAILABLE'};jointSnapshotLabels();if(asOf)jointMarkAsOf();else if(frame.payload.envelopes.some(envelope=>envelope.snapshot?.race_code==='WA-03'))jointWatchFrameValidity();
+  if(jointApplyFrame(frame,bundle)!==true)return {status:'UNAVAILABLE'};jointSnapshotLabels();if(asOf)jointMarkAsOf();else if(frame.payload.envelopes.some(envelope=>['WA-03','VA-02'].includes(envelope.snapshot?.race_code)))jointWatchFrameValidity();
   return {status:asOf?'AS_OF':'READY',snapshot:asOf?frame.snapshotInfo:undefined};
   },preserveReader);
  };
@@ -5269,7 +5292,7 @@ function jointApplyFrame(frame,bundle){
    context:frame.contextKey,calculation:{state:jointAsOfSnapshot?'AS_OF':'CURRENT',...frame.snapshotInfo}});}catch{} // History never feeds or blocks the forecast.
   try{enOfficialAdmissionAudit?.observe({active:enModeYear===2026,simulated:conditioned?.diagnostics?.status==='SIMULATED_NATIONAL_REHEARSAL',
    envelopes,used:conditioned?.diagnostics?.used||[],reason:countyUpdateWithheld?'MODEL_UPDATE_WITHHELD':'NO_LONGER_ADMITTED',
-   modelRevision:[window.ChamberControlModel.VERSION,jointRecordedCodeRevision(),frame.pollingAt||'',frame.payload.args.nationalShift,frame.payload.args.errorMultiplier].join('|'),
+   modelRevision:typeof frame.recordedCodeRevision!=='string'||!frame.recordedCodeRevision?null:[window.ChamberControlModel.VERSION,frame.recordedCodeRevision,frame.pollingAt||'',frame.payload.args.nationalShift,frame.payload.args.errorMultiplier].join('|'),
    modelVersion:window.ChamberControlModel.VERSION,pollingAt:frame.pollingAt,
    kernelRevision:document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src'),
    modelContext:frame.contextKey});

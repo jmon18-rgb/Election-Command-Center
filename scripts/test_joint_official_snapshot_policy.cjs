@@ -35,7 +35,7 @@ async function check(name,fn){await fn();groups.push(name);}
 function hard(a,b,now=b.payload.args.now){assert.equal(classify(a,b,now).kind,'HARD_INVALIDATION');}
 (async()=>{
  // The unchanged61-group Civic regression remains a separate required unit.
- assert.equal(policy.VERSION,'joint-count-snapshot-policy-v2');
+ assert.equal(policy.VERSION,'joint-count-snapshot-policy-v3');
  for(const helper of Object.values(washington))assert.equal(typeof helper,'function');
  const base=await fixture.fixture({stamp:iso(start)}),at=start+5000,a=await frame(base,at),freshRecord=await changed(base,{at:start+60000}),b=await frame(freshRecord,start+60000);
  await check('actual typed producer WA counts increase with original receipt/native clocks',()=>{assert.equal(classify(a,b).kind,'MONOTONE_COUNTS_ONLY');assert.equal(classify(a,a,at).kind,'MONOTONE_COUNTS_ONLY');});

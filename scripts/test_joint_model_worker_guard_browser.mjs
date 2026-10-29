@@ -41,6 +41,10 @@ async function runFault(page,{fault,path='worker_unavailable',publicOnly=false,r
    else if(fault==='typed_public_metadata')next.result.__synthetic_raw_proposal=new Float64Array([1,2]);
    else if(fault==='nonfinite_diagnostics')next.diagnostics.synthetic={nested:Infinity};
    else if(fault==='serialized_private_key')next.result.synthetic={seeds:[1,2]};
+   else if(fault==='typed_usage_key')next.diagnostics.synthetic={typed_usage:{candidate_method_cells:[[1,2]]}};
+   else if(fault==='native_usage_key')next.baseline.synthetic={native_usage:{locality_clocks:['FICTIONAL']}};
+   else if(fault==='typed_usage_schema')next.diagnostics.arbitrary_alias={schema:'already-admitted-va02-typed-usage-v2',localities:[]};
+   else if(fault==='native_usage_schema')next.baseline.arbitrary_alias={schema:'validated-va02-native-usage-v1',localities:[]};
    else if(fault==='nonfinite_baseline')next.baseline.synthetic=NaN;
    return next;};
   window.NationalCountyLikelihood={...window.__guardOriginalNCL,condition(...args){const options=args[3];window.__guardNCLCalls.total++;window.__guardNCLCalls[options.contextKey==='PUBLIC'?'public':'private']++;
@@ -75,11 +79,11 @@ async function optionalResearch(page,mode){
   window.__optionalBundle=null;
   if(mode==='compatible')jointComputeCompatible=payload=>{const output=old.compatible(payload);window.__optionalBundle=output;return output;};
   else window.JointModelWorkerRunner={...old.runner,run(...args){const output=old.runner.run(...args);window.__optionalBundle=output;return output;}};
-  const faults=['nonfinite','arraybuffer','bigint','function','serialized_raw','private_transport_margins','private_transport_cache','cycle','wrong_samples','alias_positive'];
+  const faults=['nonfinite','arraybuffer','bigint','function','serialized_raw','private_transport_margins','private_transport_cache','typed_usage_key','native_usage_key','typed_usage_schema','native_usage_schema','cycle','wrong_samples','alias_positive'];
   for(const fault of faults){
    window.ChamberControlModel={...window.__guardOriginalEngine,simulate(basis,options){const result=window.__guardOriginalEngine.simulate(basis,options);if(!options.senateCorrelationResearch)return result;const next=structuredClone(result);
     if(fault==='nonfinite')next.synthetic={number:NaN};else if(fault==='arraybuffer')next.synthetic=new ArrayBuffer(8);else if(fault==='bigint')next.synthetic=1n;else if(fault==='function')next.synthetic=()=>1;
-    else if(fault==='serialized_raw')next.synthetic={basis:{}};else if(fault==='private_transport_margins')next.synthetic={transport_margins:[1,2]};else if(fault==='private_transport_cache')next.synthetic={transportCache:{}};else if(fault==='cycle')next.synthetic=next;else if(fault==='wrong_samples')next.samples=900;else{const shared={safe:true};next.synthetic={left:shared,right:shared};}return next;}};
+    else if(fault==='serialized_raw')next.synthetic={basis:{}};else if(fault==='private_transport_margins')next.synthetic={transport_margins:[1,2]};else if(fault==='private_transport_cache')next.synthetic={transportCache:{}};else if(fault==='typed_usage_key')next.synthetic={typed_usage:{}};else if(fault==='native_usage_key')next.synthetic={native_usage:{}};else if(fault==='typed_usage_schema')next.synthetic={schema:'already-admitted-va02-typed-usage-v2',localities:[]};else if(fault==='native_usage_schema')next.synthetic={schema:'validated-va02-native-usage-v1',localities:[]};else if(fault==='cycle')next.synthetic=next;else if(fault==='wrong_samples')next.samples=900;else{const shared={safe:true};next.synthetic={left:shared,right:shared};}return next;}};
    const decision=await jointRender(true);await jointWhenIdle();const bundle=window.__optionalBundle;
    records.push({mode,fault,disposition:decision.status,matching_private_public_preserved:JSON.stringify(jointLastResult)===expectedPrimary&&JSON.stringify(jointPublicResult)===expectedPublic,public_fields_valid:jointPublicBundleValid(bundle,jointFrameSnapshot(jointValidatedFrameInputs(),jointFrameKey(jointValidatedFrameInputs())).payload),optional_quarantined:fault==='alias_positive'?Object.values(bundle.variants).every(row=>Boolean(row.result)&&row.errorCode===null):Object.values(bundle.variants).every(row=>row.result===null&&row.errorCode==='OPTIONAL_VARIANT_UNAVAILABLE')});
   }
@@ -101,7 +105,7 @@ try{
  for(const [width,height]of [[1366,900],[390,844]]){
   const main=await start(width,height),{page}=main,records=[];
   for(const fault of ['nonfinite_public_scalar','typed_public_metadata'])for(const path of ['worker_unavailable','worker_construction_failure']){const state=await runFault(page,{fault,path});assertSafe(state);records.push(state);}
-  for(const fault of ['nonfinite_diagnostics','serialized_private_key','nonfinite_baseline','throw']){const state=await runFault(page,{fault});assertSafe(state);records.push(state);}
+  for(const fault of ['nonfinite_diagnostics','serialized_private_key','nonfinite_baseline','throw','typed_usage_key','native_usage_key','typed_usage_schema','native_usage_schema']){const state=await runFault(page,{fault});assertSafe(state);records.push(state);}
   // The normal MAIN runner itself is also an optional boundary: even a corrupt
   // returned diagnostic must be discarded, preserving the unchanged valid NCL.
   const runner=await runFault(page,{fault:'nonfinite_diagnostics',runnerOnly:true});assertSafe(runner,{withheld:false});records.push(runner);
