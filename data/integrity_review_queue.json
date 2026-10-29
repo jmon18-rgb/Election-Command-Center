@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-29T19:57:57.237033Z",
+  "updated_at": "2026-10-29T20:56:04.258850Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 64
+    "advisory_related_headline_buckets": 26,
+    "advisory_related_headlines": 67
   },
   "advisory_related_headlines": [
     {
@@ -72,6 +72,18 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "91c2df379b9632b971dd",
+      "headline": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -245,20 +257,6 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "e16a78441dc2d4ee17f8",
-      "headline": "Minnesota is preparing for all possibilities this election \u2014 including potential federal interference - The Globe | Worthington, Minnesota",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "MN"
-      ],
-      "topic_hints": [
-        "election_admin",
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -269,6 +267,24 @@
       "publisher": "Spectrum News",
       "published_at": "2026-10-29T17:34:00Z",
       "detected_at": "2026-10-29T19:03:44.483379Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ef491130d0f8419247bc",
+      "title": "N.Y. AG's warning about ICE at polling places sparks political disagreement - Spectrum News",
+      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPSm5CWjNheVNGZFZBWE51cVg2a1k5NXFKNjZDbEo5alp5T09LMFV1d1lHZXFUNFlqWURGOE0yckdoNmZfeU84WXM5anpJMFl4VE40R1VkaE0yWlBmd2hVYkFyVmJNY1luVWhoNkZnU1BUZGxhbTdwM1RvRzZFTUd6dWhsZVpJXzA0Tkc3RjEyV1JVWlVkMnRrVTUxUzFjR3RHendYWjFDWGdPbzFHVTJTSnpzYmFoeDhhRFhIWkJZTnhLU3JfblVEZ0l6ZVl2a3BHRDRFUXpUWHQtUk1tci1Vd0JvdXRFZERnNWFMb3I1SG5kcFptVDh3Y3pQQ19ZMnlVY0E?oc=5",
+      "publisher": "Spectrum News",
+      "published_at": "2026-10-29T17:34:00Z",
+      "detected_at": "2026-10-29T20:56:04.258850Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -305,6 +321,24 @@
       "publisher": "Spectrum News",
       "published_at": "2026-10-29T16:51:00Z",
       "detected_at": "2026-10-29T19:21:20.614878Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b65f09f1694d6bada9d6",
+      "title": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNbzI0akZYSlNkRU5mcHVqYWZYV0dkSkJUNUQ1M2x4eklmUXZiRG82LTZOak5vSWIyNFpXa2xSb05mdi0zZ3dNWUVHOUxrTUZvS0ZVdmJkRmFQOHd6Mm5INXNiVnNSLWhEU0lHdFFhS1RaZTZrYzhVX1YtV1lxLW84WllXdU9IT2JtSWRpZW5OLUdTNy1nd3N5YjZzMUk?oc=5",
+      "publisher": "Spectrum News",
+      "published_at": "2026-10-29T16:51:00Z",
+      "detected_at": "2026-10-29T20:56:04.258850Z",
       "state_hints": [],
       "topic_hints": [
         "security",
@@ -4993,45 +5027,6 @@
       "published_at": "2026-10-17T05:49:03Z",
       "detected_at": "2026-10-17T07:42:37.076000Z",
       "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bf3cb6274015cfa6c238",
-      "title": "GOP-led voting changes could affect close races in the 2026 midterms - Mezha.net",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOcnppZHViUEhOVDNKRGY0M21zMUZkbGdZRDVfOU1VMVEtVElrS2pJTnFFeDBndWdRSnNTQ3BpMlU5THBSamJMNVdKaDF6TElITlNQOXVIOE5yV042YzEzYzNYc1NITzdTRUtHc0xNanlwczEtQUZDemNrblNsVVNQT3JnV0FlMmlE?oc=5",
-      "publisher": "Mezha.net",
-      "published_at": "2026-10-17T02:59:07Z",
-      "detected_at": "2026-10-17T18:43:32.374309Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "119b35e1baf7c06c79c2",
-      "title": "Supreme Court clears hurdle for Trump\u2019s mail-ballot restrictions, but legal fight continues - Alaska Story",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQSHhXR1A3WDR5a0VxYzZZM3c4QUd4Z3FoTWdNdndpWnBBZWkzejhNTnhPTlAxdFgtZzlId0xVWHFBeUc2VmxSbzFqdUlvTEx1RVN5TExDQW1GRFZLT202c0xITDlsUjY3dnpJM3lYejRfYkw4MVBTWEwwalYzQjJBSnFDaWJQNkttbjU2OTZjSThZSWpqSTJqZkZCYnNqa2wwUy1aalZRZVBRNUo2RGVOdDVId1lET1BG?oc=5",
-      "publisher": "Alaska Story",
-      "published_at": "2026-10-17T01:57:53Z",
-      "detected_at": "2026-10-17T18:43:32.374309Z",
-      "state_hints": [
-        "AK"
-      ],
       "topic_hints": [
         "ballot_access",
         "litigation"
