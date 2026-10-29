@@ -631,7 +631,8 @@ function senatePollingErrorBudget(info){
    redrawMargins:new Float64Array(basis.house.length+basis.senate.length+basis.governors.length),
    redrawUniforms:new Map()}:null;
   const callCapture=callPlan&&callContext.captureProposal?
-   {seeds:new Uint32Array(samples),log_weights:new Float64Array(samples)}:null;
+   {seeds:new Uint32Array(samples),log_weights:new Float64Array(samples),
+    ...(callContext.cacheTransport?{transport_margins:new Float64Array(samples*callRaw.margins.length)}:{})}:null;
   const captured=capture?{codes:capture.slice(),seeds:new Uint32Array(samples),
    margins:Object.fromEntries(capture.map(c=>[c,new Float64Array(samples)])),
    house:new Uint16Array(samples),senate:new Uint8Array(samples)}:null;
@@ -819,7 +820,8 @@ function senatePollingErrorBudget(info){
      S:a.senate_chamber_sigma?senateShock/(a.senate_chamber_sigma*errorMultiplier):0,
      G:a.governor_chamber_sigma?govShock/(a.governor_chamber_sigma*errorMultiplier):0,
      states:stateDeltas}},{requiredCalledMarginCodes:callRequiredMargins});
-    if(callCapture)callCapture.log_weights[k]=moved.logWeight;
+    if(callCapture){callCapture.log_weights[k]=moved.logWeight;
+     if(callCapture.transport_margins)callCapture.transport_margins.set(moved.margins,k*callRaw.margins.length);}
     dHouse=0;dSenate=holdovers;winBattleground=0;voteSeatWeightedMarginNumerator=0;
     for(let j=0;j<polls.length;j++){
      const item=polls[j],isHouse=j<435,isSenate=j>=435&&j<470,scenario=live[item.code];
@@ -1104,6 +1106,59 @@ function senatePollingErrorBudget(info){
 
  const callPlanCache=sourceCalls?.createCache({maximumEntries:4})||null;
  const rawCallPackets=new WeakMap();
+ const TRANSPORT_CACHE_MAX_BYTES=64*1024*1024,transportCacheLRU=new Map();let transportCacheBytes=0,transportCacheReservedBytes=0;
+ function transportChecksum(values){
+  const words=new Uint32Array(values.buffer,values.byteOffset,values.byteLength/4);let hash=2166136261;
+  for(const value of words)hash=Math.imul(hash^value,16777619)>>>0;return hash;
+ }
+ // The64MiB limit covers reachable cached/pending Float64 transport buffers,
+ // not basis/options metadata, other model workspace, deferred GC or total RSS.
+ function reserveTransport(bytes){
+  if(!Number.isSafeInteger(bytes)||bytes<0||bytes>TRANSPORT_CACHE_MAX_BYTES)return null;
+  while(transportCacheLRU.size&&transportCacheBytes+transportCacheReservedBytes+bytes>TRANSPORT_CACHE_MAX_BYTES){
+   const oldest=transportCacheLRU.keys().next().value;transportCacheLRU.delete(oldest);transportCacheBytes-=oldest.transportCache.byteLength;oldest.transportCache=null;
+  }
+  if(transportCacheBytes+transportCacheReservedBytes+bytes>TRANSPORT_CACHE_MAX_BYTES)return null;
+  transportCacheReservedBytes+=bytes;return {bytes,active:true};
+ }
+ function releaseTransport(reservation){
+  if(reservation?.active){transportCacheReservedBytes-=reservation.bytes;reservation.active=false;}
+ }
+ function keepTransport(state,values,reservation){
+  if(!values){releaseTransport(reservation);return;}
+  if(!reservation?.active||values.byteLength!==reservation.bytes){const error=Error('PRIVATE_TRANSPORT_RESERVATION_MISMATCH');error.code='PRIVATE_TRANSPORT_RESERVATION_MISMATCH';throw error;}
+  releaseTransport(reservation);
+  state.transportCache=values;state.transportCacheChecksum=transportChecksum(values);
+  transportCacheLRU.set(state,true);transportCacheBytes+=values.byteLength;
+ }
+ function releaseCachedTransport(state){
+  if(!state)return;
+  if(transportCacheLRU.has(state)){transportCacheLRU.delete(state);transportCacheBytes-=state.transportCache.byteLength;}
+  state.transportCache=null;state.transportCacheChecksum=null;
+ }
+ function replayTransportPlan(state,seeds,sourceIndices){
+  if(!state.transportCache)return state.plan;
+  const rows=state.basis.house.length+state.basis.senate.length+state.basis.governors.length,values=state.transportCache;
+  const invalid=()=>{const error=Error('PRIVATE_TRANSPORT_CACHE_INTEGRITY_FAILED');error.code='PRIVATE_TRANSPORT_CACHE_INTEGRITY_FAILED';throw error;};
+  if(values.length!==state.seeds.length*rows||transportChecksum(values)!==state.transportCacheChecksum||
+     sourceIndices?.length!==seeds.length)invalid();
+  for(let i=0;i<sourceIndices.length;i++)if(!Number.isInteger(sourceIndices[i])||sourceIndices[i]<0||sourceIndices[i]>=state.seeds.length||state.seeds[sourceIndices[i]]!==seeds[i])invalid();
+  transportCacheLRU.delete(state);transportCacheLRU.set(state,true);let cursor=0;
+  const raceRows=state.basis.house.concat(state.basis.senate,state.basis.governors),calledIndices=[];
+  for(let i=0;i<raceRows.length;i++){const call=state.options.live?.[raceRows[i].code];if(call?.mode==='source_called'&&['D','R'].includes(call.winnerParty))calledIndices.push(i);}
+  const output=new Float64Array(rows);
+  return {...state.plan,transport(raw,materialization={}){
+   if(cursor>=sourceIndices.length||raw.margins?.length!==rows)invalid();
+   const index=sourceIndices[cursor++],required=materialization.requiredCalledMarginCodes??null;
+   if(required!==null&&!(required instanceof Set))return state.plan.transport(raw,materialization);
+   output.set(values.subarray(index*rows,(index+1)*rows));
+   for(const i of calledIndices){
+    if(required!==null&&!required.has(raceRows[i].code))output[i]=NaN;
+    else if(!finite(output[i]))return state.plan.transport(raw,materialization);
+   }
+   return {margins:output,logWeight:state.callLogWeights[index]};
+  }};
+ }
  const hasCalls=options=>Object.values(options.live||{}).some(row=>row?.mode==='source_called');
  function assertExistingCallContract(basis,options){
   const scoped={...options,live:Object.fromEntries(Object.entries(options.live||{}).filter(([,row])=>row?.mode==='source_called'))};
@@ -1145,7 +1200,10 @@ function senatePollingErrorBudget(info){
   if(Array.isArray(options.marginSummaryCodes))actualOptions.marginSummaryCodes=options.marginSummaryCodes.slice();
   if(Array.isArray(options.voteSeatWeights))actualOptions.voteSeatWeights=options.voteSeatWeights.map(row=>({...row}));
   if(options.senateCorrelationResearch)actualOptions.senateCorrelationResearch={...options.senateCorrelationResearch};
-  const raw=simulateRaw(basis,actualOptions,{plan,captureProposal:true});
+  const cacheBytes=(actualOptions.samples??4000)*(basis.house.length+basis.senate.length+basis.governors.length)*8;
+  const reservation=reserveTransport(cacheBytes);
+  try{
+  const raw=simulateRaw(basis,actualOptions,{plan,captureProposal:true,cacheTransport:reservation!==null});
   const seeds=raw.call_proposal_draws.seeds,packet=Object.freeze({
    schema:'raw-source-call-proposal-v1',status:'RAW_PROPOSAL_NOT_A_FORECAST',samples:raw.samples,seed:raw.seed,
    seeds,call_log_weights:raw.call_proposal_draws.log_weights,
@@ -1154,15 +1212,17 @@ function senatePollingErrorBudget(info){
    proposal_only:true,has_usable_headline_probabilities:false});
   // The public RAW arrays are inspection/county-evaluation inputs only. Keep
   // immutable private copies and reject public mutation before final weighting.
-  rawCallPackets.set(packet,{basis,basisFingerprint:JSON.stringify(basis),packetFingerprint:JSON.stringify(packet),
-   options:actualOptions,plan,seeds:Uint32Array.from(seeds),callLogWeights:Float64Array.from(packet.call_log_weights)});
+  const state={basis,basisFingerprint:JSON.stringify(basis),packetFingerprint:JSON.stringify(packet),
+   options:actualOptions,plan,seeds:Uint32Array.from(seeds),callLogWeights:Float64Array.from(packet.call_log_weights),transportCache:null};
+  keepTransport(state,raw.call_proposal_draws.transport_margins,reservation);rawCallPackets.set(packet,state);
   return packet;
+  }catch(error){releaseTransport(reservation);throw error;}
  }
- function replaySourceCallElections(state,seeds,conditioning){
+ function replaySourceCallElections(state,seeds,conditioning,sourceIndices){
   // Private only: the sole caller is the finalizer after original call weights,
   // one optional county likelihood and the hard final ESS gate are applied.
   const result=simulateRaw(state.basis,{...state.options,captureCountyDraws:undefined,replayCountySeeds:seeds},
-   {plan:state.plan,captureProposal:false,conditioning});
+   {plan:replayTransportPlan(state,seeds,sourceIndices),captureProposal:false,conditioning});
   result.source_call_conditioning={schema:'source-call-conditioning-v1',status:'CONDITIONED',
    evidence_kind:conditioning==='CALL_AND_COUNTY_IMPORTANCE_RESAMPLED'?'VALIDATED_CALLS_AND_COUNTY_RETURNS':'VALIDATED_CALLS_ONLY',
    baseline_kind:'NO_CALL_NO_COUNT_POLLING_BASELINE',conditioned_covariance_applied:true,
@@ -1174,6 +1234,7 @@ function senatePollingErrorBudget(info){
  function finalizeSourceCallElections(packet,{countyLogLikelihood=null,countyLikelihoodPower=null,
   conditioning='VALIDATED_CALL_IMPORTANCE_RESAMPLED',contextKey='UNSPECIFIED'}={}){
   const state=rawCallPackets.get(packet),joint=conditioning==='CALL_AND_COUNTY_IMPORTANCE_RESAMPLED';
+  try{
   const fail=code=>{const error=Error(code);error.code=code;throw error;};
   if(!state||JSON.stringify(state.basis)!==state.basisFingerprint||JSON.stringify(packet)!==state.packetFingerprint)
    fail('INVALID_OR_MUTATED_RAW_CALL_PACKET');
@@ -1193,9 +1254,10 @@ function senatePollingErrorBudget(info){
   const support=sourceCalls.assessLogWeights(combined),{weights,...supportMetadata}=support;
   if(support.status!=='SUPPORTED')return Object.freeze({status:'WITHHELD',reason:support.status,support:Object.freeze(supportMetadata)});
   const selected=sourceCalls.resampleWholeElectionStates(state.seeds,support);
-  const result=replaySourceCallElections(state,selected.seeds,conditioning);
+  const result=replaySourceCallElections(state,selected.seeds,conditioning,selected.source_indices);
   result.source_call_conditioning={...result.source_call_conditioning,...supportMetadata,status:'CONDITIONED'};
   return Object.freeze({status:'CONDITIONED',result,support:Object.freeze(supportMetadata)});
+  }finally{releaseCachedTransport(state);}
  }
  function simulate(basis,options={}){
   if(!hasCalls(options))return simulateRaw(basis,options);

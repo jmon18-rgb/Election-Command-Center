@@ -1,3 +1,278 @@
+/* Exact-corrected resource guide; all modules are statically scoped here.
+ * No extra source, network import, fitted coefficient or public guide API. */
+(()=>{
+const redrawPartition=(()=>{const module={exports:{}};
+'use strict';
+// Positive three-category coefficient DP. Track the two smallest requested
+// counts; the largest category is the untracked base. Reverse derivatives in
+// each base column give all leave-one-index coefficients with a common scale.
+const finite=x=>typeof x==='number'&&Number.isFinite(x);
+const workspaceCache=new Map(),MAX_WORKSPACE_BYTES=16*1024*1024;let usedBytes=0;
+function workspace(n,size){
+ const key=n+':'+size;
+ if(workspaceCache.has(key)){const entry=workspaceCache.get(key);workspaceCache.delete(key);workspaceCache.set(key,entry);return entry;}
+ const bytes=((n+3)*size+n)*8;
+ if(!Number.isSafeInteger(bytes)||bytes<0||bytes>MAX_WORKSPACE_BYTES){const error=Error('REDRAW_WORKSPACE_MEMORY_BOUND');error.name='SourceCallConditioningError';error.code='REDRAW_WORKSPACE_MEMORY_BOUND';throw error;}
+ while(workspaceCache.size&&usedBytes+bytes>MAX_WORKSPACE_BYTES){const first=workspaceCache.keys().next().value;usedBytes-=workspaceCache.get(first).bytes;workspaceCache.delete(first);}
+ const entry={forward:Array.from({length:n+1},()=>new Float64Array(size)),scales:new Float64Array(n),adjA:new Float64Array(size),adjB:new Float64Array(size),bytes};
+ workspaceCache.set(key,entry);usedBytes+=bytes;return entry;
+}
+function partition(weights,counts,{leaveOneOut=false,relativeOnly=false,gradientOutput=null,gradientOnly=false}={}){
+ const n=weights.length,total=counts.reduce((a,b)=>a+b,0);
+ if(counts.length!==3||counts.some(x=>!Number.isInteger(x)||x<0)||total!==n-Number(leaveOneOut)||
+   weights.some(row=>row.length!==3||row.some(x=>!finite(x)||x<=0||x>1+1e-12)))throw Error('INVALID_THREE_CATEGORY_PARTITION');
+ if(gradientOutput!==null&&(!leaveOneOut||!relativeOnly||!(gradientOutput instanceof Float64Array)||gradientOutput.length<n)||gradientOnly&&gradientOutput===null)throw Error('INVALID_PRIVATE_GRADIENT_SCRATCH');
+ const order=[0,1,2].sort((a,b)=>counts[b]-counts[a]||a-b),base=order[0],a=order[1],b=order[2],A=counts[a],B=counts[b],width=B+1,size=(A+1)*width;
+ const work=workspace(n,size),forward=work.forward,scales=work.scales;forward[0].fill(0);forward[0][0]=1;
+ for(let i=0;i<n;i++){
+  const prior=forward[i],next=forward[i+1],w=weights[i];next.fill(0);let scale=0;
+  const wb=w[base],wa=w[a],wc=w[b];
+  if(B===0){
+   for(let j=0;j<=Math.min(A,i+1);j++){const value=wb*prior[j]+(j?wa*prior[j-1]:0);next[j]=value;scale=Math.max(scale,value);}
+  }else if(B===1){
+   for(let j=0;j<=Math.min(A,i+1);j++){
+    const index=j*2,v0=wb*prior[index]+(j?wa*prior[index-2]:0);next[index]=v0;scale=Math.max(scale,v0);
+    if(j<=i){const v1=wb*prior[index+1]+(j?wa*prior[index-1]:0)+wc*prior[index];next[index+1]=v1;scale=Math.max(scale,v1);}
+   }
+  }else for(let j=0;j<=Math.min(A,i+1);j++)for(let k=0;k<=Math.min(B,i+1-j);k++){
+   const index=j*width+k,value=wb*prior[index]+(j?wa*prior[index-width]:0)+(k?wc*prior[index-1]:0);
+   next[index]=value;scale=Math.max(scale,value);
+  }
+  if(!(scale>0)||!finite(scale))throw Error('THREE_CATEGORY_COEFFICIENT_SUPPORT');
+  for(let j=0;j<size;j++)next[j]/=scale;scales[i]=scale;
+ }
+ const common=leaveOneOut&&relativeOnly?null:scales.reduce((sum,x)=>sum+Math.log(x),0),coefficient=forward[n][A*width+B];
+ if(!(coefficient>0)||!finite(coefficient))throw Error('THREE_CATEGORY_COEFFICIENT_SUPPORT');
+ if(!leaveOneOut)return {logCoefficient:Math.log(coefficient)+common,base,tracked:[a,b]};
+ // Keep the original unsupported-numerics outcome too: an omitted zero term
+// must not conceal an old nonfinite adjoint. This componentwise monotone
+// bound uses the original positive-weight arithmetic. If it cannot prove
+// every adjoint finite, retain the exact original full reverse loops.
+let reverseBound=1,pruneReverse=true;
+if(B>1)for(let i=n-1;i>=0;i--){const w=weights[i];reverseBound=(reverseBound*w[base]+reverseBound*w[a]+reverseBound*w[b])/scales[i];if(!finite(reverseBound)){pruneReverse=false;break;}}
+let adjoint=work.adjA;adjoint.fill(0);adjoint[A*width+B]=1;const logGradients=gradientOutput===null?new Float64Array(n):gradientOutput;
+ for(let i=n-1;i>=0;i--){
+  const prior=forward[i],next=adjoint===work.adjA?work.adjB:work.adjA,w=weights[i],scale=scales[i];next.fill(0);let derivative=0;
+  const wb=w[base],wa=w[a],wc=w[b];
+  if(B===0){
+   for(let j=0;j<=A;j++){derivative+=adjoint[j]*prior[j]/scale;next[j]=(adjoint[j]*wb+(j<A?adjoint[j+1]*wa:0))/scale;}
+  }else if(B===1){
+   for(let j=0;j<=A;j++){
+    const index=j*2;derivative+=adjoint[index]*prior[index]/scale;
+    next[index]=(adjoint[index]*wb+(j<A?adjoint[index+2]*wa:0)+adjoint[index+1]*wc)/scale;
+    derivative+=adjoint[index+1]*prior[index+1]/scale;
+    next[index+1]=(adjoint[index+1]*wb+(j<A?adjoint[index+3]*wa:0))/scale;
+   }
+  }else for(let j=pruneReverse?Math.max(0,A-n+i):0,jEnd=pruneReverse?Math.min(A,i):A;j<=jEnd;j++)for(let k=pruneReverse?Math.max(0,B-n+i,A+B-n+i-j):0,kEnd=pruneReverse?Math.min(B,i-j):B;k<=kEnd;k++){
+   const index=j*width+k;derivative+=adjoint[index]*prior[index]/scale;
+   next[index]=(adjoint[index]*wb+(j<A?adjoint[index+width]*wa:0)+(k<B?adjoint[index+1]*wc:0))/scale;
+  }
+  if(!(derivative>0)||!finite(derivative))throw Error('THREE_CATEGORY_DERIVATIVE_SUPPORT');
+  logGradients[i]=Math.log(derivative);adjoint=next;
+ }
+ if(gradientOnly)return logGradients;
+ return {logGradients,...(relativeOnly?{relativeOnly:true}:{logCommonScale:common}),base,tracked:[a,b]};
+}
+module.exports={partition};
+
+return module.exports;})();
+const occupancyGuide=(()=>{const module={exports:{}};
+'use strict';
+const finite=x=>typeof x==='number'&&Number.isFinite(x),fail=code=>{const error=Error(code);error.code=code;throw error;};
+function createWorkspace(capacity){if(!Number.isInteger(capacity)||capacity<1||capacity>64)fail('MOMENT_WORKSPACE_BOUND');return {capacity,rows:Array.from({length:6},()=>new Float64Array(capacity+1)),last:{},root:{},activity:{},evaluations:0};}
+function evaluate(weights,remaining,current,oppositeCount,t,workspace,includeLogCoefficient=true){
+ const n=remaining.length;if(n>workspace.capacity||!finite(t)||oppositeCount<0||oppositeCount>=n)fail('INVALID_MOMENT_GUIDE_INPUT');
+ const exp=Math.exp(-Math.abs(t)),u=t>=0?exp/(1+exp):1/(1+exp),s=t>=0?1/(1+exp):exp/(1+exp);
+ if(!(u>0&&s>0))fail('MOMENT_ACTIVITY_NUMERICAL_SUPPORT');
+ let F=workspace.rows[0],H=workspace.rows[1],J=workspace.rows[2],nextF=workspace.rows[3],nextH=workspace.rows[4],nextJ=workspace.rows[5];for(let i=0;i<6;i++)workspace.rows[i].fill(0);F[0]=1;let logScale=0;
+ for(let i=0;i<n;i++){
+  nextF.fill(0);nextH.fill(0);nextJ.fill(0);const row=weights[remaining[i]],dc=s*row[current],base=u+dc,opp=u*row[1-current];let scale=0;
+  for(let k=0;k<=Math.min(oppositeCount,i+1);k++){
+   const f=F[k],h=H[k],j=J[k];nextF[k]=base*f+(k?opp*F[k-1]:0);nextH[k]=base*h+dc*f+(k?opp*H[k-1]:0);nextJ[k]=base*j+2*dc*h+dc*f+(k?opp*J[k-1]:0);scale=Math.max(scale,nextF[k]);
+  }
+  if(!(scale>0)||!finite(scale))fail('MOMENT_COEFFICIENT_NUMERICAL_SUPPORT');
+  for(let k=0;k<=oppositeCount;k++){nextF[k]/=scale;nextH[k]/=scale;nextJ[k]/=scale;}if(includeLogCoefficient)logScale+=Math.log(scale);
+  const oldF=F,oldH=H,oldJ=J;F=nextF;H=nextH;J=nextJ;nextF=oldF;nextH=oldH;nextJ=oldJ;
+ }
+ if(!(F[oppositeCount]>0))fail('MOMENT_OPPOSITE_COUNT_NUMERICAL_SUPPORT');
+ const mean=H[oppositeCount]/F[oppositeCount],variance=J[oppositeCount]/F[oppositeCount]-mean*mean;
+ if(!finite(mean)||!finite(variance))fail('NONFINITE_MOMENT_GUIDE');workspace.evaluations++;
+ const last=workspace.last;last.mean=mean;last.variance=variance;last.varianceReliable=variance>0;last.u=u;last.s=s;last.logCoefficient=includeLogCoefficient?Math.log(F[oppositeCount])+logScale+n*(t>0?t+Math.log1p(Math.exp(-t)):Math.log1p(Math.exp(t))):null;return last;
+}
+function finish(workspace,t,moments,error,iteration,start){const out=workspace.root;out.t=t;out.u=moments.u;out.s=moments.s;out.mean=moments.mean;out.residual=error;out.iterations=iteration+1;out.evaluations=workspace.evaluations-start;return out;}
+function solve(weights,remaining,current,oppositeCount,target,workspace,previous=null){
+ const n=remaining.length,M=n-oppositeCount;if(!Number.isInteger(target)||target<=0||target>=M)fail('INVALID_MOMENT_OCCUPANCY_TARGET');
+ let lowLog=Infinity,highLog=-Infinity;for(const id of remaining){const value=weights[id]?.[current];if(!(value>0&&value<=1))fail('INVALID_MOMENT_GUIDE_SCORE');const log=Math.log(value);lowLog=Math.min(lowLog,log);highLog=Math.max(highLog,log);}
+ const logOdds=Math.log(target/(M-target));let low=logOdds-highLog,high=logOdds-lowLog,t=finite(previous)&&previous>=low&&previous<=high?previous:low+(high-low)/2;
+ const start=workspace.evaluations;
+ for(let iteration=0;iteration<80;iteration++){
+  const moments=evaluate(weights,remaining,current,oppositeCount,t,workspace,false),error=moments.mean-target;
+  if(Math.abs(error)<=64*Number.EPSILON*n||low===high)return finish(workspace,t,moments,error,iteration,start);
+  if(error>0)high=t;else low=t;
+  let next=moments.varianceReliable?t-error/moments.variance:NaN;if(!finite(next)||next<=low||next>=high)next=low+(high-low)/2;
+  if(next===t||high-low<=32*Number.EPSILON*(1+Math.abs(t)))return finish(workspace,t,moments,error,iteration,start);t=next;
+ }
+ fail('MOMENT_OCCUPANCY_NOT_CONVERGED');
+}
+
+function countOdds(weights,remaining,current,oppositeCount,target,workspace,initialT,initialCount){
+ const M=remaining.length-oppositeCount;if(!Number.isInteger(target)||target<=0||target>=M||!finite(initialT)||!Number.isInteger(initialCount)||initialCount<1)fail('INVALID_COUNT_ODDS_GUIDE');
+ let lowLog=Infinity,highLog=-Infinity;for(const id of remaining){const value=weights[id]?.[current];if(!(value>0&&value<=1))fail('INVALID_MOMENT_GUIDE_SCORE');const log=Math.log(value);lowLog=Math.min(lowLog,log);highLog=Math.max(highLog,log);}
+ const logOdds=Math.log(target/(M-target)),low=logOdds-highLog,high=logOdds-lowLog,t=Math.max(low,Math.min(high,initialT+Math.log(target/initialCount))),exp=Math.exp(-Math.abs(t)),u=t>=0?exp/(1+exp):1/(1+exp),s=t>=0?1/(1+exp):exp/(1+exp);
+ if(!(u>0&&s>0)||!finite(t))fail('MOMENT_ACTIVITY_NUMERICAL_SUPPORT');
+ const out=workspace.activity;out.t=t;out.u=u;out.s=s;out.mean=null;out.residual=null;out.iterations=0;out.evaluations=0;out.exact_later_occupancy_claim=false;return out;
+}
+
+module.exports={createWorkspace,evaluate,solve,countOdds};
+
+return module.exports;})();
+const lookahead=(()=>{const module={exports:{}};const require=name=>{if(name==='./partition3_fast.cjs')return redrawPartition;throw Error('UNEXPECTED_STATIC_REDRAW_DEPENDENCY');};
+'use strict';
+// Separate cost experiment: one fixed D/R group Normal is a moment-matched
+// proposal guide to the known equal-weight conditional Gaussian mixture. This
+// never replaces any original race likelihood or event normalizer.
+const {partition}=require('./partition3_fast.cjs'),finite=x=>typeof x==='number'&&Number.isFinite(x);
+function groupScores(values,signs,rows,means,logCDF){
+ const groups=[[],[]];signs.forEach((sign,i)=>{if(sign)groups[sign>0?0:1].push(i);});
+ const scratch=groups.map(group=>new Float64Array(group.length));
+ const cache=new Map(),logs=values.map(value=>{
+  if(cache.has(value))return cache.get(value);
+  const score=groups.map((members,category)=>{
+   if(!members.length)return 0;
+   const mu=scratch[category];let center=0;
+   for(let j=0;j<members.length;j++){const i=members[j];mu[j]=means[i]+(value-rows[i].center)*rows[i].mix;center+=mu[j];}center/=members.length;
+   let variance=0;for(let j=0;j<members.length;j++){const i=members[j];variance=variance+rows[i].localSD**2+(mu[j]-center)**2;}variance/=members.length;
+   if(!(variance>0)||!finite(variance))throw Error('MOMENT_GUIDE_VARIANCE_UNSUPPORTED');
+   const log=logCDF((category===0?1:-1)*center/Math.sqrt(variance));
+   if(!finite(log)||log>0||!(Math.exp(log)>0))throw Error('MOMENT_GUIDE_SCORE_SUPPORT');return log;
+  });cache.set(value,score);return score;
+ });
+ return {logs,weights:logs.map(row=>[Math.exp(row[0]),Math.exp(row[1]),1])};
+}
+function stage(scores,counts,sign,remaining,currentLogs,work){
+ const size=remaining.length,weights=work.weights;weights.length=size;
+// Only a genuinely two-dimensional future guide is reduced. The current
+// party's declared occupancy sets a positive activity by exact one-dimensional
+// moments; opposite-party availability remains finite. This is a proposal
+// approximation only: all actual likelihoods and indexed p/q stay exact.
+const reduceGuide=counts[0]>1&&counts[1]>1&&counts[2]>1;let guideCounts=counts;
+if(reduceGuide){
+ if(!work.oppositeWeights){work.oppositeWeights=Array.from({length:remaining.length},()=>[1,1,1]);work.guideCounts=[0,0,0];work.occupancy=occupancyGuide.createWorkspace(remaining.length);}
+ const current=sign>0?0:1,opposite=1-current,target=counts[current]+1;
+// One initial exact moment root, then declared count-odds transport.
+// Later heterogeneous pools use an approximate proposal activity only;
+// the original target and every actual indexed q correction stay exact.
+const samePhase=work.activityParty===current&&work.activityUncalled===counts[2]&&work.activityOpposite===counts[opposite]&&work.activityInitialCount>0&&finite(work.activityInitialT);let activity;
+if(samePhase)activity=occupancyGuide.countOdds(scores.weights,remaining,current,counts[opposite],target,work.occupancy,work.activityInitialT,work.activityInitialCount);
+else{activity=occupancyGuide.solve(scores.weights,remaining,current,counts[opposite],target,work.occupancy,null);work.activityInitialT=activity.t;work.activityInitialCount=target;}
+work.logActivity=activity.t;work.activityCount=target;work.activityParty=current;work.activityUncalled=counts[2];work.activityOpposite=counts[opposite];guideCounts=work.guideCounts;
+ guideCounts[0]=opposite===0?counts[0]:0;guideCounts[1]=opposite===1?counts[1]:0;guideCounts[2]=counts[2]+counts[opposite===0?1:0];
+ for(let i=0;i<size;i++){const row=work.oppositeWeights[i],original=scores.weights[remaining[i]];row[0]=opposite===0?activity.u*original[0]:activity.u;row[1]=opposite===1?activity.u*original[1]:activity.u;row[2]=activity.u+activity.s*original[current];weights[i]=row;}
+}else for(let i=0;i<size;i++)weights[i]=scores.weights[remaining[i]];
+const gradients=partition(weights,guideCounts,{leaveOneOut:true,relativeOnly:true,gradientOutput:work.gradients,gradientOnly:true}),logs=work.logs;let max=-Infinity;
+ for(let i=0;i<size;i++){logs[i]=(currentLogs?currentLogs[i]:scores.logs[remaining[i]][sign>0?0:1])+gradients[i];max=Math.max(max,logs[i]);}
+ const q=work.q;let sum=0;
+ for(let i=0;i<size;i++){q[i]=Math.exp(logs[i]-max);if(!(q[i]>0))throw Error('MOMENT_LOOKAHEAD_Q_SUPPORT');sum+=q[i];}
+ if(!finite(sum)||sum<=0)throw Error('MOMENT_LOOKAHEAD_Q_SUPPORT');work.max=max;work.sum=sum;return work;
+}
+function allocateCalledLookahead(values,signs,uniforms,logProbability,original,rows,means,logCDF){
+ if(!signs.some(Boolean))return original(values,signs,uniforms,logProbability);
+ if(uniforms.length!==values.length-1||Array.from(uniforms).some(x=>!finite(x)||x<0||x>=1))throw Error('INVALID_MOMENT_LOOKAHEAD_UNIFORMS');
+ const scores=groupScores(values,signs,rows,means,logCDF),remaining=values.map((_,i)=>i),counts=[signs.filter(s=>s>0).length,signs.filter(s=>s<0).length,signs.filter(s=>!s).length],
+  slots=new Uint16Array(values.length),assigned=new Float64Array(values.length);let cursor=0,logPriorMinusProposal=0;
+ // Deterministic proposal order depends only on this fixed called set.
+// Finish the less numerous called party first (tie D); within each party
+// retain original seat order. All indexed q factors and uniforms follow it.
+const firstSign=counts[0]<=counts[1]?1:-1,calledOrder=[];
+for(const sign of [firstSign,-firstSign])for(let seat=0;seat<values.length;seat++)if(signs[seat]===sign)calledOrder.push(seat);
+// Stage buffers belong only to this one synchronous transport. Active
+// prefixes are overwritten before use and never returned or retained.
+const stageWork={weights:[],current:new Float64Array(values.length),logs:new Float64Array(values.length),q:new Float64Array(values.length),gradients:new Float64Array(values.length),oppositeWeights:null,guideCounts:null,occupancy:null,logActivity:null,activityCount:null,activityInitialT:null,activityInitialCount:null,activityParty:null,activityUncalled:null,activityOpposite:null,max:0,sum:0};
+for(const seat of calledOrder){
+  counts[signs[seat]>0?0:1]--;const current=stageWork.current;for(let i=0;i<remaining.length;i++){const id=remaining[i];current[i]=logProbability(seat,values[id],id,signs[seat]);}const p=stage(scores,counts,signs[seat],remaining,current,stageWork);let choice=remaining.length-1;
+  if(remaining.length>1){const u=uniforms[cursor++];let cumulative=0;for(let i=0;i<remaining.length;i++){cumulative+=p.q[i]/p.sum;if(u<cumulative){choice=i;break;}}}
+  logPriorMinusProposal+=-Math.log(remaining.length)-(p.logs[choice]-p.max-Math.log(p.sum));
+  const id=remaining.splice(choice,1)[0];slots[seat]=id;assigned[seat]=values[id];
+ }
+ for(let z=remaining.length-1;z>0;z--){const pick=Math.floor(uniforms[cursor++]*(z+1));[remaining[z],remaining[pick]]=[remaining[pick],remaining[z]];}
+ for(let seat=0;seat<values.length;seat++)if(!signs[seat]){const id=remaining.pop();slots[seat]=id;assigned[seat]=values[id];}
+ if(cursor!==uniforms.length)throw Error('MOMENT_LOOKAHEAD_RNG_CONSUMPTION_CHANGED');return {values:assigned,slots,logPriorMinusProposal,uniformsConsumed:cursor};
+}
+module.exports={allocateCalledLookahead};
+
+return module.exports;})();
+const resource=(()=>{const module={exports:{}};const require=name=>{if(name==='./partition3_fast.cjs')return redrawPartition;throw Error('UNEXPECTED_STATIC_REDRAW_DEPENDENCY');};
+'use strict';
+const {partition}=require('./partition3_fast.cjs');
+// Proposal-only shared-factor guide. Replaces fully-called bag marginal-probit
+// surrogates by the grouped indexed resource partition used by look-ahead.
+// All original Gaussian density / exact call and allocation corrections remain
+// in the actual election weight; no evidence or fitted model term is added.
+const finite=x=>typeof x==='number'&&Number.isFinite(x);
+const dot=(a,b)=>a.reduce((sum,x,i)=>sum+x*b[i],0),logDensity=x=>-.5*x*x-.5*Math.log(2*Math.PI);
+function resourceGaussian(input,originalTerms,numerics,observe=()=>{}){
+ const {keys,calls,bags,signs}=input,{normalLogCDF,cholesky,solvePrecision,gaussianProposal}=numerics;
+ const eligible=[];
+ for(const [state,bag]of bags){
+  // Uncalled rows form the exact unit-likelihood third category.
+  const coefficients=keys.map(key=>bag.rows[0].coefficients[key]||0);
+  if(bag.rows.some(row=>keys.some((key,j)=>(row.coefficients[key]||0)!==coefficients[j])))continue;
+  const Drows=bag.rows.filter(row=>signs.get(row.code)>0),Rrows=bag.rows.filter(row=>signs.get(row.code)<0),count=Drows.length;
+  const counts=[Drows.length,Rrows.length,bag.rows.length-Drows.length-Rrows.length],factorialLog=n=>Array.from({length:n},(_,i)=>Math.log(i+1)).reduce((sum,x)=>sum+x,0),
+   logChoose=factorialLog(bag.rows.length)-counts.reduce((sum,n)=>sum+factorialLog(n),0),cache=new Map();
+  const evaluate=t=>{
+   if(cache.has(t))return cache.get(t);
+   const probabilities=rows=>bag.values.map(value=>{
+    if(!rows.length)return 1;
+    const mu=rows.map(row=>row.mean+(value-row.center)*row.mix),center=mu.reduce((a,b)=>a+b,0)/rows.length,
+     variance=rows.reduce((sum,row,i)=>sum+row.localSD**2+(mu[i]-center)**2,0)/rows.length;
+    return Math.exp(normalLogCDF(signs.get(rows[0].code)*(center+t)/Math.sqrt(variance)));
+   });
+   const D=probabilities(Drows),R=probabilities(Rrows),weights=bag.values.map((_,i)=>[D[i],R[i],1]);
+   const answer=partition(weights,counts).logCoefficient-logChoose;
+   if(!finite(answer))throw Error('NONFINITE_RESOURCE_GUIDE');cache.set(t,answer);if(cache.size>512)cache.delete(cache.keys().next().value);return answer;
+  };
+  const scale=bag.rows.reduce((sum,row)=>sum+row.localSD,0)/bag.rows.length;
+  eligible.push({state,rows:new Set(bag.rows.map(row=>row.code)),coefficients,evaluate,scale});
+ }
+ if(!eligible.length)return gaussianProposal(originalTerms,keys.length);
+ const included=new Set(eligible.flatMap(item=>Array.from(item.rows))),terms=originalTerms.filter((_,i)=>!included.has(calls[i].row.code));
+ const density=z=>-.5*dot(z,z)+terms.reduce((sum,term)=>sum+normalLogCDF(term.offset+dot(term.loadings,z)),0)+
+  eligible.reduce((sum,bag)=>sum+bag.evaluate(dot(bag.coefficients,z)),0);
+ let mode=new Float64Array(keys.length),L,iterations=0,gradientNorm=Infinity;
+ try{
+  for(;iterations<80;iterations++){
+   const gradient=Float64Array.from(mode,x=>-x),H=Array.from({length:keys.length},(_,i)=>Float64Array.from({length:keys.length},(_,j)=>Number(i===j)));
+   for(const term of terms){
+    const k=term.offset+dot(term.loadings,mode),ratio=Math.exp(logDensity(k)-normalLogCDF(k)),precision=ratio*(k+ratio);
+    for(let i=0;i<keys.length;i++){gradient[i]+=term.loadings[i]*ratio;for(let j=0;j<keys.length;j++)H[i][j]+=term.loadings[i]*term.loadings[j]*precision;}
+   }
+   for(const bag of eligible){
+    const t=dot(bag.coefficients,mode),h=Math.pow(Number.EPSILON,.25)*(1+Math.abs(t)+bag.scale),f0=bag.evaluate(t),
+     fm=bag.evaluate(t-h),fp=bag.evaluate(t+h),fm2=bag.evaluate(t-2*h),fp2=bag.evaluate(t+2*h),
+     first=(fm2-8*fm+8*fp-fp2)/(12*h),second=(-fp2+16*fp-30*f0+16*fm-fm2)/(12*h*h);
+    if(!finite(first)||!finite(second))throw Error('RESOURCE_GUIDE_DERIVATIVE_UNSUPPORTED');
+    for(let i=0;i<keys.length;i++){gradient[i]+=bag.coefficients[i]*first;for(let j=0;j<keys.length;j++)H[i][j]-=bag.coefficients[i]*bag.coefficients[j]*second;}
+   }
+   L=cholesky(H);const step=solvePrecision(L,gradient),decrement=dot(step,gradient),before=density(mode);
+   gradientNorm=Math.hypot(...gradient);
+   if(step.every(x=>Math.abs(x)<1e-11)||(decrement>=0&&decrement<=64*Number.EPSILON*(1+Math.abs(before))))break;
+   let fraction=1,accepted=false;
+   for(let line=0;line<60;line++){const trial=Float64Array.from(mode,(value,i)=>value+fraction*step[i]);if(density(trial)>=before){mode=trial;accepted=true;break;}fraction/=2;}
+   if(!accepted)throw Error('RESOURCE_GUIDE_LINE_SEARCH_FAILED');
+  }
+  if(iterations===80)throw Error('RESOURCE_GUIDE_NOT_CONVERGED');
+  const out={mode,L,iterations,logDeterminant:2*L.reduce((sum,row,i)=>sum+Math.log(row[i]),0)};
+  observe({status:'RESOURCE_GUIDE_PREPARED',states:eligible.map(row=>row.state),iterations,gradientNorm});return out;
+ }catch(error){
+  observe({status:'RESOURCE_GUIDE_UNSUPPORTED_FALLBACK_ORIGINAL',reason:error.code||error.message,states:eligible.map(row=>row.state)});
+  return gaussianProposal(originalTerms,keys.length);
+ }
+}
+module.exports={resourceGaussian};
+
+return module.exports;})();
+const recordGuide=()=>{};
 /* Candidate only: exact-corrected proposal for existing validated winner calls.
  * It supplies a sampler/weight correction, never a new evidence source or a
  * fitted forecast. Numeric basis values stay inside this prepared RAM object.
@@ -233,11 +508,11 @@
     extraVariance=row.mix&&bag?row.mix**2*bag.variance:0,scale=Math.hypot(row.localSD,Math.sqrt(extraVariance));
    return {offset:sign*(row.mean+redrawMean)/scale,loadings:keys.map(key=>sign*(row.coefficients[key]||0)/scale)};
   });
-  const gaussian=gaussianProposal(terms,keys.length),loadings=rows.map(row=>keys.map(key=>row.coefficients[key]||0));
+  const gaussian=resource.resourceGaussian(input,terms,{normalLogCDF,cholesky,solvePrecision,gaussianProposal},recordGuide),loadings=rows.map(row=>keys.map(key=>row.coefficients[key]||0));
   const output=new Float64Array(rows.length),factorDelta=new Float64Array(keys.length);
   const readState=(states,state)=>typeof states?.get==='function'?states.get(state):states?.[state];
   const diagnostics=Object.freeze({schema:VERSION,status:'PREPARED_NOT_YET_WEIGHTED',
-   method:'FULL_RELEVANT_GAUSSIAN_GUIDE_SEQUENTIAL_REDRAW_EXACT_CORRECTION',
+   method:'GROUPED_RESOURCE_GUIDE_EXACT_CORRECTION',
    called_races:Object.freeze(calls.map(({row})=>row.code)),factor_count:keys.length,
    redrawn_bag_sizes:Object.freeze(Object.fromEntries(Array.from(bags,([state,bag])=>[state,bag.values.length]))),
    proposal_iterations:gaussian.iterations,interval_calibrated:false,
@@ -269,12 +544,12 @@
      // fixed seat their sign probability is identical; memoize only that exact
      // value calculation, preserving indexed slots, p/q and every RNG draw.
      let cachedSeat=-1;const valueScores=new Map();
-     const assignment=allocateWithoutReplacement(bag.values,stateSigns,uniforms,(seat,value,id,sign)=>{
+     const assignment=lookahead.allocateCalledLookahead(bag.values,stateSigns,uniforms,(seat,value,id,sign)=>{
       if(seat!==cachedSeat){cachedSeat=seat;valueScores.clear();}
       if(valueScores.has(value))return valueScores.get(value);
       const score=normalLogCDF(sign*(means[seat]+(value-bag.rows[seat].center)*bag.rows[seat].mix)/bag.rows[seat].localSD);
       valueScores.set(value,score);return score;
-     });
+     },allocateWithoutReplacement,bag.rows,means,normalLogCDF);
      logWeight+=assignment.logPriorMinusProposal;
      bag.rows.forEach((row,i)=>allocated.set(row.code,(assignment.values[i]-row.center)*row.mix));
     }
@@ -363,3 +638,5 @@
   normalCDF,normalLogCDF,normalInverseLogCDF,truncateToCalledSign,
   allocateWithoutReplacement,assessLogWeights,resampleWholeElectionStates,failureDiagnostic});
 });
+
+})();

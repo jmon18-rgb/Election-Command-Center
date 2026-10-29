@@ -1,5 +1,19 @@
 # National needle acceptance decision — October 27, 2026
 
+## PR529 background-computation component — verified, empirical gates unchanged
+
+The unchanged numerical pipeline now computes in an isolated worker. Exact718c5b30
+passed all43workflowparents/61latestjobs56SUCCESS5declarednonapplicableSKIP;
+finalmain3458125b/Pages40809478884 and all51changedpublishedfiles/currentindex
+are verified. Actual published1366/390 controlled-worker tasks cover latest-only
+admission, correction/withdrawal, private/PUBLIC atomicity, stable internal source
+priors, rehearsal/archive/hidden boundaries, explicit fallback/timeout recovery
+and semantic reading continuity. See JOINT_MODEL_WORKER.md and pr529 receipts.
+This establishes scheduling/integrity behavior, not physical-phone speed,
+calibration, genuine positive delivery or human interpretation. The ignored
+allocation/cache prototypes are not in this release; existing late200call support
+is still insufficient and withheld under the unchanged hardESS floor.
+
 ## Conditional winner-event implementation — R0 released528, separate from R2
 
 PR528 repairs the concrete source-call gap in a separate verified release:

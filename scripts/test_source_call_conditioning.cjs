@@ -123,7 +123,22 @@ for(const options of [{errorMultiplier:.6,nationalShift:-2},{errorMultiplier:1.7
 const independent=structuredClone(basis);for(const key of Object.keys(independent.assumptions))independent.assumptions[key]=0;
 const independentCalls={'VA-FICTION-01':calls['VA-FICTION-01'],'VA-FICTION-02':calls['VA-FICTION-02']};
 const r=rawFor(independent),p=moduleApi.prepare(independent,{live:independentCalls}),x=p.transport(r);
-const bag=independent.redrawn_state_distributions.VA,assignment=allocate(bag,[1,-1,0],[.25,.8],(seat,value,id,sign)=>logcdf(sign*(independent.house[seat].mean+(value-2)*independent.house[seat].redrawn_mix_weight)/5));
+const bag=independent.redrawn_state_distributions.VA;
+// Independent finite-law oracle: with one D call, one R call and one uncalled
+// seat, the future partition is simply the sum of the other R probabilities.
+// The grouped look-ahead is exact for these two singleton called groups.
+const score=(seat,value,sign)=>Math.exp(logcdf(sign*(independent.house[seat].mean+(value-2)*independent.house[seat].redrawn_mix_weight)/5)),
+ remaining=[0,1,2],picked=[],sums=[],probabilities=[];
+for(let seat=0;seat<2;seat++){
+ const weights=remaining.map(id=>score(seat,bag[id],seat===0?1:-1)*(seat===0?remaining.filter(other=>other!==id).reduce((sum,other)=>sum+score(1,bag[other],-1),0):1)),
+  total=weights.reduce((sum,value)=>sum+value,0),u=[.25,.8][seat];let c=0,index=weights.length-1;
+ for(let j=0;j<weights.length;j++){c+=weights[j]/total;if(u<c){index=j;break;}}
+ probabilities.push(weights[index]/total);sums.push(remaining.length);picked.push(remaining.splice(index,1)[0]);
+}
+picked.push(remaining[0]);
+const assignment={values:Float64Array.from(picked,id=>bag[id]),logPriorMinusProposal:-Math.log(sums[0])-Math.log(sums[1])-Math.log(probabilities[0])-Math.log(probabilities[1])};
+const independentlyEnumeratedEvidence=permutations([0,1,2]).reduce((sum,slots)=>sum+score(0,bag[slots[0]],1)*score(1,bag[slots[1]],-1),0)/6;
+close(assignment.logPriorMinusProposal+Math.log(score(0,assignment.values[0],1))+Math.log(score(1,assignment.values[1],-1)),Math.log(independentlyEnumeratedEvidence));
 let expectedLog=assignment.logPriorMinusProposal;
 for(let i=0;i<3;i++){
  const row=independent.house[i],mean=row.mean+(assignment.values[i]-row.redrawn_state_center)*row.redrawn_mix_weight;

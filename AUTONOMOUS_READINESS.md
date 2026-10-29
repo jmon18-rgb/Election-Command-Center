@@ -1,5 +1,117 @@
 # Election Night production-readiness assignment
 
+## Current ready implementation — resource-aware proposals and fallback validation
+
+HOLD publication for confirmed continuous-update liveness: existing latest-key
+cancellation can keep forecasts pending indefinitely under legal staggered
+monotone county updates and a20s controlled real-worker delivery boundary.
+Five completed frames were canceled across six updates, then quiet recovery
+passed. Fix requires explicit source-versioned last-completed/as-of display,
+not stale-as-current admission or relaxed correction/call/context/freshness
+guards. No physical-device/source-positive claim. Numerical67db is independently
+passed exact-head CI while this separate application repair is implemented.
+
+The application candidate now has a pure61-group strict16-civic classifier,
+one-running/latest-queued scheduling, marked ASOF clocks and bounded frozen-frame
+history provenance. Call expiry rebuilds current installed observations;
+queued predecessor checks preserve intervening corrections. Fatal input paths
+fully clear private/PUBLIC predictions. The actual390 reading shift has a
+focused visible-reader geometry correction, with source review closed. Final
+local1366/390 paired-stream/error/reader checks PASS on the identical source
+pins: five marked completions during six updates,15 hard negatives, actual
+missing-policy fallback and two synchronous rounds at each width. Root78 core
+checks and existing personal/history/range checks pass. Finish the combined
+protected head and actual publication. No official-cache/supplement
+coalescing or numerical/call/source-admission expansion is included.
+
+Final reviewed candidate67dbbac7 is copied locally, with helper26c1be0c0e7a and
+worker7cf38e984669; engine/controller/kernel unchanged from the reviewed candidate.
+It uses one input-derived occupancy solve per transport/party phase, then explicit
+approximate count-odds guidance. Exact p/q restores every actual call factor in
+the unchanged target. Independent n11/two-stage110-prefix, n8/80,640-path,
+moment/root/phase/replay/core proofs pass. Complete four-output host frames pass
+balanced20.12s/interleaved17.92s, all3k/ESS/call/accounting/61-node guards intact.
+Pushed bac8895006a7cbd8a6cb7abd9d24f260363c99a5 passed all37 parents and52
+latest jobs (49SUCCESS/3 declared nonapplicable PR skips). All SIX actual CI
+complete frames passed26.02–26.97s with the same30s/3k/four-output support gates.
+It remains UNMERGED for the independent app liveness repair; finish all
+applicable FINAL combined-head checks and publication. Failed fb9/8d stay unmerged;
+no rerun, waiver, test removal or timeout increase. No further invented quota.
+
+Do not mergefb9afbf5 either: readiness40821687757/job123275371977 passed
+near_complete27,060ms then failed balanced_partial at30,007.6ms. The 30s/3k/
+four-output/six-case gate is unchanged. Reviewed67db source is now frozen after
+the lower-dimensional proposal passed that gate, with all real call evidence
+and normalizers retained in the exact target. No failed-head
+rerun/waiver; no arbitrary call-count cutoff or fitted probability adjustment.
+
+Do not merge8d83acb0: its actual readiness browser failed the 30-second complete
+frame deadline (40818570806/job123265380282), while all other latest jobs passed.
+Failed head is retained/unmerged, with no rerun/waiver/time increase. Reviewed
+party-grouped proposal and exact scratch reuse are in ignored prototypes pending
+final integration and fresh exact-head checks; published529 remains current.
+
+Integrate the reviewed helper67dbbac7/engine04a9163b candidate through protected
+review. Exact indexed p/q, duplicate slots, RNG, raw replay/consumer equality,
+packet ownership, pre-allocation reservation and finalizer lifetime have
+independent checks. The fixed fictional 200-call case now has usable support;
+the unchanged hard floor still withholds rare-call/count-overlap cases. Complete
+four-output 3,000-particle worker frames meet the existing 30-second deadline on
+this desktop host; this is not a physical-phone or calibrated-accuracy claim.
+
+Also release the actual malformed-output fallback repair: one recursive public
+guard across worker/main/final admission, preserved when optional assets fail.
+Keep valid primary results independent of optional research failures. Finish all
+applicable exact-head checks, protected merge, final current-main Pages, changed
+byte verification and actual published browser checks before marking delivered.
+Carry the single d6ee5987 docs-only proof checkpoint with this coherent change.
+No source GET/cadence, 3k draw/ESS/target, eligibility or archive activation change.
+
+The ac2eb9f2 head passed all37 parents/52 jobs49SUCCESS3declaredSKIP/0external
+but was held before merge for a newly measured balanced partial-bag cost risk.
+Safe reverse-DP zero-term pruning preserves all prior result/rejection bits and
+improves that fixed complete frame from29.45s to26.61s on this desktop host.
+All three compositions are retained as 3k/30s regressions. Finish all applicable
+checks on the new coherent source head; do not rerun ac2 or merge a stale gate.
+
+The final reviewed proposal processes the less numerous called party first
+(tie D, prepared within-party order), retaining exact uniform-indexed p/q,
+original event normalizers/local RNG, frozen county target and hard ESS. This
+changes Q/seeded conditional estimates; no-call hashes remain unchanged. Private
+per-transport stage/gradient scratch reuse is bit-exact versus the same party
+proposal and does not persist or grow the coefficient cache. Independent16-case/
+4,560-path law and five raw/RNG/consumer cases/1,428,000-word proofs pass. The
+final interleaved complete frame passed25.55s on this host, with no claim of
+physical-phone speed or a general deadline guarantee. Fresh protected checks
+must verify every current-head case before publication.
+
+## PR529 VERIFIED PUBLISHED — next engineering is allocation support
+
+718c5b30 passed ALL43parents/61latestjobs56SUCCESS5declaredPRnonappSKIP/0external/
+clean; merge27bcefe6, finalCURRENTmain3458125b/Pages40809478884SUCCESS. All51
+changedpublishedfiles/currentindex/origin-maincoherence/no_credit verified.
+Actual published Edge1366/390 full-app worker, stale callbacks, correction/
+withdrawal, atomic private/PUBLIC, source reference, hidden/archive/rehearsal,
+timeout/no automatic retry and reader continuity PASS. Ordinary27 readonlyreload
+retained private preferences/status and2024archive; known input/viewport limitation
+not retried/no interactive or geometry claim. Seven previews preserved/frozen15
+untouched. Reuse pr529 receipts; do not reimplement/replay this completed slice.
+
+All numerical3core sources,3k draws, seed, target, hardESS, source/celebration
+eligibility and native budgets/cadence remain unchanged. Earlier failed heads
+and precise scope/gesture investigations are retained; no assertions removed,
+timeout increase, waiver or rerun. Original guide1.0/eleven human tasks/hashes/
+NOT_RUN/null unchanged; scoped component proof15->16, currentledgerSHA
+bce401cede1c276517eb80f0734b6e81dadba26768f6ba80753c8cb0e970d4a1.
+
+Next: integrate only a separately reviewed, genuinely ready allocation proposal/
+private replay-cache improvement after exact p/q/indexed law/original RNG/full
+consumer/packet-integrity/private-memory-lifetime proof and complete actual
+browser private+PUBLIC+eligible-House frame under fixed30s. Current prototypes
+stay ignored; no new coefficient, call cutoff, tempering, floor reduction or
+calibration claim. Production200call case still WITHHELD/all winners retained.
+Do not let missing sources, human dates or billing freeze independent readywork.
+
 ## R0 background worker implemented — finish protected release
 
 Background computation and latest-only atomic frame admission are implemented;
