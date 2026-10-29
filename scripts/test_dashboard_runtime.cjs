@@ -165,6 +165,8 @@ async function settle(){
  w.eval(read('scripts/house_early_watch_reference.js'));
  w.eval(read('scripts/election_night_indicator_status.js'));
  w.eval(read('scripts/election_night_early_weather.js'));
+ w.eval(read('scripts/election_night_poop_meter.js'));
+ assert(w.ElectionNightPoopMeter?.STAGES.length===4,'Actual display-only meter loads after the shared indicator assessor');
  w.eval(read('scripts/election_night_announcement_motion.js'));
  w.eval(read('scripts/election_night_celebration_music_choices.js'));
  assert(w.ElectionNightIndicatorStatus?.records.length===32,'Actual unified classifier dependencies loaded in production order');

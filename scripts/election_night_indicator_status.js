@@ -36,7 +36,16 @@
    'CURRENT_EXACT_RACE_MATCHED_AREA_COUNTS','INDEPENDENT_MATCHED_HISTORICAL_AREA_BASELINE',
    'REVIEWED_2024_TO_2026_AREA_GEOGRAPHY','REPORTING_METHOD_OR_SELECTION_SCENARIOS']
  })).sort((a,b)=>(CLOSES?.floorFor(a.key)||Infinity)-(CLOSES?.floorFor(b.key)||Infinity)||a.code.localeCompare(b.code)));
- const canonical=new Map(records.map(row=>[row.code,row]));
+ // Metadata comes from the SAME existing admitted-route map. This registry
+ // does not add a source, geography, party conversion or model likelihood.
+ const COUNTY_RECORDS=freeze(Object.entries(admitted).map(([code,id])=>{
+  const office=code.endsWith('-SEN')?'Senate':'House',state=code.slice(0,2);
+  return {code,office,state,key:office==='House'?code:state+(state==='OH'?'-special':''),matched_route:true,
+   candidate_axis:code==='NE-SEN'?'OSBORN_MINUS_RICKETTS_NOT_D_MINUS_R':'D_MINUS_R',
+   source_url:typeof id==='number'?'https://civicapi.org/api/v2/race/'+id:id};
+ }));
+ const watchCanonical=new Map(records.map(row=>[row.code,row]));
+ const canonical=new Map([...COUNTY_RECORDS,...records].map(row=>[row.code,row]));
  function timeCurrent(stamp,now,code,total){const at=Date.parse(stamp||'');return typeof stamp==='string'&&/(?:Z|[+-]\d\d:\d\d)$/.test(stamp)&&
   finite(at)&&at<=now+15*60000&&now-at<=180*60000&&CLOSES?.allowed(code,total,stamp,now)===true;}
  const empty=(code,status,message)=>({schema:VERSION,code,status,message,raw:null,matched:null,
@@ -106,7 +115,7 @@
   // This exception never trusts a caller's arbitrary source URL or raw JSON.
   const independentOfficial=(code==='VA-02'||code==='WA-03')&&matchedCurrent===true&&Boolean(performance);
   if(error&&!independentOfficial)return freeze({...out,status:'SOURCE_ERROR',message:'Source unavailable; earlier signals withdrawn'});
-  const raw=error?null:rawObservation(code,observation,now);
+  const raw=error||code==='NE-SEN'?null:rawObservation(code,observation,now);
   out.raw=raw||null;
   out.raw_source_unavailable=Boolean(error);
   // A call is only passed by the existing validated call coordinator. This
@@ -131,7 +140,7 @@
  function summarize(rows){
   // Conflicting duplicates fail closed; never pick a favorable revision.
   const unique=new Map(),conflicts=new Set();
-  for(const row of Array.isArray(rows)?rows:[]){if(row?.schema!==VERSION||!canonical.has(row.code))continue;
+  for(const row of Array.isArray(rows)?rows:[]){if(row?.schema!==VERSION||!watchCanonical.has(row.code))continue;
    if(unique.has(row.code)&&JSON.stringify(unique.get(row.code))!==JSON.stringify(row))conflicts.add(row.code);else unique.set(row.code,row);}
   const qualified=[...unique.values()].filter(row=>!conflicts.has(row.code)&&['PROVISIONAL_MATCHED_OVERPERFORMANCE','VALIDATED_CALL'].includes(row.status)&&row.noticeable&&row.matched&&row.matched.candidate_axis==='D_MINUS_R');
   const positive=qualified.filter(row=>row.provisional_direction==='POSITIVE'),negative=qualified.filter(row=>row.provisional_direction==='NEGATIVE');
@@ -141,5 +150,5 @@
    conflicts:[...conflicts].sort(),scope:'PROVISIONAL_EDITORIAL_PATTERN_NOT_NATIONAL_PROBABILITY_OR_RACE_WIN',
    canMoveNationalNeedle:false,canTriggerEarnedCelebration:false,calibrated:false});
  }
- return freeze({VERSION,policy,records,assess,summarize});
+ return freeze({VERSION,policy,records,COUNTY_RECORDS,assess,summarize});
 });

@@ -225,6 +225,10 @@ jobs:
         env:
           UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/unified-early-indicators
         run: node scripts/test_unified_early_indicator_browser.mjs
+      - name: County comparison opens the existing matched-area evidence
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/county-comparison-discovery
+        run: node scripts/test_county_comparison_browser.mjs
       - name: Whole supplied images follow animation, skip and reduced-motion finales
         if: ${{ !cancelled() }}
         env:
@@ -242,6 +246,7 @@ jobs:
           name: early-indicators-celebration-details
           path: |
             artifacts/readiness/ui-review/unified-early-indicators/
+            artifacts/readiness/ui-review/county-comparison-discovery/
             artifacts/readiness/ui-review/celebration-owner-finale/
             artifacts/readiness/ui-review/announcement-motion-integrated/
           if-no-files-found: warn

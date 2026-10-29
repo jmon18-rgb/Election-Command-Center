@@ -1,0 +1,23 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
+let root=__dirname;while(!fs.existsSync(path.join(root,'index.html')))root=path.dirname(root);
+const file=process.env.TEST_PERSONAL_SOURCE||path.join(root,'scripts/personal_election_focus.js'),source=fs.readFileSync(file,'utf8');
+function extract(name){const start=source.indexOf(' function '+name+'(');assert(start>=0);const open=source.indexOf('{',start);let depth=0,quote=null,line=false,block=false;
+ for(let i=open;i<source.length;i++){const c=source[i],n=source[i+1];if(line){if(c==='\n')line=false;continue;}if(block){if(c==='*'&&n==='/'){block=false;i++;}continue;}if(quote){if(c==='\\'){i++;continue;}if(c===quote)quote=null;continue;}if(c==='/'&&n==='/'){line=true;i++;continue;}if(c==='/'&&n==='*'){block=true;i++;continue;}if(c==='"'||c==="'"||c==='`'){quote=c;continue;}if(c==='{')depth++;if(c==='}'&&--depth===0)return source.slice(start,i+1);}throw Error('Missing function end');}
+const functions=['openRaceEvidence','captureFocus','focusTarget'].map(extract).join('\n');
+function setup(){const pendingViews=new WeakMap(),focus=[];
+ const heading={id:'heading'},outerSummary={id:'expectation-summary'},areasSummary={id:'areas-summary'},button={dataset:{personalCountyResults:'VA-02'}},watchReturn={dataset:{personalWatchReturn:'VA-02'}};
+ const areas={open:false,querySelector:s=>s===':scope > summary'?areasSummary:null},detail={open:false,querySelector:s=>s==='[data-disclosure="areas"]'?areas:s===':scope > summary'?outerSummary:null};
+ const card={dataset:{race:'VA-02'},querySelector:s=>s==='[data-disclosure="expectation"]'?detail:s==='h4'?heading:null};
+ const host={ownerDocument:{activeElement:button},contains:()=>true,querySelectorAll:s=>s==='.personal-focus-card'?[card]:s==='[data-personal-county-results]'?(host.hasButton?[button]:[]):s==='[data-personal-watch-return]'?[watchReturn]:[]};host.hasButton=true;
+ const sandbox={pendingViews,focusReadingTarget:(_host,target)=>{if(target)focus.push(target.id);}};vm.createContext(sandbox);vm.runInContext(functions,sandbox);return {sandbox,pendingViews,focus,host,button,watchReturn,heading,detail,areas};}
+let groups=0;const check=(name,fn)=>{fn();groups++;};
+check('explicit county action opens both existing disclosures and targetsareas',()=>{const s=setup();s.sandbox.openRaceEvidence(s.host,'VA-02',true);assert.equal(s.detail.open,true);assert.equal(s.areas.open,true);assert.deepEqual(s.focus,['areas-summary']);});
+check('original watch action retains outer-only expectation behavior',()=>{const s=setup();s.sandbox.openRaceEvidence(s.host,'VA-02');assert.equal(s.detail.open,true);assert.equal(s.areas.open,false);assert.deepEqual(s.focus,['expectation-summary']);});
+check('pending action uses same race-heading anchor and areas bookmark',()=>{const s=setup(),pending={};s.pendingViews.set(s.host,pending);s.sandbox.openRaceEvidence(s.host,'VA-02',true);assert.equal(pending.bookmark.kind,'race');assert.equal(pending.bookmark.race,'VA-02');assert.equal(pending.bookmark.disclosure,'areas');assert.equal(pending.anchor,s.heading);assert.deepEqual(s.focus,['heading']);});
+check('county control has its own semantic bookmark',()=>{const s=setup(),bookmark=s.sandbox.captureFocus(s.host,s.button);assert.equal(bookmark.kind,'county-link');assert.equal(bookmark.race,'VA-02');assert.equal(s.sandbox.focusTarget(s.host,bookmark),s.button);});
+check('withdrawn comparison falls back to same raceheading, not othercontrols',()=>{const s=setup();s.host.hasButton=false;assert.equal(s.sandbox.focusTarget(s.host,{kind:'county-link',race:'VA-02'}),s.heading);});
+check('original watch-return bookmark is not captured as a county control',()=>{const s=setup(),bookmark=s.sandbox.captureFocus(s.host,s.watchReturn);assert.equal(bookmark.kind,'watch-return');assert.equal(s.sandbox.focusTarget(s.host,bookmark),s.watchReturn);});
+check('missing race cannot invent disclosure or focus',()=>{const s=setup();s.host.querySelectorAll=()=>[];s.sandbox.openRaceEvidence(s.host,'MI-SEN',true);assert.deepEqual(s.focus,[]);assert.equal(s.detail.open,false);});
+const proof={status:'PASS',groups,source_sha256:crypto.createHash('sha256').update(source).digest('hex'),candidate:Boolean(process.env.TEST_PERSONAL_SOURCE),scope:'Actual extracted private navigation/bookmark functions; browser proves rendering/geometry',model_draws:0,source_requests:0};
+const out=process.env.TEST_PROOF_PATH||path.join(root,'artifacts/readiness/county-comparison-affordance-unit.json');fs.mkdirSync(path.dirname(out),{recursive:true});fs.writeFileSync(out,JSON.stringify(proof,null,2)+'\n');console.log(JSON.stringify(proof));

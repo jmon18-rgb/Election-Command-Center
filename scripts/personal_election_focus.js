@@ -187,6 +187,7 @@
   if(target.dataset.earlyWatchPin)return {kind:'watch-pin',race:target.dataset.earlyWatchPin};
   if(target.dataset.personalCardLink)return {kind:'card-link',race:target.dataset.personalCardLink};
   if(target.dataset.personalWatchReturn)return {kind:'watch-return',race:target.dataset.personalWatchReturn};
+  if(target.dataset.personalCountyResults)return {kind:'county-link',race:target.dataset.personalCountyResults};
   const watch=target.closest('.early-watch');if(watch){const race=target.closest('[data-watch-race]')?.dataset.watchRace||null;return race?{kind:'watch',race}:{kind:'watch',race:null,part:target===watch.querySelector('h3')?'heading':'list'};}
   if(target.dataset.personalJump)return {kind:'jump',race:target.dataset.personalJump};
   const card=target.closest('.personal-focus-card');
@@ -201,6 +202,7 @@
   if(bookmark.kind==='watch-pin')return Array.from(host.querySelectorAll('[data-early-watch-pin]')).find(x=>x.dataset.earlyWatchPin===bookmark.race)||null;
   if(bookmark.kind==='card-link')return Array.from(host.querySelectorAll('[data-personal-card-link]')).find(x=>x.dataset.personalCardLink===bookmark.race);
   if(bookmark.kind==='watch-return')return Array.from(host.querySelectorAll('[data-personal-watch-return]')).find(x=>x.dataset.personalWatchReturn===bookmark.race);
+  if(bookmark.kind==='county-link')return Array.from(host.querySelectorAll('[data-personal-county-results]')).find(x=>x.dataset.personalCountyResults===bookmark.race)||Array.from(host.querySelectorAll('.personal-focus-card')).find(x=>x.dataset.race===bookmark.race)?.querySelector('h4')||null;
   if(bookmark.kind==='watch'){const watch=host.querySelector('.early-watch');if(bookmark.part==='heading'){const heading=watch?.querySelector('h3');if(heading)heading.tabIndex=-1;return heading||null;}return Array.from(host.querySelectorAll('[data-watch-race]')).find(x=>x.dataset.watchRace===bookmark.race)?.querySelector('summary')||watch?.querySelector('.early-watch-list')?.querySelector('summary')||null;}
   if(bookmark.kind==='jump')return Array.from(host.querySelectorAll('[data-personal-jump]')).find(x=>x.dataset.personalJump===bookmark.race);
   if(bookmark.kind==='ratings')return host.querySelector('.personal-focus-rating-key > summary');
@@ -267,11 +269,12 @@
   const top=Math.max(0,host.ownerDocument.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;
   if(rect.top<top||rect.bottom>view.innerHeight-8)view.scrollBy(0,rect.top-top);
  }
- function openRaceEvidence(host,code){
+ function openRaceEvidence(host,code,includeAreas=false){
   const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(x=>x.dataset.race===code);
   const detail=card?.querySelector('[data-disclosure="expectation"]');if(detail)detail.open=true;
-  const pending=pendingViews.get(host);if(pending){pending.bookmark={kind:'race',race:code,disclosure:'expectation'};pending.anchor=card?.querySelector('h4')||null;focusReadingTarget(host,pending.anchor);return;}
-  focusReadingTarget(host,detail?.querySelector(':scope > summary')||card?.querySelector('h4'));
+  const areas=includeAreas?detail?.querySelector('[data-disclosure="areas"]'):null;if(areas)areas.open=true;
+  const pending=pendingViews.get(host);if(pending){pending.bookmark={kind:'race',race:code,disclosure:areas?'areas':'expectation'};pending.anchor=card?.querySelector('h4')||null;focusReadingTarget(host,pending.anchor);return;}
+  focusReadingTarget(host,areas?.querySelector(':scope > summary')||detail?.querySelector(':scope > summary')||card?.querySelector('h4'));
  }
  function openWatch(host,raceCode=null){
   const section=host?.querySelector('.early-watch');if(!section)return false;
@@ -362,7 +365,7 @@
   // Keep operator disclosure state by race identity, never by changing row order.
   const openPerformance=new Map(Array.from(host.querySelectorAll('.personal-focus-card')).map(c=>[c.dataset.race,new Set(Array.from(c.querySelectorAll('details[open]')).map(d=>d.dataset.disclosure))]));
   const activeCard=host.ownerDocument.activeElement?.closest?.('.personal-focus-card');
-  const focusedRace=resumed?.kind==='race'?resumed.race:activeCard&&host.contains(activeCard)&&!active.dataset.personalWatchReturn?activeCard.dataset.race:null;
+  const focusedRace=resumed?.kind==='race'?resumed.race:activeCard&&host.contains(activeCard)&&!active.dataset.personalWatchReturn&&!active.dataset.personalCountyResults?activeCard.dataset.race:null;
   const focusedDisclosure=resumed?.kind==='race'?resumed.disclosure:focusedRace?active.closest('summary')?.parentElement.dataset.disclosure:null;
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
@@ -410,6 +413,13 @@
     const p=row.performance,positive=p?.positive_candidate||'D',negative=p?.negative_candidate||'R';
     if(p&&finite(p.observed_margin_points)&&[p.expected_margin_scenarios,p.difference_margin_scenarios].every(x=>Array.isArray(x)&&x.length===2&&x.every(finite))){
      card.append(el('p','personal-focus-performance','Matched-area performance · '+range(p.difference_margin_scenarios,positive,negative)+' margin points vs expected'));
+     if(row.ownCounts&&Array.isArray(p.largest_reporting_units)&&p.largest_reporting_units.length){
+      const comparisonNav=el('nav','personal-focus-jumps'),comparison=el('button','','County results & expectations');
+      comparisonNav.setAttribute('aria-label',row.code+' matched reporting-area comparison');comparison.type='button';comparison.dataset.personalCountyResults=row.code;
+      comparison.setAttribute('aria-label',row.code+' county results and expectations'+(row.office==='House'?' for matched district parts':''));
+      comparison.title=row.calculationAsOf?'Inspect the inputs used by this last completed calculation; newer returns are processing.':'Inspect reported matched areas against their pre-results expectations.';
+      comparison.addEventListener('click',()=>openRaceEvidence(host,row.code,true));comparisonNav.append(comparison);card.append(comparisonNav);
+     }
      const detail=el('details','');detail.dataset.disclosure='expectation';detail.append(el('summary','','What was expected here?'),el('p','','Observed '+margin(p.observed_margin_points,positive,negative)+'; expected '+range(p.expected_margin_scenarios,positive,negative)+' in the same reporting areas. Historical '+p.baseline_year+' local shares adjusted to the pre-results race expectation.'));
      detail.open=openPerformance.get(row.code)?.has('expectation')||false;
      detail.append(el('p','',p.scope));if(p.historical_transfer)detail.append(el('p','',p.historical_transfer+'; experimental and uncalibrated.'));
@@ -433,7 +443,7 @@
   }
   host.append(el('p','methodline','Probability changes are not vote-margin outperformance. Matched county performance remains the model evidence. NC01/AZ01 boundary contracts are still pending; existing TX and WA03 integrations remain available. KS uses the existing conservative final-call gate pending county-hours review. Experimental and uncalibrated; a forecast is not a result.'));
   for(const summary of host.querySelectorAll('.personal-focus-card summary'))summary.addEventListener('click',event=>activatePersonalDisclosure(host,summary,event));
-  if(['watch','watch-pin','jump','card-link','watch-return'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
+  if(['watch','watch-pin','jump','card-link','watch-return','county-link'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
   if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||(focusedDisclosure?card?.querySelector('h4'):card?.querySelector('details > summary'))||card?.querySelector('h4'))?.focus({preventScroll:true});}
   if(pendingReaderVisible&&host.contains(doc.activeElement)){
    const rect=doc.activeElement.getBoundingClientRect(),top=(doc.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;

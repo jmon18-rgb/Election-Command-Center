@@ -968,6 +968,13 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 @media(max-width:700px){.early-watch-priority{grid-template-columns:minmax(0,1fr)}.en-early-weather-toast{right:16px;bottom:12px;padding:16px}.en-early-weather-toast h3{font-size:1.3rem}.en-celebration-fish-frame{width:min(100%,250px)}}
 @media(prefers-reduced-motion:reduce){.en-early-weather-cloud{animation:none}.en-fish-talking .fish-anchor-mouth,.en-fish-talking .fish-anchor-jaw{transition:none}}
 
+
+/* Relative-performance display: fixed four stages; unknown has no selected stage. */
+.en-poop-meter{margin:14px 0;padding:18px;border:1px solid var(--border,#334155);border-radius:16px;background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,41,59,.8));color:var(--text,#f8fafc)}
+.en-poop-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:baseline}.en-poop-top h3{margin:0;font-size:1.35rem}.en-poop-kicker{margin:0;color:#cbd5e1;font-size:.85rem}.en-poop-level{font-size:1.05rem;margin:10px 0 6px;font-weight:800;min-height:1.6em}
+.en-poop-scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:12px 0;padding:0;list-style:none}.en-poop-scale li{position:relative;border:1px solid #475569;border-radius:10px;padding:10px 5px;text-align:center;font-size:.82rem;font-weight:700;color:#a8b3c5;background:#172033;min-width:0;overflow-wrap:anywhere;opacity:.65}.en-poop-scale li span{display:block;font-size:1.6rem;line-height:1.3;margin-bottom:4px}.en-poop-scale li[data-selected="true"]{opacity:1;color:#fff;border:2px solid var(--poop-tone,#cbd5e1);padding:9px 4px;box-shadow:0 0 18px color-mix(in srgb,var(--poop-tone,#cbd5e1) 22%,transparent)}
+.en-poop-scale li:nth-child(1){--poop-tone:#5eead4}.en-poop-scale li:nth-child(2){--poop-tone:#fde68a}.en-poop-scale li:nth-child(3){--poop-tone:#fb923c}.en-poop-scale li:nth-child(4){--poop-tone:#f87171}.en-poop-meter p{line-height:1.5}.en-poop-reason{margin:8px 0;color:#e2e8f0}.en-poop-coverage{font-size:.84rem;color:#b8c5d7;margin:6px 0}.en-poop-rules{font-size:.84rem;color:#cbd5e1;margin-top:10px}.en-poop-rules summary{cursor:pointer;min-height:44px;display:flex;align-items:center}.en-poop-rules ul{padding-left:22px}.en-poop-rules li{margin:6px 0}
+@media(max-width:500px){.en-poop-meter{padding:14px}.en-poop-scale{gap:4px}.en-poop-scale li{font-size:.73rem;padding:9px 3px}.en-poop-scale li[data-selected="true"]{padding:8px 2px}.en-poop-scale li span{font-size:1.4rem}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -1624,6 +1631,23 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
  <div id="enWatchError" class="en-watch-error" role="status"></div>
  <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
  </details>
+<section id="enPoopMeter" class="en-poop-meter" aria-labelledby="enPoopTitle" data-stage="UNRATED">
+ <div class="en-poop-top"><h3 id="enPoopTitle">The Poop Meter</h3><p class="en-poop-kicker">EARLY RETURNS · PERFORMANCE VS EXPECTATIONS</p></div>
+ <p id="enPoopLevel" class="en-poop-level" role="status" aria-live="polite">Waiting for usable returns</p>
+ <ol class="en-poop-scale" aria-label="Underperformance warning scale">
+  <li data-poop-stage="CLEAN_UNDIES" data-selected="false"><span aria-hidden="true">🩲</span>Clean undies</li>
+  <li data-poop-stage="SKID_MARKS" data-selected="false"><span aria-hidden="true">😬</span>Skid marks</li>
+  <li data-poop-stage="TURTLING" data-selected="false"><span aria-hidden="true">🐢</span>Turtling</li>
+  <li data-poop-stage="FULL_BLOWN_SHIT" data-selected="false"><span aria-hidden="true">💩</span>Full-blown shit</li>
+ </ol>
+ <p id="enPoopReason" class="en-poop-reason">At least two states need usable matched returns before this meter gets a rating.</p>
+ <p id="enPoopCoverage" class="en-poop-coverage">Covered evidence only · not national win odds.</p>
+ <details class="en-poop-rules"><summary>What puts us on the scale?</summary>
+  <p>The same admitted county evidence used by the needles supplies this display. The 32-race watch also includes races whose matched inputs are still missing. Neither display adds another adjustment to the model.</p>
+  <ul><li><strong>Clean undies:</strong> at least two covered states have usable comparisons and no qualified Democratic underperformance warning.</li><li><strong>Skid marks:</strong> a warning in one state, or conflicting overperformance and underperformance.</li><li><strong>Turtling:</strong> warnings in at least two states, with no qualified opposing positive signal.</li><li><strong>Full-blown shit:</strong> at least three states fall at least 5 points short of expectations across every supplied method scenario, with no qualified positive signal.</li></ul>
+  <p>Editorial thresholds, not calibrated odds: noticeable means at least 3 margin points across every method scenario. Each comparison needs at least 10,000 matched two-party votes, three reporting areas and 0.5% of historical reference turnout. Nebraska’s Osborn/Ricketts axis is excluded from Democratic-performance warnings. Partial geography and reporting order can mislead; “Clean” is not a Democratic-win forecast. Pending, stale or insufficient evidence stays unrated.</p>
+ </details>
+</section>
 <details class="en-early-desk" id="enEarlySignalsDetails" aria-label="Early election night signals">
  <summary class="en-early-heading"><span><strong>Early indicators · one shared watch</strong>
  <small>KY-06 · IN-05 · FL-SEN · all 21 House references</small></span></summary>
@@ -1782,9 +1806,10 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_priority.js?v=67317c95ade2"></script>
 <script src="./scripts/election_night_signals.js?v=de465c6b3fd3"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
-<script src="./scripts/election_night_indicator_status.js?v=0d84acf916ed"></script>
+<script src="./scripts/election_night_indicator_status.js?v=0248c0cbc715"></script>
 <script src="./scripts/election_night_early_weather.js?v=def635952113"></script>
-<script src="./scripts/personal_election_focus.js?v=df86d0042c66"></script>
+<script src="./scripts/election_night_poop_meter.js?v=e97eea7deb51"></script>
+<script src="./scripts/personal_election_focus.js?v=8a3865ac232b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=395ee89c6934"></script>
 <script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
@@ -5091,7 +5116,7 @@ function jointHistoryRevision(preview=false,recorded=jointRecordedCodeRevision()
  recorded,jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
  jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()&&jointPrivateHouse?1:0].join('|');}
 function renderPersonalElectionFocus(){
- if(jointModelPending){if(typeof enIndicatorWithdraw==='function')enIndicatorWithdraw();const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;if(!host.hidden)window.PersonalElectionFocus?.setPending(host);}return;}
+ if(jointModelPending){if(typeof enIndicatorWithdraw==='function')enIndicatorWithdraw();const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;if(!host.hidden)window.PersonalElectionFocus?.setPending(host);}if(typeof enIndicatorSyncControls==='function')enIndicatorSyncControls();return;}
  try{window.PersonalElectionFocus?.render($('#enPersonalFocus'),jointLastResult,jointPulseBaseline,
   {year:enModeYear,now:Date.now(),calculationAsOf:jointAsOfSnapshot,closes:window.ElectionNightPollClosings2026,evidence:jointPulseRows,history:enOutlookHistory,context:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC',indicators:typeof enIndicatorCollect==='function'?enIndicatorCollect():null,pinnedCodes:typeof enWatched==='undefined'?[]:enWatched.map(x=>x.office==='Senate'?x.key.slice(0,2)+'-SEN':x.key),toggleWatch:code=>{if(typeof enWatchParse!=='function'||typeof enWatchToggle!=='function')return;const item=enWatchParse(code);if(item){enWatchToggle(item);if(typeof jointRender==='function')void jointRender(false);renderPersonalElectionFocus();}},officialSources:typeof enEarlyOfficialSources==='undefined'?null:enEarlyOfficialSources});if(typeof enRenderEarlySignals==='function')enRenderEarlySignals();}
  catch{const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;host.textContent='Personal race needles unavailable · national forecast remains separate.';}}
@@ -5277,6 +5302,7 @@ function jointInvalidateModel(key,message='Updating forecast in the background�
  jointPreservePendingLayout();
  if($('#enNationalRehearsal')?.open&&enModeYear===2026&&!document.hidden){jointCancelNationalPreview(true);nationalPreviewNeedsRefresh=true;}
  jointRequestEpoch++;jointModelController?.cancel('INPUT_SNAPSHOT_CHANGED');jointActiveKey='';jointPendingKey=key;jointModelPending=true;
+ if(typeof enIndicatorSyncControls==='function')enIndicatorSyncControls();
  jointLastResult=null;jointPublicResult=null;jointPulseBaseline=null;jointPulseRows=[];jointDescriptiveReturns=[];jointCacheKey='';jointErrorMessage=message;
  jointRenderCards(null);for(const id of ['jointHomeHeadline','jointNightHeadline'])if($('#'+id))$('#'+id).textContent='Forecast updating';
  jointRenderHouseShadow(null,null,null);
@@ -7759,12 +7785,15 @@ function enEarlyLiveObservation(item){
 }
 function enIndicatorCollect(){
  const api=window.ElectionNightIndicatorStatus;
+ const registryReady=Array.isArray(api?.COUNTY_RECORDS)&&api.COUNTY_RECORDS.length===18&&
+  api.COUNTY_RECORDS.every(row=>row?.matched_route===true&&typeof row.code==='string')&&new Set(api.COUNTY_RECORDS.map(row=>row.code)).size===18;
+ const countySpecs=registryReady?api.COUNTY_RECORDS:[],countyCodes=new Set(countySpecs.map(row=>row.code));
  let now=Date.now(),context='PUBLIC';
  try{context=jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC';}catch{context=null;}
  const visible=()=>typeof enIsVisible==='function'&&enIsVisible()===true;
  let active=enModeYear===2026&&!document.hidden&&visible()&&
   (typeof enRehearsalActive==='undefined'||!enRehearsalActive);
- const unavailable=()=>({rows:[],summary:null,current:false,active,context,now});
+ const unavailable=()=>({rows:[],county_rows:[],summary:null,current:false,active,context,now});
  if(!api||typeof api.assess!=='function'||typeof api.summarize!=='function'||!Array.isArray(api.records))return unavailable();
  const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
  let inputs=null,current=false,used=[],matchedRows=new Map();
@@ -7781,17 +7810,17 @@ function enIndicatorCollect(){
    const expectedArgs=args&&{...jointIndependentControlOptions,contextKey:context,
     marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,
     now:args.now,nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:inputs.live};
-   current=Boolean(context&&!jointModelPending&&!jointAsOfSnapshot&&jointLastResult&&frame&&
+   current=Boolean(registryReady&&context&&!jointModelPending&&!jointAsOfSnapshot&&jointLastResult&&frame&&
     frame.frameKind==='LIVE'&&frame.key===key&&jointCacheKey===key&&
     frame.contextKey===context&&frame.modelRevision===jointModelCodeRevision()&&
     payload&&args&&Number.isFinite(args.now)&&args.now<=now&&Date.parse(frame.input_at||'')===args.now&&
     same(payload.basis,jointBasis)&&same(payload.publicBasis,jointUsesPrivateContext()?jointBasisPublic:null)&&
     same(args,expectedArgs)&&same(payload.envelopes,inputs.envelopes)&&
     used.length<=18&&new Set(used.map(row=>row.code)).size===used.length&&
-    used.every(row=>inputs.eligibility.some(e=>e[0]===row.code&&e[1]===true))&&
+    used.every(row=>countyCodes.has(row.code)&&inputs.eligibility.some(e=>e[0]===row.code&&e[1]===true))&&
     typeof window.NationalCountyLikelihood?.compile==='function');
    if(current){
-    const watched=new Set(api.records.map(row=>row.code));
+    const watched=new Set([...api.records,...countySpecs].map(row=>row.code));
     for(const previous of used.filter(row=>watched.has(row.code))){
      const captured=payload.envelopes.filter(e=>e?.snapshot?.race_code===previous.code);
      const latest=inputs.envelopes.filter(e=>e?.snapshot?.race_code===previous.code);
@@ -7827,6 +7856,15 @@ function enIndicatorCollect(){
    matched:matchedRows.get(spec.code)||oldByCode.get(spec.code)||null,
    matchedCurrent:current&&matchedRows.has(spec.code),calledParty});
  });
+ // The meter uses the COMPLETE existing18route cohort, including routes
+ // outside the32watch. No additional raw-provider observation is read here.
+ const county_rows=countySpecs.map(spec=>{
+  const call=active?inputs?.live?.[spec.code]:null;
+  const calledParty=call?.mode==='source_called'&&['D','R'].includes(call.winnerParty)?call.winnerParty:null;
+  return api.assess(spec.code,{now,active,error:false,observation:null,
+   matched:matchedRows.get(spec.code)||oldByCode.get(spec.code)||null,
+   matchedCurrent:current&&matchedRows.has(spec.code),calledParty});
+ });
  // Even a re-entrant observation helper cannot admit a result from a changed
  // context/key. No asynchronous work or source read is started here.
  let unstable=false;
@@ -7842,19 +7880,20 @@ function enIndicatorCollect(){
   (typeof enRehearsalActive!=='undefined'&&enRehearsalActive)||unstable){
   current=false;active=false;
   return {rows:api.records.map(spec=>api.assess(spec.code,{now,active:false})),
+   county_rows:countySpecs.map(spec=>api.assess(spec.code,{now,active:false})),
    summary:api.summarize([]),current,active,context:unstable?null:context,now};
  }
  if(!current){
   // Re-assess without matched authority rather than returning previously
   // computed positive rows after an end-of-collection validity change.
-  for(let i=0;i<rows.length;i++){
-   const spec=api.records[i],previous=rows[i];
-   if(previous.matched)rows[i]=api.assess(spec.code,{now,active,error:previous.raw_source_unavailable,
-    observation:null,matched:oldByCode.get(spec.code)||null,matchedCurrent:false,
+  for(const cohort of [rows,county_rows])for(let i=0;i<cohort.length;i++){
+   const previous=cohort[i];
+   if(previous.matched)cohort[i]=api.assess(previous.code,{now,active,error:previous.raw_source_unavailable,
+    observation:null,matched:oldByCode.get(previous.code)||null,matchedCurrent:false,
     calledParty:previous.calledParty});
   }
  }
- return {rows,summary:api.summarize(rows),current,active,context,now};
+ return {rows,county_rows,summary:api.summarize(rows),current,active,context,now};
 }
 
 let enIndicatorLatestView=null,enIndicatorViewKey='',enIndicatorWeatherNotes=[];
@@ -7867,16 +7906,59 @@ function enIndicatorChime(){
 }
 function enIndicatorWeatherRender(value){
  const host=$('#enEarlyWeatherToast');if(!host)return;const wasFocused=host.contains(document.activeElement);
- host.hidden=!value;if(!value){if(wasFocused)$('#enEarlyWatchOpen')?.focus({preventScroll:true});return;}
+ host.hidden=!value;if(!value){
+ if(wasFocused&&!document.hidden&&typeof enIsVisible==='function'&&enIsVisible()){
+  for(const id of ['enEarlyWatchOpen','enEarlyWeatherPreview','enMode2026']){
+   const target=$('#'+id);if(!target||target.disabled||target.getAttribute('aria-disabled')==='true')continue;
+   let unavailable=false;
+   for(let node=target;node;node=node.parentElement){
+    const style=getComputedStyle(node);
+    if(node.hidden||node.inert||node.tagName==='DETAILS'&&!node.open||style.display==='none'||style.visibility!=='visible'||Number(style.opacity)===0){unavailable=true;break;}
+   }
+   if(unavailable)continue;
+   const rect=target.getBoundingClientRect();
+   if(!(rect.width>0&&rect.height>0&&rect.left>=0&&rect.top>=0&&rect.right<=innerWidth&&rect.bottom<=innerHeight))continue;
+   const hit=document.elementFromPoint(rect.left+rect.width/2,rect.top+rect.height/2);
+   if(hit!==target&&!target.contains(hit))continue;
+   target.focus({preventScroll:true});break;
+  }
+ }
+ return;
+}
  $('#enEarlyWeatherKicker').textContent=value.simulated?'SIMULATED PREVIEW · NO LIVE SIGNAL':value.context==='LOCAL_RESEARCH_VARIANT'?'PROVISIONAL · YOUR LOCAL CONTEXT':'PROVISIONAL · LOCAL EARLY INDICATORS';
  $('#enEarlyWeatherTitle').textContent=value.stage==='STRONGER_PATTERN'?'The early pattern is strengthening':'A storm is brewing';
  $('#enEarlyWeatherBody').textContent=value.simulated?'Example only: several states show better Democratic performance than the same reporting areas were expected to produce. No live race, victory or national probability is implied.':value.positive_races.join(', ')+' show Democratic overperformance across every supplied method scenario. '+(value.stage==='STRONGER_PATTERN'?'At least three states meet the +5-point editorial threshold.':'At least two states meet the +3-point editorial threshold.')+' More returns can reverse this pattern.';
 }
 const enIndicatorWeather=window.ElectionNightEarlyWeather?.create({render:enIndicatorWeatherRender,chime:enIndicatorChime,stopSound:enIndicatorStopChime});
 function enIndicatorBlocked(){return Boolean($('#enMilestoneSpotlight')?.open||!$('#enFishToast')?.hidden||$('#enNationalRehearsal')?.open);}
-function enIndicatorWithdraw(){enIndicatorWeather?.update({active:false});enIndicatorStopChime();}
+function enIndicatorWithdraw(){enIndicatorWeather?.update({active:false});enIndicatorStopChime();if(document.hidden||typeof enIsVisible!=='function'||!enIsVisible()||enModeYear!==2026)enIndicatorRenderPoop({active:false,current:false,context:null});}
+function enIndicatorSyncControls(){
+ if((enModeYear!==2026||jointModelPending)&&typeof enIndicatorRenderPoop==='function')enIndicatorRenderPoop({active:enModeYear===2026,current:false,context:null});
+ const open=$('#enEarlyWatchOpen'),preview=$('#enEarlyWeatherPreview'),host=$('#enPersonalFocus'),archive=enModeYear!==2026;
+ const ready=!archive&&!jointModelPending&&host&&!host.hidden&&Boolean(host.querySelector('.early-watch'));
+ if(open){open.disabled=!ready;open.title=archive?'Select 2026 Results above to open this watch.':ready?'Open the shared early-indicator watch.':'The early watch is preparing; it will be available when this calculation finishes.';}
+ if(preview){preview.disabled=archive;preview.title=archive?'Select 2026 Results above to preview this fictional notice.':'Preview only · no actual early signal or race win.';}
+}
+function enIndicatorRenderPoop(view){
+ const host=$('#enPoopMeter');if(!host)return;
+ let value=null;try{value=window.ElectionNightPoopMeter?.rate(view);}catch{}
+ const selected=value&&Number.isInteger(value.index)&&value.index>=0&&value.index<4?value.stage:null;
+ host.dataset.stage=selected||'UNRATED';
+ for(const node of host.querySelectorAll('[data-poop-stage]')){
+  const active=selected!==null&&node.dataset.poopStage===selected;
+  node.dataset.selected=String(active);if(active)node.setAttribute('aria-current','step');else node.removeAttribute('aria-current');
+ }
+ const write=(id,text)=>{const node=$('#'+id);if(node&&node.textContent!==text)node.textContent=text;};
+ write('enPoopLevel',value?.label||'Waiting for usable returns');
+ write('enPoopReason',value?.reason||'The matched-performance helper is unavailable. No warning level is inferred.');
+ const races=value?.matched_races||[],states=value?.matched_states||[];
+ const coverage=Number.isInteger(value?.connected_route_count)&&Number.isInteger(value?.eligible_route_count)?value.connected_route_count+' connected county routes; '+value.eligible_route_count+' eligible D/R comparisons.':'County coverage unavailable.';
+ write('enPoopCoverage',(view?.context==='LOCAL_RESEARCH_VARIANT'?'Your local comparison context · ':view?.context==='PUBLIC'?'Public comparison context · ':'Comparison context unavailable · ')+races.length+' contributing races across '+states.length+' states'+(races.length?': '+races.join(', '):'')+'. '+coverage+' Covered matched areas only, not national win odds.');
+}
 function enIndicatorPublish(view){
+ enIndicatorSyncControls();
  enIndicatorLatestView=view||null;
+ enIndicatorRenderPoop(view);
  enIndicatorWeather?.update({summary:view?.summary,active:view?.active===true,current:view?.current===true,context:view?.context,blocked:enIndicatorBlocked()});
  const node=$('#enEarlyHealth');if(!node)return;
  if(!window.ElectionNightIndicatorStatus){node.textContent='Early comparison helper unavailable · the original 21 House references remain available. Matched signals and provisional alerts are withheld.';return;}

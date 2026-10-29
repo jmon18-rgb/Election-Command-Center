@@ -1,5 +1,12 @@
 # Personal election-night dashboard — owner scope, October 27
 
+## October 29 latest owner scope — Poop Meter and discoverable county comparisons (release pending)
+
+The owner adds a display-only Poop Meter with Clean undies / Skid marks / Turtling / Full-blown shit, and asks what actually moves the needles. Its inputs are the complete existing 18-route admitted county cohort, through the same CURRENT frame/source/expectation checks; 17 D/R comparisons are eligible and Nebraska's independent axis is excluded. The visible watch remains 32 races. This avoids describing its four-route watch overlap as national coverage. Missing, pending, ASOF, stale, conflicting or insufficient evidence remains unrated. At least two matched states are required; qualified warnings and opposing positive signals follow the existing 3/5-point method-scenario thresholds. This is an editorial relative-performance warning, never national odds, a second likelihood or a verified victory.
+
+A visible County results & expectations button opens the existing expectation and reporting-area disclosures only on needles with own matched returns. It exposes counted two-party/named-pair totals and observed margins versus expected method ranges, source time and the largest six reporting areas; it does not invent separate party-vote columns, all-county coverage or outstanding ballots. Root is integrating this with archive/pending control and visible focus repairs. The old exact head98373808 is green (35parents/55jobs52SUCCESS3nonapplicableSKIP/0external) but will not merge while these authorized changes are pending. All final combined-head gates and publication proofs are still required. No numerical core, source route, request/cadence/budget, call eligibility or paid/archive setting changes.
+
+
 ## October 29 owner acceptance checklist from the supplied requirements photo
 
 Success means: current accurate race results across the country; interpretation against fundamentals, polls and historical area expectations; important races together with honest area/remaining-vote context; and consistent, funny celebrations with animation, pictures and music. The photo is a private requirements reference, not a public artwork asset; no unrelated browser content is incorporated.

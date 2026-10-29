@@ -35,7 +35,7 @@ function envelope(code){
 }
 function setup(){
  const va=envelope('VA-02'),sc=envelope('SC-SEN');
- const s={now:start,visible:true,hidden:false,year:2026,rehearsal:false,pending:false,asof:null,private:false,context:'PUBLIC',modelRevision:'FICTIONAL_PINNED_MODEL',workerRevision:'FICTIONAL_WORKER',shift:0,error:1,options:{independentSenateCredit:'no_credit'},live:{},envelopes:[va.value,sc.value],officialError:false,rawError:false,compileMissing:false,helperMissing:false,inputFailure:false,epoch:0,observed:'',cacheKey:'',frame:null,result:null,rawHook:null,reads:0};
+ const s={now:start,visible:true,hidden:false,year:2026,rehearsal:false,pending:false,asof:null,private:false,context:'PUBLIC',modelRevision:'FICTIONAL_PINNED_MODEL',workerRevision:'FICTIONAL_WORKER',shift:0,error:1,options:{independentSenateCredit:'no_credit'},live:{},envelopes:[va.value,sc.value],officialError:false,rawError:false,compileMissing:false,helperMissing:false,registryMissing:false,registryMalformed:false,rawReads:0,inputFailure:false,epoch:0,observed:'',cacheKey:'',frame:null,result:null,rawHook:null,reads:0};
  s.basis={house:[{code:'VA-02',mean:va.mean}],senate:[{code:'SC-SEN',mean:sc.mean}],governors:[],generated_from_sources:{model_polling_at:'2026-10-29T12:00:00Z'}};s.publicBasis=clone(s.basis);
  s.raw={verified:true,provider:'civicAPI',asOf:stamp,total:100000,d:30000,r:68000,precincts:12,stale:false};
  const inputs=()=>{s.reads++;if(s.inputFailure)throw Error('FICTIONAL_VALIDATION_FAILURE');
@@ -45,12 +45,12 @@ function setup(){
   const envelopes=s.envelopes.filter(e=>e.snapshot.race_code!=='VA-02'||!s.officialError&&VA.receiptCurrent(e.snapshot.collection_fetched_at,s.now)===true);
   return {now:s.now,live:clone(s.live),rows:[],descriptive:[],envelopes,eligibility:envelopes.map(e=>{try{NCL.compile(e,{now:s.now});return [e.snapshot.race_code,true];}catch{return [e.snapshot.race_code,false];}})};};
  const key=i=>{const raw=JSON.stringify([s.modelRevision,s.workerRevision,s.basis,s.private?s.publicBasis:null,s.context,s.shift,s.error,s.options,i.live,i.eligibility,i.envelopes.map(e=>e.snapshot)]);if(raw!==s.observed){s.observed=raw;s.epoch++;}return 'MODEL_FRAME:'+s.epoch;};
- const sandbox={console,structuredClone,Date:class extends Date{static now(){return s.now;}},document:{get hidden(){return s.hidden;}},window:{get ElectionNightIndicatorStatus(){return s.helperMissing?null:api;},get NationalCountyLikelihood(){return s.compileMissing?null:NCL;}},
+ const sandbox={console,structuredClone,Date:class extends Date{static now(){return s.now;}},document:{get hidden(){return s.hidden;}},window:{get ElectionNightIndicatorStatus(){return s.helperMissing?null:s.registryMissing?{...api,COUNTY_RECORDS:undefined}:s.registryMalformed?{...api,COUNTY_RECORDS:[null,...api.COUNTY_RECORDS.slice(1)]}:api;},get NationalCountyLikelihood(){return s.compileMissing?null:NCL;}},
   jointUsesPrivateContext:()=>s.private,enIsVisible:()=>s.visible,jointValidatedFrameInputs:inputs,jointFrameKey:key,jointModelCodeRevision:()=>s.modelRevision,
   jointMarginSummaryCodes:()=>api.records.map(row=>row.code),jointShadowExpanded:()=>false,jointCorrelationExpanded:()=>false,
   jointRecordedCodeRevision:()=> 'FICTIONAL_RECORDED_CODE',jointCountSnapshotContext:()=> 'FICTIONAL_SOURCE_CONTEXT',jointHistoryRevision:()=> 'FICTIONAL_HISTORY',jointCountSnapshotOptions:()=>({}),
   enWatchParse:code=>{const row=api.records.find(row=>row.code===code);return row?{office:row.office,key:row.key}:null;},
-  enEarlyLiveObservation:item=>{if(s.rawHook)s.rawHook(item);return {source:item.key==='KY-06'?clone(s.raw):null,error:s.rawError};}};
+  enEarlyLiveObservation:item=>{s.rawReads++;if(s.rawHook)s.rawHook(item);return {source:item.key==='KY-06'?clone(s.raw):null,error:s.rawError};}};
  const getters={enModeYear:'year',enRehearsalActive:'rehearsal',jointModelPending:'pending',jointAsOfSnapshot:'asof',jointCompletedFrame:'frame',jointCacheKey:'cacheKey',jointBasis:'basis',jointBasisPublic:'publicBasis',jointLastResult:'result',jointNationalShift:'shift',jointErrorMultiplier:'error',jointIndependentControlOptions:'options'};
  for(const [global,name]of Object.entries(getters))Object.defineProperty(sandbox,global,{get:()=>s[name]});
  const context=vm.createContext(sandbox);vm.runInContext(extractFunction(index,'jointFrameSnapshot')+'\n'+bindingSource,context);
@@ -106,7 +106,61 @@ check('missing helper/compiler or current-input failure is failclosed',()=>{
 check('reentrant source or context change never returns earlier positive stage or call',()=>{
  for(const change of [s=>s.live={'VA-02':{mode:'source_called',winnerParty:'R',asOf:stamp}},s=>{s.private=true;s.context='LOCAL_RESEARCH_VARIANT';},s=>s.visible=false,s=>s.now=Date.parse(stamp)+15*60000+1]){const s=setup();let once=false;s.rawHook=()=>{if(!once){once=true;change(s);}};const got=s.collect();assert.equal(got.current,false);assert(got.rows.every(row=>row.matched===null&&row.calledParty===null));assert.equal(got.summary.stage,'AWAITING_MATCHED_SIGNALS');}
 });
-check('return boundary contains no frame/basis/raw envelope/private input persistence',()=>{const s=setup(),got=s.collect();same(Object.keys(got).sort(),['active','context','current','now','rows','summary']);assert(!/typed_usage|native_usage|dem_votes|rep_votes|private_imported_context|logLikelihood|describePerformance|"basis"|"envelopes"/.test(JSON.stringify(got)));});
+check('return boundary contains no frame/basis/raw envelope/private input persistence',()=>{const s=setup(),got=s.collect();same(Object.keys(got).sort(),['active','context','county_rows','current','now','rows','summary']);assert(!/typed_usage|native_usage|dem_votes|rep_votes|private_imported_context|logLikelihood|describePerformance|"basis"|"envelopes"/.test(JSON.stringify(got)));});
+// The visible32watch is not the meter's complete18connected-route cohort.
+const cohortCodes=()=>api.COUNTY_RECORDS.map(row=>row.code);
+const noMatched=view=>view.rows.every(row=>row.matched===null)&&view.county_rows.every(row=>row.matched===null);
+function nonwatch(s,{independent=false}={}){
+ const pa=require(script('pennsylvania_house_08_test_fixture.cjs')).envelope(12,s.now);
+ s.envelopes.push(pa);s.basis.house.push({code:'PA-08',mean:0});
+ if(independent){const ne=require(script('nebraska_test_fixture.cjs')).envelope(12,s.now,{stamp});s.envelopes.push(ne);s.basis.senate.push({code:'NE-SEN',mean:0,nonrep_independent_proxy:true});}
+ s.publicBasis=clone(s.basis);s.accept();return pa;
+}
+check('county registry derives exact18existing kernel identities, sourceURLs and axes',()=>{
+ const text=fs.readFileSync(script('national_county_likelihood.js'),'utf8'),a=text.indexOf('const scopes='),b=text.indexOf(' const policy=',a);assert(a>=0&&b>a);
+ const scopes=new Function(text.slice(a,b)+';return scopes;')(),expected=Object.keys(scopes).sort();
+ same(cohortCodes().slice().sort(),expected);assert.equal(api.COUNTY_RECORDS.length,18);assert.equal(api.records.length,32);assert(Object.isFrozen(api.COUNTY_RECORDS));
+ for(const row of api.COUNTY_RECORDS){assert(Object.isFrozen(row));assert.equal(row.matched_route,true);assert.equal(row.office,scopes[row.code].house?'House':'Senate');assert.equal(row.state,row.code.slice(0,2));assert.equal(row.source_url,scopes[row.code].url||'https://civicapi.org/api/v2/race/'+scopes[row.code].id);assert.equal(row.candidate_axis,row.code==='NE-SEN'?'OSBORN_MINUS_RICKETTS_NOT_D_MINUS_R':'D_MINUS_R');}
+ assert.equal(api.COUNTY_RECORDS.filter(row=>row.candidate_axis==='D_MINUS_R').length,17);assert.equal(api.COUNTY_RECORDS.find(row=>row.code==='OH-SEN').key,'OH-special');
+});
+check('county cohort is complete18 even when most routes have no current counts',()=>{
+ const s=setup();s.rawReads=0;const view=s.collect();assert.equal(view.current,true);assert.equal(view.rows.length,32);same(view.county_rows.map(row=>row.code),cohortCodes());assert.equal(view.county_rows.filter(row=>row.matched).length,2);assert.equal(view.county_rows.filter(row=>row.raw).length,0);assert.equal(s.rawReads,32,'County-only routes must not add raw-provider observation calls');
+});
+check('nonwatchPA08 and NE actualcompiled diagnostics joincountycohort withoutwatchpromotion',()=>{
+ const s=setup();nonwatch(s,{independent:true});const view=s.collect();assert.equal(view.current,true);assert.equal(view.rows.length,32);assert(!view.rows.some(row=>['PA-08','NE-SEN'].includes(row.code)));
+ const pa=view.county_rows.find(row=>row.code==='PA-08'),ne=view.county_rows.find(row=>row.code==='NE-SEN');assert(pa.matched);assert.equal(pa.matched.candidate_axis,'D_MINUS_R');assert(ne.matched);assert.equal(ne.matched.candidate_axis,'OSBORN_MINUS_RICKETTS_NOT_D_MINUS_R');assert.equal(ne.raw,null);
+ assert.equal(view.summary.stage,'STORM_BREWING');same(view.summary.positive_states,['SC','VA']);assert.equal(view.county_rows.filter(row=>row.matched).length,4);
+ const onlyNonwatch=api.summarize([pa,ne]);assert.equal(onlyNonwatch.stage,'AWAITING_MATCHED_SIGNALS','Weather keeps its original32race domain');
+});
+check('independent county rows never inferDparty raw returns or acceptDcall',()=>{
+ const s=setup();nonwatch(s,{independent:true});const used=s.result.county_results_update.used.find(row=>row.code==='NE-SEN'),row=api.assess('NE-SEN',{now:s.now,matched:used,matchedCurrent:true,observation:s.raw,calledParty:'D'});assert(row.matched);assert.equal(row.raw,null);assert.equal(row.calledParty,null);assert.equal(row.matched.candidate_axis,'OSBORN_MINUS_RICKETTS_NOT_D_MINUS_R');
+});
+check('corrupted nonwatchaccepted diagnostic revokesBOTHcurrent cohorts',()=>{
+ const s=setup();nonwatch(s);s.result.county_results_update.used.find(row=>row.code==='PA-08').matched_performance.expectation_margin_points+=1;const view=s.collect();assert.equal(view.current,false);assert(noMatched(view));assert.equal(view.county_rows.length,18);
+});
+check('unknown accepted usedcode is rejected instead of silently skipped',()=>{
+ const s=setup();const forged=clone(s.result.county_results_update.used[0]);forged.code='ZZ-01';s.result.county_results_update.used.push(forged);const view=s.collect();assert.equal(view.current,false);assert(noMatched(view));same(view.county_rows.map(row=>row.code),cohortCodes());
+});
+check('nonwatchsameclockcount/envelope andnativeclock changes revokeBOTHcohorts',()=>{
+ for(const change of [e=>e.snapshot.counties[0].dem_votes--,e=>e.snapshot.snapshot_updated_at='2026-11-04T03:06:00Z',e=>e.baseline.counties[0].records.total.dem_votes++]){const s=setup(),pa=nonwatch(s);change(pa);const view=s.collect();assert.equal(view.current,false);assert(noMatched(view));assert.equal(view.county_rows.length,18);}
+});
+check('private nonwatchexpectation stays bound to its own accepted context',()=>{
+ const s=setup();nonwatch(s);s.private=true;s.context='LOCAL_RESEARCH_VARIANT';s.basis=clone(s.basis);s.basis.private_imported_context=true;s.basis.house.find(row=>row.code==='PA-08').mean=-1;s.accept();const view=s.collect();assert.equal(view.current,true);assert.equal(view.context,'LOCAL_RESEARCH_VARIANT');assert.equal(view.county_rows.find(row=>row.code==='PA-08').matched.expectation_margin_points,-1);
+ s.publicBasis.house.find(row=>row.code==='PA-08').mean++;const revoked=s.collect();assert.equal(revoked.current,false);assert(noMatched(revoked));
+});
+check('reentrantcountyonlysource mutation revokesall50rows without newrawreads',()=>{
+ const s=setup(),pa=nonwatch(s);let once=false;s.rawHook=()=>{if(!once){once=true;pa.snapshot.counties[0].dem_votes++;}};s.rawReads=0;const view=s.collect();assert.equal(view.current,false);assert.equal(view.active,false);assert.equal(view.rows.length,32);assert.equal(view.county_rows.length,18);assert(noMatched(view));assert(view.county_rows.every(row=>row.calledParty===null));assert.equal(s.rawReads,32);
+});
+check('pendingorASOFthatbeginsduringcollection removesmatchedvalues fromBOTHcohorts',()=>{
+ for(const kind of ['pending','asof']){const s=setup();nonwatch(s);let once=false;s.rawHook=()=>{if(!once){once=true;if(kind==='pending')s.pending=true;else s.asof={state:'AS_OF'};}};const view=s.collect();assert.equal(view.current,false);assert.equal(view.active,true);assert(noMatched(view));assert.equal(view.county_rows.length,18);}
+});
+check('hiddenarchiveandrehearsal keepcompletecanonicalinactivecohort',()=>{
+ for(const change of [s=>s.hidden=true,s=>s.year=2024,s=>s.rehearsal=true,s=>s.visible=false]){const s=setup();nonwatch(s);change(s);const view=s.collect();assert.equal(view.current,false);same(view.county_rows.map(row=>row.code),cohortCodes());assert(view.county_rows.every(row=>row.status==='INACTIVE'&&row.matched===null&&row.calledParty===null));}
+});
+check('missingormalformedregistryneverguessescohortandwithholdscurrentauthority',()=>{
+ for(const change of [s=>s.registryMissing=true,s=>s.registryMalformed=true,s=>s.helperMissing=true]){const s=setup();change(s);const view=s.collect();assert.equal(view.current,false);assert.equal(view.county_rows.length,0);assert(view.rows.every(row=>row.matched===null));}
+});
+
 const out=process.env.TEST_ARTIFACT_DIR||path.join(ROOT,'artifacts/readiness/early-indicator-binding');fs.mkdirSync(out,{recursive:true});
 const hash=text=>crypto.createHash('sha256').update(text).digest('hex');
 fs.writeFileSync(path.join(out,'proof.json'),JSON.stringify({status:'PASS',groups,binding_sha256:hash(bindingSource),module_sha256:hash(moduleSource),production_frame_function_sha256:hash(extractFunction(index,'jointFrameSnapshot')),actual_tracked_binding:!process.env.TEST_INDICATOR_BINDING_PATH,actual_tracked_module:!process.env.TEST_INDICATOR_MODULE_PATH,
