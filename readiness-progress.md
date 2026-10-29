@@ -1,5 +1,19 @@
 # Readiness progress
 
+## PR531 protected-review follow-up — accepted-frame entry measurement
+
+Initial e8ce7c50 failed Cartogram40853739332/operatorjob123379374557 on the
+phone direct-entry four-outcome glance. The old predicate counted four precreated
+nodes before any accepted forecast. Controlled1s real-Worker delivery proves that
+premature readiness on Chrome/Edge; it does NOT establish the exact CI geometry
+cause, which was not reproduced locally. The fixture now waits actual idle,
+accepted CURRENT/private context and complete map/personal content before the
+SAME all-four-onscreen assertion. All71 original assertion calls/order remain;
+both widths pass Chrome/Edge and corrected delayed delivery. Failure diagnostics
+are added. No product change, timeout/sample/tolerance cut, rerun or waiver.
+Failed-head log and hierarchy-async-entry-repair receipt are retained; a new full
+exact-head protected gate and publication are required.
+
 ## Bounded official WA scheduling — implemented, review pending
 
 Production candidate promotes the reviewed pure receipt/native predicates and
