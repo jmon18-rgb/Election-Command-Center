@@ -41,6 +41,15 @@ consumed. The original uniform-allocation probability corrects this proposal
 exactly. The approximation changes where particles are proposed, never the
 winner-event likelihood or the model's prior.
 
+Called rows are processed in deterministic party groups: the less numerous
+called party first, with D first on a tie and the prepared row order retained
+within each group. This order is fixed before allocation. The original indexed
+prior is uniform over all permutations, so its probability correction remains
+exact in this order. Final per-race event normalizers and local random draws
+remain in the original race order, once each. This changes proposal Q and can
+change seeded conditional estimates; it does not change the target or the
+unchanged no-call path.
+
 The shared Gaussian proposal uses the corresponding resource partition rather
 than treating all called redraw rows as independent bags of unlimited values.
 Its derivative step follows floating-point precision and existing scales;
@@ -119,6 +128,14 @@ finite; otherwise the original full reverse loops run. This preserves the old
 coefficient/gradient bits and numerical rejection behavior, including tiny-weight
 cases, without changing forward scales, proposal weights or random draws.
 
+Allocation-stage weights, current scores, log scores, proposal scores and
+gradients reuse buffers owned by one synchronous transport. Each active prefix
+is overwritten before use and consumed before the next stage. These buffers
+are neither returned nor retained in the workspace cache. Other private
+coefficient callers keep their original default return behavior; no public
+model API is added. Scratch reuse preserves the party-ordered proposal's exact
+arithmetic and outputs while avoiding per-called-row buffer allocation.
+
 If the conditional law is unsupported or final sampling support is insufficient,
 the result explicitly withholds call covariance transfer. Existing validated
 winners stay fixed, alongside the available polling/count context. No error
@@ -165,9 +182,9 @@ learning is established. A complete synthetic private/public/two-House-research
 worker frame is timed against the existing 30-second deadline, including final
 replay and county conditioning. Moving work off the controls or meeting this
 desktop deadline does not establish physical-phone speed or empirical accuracy.
-Balanced partially called large bags are a separate performance case: all three
-categories remain populated, so their computation differs from nearly exhausted
-bags. The same fixed balanced frame took 29.45 seconds before reverse-pass
-pruning and 26.61 seconds after it in two single desktop-host runs, with identical
-support and outputs. These measurements establish this bounded improvement,
-not a device-speed guarantee. Both compositions retain the existing deadline.
+Balanced partially called large bags and interleaved winner parties are separate
+performance cases: all three categories remain populated, so their computation
+differs from nearly exhausted bags. All three compositions retain the original
+3,000 particles, four complete outputs and 30-second deadline in browser checks.
+Their desktop-host measurements are bounded engineering evidence, not a
+device-speed guarantee.

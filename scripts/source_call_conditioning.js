@@ -17,10 +17,11 @@ function workspace(n,size){
  const entry={forward:Array.from({length:n+1},()=>new Float64Array(size)),scales:new Float64Array(n),adjA:new Float64Array(size),adjB:new Float64Array(size),bytes};
  workspaceCache.set(key,entry);usedBytes+=bytes;return entry;
 }
-function partition(weights,counts,{leaveOneOut=false,relativeOnly=false}={}){
+function partition(weights,counts,{leaveOneOut=false,relativeOnly=false,gradientOutput=null,gradientOnly=false}={}){
  const n=weights.length,total=counts.reduce((a,b)=>a+b,0);
  if(counts.length!==3||counts.some(x=>!Number.isInteger(x)||x<0)||total!==n-Number(leaveOneOut)||
    weights.some(row=>row.length!==3||row.some(x=>!finite(x)||x<=0||x>1+1e-12)))throw Error('INVALID_THREE_CATEGORY_PARTITION');
+ if(gradientOutput!==null&&(!leaveOneOut||!relativeOnly||!(gradientOutput instanceof Float64Array)||gradientOutput.length<n)||gradientOnly&&gradientOutput===null)throw Error('INVALID_PRIVATE_GRADIENT_SCRATCH');
  const order=[0,1,2].sort((a,b)=>counts[b]-counts[a]||a-b),base=order[0],a=order[1],b=order[2],A=counts[a],B=counts[b],width=B+1,size=(A+1)*width;
  const work=workspace(n,size),forward=work.forward,scales=work.scales;forward[0].fill(0);forward[0][0]=1;
  for(let i=0;i<n;i++){
@@ -49,7 +50,7 @@ function partition(weights,counts,{leaveOneOut=false,relativeOnly=false}={}){
 // every adjoint finite, retain the exact original full reverse loops.
 let reverseBound=1,pruneReverse=true;
 if(B>1)for(let i=n-1;i>=0;i--){const w=weights[i];reverseBound=(reverseBound*w[base]+reverseBound*w[a]+reverseBound*w[b])/scales[i];if(!finite(reverseBound)){pruneReverse=false;break;}}
-let adjoint=work.adjA;adjoint.fill(0);adjoint[A*width+B]=1;const logGradients=new Float64Array(n);
+let adjoint=work.adjA;adjoint.fill(0);adjoint[A*width+B]=1;const logGradients=gradientOutput===null?new Float64Array(n):gradientOutput;
  for(let i=n-1;i>=0;i--){
   const prior=forward[i],next=adjoint===work.adjA?work.adjB:work.adjA,w=weights[i],scale=scales[i];next.fill(0);let derivative=0;
   const wb=w[base],wa=w[a],wc=w[b];
@@ -69,6 +70,7 @@ let adjoint=work.adjA;adjoint.fill(0);adjoint[A*width+B]=1;const logGradients=ne
   if(!(derivative>0)||!finite(derivative))throw Error('THREE_CATEGORY_DERIVATIVE_SUPPORT');
   logGradients[i]=Math.log(derivative);adjoint=next;
  }
+ if(gradientOnly)return logGradients;
  return {logGradients,...(relativeOnly?{relativeOnly:true}:{logCommonScale:common}),base,tracked:[a,b]};
 }
 module.exports={partition};
@@ -97,21 +99,29 @@ function groupScores(values,signs,rows,means,logCDF){
  });
  return {logs,weights:logs.map(row=>[Math.exp(row[0]),Math.exp(row[1]),1])};
 }
-function stage(scores,counts,sign,remaining,currentLogs=null){
- const size=remaining.length,weights=new Array(size);for(let i=0;i<size;i++)weights[i]=scores.weights[remaining[i]];
- const part=partition(weights,counts,{leaveOneOut:true,relativeOnly:true}),logs=new Float64Array(size);let max=-Infinity;
- for(let i=0;i<size;i++){logs[i]=(currentLogs?currentLogs[i]:scores.logs[remaining[i]][sign>0?0:1])+part.logGradients[i];max=Math.max(max,logs[i]);}
- const q=new Float64Array(size);let sum=0;
+function stage(scores,counts,sign,remaining,currentLogs,work){
+ const size=remaining.length,weights=work.weights;weights.length=size;for(let i=0;i<size;i++)weights[i]=scores.weights[remaining[i]];
+ const gradients=partition(weights,counts,{leaveOneOut:true,relativeOnly:true,gradientOutput:work.gradients,gradientOnly:true}),logs=work.logs;let max=-Infinity;
+ for(let i=0;i<size;i++){logs[i]=(currentLogs?currentLogs[i]:scores.logs[remaining[i]][sign>0?0:1])+gradients[i];max=Math.max(max,logs[i]);}
+ const q=work.q;let sum=0;
  for(let i=0;i<size;i++){q[i]=Math.exp(logs[i]-max);if(!(q[i]>0))throw Error('MOMENT_LOOKAHEAD_Q_SUPPORT');sum+=q[i];}
- if(!finite(sum)||sum<=0)throw Error('MOMENT_LOOKAHEAD_Q_SUPPORT');return {logs,max,q,sum};
+ if(!finite(sum)||sum<=0)throw Error('MOMENT_LOOKAHEAD_Q_SUPPORT');work.max=max;work.sum=sum;return work;
 }
 function allocateCalledLookahead(values,signs,uniforms,logProbability,original,rows,means,logCDF){
  if(!signs.some(Boolean))return original(values,signs,uniforms,logProbability);
  if(uniforms.length!==values.length-1||Array.from(uniforms).some(x=>!finite(x)||x<0||x>=1))throw Error('INVALID_MOMENT_LOOKAHEAD_UNIFORMS');
  const scores=groupScores(values,signs,rows,means,logCDF),remaining=values.map((_,i)=>i),counts=[signs.filter(s=>s>0).length,signs.filter(s=>s<0).length,signs.filter(s=>!s).length],
   slots=new Uint16Array(values.length),assigned=new Float64Array(values.length);let cursor=0,logPriorMinusProposal=0;
- for(let seat=0;seat<values.length;seat++)if(signs[seat]){
-  counts[signs[seat]>0?0:1]--;const current=new Float64Array(remaining.length);for(let i=0;i<remaining.length;i++){const id=remaining[i];current[i]=logProbability(seat,values[id],id,signs[seat]);}const p=stage(scores,counts,signs[seat],remaining,current);let choice=remaining.length-1;
+ // Deterministic proposal order depends only on this fixed called set.
+// Finish the less numerous called party first (tie D); within each party
+// retain original seat order. All indexed q factors and uniforms follow it.
+const firstSign=counts[0]<=counts[1]?1:-1,calledOrder=[];
+for(const sign of [firstSign,-firstSign])for(let seat=0;seat<values.length;seat++)if(signs[seat]===sign)calledOrder.push(seat);
+// Stage buffers belong only to this one synchronous transport. Active
+// prefixes are overwritten before use and never returned or retained.
+const stageWork={weights:[],current:new Float64Array(values.length),logs:new Float64Array(values.length),q:new Float64Array(values.length),gradients:new Float64Array(values.length),max:0,sum:0};
+for(const seat of calledOrder){
+  counts[signs[seat]>0?0:1]--;const current=stageWork.current;for(let i=0;i<remaining.length;i++){const id=remaining[i];current[i]=logProbability(seat,values[id],id,signs[seat]);}const p=stage(scores,counts,signs[seat],remaining,current,stageWork);let choice=remaining.length-1;
   if(remaining.length>1){const u=uniforms[cursor++];let cumulative=0;for(let i=0;i<remaining.length;i++){cumulative+=p.q[i]/p.sum;if(u<cumulative){choice=i;break;}}}
   logPriorMinusProposal+=-Math.log(remaining.length)-(p.logs[choice]-p.max-Math.log(p.sum));
   const id=remaining.splice(choice,1)[0];slots[seat]=id;assigned[seat]=values[id];

@@ -2,6 +2,15 @@
 
 ## Reviewed candidate — resource-aware call proposals and public-output admission
 
+Protected head8d83acb0 is NOT releasable: readiness40818570806/browser
+123265380282 exceeded the unchanged 30-second Worker deadline on the original
+near-complete frame (30,005.8ms). All other latest jobs passed; the precise
+runtime-variance cause is not established. It was never merged or rerun, and
+no timeout, support gate, sample count or assertion was weakened. The failed
+receipt is pr530-failed-8d83-deadline.json. A separately reviewed party-grouped
+proposal and exact per-transport scratch improvement are being completed before
+a new coherent source head is submitted. Current published529 remains intact.
+
 The next source change guides indexed redraw allocations using the remaining
 called seats and uses the same resource partition for Gaussian proposal guidance.
 Exact original target weights, indexed duplicate slots, original RNG consumption,
@@ -31,6 +40,17 @@ all output bits and original numerical failures. The original ac2eb9f2 head is
 fully green (37 parents, 49 successful jobs and three declared PR skips) but was
 not merged; this actual improvement requires fresh checks on the new head.
 The first frame and balanced frame both remain in the browser regression gate.
+
+The final candidate038f42b6 addresses the actual CI deadline failure with
+deterministic minority-party-first allocation and per-transport stage/gradient
+scratch reuse. Independent indexed-law review verifies the changed proposal Q
+still corrects to the original target; original local draws, call normalizers,
+3k budget, county target and hard ESS remain intact. Scratch reuse is exact
+versus that same proposal. All five original core suites,16cases/4,560 indexed
+paths and1,428,000 raw-word/RNG/consumer comparisons pass. The final interleaved
+four-output host frame passed25.55s; all three compositions and both viewports
+remain required at30s in fresh exact-head CI. No performance guarantee,
+predictive calibration or physical-phone acceptance is inferred.
 
 ## PR529 VERIFIED PUBLISHED — background computation and current-reader integrity
 

@@ -31,7 +31,7 @@ try{
  const origin='http://127.0.0.1:'+server.address().port;browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  const viewports=process.argv[2]?[[Number(process.argv[2]),Number(process.argv[2])===390?844:900]]:[[1366,900],[390,844]];
  assert(viewports.every(([width])=>width===1366||width===390));
- for(const [width,height] of viewports)for(const composition of ['near_complete','balanced_partial']){
+ for(const [width,height] of viewports)for(const composition of ['near_complete','balanced_partial','balanced_interleaved']){
   requests=[];unexpected=[];
   const context=await browser.newContext({viewport:{width,height},serviceWorkers:'block'}),page=await context.newPage(),external=[],errors=[];
   page.on('pageerror',error=>errors.push(error.message));await context.route('**/*',route=>{if(new URL(route.request().url()).origin===origin)return route.continue();external.push(route.request().url());return route.abort();});
@@ -46,11 +46,11 @@ try{
    // roughly one third D calls, R calls and uncalled slots in every large bag.
    live={};excluded.clear();const largeCodes=new Set();
    for(const state of ['FL','TX','CA']){const rows=base.house.filter(row=>row.code.startsWith('FICTION-'+state+'-')),k=Math.floor(rows.length/3);
-    for(const [i,row] of rows.entries()){largeCodes.add(row.code);if(i<2*k)live[row.code]={mode:'source_called',winnerParty:i<k?'D':'R'};else excluded.add(row.code);}}
+    for(const [i,row] of rows.entries()){largeCodes.add(row.code);if(i<2*k)live[row.code]={mode:'source_called',winnerParty:composition==='balanced_interleaved'?(i%2===0?'D':'R'):(i<k?'D':'R')};else excluded.add(row.code);}}
    for(const row of [...base.senate,...base.governors,...base.house].filter(row=>(!row.nonrep_independent_proxy||row.mean<0)&&!largeCodes.has(row.code))){if(Object.keys(live).length>=200)break;live[row.code]={mode:'source_called',winnerParty:row.mean>=0?'D':'R'};}
   }
   const categoryCounts=Object.fromEntries(['FL','TX','CA'].map(state=>{const rows=base.house.filter(row=>row.code.startsWith('FICTION-'+state+'-'));return [state,{bag_slots:base.redrawn_state_distributions[state].length,D:rows.filter(row=>live[row.code]?.winnerParty==='D').length,R:rows.filter(row=>live[row.code]?.winnerParty==='R').length,uncalled:rows.filter(row=>!live[row.code]).length}];}));
-  if(composition==='balanced_partial')assert.deepEqual(categoryCounts,{FL:{bag_slots:28,D:9,R:9,uncalled:10},TX:{bag_slots:38,D:12,R:12,uncalled:14},CA:{bag_slots:52,D:17,R:17,uncalled:18}});
+  if(composition!=='near_complete')assert.deepEqual(categoryCounts,{FL:{bag_slots:28,D:9,R:9,uncalled:10},TX:{bag_slots:38,D:12,R:12,uncalled:14},CA:{bag_slots:52,D:17,R:17,uncalled:18}});
   const now=Date.parse('2026-11-04T04:06:00Z'),summaryExcluded=composition==='near_complete'?[...excluded]:[...excluded].filter((_,i)=>i%10===0),
    args={samples:3000,seed:20261103,now,independentSenateCredit:'no_credit',contextKey:'LOCAL_RESEARCH_VARIANT',live,marginSummaryCodes:['OH-SEN','NE-SEN','MI-07',...summaryExcluded]},
    envelopes=[require('./ohio_test_fixture.cjs').envelope(-18,now),require('./michigan_house_07_test_fixture.cjs').envelope(1,now),require('./nebraska_test_fixture.cjs').envelope(1,now)],
@@ -86,7 +86,7 @@ try{
    source_sha256:Object.fromEntries(['source_call_conditioning','chamber_control_model','national_county_likelihood'].map(name=>[name,hash(readFileSync(resolve(root,'scripts',name+'.js')))])),
    report,exact_four_conditioned_output_ids:exactIds,exact_two_live_call_disabled_correlation_variants:exactErrors,exact_primary_and_public_county_context:exactCountyContexts,static_self_requests_only:unexpected.length===0&&external.length===0,request_count:requests.length,errors,
    limitations:['Fixed fictional200call full476fixture and synthetic Ohio/Michigan/Nebraska county envelopes.','390px is a desktop viewport, not physical phone performance.','No actual source delivery or independent accuracy/calibration is established.']};
-  writeFileSync(resolve(out,'complete-frame-'+(composition==='near_complete'?'all':'balanced')+'-'+width+'.json'),JSON.stringify(receipt,null,2)+'\n');
+  writeFileSync(resolve(out,'complete-frame-'+(composition==='near_complete'?'all':composition==='balanced_partial'?'balanced':'interleaved')+'-'+width+'.json'),JSON.stringify(receipt,null,2)+'\n');
   assert.equal(receipt.status,'PASS',JSON.stringify(receipt));assert.deepEqual(ids,expectedIds);assert.deepEqual(report.optional_errors,expectedErrors);
   assert.deepEqual(report.county_contexts,expectedCountyContexts);assert(report.timer_ticks>0);assert.deepEqual(unexpected,[]);assert.deepEqual(external,[]);assert.deepEqual(errors,[]);
   console.log(width+'px '+composition+' actual Worker complete private+PUBLIC+two House frame PASS; '+Math.round(report.elapsed_ms)+'ms, 3000 particles, four ESS gates');await context.close();

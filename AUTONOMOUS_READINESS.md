@@ -2,7 +2,13 @@
 
 ## Current ready implementation — resource-aware proposals and fallback validation
 
-Integrate the reviewed helper68a95c0f/engine04a9163b candidate through protected
+Do not merge8d83acb0: its actual readiness browser failed the 30-second complete
+frame deadline (40818570806/job123265380282), while all other latest jobs passed.
+Failed head is retained/unmerged, with no rerun/waiver/time increase. Reviewed
+party-grouped proposal and exact scratch reuse are in ignored prototypes pending
+final integration and fresh exact-head checks; published529 remains current.
+
+Integrate the reviewed helper038f42b6/engine04a9163b candidate through protected
 review. Exact indexed p/q, duplicate slots, RNG, raw replay/consumer equality,
 packet ownership, pre-allocation reservation and finalizer lifetime have
 independent checks. The fixed fictional 200-call case now has usable support;
@@ -22,8 +28,19 @@ The ac2eb9f2 head passed all37 parents/52 jobs49SUCCESS3declaredSKIP/0external
 but was held before merge for a newly measured balanced partial-bag cost risk.
 Safe reverse-DP zero-term pruning preserves all prior result/rejection bits and
 improves that fixed complete frame from29.45s to26.61s on this desktop host.
-Both compositions are retained as 3k/30s regressions. Finish all applicable
+All three compositions are retained as 3k/30s regressions. Finish all applicable
 checks on the new coherent source head; do not rerun ac2 or merge a stale gate.
+
+The final reviewed proposal processes the less numerous called party first
+(tie D, prepared within-party order), retaining exact uniform-indexed p/q,
+original event normalizers/local RNG, frozen county target and hard ESS. This
+changes Q/seeded conditional estimates; no-call hashes remain unchanged. Private
+per-transport stage/gradient scratch reuse is bit-exact versus the same party
+proposal and does not persist or grow the coefficient cache. Independent16-case/
+4,560-path law and five raw/RNG/consumer cases/1,428,000-word proofs pass. The
+final interleaved complete frame passed25.55s on this host, with no claim of
+physical-phone speed or a general deadline guarantee. Fresh protected checks
+must verify every current-head case before publication.
 
 ## PR529 VERIFIED PUBLISHED — next engineering is allocation support
 

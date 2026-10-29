@@ -3,8 +3,8 @@
 (function(){
  'use strict';
  const PROTOCOL='joint-model-worker-v1';
- const IMPORTS=Object.freeze(([{"name":"election_night_poll_closings_2026","stamp":"39c725fe013b"},{"name":"washington_remaining_source","stamp":"9db3bb46dde1"},{"name":"washington_remaining_scenarios","stamp":"1a313f060a7e"},{"name":"source_call_conditioning","stamp":"4a3bbaa85fd5"},{"name":"chamber_control_model","stamp":"d98ce3f4cdf1"},{"name":"national_county_likelihood","stamp":"3a42f78b20e5"}]).map(Object.freeze));
- const MODEL_REVISION="./scripts/source_call_conditioning.js?v=4a3bbaa85fd5|./scripts/chamber_control_model.js?v=d98ce3f4cdf1|./scripts/national_county_likelihood.js?v=3a42f78b20e5";
+ const IMPORTS=Object.freeze(([{"name":"election_night_poll_closings_2026","stamp":"39c725fe013b"},{"name":"washington_remaining_source","stamp":"9db3bb46dde1"},{"name":"washington_remaining_scenarios","stamp":"1a313f060a7e"},{"name":"source_call_conditioning","stamp":"1fd7fa205f7e"},{"name":"chamber_control_model","stamp":"d98ce3f4cdf1"},{"name":"national_county_likelihood","stamp":"3a42f78b20e5"}]).map(Object.freeze));
+ const MODEL_REVISION="./scripts/source_call_conditioning.js?v=1fd7fa205f7e|./scripts/chamber_control_model.js?v=d98ce3f4cdf1|./scripts/national_county_likelihood.js?v=3a42f78b20e5";
  const ERROR_CODES=Object.freeze(['INVALID_REQUEST','STATIC_MODEL_UNAVAILABLE','MODEL_COMPUTATION_FAILED','INVALID_MODEL_RESULT']);
  const VARIANT_IDS=Object.freeze(['house_shadow','presidential_shadow','correlation_moderate','correlation_lower']);
  const FRAME_KINDS=Object.freeze(['LIVE','POLLING_ARCHIVE_BASELINE','REHEARSAL']);
