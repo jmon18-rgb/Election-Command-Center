@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-29T00:50:11.558423+00:00",
+  "updated_at": "2026-10-29T01:11:13.688706+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 846,
+      "available_in_source": 847,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,71 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 951,
+      "available_in_source": 952,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 317,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "AL-GOV",
+      "poll_id": "87c6b869-73ff-4c58-b40e-35f7f60e6cc6"
+    },
+    {
+      "race_code": "AL-SEN",
+      "poll_id": "87c6b869-73ff-4c58-b40e-35f7f60e6cc6"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "AL-SEN",
+      "race_type": "senate",
+      "state": "AL",
+      "poll_id": "87c6b869-73ff-4c58-b40e-35f7f60e6cc6",
+      "question_id": "cf8f809f-e5d0-4b42-a1be-f4f47c2106aa",
+      "pollster": "Blueprint Polling",
+      "dem_name": "Everett Wess",
+      "rep_name": "Barry Moore",
+      "dem": 39.5,
+      "rep": 47.8,
+      "margin": -8.3,
+      "field_end": "2026-10-24",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T20:42:00",
+      "posted_source_time": "10/28/26 20:42",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.chismstrategies.com/field-notes/new-alabama-poll-governors-race-a-toss-up-as-tuberville-edges-jones-48--45",
+      "sample_population": "lv",
+      "sample_size": 695,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AL-GOV",
+      "race_type": "governor",
+      "state": "AL",
+      "poll_id": "87c6b869-73ff-4c58-b40e-35f7f60e6cc6",
+      "question_id": "bc0e547e-2134-4bf4-8d71-dce1aabe775a",
+      "pollster": "Blueprint Polling",
+      "dem_name": "Doug Jones",
+      "rep_name": "Tommy Tuberville",
+      "dem": 44.9,
+      "rep": 47.9,
+      "margin": -3.0,
+      "field_end": "2026-10-24",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T20:42:00",
+      "posted_source_time": "10/28/26 20:42",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.chismstrategies.com/field-notes/new-alabama-poll-governors-race-a-toss-up-as-tuberville-edges-jones-48--45",
+      "sample_population": "lv",
+      "sample_size": 695,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MI-SEN",
       "race_type": "senate",
