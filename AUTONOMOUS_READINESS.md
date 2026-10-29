@@ -2,7 +2,7 @@
 
 ## Current ready implementation — resource-aware proposals and fallback validation
 
-Integrate the reviewed helper8e145ce2/engine04a9163b candidate through protected
+Integrate the reviewed helper68a95c0f/engine04a9163b candidate through protected
 review. Exact indexed p/q, duplicate slots, RNG, raw replay/consumer equality,
 packet ownership, pre-allocation reservation and finalizer lifetime have
 independent checks. The fixed fictional 200-call case now has usable support;
@@ -17,6 +17,13 @@ applicable exact-head checks, protected merge, final current-main Pages, changed
 byte verification and actual published browser checks before marking delivered.
 Carry the single d6ee5987 docs-only proof checkpoint with this coherent change.
 No source GET/cadence, 3k draw/ESS/target, eligibility or archive activation change.
+
+The ac2eb9f2 head passed all37 parents/52 jobs49SUCCESS3declaredSKIP/0external
+but was held before merge for a newly measured balanced partial-bag cost risk.
+Safe reverse-DP zero-term pruning preserves all prior result/rejection bits and
+improves that fixed complete frame from29.45s to26.61s on this desktop host.
+Both compositions are retained as 3k/30s regressions. Finish all applicable
+checks on the new coherent source head; do not rerun ac2 or merge a stale gate.
 
 ## PR529 VERIFIED PUBLISHED — next engineering is allocation support
 

@@ -2,10 +2,14 @@
 // Independent bounded numerical oracles. Every race/matrix value is fictional;
 // no native requests, private inputs, fitted coefficients or calibration claim.
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),root=path.resolve(__dirname,'..'),helper=require('./source_call_conditioning.js'),source=fs.readFileSync(path.join(__dirname,'source_call_conditioning.js'),'utf8');
-function inspect(Float64=Float64Array){
+function inspect(Float64=Float64Array,{fullReverse=false,onReverseBound=null}={}){
  const marker='const recordGuide=()=>{};';assert.equal(source.split(marker).length,2,'Unique test-only private guide hook');
+ let compiled=source;
+ if(fullReverse){const pruned='}else for(let j=pruneReverse?Math.max(0,A-n+i):0,jEnd=pruneReverse?Math.min(A,i):A;j<=jEnd;j++)for(let k=pruneReverse?Math.max(0,B-n+i,A+B-n+i-j):0,kEnd=pruneReverse?Math.min(B,i-j):B;k<=kEnd;k++){';
+  assert.equal(compiled.split(pruned).length,2,'Unique optimized reverse-loop reference hook');compiled=compiled.replace(pruned,'}else for(let j=0;j<=A;j++)for(let k=0;k<=B;k++){');}
+ if(onReverseBound){const point='let adjoint=work.adjA;';assert.equal(compiled.split(point).length,2);compiled=compiled.replace(point,'observeReverseBound(pruneReverse);'+point);}
  const mod={exports:{}};let privateApi;
- new Function('module','exports','capture','Float64Array',source.replace(marker,marker+'capture({partition:redrawPartition.partition,allocate:lookahead.allocateCalledLookahead});'))(mod,mod.exports,value=>privateApi=value,Float64);
+ new Function('module','exports','capture','Float64Array','observeReverseBound',compiled.replace(marker,marker+'capture({partition:redrawPartition.partition,allocate:lookahead.allocateCalledLookahead});'))(mod,mod.exports,value=>privateApi=value,Float64,onReverseBound);
  assert.deepEqual(Object.keys(mod.exports),Object.keys(helper),'Instrumentation cannot add a production API');return privateApi;
 }
 const api=inspect(),close=(a,b,tol=1e-11)=>assert(Math.abs(a-b)<=tol*Math.max(1,Math.abs(b)));
@@ -15,6 +19,19 @@ for(let n=2;n<=7;n++)for(let d=0;d<n;d++)for(let r=0;r<n-d;r++){
  const counts=[d,r,n-1-d-r],weights=Array.from({length:n},(_,i)=>[(i+1)/(n+2),(n-i)/(n+1),1]),actual=api.partition(weights,counts,{leaveOneOut:true});
  for(let i=0;i<n;i++)close(Math.exp(actual.logGradients[i]+actual.logCommonScale),coefficient(weights.filter((_,j)=>i!==j),counts));coefficientCases++;
 }
+// The optimized reverse traversal may omit only exact-zero terms. Compare
+// every returned bit and every numerical rejection with the original full
+// reverse traversal compiled in RAM from this same helper, never old Git data.
+const fullReverse=inspect(Float64Array,{fullReverse:true});let exactReverseCases=0,exactReverseRejections=0;
+function compareReverse(weights,counts,options){let wanted,actual,oldError,newError;try{wanted=fullReverse.partition(weights,counts,options);}catch(error){oldError=error;}try{actual=api.partition(weights,counts,options);}catch(error){newError=error;}
+ assert.equal(Boolean(newError),Boolean(oldError),'Pruning preserves numerical-support outcome');if(oldError){assert.equal(newError.code,oldError.code);assert.equal(newError.message,oldError.message);exactReverseRejections++;}else assert.deepEqual(actual,wanted,'All coefficient/gradient bits and scale/order remain exact');exactReverseCases++;}
+for(let n=2;n<=10;n++)for(let d=0;d<n;d++)for(let r=0;r<n-d;r++)for(const relativeOnly of [false,true])compareReverse(Array.from({length:n},(_,i)=>[(i+1)/(n+2),(n-i)/(n+1),1]),[d,r,n-1-d-r],{leaveOneOut:true,relativeOnly});
+for(const n of [28,38,52,64])for(const counts of [[Math.floor(n/3)-1,Math.floor(n/3),n-2*Math.floor(n/3)],[0,0,n-1],[n-3,1,1],[2,n-5,2]]){
+ const weights=Array.from({length:n},(_,i)=>[.001+(i%13)/15,.002+((i*7)%19)/22,1]);for(const relativeOnly of [false,true])compareReverse(weights,counts,{leaveOneOut:true,relativeOnly});compareReverse(weights,[counts[0]+1,counts[1],counts[2]],{});}
+for(const small of [Number.MIN_VALUE,1e-320,1e-300,1e-200,1e-100])for(const n of [8,20,52])for(const mode of ['same','uneven','mixed'])for(const relativeOnly of [false,true])compareReverse(Array.from({length:n},(_,i)=>mode==='same'?[small,small,small]:mode==='uneven'?[i%2?small:1,small,small]:[small,.25+(i%3)*.25,1]),[Math.floor(n/3)-1,Math.floor(n/3),n-2*Math.floor(n/3)],{leaveOneOut:true,relativeOnly});
+const reverseDecisions=[],observedReverse=inspect(Float64Array,{onReverseBound:value=>reverseDecisions.push(value)});
+for(const small of [1e-40,1e-45,1e-50,1e-51,1e-52,1e-53]){const weights=Array.from({length:8},()=>[small,small,1]),counts=[3,2,2],options={leaveOneOut:true};assert.deepEqual(observedReverse.partition(weights,counts,options),fullReverse.partition(weights,counts,options),'Conservative numerical fallback retains accepted tiny-weight outputs exactly');}
+assert(reverseDecisions.includes(false),'Accepted tiny-weight cases exercise the original full-loop fallback');assert(reverseDecisions.includes(true));
 // Exercise the memory guard directly through test-only instrumentation. This
 // request is rejected before any DP Float64 array, including its first row.
 const allocations=[],observed=new Proxy(Float64Array,{construct(target,args){allocations.push(args[0]);return Reflect.construct(target,args);}}),bounded=inspect(observed);
@@ -57,5 +74,6 @@ const values=[-2,-2,1,3],uniforms=[.13,.77,.42],unused=()=>{throw Error('Uncalle
 assert.deepEqual(api.allocate(values,[0,0,0,0],uniforms,unused,helper.allocateWithoutReplacement,[],[],helper.normalLogCDF),helper.allocateWithoutReplacement(values,[0,0,0,0],uniforms,unused));
 const out=path.join(root,'artifacts/readiness');fs.mkdirSync(out,{recursive:true});fs.writeFileSync(path.join(out,'source-call-resource-law.json'),JSON.stringify({schema:'source-call-resource-law-proof-v1',status:'PASS',coefficientCases,lawCases,
  oversized_workspace_rejected_before_float64_allocation:true,old_uncalled_uniform_rng_exact:true,no_fitted_coefficients_or_call_tempering:true,
+ exact_pruned_full_reverse_cases:exactReverseCases,exact_pruned_full_reverse_rejections:exactReverseRejections,accepted_tiny_weight_original_loop_fallback:true,
  private_test_hooks_only_no_production_api_added:true,scope:'Independent fictional coefficient/indexed law evidence, not predictive calibration.'},null,2)+'\n');
 console.log('Resource law PASS: independent positive coefficient/gradient oracle, full/partial indexed law with duplicates, unchanged target/RNG and pre-allocation memory guard.');

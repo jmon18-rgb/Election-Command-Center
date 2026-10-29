@@ -24,6 +24,14 @@ genuinely missing optional assets. Current claims/history/audit must not accept
 nonfinite values, raw private arrays or cycles. The next protected release
 combines this concrete repair with the reviewed proposal improvement.
 
+Before merge, a distinct valid balanced-partial-bag frame exposed a narrow
+29.45-second margin against the unchanged 30-second deadline. Reviewed reverse
+coefficient pruning improves that fixed frame to 26.61 seconds while preserving
+all output bits and original numerical failures. The original ac2eb9f2 head is
+fully green (37 parents, 49 successful jobs and three declared PR skips) but was
+not merged; this actual improvement requires fresh checks on the new head.
+The first frame and balanced frame both remain in the browser regression gate.
+
 ## PR529 VERIFIED PUBLISHED — background computation and current-reader integrity
 
 Tested718c5b30350377e68c50952431299c9a29e95367 passed ALL43 applicable workflow

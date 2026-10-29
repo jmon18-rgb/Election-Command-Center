@@ -113,6 +113,12 @@ finalizers do not retain matrix history, and immediate physical-memory
 zeroization is not claimed. The separate coefficient workspace cache has a 16 MiB bound
 and rejects unsupported allocation sizes before allocating them.
 
+The coefficient reverse pass skips only cells that cannot contribute to the
+requested count. A componentwise bound first proves the original adjoints stay
+finite; otherwise the original full reverse loops run. This preserves the old
+coefficient/gradient bits and numerical rejection behavior, including tiny-weight
+cases, without changing forward scales, proposal weights or random draws.
+
 If the conditional law is unsupported or final sampling support is insufficient,
 the result explicitly withholds call covariance transfer. Existing validated
 winners stay fixed, alongside the available polling/count context. No error
@@ -159,3 +165,9 @@ learning is established. A complete synthetic private/public/two-House-research
 worker frame is timed against the existing 30-second deadline, including final
 replay and county conditioning. Moving work off the controls or meeting this
 desktop deadline does not establish physical-phone speed or empirical accuracy.
+Balanced partially called large bags are a separate performance case: all three
+categories remain populated, so their computation differs from nearly exhausted
+bags. The same fixed balanced frame took 29.45 seconds before reverse-pass
+pruning and 26.61 seconds after it in two single desktop-host runs, with identical
+support and outputs. These measurements establish this bounded improvement,
+not a device-speed guarantee. Both compositions retain the existing deadline.

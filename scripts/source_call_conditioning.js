@@ -43,7 +43,13 @@ function partition(weights,counts,{leaveOneOut=false,relativeOnly=false}={}){
  const common=leaveOneOut&&relativeOnly?null:scales.reduce((sum,x)=>sum+Math.log(x),0),coefficient=forward[n][A*width+B];
  if(!(coefficient>0)||!finite(coefficient))throw Error('THREE_CATEGORY_COEFFICIENT_SUPPORT');
  if(!leaveOneOut)return {logCoefficient:Math.log(coefficient)+common,base,tracked:[a,b]};
- let adjoint=work.adjA;adjoint.fill(0);adjoint[A*width+B]=1;const logGradients=new Float64Array(n);
+ // Keep the original unsupported-numerics outcome too: an omitted zero term
+// must not conceal an old nonfinite adjoint. This componentwise monotone
+// bound uses the original positive-weight arithmetic. If it cannot prove
+// every adjoint finite, retain the exact original full reverse loops.
+let reverseBound=1,pruneReverse=true;
+if(B>1)for(let i=n-1;i>=0;i--){const w=weights[i];reverseBound=(reverseBound*w[base]+reverseBound*w[a]+reverseBound*w[b])/scales[i];if(!finite(reverseBound)){pruneReverse=false;break;}}
+let adjoint=work.adjA;adjoint.fill(0);adjoint[A*width+B]=1;const logGradients=new Float64Array(n);
  for(let i=n-1;i>=0;i--){
   const prior=forward[i],next=adjoint===work.adjA?work.adjB:work.adjA,w=weights[i],scale=scales[i];next.fill(0);let derivative=0;
   const wb=w[base],wa=w[a],wc=w[b];
@@ -56,7 +62,7 @@ function partition(weights,counts,{leaveOneOut=false,relativeOnly=false}={}){
     derivative+=adjoint[index+1]*prior[index+1]/scale;
     next[index+1]=(adjoint[index+1]*wb+(j<A?adjoint[index+3]*wa:0))/scale;
    }
-  }else for(let j=0;j<=A;j++)for(let k=0;k<=B;k++){
+  }else for(let j=pruneReverse?Math.max(0,A-n+i):0,jEnd=pruneReverse?Math.min(A,i):A;j<=jEnd;j++)for(let k=pruneReverse?Math.max(0,B-n+i,A+B-n+i-j):0,kEnd=pruneReverse?Math.min(B,i-j):B;k<=kEnd;k++){
    const index=j*width+k;derivative+=adjoint[index]*prior[index]/scale;
    next[index]=(adjoint[index]*wb+(j<A?adjoint[index+width]*wa:0)+(k<B?adjoint[index+1]*wc:0))/scale;
   }
