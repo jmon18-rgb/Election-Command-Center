@@ -1,5 +1,22 @@
 # JackStradamus · development plan
 
+## October29 current work — improve conditional support without changing the target
+
+PR529 background computation is verified published on main3458125b. The next
+ready model change uses a resource-aware proposal for many called redraw seats,
+with exact indexed probability correction and a bounded private replay cache.
+Independent numerical/replay reviews pass; complete fictional four-output
+worker frames meet the unchanged desktop deadline. Protected review and
+published verification remain pending. A discovered malformed-output fallback
+defect is included in the same coherent release. No empirical calibration or
+full-night support guarantee follows from these checks.
+
+PR527 already delivered same-joint margin ranges, private ad-free audio and the
+exact supplied Abbott image. PR528 delivered full-factor source-call conditioning.
+Their old candidate wording below is historical. Human device/listening review,
+independent chronological evaluation, missing source contracts, genuine positive
+delivery and verified no-paid archive capacity remain separate open rows.
+
 ## October28 latest owner update — ad-free playback and actual supplied artwork
 
 Owner rejects YouTube ads: PR527 now prefers private browser-local audio files,

@@ -65,6 +65,9 @@ jobs:
       - name: Full app rejects held old worker frames across calls, context, archive, hidden and timeout recovery
         if: ${{ !cancelled() }}
         run: node scripts/test_joint_model_worker_app_browser.mjs
+      - name: Public model boundary rejects malformed output and handles genuinely missing optional assets
+        if: ${{ !cancelled() }}
+        run: node scripts/test_joint_model_worker_guard_browser.mjs
       - name: Upload background-model and pending-view evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -74,6 +77,7 @@ jobs:
             artifacts/readiness/ui-review/model-worker/
             artifacts/readiness/ui-review/personal-election-pending/
             artifacts/readiness/ui-review/joint-model-worker-app/
+            artifacts/readiness/ui-review/model-worker-public-guard/
           if-no-files-found: warn
           retention-days: 7
       - name: National results failure and recovery
@@ -88,12 +92,23 @@ jobs:
       - name: Validated-call context, exact withdrawal and unsupported transfer on desktop and mobile
         if: ${{ !cancelled() }}
         run: node scripts/test_source_call_conditioning_browser.mjs
+      - name: Complete private, public and House research frames retain support within the existing worker deadline
+        if: ${{ !cancelled() }}
+        run: node scripts/test_source_call_full_frame_browser.mjs
       - name: Upload conditional-call browser evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: source-call-conditioning-browser
           path: artifacts/readiness/ui-review/source-call-conditioning/
+          retention-days: 7
+      - name: Upload complete conditional model frame evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-call-full-frame-browser
+          path: artifacts/readiness/ui-review/source-call-full-frame/
+          if-no-files-found: warn
           retention-days: 7
       - name: Private ad-free audio persistence and supplied Abbott artwork
         if: ${{ !cancelled() }}

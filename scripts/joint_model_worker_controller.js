@@ -5,14 +5,30 @@
  if(root)root.JointModelWorkerController=api;
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
- const PROTOCOL='joint-model-worker-v1',endingKeys=['blue_tsunami','blue_wave','shrug','red_dawn'];
+ const PROTOCOL='joint-model-worker-v1';
  const safeText=value=>typeof value==='string'&&value.length>0;
  const safeTag=value=>typeof value==='string'&&/^[A-Z0-9_:-]{1,100}$/.test(value);
- const summary=(value,samples)=>Boolean(value&&typeof value==='object'&&value.samples===samples&&
-  value.probabilities&&endingKeys.every(key=>Number.isFinite(value.probabilities[key])&&value.probabilities[key]>=0&&value.probabilities[key]<=100)&&
-  Math.abs(endingKeys.reduce((sum,key)=>sum+value.probabilities[key],0)-100)<=.1&&
-  !Object.hasOwn(value,'proposal_only')&&!Object.hasOwn(value,'call_log_weights')&&!Object.hasOwn(value,'county_draws'));
  function validBundle(value,request){
+  // Self-contained so the page can retain this exact guard when either optional
+  // worker asset fails. Private input payloads are intentionally NOT inspected.
+  const endingKeys=['blue_tsunami','blue_wave','shrug','red_dawn'];
+  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum']);
+  const safeTag=value=>typeof value==='string'&&/^[A-Z0-9_:-]{1,100}$/.test(value);
+  function publicFields(item,path){
+   if(item===null||item===undefined||typeof item==='string'||typeof item==='boolean')return true;
+   if(typeof item==='number')return Number.isFinite(item);
+   if(typeof item!=='object'||ArrayBuffer.isView(item))return false;
+   const tag=Object.prototype.toString.call(item);
+   if(!['[object Object]','[object Array]'].includes(tag)||path.has(item))return false;
+   path.add(item);
+   try{return Object.entries(item).every(([key,child])=>!rawKeys.has(key)&&publicFields(child,path));}
+   finally{path.delete(item);} // Acyclic result/baseline aliases are legitimate.
+  }
+  const summary=(value,samples)=>Boolean(value&&typeof value==='object'&&value.samples===samples&&
+   value.probabilities&&endingKeys.every(key=>Number.isFinite(value.probabilities[key])&&value.probabilities[key]>=0&&value.probabilities[key]<=100)&&
+   Math.abs(endingKeys.reduce((sum,key)=>sum+value.probabilities[key],0)-100)<=.1);
+  try{
+  if(!publicFields(value,new WeakSet()))return false;
   const samples=request?.payload?.args?.samples;
   if(!Number.isInteger(samples)||samples<300||samples>30000||!value||typeof value!=='object'||
    !summary(value.result,samples)||!summary(value.baseline,samples)||!value.diagnostics||typeof value.diagnostics!=='object')return false;
@@ -27,6 +43,7 @@
   for(const row of Object.values(value.variants||{}))if(!row||typeof row!=='object'||
    (row.result!==null&&!summary(row.result,3000))||(row.errorCode!==null&&!safeTag(row.errorCode)))return false;
   return true;
+  }catch{return false;}
  }
  function create({workerFactory=null,timeoutMs=null,clone=typeof structuredClone==='function'?structuredClone:null,
   schedule=callback=>queueMicrotask(callback),setTimer=(callback,delay)=>setTimeout(callback,delay),clearTimer=timer=>clearTimeout(timer),

@@ -49,6 +49,16 @@ main thread or weaken the model. Source reporting continues. Optional research
 failures do not replace the primary model. Prior-only correlation sensitivities
 are unavailable when calls or county returns condition the current forecast.
 
+Worker and main-thread results share a recursive admission guard. It rejects
+nonfinite numbers, private proposal fields, typed buffers and output cycles
+before current claims, history or audit can change. Legitimate acyclic aliases
+are allowed. The same guard remains available when the optional controller or
+worker script fails to load. Invalid county output can use the existing engine
+fallback; that fallback must pass the guard too. Invalid final output is withheld.
+Each optional research result is checked before bundle assembly, including its
+fixed sample count, so malformed research output is quarantined without losing
+the valid primary forecast or its paired public comparison.
+
 ## Evidence and limits
 
 Unit and real-browser checks exercise exact synchronous/worker equality,
@@ -57,5 +67,9 @@ timeout withholding, lifecycle boundaries, keyboard reading and responsive
 controls during a fictional 200-call calculation. These are engineering and
 mathematical checks. Physical-phone performance, genuine post-close production
 delivery and independent chronological predictive calibration remain separate
-open gates. In particular, moving computation off the interface does not make
-the existing low-support 200-call case informative; it remains WITHHELD.
+open gates. The separately reviewed resource-aware proposal in
+SOURCE_CALL_CONDITIONING.md improves support in the fixed fictional 200-call
+case without changing its target or hard support floor. Its complete private,
+public and two-House-research worker frame is tested against the unchanged
+30-second deadline. Other concentrated cases still withhold; neither background
+execution nor these synthetic results guarantee full-night conditional learning.

@@ -1,3 +1,194 @@
+/* Exact-corrected resource guide; all modules are statically scoped here.
+ * No extra source, network import, fitted coefficient or public guide API. */
+(()=>{
+const redrawPartition=(()=>{const module={exports:{}};
+'use strict';
+// Positive three-category coefficient DP. Track the two smallest requested
+// counts; the largest category is the untracked base. Reverse derivatives in
+// each base column give all leave-one-index coefficients with a common scale.
+const finite=x=>typeof x==='number'&&Number.isFinite(x);
+const workspaceCache=new Map(),MAX_WORKSPACE_BYTES=16*1024*1024;let usedBytes=0;
+function workspace(n,size){
+ const key=n+':'+size;
+ if(workspaceCache.has(key)){const entry=workspaceCache.get(key);workspaceCache.delete(key);workspaceCache.set(key,entry);return entry;}
+ const bytes=((n+3)*size+n)*8;
+ if(!Number.isSafeInteger(bytes)||bytes<0||bytes>MAX_WORKSPACE_BYTES){const error=Error('REDRAW_WORKSPACE_MEMORY_BOUND');error.name='SourceCallConditioningError';error.code='REDRAW_WORKSPACE_MEMORY_BOUND';throw error;}
+ while(workspaceCache.size&&usedBytes+bytes>MAX_WORKSPACE_BYTES){const first=workspaceCache.keys().next().value;usedBytes-=workspaceCache.get(first).bytes;workspaceCache.delete(first);}
+ const entry={forward:Array.from({length:n+1},()=>new Float64Array(size)),scales:new Float64Array(n),adjA:new Float64Array(size),adjB:new Float64Array(size),bytes};
+ workspaceCache.set(key,entry);usedBytes+=bytes;return entry;
+}
+function partition(weights,counts,{leaveOneOut=false,relativeOnly=false}={}){
+ const n=weights.length,total=counts.reduce((a,b)=>a+b,0);
+ if(counts.length!==3||counts.some(x=>!Number.isInteger(x)||x<0)||total!==n-Number(leaveOneOut)||
+   weights.some(row=>row.length!==3||row.some(x=>!finite(x)||x<=0||x>1+1e-12)))throw Error('INVALID_THREE_CATEGORY_PARTITION');
+ const order=[0,1,2].sort((a,b)=>counts[b]-counts[a]||a-b),base=order[0],a=order[1],b=order[2],A=counts[a],B=counts[b],width=B+1,size=(A+1)*width;
+ const work=workspace(n,size),forward=work.forward,scales=work.scales;forward[0].fill(0);forward[0][0]=1;
+ for(let i=0;i<n;i++){
+  const prior=forward[i],next=forward[i+1],w=weights[i];next.fill(0);let scale=0;
+  const wb=w[base],wa=w[a],wc=w[b];
+  if(B===0){
+   for(let j=0;j<=Math.min(A,i+1);j++){const value=wb*prior[j]+(j?wa*prior[j-1]:0);next[j]=value;scale=Math.max(scale,value);}
+  }else if(B===1){
+   for(let j=0;j<=Math.min(A,i+1);j++){
+    const index=j*2,v0=wb*prior[index]+(j?wa*prior[index-2]:0);next[index]=v0;scale=Math.max(scale,v0);
+    if(j<=i){const v1=wb*prior[index+1]+(j?wa*prior[index-1]:0)+wc*prior[index];next[index+1]=v1;scale=Math.max(scale,v1);}
+   }
+  }else for(let j=0;j<=Math.min(A,i+1);j++)for(let k=0;k<=Math.min(B,i+1-j);k++){
+   const index=j*width+k,value=wb*prior[index]+(j?wa*prior[index-width]:0)+(k?wc*prior[index-1]:0);
+   next[index]=value;scale=Math.max(scale,value);
+  }
+  if(!(scale>0)||!finite(scale))throw Error('THREE_CATEGORY_COEFFICIENT_SUPPORT');
+  for(let j=0;j<size;j++)next[j]/=scale;scales[i]=scale;
+ }
+ const common=leaveOneOut&&relativeOnly?null:scales.reduce((sum,x)=>sum+Math.log(x),0),coefficient=forward[n][A*width+B];
+ if(!(coefficient>0)||!finite(coefficient))throw Error('THREE_CATEGORY_COEFFICIENT_SUPPORT');
+ if(!leaveOneOut)return {logCoefficient:Math.log(coefficient)+common,base,tracked:[a,b]};
+ let adjoint=work.adjA;adjoint.fill(0);adjoint[A*width+B]=1;const logGradients=new Float64Array(n);
+ for(let i=n-1;i>=0;i--){
+  const prior=forward[i],next=adjoint===work.adjA?work.adjB:work.adjA,w=weights[i],scale=scales[i];next.fill(0);let derivative=0;
+  const wb=w[base],wa=w[a],wc=w[b];
+  if(B===0){
+   for(let j=0;j<=A;j++){derivative+=adjoint[j]*prior[j]/scale;next[j]=(adjoint[j]*wb+(j<A?adjoint[j+1]*wa:0))/scale;}
+  }else if(B===1){
+   for(let j=0;j<=A;j++){
+    const index=j*2;derivative+=adjoint[index]*prior[index]/scale;
+    next[index]=(adjoint[index]*wb+(j<A?adjoint[index+2]*wa:0)+adjoint[index+1]*wc)/scale;
+    derivative+=adjoint[index+1]*prior[index+1]/scale;
+    next[index+1]=(adjoint[index+1]*wb+(j<A?adjoint[index+3]*wa:0))/scale;
+   }
+  }else for(let j=0;j<=A;j++)for(let k=0;k<=B;k++){
+   const index=j*width+k;derivative+=adjoint[index]*prior[index]/scale;
+   next[index]=(adjoint[index]*wb+(j<A?adjoint[index+width]*wa:0)+(k<B?adjoint[index+1]*wc:0))/scale;
+  }
+  if(!(derivative>0)||!finite(derivative))throw Error('THREE_CATEGORY_DERIVATIVE_SUPPORT');
+  logGradients[i]=Math.log(derivative);adjoint=next;
+ }
+ return {logGradients,...(relativeOnly?{relativeOnly:true}:{logCommonScale:common}),base,tracked:[a,b]};
+}
+module.exports={partition};
+
+return module.exports;})();
+const lookahead=(()=>{const module={exports:{}};const require=name=>{if(name==='./partition3_fast.cjs')return redrawPartition;throw Error('UNEXPECTED_STATIC_REDRAW_DEPENDENCY');};
+'use strict';
+// Separate cost experiment: one fixed D/R group Normal is a moment-matched
+// proposal guide to the known equal-weight conditional Gaussian mixture. This
+// never replaces any original race likelihood or event normalizer.
+const {partition}=require('./partition3_fast.cjs'),finite=x=>typeof x==='number'&&Number.isFinite(x);
+function groupScores(values,signs,rows,means,logCDF){
+ const groups=[[],[]];signs.forEach((sign,i)=>{if(sign)groups[sign>0?0:1].push(i);});
+ const scratch=groups.map(group=>new Float64Array(group.length));
+ const cache=new Map(),logs=values.map(value=>{
+  if(cache.has(value))return cache.get(value);
+  const score=groups.map((members,category)=>{
+   if(!members.length)return 0;
+   const mu=scratch[category];let center=0;
+   for(let j=0;j<members.length;j++){const i=members[j];mu[j]=means[i]+(value-rows[i].center)*rows[i].mix;center+=mu[j];}center/=members.length;
+   let variance=0;for(let j=0;j<members.length;j++){const i=members[j];variance=variance+rows[i].localSD**2+(mu[j]-center)**2;}variance/=members.length;
+   if(!(variance>0)||!finite(variance))throw Error('MOMENT_GUIDE_VARIANCE_UNSUPPORTED');
+   const log=logCDF((category===0?1:-1)*center/Math.sqrt(variance));
+   if(!finite(log)||log>0||!(Math.exp(log)>0))throw Error('MOMENT_GUIDE_SCORE_SUPPORT');return log;
+  });cache.set(value,score);return score;
+ });
+ return {logs,weights:logs.map(row=>[Math.exp(row[0]),Math.exp(row[1]),1])};
+}
+function stage(scores,counts,sign,remaining,currentLogs=null){
+ const size=remaining.length,weights=new Array(size);for(let i=0;i<size;i++)weights[i]=scores.weights[remaining[i]];
+ const part=partition(weights,counts,{leaveOneOut:true,relativeOnly:true}),logs=new Float64Array(size);let max=-Infinity;
+ for(let i=0;i<size;i++){logs[i]=(currentLogs?currentLogs[i]:scores.logs[remaining[i]][sign>0?0:1])+part.logGradients[i];max=Math.max(max,logs[i]);}
+ const q=new Float64Array(size);let sum=0;
+ for(let i=0;i<size;i++){q[i]=Math.exp(logs[i]-max);if(!(q[i]>0))throw Error('MOMENT_LOOKAHEAD_Q_SUPPORT');sum+=q[i];}
+ if(!finite(sum)||sum<=0)throw Error('MOMENT_LOOKAHEAD_Q_SUPPORT');return {logs,max,q,sum};
+}
+function allocateCalledLookahead(values,signs,uniforms,logProbability,original,rows,means,logCDF){
+ if(!signs.some(Boolean))return original(values,signs,uniforms,logProbability);
+ if(uniforms.length!==values.length-1||Array.from(uniforms).some(x=>!finite(x)||x<0||x>=1))throw Error('INVALID_MOMENT_LOOKAHEAD_UNIFORMS');
+ const scores=groupScores(values,signs,rows,means,logCDF),remaining=values.map((_,i)=>i),counts=[signs.filter(s=>s>0).length,signs.filter(s=>s<0).length,signs.filter(s=>!s).length],
+  slots=new Uint16Array(values.length),assigned=new Float64Array(values.length);let cursor=0,logPriorMinusProposal=0;
+ for(let seat=0;seat<values.length;seat++)if(signs[seat]){
+  counts[signs[seat]>0?0:1]--;const current=new Float64Array(remaining.length);for(let i=0;i<remaining.length;i++){const id=remaining[i];current[i]=logProbability(seat,values[id],id,signs[seat]);}const p=stage(scores,counts,signs[seat],remaining,current);let choice=remaining.length-1;
+  if(remaining.length>1){const u=uniforms[cursor++];let cumulative=0;for(let i=0;i<remaining.length;i++){cumulative+=p.q[i]/p.sum;if(u<cumulative){choice=i;break;}}}
+  logPriorMinusProposal+=-Math.log(remaining.length)-(p.logs[choice]-p.max-Math.log(p.sum));
+  const id=remaining.splice(choice,1)[0];slots[seat]=id;assigned[seat]=values[id];
+ }
+ for(let z=remaining.length-1;z>0;z--){const pick=Math.floor(uniforms[cursor++]*(z+1));[remaining[z],remaining[pick]]=[remaining[pick],remaining[z]];}
+ for(let seat=0;seat<values.length;seat++)if(!signs[seat]){const id=remaining.pop();slots[seat]=id;assigned[seat]=values[id];}
+ if(cursor!==uniforms.length)throw Error('MOMENT_LOOKAHEAD_RNG_CONSUMPTION_CHANGED');return {values:assigned,slots,logPriorMinusProposal,uniformsConsumed:cursor};
+}
+module.exports={allocateCalledLookahead};
+
+return module.exports;})();
+const resource=(()=>{const module={exports:{}};const require=name=>{if(name==='./partition3_fast.cjs')return redrawPartition;throw Error('UNEXPECTED_STATIC_REDRAW_DEPENDENCY');};
+'use strict';
+const {partition}=require('./partition3_fast.cjs');
+// Proposal-only shared-factor guide. Replaces fully-called bag marginal-probit
+// surrogates by the grouped indexed resource partition used by look-ahead.
+// All original Gaussian density / exact call and allocation corrections remain
+// in the actual election weight; no evidence or fitted model term is added.
+const finite=x=>typeof x==='number'&&Number.isFinite(x);
+const dot=(a,b)=>a.reduce((sum,x,i)=>sum+x*b[i],0),logDensity=x=>-.5*x*x-.5*Math.log(2*Math.PI);
+function resourceGaussian(input,originalTerms,numerics,observe=()=>{}){
+ const {keys,calls,bags,signs}=input,{normalLogCDF,cholesky,solvePrecision,gaussianProposal}=numerics;
+ const eligible=[];
+ for(const [state,bag]of bags){
+  // Uncalled rows form the exact unit-likelihood third category.
+  const coefficients=keys.map(key=>bag.rows[0].coefficients[key]||0);
+  if(bag.rows.some(row=>keys.some((key,j)=>(row.coefficients[key]||0)!==coefficients[j])))continue;
+  const Drows=bag.rows.filter(row=>signs.get(row.code)>0),Rrows=bag.rows.filter(row=>signs.get(row.code)<0),count=Drows.length;
+  const counts=[Drows.length,Rrows.length,bag.rows.length-Drows.length-Rrows.length],factorialLog=n=>Array.from({length:n},(_,i)=>Math.log(i+1)).reduce((sum,x)=>sum+x,0),
+   logChoose=factorialLog(bag.rows.length)-counts.reduce((sum,n)=>sum+factorialLog(n),0),cache=new Map();
+  const evaluate=t=>{
+   if(cache.has(t))return cache.get(t);
+   const probabilities=rows=>bag.values.map(value=>{
+    if(!rows.length)return 1;
+    const mu=rows.map(row=>row.mean+(value-row.center)*row.mix),center=mu.reduce((a,b)=>a+b,0)/rows.length,
+     variance=rows.reduce((sum,row,i)=>sum+row.localSD**2+(mu[i]-center)**2,0)/rows.length;
+    return Math.exp(normalLogCDF(signs.get(rows[0].code)*(center+t)/Math.sqrt(variance)));
+   });
+   const D=probabilities(Drows),R=probabilities(Rrows),weights=bag.values.map((_,i)=>[D[i],R[i],1]);
+   const answer=partition(weights,counts).logCoefficient-logChoose;
+   if(!finite(answer))throw Error('NONFINITE_RESOURCE_GUIDE');cache.set(t,answer);if(cache.size>512)cache.delete(cache.keys().next().value);return answer;
+  };
+  const scale=bag.rows.reduce((sum,row)=>sum+row.localSD,0)/bag.rows.length;
+  eligible.push({state,rows:new Set(bag.rows.map(row=>row.code)),coefficients,evaluate,scale});
+ }
+ if(!eligible.length)return gaussianProposal(originalTerms,keys.length);
+ const included=new Set(eligible.flatMap(item=>Array.from(item.rows))),terms=originalTerms.filter((_,i)=>!included.has(calls[i].row.code));
+ const density=z=>-.5*dot(z,z)+terms.reduce((sum,term)=>sum+normalLogCDF(term.offset+dot(term.loadings,z)),0)+
+  eligible.reduce((sum,bag)=>sum+bag.evaluate(dot(bag.coefficients,z)),0);
+ let mode=new Float64Array(keys.length),L,iterations=0,gradientNorm=Infinity;
+ try{
+  for(;iterations<80;iterations++){
+   const gradient=Float64Array.from(mode,x=>-x),H=Array.from({length:keys.length},(_,i)=>Float64Array.from({length:keys.length},(_,j)=>Number(i===j)));
+   for(const term of terms){
+    const k=term.offset+dot(term.loadings,mode),ratio=Math.exp(logDensity(k)-normalLogCDF(k)),precision=ratio*(k+ratio);
+    for(let i=0;i<keys.length;i++){gradient[i]+=term.loadings[i]*ratio;for(let j=0;j<keys.length;j++)H[i][j]+=term.loadings[i]*term.loadings[j]*precision;}
+   }
+   for(const bag of eligible){
+    const t=dot(bag.coefficients,mode),h=Math.pow(Number.EPSILON,.25)*(1+Math.abs(t)+bag.scale),f0=bag.evaluate(t),
+     fm=bag.evaluate(t-h),fp=bag.evaluate(t+h),fm2=bag.evaluate(t-2*h),fp2=bag.evaluate(t+2*h),
+     first=(fm2-8*fm+8*fp-fp2)/(12*h),second=(-fp2+16*fp-30*f0+16*fm-fm2)/(12*h*h);
+    if(!finite(first)||!finite(second))throw Error('RESOURCE_GUIDE_DERIVATIVE_UNSUPPORTED');
+    for(let i=0;i<keys.length;i++){gradient[i]+=bag.coefficients[i]*first;for(let j=0;j<keys.length;j++)H[i][j]-=bag.coefficients[i]*bag.coefficients[j]*second;}
+   }
+   L=cholesky(H);const step=solvePrecision(L,gradient),decrement=dot(step,gradient),before=density(mode);
+   gradientNorm=Math.hypot(...gradient);
+   if(step.every(x=>Math.abs(x)<1e-11)||(decrement>=0&&decrement<=64*Number.EPSILON*(1+Math.abs(before))))break;
+   let fraction=1,accepted=false;
+   for(let line=0;line<60;line++){const trial=Float64Array.from(mode,(value,i)=>value+fraction*step[i]);if(density(trial)>=before){mode=trial;accepted=true;break;}fraction/=2;}
+   if(!accepted)throw Error('RESOURCE_GUIDE_LINE_SEARCH_FAILED');
+  }
+  if(iterations===80)throw Error('RESOURCE_GUIDE_NOT_CONVERGED');
+  const out={mode,L,iterations,logDeterminant:2*L.reduce((sum,row,i)=>sum+Math.log(row[i]),0)};
+  observe({status:'RESOURCE_GUIDE_PREPARED',states:eligible.map(row=>row.state),iterations,gradientNorm});return out;
+ }catch(error){
+  observe({status:'RESOURCE_GUIDE_UNSUPPORTED_FALLBACK_ORIGINAL',reason:error.code||error.message,states:eligible.map(row=>row.state)});
+  return gaussianProposal(originalTerms,keys.length);
+ }
+}
+module.exports={resourceGaussian};
+
+return module.exports;})();
+const recordGuide=()=>{};
 /* Candidate only: exact-corrected proposal for existing validated winner calls.
  * It supplies a sampler/weight correction, never a new evidence source or a
  * fitted forecast. Numeric basis values stay inside this prepared RAM object.
@@ -233,11 +424,11 @@
     extraVariance=row.mix&&bag?row.mix**2*bag.variance:0,scale=Math.hypot(row.localSD,Math.sqrt(extraVariance));
    return {offset:sign*(row.mean+redrawMean)/scale,loadings:keys.map(key=>sign*(row.coefficients[key]||0)/scale)};
   });
-  const gaussian=gaussianProposal(terms,keys.length),loadings=rows.map(row=>keys.map(key=>row.coefficients[key]||0));
+  const gaussian=resource.resourceGaussian(input,terms,{normalLogCDF,cholesky,solvePrecision,gaussianProposal},recordGuide),loadings=rows.map(row=>keys.map(key=>row.coefficients[key]||0));
   const output=new Float64Array(rows.length),factorDelta=new Float64Array(keys.length);
   const readState=(states,state)=>typeof states?.get==='function'?states.get(state):states?.[state];
   const diagnostics=Object.freeze({schema:VERSION,status:'PREPARED_NOT_YET_WEIGHTED',
-   method:'FULL_RELEVANT_GAUSSIAN_GUIDE_SEQUENTIAL_REDRAW_EXACT_CORRECTION',
+   method:'GROUPED_RESOURCE_GUIDE_EXACT_CORRECTION',
    called_races:Object.freeze(calls.map(({row})=>row.code)),factor_count:keys.length,
    redrawn_bag_sizes:Object.freeze(Object.fromEntries(Array.from(bags,([state,bag])=>[state,bag.values.length]))),
    proposal_iterations:gaussian.iterations,interval_calibrated:false,
@@ -269,12 +460,12 @@
      // fixed seat their sign probability is identical; memoize only that exact
      // value calculation, preserving indexed slots, p/q and every RNG draw.
      let cachedSeat=-1;const valueScores=new Map();
-     const assignment=allocateWithoutReplacement(bag.values,stateSigns,uniforms,(seat,value,id,sign)=>{
+     const assignment=lookahead.allocateCalledLookahead(bag.values,stateSigns,uniforms,(seat,value,id,sign)=>{
       if(seat!==cachedSeat){cachedSeat=seat;valueScores.clear();}
       if(valueScores.has(value))return valueScores.get(value);
       const score=normalLogCDF(sign*(means[seat]+(value-bag.rows[seat].center)*bag.rows[seat].mix)/bag.rows[seat].localSD);
       valueScores.set(value,score);return score;
-     });
+     },allocateWithoutReplacement,bag.rows,means,normalLogCDF);
      logWeight+=assignment.logPriorMinusProposal;
      bag.rows.forEach((row,i)=>allocated.set(row.code,(assignment.values[i]-row.center)*row.mix));
     }
@@ -363,3 +554,5 @@
   normalCDF,normalLogCDF,normalInverseLogCDF,truncateToCalledSign,
   allocateWithoutReplacement,assessLogWeights,resampleWholeElectionStates,failureDiagnostic});
 });
+
+})();

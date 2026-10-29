@@ -3,8 +3,8 @@
 (function(){
  'use strict';
  const PROTOCOL='joint-model-worker-v1';
- const IMPORTS=Object.freeze(([{"name":"election_night_poll_closings_2026","stamp":"39c725fe013b"},{"name":"washington_remaining_source","stamp":"9db3bb46dde1"},{"name":"washington_remaining_scenarios","stamp":"1a313f060a7e"},{"name":"source_call_conditioning","stamp":"ccf3bfd3707e"},{"name":"chamber_control_model","stamp":"c5ce6c240f51"},{"name":"national_county_likelihood","stamp":"3a42f78b20e5"}]).map(Object.freeze));
- const MODEL_REVISION="./scripts/source_call_conditioning.js?v=ccf3bfd3707e|./scripts/chamber_control_model.js?v=c5ce6c240f51|./scripts/national_county_likelihood.js?v=3a42f78b20e5";
+ const IMPORTS=Object.freeze(([{"name":"election_night_poll_closings_2026","stamp":"39c725fe013b"},{"name":"washington_remaining_source","stamp":"9db3bb46dde1"},{"name":"washington_remaining_scenarios","stamp":"1a313f060a7e"},{"name":"source_call_conditioning","stamp":"7e8d79e30265"},{"name":"chamber_control_model","stamp":"d98ce3f4cdf1"},{"name":"national_county_likelihood","stamp":"3a42f78b20e5"}]).map(Object.freeze));
+ const MODEL_REVISION="./scripts/source_call_conditioning.js?v=7e8d79e30265|./scripts/chamber_control_model.js?v=d98ce3f4cdf1|./scripts/national_county_likelihood.js?v=3a42f78b20e5";
  const ERROR_CODES=Object.freeze(['INVALID_REQUEST','STATIC_MODEL_UNAVAILABLE','MODEL_COMPUTATION_FAILED','INVALID_MODEL_RESULT']);
  const VARIANT_IDS=Object.freeze(['house_shadow','presidential_shadow','correlation_moderate','correlation_lower']);
  const FRAME_KINDS=Object.freeze(['LIVE','POLLING_ARCHIVE_BASELINE','REHEARSAL']);
@@ -51,23 +51,29 @@
      variants.some(item=>!plain(item)||!VARIANT_IDS.includes(item.id)||Object.keys(item).some(key=>!['id','basis'].includes(key))))return false;
   return true;
  }
- function coherent(result){
-  if(!plain(result)||result.schema_version!==self.ChamberControlModel.VERSION||result.status!=='EXPERIMENTAL_UNCALIBRATED'||
+ function coherent(result,samples){
+  if(!plain(result)||result.samples!==samples||result.schema_version!==self.ChamberControlModel.VERSION||result.status!=='EXPERIMENTAL_UNCALIBRATED'||
      result.senate_independent_credit_mode!=='no_credit'||!plain(result.probabilities)||!Array.isArray(result.race_probabilities))return false;
   const probabilities=['blue_tsunami','blue_wave','shrug','red_dawn'].map(key=>result.probabilities[key]);
   if(probabilities.some(value=>!finite(value)||value<0||value>100)||Math.abs(probabilities.reduce((sum,value)=>sum+value,0)-100)>.05)return false;
-  const forbidden=new Set(['county_draws','call_proposal_draws','call_log_weights','seeds','weights','fingerprint']);
-  const inspect=value=>{
-   if(typeof value==='number')return finite(value);
-   if(value===null||typeof value!=='object')return true;
-   if(ArrayBuffer.isView(value))return false;
-   return Object.entries(value).every(([key,item])=>!forbidden.has(key)&&inspect(item));
-  };
-  return inspect(result);
+  // Keep optional-result quarantine at least as strict as final admission:
+  // malformed research output cannot discard an otherwise valid primary.
+  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum']);
+  function publicFields(item,path){
+   if(item===null||item===undefined||typeof item==='string'||typeof item==='boolean')return true;
+   if(typeof item==='number')return Number.isFinite(item);
+   if(typeof item!=='object'||ArrayBuffer.isView(item))return false;
+   const tag=Object.prototype.toString.call(item);
+   if(!['[object Object]','[object Array]'].includes(tag)||path.has(item))return false;
+   path.add(item);
+   try{return Object.entries(item).every(([key,child])=>!rawKeys.has(key)&&publicFields(child,path));}
+   finally{path.delete(item);} // Acyclic result/baseline aliases are legitimate.
+  }
+  try{return publicFields(result,new WeakSet());}catch{return false;}
  }
  function compute(basis,envelopes,args){
   const bundle=self.NationalCountyLikelihood.condition(self.ChamberControlModel,basis,envelopes,args);
-  if(!plain(bundle)||!coherent(bundle.result)||!coherent(bundle.baseline)||!plain(bundle.diagnostics))throw Error('INVALID_MODEL_RESULT');
+  if(!plain(bundle)||!coherent(bundle.result,args.samples)||!coherent(bundle.baseline,args.samples)||!plain(bundle.diagnostics))throw Error('INVALID_MODEL_RESULT');
   return {result:bundle.result,baseline:bundle.baseline,diagnostics:bundle.diagnostics};
  }
  function variantsFor(request,primary){
@@ -82,7 +88,7 @@
     if(correlation)options.senateCorrelationResearch=variant.id==='correlation_moderate'?{nationalScale:.8,chamberScale:.65}:{nationalScale:.65,chamberScale:.55};
     else options.live=a.live||{};
     const result=self.ChamberControlModel.simulate(correlation?p.basis:variant.basis,options);
-    output[variant.id]=coherent(result)?{result,errorCode:null}:{result:null,errorCode:'OPTIONAL_VARIANT_UNAVAILABLE'};
+    output[variant.id]=coherent(result,3000)?{result,errorCode:null}:{result:null,errorCode:'OPTIONAL_VARIANT_UNAVAILABLE'};
    }catch{output[variant.id]={result:null,errorCode:'OPTIONAL_VARIANT_UNAVAILABLE'};}
   }
   return output;

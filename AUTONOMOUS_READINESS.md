@@ -1,5 +1,23 @@
 # Election Night production-readiness assignment
 
+## Current ready implementation — resource-aware proposals and fallback validation
+
+Integrate the reviewed helper8e145ce2/engine04a9163b candidate through protected
+review. Exact indexed p/q, duplicate slots, RNG, raw replay/consumer equality,
+packet ownership, pre-allocation reservation and finalizer lifetime have
+independent checks. The fixed fictional 200-call case now has usable support;
+the unchanged hard floor still withholds rare-call/count-overlap cases. Complete
+four-output 3,000-particle worker frames meet the existing 30-second deadline on
+this desktop host; this is not a physical-phone or calibrated-accuracy claim.
+
+Also release the actual malformed-output fallback repair: one recursive public
+guard across worker/main/final admission, preserved when optional assets fail.
+Keep valid primary results independent of optional research failures. Finish all
+applicable exact-head checks, protected merge, final current-main Pages, changed
+byte verification and actual published browser checks before marking delivered.
+Carry the single d6ee5987 docs-only proof checkpoint with this coherent change.
+No source GET/cadence, 3k draw/ESS/target, eligibility or archive activation change.
+
 ## PR529 VERIFIED PUBLISHED — next engineering is allocation support
 
 718c5b30 passed ALL43parents/61latestjobs56SUCCESS5declaredPRnonappSKIP/0external/

@@ -1647,13 +1647,13 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/pennsylvania_house_08_evidence.js?v=db68953539bb"></script>
 <script src="./scripts/michigan_house_07_evidence.js?v=f10ed8920077"></script>
 <script src="./scripts/washington_house_evidence.js?v=4a2cc5972349"></script>
-<script src="./scripts/source_call_conditioning.js?v=ccf3bfd3707e"></script>
+<script src="./scripts/source_call_conditioning.js?v=7e8d79e30265"></script>
 <script src="./scripts/national_county_likelihood.js?v=3a42f78b20e5"></script>
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
-<script src="./scripts/chamber_control_model.js?v=c5ce6c240f51"></script>
-<script src="./scripts/joint_model_worker.js?v=6dee61ac9506"></script>
-<script src="./scripts/joint_model_worker_controller.js?v=8b4f9e2bb31e"></script>
+<script src="./scripts/chamber_control_model.js?v=d98ce3f4cdf1"></script>
+<script src="./scripts/joint_model_worker.js?v=ca6cb7ac8240"></script>
+<script src="./scripts/joint_model_worker_controller.js?v=2e98c11352ee"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
@@ -4928,6 +4928,7 @@ function jointWorkerAssetsMatch(){return window.JointModelWorkerRunner?.MODEL_RE
  window.JointModelWorkerRunner.IMPORTS.every(asset=>document.querySelector('script[src*="/'+asset.name+'.js?"]')?.getAttribute('src')==='./scripts/'+asset.name+'.js?v='+asset.stamp);}
 function jointWorkerController(){return window.JointModelWorkerController?.create({
  timeoutMs:30000,clone:value=>typeof structuredClone==='function'?structuredClone(value):JSON.parse(JSON.stringify(value)),
+ validateResult:(value,request)=>jointPublicBundleValid(value,request.payload),
  workerFactory:()=>{
   if(!jointWorkerAssetsMatch())throw Error('MODEL_REVISION_MISMATCH');
   const src=document.querySelector('script[src*="/joint_model_worker.js?"]')?.getAttribute('src');
@@ -4985,11 +4986,58 @@ function jointInvalidateModel(key,message='Updating forecast in the backgroundâ€
  if($('#jointRunStatus'))$('#jointRunStatus').textContent=message;
  enRenderExportControls();
 }
+function jointFallbackBundleValid(value,request){
+  // Self-contained so the page can retain this exact guard when either optional
+  // worker asset fails. Private input payloads are intentionally NOT inspected.
+  const endingKeys=['blue_tsunami','blue_wave','shrug','red_dawn'];
+  const rawKeys=new Set(['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum']);
+  const safeTag=value=>typeof value==='string'&&/^[A-Z0-9_:-]{1,100}$/.test(value);
+  function publicFields(item,path){
+   if(item===null||item===undefined||typeof item==='string'||typeof item==='boolean')return true;
+   if(typeof item==='number')return Number.isFinite(item);
+   if(typeof item!=='object'||ArrayBuffer.isView(item))return false;
+   const tag=Object.prototype.toString.call(item);
+   if(!['[object Object]','[object Array]'].includes(tag)||path.has(item))return false;
+   path.add(item);
+   try{return Object.entries(item).every(([key,child])=>!rawKeys.has(key)&&publicFields(child,path));}
+   finally{path.delete(item);} // Acyclic result/baseline aliases are legitimate.
+  }
+  const summary=(value,samples)=>Boolean(value&&typeof value==='object'&&value.samples===samples&&
+   value.probabilities&&endingKeys.every(key=>Number.isFinite(value.probabilities[key])&&value.probabilities[key]>=0&&value.probabilities[key]<=100)&&
+   Math.abs(endingKeys.reduce((sum,key)=>sum+value.probabilities[key],0)-100)<=.1);
+  try{
+  if(!publicFields(value,new WeakSet()))return false;
+  const samples=request?.payload?.args?.samples;
+  if(!Number.isInteger(samples)||samples<300||samples>30000||!value||typeof value!=='object'||
+   !summary(value.result,samples)||!summary(value.baseline,samples)||!value.diagnostics||typeof value.diagnostics!=='object')return false;
+  const expectedPublic=Boolean(request.payload.publicBasis);
+  if(expectedPublic?!value.publicComparison:value.publicComparison!==null&&value.publicComparison!==undefined)return false;
+  if(expectedPublic&&(!summary(value.publicComparison.result,samples)||!summary(value.publicComparison.baseline,samples)||
+   !value.publicComparison.diagnostics||typeof value.publicComparison.diagnostics!=='object'))return false;
+  if(value.variants!==undefined&&(value.variants===null||typeof value.variants!=='object'||Array.isArray(value.variants)))return false;
+  if(JSON.stringify(Object.keys(value.variants||{}).sort())!==JSON.stringify((request.payload.variants||[]).map(row=>row.id).sort()))return false;
+  // Existing open-only research variants retain their original fixed 3k draw
+  // budget even when an offline caller chooses another primary sample count.
+  for(const row of Object.values(value.variants||{}))if(!row||typeof row!=='object'||
+   (row.result!==null&&!summary(row.result,3000))||(row.errorCode!==null&&!safeTag(row.errorCode)))return false;
+  return true;
+  }catch{return false;}
+ }
+function jointPublicBundleValid(value,payload){
+ // The inline copy is parity-tested against the optional controller guard, so
+ // a failed asset cannot remove the public-output boundary.
+ const validate=window.JointModelWorkerController?.validBundle||jointFallbackBundleValid;
+ try{return validate(value,{payload})===true;}catch{return false;}
+}
 function jointComputeCompatible(payload){
  // Compatibility path only when the background entry itself is unavailable.
  // It calls the same engine/kernel, with no alternate forecast or smaller draw count.
  const one=(basis,args)=>{let bundle=null,countyUpdateWithheld=false;
-  try{bundle=window.NationalCountyLikelihood?.condition(window.ChamberControlModel,basis,payload.envelopes,args)||null;}catch{countyUpdateWithheld=true;}
+  try{bundle=window.NationalCountyLikelihood?.condition(window.ChamberControlModel,basis,payload.envelopes,args)||null;
+   if(bundle&&!jointPublicBundleValid({...bundle,publicComparison:null,variants:{}},{args,publicBasis:null,variants:[]})){
+    bundle=null;countyUpdateWithheld=true;
+   }
+  }catch{countyUpdateWithheld=true;}
   if(payload.envelopes.length&&!bundle)countyUpdateWithheld=true;
   const result=bundle?.result||window.ChamberControlModel.simulate(basis,args),diagnostics=bundle?.diagnostics||{used:[],status:'MODEL_UPDATE_WITHHELD'};
   const baseline=Object.keys(args.live||{}).length||(diagnostics.used||[]).length?window.ChamberControlModel.simulate(basis,{...args,live:{}}):result;
@@ -5000,12 +5048,19 @@ function jointComputeCompatible(payload){
   if(correlation&&(Object.keys(payload.args.live||{}).length||primary.diagnostics.used?.length)){variants[variant.id]={result:null,errorCode:'VARIANT_DISABLED_BY_LIVE_EVIDENCE'};continue;}
   const options={...jointIndependentControlOptions,samples:3000,seed:20261103,nationalShift:payload.args.nationalShift,errorMultiplier:payload.args.errorMultiplier};
   if(correlation)options.senateCorrelationResearch=variant.id==='correlation_moderate'?{nationalScale:.8,chamberScale:.65}:{nationalScale:.65,chamberScale:.55};else options.live=payload.args.live;
-  variants[variant.id]={result:window.ChamberControlModel.simulate(correlation?payload.basis:variant.basis,options),errorCode:null};
+  const result=window.ChamberControlModel.simulate(correlation?payload.basis:variant.basis,options);
+  if(!jointPublicBundleValid({result,baseline:result,diagnostics:{used:[]},publicComparison:null,variants:{}},{args:options,publicBasis:null,variants:[]}))throw Error('OPTIONAL_VARIANT_UNAVAILABLE');
+  variants[variant.id]={result,errorCode:null};
  }catch{variants[variant.id]={result:null,errorCode:'OPTIONAL_VARIANT_UNAVAILABLE'};}}
- return {...primary,publicComparison,variants};
+ const output={...primary,publicComparison,variants};
+ if(!jointPublicBundleValid(output,payload))throw Error('INVALID_MODEL_RESULT');
+ return output;
 }
 function jointComputeOnMain(frame,payload=frame.payload){
- try{if(jointWorkerAssetsMatch()&&window.JointModelWorkerRunner.MODEL_REVISION===frame.modelRevision)return window.JointModelWorkerRunner.run(payload,{contextKey:frame.contextKey,frameKind:frame.frameKind});}
+ try{if(jointWorkerAssetsMatch()&&window.JointModelWorkerRunner.MODEL_REVISION===frame.modelRevision){
+  const bundle=window.JointModelWorkerRunner.run(payload,{contextKey:frame.contextKey,frameKind:frame.frameKind});
+  if(jointPublicBundleValid(bundle,payload))return bundle;
+ }}
  catch{} // Preserve the existing safe engine fallback if optional background assets failed.
  return jointComputeCompatible(payload);
 }
@@ -5034,6 +5089,7 @@ function jointRender(force=false){
  const epoch=++jointRequestEpoch;jointActiveKey=key;
  const accept=(bundle,ticket=null,compatibility=false)=>{
   if(!jointFrameCurrent(frame,epoch)){if(epoch===jointRequestEpoch){jointModelController?.cancel('SOURCE_VALIDITY_CHANGED');jointActiveKey='';jointQueueRefresh();}return {status:'CANCELLED'};}
+  if(!jointPublicBundleValid(bundle,frame.payload))throw Error('INVALID_MODEL_RESULT');
   if(ticket&&!jointModelController.admit(ticket))return {status:'CANCELLED'};
   jointWorkerCompatibility=compatibility;jointModelPending=false;jointPendingKey='';jointUnavailableKey='';jointErrorMessage=null;jointCacheKey=key;
   jointApplyFrame(frame,bundle);return {status:'READY'};

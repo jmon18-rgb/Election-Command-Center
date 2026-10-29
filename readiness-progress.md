@@ -1,5 +1,29 @@
 # Readiness progress
 
+## Reviewed candidate — resource-aware call proposals and public-output admission
+
+The next source change guides indexed redraw allocations using the remaining
+called seats and uses the same resource partition for Gaussian proposal guidance.
+Exact original target weights, indexed duplicate slots, original RNG consumption,
+3,000 particles and the hard final ESS floor remain intact. A private, reserved
+64 MiB replay cache avoids repeating allocation work; a separate coefficient
+workspace is bounded at 16 MiB. Neither cache enters public results or storage.
+Finalizer release and bounded unfinalized-RAW lifetime are documented precisely.
+
+Independent law/cache reviews and local numerical checks pass. The previously
+unsupported fixed fictional 200-call case now meets the same support floor;
+rare-call/count-overlap cases still withhold. Complete four-output actual-worker
+frames took about 21 seconds on this desktop host, within the existing 30-second
+deadline. This is numerical and engineering evidence, not calibration, physical
+phone performance or genuine post-close delivery. Protected review is pending.
+
+A separate hands-on boundary review found malformed county output could be
+reused by the compatibility fallback after rejection. Shared recursive output
+validation now covers worker, main fallback and final admission, including
+genuinely missing optional assets. Current claims/history/audit must not accept
+nonfinite values, raw private arrays or cycles. The next protected release
+combines this concrete repair with the reviewed proposal improvement.
+
 ## PR529 VERIFIED PUBLISHED — background computation and current-reader integrity
 
 Tested718c5b30350377e68c50952431299c9a29e95367 passed ALL43 applicable workflow

@@ -2,6 +2,9 @@
 // Controller lifecycle tests use synthetic packets and a deterministic fake
 // worker/scheduler. They do not claim computation speed or model calibration.
 const assert=require('node:assert/strict');
+const {readFileSync}=require('node:fs');
+const {resolve}=require('node:path');
+const vm=require('node:vm');
 const api=require('./joint_model_worker_controller.js');
 const revision='./scripts/engine.js?v=fixed|./scripts/kernel.js?v=fixed';
 const summary=(marker=0)=>({samples:3000,probabilities:{blue_tsunami:20,blue_wave:30,shrug:40,red_dawn:10},marker});
@@ -142,6 +145,48 @@ async function main(){
  {
   const h=harness(),p=h.controller.submit(request());h.flush();h.controller.dispose();assert.equal((await p).reason,'DISPOSED');
   h.controller.setEnabled(true);assert.equal((await h.controller.submit(request())).reason,'DISPOSED');assert.equal(h.controller.state().disposed,true);cases++;
+ }
+ // Every public output path uses the same recursive guard, including when the
+ // optional controller script was not loaded. Alias sharing is not a cycle.
+ {
+  const html=readFileSync(resolve(__dirname,'../index.html'),'utf8').replaceAll('\r\n','\n');
+  const body=html.slice(html.indexOf('function jointFallbackBundleValid('),html.indexOf('function jointPublicBundleValid(')).trim();
+  assert.equal(body.replace('jointFallbackBundleValid','validBundle'),api.validBundle.toString().trim(),'Inline optional-asset fallback and controller guard stay exactly equal');
+  const inline=vm.runInNewContext('('+body+')');
+  const input=request('ALIASES',{payload:{...request().payload,publicBasis:{fake:true},variants:[{id:'house_shadow',basis:{fake:true}}]}});
+  const shared=summary(),out={result:shared,baseline:shared,diagnostics:{used:[],optional:undefined},publicComparison:{result:shared,baseline:shared,diagnostics:{used:[]}},variants:{house_shadow:{result:shared,errorCode:null}}};
+  for(const validate of [api.validBundle,inline])assert.equal(validate(out,input),true,'Acyclic result/baseline/PUBLIC/variant aliases are legitimate');
+  for(const place of ['result','baseline','diagnostics','publicResult','publicBaseline','publicDiagnostics','variant'])for(const value of [NaN,Infinity,-Infinity]){
+   const candidate=bundle(1,true,['house_shadow']);
+   const host={result:candidate.result,baseline:candidate.baseline,diagnostics:candidate.diagnostics,publicResult:candidate.publicComparison.result,publicBaseline:candidate.publicComparison.baseline,publicDiagnostics:candidate.publicComparison.diagnostics,variant:candidate.variants.house_shadow.result}[place];
+   host.deep={nested:[{value}]};
+   for(const validate of [api.validBundle,inline])assert.equal(validate(candidate,input),false,'Reject nonfinite nested '+place);
+  }
+  cases++;
+ }
+ {
+  const input=request(),foreign=vm.runInNewContext('({typed:new Float64Array([1,2]),buffer:new ArrayBuffer(8),view:new DataView(new ArrayBuffer(8))})');
+  for(const raw of [new Float64Array([1,2]),new ArrayBuffer(8),new DataView(new ArrayBuffer(8)),foreign.typed,foreign.buffer,foreign.view]){
+   const out=bundle();out.diagnostics.deep={raw};assert.equal(api.validBundle(out,input),false,'Reject raw buffer/view across realms');
+  }
+  for(const key of ['proposal_only','county_draws','call_proposal_draws','call_log_weights','log_weights','seeds','source_indices','weights','fingerprint','basis','publicBasis','localNormals','redrawMargins','redrawUniforms','transport_margins','transportCache','transportCacheChecksum']){
+   const out=bundle();out.result.deep={[key]:[1]};assert.equal(api.validBundle(out,input),false,'Raw proposal/private key '+key+' cannot escape');
+  }
+  const cyclic=bundle();cyclic.diagnostics.back=cyclic;assert.equal(api.validBundle(cyclic,input),false,'Reject a true public-output cycle');
+  const getter=bundle();Object.defineProperty(getter.result,'bad',{enumerable:true,get(){throw Error('PRIVATE');}});assert.equal(api.validBundle(getter,input),false,'Malformed getter cannot escape or be admitted');cases++;
+ }
+ {
+  const h=harness(),p=h.controller.submit(request());h.flush();const bad=bundle();bad.result.house_dem_control_pct=NaN;h.workers[0].reply(bad);
+  const need=await p;assert.equal(need.reason,'INVALID_WORKER_MODEL_RESULT');
+  const fallback=bundle();fallback.diagnostics.raw=new Float64Array([1]);
+  assert.equal(h.controller.runSynchronousFallback(need.ticket,()=>fallback).reason,'INVALID_SYNCHRONOUS_MODEL_RESULT','Fallback has the same recursive admission guard');assert.equal(h.controller.admit(need.ticket),false);cases++;
+ }
+ {
+  const worker=readFileSync(resolve(__dirname,'joint_model_worker.js'),'utf8').replaceAll('\r\n','\n'),controller=api.validBundle.toString();
+  const fields=/function publicFields\(item,path\)\{[\s\S]*?\n  \}/,keys=/const rawKeys=new Set\(\[[^\n]+/;
+  assert.equal(worker.match(fields)?.[0],controller.match(fields)?.[0],'Runner optional quarantine uses exactly the final recursive public-field guard');
+  assert.equal(worker.match(keys)?.[0],controller.match(keys)?.[0],'Known raw/cache private field names remain identical');
+  assert.match(worker,/result\.samples!==samples/);assert.match(worker,/coherent\(bundle\.result,args\.samples\)/);assert.match(worker,/coherent\(result,3000\)/,'Optional runner result must retain its fixed3k sample budget');cases++;
  }
  console.log('Model worker controller PASS: '+cases+' synthetic lifecycle cases; latest-only queue, immutable input snapshot, single active worker, exact identity, stale-result/fallback rejection, correction/context/settings/hidden/archive handling and atomic public/variant results. No speed/calibration claim.');
 }
