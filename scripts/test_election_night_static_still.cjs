@@ -1,66 +1,16 @@
 'use strict';
-const assert=require('node:assert/strict');
-const fs=require('node:fs');
-const path=require('node:path');
-const vm=require('node:vm');
-
-// Extract the actual page binding so the regression cannot pass against a
-// separate copy of the helper. The optional root supports isolated task review.
-const root=process.env.DASHBOARD_TEST_ROOT||path.resolve(__dirname,'..');
-const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
-const marker='function enFishPrepareStill(host){';
-const start=index.indexOf(marker),end=index.indexOf('\nfunction enFishApplyAnimation(){',start);
-assert(start>=0&&end>start,'Actual static-picture preparation binding must exist');
-assert.equal(index.indexOf(marker,start+marker.length),-1,'Preparation binding is unique');
-const source=index.slice(start,end);
-const realm={};vm.createContext(realm);vm.runInContext(source,realm);
-const prepare=realm.enFishPrepareStill;
-
-function fixture(){
- let resolve,reject;
- const decoded=new Promise((a,b)=>{resolve=a;reject=b;});
- const image={complete:false,naturalWidth:0,loading:'lazy',src:'original.jpg',
-  getAttribute(){return this.src;},decode(){return decoded;}};
- const host={dataset:{animate:'false',photoReady:'false'},image,
-  querySelector(){return this.image;}};
- return{image,host,resolve,reject};
-}
-
-async function main(){
- // Static selection starts completion without making an undecoded image visible.
- let f=fixture();prepare(f.host);
- assert.equal(f.image.loading,'eager');assert.equal(f.host.dataset.photoReady,'false');
- f.image.complete=true;f.image.naturalWidth=360;f.resolve();await Promise.resolve();
- assert.equal(f.host.dataset.photoReady,'true','Same-source/node completed image becomes ready');
-
- f=fixture();prepare(f.host);f.image.complete=true;f.image.naturalWidth=360;
- f.image.src='replacement.jpg';f.resolve();await Promise.resolve();
- assert.equal(f.host.dataset.photoReady,'false','Old-source decode cannot ready a replacement source');
-
- f=fixture();prepare(f.host);f.image.complete=true;f.image.naturalWidth=360;
- f.host.image={};f.resolve();await Promise.resolve();
- assert.equal(f.host.dataset.photoReady,'false','Detached old node cannot ready its replacement');
-
- f=fixture();prepare(f.host);f.image.complete=true;f.reject(new Error('Unavailable fixture'));
- await Promise.resolve();
- assert.equal(f.host.dataset.photoReady,'false','A broken image keeps the static SVG fallback');
-
- f=fixture();f.host.dataset.animate='true';prepare(f.host);
- assert.equal(f.image.loading,'lazy','Animated default does not hydrate the optional still');
- assert.equal(f.host.dataset.photoReady,'false');
-
- f=fixture();prepare(f.host);f.host.dataset.animate='true';
- f.image.complete=true;f.image.naturalWidth=360;f.resolve();await Promise.resolve();
- assert.equal(f.host.dataset.animate,'true','Late decode never changes the newer animation preference');
- assert.equal(f.host.dataset.photoReady,'true','Only readiness may complete after a preference change');
-
- f=fixture();f.image.decode=()=>{throw new Error('Unsupported decoder fixture');};
- assert.doesNotThrow(()=>prepare(f.host));
- assert.equal(f.host.dataset.photoReady,'false','Synchronous decoder failure keeps the SVG fallback');
- f=fixture();f.image.decode=undefined;f.image.complete=true;f.image.naturalWidth=360;
- assert.doesNotThrow(()=>prepare(f.host));
- assert.equal(f.host.dataset.photoReady,'true','A ready image also works without the optional decode API');
-
- console.log('Static Fish still binding PASS: 7 actual-page async groups; same source/node, pending/error fallback, animated default, late preference and unavailable decoder. No network/audio operations.');
-}
-main().catch(error=>{console.error(error);process.exitCode=1;});
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const root=process.env.DASHBOARD_TEST_ROOT||path.resolve(__dirname,'..'),index=fs.readFileSync(path.join(root,'index.html'),'utf8'),marker='function enFishPrepareStill(host){',start=index.indexOf(marker),end=index.indexOf("\nfor(const id of ['enFishTalking','enCelebrationFishTalking'])enFishPrepareStill",start);
+assert(start>=0&&end>start,'Actual original-image preparation binding must exist');assert.equal(index.indexOf(marker,start+marker.length),-1);const source=index.slice(start,end),surface={};vm.createContext(surface);vm.runInContext(source,surface);const prepare=surface.enFishPrepareStill;
+function fixture(){const listeners=new Map(),image={complete:false,naturalWidth:0,loading:'lazy',src:'original.jpg',hidden:false,getAttribute(){return this.src;},decode(){throw Error('Native-load path must not depend on optional decode API');},addEventListener(event,callback){listeners.set(event,callback);}},error={hidden:true},host={dataset:{animate:'true'},hidden:false,image,error,querySelector(selector){return selector==='.en-fish-still'?this.image:this.error;}};return{image,error,host,emit:event=>listeners.get(event)(),listeners};}
+let groups=0;const check=(name,fn)=>{fn();groups++;};
+check('original is static and eager before native readiness',()=>{const f=fixture();assert.equal(prepare(f.host),true);assert.equal(f.image.loading,'eager');assert.equal(f.host.dataset.animate,'false');assert.equal(f.host.dataset.staticOriginal,'true');assert.equal(f.host.dataset.photoReady,'false');assert.equal(f.host.dataset.imageError,'false');assert.equal(f.error.hidden,true);assert.equal(f.listeners.size,2);});
+check('same source and node native load completes readiness without a decoder',()=>{const f=fixture();prepare(f.host);f.image.complete=true;f.image.naturalWidth=478;f.emit('load');assert.equal(f.host.dataset.photoReady,'true');assert.equal(f.host.dataset.imageError,'false');assert.equal(f.error.hidden,true);});
+check('old-source callback cannot ready or error the replacement source',()=>{const f=fixture();prepare(f.host);f.image.src='replacement.jpg';f.image.complete=true;f.image.naturalWidth=478;f.emit('load');f.emit('error');assert.equal(f.host.dataset.photoReady,'false');assert.equal(f.host.dataset.imageError,'false');assert.equal(f.error.hidden,true);});
+check('detached old image callbacks cannot change its replacement',()=>{const f=fixture();prepare(f.host);f.host.image={};f.image.complete=true;f.image.naturalWidth=478;f.emit('load');f.emit('error');assert.equal(f.host.dataset.photoReady,'false');assert.equal(f.host.dataset.imageError,'false');});
+check('actual image error shows honest text and recovery hides it',()=>{const f=fixture();prepare(f.host);f.image.complete=true;f.emit('error');assert.equal(f.host.dataset.photoReady,'false');assert.equal(f.host.dataset.imageError,'true');assert.equal(f.error.hidden,false);f.image.naturalWidth=478;f.emit('load');assert.equal(f.host.dataset.photoReady,'true');assert.equal(f.host.dataset.imageError,'false');assert.equal(f.error.hidden,true);});
+check('saved animate preference cannot re-enable the retracted substitute',()=>{const f=fixture();f.host.dataset.animate='true';prepare(f.host);assert.equal(f.host.dataset.animate,'false');f.image.complete=true;f.image.naturalWidth=478;f.emit('load');assert.equal(f.host.dataset.animate,'false');});
+check('late readiness never reopens hidden announcement or original image',()=>{const f=fixture();prepare(f.host);f.host.hidden=true;f.image.hidden=true;f.image.complete=true;f.image.naturalWidth=478;f.emit('load');assert.equal(f.host.hidden,true);assert.equal(f.image.hidden,true);assert.equal(f.host.dataset.photoReady,'true');});
+check('cached loaded and cached broken original states are explicit',()=>{const ready=fixture();ready.image.complete=true;ready.image.naturalWidth=478;ready.image.decode=undefined;prepare(ready.host);assert.equal(ready.host.dataset.photoReady,'true');assert.equal(ready.error.hidden,true);const broken=fixture();broken.image.complete=true;prepare(broken.host);assert.equal(broken.host.dataset.imageError,'true');assert.equal(broken.error.hidden,false);});
+check('missing optional error node or image is safe and does not block playback',()=>{assert.equal(prepare(null),false);const empty=fixture();empty.host.image=null;assert.equal(prepare(empty.host),false);const f=fixture();f.host.error=null;f.image.decode=undefined;assert.doesNotThrow(()=>prepare(f.host));f.image.complete=true;f.image.naturalWidth=478;assert.doesNotThrow(()=>f.emit('load'));assert.equal(f.host.dataset.photoReady,'true');});
+console.log('Original static Fish image binding PASS ('+groups+' groups): native readiness/error, same source/node, static default, stale/hidden callbacks and optional/missing decoder/DOM. No fetch or audio operations.');

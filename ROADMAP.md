@@ -1,5 +1,14 @@
 # JackStradamus · development plan
 
+## Owner follow-up in progress — original Fish Head and timed night presentation
+
+The exact previously referenced Realistic Fish Head JPEG is now local:41,844bytes,478×569,SHA256d75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06. Both announcement surfaces use that unchanged still and the original native recording. Substitute SVGs/default animation control are removed; playback, queues, calls and music retain their existing authority. Native-audio/image/error and legacy tall-layout tests pass both sizes; all99 portable checks and the combined160-assertion/24-pin journey pass. Full exact-head CI and protected publication are still required.
+
+A pure Eastern-time presentation clock features Early indicators7:30–9p.m.Nov3; outside that window the four-tile scale is compact, with current stage/watch/details and manual expansion available. A fresh or untouched default homepage can open Election Night6p.m.–6a.m.; explicit links, interaction, archive choices and rehearsal take priority. Existing midnight2026 data handoff and every source/poll-close/cadence/model rule are unchanged. The static top badge now reflects the phase or selected archive. Later phases emphasize main count/overnight/results follow-up without asserting completion.
+
+Actual both-size phase tasks pass all boundaries/manual/archive/rehearsal/hidden/missing-clock cases and preserve the whole accepted3k model bundle, request/worker counters and reading position0px. First Auto-button focus loss and desktop grid-gutter deferral are preserved and repaired; the original reader pose/assertion/tolerance remains. A later nohash state-accessor failure was harness-only and is retained with its DOM-based correction. Final sourceindex9e6f8574 differs from tested1015ee35 only by two empty-line spaces (closure receipt retained); no runtime change or local rerun. Independent source review passes. Exact-head CI and protected publication remain required; no release claim or guide append yet.
+
+
 ## October29 — PR535 owner layout correction VERIFIED PUBLISHED
 
 One integrated2026 Early indicators/Poop Meter panel precedes19needles; Full-blown shit isLEFT, CleanRIGHT, with4original underpants SVGs and shared32watch/evidence drawer. Compact top retains source/model/context/experimental labels and44px controls. All35current-headparents/55jobs52SUCCESS3declaredSKIP/0external passed; finalmain4e7c3656/Pages40953771565,24changedfiles/coherence/published1366+390all157/23pinsPASS. Initial wake-status failure was repaired without assertion cuts; actual reader0/−0.5px. See pr535-published-outcome-20261029.json and verifiedaddendum. No pending535gate or inventednewpolishquota. Human/source/evaluation/positive/capacity gates remain separatelyopen.

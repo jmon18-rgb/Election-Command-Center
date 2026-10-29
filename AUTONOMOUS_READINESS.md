@@ -1,5 +1,14 @@
 # Election Night production-readiness assignment
 
+## Owner follow-up in progress — original Fish Head and timed night presentation
+
+The exact previously referenced Realistic Fish Head JPEG is now local:41,844bytes,478×569,SHA256d75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06. Both announcement surfaces use that unchanged still and the original native recording. Substitute SVGs/default animation control are removed; playback, queues, calls and music retain their existing authority. Native-audio/image/error and legacy tall-layout tests pass both sizes; all99 portable checks and the combined160-assertion/24-pin journey pass. Full exact-head CI and protected publication are still required.
+
+A pure Eastern-time presentation clock features Early indicators7:30–9p.m.Nov3; outside that window the four-tile scale is compact, with current stage/watch/details and manual expansion available. A fresh or untouched default homepage can open Election Night6p.m.–6a.m.; explicit links, interaction, archive choices and rehearsal take priority. Existing midnight2026 data handoff and every source/poll-close/cadence/model rule are unchanged. The static top badge now reflects the phase or selected archive. Later phases emphasize main count/overnight/results follow-up without asserting completion.
+
+Actual both-size phase tasks pass all boundaries/manual/archive/rehearsal/hidden/missing-clock cases and preserve the whole accepted3k model bundle, request/worker counters and reading position0px. First Auto-button focus loss and desktop grid-gutter deferral are preserved and repaired; the original reader pose/assertion/tolerance remains. A later nohash state-accessor failure was harness-only and is retained with its DOM-based correction. Final sourceindex9e6f8574 differs from tested1015ee35 only by two empty-line spaces (closure receipt retained); no runtime change or local rerun. Independent source review passes. Exact-head CI and protected publication remain required; no release claim or guide append yet.
+
+
 ## October 29 — PR535 verified published: integrated early indicators and cleaner graphics
 
 Tested head3f4cbe7da19bd819bc304abb06aefc51b19c7c27 passed all 35 applicable workflow parents and 55 latest jobs (52 SUCCESS, 3 declared nonapplicable PR deployment skips), with exact check/job agreement, zero external statuses and clean mergeability. Protected merge3e7d793d89f31922567548b377b589caa7b4e554; final current main4e7c36569d0cf725c31e76717dd42bba5dbd2e17, Pages40953771565 SUCCESS. All 24 changed public/index files matched origin/main at21:01:52.617Z without retry;13 coherence checks/current index/no_credit passed. Main remained unchanged after published tasks at21:03:40.477Z.
