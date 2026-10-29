@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T15:11:50.897593Z",
+  "updated_at": "2026-10-29T16:05:36.398831Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -262,6 +262,26 @@
     }
   ],
   "items": [
+    {
+      "id": "09f9c3389dda4fde85c6",
+      "title": "Lawsuit challenges Oklahoma limits on voter registration data - The Journal Record",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQT3hhbGU2M3J0MlRETVM1V0xSTDRaNEVFbUhVNjBZX19tS1JUUXlIdlg4SmdkUVNkR2toamNSa29uSk1zYXNUYzI4UnFNWWtNeEl2UzRYQWNsbnFuOUdWejQxR2htSkstZDZjM0ZjNWY4aG9YcGRhdmFGQkE5T3paeHYtQW9kbUVmNDM0OVRPNGtEWTQ4ci1BVVRuTEE?oc=5",
+      "publisher": "The Journal Record",
+      "published_at": "2026-10-29T16:02:44Z",
+      "detected_at": "2026-10-29T16:05:36.398831Z",
+      "state_hints": [
+        "OK"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "f596c7eda598aed03a7d",
       "title": "Specter of Noncitizen Voting Haunts Stormy Midterm Forecast - The Washington Stand",
@@ -5014,24 +5034,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "13755eae2f7d7ab51351",
-      "title": "Trump is building a national voter registry, threatening state control of elections - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQZndzLWxDZjViZjBlVndmQXMtZFVMNTgwMmR4VGstbkFrcHNmZUFqVmNsZ2tqZk1yYWM4ZmR3OVRFelVMMFlfRlVVU2hVSUZPT0U0SmNCREF3TGp1azVCRGFKOG05Y2pOZmF3M253emFQN2JiTHFoSXAtd3RBc1lCVWR0VHZTV3IxY0MyVkF6dXE2ejYza1JZMzVMRXpYTTl1Qk0wdmxOcW5fd3I0Y0JvU1Bnb25wNVptZEZ1Z0NwVUNrV3N2WFE?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-16T18:01:00Z",
-      "detected_at": "2026-10-16T18:19:01.975638Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
