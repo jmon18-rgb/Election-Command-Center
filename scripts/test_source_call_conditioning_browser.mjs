@@ -16,7 +16,7 @@ const dashboard=process.env.DASHBOARD_TEST_URL?new URL(process.env.DASHBOARD_TES
 if(dashboard){assert.equal(dashboard.origin,'https://jmon18-rgb.github.io');assert.equal(dashboard.pathname,'/Election-Command-Center/');assert.equal(dashboard.username,'');assert.equal(dashboard.password,'');assert.equal(dashboard.search,'');assert(['','#electionNight'].includes(dashboard.hash));}
 const publishedMain=dashboard?execFileSync('git',['rev-parse','origin/main'],{cwd:root,encoding:'utf8'}).trim():null;
 if(dashboard){assert.equal(process.env.DASHBOARD_TEST_MAIN,publishedMain,'Root must verify final CURRENT-main Pages and bytes before published execution');assert(/^\d+$/.test(process.env.DASHBOARD_TEST_PAGES_RUN||''),'Root must supply its verified final successful Pages run');}
-const pinFiles=['index.html','scripts/personal_election_focus.js','scripts/source_call_conditioning.js','scripts/chamber_control_model.js','scripts/national_county_likelihood.js','scripts/joint_model_worker.js','scripts/joint_model_worker_controller.js'],
+const pinFiles=['index.html','scripts/personal_election_focus.js','scripts/source_call_conditioning.js','scripts/chamber_control_model.js','scripts/national_county_likelihood.js','scripts/joint_model_worker.js','scripts/joint_model_worker_controller.js','scripts/joint_count_snapshot_policy.js'],
  pinned=Object.fromEntries(pinFiles.map(file=>[file,dashboard?execFileSync('git',['show',publishedMain+':'+file],{cwd:root,maxBuffer:16*1024*1024}):readFileSync(resolve(root,file))])),
  sha256=body=>createHash('sha256').update(body).digest('hex'),
  reviewedTags=dashboard?Object.fromEntries(pinFiles.filter(file=>file!=='index.html').map(file=>{const tags=pinned['index.html'].toString('utf8').match(/<script[^>]+src="([^"]+)"[^>]*>/g)||[],tag=tags.find(tag=>tag.includes(file+'?'));assert(tag,'Published index references '+file);return [file,tag.match(/src="([^"]+)"/)[1]];})):null;
@@ -42,7 +42,7 @@ try{
   const liveBefore=await page.evaluate(()=>JSON.stringify(jointLastResult));
   const costStart=process.hrtime.bigint(),performance=await page.evaluate(()=>{
    const result=NationalCountyLikelihood.condition(ChamberControlModel,jointBasis,[],{samples:3000,seed:20261103,independentSenateCredit:'no_credit',marginSummaryCodes:jointMarginSummaryCodes(),contextKey:'PUBLIC',live:{'IA-SEN':{mode:'source_called',winnerParty:'D'}}}).result;
-   return {status:result.source_call_conditioning.status,particles:result.samples,ess:result.source_call_conditioning.effective_sample_size,minimum:result.source_call_conditioning.minimum_effective_sample_size,helper_in_revision:jointHistoryRevision().includes('source_call_conditioning.js?v=')};
+   return {status:result.source_call_conditioning.status,particles:result.samples,ess:result.source_call_conditioning.effective_sample_size,minimum:result.source_call_conditioning.minimum_effective_sample_size,helper_in_revision:jointHistoryRevision().includes('source_call_conditioning@'+document.querySelector('script[src*="/source_call_conditioning.js?"]').getAttribute('src').split('?v=')[1])};
   });
   performance.wall_elapsed_ms_including_driver=Number(process.hrtime.bigint()-costStart)/1e6;
   performance.hardware_scope='Same desktop host;390px is a phone viewport, not physical phone speed';

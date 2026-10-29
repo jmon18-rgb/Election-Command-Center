@@ -12,6 +12,22 @@ preserve the finding. Publication also needs a guarded, source-versioned
 last-completed snapshot path; corrections, calls, private context, settings,
 freshness, hidden/archive and current-input safety must remain hard guards.
 
+The guarded implementation now keeps one running and one latest queued frame,
+with visibly marked completed input versions and frozen source clocks. A pure
+61-group classifier supports only unchanged16 civic contracts; official caches
+and remaining supplements retain hard refresh. Independent review closed
+periodic call expiry, an intervening queued correction, synchronous cleanup and
+fatal-input stale private/PUBLIC displays. Actual390 review also found a35px
+reader shift; ephemeral visible-reader ownership now preserves its exact viewport
+position across ASOF and CURRENT. Final local1366/390 proofs PASS on identical
+current source pins: five marked paired PRIMARY/PUBLIC completions during six
+updates, exact-current catch-up,15 hard negatives, real missing-policy fallback,
+two synchronous rounds, clock disclosure and visible/offscreen/moved-reader
+guards. Both model contexts retain all nine hashes within existing history
+caps. Root78 core checks and existing personal/history/range checks pass.
+The combined protected head and final published verification remain required;
+all numerical files remain frozen67db.
+
 Reviewed67dbbac7 now addresses the balanced-frame failure with an initial
 occupancy solve and analytic count-odds continuation used only as proposal Q.
 All actual winner-event normalizers, the original indexed prior, frozen county
@@ -20,15 +36,19 @@ cover both reduced stages and110 ordered prefixes, alongside the retained n8
 80,640-path law, moment/root assertions, phase isolation, deterministic replay
 and all five original core suites. Both complete host frames pass with four
 supported outputs: balanced20.12s and interleaved17.92s, under the unchanged30s.
-This is a meaningful bounded cost improvement; fresh exact-head protected CI
-and published verification remain required. No phone/calibration claim follows.
+Pushed bac8895006a7cbd8a6cb7abd9d24f260363c99a5 passed all37 workflow parents
+and52 latest jobs (49SUCCESS/3 declared nonapplicable PR skips). Actual CI
+complete frames passed all three compositions at both widths,26.02–26.97s,
+with all four3k/ESS outputs and the same30s deadline. This head remains
+UNMERGED while the confirmed scheduling defect is repaired. Final combined
+head checks and publication remain required; no phone/calibration claim follows.
 
 Headfb9afbf5 also remains UNMERGED: the directly affected near-complete
 frame passed27,060ms, but balanced-partial1366 exceeded the same deadline at
 30,007.6ms (40821687757/job123275371977). No rerun, waiver, time increase,
 sample/output reduction or case removal. See pr530-failed-fb9-balanced-deadline.json.
-An independently checked lower-dimensional full-support proposal guide is now
-being evaluated; all actual call normalizers and evidence remain in the target.
+The independently checked lower-dimensional guide above repairs that bounded
+cost failure; all actual call normalizers and evidence remain in the target.
 
 Protected head8d83acb0 is NOT releasable: readiness40818570806/browser
 123265380282 exceeded the unchanged 30-second Worker deadline on the original

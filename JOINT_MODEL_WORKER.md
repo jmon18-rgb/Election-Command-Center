@@ -23,9 +23,13 @@ single admission gate commits the complete result. The public comparison and
 optional variants belong to the same frame. History and admission audit observe
 only accepted frames.
 
-One primary worker is owned at a time. A newer input cancels and terminates its
-predecessor, including on correction, withdrawal, context changes and visibility
-loss. Retained callbacks cannot commit. The opt-in fictional rehearsal owns a
+One primary worker is owned at a time. Corrections, withdrawals, new or retracted
+calls, context/settings changes and visibility loss cancel and terminate its
+predecessor. Retained callbacks cannot commit. A narrowly compatible count-only
+update can instead leave that worker running and replace one queued snapshot.
+This avoids repeatedly discarding completed work when valid sources update in
+staggered intervals. It does not admit an older calculation as the latest input.
+The opt-in fictional rehearsal owns a
 separate worker and never supplies live observations or live history. Closing it,
 changing election mode, hiding the page or replacing model inputs invalidates
 its request. Archive mode permits a fresh Home polling baseline with no live
@@ -33,8 +37,30 @@ calls or count envelopes.
 
 ## Pending and unavailable views
 
-Changed inputs immediately withhold previous model odds, winners and driver
-claims before the existing refresh debounce. Source counts, the validated call
+Changed inputs normally withhold previous model odds, winners and driver
+claims before the existing refresh debounce. The count-only exception shows an
+explicit **Last completed calculation** with its captured input version and
+source clocks while newer returns process. The paired public comparison and
+research views remain from that same completed frame. Exact latest-input
+admission and the default controller ticket contract remain unchanged.
+
+Compatibility requires identical basis, private/public context, options, model
+revision, validated calls, source identities, geography and method contract.
+Every typed candidate cell, including Nebraska's individual other candidates,
+must be nondecreasing; changed counts require a newer source publication clock.
+Both old and new envelopes must still pass installed admission at the current
+time, checked again before commit and while a completed frame is displayed.
+Decreases, unknown metadata and unsupported inputs retain immediate withholding.
+The first slice supports only the16 installed civic county contracts. Official
+WA/VA caches and remaining-ballot supplements retain the hard refresh path:
+their shorter receipt and method-cell rules cannot be replaced by the broader
+county publication-age check. This is not an all-source liveness guarantee.
+
+Captured inputs remain in RAM. Existing local history records only whitelisted
+derived results, source provenance and captured/completed clocks; it never
+persists a basis, private input values or source bodies. Hard invalidation clears
+the completed/queued references, labels and timer before replacement work.
+Source counts, the validated call
 ledger and celebration eligibility remain independent. Personal disclosure DOM
 is retained, with obsolete derived content hidden and inert. The reader keeps a
 semantic bookmark and scroll position; accepted results restore the same control

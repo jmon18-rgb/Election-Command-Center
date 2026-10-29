@@ -8,8 +8,11 @@ on:
       - 'scripts/chamber_control_model.js'
       - 'scripts/source_call_conditioning.js'
       - 'scripts/joint_model_worker*.js'
+      - 'scripts/joint_count_snapshot_policy.js'
       - 'scripts/check_joint_model_worker_assets.cjs'
       - 'scripts/test_joint_model_worker*'
+      - 'scripts/test_joint_count_snapshot_policy.cjs'
+      - 'scripts/test_joint_count_snapshot_browser.mjs'
       - 'scripts/test_source_call_conditioning*'
       - 'scripts/test_source_call_resource_law.cjs'
       - 'scripts/test_source_call_occupancy_guide.cjs'
@@ -54,6 +57,7 @@ jobs:
           node scripts/test_source_call_conditioning.cjs
           node scripts/test_source_call_resource_law.cjs
           node scripts/test_source_call_occupancy_guide.cjs
+          node scripts/test_joint_count_snapshot_policy.cjs
           node scripts/test_chamber_private_transport_cache.cjs
           node scripts/test_chamber_source_call_conditioning.cjs
           node scripts/test_national_call_conditioning.cjs

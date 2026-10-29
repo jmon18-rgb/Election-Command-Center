@@ -9,7 +9,20 @@ Five completed frames were canceled across six updates, then quiet recovery
 passed. Fix requires explicit source-versioned last-completed/as-of display,
 not stale-as-current admission or relaxed correction/call/context/freshness
 guards. No physical-device/source-positive claim. Numerical67db is independently
-ready for exact-head CI while this separate application repair is implemented.
+passed exact-head CI while this separate application repair is implemented.
+
+The application candidate now has a pure61-group strict16-civic classifier,
+one-running/latest-queued scheduling, marked ASOF clocks and bounded frozen-frame
+history provenance. Call expiry rebuilds current installed observations;
+queued predecessor checks preserve intervening corrections. Fatal input paths
+fully clear private/PUBLIC predictions. The actual390 reading shift has a
+focused visible-reader geometry correction, with source review closed. Final
+local1366/390 paired-stream/error/reader checks PASS on the identical source
+pins: five marked completions during six updates,15 hard negatives, actual
+missing-policy fallback and two synchronous rounds at each width. Root78 core
+checks and existing personal/history/range checks pass. Finish the combined
+protected head and actual publication. No official-cache/supplement
+coalescing or numerical/call/source-admission expansion is included.
 
 Final reviewed candidate67dbbac7 is copied locally, with helper26c1be0c0e7a and
 worker7cf38e984669; engine/controller/kernel unchanged from the reviewed candidate.
@@ -18,15 +31,18 @@ approximate count-odds guidance. Exact p/q restores every actual call factor in
 the unchanged target. Independent n11/two-stage110-prefix, n8/80,640-path,
 moment/root/phase/replay/core proofs pass. Complete four-output host frames pass
 balanced20.12s/interleaved17.92s, all3k/ESS/call/accounting/61-node guards intact.
-Transfer/run the portable proofs, commit this actual deadline repair, then finish
-all applicable NEW-head checks and final publication. Failed fb9/8d stay unmerged;
+Pushed bac8895006a7cbd8a6cb7abd9d24f260363c99a5 passed all37 parents and52
+latest jobs (49SUCCESS/3 declared nonapplicable PR skips). All SIX actual CI
+complete frames passed26.02–26.97s with the same30s/3k/four-output support gates.
+It remains UNMERGED for the independent app liveness repair; finish all
+applicable FINAL combined-head checks and publication. Failed fb9/8d stay unmerged;
 no rerun, waiver, test removal or timeout increase. No further invented quota.
 
 Do not mergefb9afbf5 either: readiness40821687757/job123275371977 passed
 near_complete27,060ms then failed balanced_partial at30,007.6ms. The 30s/3k/
-four-output/six-case gate is unchanged. Current038f42 source stays frozen while
-a general lower-dimensional full-support proposal guide is reviewed, with all
-real call evidence and normalizers retained in the exact target. No failed-head
+four-output/six-case gate is unchanged. Reviewed67db source is now frozen after
+the lower-dimensional proposal passed that gate, with all real call evidence
+and normalizers retained in the exact target. No failed-head
 rerun/waiver; no arbitrary call-count cutoff or fitted probability adjustment.
 
 Do not merge8d83acb0: its actual readiness browser failed the 30-second complete

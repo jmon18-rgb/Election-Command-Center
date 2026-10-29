@@ -65,6 +65,11 @@ jobs:
       - name: Full app rejects held old worker frames across calls, context, archive, hidden and timeout recovery
         if: ${{ !cancelled() }}
         run: node scripts/test_joint_model_worker_app_browser.mjs
+      - name: Count-only arrivals preserve completed frames with explicit source-time labels
+        if: ${{ !cancelled() }}
+        run: |
+          node scripts/test_joint_count_snapshot_browser.mjs 1366
+          node scripts/test_joint_count_snapshot_browser.mjs 390
       - name: Public model boundary rejects malformed output and handles genuinely missing optional assets
         if: ${{ !cancelled() }}
         run: node scripts/test_joint_model_worker_guard_browser.mjs
@@ -77,6 +82,7 @@ jobs:
             artifacts/readiness/ui-review/model-worker/
             artifacts/readiness/ui-review/personal-election-pending/
             artifacts/readiness/ui-review/joint-model-worker-app/
+            artifacts/readiness/ui-review/worker-count-snapshot/
             artifacts/readiness/ui-review/model-worker-public-guard/
           if-no-files-found: warn
           retention-days: 7

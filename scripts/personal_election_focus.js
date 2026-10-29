@@ -44,7 +44,7 @@
   const section=el('section','personal-focus-margin');section.setAttribute('aria-label',row.code+' model margin range');
   section.append(el('p','personal-focus-margin-title','Model margin · median '+margin(d.p50,positive,negative)));
   const strip=el('div','personal-focus-margin-strip');strip.setAttribute('role','img');
-  strip.setAttribute('aria-label',row.code+' model margin: median '+margin(d.p50,positive,negative)+'; middle 50 percent '+range([d.p25,d.p75],positive,negative)+'; middle 90 percent '+range([d.p05,d.p95],positive,negative)+'. Scale '+negative+'+'+scale+' to '+positive+'+'+scale+'. Model scenarios, not a calibrated final-vote interval.');
+  strip.setAttribute('aria-label',(row.calculationAsOf?'Last completed calculation; newer returns processing. ':'')+row.code+' model margin: median '+margin(d.p50,positive,negative)+'; middle 50 percent '+range([d.p25,d.p75],positive,negative)+'; middle 90 percent '+range([d.p05,d.p95],positive,negative)+'. Scale '+negative+'+'+scale+' to '+positive+'+'+scale+'. Model scenarios, not a calibrated final-vote interval.');
   for(const [name,value]of Object.entries({'range90-left':position(d.p05),'range90-width':position(d.p95)-position(d.p05),'range50-left':position(d.p25),'range50-width':position(d.p75)-position(d.p25),'median-left':position(d.p50)}))strip.style.setProperty('--'+name,value+'%');
   for(const cls of ['base','zero','range90','range50','median']){const part=el('span','personal-focus-margin-'+cls);part.setAttribute('aria-hidden','true');strip.append(part);}section.append(strip);
   const axis=el('div','personal-focus-margin-axis');axis.setAttribute('aria-hidden','true');
@@ -70,7 +70,7 @@
   function save(){prune();while(events.length&&JSON.stringify({schema:1,events}).length>HISTORY_BYTES)events.pop();try{if(!simulated)storage?.setItem(key,JSON.stringify({schema:1,events}));}catch{}}
   try{const raw=!simulated&&storage?.getItem(key);if(raw&&raw.length<=HISTORY_BYTES){const d=JSON.parse(raw);if(d.schema===1&&Array.isArray(d.events)&&d.events.length<=HISTORY_LIMIT&&d.events.every(valid))events=d.events;}}catch{}
   if(prune())save();
-  function observe({active=true,result,envelopes=[],live={},evidence=[],revision,pollingAt,context='PUBLIC',simulated:sampleSimulated=false}={}){
+  function observe({active=true,result,envelopes=[],live={},evidence=[],revision,pollingAt,context='PUBLIC',calculation=null,simulated:sampleSimulated=false}={}){
    const at=now();if(!active||!Number.isFinite(at)||sampleSimulated!==simulated||!contextOk(context)||!probsOk(result?.probabilities)||
     typeof revision!=='string'||revision.length>600||!iso(pollingAt)||(!simulated&&at<Date.parse('2026-11-03T05:00:00Z'))||
     !Array.isArray(envelopes)||envelopes.length>18||!Array.isArray(evidence)||evidence.length>524||Object.keys(live).length>506||
@@ -108,7 +108,8 @@
    states[context]={sources,seen,revision,probabilities};
    if(old&&old.revision===revision&&!changes.length&&JSON.stringify(old.probabilities)===JSON.stringify(probabilities))return false;
    const kind=!old?'SESSION_START':old.revision!==revision?'BASELINE_CHANGE':['WITHDRAWAL','CORRECTION','RECOVERY','SOURCE_CHANGE','CALL'].find(k=>changes.some(c=>c.kind===k))||(changes.length?'RETURNS':'REEVALUATION');
-   const e={observed_at:new Date(at).toISOString(),window_started_at:new Date(at).toISOString(),context,kind,revision,polling_at:pollingAt,probabilities,simulated,
+   const captured=calculation&&['CURRENT','AS_OF'].includes(calculation.state)&&/^MODEL_FRAME:\d+$/.test(calculation.input_version||'')&&iso(calculation.input_at)&&iso(calculation.completed_at)?{state:calculation.state,input_version:calculation.input_version,input_at:calculation.input_at,completed_at:calculation.completed_at,sources:(Array.isArray(calculation.sources)?calculation.sources:[]).filter(row=>code(row.code)&&iso(row.source_at)).slice(0,18).map(row=>({code:row.code,source_at:row.source_at,receipt_at:iso(row.receipt_at)?row.receipt_at:null,selected_hash:/^[a-f0-9]{64}$/.test(row.selected_hash||'')?row.selected_hash:null}))}:null;
+   const e={calculation:captured,observed_at:new Date(at).toISOString(),window_started_at:new Date(at).toISOString(),context,kind,revision,polling_at:pollingAt,probabilities,simulated,
     observations:1,source_count:sources.size,changes:changes.slice(0,24),changes_omitted:Math.max(0,changes.length-24)};
    prune();const recent=events[0],ordinary=k=>['RETURNS','CALL','REEVALUATION'].includes(k);
    if(recent&&recent.context===context&&ordinary(kind)&&ordinary(recent.kind)&&recent.revision===revision&&at>=Date.parse(recent.observed_at)&&at-Date.parse(recent.window_started_at)<5*60000){
@@ -131,6 +132,7 @@
    // Grouped observations keep their window identity as their latest clock changes.
    row.dataset.historyEntry=JSON.stringify([e.context,e.simulated,e.window_started_at,['RETURNS','CALL','REEVALUATION'].includes(e.kind)?'GROUPED':e.kind,e.revision]);
    row.append(el('strong',(e.simulated?'SIMULATED · ':'')+historyTime(e.observed_at)+' · '+e.kind.replaceAll('_',' ').toLowerCase()));
+   if(e.calculation?.state==='AS_OF')row.append(el('small','Last completed calculation · captured '+historyTime(e.calculation.input_at)+'; newer returns were processing.'));
    row.append(el('p',ENDINGS.map(k=>k.replaceAll('_',' ')+' '+e.probabilities[k].toFixed(1)+'%').join(' · ')));
    if(e.observations>1)row.append(el('small',e.observations+' model observations since '+historyTime(e.window_started_at)+'; latest outlook shown.'));
    if(e.changes.length)row.append(el('small',e.changes.map(c=>c.code).filter((c,i,a)=>a.indexOf(c)===i).join(' · ')));
@@ -144,7 +146,7 @@
   details.append(el('small','Shows latest 8 of up to '+HISTORY_LIMIT+' records retained for 72 hours within '+HISTORY_BYTES+' characters. This is a bounded local trend, not a complete raw source archive.'));
   return details;
  }
- function rows(result,baseline,{year=2026,now=Date.now(),closes,evidence=[],simulated=false,watch=false}={}){
+ function rows(result,baseline,{year=2026,now=Date.now(),closes,evidence=[],simulated=false,watch=false,calculationAsOf=null}={}){
   if(year!==2026)return [];
   const current=new Map((result?.race_probabilities||[]).map(x=>[x.race_code,x]));
   const prior=new Map((baseline?.race_probabilities||[]).map(x=>[x.race_code,x]));
@@ -168,6 +170,7 @@
    const displayRating=rating(pct,{positive:left,negative:state==='NE'?'Ricketts':'R',calledParty:called?entry.provider_called_party:null});
    if(state==='NE'&&displayRating.state==='forecast')displayRating.label='Paired · '+displayRating.label;
    return {...spec,state,order,left,pct,delta,status,sourceAt,ownCounts,called,calledParty:called?entry.provider_called_party:null,marginDistribution:marginSummary(entry,{raceCode:spec.code,called,pending:pct===null}),broadStateProxy:typeof entry?.source_method==='string'&&entry.source_method.includes('redrawn_state_distribution_proxy'),polled:entry?.polled===true,rating:displayRating,simulated:simulated||result?.county_results_update?.status==='SIMULATED_NATIONAL_REHEARSAL',
+    calculationAsOf,
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
     performance:direct?.matched_performance||null,
     first,last,window,started:Number.isFinite(first)&&now>=first,
@@ -292,11 +295,11 @@
   const priorOpen=new Set(previous?.races||[]),refs=new Map(WATCH.districts.map(x=>[x.code,x]));
   for(const row of data){
    const ref=refs.get(row.code),item=el('details','early-watch-race');item.dataset.watchRace=row.code;item.open=priorOpen.has(row.code);
-   const summary=el('summary','');summary.append(el('strong','',row.code),el('span','early-watch-rating',(simulated?'SIMULATED · ':'')+row.rating.label),el('span','',row.pct===null?'Model pending':'D '+row.pct.toFixed(1)+'% model chance'));item.append(summary);
+   const summary=el('summary','');summary.append(el('strong','',row.code),el('span','early-watch-rating',(simulated?'SIMULATED · ':'')+row.rating.label),el('span','',row.pct===null?'Model pending':(row.calculationAsOf?'Last completed · ':'')+'D '+row.pct.toFixed(1)+'% model chance'));item.append(summary);
    item.append(el('p','early-watch-reference','Owner reference · Cook '+ref.cook+' | FLIPR '+ref.flipr+' · R win '+ref.rep_win_pct.toFixed(1)+'% · projected '+ref.margin_side+'+'+ref.margin_points.toFixed(1)));
    if(row.broadStateProxy)item.append(el('p','early-watch-prior-warning','Broad state prior for redrawn geography · no district-specific historical baseline'+(row.polled?' · district polling also used.':'; no district poll in this estimate.')));
-   const gauge=el('div','early-watch-gauge');gauge.setAttribute('role','img');gauge.setAttribute('aria-label',row.code+' '+row.rating.label+'; '+(row.pct===null?'model chance unavailable':'D model chance '+row.pct.toFixed(1)+' percent')+'; forecast unless validated call');if(row.pct!==null){const marker=el('span','');marker.style.left=row.pct+'%';gauge.append(marker);}item.append(gauge);
-   item.append(el('p','early-watch-state',(simulated?'SIMULATED · ':'')+row.status+(row.sourceAt?' · '+(row.ownCounts?'Count':'Call')+' source time '+time(Date.parse(row.sourceAt)):'')),el('small','','Poll-close window · '+row.window+' · eligibility, not an arrival promise'));
+   const gauge=el('div','early-watch-gauge');gauge.setAttribute('role','img');gauge.setAttribute('aria-label',(row.calculationAsOf?'Last completed calculation; newer returns processing. ':'')+row.code+' '+row.rating.label+'; '+(row.pct===null?'model chance unavailable':'D model chance '+row.pct.toFixed(1)+' percent')+'; forecast unless validated call');if(row.pct!==null){const marker=el('span','');marker.style.left=row.pct+'%';gauge.append(marker);}item.append(gauge);
+   item.append(el('p','early-watch-state',(row.calculationAsOf?'Last completed calculation · processing newer returns. ':'')+(simulated?'SIMULATED · ':'')+row.status+(row.sourceAt?' · '+(row.ownCounts?'Count':'Call')+' source time '+time(Date.parse(row.sourceAt)):'')),el('small','','Poll-close window · '+row.window+' · eligibility, not an arrival promise'));
    if(row.note)item.append(el('small','',row.note));
    if(row.performance&&Array.isArray(row.performance.difference_margin_scenarios)&&row.performance.difference_margin_scenarios.length===2&&row.performance.difference_margin_scenarios.every(finite))item.append(el('p','early-watch-performance','Matched-area performance · '+range(row.performance.difference_margin_scenarios)+' margin points vs expected. Inspect the shared race card for areas and assumptions.'));
    if(personalCodes.has(row.code)){
@@ -309,6 +312,18 @@
   section.append(details);return section;
  }
 
+ // Ephemeral visible-reader geometry only; never model/source evidence.
+ function captureReadingPosition(host){
+  const node=host?.ownerDocument.activeElement,bookmark=captureFocus(host,node);if(!bookmark)return null;
+  const rect=node.getBoundingClientRect(),view=host.ownerDocument.defaultView,top=(host.ownerDocument.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;
+  return rect.top>=top-1&&rect.bottom<=view.innerHeight?{bookmark,top:rect.top}:null;
+ }
+ function restoreReadingPosition(host,saved){
+  if(!saved)return false;const node=focusTarget(host,saved.bookmark);
+  if(!node||host.ownerDocument.activeElement!==node||node.closest('[inert]'))return false;
+  const delta=node.getBoundingClientRect().top-saved.top;if(!Number.isFinite(delta))return false;
+  if(Math.abs(delta)>.1)host.ownerDocument.defaultView.scrollBy(0,delta);return true;
+ }
  function render(host,result,baseline,options={}){
   if(!host)return;
   const priorReader=host.ownerDocument.activeElement,priorRect=priorReader&&host.contains(priorReader)?priorReader.getBoundingClientRect():null;
@@ -359,14 +374,14 @@
     card.append(el('small','',row.state==='AK'?'Late night · '+row.window:row.state==='KS'?'Counts eligible from · '+row.window:'Poll-close window · '+row.window));
     if(row.pct!==null){
      const chanceLabel=row.state==='NE'?'model chance vs Ricketts':'model win chance';
-     const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 105');svg.setAttribute('role','img');svg.setAttribute('aria-label',row.code+' '+row.left+' '+chanceLabel+' '+row.pct.toFixed(1)+' percent · '+badge.textContent+' · '+badge.title);
+     const svg=doc.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 200 105');svg.setAttribute('role','img');svg.setAttribute('aria-label',(row.calculationAsOf?'Last completed calculation; newer returns processing. ':'')+row.code+' '+row.left+' '+chanceLabel+' '+row.pct.toFixed(1)+' percent · '+badge.textContent+' · '+badge.title);
      const node=(tag,attrs)=>{const n=doc.createElementNS(svg.namespaceURI,tag);for(const [k,v]of Object.entries(attrs))n.setAttribute(k,String(v));return n;};
      svg.append(node('path',{d:'M20 90 A80 80 0 0 1 100 10',stroke:'#ce6878',fill:'none','stroke-width':9}),node('path',{d:'M100 10 A80 80 0 0 1 180 90',stroke:row.left==='Osborn'?'#d2acff':'#57b4ff',fill:'none','stroke-width':9}),node('line',{x1:100,y1:90,x2:100,y2:18,stroke:'#fff0a4','stroke-width':4,transform:'rotate('+(-90+1.8*row.pct)+' 100 90)'}));
      const odds=el('strong','personal-focus-odds');odds.append(el('span','',row.left+' '+row.pct.toFixed(1)+'%'),el('small','',' · '+chanceLabel));
      card.append(svg,odds);
      card.append(el('small','',row.delta===null?'Baseline comparison unavailable':(row.delta>=0?'+':'')+row.delta.toFixed(1)+' probability points vs polling baseline'));
     }else card.append(el('strong','','Needle pending'));
-    card.append(el('p','',(row.simulated?'SIMULATED · ':'')+row.status));
+    card.append(el('p','',(row.calculationAsOf?'Last completed calculation · processing newer returns. ':'')+(row.simulated?'SIMULATED · ':'')+row.status));
     if(row.count!==null)card.append(el('small','',row.count.toLocaleString('en-US')+' named-candidate '+row.left+'/R votes in admitted county evidence'));
     if(row.sourceAt)card.append(el('small','',(row.ownCounts?'Count':'Call')+' source time · '+time(Date.parse(row.sourceAt))));
     const p=row.performance,positive=p?.positive_candidate||'D',negative=p?.negative_candidate||'R';
@@ -402,5 +417,5 @@
    if(rect.top<top||rect.bottom>doc.defaultView.innerHeight-8)doc.defaultView.scrollBy(0,rect.top-top);
   }
  }
- return Object.freeze({SENATE,HOUSE,rows,render,setPending,clearPending,rating,marginSummary,watchSummary,WATCH,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
+ return Object.freeze({SENATE,HOUSE,rows,render,captureReadingPosition,restoreReadingPosition,setPending,clearPending,rating,marginSummary,watchSummary,WATCH,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
 });
