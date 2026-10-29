@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-29T21:54:01.820909Z",
+  "updated_at": "2026-10-29T22:53:14.822741Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -260,6 +260,23 @@
     }
   ],
   "items": [
+    {
+      "id": "a18028a9bbfc6b2efbfd",
+      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Orlando Sentinel",
+      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOQjZFQm9yb0Z2Qm8wcVBaVWR0WGxkeVdZYTI3dl9XX1lWVlQwODBlTk9QM0pRS2hMY0M3eTFfMFJQNHI1MVFMT3VIT1NaR2hhU05LcnVmTFRKLVJ5NTk0VHlhdmFILXNwUmM3R3NtTWFVempnM1B0VFJZQkF4c2VyYlp3?oc=5",
+      "publisher": "Orlando Sentinel",
+      "published_at": "2026-10-29T22:22:07Z",
+      "detected_at": "2026-10-29T22:53:14.822741Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "956ba347370141a936fe",
       "title": "5 expert takeaways on 2026 midterm election security - PBS",
@@ -5014,25 +5031,6 @@
       ],
       "headline_numbers_unverified": [
         "23"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "fa56dd23d2de7f89b2f9",
-      "title": "How to become a poll worker in the Houston area for 2026 midterm election - Click2Houston",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNQ1Q5WWlKUTM2a3phejFFSUctdUNYVUVVbzhnTlNRdzZud3ZUUXlIZl9hOURrdmJoYUZRVWNmWXlheHN1MXQ1ZEp6ZzR2ekhrNm81U3BwSzRBTVNTSHZPbGtGbS1CQU1zemZoR3JBM3hTZ0JDVmo1NjBmZ25ROU5NTWlwUmxZc2x5ejR1Z2p3Und6S3BGUW5PNjVsM1NKYVhoQy1jem41MnBpWHVPS2RNaGdXZndWTDBmUFhIRXZhWDBfaU91?oc=5",
-      "publisher": "Click2Houston",
-      "published_at": "2026-10-17T16:59:32Z",
-      "detected_at": "2026-10-17T20:40:52.755503Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],

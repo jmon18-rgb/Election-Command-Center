@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T21:54:02.568985+00:00",
+  "updated_at": "2026-10-29T22:53:15.426277+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1282,
+      "available_in_source": 1283,
       "records_examined": 300
     },
     "governor": {
@@ -17,15 +17,39 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 349,
+  "matched_primary_observations": 350,
   "newly_injected_into_model": 1,
   "injected_poll_ids": [
     {
-      "race_code": "MI-GOV",
-      "poll_id": "b8ae6e54-601a-409d-aa76-8fcaf9a3636c"
+      "race_code": "AZ-01",
+      "poll_id": "e3ae7f70-b77f-490f-8726-1d0c8a9cf212"
     }
   ],
   "observations": [
+    {
+      "race_code": "AZ-01",
+      "race_type": "house",
+      "state": "AZ",
+      "poll_id": "e3ae7f70-b77f-490f-8726-1d0c8a9cf212",
+      "question_id": "8d9925e0-0ade-4b86-9fff-4f58f41bab9d",
+      "pollster": "Keating Research, Inc.",
+      "dem_name": "Amish Shah",
+      "rep_name": "Jay Feely",
+      "dem": 49.0,
+      "rep": 45.0,
+      "margin": 4.0,
+      "field_end": "2026-10-28",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T18:15:00",
+      "posted_source_time": "10/29/26 18:15",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://keatingresearch.com/polls/az-01-october-2026/",
+      "sample_population": "lv",
+      "sample_size": 500,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MI-SEN",
       "race_type": "senate",
