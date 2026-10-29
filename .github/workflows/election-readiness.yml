@@ -65,6 +65,16 @@ jobs:
       - name: Individual ratings and automatic celebration popup journey
         if: ${{ !cancelled() }}
         run: node scripts/test_ratings_celebration_popup_browser.mjs
+      - name: Validated-call context, exact withdrawal and unsupported transfer on desktop and mobile
+        if: ${{ !cancelled() }}
+        run: node scripts/test_source_call_conditioning_browser.mjs
+      - name: Upload conditional-call browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-call-conditioning-browser
+          path: artifacts/readiness/ui-review/source-call-conditioning/
+          retention-days: 7
       - name: Private ad-free audio persistence and supplied Abbott artwork
         if: ${{ !cancelled() }}
         run: node scripts/test_celebration_local_browser.mjs

@@ -4,10 +4,11 @@
  * All margins are D-minus-R two-party proxies, not certified winner calls.
  */
 (function(root,factory){
- const api=factory();
+ const node=typeof module!=='undefined'&&module.exports;
+ const api=factory(node?require('./source_call_conditioning.js'):root?.SourceCallConditioning);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.ChamberControlModel=api;
-})(typeof window!=='undefined'?window:null,function(){
+})(typeof window!=='undefined'?window:typeof self!=='undefined'?self:null,function(sourceCalls){
  'use strict';
  const VERSION='joint-control-beta-v1';
  const FUNDAMENTALS_MODES=Object.freeze(['2024_only','two_cycle_shadow','presidential_2024_shadow','presidential_2024_gap_fill']);
@@ -609,7 +610,7 @@ function senatePollingErrorBudget(info){
     house,senate,governors:gov};
   return basis;
  }
- function simulate(basis,options={}){
+ function simulateRaw(basis,options={},callContext=null){
   if(!basis||basis.schema_version!==VERSION||basis.house?.length!==435||
      basis.senate?.length!==35||basis.governors?.length<6)
     throw Error('Incomplete joint-control model basis');
@@ -624,6 +625,13 @@ function senatePollingErrorBudget(info){
      replay.length!==samples||!replay.every(n=>Number.isInteger(n)&&n>0&&n<=4294967295)))
    throw Error('Invalid county-evidence replay states');
   if(capture&&replay)throw Error('Cannot capture and replay county draws in the same pass');
+  const callPlan=callContext?.plan||null;
+  const callRaw=callPlan?{margins:new Float64Array(basis.house.length+basis.senate.length+basis.governors.length),
+   localNormals:new Float64Array(basis.house.length+basis.senate.length+basis.governors.length),
+   redrawMargins:new Float64Array(basis.house.length+basis.senate.length+basis.governors.length),
+   redrawUniforms:new Map()}:null;
+  const callCapture=callPlan&&callContext.captureProposal?
+   {seeds:new Uint32Array(samples),log_weights:new Float64Array(samples)}:null;
   const captured=capture?{codes:capture.slice(),seeds:new Uint32Array(samples),
    margins:Object.fromEntries(capture.map(c=>[c,new Float64Array(samples)])),
    house:new Uint16Array(samples),senate:new Uint8Array(samples)}:null;
@@ -718,7 +726,10 @@ function senatePollingErrorBudget(info){
   for(let k=0;k<samples;k++){
    if(replay)rands.restore(replay[k]);
    if(captured)captured.seeds[k]=rands.state();
-   const national=nationalShift+normal(rands)*a.common_national_sigma*errorMultiplier,
+   if(callCapture)callCapture.seeds[k]=rands.state();
+   if(callRaw)callRaw.redrawUniforms.clear();
+   const callRawNational=callPlan?normal(rands):null;
+   const national=nationalShift+(callPlan?callRawNational:normal(rands))*a.common_national_sigma*errorMultiplier,
     houseShock=normal(rands)*a.house_chamber_sigma*errorMultiplier,
     senateShock=normal(rands)*a.senate_chamber_sigma*errorMultiplier,
     govShock=normal(rands)*a.governor_chamber_sigma*errorMultiplier;
@@ -730,7 +741,12 @@ function senatePollingErrorBudget(info){
      // Fisher-Yates: a fresh 2024 seat-margin permutation each election
      // draw, without assigning any old district to a new district ID.
      for(let z=bag.length-1;z>0;z--){
-      const pick=Math.floor(rands()*(z+1));
+      const redrawUniform=rands();
+      if(callRaw&&Object.hasOwn(callPlan.diagnostics.redrawn_bag_sizes,state)){
+       if(!callRaw.redrawUniforms.has(state))callRaw.redrawUniforms.set(state,[]);
+       callRaw.redrawUniforms.get(state).push(redrawUniform);
+      }
+      const pick=Math.floor(redrawUniform*(z+1));
       [bag[z],bag[pick]]=[bag[pick],bag[z]];
      }
      redrawnBags.set(state,bag);
@@ -769,8 +785,11 @@ function senatePollingErrorBudget(info){
       nationalShift+(national-nationalShift)*nationalScale:national;
     const effectiveSigma=isSenate&&corr?
       Math.sqrt(sigma*sigma+senateNationalLocalVar+senateChamberLocalVar):sigma;
+    const callRawLocal=callPlan?normal(rands):null;
     const finalMargin=mean+effectiveNational+officeShock+stateShock+
-      normal(rands)*effectiveSigma*errorMultiplier;
+      (callPlan?callRawLocal:normal(rands))*effectiveSigma*errorMultiplier;
+    if(callRaw){callRaw.margins[j]=finalMargin;callRaw.localNormals[j]=callRawLocal;
+     callRaw.redrawMargins[j]=redrawMargin;}
     if(captured&&captureSet.has(item.code))captured.margins[item.code][k]=finalMargin;
     if(marginSamples?.[j])marginSamples[j][k]=finalMargin;
     // Only the independently validated source winner flag can lock a 2026
@@ -792,6 +811,32 @@ function senatePollingErrorBudget(info){
     if(dem&&BATTLEGROUND_SET.has(item.code)&&
      !(isSenate&&independentCredit==='no_credit'&&
        item.nonrep_independent_proxy))winBattleground++;
+   }
+   if(callPlan){
+    const moved=callPlan.transport({...callRaw,sharedNormals:{N:callRawNational,
+     H:a.house_chamber_sigma?houseShock/(a.house_chamber_sigma*errorMultiplier):0,
+     S:a.senate_chamber_sigma?senateShock/(a.senate_chamber_sigma*errorMultiplier):0,
+     G:a.governor_chamber_sigma?govShock/(a.governor_chamber_sigma*errorMultiplier):0,
+     states:stateDeltas}});
+    if(callCapture)callCapture.log_weights[k]=moved.logWeight;
+    dHouse=0;dSenate=holdovers;winBattleground=0;voteSeatWeightedMarginNumerator=0;
+    for(let j=0;j<polls.length;j++){
+     const item=polls[j],isHouse=j<435,isSenate=j>=435&&j<470,scenario=live[item.code];
+     const called=scenario?.mode==='source_called'&&['D','R'].includes(scenario.winnerParty);
+     const oldDem=called?scenario.winnerParty==='D':callRaw.margins[j]>0;
+     const value=moved.margins[j],dem=value>0;
+     if(called&&dem!==(scenario.winnerParty==='D'))throw Error('Call proposal lost source winner constraint');
+     raceDemWins[j]+=Number(dem)-Number(oldDem);
+     if(isHouse){if(dem)dHouse++;if(explainControl)houseWinners[j]=Number(dem);
+      if(voteSeatEnabled)voteSeatWeightedMarginNumerator+=limit(value,-100,100)*voteSeatArray[j];
+     }else if(isSenate){
+      if(dem&&(independentCredit==='dem_proxy'||!item.nonrep_independent_proxy))dSenate++;
+      if(explainControl)senateWinners[j-435]=Number(dem);
+     }
+     if(dem&&BATTLEGROUND_SET.has(item.code)&&!(isSenate&&independentCredit==='no_credit'&&item.nonrep_independent_proxy))winBattleground++;
+     if(captured&&captureSet.has(item.code))captured.margins[item.code][k]=value;
+     if(marginSamples?.[j])marginSamples[j][k]=value;
+    }
    }
    if(captured){captured.house[k]=dHouse;captured.senate[k]=dSenate;}
    const houseDem=dHouse>=a.house_control_dem_seats;
@@ -923,7 +968,7 @@ function senatePollingErrorBudget(info){
      axis:item.nonrep_independent_proxy?
       item.code==='NE-SEN'?'osborn_minus_ricketts':'nonrepublican_proxy_minus_rep':
       'dem_minus_rep',
-     conditioning:replay?'COUNTY_IMPORTANCE_RESAMPLED':
+     conditioning:replay?(callContext?.conditioning||'COUNTY_IMPORTANCE_RESAMPLED'):
       liveInformed?'LIVE_INFORMED_SCENARIO':'POLLING_BASELINE',
      interval_calibrated:false,
      distribution_scope:'UNBOUNDED_LATENT_MARGIN_PROXY_NOT_FINAL_VOTE_INTERVAL',
@@ -1022,6 +1067,7 @@ function senatePollingErrorBudget(info){
    note:'Mechanical pivotal counts are one-seat reversals. House and Senate bellwether covariance ranks observed race outcomes informative about chamber control. Neither measures causal voter influence, elasticity, or campaign impact.'
   }:null;
   return {schema_version:VERSION,status:'EXPERIMENTAL_UNCALIBRATED',
+   ...(callCapture?{call_proposal_draws:callCapture}:{}),
    ...(captured?{county_draws:captured}:{}),
    ...(replay?{simulation_draw_method:'IMPORTANCE_RESAMPLED_CORRELATED_PARTICLES_NOT_INDEPENDENT_NEW_ELECTIONS'}:{}),
    samples,seed,senate_dem_holdovers:holdovers,national_shift_points:nationalShift,error_multiplier:errorMultiplier,
@@ -1053,7 +1099,128 @@ function senatePollingErrorBudget(info){
    total_pct:Object.values(probs).reduce((x,y)=>x+y,0),
    description:'A conditional Monte Carlo sensitivity experiment, not a calibrated election forecast.'};
  }
+
+ const callPlanCache=sourceCalls?.createCache({maximumEntries:4})||null;
+ const rawCallPackets=new WeakMap();
+ const hasCalls=options=>Object.values(options.live||{}).some(row=>row?.mode==='source_called');
+ function assertExistingCallContract(basis,options){
+  const scoped={...options,live:Object.fromEntries(Object.entries(options.live||{}).filter(([,row])=>row?.mode==='source_called'))};
+  if(sourceCalls?.validateExistingCallContract)return sourceCalls.validateExistingCallContract(basis,scoped);
+  // The optional sampler being absent never authorizes a new call identity or
+  // conversion of an Independent winner into a Democratic source flag.
+  const rows=basis?.house?.concat(basis.senate||[],basis.governors||[])||[];
+  const byCode=new Map(rows.map(row=>[row.code,row]));
+  for(const [code,call] of Object.entries(scoped.live)){
+   const row=byCode.get(code);
+   if(!row||call?.mode!=='source_called'||!['D','R'].includes(call.winnerParty)||
+      row.nonrep_independent_proxy&&call.winnerParty==='D'){
+    const error=Error('Unsupported existing call contract');error.code='UNSUPPORTED_EXISTING_CALL_CONTRACT';throw error;
+   }
+  }
+ }
+ function callFailureReason(error){
+  return error?.name==='SourceCallConditioningError'?error.code:
+   typeof error?.code==='string'&&/^[A-Z0-9_]{1,100}$/.test(error.code)?error.code:'UNEXPECTED_CALL_CONDITIONING_FAILURE';
+ }
+ function simulateWinnerAccountingFallback(basis,options={},details={}){
+  assertExistingCallContract(basis,{...options,independentSenateCredit:options.independentSenateCredit??'no_credit'});
+  const result=simulateRaw(basis,{...options,independentSenateCredit:options.independentSenateCredit??'no_credit'});
+  const reason=typeof details.reason==='string'&&/^[A-Z0-9_]{1,100}$/.test(details.reason)?details.reason:'CALL_COVARIANCE_NOT_APPLIED';
+  result.source_call_conditioning={schema:'source-call-conditioning-v1',status:'WITHHELD',reason,
+   evidence_kind:'VALIDATED_WINNER_ACCOUNTING_WITHOUT_CALL_COVARIANCE',
+   conditioned_covariance_applied:false,validated_winner_accounting_preserved:true,
+   call_weights_tempered:false,interval_calibrated:false};
+  return result;
+ }
+ function proposeSourceCallElections(basis,options={}){
+  if(!sourceCalls||!callPlanCache){const error=Error('Call proposal helper unavailable');error.code='CALL_PROPOSAL_HELPER_UNAVAILABLE';throw error;}
+  if(options.replayCountySeeds){const error=Error('A proposal must start at the original prior');error.code='RAW_CALL_PROPOSAL_CANNOT_USE_REPLAYED_PRIOR';throw error;}
+  const plan=callPlanCache.prepare(basis,{...options,independentSenateCredit:options.independentSenateCredit??'no_credit'});
+  if(!plan){const error=Error('No active source calls');error.code='NO_ACTIVE_SOURCE_CALLS';throw error;}
+  const actualOptions={...options,independentSenateCredit:options.independentSenateCredit??'no_credit',
+   live:Object.fromEntries(Object.entries(options.live||{}).map(([code,row])=>[code,{...row}]))};
+  if(Array.isArray(options.captureCountyDraws))actualOptions.captureCountyDraws=options.captureCountyDraws.slice();
+  if(Array.isArray(options.marginSummaryCodes))actualOptions.marginSummaryCodes=options.marginSummaryCodes.slice();
+  if(Array.isArray(options.voteSeatWeights))actualOptions.voteSeatWeights=options.voteSeatWeights.map(row=>({...row}));
+  if(options.senateCorrelationResearch)actualOptions.senateCorrelationResearch={...options.senateCorrelationResearch};
+  const raw=simulateRaw(basis,actualOptions,{plan,captureProposal:true});
+  const seeds=raw.call_proposal_draws.seeds,packet=Object.freeze({
+   schema:'raw-source-call-proposal-v1',status:'RAW_PROPOSAL_NOT_A_FORECAST',samples:raw.samples,seed:raw.seed,
+   seeds,call_log_weights:raw.call_proposal_draws.log_weights,
+   county_draws:raw.county_draws?{codes:raw.county_draws.codes.slice(),margins:raw.county_draws.margins}:null,
+   call_diagnostics:plan.diagnostics,context_key:plan.contextKey,
+   proposal_only:true,has_usable_headline_probabilities:false});
+  // The public RAW arrays are inspection/county-evaluation inputs only. Keep
+  // immutable private copies and reject public mutation before final weighting.
+  rawCallPackets.set(packet,{basis,basisFingerprint:JSON.stringify(basis),packetFingerprint:JSON.stringify(packet),
+   options:actualOptions,plan,seeds:Uint32Array.from(seeds),callLogWeights:Float64Array.from(packet.call_log_weights)});
+  return packet;
+ }
+ function replaySourceCallElections(state,seeds,conditioning){
+  // Private only: the sole caller is the finalizer after original call weights,
+  // one optional county likelihood and the hard final ESS gate are applied.
+  const result=simulateRaw(state.basis,{...state.options,captureCountyDraws:undefined,replayCountySeeds:seeds},
+   {plan:state.plan,captureProposal:false,conditioning});
+  result.source_call_conditioning={schema:'source-call-conditioning-v1',status:'CONDITIONED',
+   evidence_kind:conditioning==='CALL_AND_COUNTY_IMPORTANCE_RESAMPLED'?'VALIDATED_CALLS_AND_COUNTY_RETURNS':'VALIDATED_CALLS_ONLY',
+   baseline_kind:'NO_CALL_NO_COUNT_POLLING_BASELINE',conditioned_covariance_applied:true,
+   validated_winner_accounting_preserved:true,call_weights_tempered:false,interval_calibrated:false,
+   called_races:state.plan.diagnostics.called_races.slice(),
+   unique_election_particles:new Set(seeds).size};
+  return result;
+ }
+ function finalizeSourceCallElections(packet,{countyLogLikelihood=null,countyLikelihoodPower=null,
+  conditioning='VALIDATED_CALL_IMPORTANCE_RESAMPLED',contextKey='UNSPECIFIED'}={}){
+  const state=rawCallPackets.get(packet),joint=conditioning==='CALL_AND_COUNTY_IMPORTANCE_RESAMPLED';
+  const fail=code=>{const error=Error(code);error.code=code;throw error;};
+  if(!state||JSON.stringify(state.basis)!==state.basisFingerprint||JSON.stringify(packet)!==state.packetFingerprint)
+   fail('INVALID_OR_MUTATED_RAW_CALL_PACKET');
+  if(contextKey!==packet.context_key||!['VALIDATED_CALL_IMPORTANCE_RESAMPLED','CALL_AND_COUNTY_IMPORTANCE_RESAMPLED'].includes(conditioning))
+   fail('INVALID_CALL_FINALIZATION_CONTEXT');
+  if(joint){
+   if(!packet.county_draws||Object.prototype.toString.call(countyLogLikelihood)!=='[object Float64Array]'||
+      countyLogLikelihood.length!==packet.samples||!Number.isFinite(countyLikelihoodPower)||countyLikelihoodPower<0||countyLikelihoodPower>1)
+    fail('INVALID_COUNTY_FINALIZATION_TARGET');
+   // Every admitted fixed-budget county factor is in [.05,1]; at most18
+   // routes can contribute. This accepts the reviewed bounded continuation,
+   // never an arbitrary positive multiplier that can erase hard call evidence.
+   if(!Array.from(countyLogLikelihood).every(value=>Number.isFinite(value)&&value<=0&&value>=18*Math.log(.05)-1e-10))
+    fail('UNBOUNDED_COUNTY_FINALIZATION_TARGET');
+  }else if(countyLogLikelihood!==null||countyLikelihoodPower!==null)fail('CALLS_ONLY_CANNOT_APPLY_COUNTY_LIKELIHOOD');
+  const combined=Float64Array.from(state.callLogWeights,(value,index)=>value+(joint?countyLikelihoodPower*countyLogLikelihood[index]:0));
+  const support=sourceCalls.assessLogWeights(combined),{weights,...supportMetadata}=support;
+  if(support.status!=='SUPPORTED')return Object.freeze({status:'WITHHELD',reason:support.status,support:Object.freeze(supportMetadata)});
+  const selected=sourceCalls.resampleWholeElectionStates(state.seeds,support);
+  const result=replaySourceCallElections(state,selected.seeds,conditioning);
+  result.source_call_conditioning={...result.source_call_conditioning,...supportMetadata,status:'CONDITIONED'};
+  return Object.freeze({status:'CONDITIONED',result,support:Object.freeze(supportMetadata)});
+ }
+ function simulate(basis,options={}){
+  if(!hasCalls(options))return simulateRaw(basis,options);
+  const callOptions={...options,independentSenateCredit:options.independentSenateCredit??'no_credit'};
+  try{assertExistingCallContract(basis,callOptions);}catch(error){
+   const rows=basis?.house?.concat(basis.senate||[],basis.governors||[])||[],byCode=new Map(rows.map(row=>[row.code,row]));
+   const entries=Object.entries(callOptions.live||{}),valid=entries.filter(([code,call])=>{
+    if(call?.mode!=='source_called')return true;
+    const row=byCode.get(code);return row&&['D','R'].includes(call.winnerParty)&&!(row.nonrep_independent_proxy&&call.winnerParty==='D');
+   });
+   const excluded=entries.length-valid.length;
+   if(!excluded)throw error;
+   const result=simulateWinnerAccountingFallback(basis,{...callOptions,live:Object.fromEntries(valid)},
+    {reason:callFailureReason(error)+'_EXCLUDED'});
+   result.source_call_conditioning.excluded_call_count=excluded;return result;
+  }
+  // Explicit raw/capture/replay orchestration belongs to the typed APIs. The
+  // public forecast must never accidentally publish an unweighted proposal.
+  if(options.captureCountyDraws||options.replayCountySeeds)
+   return simulateWinnerAccountingFallback(basis,callOptions,{reason:'UNTYPED_CALL_CAPTURE_OR_REPLAY_WITHHELD'});
+  try{
+   const packet=proposeSourceCallElections(basis,callOptions),final=finalizeSourceCallElections(packet,{contextKey:callOptions.contextKey??'UNSPECIFIED'});
+   return final.status==='CONDITIONED'?final.result:simulateWinnerAccountingFallback(basis,callOptions,{reason:final.reason});
+  }catch(error){return simulateWinnerAccountingFallback(basis,callOptions,{reason:callFailureReason(error)});}
+ }
  return Object.freeze({VERSION,BATTLEGROUNDS,FUNDAMENTALS_MODES,
+  proposeSourceCallElections,finalizeSourceCallElections,simulateWinnerAccountingFallback,
   ENDING_THRESHOLDS,classifyFourEndings,prepare,simulate,seeded,
   disagreementExtraSigma,senatePollingErrorBudget});
 });

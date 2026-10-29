@@ -29,7 +29,7 @@
    d.interval_calibrated!==false||d.distribution_scope!=='UNBOUNDED_LATENT_MARGIN_PROXY_NOT_FINAL_VOTE_INTERVAL'||
    d.quantile_method!=='SORTED_DRAW_LOWER_INDEX_FLOOR_N_MINUS_ONE_P'||
    d.axis!==(raceCode==='NE-SEN'?'osborn_minus_ricketts':'dem_minus_rep')||
-   !['POLLING_BASELINE','COUNTY_IMPORTANCE_RESAMPLED','LIVE_INFORMED_SCENARIO'].includes(d.conditioning)||
+   !['POLLING_BASELINE','COUNTY_IMPORTANCE_RESAMPLED','LIVE_INFORMED_SCENARIO','VALIDATED_CALL_IMPORTANCE_RESAMPLED','CALL_AND_COUNTY_IMPORTANCE_RESAMPLED'].includes(d.conditioning)||
    !Number.isInteger(d.sample_count)||d.sample_count<300||d.sample_count>30000||
    !Number.isInteger(d.unique_election_particles)||d.unique_election_particles<1||d.unique_election_particles>d.sample_count||
    !finite(d.mean)||!finite(d.sd)||d.sd<0||keys.some(k=>!finite(d[k])||Math.abs(d[k])>100)||
@@ -51,7 +51,7 @@
   section.append(el('small','personal-focus-margin-caption','Middle 90% · '+range([d.p05,d.p95],positive,negative)));
   const detail=el('details','personal-focus-margin-detail');detail.dataset.disclosure='margin';detail.open=open;
   detail.append(el('summary','','What does this range mean?'),el('p','','The dot is the median model margin. The thick segment contains the middle 50% of model scenarios; the thin segment contains the middle 90%. Each strip labels its own scale. These are the same shared model draws as this needle, not an additional forecast or evidence input.'),el('p','','These experimental scenarios are not a calibrated final-vote interval or a count of ballots remaining. The model uses an unbounded margin approximation; no range is shown when its central scenarios exceed possible vote-margin bounds. A source call establishes a winner, not a winning margin.'));
-  detail.append(el('small','',d.conditioning==='COUNTY_IMPORTANCE_RESAMPLED'?'Range includes admitted evidence through the shared model. The status below distinguishes own counts from broader context.':d.conditioning==='LIVE_INFORMED_SCENARIO'?'Range reflects a model scenario, not an independently validated final-vote projection.':'Polling-based model / scenario range; own county returns are not inferred.'));
+  detail.append(el('small','',['COUNTY_IMPORTANCE_RESAMPLED','CALL_AND_COUNTY_IMPORTANCE_RESAMPLED'].includes(d.conditioning)?'Range includes admitted evidence through the shared model. The status below distinguishes own counts from broader context.':d.conditioning==='VALIDATED_CALL_IMPORTANCE_RESAMPLED'?'Range reflects broader validated-call context through shared model factors; own county returns are not inferred.':d.conditioning==='LIVE_INFORMED_SCENARIO'?'Range reflects a model scenario, not an independently validated final-vote projection.':'Polling-based model / scenario range; own county returns are not inferred.'));
   section.append(detail);return section;
  }
  const historyTime=x=>iso(x)?new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(Date.parse(x))+' ET':'Time unavailable';
@@ -148,6 +148,7 @@
   const current=new Map((result?.race_probabilities||[]).map(x=>[x.race_code,x]));
   const prior=new Map((baseline?.race_probabilities||[]).map(x=>[x.race_code,x]));
   const used=new Map((result?.county_results_update?.used||[]).map(x=>[x.code,x]));
+  const callContext=result?.source_call_conditioning?.conditioned_covariance_applied===true;
   const specs=watch?(WATCH?.districts||[]).map(x=>({code:x.code,office:'House',key:x.code})): [...SENATE.map(state=>({code:state+'-SEN',office:'Senate',key:state==='OH'?'OH-special':state})),...HOUSE.map(code=>({code,office:'House',key:code}))];
   return specs.map((spec,order)=>{
    const state=spec.code.slice(0,2),entry=current.get(spec.code),base=prior.get(spec.code);
@@ -169,7 +170,7 @@
     count:direct&&finite(direct.counted_two_party_votes)?direct.counted_two_party_votes:null,
     performance:direct?.matched_performance||null,
     first,last,window,started:Number.isFinite(first)&&now>=first,
-    note:state==='ME'?'First-choice evidence; final RCV transfers separate':state==='NE'?'Independent; no assumed Democratic caucus':state==='AK'?'Lowest first-night priority; final RCV timing separate':!ownCounts&&(used.size||called)?'Forecast may reflect other admitted races':'',
+    note:[state==='ME'?'First-choice evidence; final RCV transfers separate':state==='NE'?'Independent; no assumed Democratic caucus':state==='AK'?'Lowest first-night priority; final RCV timing separate':'',state!=='AK'&&!ownCounts&&!called&&callContext?'Broader validated-call context; own county returns are not admitted':state!=='AK'&&!ownCounts&&(used.size||called)?'Forecast may reflect other admitted races':''].filter(Boolean).join(' · '),
     rank:state==='AK'?4:ownCounts||called?0:Number.isFinite(first)&&now>=first?1:2};
   }).sort((a,b)=>a.rank-b.rank||(a.first||Infinity)-(b.first||Infinity)||a.order-b.order);
  }
@@ -290,6 +291,9 @@
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   const simulated=data.some(x=>x.simulated);
   host.append(el('h2','',(simulated?'SIMULATED · ':'')+'Your election-night needles'),el('p','methodline',simulated?'FICTIONAL COUNTS · NOT LIVE. These race needles share this simulated national update; the live dashboard is unchanged.':'Experimental, uncalibrated forecasts from the same national model. Own validated returns enter once; race probabilities are never averaged back into it. Order follows admitted evidence and poll-close windows, not a promise of when votes will arrive.'));
+  const calls=result?.source_call_conditioning;
+  if(calls?.status==='WITHHELD')host.append(el('p','personal-focus-call-status','Broader call update withheld: simulation support is insufficient or unsupported. Validated race winners remain fixed; other estimates retain the available polling and admitted-count context.'));
+  else if(calls?.conditioned_covariance_applied===true)host.append(el('p','personal-focus-call-status','Validated calls inform related races through shared model factors, alongside admitted returns where available. This is experimental covariance transfer, not independent confirmation or calibrated accuracy.'));
   host.append(el('p','personal-focus-next','Focus now / next: '+data.filter(x=>x.state!=='AK').slice(0,3).map(x=>x.code+' · '+x.window).join(' | ')));
   const ratingKey=el('details','personal-focus-rating-key');ratingKey.open=ratingKeyOpen;ratingKey.append(el('summary','','How to read the ratings'),el('p','','Forecast bands use this same model chance: Safe 95%+, Likely 80%+, Leaning 60%+, otherwise Toss-up. A victory label requires a validated source call; a high chance or vote lead is not a call. Nebraska is a paired Osborn-versus-Ricketts forecast, not five-way win odds.'));host.append(ratingKey);if(ratingKeyFocused)ratingKey.querySelector('summary').focus({preventScroll:true});
   if(options.history){

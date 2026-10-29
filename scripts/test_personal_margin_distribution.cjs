@@ -57,6 +57,21 @@ for(const [name,mutate]of invalid){const entry={margin_distribution:summary()};m
 assert.equal(focus.marginSummary({margin_distribution:summary()},{raceCode:'NE-SEN'}),null,'A D/R range must not silently acquire an Osborn label');
 assert(focus.marginSummary({margin_distribution:summary('dem_minus_rep','COUNTY_IMPORTANCE_RESAMPLED')},{raceCode:'IA-SEN'}));
 assert(focus.marginSummary({margin_distribution:summary('dem_minus_rep','LIVE_INFORMED_SCENARIO')},{raceCode:'IA-SEN'}));
+for(const conditioning of ['VALIDATED_CALL_IMPORTANCE_RESAMPLED','CALL_AND_COUNTY_IMPORTANCE_RESAMPLED']){
+ assert(focus.marginSummary({margin_distribution:summary('dem_minus_rep',conditioning)},{raceCode:'IA-SEN'}));
+}
+const broader=structuredClone(result);broader.source_call_conditioning={status:'CONDITIONED',conditioned_covariance_applied:true};
+broader.race_probabilities.find(x=>x.race_code==='IA-SEN').margin_distribution.conditioning='VALIDATED_CALL_IMPORTANCE_RESAMPLED';
+const broaderRows=focus.rows(broader,baseline,options);
+for(const race of ['IA-SEN','ME-SEN','NE-SEN']){
+ const row=broaderRows.find(x=>x.code===race);assert.equal(row.ownCounts,false);
+ assert.match(row.note,/Broader validated-call context; own county returns are not admitted/);
+ assert.notEqual(row.rating.state,'called','Shared-factor learning never invents another winner');
+}
+assert.match(broaderRows.find(x=>x.code==='NE-SEN').note,/Independent; no assumed Democratic caucus/);
+assert.match(broaderRows.find(x=>x.code==='ME-SEN').note,/First-choice evidence; final RCV transfers separate/);
+broader.source_call_conditioning={status:'WITHHELD',conditioned_covariance_applied:false};
+assert.doesNotMatch(focus.rows(broader,baseline,options).find(x=>x.code==='IA-SEN').note,/Broader validated-call context/);
 const degenerate=summary();Object.assign(degenerate,{p05:0,p25:0,p50:0,p75:0,p95:0,mean:0,sd:0,unique_election_particles:1});
 assert.equal(focus.marginSummary({margin_distribution:degenerate},{raceCode:'IA-SEN'}).p50,0,'A degenerate empirical summary remains explicit, never an inferred winner call');
 assert(focus.rows(result,baseline,{...options,simulated:true}).every(x=>x.simulated),'Fictional rehearsal labels remain separate');

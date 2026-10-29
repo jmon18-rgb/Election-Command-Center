@@ -1,5 +1,27 @@
 # Readiness progress
 
+## October28 R0 conditional-call implementation — protected review next
+
+New helper/engine/kernel now condition existing validated winner events through
+the SAME joint factors and indexed redraw law, with exact proposal correction.
+Original no-call outputs are pinned by immutable fictional whole-output hashes;
+one fixed original count target/alpha and engine-owned finalization prevent
+double weighting/unweighted replay. HARD final ESS>=.5n; unsupported covariance
+is visibly withheld while validated winners/count accounting remain. Eligibility,
+no_credit,18sources/state shares/reporting61-node integral are unchanged.
+
+Independent exact-law/normal/fixed-target/finalizer reviews PASS. Review exposed
+and fixed arbitrary public unweighted replay, helper-before-kernel ordering and
+PUBLIC comparison context. Actual Edge1366/390 normal range/context/keyboard/
+correction/retraction/WITHHELD/live-isolation/overflow tasks PASS. Production
+3000-particle coordinator cost1191/1239ms including driver; six mixed fictional
+calls with28/38/52bags1279/1410ms on this desktop host, not physical-phone speed.
+Source/engine/kernel tests and original model tests PASS. Core initial smoke
+failed its isolated VM's missing new require dependency; actual versioned helper
+is now loaded and affected smoke PASS with every original check retained.
+Initial fullDOM still running; exact-head CI/publication not yet claimed.
+SOURCE_CALL_CONDITIONING.md documents bounded continuation and open calibration.
+
 ## PR527 VERIFIED PUBLISHED — October28 owner ranges, ad-free files and exact art
 
 Tested ed5bb48a4d7eaf8fa258b0dad2d59cc5dec3f9e1 passed all37 workflow

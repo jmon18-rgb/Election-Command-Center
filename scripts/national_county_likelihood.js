@@ -1,10 +1,10 @@
 /* Experimental counts-only likelihood for the existing correlated national
  * simulation. Race posterior probabilities are deliberately not inputs. */
 (function(root,factory){const node=typeof module!=='undefined'&&module.exports;const api=factory(node?
- require('./election_night_poll_closings_2026.js'):root?.ElectionNightPollClosings2026,node?require('./washington_remaining_source.js'):root?.WashingtonRemainingSource,node?require('./washington_remaining_scenarios.js'):root?.WashingtonRemainingScenarios);
+ require('./election_night_poll_closings_2026.js'):root?.ElectionNightPollClosings2026,node?require('./washington_remaining_source.js'):root?.WashingtonRemainingSource,node?require('./washington_remaining_scenarios.js'):root?.WashingtonRemainingScenarios,node?require('./source_call_conditioning.js'):root?.SourceCallConditioning);
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
  if(root)root.NationalCountyLikelihood=api;
-})(typeof window!=='undefined'?window:null,function(closes,remainingSource,remainingScenarios){
+})(typeof window!=='undefined'?window:null,function(closes,remainingSource,remainingScenarios,sourceCalls){
  'use strict';
  const scopes={'SC-SEN':{n:46,id:87409,year:2020,prefix:'45'},'MI-07':{n:7,id:87207,year:2024,prefix:'26',house:true},'PA-08':{n:5,id:87383,year:2024,prefix:'42',house:true},'VA-02':{n:8,year:2024,prefix:'51',house:true,url:'https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7'},'AZ-06':{n:5,id:86922,year:2024,prefix:'04',house:true},'PA-07':{n:4,id:87382,year:2024,prefix:'42',house:true},'OH-SEN':{n:88,id:87527,year:2024,prefix:'39'},'ME-SEN':{n:16,id:87188,year:2020,prefix:'23',firstChoice:true},'IA-SEN':{n:99,id:87151,year:2022,prefix:'19'},'KS-SEN':{n:105,id:87162,year:2020,prefix:'20'},'TX-SEN':{n:254,id:87438,year:2024,prefix:'48'},'WI-01':{n:5,id:87483,year:2024,prefix:'55',house:true},'WI-03':{n:19,id:87485,year:2024,prefix:'55',house:true},'MI-04':{n:6,id:87204,year:2024,prefix:'26',house:true},'PA-10':{n:3,id:87385,year:2024,prefix:'42',house:true},'NY-17':{n:4,id:87319,year:2024,prefix:'36',house:true},'WA-03':{n:7,url:'https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a',year:2024,prefix:'53',house:true}};
  scopes['NE-SEN']={n:93,id:87254,year:2024,prefix:'31',independent:true};
@@ -189,7 +189,7 @@
    remaining_scope:remainingMetadata?'Historical/official whole-county estimate sensitivity; Thurston historical only; not exact outstanding ballots or calibrated intervals':scope.firstChoice?'County named-candidate turnout scenario only; excludes statewide unallocated UOCAVA and unreported write-ins; not official ballots outstanding':"Conditional historical-turnout scenario, including unreported district/county parts; not official ballots outstanding",reference_turnout_fraction:counted/baseN,
    independence:'COUNTS_ONLY_NO_POLL_PRIOR_OR_RACE_POSTERIOR',logLikelihood,describePerformance});
  }
- function condition(model,basis,envelopes,options={}){
+ function conditionLegacy(model,basis,envelopes,options={}){
   if(!Array.isArray(envelopes)||envelopes.length>18)throw Error('Bounded national county evidence required');
   if(options.captureCountyDraws||options.replayCountySeeds)throw Error('Nested/replayed national evidence is not a prior');
   const {now=Date.now(),rehearsal=false,...args}=options,compiled=[],excluded=[],codes=new Set();
@@ -267,5 +267,149 @@
   result.county_results_update=diagnostics;
   return {baseline,result,diagnostics};
  }
+ // The no-call coordinator above remains the exact legacy algorithm. Calls use
+ // a typed RAW proposal, never its unweighted headline, and freeze the county
+ // target against that original no-call population before changing proposal.
+ const callFailure=error=>typeof error?.code==='string'&&/^[A-Z0-9_]{1,100}$/.test(error.code)?error.code:'CALL_COUNT_CONDITIONING_FAILED';
+ const failCall=code=>{const error=Error(code);error.code=code;throw error;};
+ const supportMetadata=support=>Object.fromEntries(Object.entries(support||{}).filter(([key])=>key!=='weights'));
+ function countCallTarget(compiled,referenceDraws,proposal,budgets){
+  const n=proposal.samples,sharedSigma=policy.batch_margin_sigma*Math.sqrt(policy.shared_reporting_error_variance_fraction);
+  const normalizers=[],curves=[];
+  for(const c of compiled){
+   const reference=referenceDraws.margins[c.code],current=proposal.county_draws.margins[c.code];
+   if(reference?.length!==n||current?.length!==n)failCall('CALL_COUNT_MARGIN_POPULATION_MISMATCH');
+   const referenceCurve=conditionalCurve(c,reference);let maximum=-Infinity,low=Infinity,high=-Infinity;
+   for(const margin of reference){
+    if(!Number.isFinite(margin))failCall('NONFINITE_ORIGINAL_COUNT_REFERENCE');
+    low=Math.min(low,margin);high=Math.max(high,margin);
+    for(const node of reportingNodes)maximum=Math.max(maximum,referenceCurve(margin+node.z*sharedSigma));
+   }
+   for(const margin of current){if(!Number.isFinite(margin))failCall('NONFINITE_CALL_PROPOSAL_MARGIN');low=Math.min(low,margin);high=Math.max(high,margin);}
+   if(!Number.isFinite(maximum))failCall('NONFINITE_FROZEN_COUNT_NORMALIZER');
+   normalizers.push(maximum);curves.push(conditionalCurve(c,[low,high]));
+  }
+  const totals=new Float64Array(n),nodes=new Float64Array(reportingNodes.length),states=Object.keys(budgets);
+  const perState=Object.fromEntries(states.map(state=>[state,new Float64Array(reportingNodes.length)]));
+  const extrema=Object.fromEntries(states.map(state=>[state,{minimum:Infinity,maximum:-Infinity}]));
+  for(let i=0;i<n;i++){
+   nodes.fill(0);for(const values of Object.values(perState))values.fill(0);
+   for(let k=0;k<reportingNodes.length;k++)for(let j=0;j<compiled.length;j++){
+    const c=compiled[j],state=c.code.slice(0,2),members=budgets[state];
+    if(!Number.isInteger(members)||members<1)failCall('INVALID_FIXED_COUNT_STATE_BUDGET');
+    const raw=curves[j](proposal.county_draws.margins[c.code][i]+reportingNodes[k].z*sharedSigma);
+    if(!Number.isFinite(raw))failCall('NONFINITE_CALL_COUNT_LIKELIHOOD');
+    // The cap defines the same fixed bounded continuation for EVERY proposal.
+    // On the original reference support it is inactive. Never refit its maximum.
+    const factor=policy.contamination_floor+(1-policy.contamination_floor)*Math.exp(Math.min(0,raw-normalizers[j]));
+    if(factor<policy.contamination_floor||factor>1)failCall('CALL_COUNT_ROBUST_BOUND_FAILED');
+    const term=Math.log(factor)/members;nodes[k]+=term;perState[state][k]+=term;
+   }
+   totals[i]=logMixture(nodes);
+   for(const state of states){const value=logMixture(perState[state]);extrema[state].minimum=Math.min(extrema[state].minimum,value);extrema[state].maximum=Math.max(extrema[state].maximum,value);}
+  }
+  const stateCounts=Object.fromEntries(states.map(state=>[state,compiled.filter(c=>c.code.startsWith(state+'-')).length]));
+  const ratios=Object.fromEntries(states.map(state=>[state,Math.exp(extrema[state].maximum-extrema[state].minimum)]));
+  const bounds=Object.fromEntries(states.map(state=>[state,Math.pow(1/policy.contamination_floor,stateCounts[state]/budgets[state])]));
+  if(states.some(state=>ratios[state]>bounds[state]*(1+1e-10)||bounds[state]>1/policy.contamination_floor*(1+1e-10)))failCall('CALL_COUNT_STATE_BUDGET_BOUND_FAILED');
+  return {totals,ratios,bounds};
+ }
+ function conditionCalls(model,basis,envelopes,options={}){
+  if(!Array.isArray(envelopes)||envelopes.length>18)throw Error('Bounded national county evidence required');
+  if(options.captureCountyDraws||options.replayCountySeeds)throw Error('Nested/replayed national evidence is not a prior');
+  const {now=Date.now(),rehearsal=false,...supplied}=options,args={...supplied,independentSenateCredit:supplied.independentSenateCredit??'no_credit'};
+  if(Object.values(args.live||{}).some(row=>row?.mode!=='source_called'||!['D','R'].includes(row.winnerParty)))throw Error('National county conditioning accepts verified-call overrides only, never a race posterior');
+  if(rehearsal&&Object.keys(args.live||{}).length)throw Error('Rehearsal cannot use live calls');
+  // Identity/policy errors are not numeric-support failures. They must not turn
+  // an unsupported axis (especially an Independent) into winner accounting.
+  const polls=basis?.house?.concat(basis.senate||[],basis.governors||[])||[],byCode=new Map(polls.map(row=>[row.code,row]));
+  for(const [code,call] of Object.entries(args.live||{}))if(!byCode.has(code)||(byCode.get(code).nonrep_independent_proxy===true&&call.winnerParty==='D'))throw Error('Unsupported existing source-call identity or Independent axis');
+  if(args.independentSenateCredit!=='no_credit')throw Error('Source-call covariance requires the existing no_credit policy');
+  sourceCalls?.validateExistingCallContract?.(basis,args);
+  // In-memory only: private numeric inputs must never enter a receipt/cache
+  // key returned to the caller. Do not mix a captured reference with changed
+  // basis, calls, options or source envelopes if an integration mutates them.
+  const inputFingerprint=JSON.stringify([basis,args,envelopes]);
+  const unchangedInputs=()=>JSON.stringify([basis,args,envelopes])===inputFingerprint;
+  const compiled=[],codes=new Set();
+  for(const envelope of envelopes){
+   const code=envelope?.snapshot?.race_code;if(codes.has(code))throw Error('Duplicate race evidence would count the same returns twice');codes.add(code);
+   try{if(code==='NE-SEN'&&(args.independentSenateCredit!=='no_credit'||basis.senate.find(r=>r.code===code)?.nonrep_independent_proxy!==true))throw Error('Independent evidence requires exact Osborn matchup and no assumed caucus credit');compiled.push(compile(envelope,{now,rehearsal}));}catch{}
+  }
+  let originalDraws=null,originalResampledStates=null;
+  const originalModel={simulate(priorBasis,priorOptions){
+   const output=model.simulate(priorBasis,priorOptions);
+   if(priorOptions.captureCountyDraws)originalDraws=output.county_draws;
+   if(priorOptions.replayCountySeeds)originalResampledStates=Uint32Array.from(priorOptions.replayCountySeeds);
+   return output;
+  }};
+  // This exact old coordinator defines source exclusions, normalizers' original
+  // population, fixed state shares and count-only alpha. No calls contaminate
+  // the baseline; the source input is compiled identically in both paths.
+  const reference=conditionLegacy(originalModel,basis,envelopes,{...args,now,rehearsal,live:{}}),baseline=reference.baseline;
+  const referenceCodes=(reference.diagnostics.used||[]).map(row=>row.code);
+  if(JSON.stringify(referenceCodes)!==JSON.stringify(compiled.map(c=>c.code)))failCall('COUNT_CALL_SOURCE_COMPILATION_MISMATCH');
+  const n=baseline.samples,alpha=compiled.length?reference.diagnostics.likelihood_power:1;
+  const referencePolicy={definition:'FROZEN_NO_CALL_REFERENCE_CAPPED_ROBUST_CONTINUATION',reference_particle_count:n,reference_normalizers_frozen:true,
+   county_likelihood_power:alpha,call_likelihood_power:1,contamination_floor:policy.contamination_floor,
+   state_likelihood_budget_unchanged:true,maximum_state_likelihood_ratio:1/policy.contamination_floor,
+   shared_reporting_nodes:reportingNodes.length,curve_step_margin_points:policy.reporting_curve_step_margin_points,curve_node_cap:10000,
+   county_likelihood_applied_once:true,call_weights_tempered:false,interval_calibrated:false};
+  const diagnosticsFor=(result,{status,support=null,target=null,reason=null}={})=>({
+   ...reference.diagnostics,status,baseline_kind:'NO_CALL_NO_COUNT_POLLING_BASELINE',
+   county_status:reference.diagnostics.status,source_call_conditioning:result.source_call_conditioning,
+   conditioned_call_covariance_applied:result.source_call_conditioning?.status==='CONDITIONED',
+   call_conditioning_reason:reason,call_support:supportMetadata(support),
+   ...(support?.status==='SUPPORTED'?{effective_sample_size:support.effective_sample_size,particle_count:n}:{}),
+   ...(compiled.length?{county_effective_sample_size:reference.diagnostics.effective_sample_size,count_target:referencePolicy,
+    ...(target?{state_likelihood_max_ratio:target.ratios,state_likelihood_ratio_bound:target.bounds}:{})}:{}),
+   interval_calibrated:false,independent_historical_calibration:false,
+   delta_percentage_points:Object.fromEntries(Object.keys(result.probabilities).map(key=>[key,+(result.probabilities[key]-baseline.probabilities[key]).toFixed(2)]))
+  });
+  const fallback=(reason,support=null)=>{
+   if(!unchangedInputs())failCall('CALL_MODEL_INPUT_CHANGED_DURING_CONDITIONING');
+   const fallbackOptions={...args,...(originalResampledStates?{replayCountySeeds:originalResampledStates}:{})};
+   const result=typeof model.simulateWinnerAccountingFallback==='function'?model.simulateWinnerAccountingFallback(basis,fallbackOptions,{reason}):model.simulate(basis,fallbackOptions);
+   result.source_call_conditioning={...(result.source_call_conditioning||{}),schema:'source-call-conditioning-v1',status:'WITHHELD',reason,
+    evidence_kind:'VALIDATED_WINNER_ACCOUNTING_WITHOUT_CALL_COVARIANCE',baseline_kind:'NO_CALL_NO_COUNT_POLLING_BASELINE',
+    conditioned_covariance_applied:false,validated_winner_accounting_preserved:true,call_weights_tempered:false,interval_calibrated:false};
+   const diagnostics=diagnosticsFor(result,{status:compiled.length?'EXPERIMENTAL_COUNTY_OUTLOOK_CALL_COVARIANCE_WITHHELD':'VALIDATED_WINNER_ACCOUNTING_CALL_COVARIANCE_WITHHELD',reason,support});
+   result.county_results_update=diagnostics;return {baseline,result,diagnostics};
+  };
+  let stage='CALL_PROPOSAL',support=null;
+  try{
+   if(typeof model.proposeSourceCallElections!=='function'||typeof model.finalizeSourceCallElections!=='function')return fallback('CALL_PROPOSAL_API_UNAVAILABLE');
+   const packet=model.proposeSourceCallElections(basis,{...args,...(compiled.length?{captureCountyDraws:referenceCodes}:{})});
+   if(!unchangedInputs())failCall('CALL_MODEL_INPUT_CHANGED_DURING_CONDITIONING');
+   if(packet?.schema!=='raw-source-call-proposal-v1'||packet.status!=='RAW_PROPOSAL_NOT_A_FORECAST'||packet.proposal_only!==true||packet.has_usable_headline_probabilities!==false||
+      packet.samples!==n||packet.seed!==baseline.seed||packet.seeds?.length!==n||packet.call_log_weights?.length!==n||packet.context_key!==(args.contextKey??'UNSPECIFIED')||
+      ['probabilities','counts','race_probabilities'].some(key=>Object.hasOwn(packet,key)))failCall('INVALID_OR_CROSS_CONTEXT_RAW_CALL_PACKET');
+   if(compiled.length&&(!originalDraws||JSON.stringify(packet.county_draws?.codes)!==JSON.stringify(referenceCodes)))failCall('CALL_COUNT_CAPTURE_SCOPE_MISMATCH');
+   stage='CALL_COUNT_TARGET';
+   const target=compiled.length?countCallTarget(compiled,originalDraws,packet,reference.diagnostics.state_likelihood_budget_members):null;
+   // Only the engine-owned finalizer can apply private original call weights,
+   // enforce the hard combined ESS floor, resample and replay. Caller-selected
+   // unweighted seeds can never be promoted into a conditioned headline.
+   stage='CALL_WHOLE_ELECTION_FINALIZATION';
+   if(!unchangedInputs())failCall('CALL_MODEL_INPUT_CHANGED_DURING_CONDITIONING');
+   const finalized=model.finalizeSourceCallElections(packet,{
+    countyLogLikelihood:target?target.totals:null,countyLikelihoodPower:target?alpha:null,
+    conditioning:compiled.length?'CALL_AND_COUNTY_IMPORTANCE_RESAMPLED':'VALIDATED_CALL_IMPORTANCE_RESAMPLED',
+    contextKey:args.contextKey??'UNSPECIFIED'});
+   support=finalized?.support||null;
+   if(finalized?.status==='WITHHELD')return fallback(finalized.reason||support?.status||'CALL_SUPPORT_WITHHELD',support);
+   if(finalized?.status!=='CONDITIONED'||support?.status!=='SUPPORTED')failCall('INVALID_FINALIZED_CALL_RESULT');
+   const result=finalized.result;
+   if(result?.source_call_conditioning?.status!=='CONDITIONED')failCall('MISSING_CONDITIONED_CALL_FINALIZATION_METADATA');
+   result.source_call_conditioning={...result.source_call_conditioning,...supportMetadata(support),status:'CONDITIONED',
+    count_target:compiled.length?referencePolicy:null};
+   const diagnostics=diagnosticsFor(result,{status:compiled.length?'EXPERIMENTAL_CALL_AND_COUNTY_RESULTS_INFORMED_NATIONAL_OUTLOOK':'EXPERIMENTAL_VALIDATED_CALLS_CONDITIONED_NATIONAL_OUTLOOK',support,target});
+   result.county_results_update=diagnostics;return {baseline,result,diagnostics};
+  }catch(error){return fallback(typeof error?.code==='string'?callFailure(error):stage+'_FAILED',support);}
+ }
+ function condition(model,basis,envelopes,options={}){
+  return Object.values(options.live||{}).some(row=>row?.mode==='source_called')?conditionCalls(model,basis,envelopes,options):conditionLegacy(model,basis,envelopes,options);
+ }
+
  return Object.freeze({compile,condition,policy,normalQuadrature,conditionalCurve});
 });

@@ -1592,7 +1592,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=21828156bbd1"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
-<script src="./scripts/personal_election_focus.js?v=5dab214de038"></script>
+<script src="./scripts/personal_election_focus.js?v=74a2acb372f1"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1647,10 +1647,11 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/pennsylvania_house_08_evidence.js?v=db68953539bb"></script>
 <script src="./scripts/michigan_house_07_evidence.js?v=f10ed8920077"></script>
 <script src="./scripts/washington_house_evidence.js?v=4a2cc5972349"></script>
-<script src="./scripts/national_county_likelihood.js?v=e1ceb7b0bfd1"></script>
+<script src="./scripts/source_call_conditioning.js?v=f1a0badf49c5"></script>
+<script src="./scripts/national_county_likelihood.js?v=3a42f78b20e5"></script>
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
-<script src="./scripts/chamber_control_model.js?v=ec6c4f60ccdb"></script>
+<script src="./scripts/chamber_control_model.js?v=c70bff180b29"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
@@ -4856,7 +4857,7 @@ function jointCurrentSignature(){
   key+':'+data.last_updated+':'+data.called+':'+
    data.candidates?.map(x=>x.name+':'+x.party+':'+x.votes).join(',')+
    ':'+Boolean(enCivicErrors[key])).sort().join('|');
- return (jointBasis?.generated_from_sources?.model_polling_at||'')+':'+
+ return jointModelCodeRevision()+':'+(jointBasis?.generated_from_sources?.model_polling_at||'')+':'+
   snaps+':'+civic+':'+JSON.stringify(jointCountyEvidence().map(e=>e.snapshot))+':'+jointNationalShift+':'+jointErrorMultiplier+
   ':'+enModeYear+':'+(Date.now()>=Date.parse('2026-11-03T05:00:00Z'));
 }
@@ -4866,9 +4867,9 @@ function jointMarginSummaryCodes(){
  const focus=window.PersonalElectionFocus;
  return focus?[...new Set([...focus.SENATE.map(state=>state+'-SEN'),...focus.HOUSE,...(focus.WATCH?.districts||[]).map(row=>row.code)])]:undefined;
 }
+function jointModelCodeRevision(){return ['source_call_conditioning','chamber_control_model','national_county_likelihood'].map(name=>document.querySelector('script[src*="/'+name+'.js?"]')?.getAttribute('src')||'').join('|');}
 function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,jointIndependentControlOptions.independentSenateCredit,
- document.querySelector('script[src*="/chamber_control_model.js?"]')?.getAttribute('src')||'',
- document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src')||'',jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
+ jointModelCodeRevision(),jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
  jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()?jointPrivateHouse:false].join('|');}
 function renderPersonalElectionFocus(){
  try{window.PersonalElectionFocus?.render($('#enPersonalFocus'),jointLastResult,jointPulseBaseline,
@@ -4882,7 +4883,7 @@ function jointRender(force=false){
  jointCacheKey=key;
  const updates=jointLiveObservations();
  try{
-  const args={...jointIndependentControlOptions,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,
+  const args={...jointIndependentControlOptions,contextKey:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC',marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,
    nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
   const envelopes=jointCountyEvidence();
   let conditioned=null,countyUpdateWithheld=false;
@@ -4902,15 +4903,15 @@ function jointRender(force=false){
    context:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC'});}catch{} // History never feeds or blocks the forecast.
   try{enOfficialAdmissionAudit?.observe({active:enModeYear===2026,simulated:conditioned?.diagnostics?.status==='SIMULATED_NATIONAL_REHEARSAL',
    envelopes,used:conditioned?.diagnostics?.used||[],reason:countyUpdateWithheld?'MODEL_UPDATE_WITHHELD':'NO_LONGER_ADMITTED',
-   modelRevision:[window.ChamberControlModel.VERSION,document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src')||'',jointBasis.generated_from_sources?.model_polling_at||'',jointNationalShift,jointErrorMultiplier].join('|'),
+   modelRevision:[window.ChamberControlModel.VERSION,jointModelCodeRevision(),jointBasis.generated_from_sources?.model_polling_at||'',jointNationalShift,jointErrorMultiplier].join('|'),
    modelVersion:window.ChamberControlModel.VERSION,pollingAt:jointBasis.generated_from_sources?.model_polling_at,
    kernelRevision:document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src'),
    modelContext:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC'});
   enRenderExportControls();}catch{} // Audit failure cannot alter the forecast.
   jointRenderSenateCorrelationResearch(result,updates);
   jointPublicResult=jointUsesPrivateContext()?
-   (window.NationalCountyLikelihood?.condition(window.ChamberControlModel,jointBasisPublic,envelopes,args).result||
-    window.ChamberControlModel.simulate(jointBasisPublic,args)):null;
+   (window.NationalCountyLikelihood?.condition(window.ChamberControlModel,jointBasisPublic,envelopes,{...args,contextKey:'PUBLIC'}).result||
+    window.ChamberControlModel.simulate(jointBasisPublic,{...args,contextKey:'PUBLIC'})):null;
   const privateSummary=$('#privateContextComparison');
   if(privateSummary){
    if(jointPublicResult){
@@ -4949,6 +4950,7 @@ function jointRender(force=false){
   jointRenderHouseShadow(result,shadow,presidentialShadow);
   const note=$('#jointRunStatus');
   if(note)note.textContent=(jointUsesPrivateContext()?(jointPrivateSource==='repository'?'REPOSITORY SENATE/HOUSE FUNDAMENTALS · ':'LOCAL CSV CONTEXT · '):'')+
+   (result.source_call_conditioning?.status==='WITHHELD'?'Broader call update withheld; validated winners retained · ':result.source_call_conditioning?.conditioned_covariance_applied?'Validated calls condition shared model factors · ':'')+
    (countyUpdateWithheld?'County update unavailable · polling/call model retained · ':'')+
    (countyRows.length?'EXPERIMENTAL · '+countyRows.length+' county race sources · '+(conditioned?.diagnostics.house_vote_sources||0)+' House district sources · ':'')+
    Object.keys(updates).length+

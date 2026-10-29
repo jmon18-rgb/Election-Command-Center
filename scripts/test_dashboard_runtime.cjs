@@ -48,6 +48,8 @@ assert.match(html,/<script src="\.\/scripts\/civicapi_house_2026_adapter\.js\?v=
  'Exactly scoped 2026 House adapter must load before the Election Night application');
 assert.match(html,/<script src="\.\/scripts\/chamber_control_model\.js\?v=[0-9a-f]{12}"><\/script>/,
  'Version-pin the Senate engine: uncached index must never reuse the obsolete 2020 candidate model');
+assert(html.indexOf('src="./scripts/source_call_conditioning.js?')<html.indexOf('src="./scripts/national_county_likelihood.js?'),
+ 'The actual county kernel must capture the source-call helper before app startup');
 assert.equal(scripts.length,1,'Expected exactly one live inline application script');
 const errors=[];
 const virtualConsole=new VirtualConsole();
@@ -158,6 +160,7 @@ async function settle(){
   'Source-attributed 506-race gap triage must load before Election Night dashboard');
  w.eval(read('scripts/election_night_rehearsal.js'));
  assert(w.ElectionNightRehearsal,'Synthetic rehearsal library must load before app');
+ w.eval(read('scripts/source_call_conditioning.js'));
  w.eval(read('scripts/chamber_control_model.js'));
  assert(w.ChamberControlModel,'Joint Senate/House model must load before app');
  w.eval(read('scripts/official_admission_audit.js'));

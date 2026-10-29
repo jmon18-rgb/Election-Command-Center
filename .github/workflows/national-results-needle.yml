@@ -6,6 +6,10 @@ on:
     paths:
       - 'index.html'
       - 'scripts/chamber_control_model.js'
+      - 'scripts/source_call_conditioning.js'
+      - 'scripts/test_source_call_conditioning*'
+      - 'scripts/test_chamber_source_call_conditioning.cjs'
+      - 'scripts/fictional_call_basis.cjs'
       - 'scripts/national_*.js'
       - 'scripts/test_national_*.cjs'
       - 'scripts/test_national_*.mjs'
@@ -39,6 +43,9 @@ jobs:
         run: |
           node scripts/test_competitive_source_cadence.cjs
           node scripts/test_chamber_control_model.cjs
+          node scripts/test_source_call_conditioning.cjs
+          node scripts/test_chamber_source_call_conditioning.cjs
+          node scripts/test_national_call_conditioning.cjs
           node scripts/test_national_county_likelihood.cjs
           node scripts/test_official_admission_audit.cjs
           node scripts/test_official_admission_controller.cjs

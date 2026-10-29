@@ -36,7 +36,7 @@ const cases=[
 ];
 const additions=['gaussian_sigma_points','redrawn_permutation_sigma_points',
  'total_latent_sigma_points','uncertainty_method'];
-const withoutAdditions=result=>({...result,race_probabilities:
+const withoutAdditions=({source_call_conditioning,...result})=>({...result,race_probabilities:
  result.race_probabilities.map(item=>Object.fromEntries(Object.entries(item)
   .filter(([key])=>!additions.includes(key))))});
 // Hashes are captured from the untouched simulator with this fixed fictional

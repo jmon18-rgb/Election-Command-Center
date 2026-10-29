@@ -1,5 +1,22 @@
 # Election Night production-readiness assignment
 
+## Current R0 source-call candidate integrated — finish protected release
+
+Branch readiness/source-call-conditioning carries PR527 proof checkpointca7c7d5f
+plus actual helper/engine/kernel integration and portable tests. Engine-owned
+finalizer validates private original weights/packet integrity/context, combines
+ONE fixed county target, enforces HARDfinalESS>=.5n and internally resamples.
+No public selected-seed replay can emit CONDITIONED. Independent review fixed
+helper-before-kernel load order and PUBLIC comparison context. New margin tags,
+broader-call-versus-own-returns copy, visibleWITHHELD warning and helper-inclusive
+cache/history/audit fingerprints are wired. Original no-call hashes, fixed state
+budgets/no_credit/source eligibility remain. See SOURCE_CALL_CONDITIONING.md.
+All focused tests/actual1366/390 browser tasks and numerical reviews pass; initial
+core smoke's VM now loads ACTUAL new helper, affected check passes. FullDOM and
+all exact-head workflow parents/latestjobs/external statuses plus protected merge,
+CURRENTmainPages/changedbytes/appropriatepublishedbrowser remain required.
+Do not mistake numerical/engineering evidence for predictive calibration.
+
 ## PR527 published; next concrete R0 model implementation
 
 PR527 final testeded5bb48a/all37parents/49applicablejobs/0external passed and
