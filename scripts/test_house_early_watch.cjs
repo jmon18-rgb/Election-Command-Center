@@ -9,7 +9,7 @@ assert.deepEqual(refs.map(x=>[x.code,x.cook,x.flipr,x.rep_win_pct,x.margin_side,
 const result={race_probabilities:[...refs.map(x=>({race_code:x.code,dem_beats_rep_pct:99})),{race_code:'TX-SEN',dem_beats_rep_pct:61}],county_results_update:{used:[{code:'TX-SEN',as_of:'2026-11-04T02:00:00Z',counted_two_party_votes:1000}]}};
 const frozen=JSON.stringify(result),options={closes,now:Date.parse('2026-11-04T03:00:00Z'),watch:true};
 const broad=structuredClone(result);Object.assign(broad.race_probabilities[0],{source_method:'redrawn_state_distribution_proxy',polled:false});assert.equal(focus.rows(broad,result,options).find(x=>x.code==='FL-25').broadStateProxy,true);assert.equal(focus.rows(broad,result,options).find(x=>x.code==='FL-25').polled,false);
-let rows=focus.rows(result,result,options);assert.equal(rows.length,21);assert(rows.every(x=>!x.called));assert(focus.watchSummary(rows).every(x=>x.calls.length===0));
+let rows=focus.rows(result,result,options);assert.equal(rows.length,32);assert(rows.every(x=>!x.called));assert(focus.watchSummary(rows).every(x=>x.calls.length===0));
 assert.equal(focus.rows(result,result,{closes}).find(x=>x.code==='TX-SEN').ownCounts,true);
 assert.equal(focus.rows(result,result,{closes}).find(x=>x.code==='TX-SEN').rating.label,'Leaning D');
 assert.equal(JSON.stringify(result),frozen,'Display cannot alter joint draws, inputs or probabilities');

@@ -1,0 +1,18 @@
+'use strict';
+const assert=require('node:assert/strict'),api=require('./election_night_early_weather.js');
+let next=0,rendered=[],sounds=0,stops=0;const timers=new Map(),allTimers=[];
+const controller=api.create({render:x=>rendered.push(x),chime:()=>sounds++,stopSound:()=>stops++,setTimer:fn=>{const id=++next;timers.set(id,fn);allTimers.push(fn);return id;},clearTimer:id=>timers.delete(id)});
+const summary={schema:'early-indicator-status-v1',stage:'STORM_BREWING',positive_races:['VA-02','SC-SEN'],positive_states:['VA','SC'],negative_states:[],canMoveNationalNeedle:false,canTriggerEarnedCelebration:false};
+const input={summary,active:true,current:true,context:'PUBLIC'};
+for(const change of [{active:false},{current:false},{blocked:true},{context:'FORGED'},{summary:{...summary,stage:'VALIDATED_CALL'}},{summary:{...summary,canTriggerEarnedCelebration:true}}])assert.equal(controller.update({...input,...change}),false);
+assert.equal(sounds,0);assert.equal(controller.update(input),true);assert.equal(sounds,1);assert.equal(controller.state().seen,1);
+const oldTimer=allTimers.at(-1);assert.equal(controller.update({...input,summary:{...summary,positive_races:['VA-02','OH-SEN'],positive_states:['VA','OH']}}),false);assert.equal(sounds,1);assert.deepEqual(rendered.at(-1).positive_races,['VA-02','OH-SEN']);
+controller.update({...input,current:false});assert.equal(controller.state().visible,false);assert.equal(controller.update(input),false,'Pending calculation recovery does not repeat the same bulletin');
+const strong={...summary,stage:'STRONGER_PATTERN',positive_races:['VA-02','SC-SEN','OH-SEN'],positive_states:['VA','SC','OH'],strong_positive_states:['VA','SC','OH']};
+assert.equal(controller.update({...input,summary:strong}),true);oldTimer();assert.equal(controller.state().visible,true,'Stale expiry cannot close a newer bulletin');
+controller.update({...input,summary:{...summary,negative_states:['PA']}});assert.equal(controller.state().visible,false,'Opposing/corrected evidence withdraws the bulletin');
+assert.equal(controller.preview(),true);assert.equal(controller.state().simulated,true);assert.equal(controller.state().seen,2,'Preview never consumes a live stage');controller.update({...input,current:false});assert.equal(controller.state().visible,true,'Pre-election or pending data cannot cancel an explicit fictional preview');controller.dismiss();
+assert.equal(controller.update({...input,context:'LOCAL_RESEARCH_VARIANT'}),true);controller.update({...input,active:false});assert.equal(controller.state().visible,false);
+assert.equal(controller.update({...input,summary:strong,context:'LOCAL_RESEARCH_VARIANT'}),true);allTimers.at(-1)();assert.equal(controller.state().visible,false);assert(stops>0);
+for(const malformed of [{...summary,positive_races:null},{...summary,positive_states:['VA','VA']},{...summary,stage:'STRONGER_PATTERN'},{...summary,stage:'STRONGER_PATTERN',strong_positive_states:['OH','PA','MI']},{...summary,positive_races:['VA-02','SC-SEN','OH-SEN']}])assert.doesNotThrow(()=>assert.equal(controller.update({...input,summary:malformed,context:'LOCAL_RESEARCH_VARIANT'}),false));
+console.log('Provisional weather bulletin PASS: strict current/activity, corrections, blocked queues, per-context dedup, stale timers, preview isolation and expiry. No calls, model weights or persistence.');

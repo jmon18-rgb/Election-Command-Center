@@ -208,3 +208,46 @@ jobs:
           path: artifacts/readiness/ui-review/worker-virginia-snapshot/
           if-no-files-found: warn
           retention-days: 7
+
+  early-indicators-and-celebration-details:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the existing pinned browser runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: One early watch, current-source guards and explicitly provisional weather
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/unified-early-indicators
+        run: node scripts/test_unified_early_indicator_browser.mjs
+      - name: County comparison opens the existing matched-area evidence
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/county-comparison-discovery
+        run: node scripts/test_county_comparison_browser.mjs
+      - name: Whole supplied images follow animation, skip and reduced-motion finales
+        if: ${{ !cancelled() }}
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/celebration-owner-finale
+        run: node scripts/test_celebration_owner_finale_browser.mjs
+      - name: Actual announcement recording drives independent fish mouths without rerouting audio
+        if: ${{ !cancelled() }}
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/announcement-motion-integrated
+        run: node scripts/test_announcement_motion_browser.mjs
+      - name: Upload bounded indicator and celebration evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: early-indicators-celebration-details
+          path: |
+            artifacts/readiness/ui-review/unified-early-indicators/
+            artifacts/readiness/ui-review/county-comparison-discovery/
+            artifacts/readiness/ui-review/celebration-owner-finale/
+            artifacts/readiness/ui-review/announcement-motion-integrated/
+          if-no-files-found: warn
+          retention-days: 7

@@ -1,6 +1,47 @@
 # JackStradamus · development plan
 
-## October29 count-aware proposal — local integration, not published
+## October 29 latest owner scope — Poop Meter and discoverable county comparisons (release pending)
+
+The owner adds a display-only Poop Meter with Clean undies / Skid marks / Turtling / Full-blown shit, and asks what actually moves the needles. Its inputs are the complete existing 18-route admitted county cohort, through the same CURRENT frame/source/expectation checks; 17 D/R comparisons are eligible and Nebraska's independent axis is excluded. The visible watch remains 32 races. This avoids describing its four-route watch overlap as national coverage. Missing, pending, ASOF, stale, conflicting or insufficient evidence remains unrated. At least two matched states are required; qualified warnings and opposing positive signals follow the existing 3/5-point method-scenario thresholds. This is an editorial relative-performance warning, never national odds, a second likelihood or a verified victory.
+
+A visible County results & expectations button opens the existing expectation and reporting-area disclosures only on needles with own matched returns. It exposes counted two-party/named-pair totals and observed margins versus expected method ranges, source time and the largest six reporting areas; it does not invent separate party-vote columns, all-county coverage or outstanding ballots. Root is integrating this with archive/pending control and visible focus repairs. The old exact head98373808 is green (35parents/55jobs52SUCCESS3nonapplicableSKIP/0external) but will not merge while these authorized changes are pending. All final combined-head gates and publication proofs are still required. No numerical core, source route, request/cadence/budget, call eligibility or paid/archive setting changes.
+
+
+## October29 owner follow-up — implementation in final local/protected validation
+
+Unify the early-signal lists into32 races with KY-06/IN-05/FL-SEN first, current matched overperformance and distinct provisional multi-state weather; retain21 exact owner references,19 personal needles, county guides and Pin/unpin. Required matched inputs for the three priority races remain explicitly pending. Repair all4 supplied-image finales after animation, add Skip/reduced motion and native-recording fish-mouth movement, show11 soundtrack picks and clarify John Brown/Harpers Ferry art. No model/source/call eligibility expansion. Core91checks pass; actual local desktop/phone feature and retained media/reading checks pass. Final full-DOM, exact-head all-workflow gate and verified publication remain required; existing human/calibration/source/capacity gates stay open.
+
+
+## October29 PR533 VERIFIED PUBLISHED — county-aware proposal
+
+Tested e671d5f0 passed all37current-head workflow parents and56latest jobs
+(53SUCCESS/3declared deployed-only PR skips), with0external statuses and clean
+mergeability. Merge0aa75146; final main b13e22a3973a79199a51ac29ad371bf9f6033770,
+Pages40899111890SUCCESS. All33changed public/index files matched origin/main
+at15:15:02.745Z;13coherence checks/index/no_credit passed. Main rechecked
+unchanged15:23:55Z after published tasks. No waiver/rerun/deadline or sample cut.
+
+Both-size actual published Edge call-context and output-guard tasks passed. The
+fixed fictional overlap now has ESS1,516.20/3,000, only16.20above the unchanged
+1,500floor; its exact missing-guide path remains withheld at1,225.01. Target,
+alpha/max, exact corrections, RNG, source/call rules and budgets are unchanged.
+Numerical support is not empirical calibration, full-night or physical-phone proof.
+Ordinary27 confirms7current assets, equal private checkboxes/status text/archive
+classes and current2024 aria-pressed mode. Direct before/after mode equality
+was not measured; the initial checked-accessor error is preserved and qualified.
+The same phone PNG was confirmed normal at original detail and independently;
+no app/file defect or extra browser/model/network run was established.
+
+Outcome pr533-published-outcome-20261029.json SHA29d36c8e4021a724c4093f06359dc29a2d081178bcd5f241b7f4e0955076422c.
+Final independent audit pr533-final-release-audit.json PASS. Original guide1.0/
+eleven human scopes/hashes/NOT_RUN/null unchanged; ONE later component19->20
+with immutable copy/appendreceipt. LedgerSHAf9fde57ed77b42907e229dacb1b4eca22ffd38103ec5dd69f34ad0b395c84e6d.
+Human, independent calibration, genuine positive2026 and no-paid archive capacity
+remain open; archive stays OFF. No new owner decision is required by this release.
+Carry the final proof checkpoint with the next real source change; no docs-only
+CI push or repeated unchanged demos/probes.
+
+## Historical PR533 local integration checkpoint
 
 Local independent numerical/privacy review, five original call suites, the new
 portable regression, 43 controller groups, all six complete four-output
@@ -24,8 +65,8 @@ Clean source pins 65040a/7af6/efc6 passed independent density/convolution/target
 privacy review and one complete private/PUBLIC/two-House worker case. The new
 portable regression and 43 controller groups pass; all original missing-guide
 withholding assertions remain. Explicit serialized-guide output bans protect
-all public paths. Full six-frame timing, browser tasks and protected release
-are still required. PR532 on abc62535 remains the verified published baseline.
+all public paths. The local six-frame and browser gates passed as listed above; protected
+release was still required at this checkpoint. PR532 on abc62535 remains the verified published baseline.
 No source GET, eligibility, cadence, budget, call or celebration change; archive
 activation remains OFF. One previous unpublished proof checkpoint is carried
 with this source change; no docs-only CI push.
@@ -271,7 +312,7 @@ Owner scope update: needle adjustments and the celebration production backlog ar
 | --- | --- | --- | --- |
 | R8 / navigation/model focus repair525 verified; human acceptance open | Full owner interpretation and visual acceptance | Watch-to-existing-card/expectation and same-row/Texas returns, semantic announcement/redraw identity, desktop row/phone heading and offscreen reading-position retention released. Reuse actual1366/390 and ordinary semantic proofs; real task feedback reopens engineering immediately. | Exactdc9b5ef9/all37parents; finalmaincbcf2af2/Pages40761231025/served40761325033/27changedfiles verified. Ordinary0viewport/no geometry claim; human interpretation/assistive NOT_RUN, Oct30 target not start gate. |
 | R7 / Texas/watch523 and distributions527 VERIFIED PUBLISHED | Personal race needles and evening trend | Eleven Senate/eight pivotal House cards, exact owner references, distinct verified-call surprise patterns and bounded history are released; contextual navigation fixed525. PR527 adds median/middle50/90 from the same conditioned draws, with no probability/source change. | Finalmain3ec89d17/Pages40790586312/all44changedfiles/coherence PASS. Actual published1366/390 range/disclosure/isolation tasks pass. Ordinary input tool-limited, no geometry claim. MI/MN/MS/AK county connections remain missing, AK last. |
-| R0 / count-aware proposal in local integration; VA532 published | Needle methodology and truthful assumptions | Owner resumed development. Reviewed count-aware shared-factor guidance preserves the original frozen target, exact corrections and hard support floor. Missing guidance retains the original withheld case. | Clean65040a/7af6/efc6: independent numerical/privacy review and one complete 4-output worker case PASS; fixed fictional ESS1,516.20/3,000 has narrow16.20 headroom. Six-frame timing, browser and protected release remain required. Deployed baseline abc62535/Pages40882535269; human/calibration/positive gates stay open. |
+| R0 / proposal533 VERIFIED PUBLISHED | Needle methodology and truthful assumptions | Reviewed county-aware shared-factor proposal and serialized-guide output boundaries are released; original target, exact corrections and hard support floor remain. Missing guidance retains original withholding. | e671d5f0:37parents/56jobs53SUCCESS3declaredPRSKIP/0external; finalb13e22a3/Pages40899111890;33files/coherence/published1366+390 PASS. Fictional ESS1,516.20 has narrow16.20headroom. Human/calibration/genuine-positive gates remain open. |
 | R1 / research tooling519 released; admission gates open | Four missing requested Senate connections | MS246rows/82counties/three candidates, documented alias and importer resolved. New metadata-only lineage ties exact saved blob to publisher commitc7e31f42 dated2021-01-18. Reuse-policy inventory did not establish rights. Next distinct explicit source-file rights/native-certification/current2026 package; no solved-route repeats. MI/MN403 STOP; AK last. | Six public fictional/reference and eight local-original tests PASS; no raw/derived table published. SourceSHA c6fe2553…; processed-file-lineage/receipt saved locally. No native certification/election chronology/current2026/runtime/calibration admission;81004invalid. |
 | R2 / decision recorded; evidence gate open | Predictive validation evidence and evaluation | Formal Oct28 decision snapshot recorded: NO-GO for calibrated national acceptance on zero independent chronological datasets/held-outs; metrics not estimable. Reopen only for a genuinely admissible new package. Use the saved specification for the smallest admissible held-out evaluation using contemporaneous expectations, real early/middle/late captures, correct geography and source-error uncertainty. Pursue a bounded new source route only if it can satisfy a named missing field. Reuse evaluation tools; add only missing necessary evaluation capability. | Reproducible margin error, interval coverage, probability scores and baseline comparison on admitted data; national transfer assessed separately. Oct28 no-go/missing-data decision delivered locally and recorded in acceptance; predictive validation itself remains unmet. Synthetic stress evidence stays separate; never fit and evaluate on the same cases. No guaranteed calibrated acceptance. |
 | R3 / pack ready; human acceptance open | Stable owner rehearsal handoff | Local operator pack v1.0: two-page PDF and responsive HTML at output/pdf/election-night-operator-guide-7e4b163d.*, plus owner-handoff-acceptance-ledger-20261028.json. Eleven task rows map saved evidence and retain human NOT_RUN/resultNULL. Print rendering and local1366/390 guide semantics/keyboard/no-overflow/hash checks pass. Use this concise pack for the real operator session; detailed draftv.9 remains reference. | Oct29 human laptop/phone tasks and actual assistive acceptance still open; exact revision/context/results/defects required. Existing engineering and published rehearsal proof does not complete human handoff or fullOct30review. |

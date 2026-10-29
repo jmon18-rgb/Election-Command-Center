@@ -934,6 +934,47 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 .early-watch h3,.personal-focus-card h4{scroll-margin-top:82px}.early-watch :focus-visible,.personal-focus-jumps :focus-visible{outline:3px solid #ffdc81;outline-offset:3px}
 @media(max-width:600px){.early-watch{padding:12px}.early-watch-signals{grid-template-columns:1fr}.early-watch-race>summary span:last-child{flex-basis:100%;font-size:13px}}
 
+
+.early-watch-pin{min-height:44px;padding:6px 12px;flex-shrink:0}
+/* One early-indicator watch; provisional weather is distinct from winner calls. */
+.early-watch-priority{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.early-watch-priority>h4,.early-watch-priority>.methodline{grid-column:1/-1;margin:0}
+.early-watch-priority>.early-watch-race{padding:8px 12px;min-width:0;background:linear-gradient(145deg,#122c44,#0b1c31);border-color:#3d7892}
+.early-watch-pattern{padding:14px 16px;border:1px solid #467e97;border-radius:14px;background:linear-gradient(120deg,#123149,#14233b);margin:12px 0;overflow-wrap:anywhere}
+.early-watch-pattern strong{display:block;font-size:1.1rem;color:#bcecff}
+.early-watch-raw,.early-watch-comparison,.early-watch-gate,.early-watch-missing,.early-watch-current-status,.early-watch-model-status{display:block;margin:8px 0;line-height:1.5;overflow-wrap:anywhere}
+.early-watch-comparison,.early-watch-performance{border-left:3px solid #74dabb;padding:6px 10px;background:#0b302c88}
+.early-watch-gate,.early-watch-missing{color:#e6cd98}
+.early-watch-current-status{font-weight:700}.early-watch-raw{color:#bacbdf}
+#enEarlySignals{display:flex;flex-wrap:wrap;gap:10px;padding:8px 0}
+#enEarlySignals button,.early-watch-priority button,#enEarlyWeatherDismiss,#enCelebrationSkip{min-height:44px;white-space:normal}
+.en-early-weather-toast{position:fixed;z-index:1050;bottom:20px;right:20px;width:min(420px,calc(100vw - 32px));padding:20px 22px;border:1px solid #80d9e5;border-radius:20px;background:linear-gradient(135deg,#113d54f5,#16253cf5);box-shadow:0 15px 55px #0009;color:#f2fbff;overflow-wrap:anywhere}
+.en-early-weather-toast[hidden]{display:none!important}
+.en-early-weather-toast h3{font-size:1.5rem;margin:8px 0}.en-early-weather-toast p{line-height:1.5;margin:8px 0}.en-early-weather-toast strong{display:block;color:#b7e9ee;font-size:.85rem;margin:12px 0}.en-early-weather-toast button{width:100%}
+.en-early-weather-cloud{font-size:2.8rem;line-height:1;animation:en-weather-arrival .5s ease-out both}
+@keyframes en-weather-arrival{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.en-fish-talking{--fish-speech-level:0;position:relative;line-height:0;width:100%;overflow:hidden;border-radius:14px}
+.en-fish-talking>.fish-anchor-svg{display:block;width:100%;height:auto}
+.en-fish-talking .fish-anchor-mouth{transform-box:view-box;transform-origin:320px 214px;transform:scaleY(calc(.06 + .94 * var(--fish-speech-level,0)));transition:transform 45ms linear}
+.en-fish-talking .fish-anchor-jaw{transform-box:view-box;transform-origin:320px 224px;transform:translateY(calc(20px * var(--fish-speech-level,0)));transition:transform 45ms linear}
+.en-fish-talking[data-photo-ready=true][data-animate=false]>.fish-anchor-svg{display:none}
+.en-fish-talking>.en-fish-still{display:none;width:100%;height:auto;object-fit:contain}
+.en-fish-talking[data-photo-ready=true][data-animate=false]>.en-fish-still{display:block}
+.en-celebration-fish-frame{width:min(100%,300px);margin:0 auto 12px}
+.en-celebration-fish-frame[hidden]{display:none!important}
+#enCelebrationVisual .en-owner-finale{max-width:100%;height:auto;object-fit:contain}
+#enCelebrationTrackPick{padding:10px 12px;border-left:3px solid #cfaf6f;line-height:1.5;color:#e8d7b3;overflow-wrap:anywhere}
+.en-fish-attribution label{display:inline-flex;align-items:center;min-height:44px;gap:8px}
+@media(max-width:700px){.early-watch-priority{grid-template-columns:minmax(0,1fr)}.en-early-weather-toast{right:16px;bottom:12px;padding:16px}.en-early-weather-toast h3{font-size:1.3rem}.en-celebration-fish-frame{width:min(100%,250px)}}
+@media(prefers-reduced-motion:reduce){.en-early-weather-cloud{animation:none}.en-fish-talking .fish-anchor-mouth,.en-fish-talking .fish-anchor-jaw{transition:none}}
+
+
+/* Relative-performance display: fixed four stages; unknown has no selected stage. */
+.en-poop-meter{margin:14px 0;padding:18px;border:1px solid var(--border,#334155);border-radius:16px;background:linear-gradient(135deg,rgba(15,23,42,.95),rgba(30,41,59,.8));color:var(--text,#f8fafc)}
+.en-poop-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:baseline}.en-poop-top h3{margin:0;font-size:1.35rem}.en-poop-kicker{margin:0;color:#cbd5e1;font-size:.85rem}.en-poop-level{font-size:1.05rem;margin:10px 0 6px;font-weight:800;min-height:1.6em}
+.en-poop-scale{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:12px 0;padding:0;list-style:none}.en-poop-scale li{position:relative;border:1px solid #475569;border-radius:10px;padding:10px 5px;text-align:center;font-size:.82rem;font-weight:700;color:#a8b3c5;background:#172033;min-width:0;overflow-wrap:anywhere;opacity:.65}.en-poop-scale li span{display:block;font-size:1.6rem;line-height:1.3;margin-bottom:4px}.en-poop-scale li[data-selected="true"]{opacity:1;color:#fff;border:2px solid var(--poop-tone,#cbd5e1);padding:9px 4px;box-shadow:0 0 18px color-mix(in srgb,var(--poop-tone,#cbd5e1) 22%,transparent)}
+.en-poop-scale li:nth-child(1){--poop-tone:#5eead4}.en-poop-scale li:nth-child(2){--poop-tone:#fde68a}.en-poop-scale li:nth-child(3){--poop-tone:#fb923c}.en-poop-scale li:nth-child(4){--poop-tone:#f87171}.en-poop-meter p{line-height:1.5}.en-poop-reason{margin:8px 0;color:#e2e8f0}.en-poop-coverage{font-size:.84rem;color:#b8c5d7;margin:6px 0}.en-poop-rules{font-size:.84rem;color:#cbd5e1;margin-top:10px}.en-poop-rules summary{cursor:pointer;min-height:44px;display:flex;align-items:center}.en-poop-rules ul{padding-left:22px}.en-poop-rules li{margin:6px 0}
+@media(max-width:500px){.en-poop-meter{padding:14px}.en-poop-scale{gap:4px}.en-poop-scale li{font-size:.73rem;padding:9px 3px}.en-poop-scale li[data-selected="true"]{padding:8px 2px}.en-poop-scale li span{font-size:1.4rem}}
 </style></head><body>
 <header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
@@ -1463,13 +1504,72 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
   <div class="en-celebration-actions">
    <label>Preview another <select id="enCelebrationPreviewChoice" aria-label="Choose a celebration preview"></select></label>
    <button class="en-milestone-close" id="enCelebrationMusicQuick" type="button" aria-pressed="true">Ad-free music</button>
-   <button class="en-milestone-close" id="enCelebrationSound" type="button" aria-pressed="true">Sound: on</button>
+  <button class="en-milestone-close" id="enCelebrationSound" type="button" aria-pressed="true">Sound: on</button>
+  <button class="en-milestone-close" id="enCelebrationSkip" type="button">Skip to finale ↗</button>
    <button class="en-milestone-close" id="enMilestoneClose" type="button" autofocus>Back to results · Esc</button>
   </div>
 
   <h3 id="enMilestoneTitle"></h3>
   <div class="en-celebration-stage" id="enCelebrationStage" hidden>
-   <img class="en-celebration-fish" id="enCelebrationFish" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="Fish Head announcing the celebration; image credited in the breaking-news panel" hidden>
+   <div class="en-fish-talking en-celebration-fish-frame" id="enCelebrationFishTalking" data-animate="true" hidden>
+    <svg class="fish-anchor-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Original illustrated fish news anchor: a green fish with expressive eyes, fins, scales and a large speaking mouth against a blue broadcast backdrop">
+ <style>
+  .fish-anchor-svg{display:block;width:100%;height:auto;overflow:hidden}
+  .fish-anchor-svg .fish-anchor-mouth{transform-box:view-box;transform-origin:320px 214px;transform:scaleY(calc(.06 + .94 * var(--fish-speech-level,0)));transition:transform 55ms linear}
+  .fish-anchor-svg .fish-anchor-jaw{transform-box:view-box;transform-origin:320px 224px;transform:translateY(calc(20px * var(--fish-speech-level,0)));transition:transform 55ms linear}
+  @media(prefers-reduced-motion:reduce){.fish-anchor-svg .fish-anchor-mouth,.fish-anchor-svg .fish-anchor-jaw{transition:none}}
+ </style>
+ <rect width="480" height="360" rx="22" fill="#0c3157"/>
+ <path d="M0 58H480M0 116H480M0 174H480M0 232H480M0 290H480M80 0V360M160 0V360M240 0V360M320 0V360M400 0V360" fill="none" stroke="#3f82ac" stroke-width="1" opacity=".2"/>
+ <path d="M0 245L480 72V132L0 305Z" fill="#247eaf" opacity=".18"/>
+ <path d="M24 80H103M24 91H78M404 270H453M426 281H453" stroke="#74cfff" stroke-width="3" opacity=".45"/>
+ <text x="24" y="36" fill="#b9e9ff" font-family="Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="2">ELECTION DESK</text>
+ <rect x="354" y="16" width="104" height="30" rx="7" fill="#922e48"/>
+ <circle cx="368" cy="31" r="4" fill="#ffd8d8"/>
+ <text x="411" y="36" text-anchor="middle" fill="#fff0ed" font-family="Arial,sans-serif" font-size="12" font-weight="800">FISH CAM</text>
+ <!-- Original fish anatomy, not a traced raster or a remote character image. -->
+ <path d="M151 271Q124 282 112 319H314Q302 285 273 273Z" fill="#17304b" stroke="#628dab" stroke-width="4"/>
+ <path d="M170 274L202 310 224 282 248 310 275 273Z" fill="#e1e6ce"/>
+ <path d="M208 298L224 291 238 298 228 311 238 327H208L218 311Z" fill="#d57b52"/>
+ <path d="M151 128L130 105 163 109 157 77 186 94 198 63 218 89 244 68 252 99 278 86 277 121Z" fill="#d5a84f" stroke="#738344" stroke-width="4" stroke-linejoin="round"/>
+ <path d="M144 194Q108 171 83 186L102 209 75 225Q112 239 145 219Z" fill="#d3a34a" stroke="#7c7e3e" stroke-width="4"/>
+ <path d="M133 175Q136 113 191 99Q237 78 289 104Q327 117 341 150Q359 170 385 177Q414 183 411 208Q407 233 382 241Q367 279 318 288Q268 298 223 280Q171 281 145 245Q124 219 133 175Z" fill="#a6b961" stroke="#4d7253" stroke-width="5"/>
+ <path d="M145 214Q158 258 219 267Q264 289 318 274Q358 265 380 237Q320 254 284 232Q236 208 200 177Q166 174 145 214Z" fill="#cfcd7e"/>
+ <path d="M160 158Q153 195 174 226M175 155Q166 196 187 229M190 157Q180 193 200 223" fill="none" stroke="#6f8e4d" stroke-width="6" stroke-linecap="round"/>
+ <g fill="none" stroke="#6c9450" stroke-width="3" opacity=".65" stroke-linecap="round">
+  <path d="M177 125Q185 137 194 125M199 117Q208 130 217 117M223 112Q231 125 240 112M158 142Q167 154 175 142M207 144Q216 157 225 144M184 246Q193 258 202 246M206 252Q215 264 224 252M230 260Q239 272 248 260M254 265Q263 277 272 265"/>
+ </g>
+ <ellipse cx="243" cy="142" rx="25" ry="29" fill="#edf0ce" stroke="#6b8652" stroke-width="4"/>
+ <ellipse cx="250" cy="147" rx="10" ry="15" fill="#1d4d64"/>
+ <ellipse cx="253" cy="149" rx="5" ry="10" fill="#0b2334"/>
+ <circle cx="250" cy="142" r="3" fill="#fff"/>
+ <path d="M218 112Q242 98 264 119" fill="none" stroke="#526e43" stroke-width="8" stroke-linecap="round"/>
+ <ellipse cx="310" cy="150" rx="37" ry="39" fill="#f5efcf" stroke="#77874d" stroke-width="5"/>
+ <ellipse cx="320" cy="156" rx="16" ry="22" fill="#25617c"/>
+ <ellipse cx="324" cy="158" rx="9" ry="17" fill="#0b2334"/>
+ <circle cx="318" cy="147" r="6" fill="#fff"/>
+ <path d="M277 112Q312 93 341 117" fill="none" stroke="#577343" stroke-width="10" stroke-linecap="round"/>
+ <path d="M350 177Q366 171 379 180M350 189Q367 183 382 191" fill="none" stroke="#768e4c" stroke-width="4" stroke-linecap="round"/>
+ <ellipse cx="391" cy="195" rx="4" ry="3" fill="#52744c"/>
+ <!-- Mouth and jaw use the SVG viewBox coordinate system, never image guesses. -->
+ <g class="fish-anchor-mouth" data-fish-mouth="cavity">
+  <path d="M261 214Q316 208 379 214Q363 253 319 258Q281 251 261 214Z" fill="#173141" stroke="#8b8150" stroke-width="2"/>
+  <ellipse cx="321" cy="246" rx="31" ry="8" fill="#d68f76"/>
+  <path d="M280 217L286 227 293 216M352 216L359 227 365 216" fill="#f3ead0"/>
+ </g>
+ <g class="fish-anchor-jaw" data-fish-mouth="jaw">
+  <path d="M266 224Q321 244 381 223Q363 273 319 281Q282 271 266 224Z" fill="#d4ce83" stroke="#879654" stroke-width="3"/>
+  <path d="M270 226Q319 246 377 226" fill="none" stroke="#af8353" stroke-width="9" stroke-linecap="round"/>
+  <path d="M300 263Q318 270 337 261" fill="none" stroke="#aeaa65" stroke-width="3" stroke-linecap="round"/>
+ </g>
+ <path d="M261 214Q316 208 379 214" fill="none" stroke="#ba8c56" stroke-width="8" stroke-linecap="round"/>
+ <rect x="21" y="311" width="438" height="32" rx="8" fill="#0a68a2" stroke="#6ccefa" stroke-width="2"/>
+ <text x="38" y="333" fill="#effbff" font-family="Arial,sans-serif" font-size="21" font-weight="900" letter-spacing="2">FISH NEWS</text>
+ <text x="442" y="332" text-anchor="end" fill="#b9e9ff" font-family="Arial,sans-serif" font-size="11" font-weight="700">THE BREAKING DESK</text>
+</svg>
+
+    <img class="en-celebration-fish en-fish-still" id="enCelebrationFish" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="Original Fish Head still; image reference in the breaking-news panel" hidden>
+   </div>
    <div class="en-celebration-visual" id="enCelebrationVisual" aria-hidden="true" hidden></div>
    <div class="en-celebration-icon" id="enCelebrationIcon" aria-hidden="true"></div>
    <div class="en-celebration-line" id="enCelebrationLine"></div>
@@ -1479,6 +1579,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
   <div id="enCelebrationOnlinePlayer" class="en-celebration-online-player" hidden></div>
   <audio id="enCelebrationLocalAudio" class="en-celebration-local-audio" controls preload="none" aria-label="Your ad-free celebration audio" hidden></audio>
   <p class="en-celebration-online-status" id="enCelebrationOnlineStatus" role="status">Ad-free music uses your saved audio file or the original score.</p>
+  <p class="en-celebration-track-pick" id="enCelebrationTrackPick"></p>
   <div class="en-celebration-local-settings">
    <span id="enCelebrationLocalName">Audio files stay in this browser; they are never uploaded.</span>
    <button id="enCelebrationLocalChoose" type="button">Choose an audio file</button>
@@ -1530,21 +1631,104 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
  <div id="enWatchError" class="en-watch-error" role="status"></div>
  <div id="enWatchItems" class="en-watch-items"><p class="empty">Add the races you want at your fingertips on election night.</p></div>
  </details>
+<section id="enPoopMeter" class="en-poop-meter" aria-labelledby="enPoopTitle" data-stage="UNRATED">
+ <div class="en-poop-top"><h3 id="enPoopTitle">The Poop Meter</h3><p class="en-poop-kicker">EARLY RETURNS · PERFORMANCE VS EXPECTATIONS</p></div>
+ <p id="enPoopLevel" class="en-poop-level" role="status" aria-live="polite">Waiting for usable returns</p>
+ <ol class="en-poop-scale" aria-label="Underperformance warning scale">
+  <li data-poop-stage="CLEAN_UNDIES" data-selected="false"><span aria-hidden="true">🩲</span>Clean undies</li>
+  <li data-poop-stage="SKID_MARKS" data-selected="false"><span aria-hidden="true">😬</span>Skid marks</li>
+  <li data-poop-stage="TURTLING" data-selected="false"><span aria-hidden="true">🐢</span>Turtling</li>
+  <li data-poop-stage="FULL_BLOWN_SHIT" data-selected="false"><span aria-hidden="true">💩</span>Full-blown shit</li>
+ </ol>
+ <p id="enPoopReason" class="en-poop-reason">At least two states need usable matched returns before this meter gets a rating.</p>
+ <p id="enPoopCoverage" class="en-poop-coverage">Covered evidence only · not national win odds.</p>
+ <details class="en-poop-rules"><summary>What puts us on the scale?</summary>
+  <p>The same admitted county evidence used by the needles supplies this display. The 32-race watch also includes races whose matched inputs are still missing. Neither display adds another adjustment to the model.</p>
+  <ul><li><strong>Clean undies:</strong> at least two covered states have usable comparisons and no qualified Democratic underperformance warning.</li><li><strong>Skid marks:</strong> a warning in one state, or conflicting overperformance and underperformance.</li><li><strong>Turtling:</strong> warnings in at least two states, with no qualified opposing positive signal.</li><li><strong>Full-blown shit:</strong> at least three states fall at least 5 points short of expectations across every supplied method scenario, with no qualified positive signal.</li></ul>
+  <p>Editorial thresholds, not calibrated odds: noticeable means at least 3 margin points across every method scenario. Each comparison needs at least 10,000 matched two-party votes, three reporting areas and 0.5% of historical reference turnout. Nebraska’s Osborn/Ricketts axis is excluded from Democratic-performance warnings. Partial geography and reporting order can mislead; “Clean” is not a Democratic-win forecast. Pending, stale or insufficient evidence stays unrated.</p>
+ </details>
+</section>
 <details class="en-early-desk" id="enEarlySignalsDetails" aria-label="Early election night signals">
- <summary class="en-early-heading"><span><strong>Early Signals · 15 races to watch</strong>
- <small>KY, IN, Virginia, NC and more · expand checklist</small></span></summary>
- <p class="en-live-note">A chronological watch guide to compare early districts, including the VA-01 / VA-02 / VA-05 community scenario. No single race determines the national outcome. Early precinct percentages are not percentages of ballots counted.</p>
+ <summary class="en-early-heading"><span><strong>Early indicators · one shared watch</strong>
+ <small>KY-06 · IN-05 · FL-SEN · all 21 House references</small></span></summary>
+ <p class="en-live-note">Winning is not required to outperform. In the same reporting areas, an expected R+25 margin reporting R+20 is D+5 versus expectations. Raw early totals alone cannot establish that comparison.</p>
  <p id="enEarlyHealth" class="en-live-note" role="status">Waiting for source-validated early results…</p>
- <div id="enEarlySignals" class="en-early-grid"><p class="en-live-note">Preparing early race checklist…</p></div>
- <p class="en-live-note">Watch ideas: <a href="https://www.reddit.com/r/fivethirtyeight/comments/1x6l790/" target="_blank" rel="noopener noreferrer">October 15 r/fivethirtyeight discussion ↗</a>; poll-close times cross-checked against <a href="https://www.270towin.com/poll-closing-times/index.php" target="_blank" rel="noopener noreferrer">270toWin ↗</a>. Results, when present, remain labeled by actual provider.</p>
+ <div id="enEarlySignals" class="en-early-shortcuts">
+  <button type="button" id="enEarlyWatchOpen">Open the shared early-indicator watch ↗</button>
+  <button type="button" id="enEarlyWeatherPreview">Preview “storm brewing”</button>
+ </div>
+ <p class="en-live-note">Provisional weather bulletins use matched performance across states. They are separate from verified race wins and add no second adjustment to the national needle.</p>
 </details>
+<aside class="en-early-weather-toast" id="enEarlyWeatherToast" hidden aria-live="polite" aria-label="Provisional early-indicator bulletin">
+ <div class="en-early-weather-cloud" aria-hidden="true">☁</div>
+ <div><small id="enEarlyWeatherKicker">EARLY WEATHER DESK · PROVISIONAL</small><h3 id="enEarlyWeatherTitle">A storm is brewing</h3><p id="enEarlyWeatherBody"></p><strong>Encouraging local evidence · not a race win or national call</strong></div>
+ <button type="button" id="enEarlyWeatherDismiss" aria-label="Dismiss provisional early-indicator bulletin">✕</button>
+</aside>
 <aside id="enFishToast" class="en-fish-toast" hidden role="dialog" aria-modal="true" aria-live="off" aria-label="Breaking election news interruption">
  <div class="en-fish-stage">
   <div class="en-fish-bumper"><span class="en-fish-live-dot" aria-hidden="true"></span>WE INTERRUPT THIS ELECTION<span class="en-fish-bumper-side">BIKINI BOTTOM NEWS NETWORK</span></div>
   <div class="en-fish-broadcast">
    <figure class="en-fish-art">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="The actual Realistic Fish Head news anchor from SpongeBob SquarePants" loading="lazy">
-    <figcaption>THE REALISTIC FISH HEAD · BREAKING DESK</figcaption>
+    <div class="en-fish-talking" id="enFishTalking" data-animate="true">
+     <svg class="fish-anchor-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Original illustrated fish news anchor: a green fish with expressive eyes, fins, scales and a large speaking mouth against a blue broadcast backdrop">
+ <style>
+  .fish-anchor-svg{display:block;width:100%;height:auto;overflow:hidden}
+  .fish-anchor-svg .fish-anchor-mouth{transform-box:view-box;transform-origin:320px 214px;transform:scaleY(calc(.06 + .94 * var(--fish-speech-level,0)));transition:transform 55ms linear}
+  .fish-anchor-svg .fish-anchor-jaw{transform-box:view-box;transform-origin:320px 224px;transform:translateY(calc(20px * var(--fish-speech-level,0)));transition:transform 55ms linear}
+  @media(prefers-reduced-motion:reduce){.fish-anchor-svg .fish-anchor-mouth,.fish-anchor-svg .fish-anchor-jaw{transition:none}}
+ </style>
+ <rect width="480" height="360" rx="22" fill="#0c3157"/>
+ <path d="M0 58H480M0 116H480M0 174H480M0 232H480M0 290H480M80 0V360M160 0V360M240 0V360M320 0V360M400 0V360" fill="none" stroke="#3f82ac" stroke-width="1" opacity=".2"/>
+ <path d="M0 245L480 72V132L0 305Z" fill="#247eaf" opacity=".18"/>
+ <path d="M24 80H103M24 91H78M404 270H453M426 281H453" stroke="#74cfff" stroke-width="3" opacity=".45"/>
+ <text x="24" y="36" fill="#b9e9ff" font-family="Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="2">ELECTION DESK</text>
+ <rect x="354" y="16" width="104" height="30" rx="7" fill="#922e48"/>
+ <circle cx="368" cy="31" r="4" fill="#ffd8d8"/>
+ <text x="411" y="36" text-anchor="middle" fill="#fff0ed" font-family="Arial,sans-serif" font-size="12" font-weight="800">FISH CAM</text>
+ <!-- Original fish anatomy, not a traced raster or a remote character image. -->
+ <path d="M151 271Q124 282 112 319H314Q302 285 273 273Z" fill="#17304b" stroke="#628dab" stroke-width="4"/>
+ <path d="M170 274L202 310 224 282 248 310 275 273Z" fill="#e1e6ce"/>
+ <path d="M208 298L224 291 238 298 228 311 238 327H208L218 311Z" fill="#d57b52"/>
+ <path d="M151 128L130 105 163 109 157 77 186 94 198 63 218 89 244 68 252 99 278 86 277 121Z" fill="#d5a84f" stroke="#738344" stroke-width="4" stroke-linejoin="round"/>
+ <path d="M144 194Q108 171 83 186L102 209 75 225Q112 239 145 219Z" fill="#d3a34a" stroke="#7c7e3e" stroke-width="4"/>
+ <path d="M133 175Q136 113 191 99Q237 78 289 104Q327 117 341 150Q359 170 385 177Q414 183 411 208Q407 233 382 241Q367 279 318 288Q268 298 223 280Q171 281 145 245Q124 219 133 175Z" fill="#a6b961" stroke="#4d7253" stroke-width="5"/>
+ <path d="M145 214Q158 258 219 267Q264 289 318 274Q358 265 380 237Q320 254 284 232Q236 208 200 177Q166 174 145 214Z" fill="#cfcd7e"/>
+ <path d="M160 158Q153 195 174 226M175 155Q166 196 187 229M190 157Q180 193 200 223" fill="none" stroke="#6f8e4d" stroke-width="6" stroke-linecap="round"/>
+ <g fill="none" stroke="#6c9450" stroke-width="3" opacity=".65" stroke-linecap="round">
+  <path d="M177 125Q185 137 194 125M199 117Q208 130 217 117M223 112Q231 125 240 112M158 142Q167 154 175 142M207 144Q216 157 225 144M184 246Q193 258 202 246M206 252Q215 264 224 252M230 260Q239 272 248 260M254 265Q263 277 272 265"/>
+ </g>
+ <ellipse cx="243" cy="142" rx="25" ry="29" fill="#edf0ce" stroke="#6b8652" stroke-width="4"/>
+ <ellipse cx="250" cy="147" rx="10" ry="15" fill="#1d4d64"/>
+ <ellipse cx="253" cy="149" rx="5" ry="10" fill="#0b2334"/>
+ <circle cx="250" cy="142" r="3" fill="#fff"/>
+ <path d="M218 112Q242 98 264 119" fill="none" stroke="#526e43" stroke-width="8" stroke-linecap="round"/>
+ <ellipse cx="310" cy="150" rx="37" ry="39" fill="#f5efcf" stroke="#77874d" stroke-width="5"/>
+ <ellipse cx="320" cy="156" rx="16" ry="22" fill="#25617c"/>
+ <ellipse cx="324" cy="158" rx="9" ry="17" fill="#0b2334"/>
+ <circle cx="318" cy="147" r="6" fill="#fff"/>
+ <path d="M277 112Q312 93 341 117" fill="none" stroke="#577343" stroke-width="10" stroke-linecap="round"/>
+ <path d="M350 177Q366 171 379 180M350 189Q367 183 382 191" fill="none" stroke="#768e4c" stroke-width="4" stroke-linecap="round"/>
+ <ellipse cx="391" cy="195" rx="4" ry="3" fill="#52744c"/>
+ <!-- Mouth and jaw use the SVG viewBox coordinate system, never image guesses. -->
+ <g class="fish-anchor-mouth" data-fish-mouth="cavity">
+  <path d="M261 214Q316 208 379 214Q363 253 319 258Q281 251 261 214Z" fill="#173141" stroke="#8b8150" stroke-width="2"/>
+  <ellipse cx="321" cy="246" rx="31" ry="8" fill="#d68f76"/>
+  <path d="M280 217L286 227 293 216M352 216L359 227 365 216" fill="#f3ead0"/>
+ </g>
+ <g class="fish-anchor-jaw" data-fish-mouth="jaw">
+  <path d="M266 224Q321 244 381 223Q363 273 319 281Q282 271 266 224Z" fill="#d4ce83" stroke="#879654" stroke-width="3"/>
+  <path d="M270 226Q319 246 377 226" fill="none" stroke="#af8353" stroke-width="9" stroke-linecap="round"/>
+  <path d="M300 263Q318 270 337 261" fill="none" stroke="#aeaa65" stroke-width="3" stroke-linecap="round"/>
+ </g>
+ <path d="M261 214Q316 208 379 214" fill="none" stroke="#ba8c56" stroke-width="8" stroke-linecap="round"/>
+ <rect x="21" y="311" width="438" height="32" rx="8" fill="#0a68a2" stroke="#6ccefa" stroke-width="2"/>
+ <text x="38" y="333" fill="#effbff" font-family="Arial,sans-serif" font-size="21" font-weight="900" letter-spacing="2">FISH NEWS</text>
+ <text x="442" y="332" text-anchor="end" fill="#b9e9ff" font-family="Arial,sans-serif" font-size="11" font-weight="700">THE BREAKING DESK</text>
+</svg>
+
+     <img class="en-fish-still" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="Original Realistic Fish Head still" loading="lazy">
+    </div>
+    <figcaption>FISH HEAD · BREAKING DESK</figcaption>
    </figure>
    <div class="en-fish-copy">
     <span class="en-fish-kicker">🚨 BREAKING FISH NEWS 🚨</span>
@@ -1560,7 +1744,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
   </div>
   <audio id="enFishAudio" preload="auto" src="./assets/audio/breaking-news-in-the-2026-midterm-elections.mp3"></audio>
   <p id="enFishAudioStatus" class="en-fish-audio-status" role="status">Your recorded breaking-news announcement plays at the start of each bulletin.</p>
-  <p class="en-fish-attribution">Actual Fish Head still: <a href="https://commons.wikimedia.org/wiki/File:Realistic_Fish_Head.jpg" target="_blank" rel="noopener noreferrer">HandyGames / Wikimedia Commons, CC BY 3.0 ↗</a> · audio: your uploaded breaking-news MP3, not video or generated speech. Results remain source-attributed.</p>
+  <p class="en-fish-attribution">Animated anchor: original illustration; mouth follows your recording’s sound, not generated speech or exact phonemes. <label><input type="checkbox" id="enFishAnimate" checked> Animate the fish anchor</label> Original still (when available): HandyGames / CC BY 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Realistic_Fish_Head.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons ↗</a>. Results remain source-attributed.</p>
  </div>
 </aside>
 <section class="en-alert-desk" aria-label="Watchlist election alerts">
@@ -1587,13 +1771,14 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 </details>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
-<script src="./scripts/election_night_celebration_player.js?v=47af1bdac3fe"></script>
+<script src="./scripts/election_night_celebration_player.js?v=c1323c671a78"></script>
+<script src="./scripts/election_night_announcement_motion.js?v=71716b57b5f2"></script>
 <script src="./scripts/election_night_celebration_online.js?v=b0163b7f8211"></script>
 <script src="./scripts/election_night_celebration_local.js?v=cb2655f0b013"></script>
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
-<script src="./scripts/election_night_celebration_scene.js?v=21828156bbd1"></script>
+<script src="./scripts/election_night_celebration_music_choices.js?v=d6d015761993"></script>
+<script src="./scripts/election_night_celebration_scene.js?v=eea0c6fcdbf5"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
-<script src="./scripts/personal_election_focus.js?v=92c6508212af"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1621,6 +1806,10 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_priority.js?v=67317c95ade2"></script>
 <script src="./scripts/election_night_signals.js?v=de465c6b3fd3"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
+<script src="./scripts/election_night_indicator_status.js?v=0248c0cbc715"></script>
+<script src="./scripts/election_night_early_weather.js?v=def635952113"></script>
+<script src="./scripts/election_night_poop_meter.js?v=e97eea7deb51"></script>
+<script src="./scripts/personal_election_focus.js?v=8a3865ac232b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=395ee89c6934"></script>
 <script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
@@ -4927,9 +5116,9 @@ function jointHistoryRevision(preview=false,recorded=jointRecordedCodeRevision()
  recorded,jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
  jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()&&jointPrivateHouse?1:0].join('|');}
 function renderPersonalElectionFocus(){
- if(jointModelPending){const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;if(!host.hidden)window.PersonalElectionFocus?.setPending(host);}return;}
+ if(jointModelPending){if(typeof enIndicatorWithdraw==='function')enIndicatorWithdraw();const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;if(!host.hidden)window.PersonalElectionFocus?.setPending(host);}if(typeof enIndicatorSyncControls==='function')enIndicatorSyncControls();return;}
  try{window.PersonalElectionFocus?.render($('#enPersonalFocus'),jointLastResult,jointPulseBaseline,
-  {year:enModeYear,now:Date.now(),calculationAsOf:jointAsOfSnapshot,closes:window.ElectionNightPollClosings2026,evidence:jointPulseRows,history:enOutlookHistory,context:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC'});}
+  {year:enModeYear,now:Date.now(),calculationAsOf:jointAsOfSnapshot,closes:window.ElectionNightPollClosings2026,evidence:jointPulseRows,history:enOutlookHistory,context:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC',indicators:typeof enIndicatorCollect==='function'?enIndicatorCollect():null,pinnedCodes:typeof enWatched==='undefined'?[]:enWatched.map(x=>x.office==='Senate'?x.key.slice(0,2)+'-SEN':x.key),toggleWatch:code=>{if(typeof enWatchParse!=='function'||typeof enWatchToggle!=='function')return;const item=enWatchParse(code);if(item){enWatchToggle(item);if(typeof jointRender==='function')void jointRender(false);renderPersonalElectionFocus();}},officialSources:typeof enEarlyOfficialSources==='undefined'?null:enEarlyOfficialSources});if(typeof enRenderEarlySignals==='function')enRenderEarlySignals();}
  catch{const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;host.textContent='Personal race needles unavailable · national forecast remains separate.';}}
 }
 let jointModelPending=false,jointPendingKey='',jointActiveKey='',jointModelPromise=Promise.resolve(),jointRequestEpoch=0,
@@ -5106,12 +5295,14 @@ function jointFrameSnapshot(inputs,key){
 }
 function jointFrameCurrent(frame,epoch){return epoch===jointRequestEpoch&&!document.hidden&&frame.key===jointFrameKey(jointValidatedFrameInputs());}
 function jointInvalidateModel(key,message='Updating forecast in the background…',hard=false){
+ if(typeof enIndicatorWithdraw==='function')enIndicatorWithdraw();
  if(!hard&&jointModelPending&&jointPendingKey===key&&!jointAsOfSnapshot)return;
  jointClearCountSnapshots();
  if(jointUnavailableKey!==key)jointUnavailableKey='';
  jointPreservePendingLayout();
  if($('#enNationalRehearsal')?.open&&enModeYear===2026&&!document.hidden){jointCancelNationalPreview(true);nationalPreviewNeedsRefresh=true;}
  jointRequestEpoch++;jointModelController?.cancel('INPUT_SNAPSHOT_CHANGED');jointActiveKey='';jointPendingKey=key;jointModelPending=true;
+ if(typeof enIndicatorSyncControls==='function')enIndicatorSyncControls();
  jointLastResult=null;jointPublicResult=null;jointPulseBaseline=null;jointPulseRows=[];jointDescriptiveReturns=[];jointCacheKey='';jointErrorMessage=message;
  jointRenderCards(null);for(const id of ['jointHomeHeadline','jointNightHeadline'])if($('#'+id))$('#'+id).textContent='Forecast updating';
  jointRenderHouseShadow(null,null,null);
@@ -6088,6 +6279,7 @@ function enFishRenderVoice(){
 }
 function enFishStatus(message){$('#enFishAudioStatus').textContent=message;}
 function enFishAudioStop(){
+ if(typeof enAnnouncementMotionStop==='function')enAnnouncementMotionStop('bulletin');
  const audio=$('#enFishAudio');
  try{audio.pause();audio.currentTime=0}catch{}
 }
@@ -6098,6 +6290,7 @@ function enFishPlayAudio(){
   return false;
  }
  enFishAudioStop();
+ if(typeof enAnnouncementMotionStart==='function')enAnnouncementMotionStart('bulletin',{resume:true});
  try{
   const playback=audio.play();
   enFishStatus('Playing your original breaking-news MP3.');
@@ -6141,6 +6334,7 @@ function enFishQueueState(){
          kind:enFishCurrent?.event.kind||null};
 }
 function enFishNextBulletin(){
+ if(typeof enIndicatorWithdraw==='function')enIndicatorWithdraw();
  if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
  if(window.enCelebrationPlayer?.state().active){
   enFishCurrent=null;enFishAudioStop();$('#enFishToast').hidden=true;return;
@@ -6151,6 +6345,7 @@ function enFishNextBulletin(){
  }else enFishDismiss();
 }
 function enFishPresent(event,demo){
+ if(typeof enIndicatorWithdraw==='function')enIndicatorWithdraw();
  const toast=$('#enFishToast');
  if(toast.hidden){enFishReturnFocus=document.activeElement;enFishReturnAnchor=enReadingReturnAnchor(enFishReturnFocus);}
  toast.hidden=false;enFishCurrent={event,demo};
@@ -6438,7 +6633,7 @@ const enMilestonePosters=Object.freeze({
  graham:{file:'graham',asset:'celebration-owner-graham.jpg',revision:'90f3e5c8fdee',fallbackRevision:'7ec8cd5c791f',alt:'Owner-supplied fictional nightclub farewell artwork with a blonde-wig character, disco ball and rainbow flags; not a documentary photograph'},
  blexas:{file:'blexas',alt:'Blue outline of Texas with two stars labelled Senate and Governor'},
  blue_corn:{file:'blue-corn',alt:'A large ear of corn with blue kernels: one blue kernel of truth'},
- blansas:{file:'blansas',asset:'celebration-owner-kansas.jpg',revision:'26f7df1f64f4',alt:'Owner-supplied fictional Kansas painting: John Brown versus a Confederate soldier with stylized blue splashes'},
+ blansas:{file:'blansas',asset:'celebration-owner-kansas.jpg',revision:'26f7df1f64f4',fallbackRevision:'6b7cd186527d',alt:'Owner-supplied fictional Kansas painting: John Brown versus a Confederate soldier with stylized blue splashes'},
  maine:{file:'maine',alt:'Original cartoon witch with a hat labelled Collins beside a broom'},
  nebraska:{file:'nebraska',alt:'Blue tractor across Nebraska cornfields: Osborn independent corn-fed rebellion'},
  ohio:{file:'ohio',alt:'A buckeye nut cracked by a vivid blue lightning bolt: Sherrod Brown comeback'},
@@ -6478,11 +6673,11 @@ function enMilestoneRender(item,demo=false){
  const posterNode=$('#enMilestonePoster');
  const realBrown=Boolean(poster?.historicalPortrait);
  $('#enJohnBrownPosterTitle').hidden=!realBrown;
- posterNode.hidden=!poster;
+ posterNode.hidden=!poster;delete posterNode.dataset.failed;
  posterNode.classList.toggle('historic-john-brown',realBrown);
  posterNode.classList.toggle('owner-celebration-art',Boolean(poster?.asset));
  const missingPoster=()=>{
-  posterNode.onerror=null;posterNode.hidden=true;
+  posterNode.onerror=null;posterNode.dataset.failed='true';posterNode.hidden=true;
   $('#enMilestoneArt').hidden=false;$('#enMilestoneArt').textContent=item.icon||'🎉';
  };
  posterNode.onerror=poster?missingPoster:null;
@@ -6529,6 +6724,57 @@ function enMilestoneRender(item,demo=false){
  return true;
 }
 let enCelebrationAudioContext=null,enCelebrationNotes=[],enCelebrationCurrent=null,enCelebrationReturnFocus=null,enCelebrationReturnAnchor=null,enCelebrationBodyOverflow='',enCelebrationModalActive=false;
+// Insert after the ONE existing enCelebrationAudioContext declaration and
+// before either announcement is started. The context remains music-owned.
+const enAnnouncementMotionSlots={bulletin:{epoch:0,motion:null},celebration:{epoch:0,motion:null}};
+function enAnnouncementMotionActive(kind){
+ try{
+  if(!enFishSoundEnabled||document.hidden)return false;
+  const element=document.querySelector(kind==='bulletin'?'#enFishTalking':'#enCelebrationFishTalking');
+  if(!element||element.hidden||element.isConnected===false||element.dataset.animate==='false')return false;
+  if(kind==='bulletin')return !document.querySelector('#enFishToast')?.hidden&&Boolean(enFishCurrent);
+  return document.querySelector('#enMilestoneSpotlight')?.open===true&&document.querySelector('#enCelebrationStage')?.dataset.phase==='announcement';
+ }catch{return false;} // Optional/extracted-unit DOM stays a static fallback.
+}
+function enAnnouncementMotionContext(create=false){
+ try{
+  if(!enCelebrationAudioContext&&create){const Context=window.AudioContext||window.webkitAudioContext;if(typeof Context==='function')enCelebrationAudioContext=new Context();}
+  return enCelebrationAudioContext?.state==='closed'?null:enCelebrationAudioContext;
+ }catch{return null;} // Includes a missing or not-yet-initialized binding.
+}
+function enAnnouncementMotionSlot(kind){
+ try{
+  const slot=enAnnouncementMotionSlots[kind],api=window.ElectionNightAnnouncementMotion;
+  if(!slot||typeof api?.create!=='function')return null;
+  if(!slot.motion){const audio=document.querySelector(kind==='bulletin'?'#enFishAudio':'#enCelebrationAnnouncement'),element=document.querySelector(kind==='bulletin'?'#enFishTalking':'#enCelebrationFishTalking');
+   if(!audio||!element)return null;
+   slot.motion=api.create({audio,element,getContext:()=>enAnnouncementMotionContext(false),isActive:()=>enAnnouncementMotionActive(kind)});
+  }
+  return slot;
+ }catch{return null;}
+}
+function enAnnouncementMotionStop(kind){
+ try{const slot=enAnnouncementMotionSlots[kind];if(slot){slot.epoch++;slot.motion?.stop();}}catch{}
+}
+function enAnnouncementMotionStart(kind,{resume=false}={}){
+ try{
+  const slot=enAnnouncementMotionSlot(kind);if(!slot)return false;
+  const epoch=++slot.epoch;
+  if(!enAnnouncementMotionActive(kind)){slot.motion.stop();return false;}
+  const context=enAnnouncementMotionContext(resume);
+  const started=slot.motion.start();
+  // Never await this before audio.play(). Native clip playback is independent
+  // of the optional analysis context, including failed/suspended resumes.
+  if(resume&&context?.state==='suspended'&&typeof context.resume==='function'){
+   let result;try{result=context.resume();}catch{return started;}
+   Promise.resolve(result).then(()=>{
+    if(slot.epoch===epoch&&enAnnouncementMotionActive(kind))slot.motion.start();
+   },()=>{/* Static fish; native playback remains independent. */});
+  }
+  return started;
+ }catch{return false;}
+}
+
 let enCelebrationMusicEpoch=0;
 let enCelebrationModalEpoch=0,enCelebrationSettingsEpoch=0,enCelebrationInfoEpoch=0;
 const enCelebrationOnline=window.ElectionNightCelebrationOnline;
@@ -6536,6 +6782,7 @@ const enCelebrationLocal=window.ElectionNightCelebrationLocal?.create({audio:$('
 const enCelebrationStorage=(()=>{try{return localStorage}catch{return null}})();
 const enCelebrationMusicSettings=enCelebrationOnline?.read(enCelebrationStorage,Object.keys(window.ElectionNightCelebrationPlayer?.STORIES||enMilestonePosters))||{mode:'original',videos:{}};
 function enCelebrationOpen(){
+ if(typeof enIndicatorWithdraw==='function')enIndicatorWithdraw();
  const dialog=$('#enMilestoneSpotlight');
  if(!dialog.open){
   // A celebration preempting a bulletin inherits its original reader.
@@ -6570,6 +6817,8 @@ function enCelebrationDismiss(restore=true){
 function enCelebrationSyncMusic(){
  ++enCelebrationSettingsEpoch;
  const track=enCelebrationOnline?.track(enCelebrationCurrent,enCelebrationMusicSettings);
+ const pick=window.ElectionNightCelebrationMusicChoices?.forEvent(enCelebrationCurrent),pickNode=$('#enCelebrationTrackPick');
+ if(pickNode)pickNode.textContent=pick?'Soundtrack pick: '+pick.title+' · '+pick.artist+'. '+pick.hint+' Ad-free fallback: '+pick.fallback+'.':'';
  $('#enCelebrationMusicMode').value=enCelebrationMusicSettings.mode;
  const quick=$('#enCelebrationMusicQuick'),online=enCelebrationMusicSettings.mode==='youtube';
  quick.textContent=online?'Use ad-free music':'Ad-free music';quick.setAttribute('aria-pressed',String(!online));
@@ -6652,6 +6901,7 @@ function enCelebrationStopMedia(){
  ++enCelebrationMusicEpoch;enCelebrationLocal?.stop();
  enCelebrationOnline?.clear($('#enCelebrationOnlinePlayer'));
  const audio=$('#enCelebrationAnnouncement');
+ if(typeof enAnnouncementMotionStop==='function')enAnnouncementMotionStop('celebration');
  audio.onended=null;audio.onerror=null;
  try{if(!audio.paused)audio.pause();if(audio.currentTime)audio.currentTime=0}catch{}
  for(const note of enCelebrationNotes){try{note.stop()}catch{}}
@@ -6665,7 +6915,7 @@ function enCelebrationRenderSound(){
 async function enCelebrationMusic(id,reason){
  // A selected online recording can outlast the short animation. All other
  // queue/stop/retraction paths still remove its player immediately.
- if(!id&&reason==='finale'&&enFishSoundEnabled&&$('#enMilestoneSpotlight').open&&($('#enCelebrationOnlinePlayer iframe')||!$('#enCelebrationLocalAudio').hidden)){
+ if(!id&&reason==='finale'&&enFishSoundEnabled&&$('#enMilestoneSpotlight').open&&$('#enCelebrationStage').dataset.phase==='complete'){
   $('#enCelebrationOnlineStatus').textContent='Your track can continue on the finale. Close or mute to stop.';
   return;
  }
@@ -6736,16 +6986,17 @@ function enCelebrationRenderVisual(item,demo,phase,scene){
  let shown=false;
  try{
   const beat=window.ElectionNightCelebrationPlayer?.STORIES[item.id]?.indexOf(scene);
-  shown=Boolean(window.ElectionNightCelebrationScene?.render(host,{id:item.id,phase,beat,preview:demo,ownerArtwork:item.id==='abbott'?{url:enMilestonePosterUrl(enMilestonePosters.abbott),alt:enMilestonePosters.abbott.alt}:null}));
+  shown=Boolean(window.ElectionNightCelebrationScene?.render(host,{id:item.id,phase,beat,preview:demo,ownerArtwork:['abbott','graham','blansas','mississippi'].includes(item.id)&&enMilestonePosters[item.id]?.asset?{url:enMilestonePosterUrl(enMilestonePosters[item.id]),alt:enMilestonePosters[item.id].alt,aiGenerated:item.id==='abbott'}:null}));
  }catch{enCelebrationClearVisual()}
  $('#enCelebrationIcon').hidden=shown;
  if(item.id==='tsunami')$('#enTsunamiMeme').hidden=shown;
  if(shown){$('#enMilestonePoster').hidden=true;$('#enMilestoneArt').hidden=true;}
- if(shown&&['mississippi','blansas','graham'].includes(item.id))$('#enMilestoneSource').append(elt('span','en-scene-credit','Original animated scene · owner-supplied poster retained.'));
+ if(shown&&['abbott','mississippi','blansas','graham'].includes(item.id))$('#enMilestoneSource').append(elt('span','en-scene-credit',phase==='complete'?'Owner-supplied fictional picture · whole-image finale.':'Original animated scene · supplied picture follows at the finale.'));
  return shown;
 }
 const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
  valid:enCelebrationEligible,
+ reducedMotion:()=>window.matchMedia('(prefers-reduced-motion: reduce)').matches,
  announce:done=>{
   enFishAudioStop();enCelebrationRenderSound();
   if(enFishTimeout){clearTimeout(enFishTimeout);enFishTimeout=null;}
@@ -6753,6 +7004,7 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
   const audio=$('#enCelebrationAnnouncement');
   if(!enFishSoundEnabled){done();return;}
   audio.onended=done;audio.onerror=done;
+  if(typeof enAnnouncementMotionStart==='function')enAnnouncementMotionStart('celebration',{resume:true});
   try{const p=audio.play();if(p?.catch)p.catch(done)}catch{done()}
  },
  music:enCelebrationMusic,
@@ -6760,12 +7012,18 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
   if(phase==='revoked'){enCelebrationClearVisual();enCelebrationHide();return;}
   if(phase==='announcement')enMilestoneRender(item,demo);
   const stage=$('#enCelebrationStage');stage.hidden=false;stage.dataset.phase=phase;
+  $('#enCelebrationFishTalking').hidden=phase!=='announcement';
   $('#enCelebrationFish').hidden=phase!=='announcement';
+  const skip=$('#enCelebrationSkip'),skipFocused=document.activeElement===skip;skip.hidden=phase==='complete';
+  if(skip.hidden&&skipFocused)$('#enMilestoneClose').focus({preventScroll:true});
+  if(phase!=='announcement'){const audio=$('#enCelebrationAnnouncement');audio.onended=null;audio.onerror=null;try{audio.pause();audio.currentTime=0}catch{}if(typeof enAnnouncementMotionStop==='function')enAnnouncementMotionStop('celebration');}
   $('#enCelebrationIcon').textContent=scene?.[0]||'📣';
   $('#enCelebrationLine').textContent=scene?.[1]||'BREAKING NEWS';
   $('#enCelebrationCaption').textContent=scene?.[2]||
    (enFishSoundEnabled?'Fish Head announcement · animation follows':'Sound off · animation follows');
   const customVisual=enCelebrationRenderVisual(item,demo,phase,scene);
+  if(phase!=='complete'){$('#enMilestonePoster').hidden=true;$('#enMilestoneArt').hidden=true;}
+  else if(!customVisual){const poster=enMilestonePosters[item.id];$('#enMilestonePoster').hidden=!poster||$('#enMilestonePoster').dataset.failed==='true';$('#enMilestoneArt').hidden=!$('#enMilestonePoster').hidden;}
   if(!customVisual&&phase==='scene'&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
    const icon=$('#enCelebrationIcon');
    for(const animation of icon.getAnimations?.()||[])animation.cancel();
@@ -6780,6 +7038,33 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
  stop:enCelebrationStopMedia,revoke:()=>{},state:()=>({active:null,pending:0})
 });
 window.enCelebrationPlayer=enCelebrationPlayer;
+
+const enFishAnimateKey='electionNightFishAnimateV1';
+try{$('#enFishAnimate').checked=localStorage.getItem(enFishAnimateKey)!=='off';}catch{}
+function enFishPrepareStill(host){
+ const image=host?.querySelector?.('.en-fish-still');if(!image||host.dataset.animate!=='false')return;
+ const src=image.getAttribute('src');
+ // A display:none lazy image may expose intrinsic dimensions while complete is
+ // still false and never reach the ready selector. An explicit static choice
+ // must finish loading/decoding the SAME existing asset, without changing URL.
+ image.loading='eager';
+ const sync=()=>{
+  if(host.querySelector('.en-fish-still')!==image||image.getAttribute('src')!==src)return;
+  host.dataset.photoReady=String(Boolean(image.complete&&image.naturalWidth>0));
+ };
+ try{const decoded=image.decode?.();if(decoded&&typeof decoded.then==='function')decoded.then(sync,sync);else sync();}catch{sync();}
+}
+
+function enFishApplyAnimation(){
+ const enabled=$('#enFishAnimate').checked;
+ for(const [kind,id]of [['bulletin','enFishTalking'],['celebration','enCelebrationFishTalking']]){const host=$('#'+id);host.dataset.animate=String(enabled);enAnnouncementMotionStop(kind);if(enabled)enAnnouncementMotionStart(kind,{resume:true});else enFishPrepareStill(host);}
+}
+for(const id of ['enFishTalking','enCelebrationFishTalking']){const host=$('#'+id),image=host.querySelector('.en-fish-still');const sync=()=>{host.dataset.photoReady=String(Boolean(image.complete&&image.naturalWidth>0));};image.addEventListener('load',sync);image.addEventListener('error',sync);sync();}
+$('#enFishAnimate').addEventListener('change',()=>{try{localStorage.setItem(enFishAnimateKey,$('#enFishAnimate').checked?'on':'off');}catch{}enFishApplyAnimation();});
+for(const id of ['enFishTalking','enCelebrationFishTalking']){const host=$('#'+id);host.dataset.animate=String($('#enFishAnimate').checked);if(!$('#enFishAnimate').checked)enFishPrepareStill(host);}
+document.addEventListener('visibilitychange',()=>{if(document.hidden){enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');}});
+window.addEventListener('pagehide',()=>{enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');});
+
 function enMilestoneShow(item,demo=false){
  if(enModeYear!==2026)return false;
  if(demo)enFishDismiss();
@@ -6789,6 +7074,17 @@ function enMilestoneShow(item,demo=false){
  }
  return enCelebrationPlayer.enqueue(item,demo);
 }
+$('#enCelebrationSkip').addEventListener('click',()=>enCelebrationPlayer.skip?.());
+const enCelebrationMotionQuery=window.matchMedia('(prefers-reduced-motion: reduce)');
+function enCelebrationApplyMotionPreference(){
+ // An asynchronously delivered change event describes its earlier preference.
+ // Only the CURRENT preference may finish a current animation; announcements
+ // retain their MP3 and hand off through the player's existing completion path.
+ if(!enCelebrationMotionQuery.matches)return;
+ if($('#enCelebrationStage')?.dataset.phase==='scene')enCelebrationPlayer.skip?.();
+ if(typeof enAnnouncementMotionStop==='function'){enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');}
+}
+enCelebrationMotionQuery.addEventListener?.('change',enCelebrationApplyMotionPreference);
 $('#enCelebrationSound').addEventListener('click',()=>{
  enFishSoundEnabled=!enFishSoundEnabled;
  try{localStorage.setItem(enFishSoundKey,enFishSoundEnabled?'on':'off')}catch{}
@@ -7429,16 +7725,10 @@ function enDistrictPerformance(item,now=Date.now()){
 }
 function enRenderDistrictPulse(){
  const host=$('#enDistrictPulse');if(!host)return;
- if(enModeYear!==2026){host.textContent='Early House district checks · 2026 results only';return;}
- const rows=(window.ElectionNightEarlySignals?.records||[])
-  .filter(x=>x.office==='House').map(x=>enDistrictPerformance(enWatchParse(x.code)))
-  .filter(Boolean).sort((a,b)=>Math.abs(b.gap)-Math.abs(a.gap));
- if(!rows.length){host.textContent='Early district checks · awaiting ≥80% precincts and valid votes';return;}
- const margin=n=>(n>=0?'D+':'R+')+Math.abs(n).toFixed(1);
- host.textContent='EARLY LOCAL CHECK · '+rows.slice(0,3).map(x=>
-  x.code+' reported '+margin(x.actual)+' vs polling '+margin(x.pollMargin)).join(' · ')+
-  ' · Not geography-adjusted or a national swing';
- host.title='Source-validated near-complete district votes vs pre-election polling margin only; no county/voting-mode adjustment or inferred national election-night forecast.';
+ host.replaceChildren();host.append(document.createTextNode('Early district checks now share the 32-race Early indicators watch. Raw totals, matched-area performance and validated calls are shown separately. '));
+ const open=elt('button','en-early-pin','Open the shared early watch');open.type='button';open.disabled=enModeYear!==2026;
+ open.addEventListener('click',()=>window.PersonalElectionFocus?.openWatch($('#enPersonalFocus')));host.append(open);
+ host.title='One shared race roster and source-bound comparison; the old raw district-versus-poll ranking no longer supplies a second early-signal list.';
 }
 // These URLs are independent official result pages. The county observations
 // named in Reddit watch discussions are editorial priorities, not live feeds.
@@ -7493,79 +7783,206 @@ function enEarlyLiveObservation(item){
  }
  return {source:null,error:failed||Boolean(enCivicErrors[enWatchId(item)])};
 }
-function enRenderEarlySignals(){
- const host=$('#enEarlySignals'),config=window.ElectionNightEarlySignals;
- if(!host||!config)return;
- host.replaceChildren();
- const totals={LATE_LOCAL_COMPARISON:0,COUNTING_PARTIAL:0,
-  COUNTING_UNKNOWN_PROGRESS:0,STALE:0,SOURCE_ERROR:0,
-  AWAITING_SOURCE:0,INVALID_SOURCE:0};
- for(const group of config.groups){
-  const panel=elt('div','en-early-group');
-  panel.append(elt('strong','en-early-title',group));
-  for(const info of config.records.filter(x=>x.group===group)){
-   const item=enWatchParse(info.code);
-   if(!item)continue;
-   const row=elt('div','en-early-row');
-   const label=elt('div','en-early-main');
-   label.append(elt('strong','',info.code+' · '+info.time+' ET'),
-    elt('span','en-early-why',info.why));
-   const prior=modelRaceOddsData?.records?.find(x=>
-    x.race_code===info.code&&x.office===info.office.toLowerCase());
-   const observed=enEarlyLiveObservation(item);
-   const result=config.assess(info,observed.source,{
-    priorMargin:Number.isFinite(prior?.dem_minus_rep)?prior.dem_minus_rep:null,
-    error:observed.error});
-   if(Object.hasOwn(totals,result.status))totals[result.status]++;
-   const fmt=n=>(n>=0?'D+':'R+')+Math.abs(n).toFixed(1);
-   let status=enModeYear===2024?'2026 preview · no live returns in archive':
-    result.status.replaceAll('_',' ')+' · '+result.message;
-   if(enModeYear===2026&&result.hasVerifiedVotes)
-    status+=' · '+result.source+' · '+Number(result.reportedVotes).toLocaleString('en-US')+
-     ' reported votes · '+fmt(result.rawMargin)+' raw two-party margin'+
-     (result.precincts===null?' · precinct share unknown':
-      ' · '+result.precincts.toFixed(0)+'% precincts')+
-     ' · as of '+new Date(result.sourceTime).toLocaleTimeString('en-US',{
-       hour:'numeric',minute:'2-digit'});
-   label.append(elt('small','en-early-source',status));
-   if(enModeYear===2026&&result.comparative&&result.marginVsPrior!==null)
-    label.append(elt('small','en-early-source',
-     'LATE LOCAL COMPARISON · observed minus pre-election model '+
-      (result.marginVsPrior>=0?'+':'')+result.marginVsPrior.toFixed(1)+
-      ' pts · no national inference'));
-   if(info.counties?.length){
-    label.append(elt('small','en-early-source',
-     'COUNTY WATCH: '+info.counties.join(', ')+
-     ' · official county×voting-method feed NOT connected to the needle'));
+function enIndicatorCollect(){
+ const api=window.ElectionNightIndicatorStatus;
+ const registryReady=Array.isArray(api?.COUNTY_RECORDS)&&api.COUNTY_RECORDS.length===18&&
+  api.COUNTY_RECORDS.every(row=>row?.matched_route===true&&typeof row.code==='string')&&new Set(api.COUNTY_RECORDS.map(row=>row.code)).size===18;
+ const countySpecs=registryReady?api.COUNTY_RECORDS:[],countyCodes=new Set(countySpecs.map(row=>row.code));
+ let now=Date.now(),context='PUBLIC';
+ try{context=jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC';}catch{context=null;}
+ const visible=()=>typeof enIsVisible==='function'&&enIsVisible()===true;
+ let active=enModeYear===2026&&!document.hidden&&visible()&&
+  (typeof enRehearsalActive==='undefined'||!enRehearsalActive);
+ const unavailable=()=>({rows:[],county_rows:[],summary:null,current:false,active,context,now});
+ if(!api||typeof api.assess!=='function'||typeof api.summarize!=='function'||!Array.isArray(api.records))return unavailable();
+ const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
+ let inputs=null,current=false,used=[],matchedRows=new Map();
+ if(active){
+  try{
+   // This reuses all installed native/receipt/call eligibility at one NOW.
+   // It does not fetch, start a model job or change the source ledger.
+   inputs=jointValidatedFrameInputs();
+   if(!Number.isFinite(inputs?.now)||!inputs.live||!Array.isArray(inputs.envelopes)||!Array.isArray(inputs.eligibility))throw Error('INDICATOR_CURRENT_INPUTS_UNAVAILABLE');
+   now=inputs.now;
+   const frame=jointCompletedFrame,key=jointFrameKey(inputs),payload=frame?.payload,args=payload?.args;
+   const resultUsed=jointLastResult?.county_results_update?.used;
+   used=Array.isArray(resultUsed)?resultUsed:[];
+   const expectedArgs=args&&{...jointIndependentControlOptions,contextKey:context,
+    marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,
+    now:args.now,nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:inputs.live};
+   current=Boolean(registryReady&&context&&!jointModelPending&&!jointAsOfSnapshot&&jointLastResult&&frame&&
+    frame.frameKind==='LIVE'&&frame.key===key&&jointCacheKey===key&&
+    frame.contextKey===context&&frame.modelRevision===jointModelCodeRevision()&&
+    payload&&args&&Number.isFinite(args.now)&&args.now<=now&&Date.parse(frame.input_at||'')===args.now&&
+    same(payload.basis,jointBasis)&&same(payload.publicBasis,jointUsesPrivateContext()?jointBasisPublic:null)&&
+    same(args,expectedArgs)&&same(payload.envelopes,inputs.envelopes)&&
+    used.length<=18&&new Set(used.map(row=>row.code)).size===used.length&&
+    used.every(row=>countyCodes.has(row.code)&&inputs.eligibility.some(e=>e[0]===row.code&&e[1]===true))&&
+    typeof window.NationalCountyLikelihood?.compile==='function');
+   if(current){
+    const watched=new Set([...api.records,...countySpecs].map(row=>row.code));
+    for(const previous of used.filter(row=>watched.has(row.code))){
+     const captured=payload.envelopes.filter(e=>e?.snapshot?.race_code===previous.code);
+     const latest=inputs.envelopes.filter(e=>e?.snapshot?.race_code===previous.code);
+     if(captured.length!==1||latest.length!==1||!same(captured[0],latest[0]))throw Error('INDICATOR_SOURCE_VERSION_CHANGED');
+     const envelope=latest[0],snapshot=envelope.snapshot;
+     if(snapshot.snapshot_updated_at!==previous.as_of||snapshot.source_url!==previous.source_url)throw Error('INDICATOR_SOURCE_CLOCK_CHANGED');
+     const compiled=window.NationalCountyLikelihood.compile(envelope,{now});
+     const seats=[...(payload.basis.house||[]),...(payload.basis.senate||[])].filter(row=>row.code===previous.code);
+     if(seats.length!==1||!Number.isFinite(seats[0].mean)||typeof compiled.describePerformance!=='function')throw Error('INDICATOR_EXPECTATION_UNAVAILABLE');
+     const {logLikelihood,describePerformance,...projection}=compiled;
+     const assessed={...projection,matched_performance:describePerformance(seats[0].mean+(args.nationalShift||0))};
+     // Exact old/new envelope, expectation, method scenarios and used-footprint
+     // binding. The newly compiled object stays local; functions/raw counts
+     // never cross this return boundary or enter persistence.
+     if(!same(assessed,previous))throw Error('INDICATOR_MATCHED_VERSION_CHANGED');
+     matchedRows.set(previous.code,assessed);
+    }
    }
-   const official=enEarlyOfficialSources[item.key.slice(0,2)];
-   if(official){
-    const link=elt('a','en-early-source',official.label+' ↗');
-    link.href=official.url;link.target='_blank';link.rel='noopener noreferrer';
-    label.append(link);
-   }
-   const pinned=enWatched.some(x=>enWatchId(x)===enWatchId(item));
-   const pin=elt('button','en-early-pin',pinned?'Unpin':'Pin race');
-   pin.type='button';pin.setAttribute('aria-pressed',String(pinned));
-   pin.addEventListener('click',()=>enWatchToggle(item));
-   row.append(label,pin);panel.append(row);
+  }catch{current=false;matchedRows.clear();used=used.filter(row=>row&&typeof row.code==='string');}
+ }
+ // Each collection constructs new rows. A previous weather stage is never a
+ // substitute for CURRENT evidence. Calls still use the independent freshly
+ // validated source ledger while a model calculation is pending.
+ const oldByCode=new Map(used.map(row=>[row.code,row]));
+ const rows=api.records.map(spec=>{
+  let observation=null,error=false;
+  if(active){try{const item=enWatchParse(spec.code),raw=item?enEarlyLiveObservation(item):null;
+    observation=raw?.source||null;error=Boolean(raw?.error);
+   }catch{error=true;}}
+  const call=active?inputs?.live?.[spec.code]:null;
+  const calledParty=call?.mode==='source_called'&&['D','R'].includes(call.winnerParty)?call.winnerParty:null;
+  return api.assess(spec.code,{now,active,error,observation,
+   matched:matchedRows.get(spec.code)||oldByCode.get(spec.code)||null,
+   matchedCurrent:current&&matchedRows.has(spec.code),calledParty});
+ });
+ // The meter uses the COMPLETE existing18route cohort, including routes
+ // outside the32watch. No additional raw-provider observation is read here.
+ const county_rows=countySpecs.map(spec=>{
+  const call=active?inputs?.live?.[spec.code]:null;
+  const calledParty=call?.mode==='source_called'&&['D','R'].includes(call.winnerParty)?call.winnerParty:null;
+  return api.assess(spec.code,{now,active,error:false,observation:null,
+   matched:matchedRows.get(spec.code)||oldByCode.get(spec.code)||null,
+   matchedCurrent:current&&matchedRows.has(spec.code),calledParty});
+ });
+ // Even a re-entrant observation helper cannot admit a result from a changed
+ // context/key. No asynchronous work or source read is started here.
+ let unstable=false;
+ if(active&&inputs){try{const latest=jointValidatedFrameInputs();
+   unstable=context!==(jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC')||
+    !same(inputs.live,latest.live)||!same(inputs.eligibility,latest.eligibility)||
+    !same(inputs.envelopes,latest.envelopes);
+   if(current&&(jointCompletedFrame?.key!==jointFrameKey(latest)||jointCacheKey!==jointCompletedFrame.key||
+    jointCompletedFrame?.modelRevision!==jointModelCodeRevision()))unstable=true;
+   if(jointModelPending||jointAsOfSnapshot)current=false;
+  }catch{unstable=true;}}
+ if(document.hidden||!visible()||enModeYear!==2026||
+  (typeof enRehearsalActive!=='undefined'&&enRehearsalActive)||unstable){
+  current=false;active=false;
+  return {rows:api.records.map(spec=>api.assess(spec.code,{now,active:false})),
+   county_rows:countySpecs.map(spec=>api.assess(spec.code,{now,active:false})),
+   summary:api.summarize([]),current,active,context:unstable?null:context,now};
+ }
+ if(!current){
+  // Re-assess without matched authority rather than returning previously
+  // computed positive rows after an end-of-collection validity change.
+  for(const cohort of [rows,county_rows])for(let i=0;i<cohort.length;i++){
+   const previous=cohort[i];
+   if(previous.matched)cohort[i]=api.assess(previous.code,{now,active,error:previous.raw_source_unavailable,
+    observation:null,matched:oldByCode.get(previous.code)||null,matchedCurrent:false,
+    calledParty:previous.calledParty});
   }
-  host.append(panel);
  }
- const summary=$('#enEarlyHealth');
- if(summary){
-  const valid=totals.LATE_LOCAL_COMPARISON+totals.COUNTING_PARTIAL+
-   totals.COUNTING_UNKNOWN_PROGRESS;
-  summary.textContent=enModeYear!==2026||
-   Date.now()<Date.parse('2026-11-03T05:00:00Z')?
-   'PRE-ELECTION READINESS · '+config.records.length+
-    ' early indicators queued · no actual November 3 vote totals yet':
-   'LIVE EARLY-INDICATOR CHECK · '+valid+' fresh races reporting · '+
-    totals.LATE_LOCAL_COMPARISON+' late local comparisons · '+
-    (totals.STALE+totals.SOURCE_ERROR+totals.INVALID_SOURCE)+
-    ' unavailable/stale/invalid · County and vote-method data NOT integrated into the national needle';
- }
+ return {rows,county_rows,summary:api.summarize(rows),current,active,context,now};
 }
+
+let enIndicatorLatestView=null,enIndicatorViewKey='',enIndicatorWeatherNotes=[];
+function enIndicatorStopChime(){for(const note of enIndicatorWeatherNotes)try{note.stop()}catch{}enIndicatorWeatherNotes=[];}
+function enIndicatorChime(){
+ if(!enFishSoundEnabled||document.hidden)return;
+ try{const ctx=enCelebrationAudioContext;if(!ctx||ctx.state!=='running')return;
+  [0,7,12].forEach((step,i)=>{const tone=ctx.createOscillator(),gain=ctx.createGain(),at=ctx.currentTime+i*.13;tone.type='sine';tone.frequency.value=330*Math.pow(2,step/12);gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(.04,at+.02);gain.gain.exponentialRampToValueAtTime(.001,at+.2);tone.connect(gain);gain.connect(ctx.destination);tone.onended=()=>{tone.disconnect();gain.disconnect()};tone.start(at);tone.stop(at+.21);enIndicatorWeatherNotes.push(tone);});
+ }catch{/* A provisional visual never depends on sound. */}
+}
+function enIndicatorWeatherRender(value){
+ const host=$('#enEarlyWeatherToast');if(!host)return;const wasFocused=host.contains(document.activeElement);
+ host.hidden=!value;if(!value){
+ if(wasFocused&&!document.hidden&&typeof enIsVisible==='function'&&enIsVisible()){
+  for(const id of ['enEarlyWatchOpen','enEarlyWeatherPreview','enMode2026']){
+   const target=$('#'+id);if(!target||target.disabled||target.getAttribute('aria-disabled')==='true')continue;
+   let unavailable=false;
+   for(let node=target;node;node=node.parentElement){
+    const style=getComputedStyle(node);
+    if(node.hidden||node.inert||node.tagName==='DETAILS'&&!node.open||style.display==='none'||style.visibility!=='visible'||Number(style.opacity)===0){unavailable=true;break;}
+   }
+   if(unavailable)continue;
+   const rect=target.getBoundingClientRect();
+   if(!(rect.width>0&&rect.height>0&&rect.left>=0&&rect.top>=0&&rect.right<=innerWidth&&rect.bottom<=innerHeight))continue;
+   const hit=document.elementFromPoint(rect.left+rect.width/2,rect.top+rect.height/2);
+   if(hit!==target&&!target.contains(hit))continue;
+   target.focus({preventScroll:true});break;
+  }
+ }
+ return;
+}
+ $('#enEarlyWeatherKicker').textContent=value.simulated?'SIMULATED PREVIEW · NO LIVE SIGNAL':value.context==='LOCAL_RESEARCH_VARIANT'?'PROVISIONAL · YOUR LOCAL CONTEXT':'PROVISIONAL · LOCAL EARLY INDICATORS';
+ $('#enEarlyWeatherTitle').textContent=value.stage==='STRONGER_PATTERN'?'The early pattern is strengthening':'A storm is brewing';
+ $('#enEarlyWeatherBody').textContent=value.simulated?'Example only: several states show better Democratic performance than the same reporting areas were expected to produce. No live race, victory or national probability is implied.':value.positive_races.join(', ')+' show Democratic overperformance across every supplied method scenario. '+(value.stage==='STRONGER_PATTERN'?'At least three states meet the +5-point editorial threshold.':'At least two states meet the +3-point editorial threshold.')+' More returns can reverse this pattern.';
+}
+const enIndicatorWeather=window.ElectionNightEarlyWeather?.create({render:enIndicatorWeatherRender,chime:enIndicatorChime,stopSound:enIndicatorStopChime});
+function enIndicatorBlocked(){return Boolean($('#enMilestoneSpotlight')?.open||!$('#enFishToast')?.hidden||$('#enNationalRehearsal')?.open);}
+function enIndicatorWithdraw(){enIndicatorWeather?.update({active:false});enIndicatorStopChime();if(document.hidden||typeof enIsVisible!=='function'||!enIsVisible()||enModeYear!==2026)enIndicatorRenderPoop({active:false,current:false,context:null});}
+function enIndicatorSyncControls(){
+ if((enModeYear!==2026||jointModelPending)&&typeof enIndicatorRenderPoop==='function')enIndicatorRenderPoop({active:enModeYear===2026,current:false,context:null});
+ const open=$('#enEarlyWatchOpen'),preview=$('#enEarlyWeatherPreview'),host=$('#enPersonalFocus'),archive=enModeYear!==2026;
+ const ready=!archive&&!jointModelPending&&host&&!host.hidden&&Boolean(host.querySelector('.early-watch'));
+ if(open){open.disabled=!ready;open.title=archive?'Select 2026 Results above to open this watch.':ready?'Open the shared early-indicator watch.':'The early watch is preparing; it will be available when this calculation finishes.';}
+ if(preview){preview.disabled=archive;preview.title=archive?'Select 2026 Results above to preview this fictional notice.':'Preview only · no actual early signal or race win.';}
+}
+function enIndicatorRenderPoop(view){
+ const host=$('#enPoopMeter');if(!host)return;
+ let value=null;try{value=window.ElectionNightPoopMeter?.rate(view);}catch{}
+ const selected=value&&Number.isInteger(value.index)&&value.index>=0&&value.index<4?value.stage:null;
+ host.dataset.stage=selected||'UNRATED';
+ for(const node of host.querySelectorAll('[data-poop-stage]')){
+  const active=selected!==null&&node.dataset.poopStage===selected;
+  node.dataset.selected=String(active);if(active)node.setAttribute('aria-current','step');else node.removeAttribute('aria-current');
+ }
+ const write=(id,text)=>{const node=$('#'+id);if(node&&node.textContent!==text)node.textContent=text;};
+ write('enPoopLevel',value?.label||'Waiting for usable returns');
+ write('enPoopReason',value?.reason||'The matched-performance helper is unavailable. No warning level is inferred.');
+ const races=value?.matched_races||[],states=value?.matched_states||[];
+ const coverage=Number.isInteger(value?.connected_route_count)&&Number.isInteger(value?.eligible_route_count)?value.connected_route_count+' connected county routes; '+value.eligible_route_count+' eligible D/R comparisons.':'County coverage unavailable.';
+ write('enPoopCoverage',(view?.context==='LOCAL_RESEARCH_VARIANT'?'Your local comparison context · ':view?.context==='PUBLIC'?'Public comparison context · ':'Comparison context unavailable · ')+races.length+' contributing races across '+states.length+' states'+(races.length?': '+races.join(', '):'')+'. '+coverage+' Covered matched areas only, not national win odds.');
+}
+function enIndicatorPublish(view){
+ enIndicatorSyncControls();
+ enIndicatorLatestView=view||null;
+ enIndicatorRenderPoop(view);
+ enIndicatorWeather?.update({summary:view?.summary,active:view?.active===true,current:view?.current===true,context:view?.context,blocked:enIndicatorBlocked()});
+ const node=$('#enEarlyHealth');if(!node)return;
+ if(!window.ElectionNightIndicatorStatus){node.textContent='Early comparison helper unavailable · the original 21 House references remain available. Matched signals and provisional alerts are withheld.';return;}
+ const rows=view?.rows||[],raw=rows.filter(x=>x.raw).length,matched=rows.filter(x=>x.matched).length;
+ node.textContent=enModeYear!==2026?'2024 archive · the same 32-race watch is available in 2026 mode.':!view?.active?'Early indicators inactive on this page.':Date.now()<Date.parse('2026-11-03T05:00:00Z')?'Pre-election · 32 races queued. KY-06, IN-05 and FL-SEN are first to watch; matched-area inputs for those three remain pending.':raw+' fresh raw-return races · '+matched+' current matched comparisons · '+(view?.current?'provisional pattern checked':'matched comparisons withheld while the current model frame is pending')+'. Open the shared watch for source clocks and missing inputs.';
+}
+function enRenderEarlySignals(){
+ if(typeof enIndicatorCollect==='function')enIndicatorPublish(enIndicatorCollect());
+}
+$('#enEarlyWatchOpen').addEventListener('click',()=>window.PersonalElectionFocus?.openWatch($('#enPersonalFocus')));
+$('#enEarlyWeatherPreview').addEventListener('click',()=>{if(enModeYear!==2026||document.hidden||enIndicatorBlocked())return;enIndicatorWeather?.preview();});
+$('#enEarlyWeatherDismiss').addEventListener('click',()=>enIndicatorWeather?.dismiss());
+document.addEventListener('visibilitychange',()=>{if(document.hidden)enIndicatorWithdraw();});
+window.addEventListener('pagehide',enIndicatorWithdraw);
+setInterval(()=>{
+ if(typeof enIndicatorCollect!=='function')return;
+ const view=enIndicatorCollect();
+ const key=JSON.stringify({rows:view.rows,summary:view.summary,current:view.current,active:view.active,context:view.context});
+ const update=()=>{enIndicatorPublish(view);if(key!==enIndicatorViewKey){enIndicatorViewKey=key;if(!jointModelPending&&enModeYear===2026&&view.active)renderPersonalElectionFocus();}};
+ // The current-source tick can redraw the same cards outside a model publish.
+ // Reuse the established visible-reader ownership, including offscreen focus.
+ if(view.active&&typeof jointPreserveSnapshotReader==='function')jointPreserveSnapshotReader(update);else update();
+},1000);
+
 function enWatchStatus(item){
  const state=item.key.slice(0,2),data=enOfficeSnapshots[item.office]||
    (enModeYear===2026&&enOffice===item.office?enData:null);

@@ -75,6 +75,7 @@ w.HTMLMediaElement.prototype.pause=function(){fishAudioPauses++};
 const registeredIntervals=[];
 w.setInterval=(fn,ms)=>{registeredIntervals.push({fn,ms});return registeredIntervals.length;};
 w.scrollTo=()=>{};
+w.scrollBy=()=>{}; // jsdom has no viewport scrolling; real keyboard/geometry proofs use Chromium.
 w.Element.prototype.scrollIntoView=function(){};
 w.matchMedia=()=>({matches:false,addListener(){},removeListener(){}});
 const fixtures={
@@ -161,6 +162,14 @@ async function settle(){
   ['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi'],
   'The dashboard must load the exact ten separately guarded celebration events');
  w.eval(read('scripts/election_night_poll_closings_2026.js'));
+ w.eval(read('scripts/house_early_watch_reference.js'));
+ w.eval(read('scripts/election_night_indicator_status.js'));
+ w.eval(read('scripts/election_night_early_weather.js'));
+ w.eval(read('scripts/election_night_poop_meter.js'));
+ assert(w.ElectionNightPoopMeter?.STAGES.length===4,'Actual display-only meter loads after the shared indicator assessor');
+ w.eval(read('scripts/election_night_announcement_motion.js'));
+ w.eval(read('scripts/election_night_celebration_music_choices.js'));
+ assert(w.ElectionNightIndicatorStatus?.records.length===32,'Actual unified classifier dependencies loaded in production order');
  assert(w.ElectionNightPollClosings2026?.allowed,
   'Actual 50-state poll-close contract must load before source reconciliation');
  w.eval(read('scripts/election_night_reconciliation.js'));
@@ -456,53 +465,47 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  get('#enAdvancedLab').open=true;
  assert.equal(get('#enAdvancedLab').open,true);
  get('#enAdvancedLab').open=false;
- // Election-night first-returns checklist must remain descriptive and
- // anchored to real provider statuses (never auto-call races).
+ // The legacy transport registry remains intact, but every visible early
+ // signal entry now leads to ONE union watch. No partial lead auto-calls a race.
  w.eval('enRender()');
- const signals=w.ElectionNightEarlySignals;
+ const signals=w.ElectionNightEarlySignals,indicatorRegistry=w.ElectionNightIndicatorStatus;
  assert(signals.records.some(x=>x.code==='KY-06'&&x.time==='6:00 PM'));
  assert(signals.records.some(x=>x.code==='IN-05'&&x.time==='6:00 PM'));
- for(const code of ['VA-01','VA-02','VA-05','NC-01','NC-11']){
-  assert(signals.records.some(x=>x.code===code),'Missing early watch seat '+code);
- }
- assert.equal(get('#enEarlySignals').querySelectorAll('.en-early-row').length,signals.records.length);
-  assert.equal(get('#enEarlySignals').querySelectorAll('.en-early-row').length,15);
-  assert.match(get('#enEarlyHealth').textContent,/PRE-ELECTION READINESS/);
-  assert.match(get('#enEarlySignals').textContent,/Wake, Mecklenburg, Nash/);
-  assert.match(get('#enEarlySignals').textContent,/MOCK totals/);
-  assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'false');
-  get('#enScreenAwake').click();
-  assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'true');
-  assert.match(get('#enWakeStatus').textContent,/Wake Lock unsupported|Display wake lock|Wake lock/);
-  get('#enScreenAwake').click();
-  assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'false');
-  assert.equal(w.eval('enReconnectGap(1000,121000)'),true,
-   'A paused browser must detect a two-minute gap in the result-check clock');
-  assert.equal(w.eval('enReconnectGap(1000,120999)'),false,
-   'Normal one-minute checks must not trigger overlapping reconnects');
-  assert.equal(w.eval('enReconnectGap(121000,1000)'),false,
-   'Backwards system-clock adjustments must not trigger a reconnect');
-  assert.equal(w.eval('enReconnectAfterInterruption(true)'),false,
-   'Before Election Day a resumed browser must not manufacture or request live votes');
-
- assert.match(get('#enEarlySignals').textContent,/2026 preview/);
- assert.match(get('#enEarlySignals').textContent,/no live returns in archive/);
+ for(const code of ['VA-01','VA-02','VA-05','NC-01','NC-11'])assert(signals.records.some(x=>x.code===code),'Missing early watch seat '+code);
+ assert.equal(signals.records.length,15,'Original request/transport registry unchanged');
+ assert.equal(indicatorRegistry.records.length,32);
+ assert(signals.records.every(row=>indicatorRegistry.records.some(x=>x.code===row.code)),'All original fifteen editorial races remain in the shared union');
+ assert.equal(get('#enEarlySignals').querySelectorAll('.en-early-row').length,0,'No competing legacy visible roster');
+ // Load the actual optional personal display for its dedicated UI scope;
+ // restore the original optional-missing baseline for unrelated legacy drills.
+ const originalEarlyPersonal=w.PersonalElectionFocus;w.eval(read('scripts/personal_election_focus.js'));
+ const originalEarlyYear=get('#enMode2026').getAttribute('aria-pressed')==='true'?2026:2024;get('#enMode2026').click();await w.eval('jointWhenIdle()');w.eval('renderPersonalElectionFocus();enRenderEarlySignals()');
+ assert.equal(get('#enPersonalFocus').querySelectorAll('[data-watch-race]').length,32);
+ assert.deepEqual([...get('#enPersonalFocus').querySelectorAll('.early-watch-priority [data-watch-race]')].map(x=>x.dataset.watchRace),['KY-06','IN-05','FL-SEN']);
+ assert.match(get('#enPersonalFocus').textContent,/Wake, Mecklenburg, Nash/,'Original editorial county guide retained, not invented matched data');
+ assert.match(get('#enPersonalFocus').textContent,/MOCK totals/,'Original official source caveat retained');
+ get('#enEarlyWatchOpen').click();assert.equal(w.document.activeElement,get('#enPersonalFocus .early-watch > h3'),'Shortcut enters the single shared watch');
+ assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'false');
+ get('#enScreenAwake').click();assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'true');
+ assert.match(get('#enWakeStatus').textContent,/Wake Lock unsupported|Display wake lock|Wake lock/);
+ get('#enScreenAwake').click();assert.equal(get('#enScreenAwake').getAttribute('aria-pressed'),'false');
+ assert.equal(w.eval('enReconnectGap(1000,121000)'),true,'A paused browser detects a two-minute gap');
+ assert.equal(w.eval('enReconnectGap(1000,120999)'),false,'Normal minute checks do not overlap');
+ assert.equal(w.eval('enReconnectGap(121000,1000)'),false,'Backwards clocks do not reconnect');
+ assert.equal(w.eval('enReconnectAfterInterruption(true)'),false,'Before Election Day resume cannot manufacture/request live votes');
+ assert.equal(get('#enEarlySignalsDetails').open,false,'Shortcut remains collapsed on entry');
+ get('#enEarlySignalsDetails').open=true;assert.equal(get('#enEarlySignalsDetails').open,true);get('#enEarlySignalsDetails').open=false;
+ // Pin/unpin keeps the existing shared watchlist action and semantic control.
+ const first=get('#enPersonalFocus [data-early-watch-pin="KY-06"]'),wasPinned=first.getAttribute('aria-pressed')==='true';first.click();await w.eval('jointWhenIdle()');
+ const afterPin=get('#enPersonalFocus [data-early-watch-pin="KY-06"]');assert.equal(afterPin.getAttribute('aria-pressed'),String(!wasPinned));afterPin.click();await w.eval('jointWhenIdle()');
+ assert.equal(get('#enPersonalFocus [data-early-watch-pin="KY-06"]').getAttribute('aria-pressed'),String(wasPinned));
+ if(originalEarlyYear===2024){get('#enMode2024').click();await w.eval('jointWhenIdle()');}
+ w.eval('enRenderEarlySignals()');
+ assert.equal(get('#enPersonalFocus').hidden,originalEarlyYear===2024);
+ if(originalEarlyYear===2024)assert.match(get('#enEarlyHealth').textContent,/2024 archive/);
  assert.doesNotMatch(get('#enEarlySignals').textContent,/tsunami confirmed|Senate secured/i);
- // Long checklist is collapsed by default; important information remains
- // accessible without pushing the actual race results further down the page.
- assert.equal(get('#enEarlySignalsDetails').open,false,
-  'Early signal reference list should not dominate initial Election Night view');
- get('#enEarlySignalsDetails').open=true;
- assert.equal(get('#enEarlySignalsDetails').open,true);
- get('#enEarlySignalsDetails').open=false;
- // Pin/unpin is real shared watchlist state, not an inert decorative button.
- const first=get('#enEarlySignals .en-early-pin');
- const wasPinned=first.getAttribute('aria-pressed')==='true';
- first.click();
- const afterPin=get('#enEarlySignals .en-early-pin');
- assert.equal(afterPin.getAttribute('aria-pressed'),String(!wasPinned));
- afterPin.click();
- assert.equal(get('#enEarlySignals .en-early-pin').getAttribute('aria-pressed'),String(wasPinned));
+ assert.equal(get('#enEarlyWeatherToast').hidden,true,'Archive/pre-election state has no live weather achievement');
+ if(originalEarlyPersonal)w.PersonalElectionFocus=originalEarlyPersonal;else delete w.PersonalElectionFocus;
  // The Fish Head interruptor must not confuse a pretend preview, an
  // early vote-leader swing, or pre-election data with a verified race call.
  // A user arriving at Election Night must find the rehearsal immediately,
@@ -520,9 +523,11 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
   'Fish bulletin must be an accessible foreground interruption');
  assert.match(get('#enFishToast .en-fish-art img').src,
   /upload\.wikimedia\.org\/wikipedia\/commons\/d\/d4\/Realistic_Fish_Head\.jpg/,
-  'Use the actual Commons-licensed Fish Head still, not a drawn knockoff');
+  'Retain the actual Commons-licensed still as the optional original-image choice');
  assert.match(get('#enFishToast .en-fish-attribution').textContent,
   /HandyGames.*CC BY 3\.0/);
+ assert(get('#enFishTalking svg'),'Default animated fish is a real local SVG, with the licensed still retained separately');
+ assert.equal(get('#enFishTalking').dataset.animate,'true','Original SVG animation is enabled by default');
  const soundtrack=get('#enFishAudio');
  assert.match(soundtrack.getAttribute('src'),
   /assets\/audio\/breaking-news-in-the-2026-midterm-elections\.mp3$/,
@@ -534,6 +539,7 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  assert.match(get('#enFishVoice').textContent,/Sound: on/);
  get('#enFishPreview').click();
  assert.equal(fish.hidden,false);
+ assert.equal(get('#enFishTalking').hidden,false,'The announcement fish frame is visible');
  assert.match(get('#enFishMode').textContent,/REHEARSAL/);
  assert.match(get('#enFishHeadline').textContent,/Bikini Bottom election desk/);
  assert.match(get('#enFishSource').textContent,/no real election result/);
@@ -688,11 +694,26 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
   'Kansas thumbnail must use the exact owner-supplied painting revision');
  assert(posterCards.every(el=>el.dataset.state==='waiting'),
   'Posters may be previewed before results, but must not claim earned status');
+ // Use the actual shared scene renderer for the new animation-to-image
+ // contract; jsdom supplies DOM mechanics, the isolated browser owns geometry.
+ if(!w.ElectionNightCelebrationScene)w.eval(read('scripts/election_night_celebration_scene.js'));
  posterCards[3].click(); // Kansas · John Brown-inspired art
  assert.equal(get('#enMilestoneSpotlight').open,true,'Preview must invoke the dialog API');
  assert.match(get('#enMilestoneKicker').textContent,/PREVIEW/,
   'A locked milestone is an explicit preview, not a called victory');
- assert.equal(get('#enMilestonePoster').hidden,false);
+ assert.equal(get('#enMilestonePoster').hidden,true,'Owner picture is reserved until after announcement and animation');
+ assert.equal(get('#enCelebrationStage').dataset.phase,'announcement');
+ assert.equal(get('#enCelebrationFishTalking').hidden,false);
+ assert.equal(w.eval('enCelebrationPlayer.skip()'),true,'Normal skip selects the intended complete finale');
+ assert.equal(get('#enCelebrationStage').dataset.phase,'complete');
+ const ownerKansasFinal=get('#enCelebrationVisual img.en-celebration-owner-image');
+ assert(ownerKansasFinal,'The actual supplied owner painting appears in the finale');
+ assert.equal(ownerKansasFinal.hidden,false);
+ assert.equal(get('#enCelebrationVisual').hidden,false);
+ assert(ownerKansasFinal.getAttribute('src').includes('celebration-owner-kansas.jpg?v=26f7df1f64f4'));
+ assert.match(ownerKansasFinal.alt,/John Brown/i);
+ assert.match(get('#enCelebrationVisual .en-celebration-owner-label').textContent,/FICTIONAL.*POLITICAL SATIRE.*SIMULATED PREVIEW/);
+ assert.equal(get('#enCelebrationFishTalking').hidden,true,'The talking fish leaves when the picture finale appears');
  assert(get('#enMilestonePoster').getAttribute('src').includes('celebration-owner-kansas.jpg?v=26f7df1f64f4'),
   'Kansas achievement must feature the owner-supplied fictional painting');
  assert(get('#enMilestonePoster').classList.contains('owner-celebration-art'));

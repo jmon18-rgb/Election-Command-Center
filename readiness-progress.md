@@ -1,6 +1,61 @@
 # Readiness progress
 
-## October29 count-aware proposal — local integration, not published
+### PR534 final combined owner scope — protected gate next
+
+The integrated Poop Meter covers the complete18 existing county-route cohort (17 D/R eligible; NE excluded), while the shared watch remains32. Actual CURRENT source/frame/expectation checks bind both, with no new route or numerical change. Visible county comparison buttons expose existing totals/margins/expected ranges/largest6 areas. Both-size actual-app stage/withhold/private-context/keyboard/live-isolation checks and county component pass; independent source/semantic/display reviews pass.90staged canonical stamps match Git blobs; three numerical-core diff is empty.
+
+The local98-check run had97PASS and one stale exact-source-list sentinel failure. The affected test now executes the actual restoration branch and a missing-watch-pin negative control; every original assertion remains and the affected rerun passes. The first report/log is immutable; no product focus defect is inferred. Archive/pending controls and visible focus guards are integrated. Earlier unreproduced phone focus failure remains qualified; accepted-frame startup preconditions retain all original navigation/timing assertions. Final exact-head CI must run all98 plus full DOM/browser/workflows before protected merge and published verification. No release claimed yet.
+
+
+## October 29 latest owner scope — Poop Meter and discoverable county comparisons (release pending)
+
+The owner adds a display-only Poop Meter with Clean undies / Skid marks / Turtling / Full-blown shit, and asks what actually moves the needles. Its inputs are the complete existing 18-route admitted county cohort, through the same CURRENT frame/source/expectation checks; 17 D/R comparisons are eligible and Nebraska's independent axis is excluded. The visible watch remains 32 races. This avoids describing its four-route watch overlap as national coverage. Missing, pending, ASOF, stale, conflicting or insufficient evidence remains unrated. At least two matched states are required; qualified warnings and opposing positive signals follow the existing 3/5-point method-scenario thresholds. This is an editorial relative-performance warning, never national odds, a second likelihood or a verified victory.
+
+A visible County results & expectations button opens the existing expectation and reporting-area disclosures only on needles with own matched returns. It exposes counted two-party/named-pair totals and observed margins versus expected method ranges, source time and the largest six reporting areas; it does not invent separate party-vote columns, all-county coverage or outstanding ballots. Root is integrating this with archive/pending control and visible focus repairs. The old exact head98373808 is green (35parents/55jobs52SUCCESS3nonapplicableSKIP/0external) but will not merge while these authorized changes are pending. All final combined-head gates and publication proofs are still required. No numerical core, source route, request/cadence/budget, call eligibility or paid/archive setting changes.
+
+
+### PR534 preference-event correction — next exact-head gate required
+
+Repaired9d7038c5 passed WA/VA both widths and the long pr-tests browser, but the focused owner-finale job exposed a delayed native reduced-motion event skipping a newly started announcement. This is a real phase/current-preference defect, not an assertion to waive. The corrected handler reads the CURRENT query, skips only a scene, and leaves announcement MP3/completion/error untouched; the existing player chooses the reduced finale after announcement. Actual owner-finale and native-MP3 tasks pass1366/390 with all original assertions plus deferred/stale/current event boundaries; actual handler+player unit and independent source review pass. Initial9d failure and two test-precondition failures are preserved. Core registration is now93. No new media URL, source, model, timeout/sample cut or audio rerouting. Next: all applicable checks on the new committed head, final CURRENT-main Pages/bytes/published browser/one guide addendum.
+
+
+## October 29 — direct owner early-indicator and celebration follow-up, protected release pending
+
+Implemented one 32-race early watch with KY-06/IN-05/FL-SEN first, actual CURRENT matched-source binding, separate raw/call status and explicitly provisional multi-state weather. Retained 21 reference rows, 19 needles, county guides, official links and Pin/unpin. Required matched inputs for the three priority races remain open; no invented overperformance. Supplied four pictures follow three animation beats with Skip/reduced-motion/queued finale; original fish SVG follows the actual recording through analysis-only capture, Brown/Harpers Ferry art clarified, 11 soundtrack picks visible with ad-free originals/local files. No numerical/source/earned-call eligibility change.
+
+Local core 91 PASS; actual Edge desktop/phone new early-watch/image/native-MP3 and retained media/ratings/reading checks PASS. Full-DOM fourth run reached final error guard with only jsdom missing scrollBy; viewport shim added beside existing scrollTo, fifth full run PASS with all functional assertions and final no-error guard. Initial SVG accessibility/format and isolated harness dependency/mode corrections retain original failures and all migrated original assertions. No deadline/sample/ESS/assertion cut, native source retry, paid action or archive activation. PR534 initial03453b4c is blocked: legacy still visibility and WA/VA desktop reader geometry failed. Source fixes now finish the explicitly chosen static image through guarded eager/decode and wrap periodic indicator redraws in the installed visible-reader guard. Original failed-head logs retained; no rerun, waiver or deadline/sample cut. Local full legacy browser, full-DOM and corrected WA/VA desktop streams all pass (WA2 streams/21 hard negatives; VA5 ASOF completions/13 hard negatives). The expanded watch keeps the original21-only VA link assertion and verifies all32 links are exactly the intersection with existing personal cards. A newly inherited missing-route disclaimer is now restricted to actual unconnected rows. Seven async static-image boundary controls pass; core registration is92 checks. The owner’s four-outcome photo is accepted as the delivery checklist. Next: finish repaired exact-head CI, protected merge, final CURRENT-main Pages, origin/main changed-byte and actual published browser verification, then one scoped guide addendum. Frozen15/billing29 left untouched after earlier denied access; six accessible deliverables marked; private CSV/preferences preserved.
+
+
+## October29 PR533 VERIFIED PUBLISHED — county-aware proposal
+
+Tested e671d5f0 passed all37current-head workflow parents and56latest jobs
+(53SUCCESS/3declared deployed-only PR skips), with0external statuses and clean
+mergeability. Merge0aa75146; final main b13e22a3973a79199a51ac29ad371bf9f6033770,
+Pages40899111890SUCCESS. All33changed public/index files matched origin/main
+at15:15:02.745Z;13coherence checks/index/no_credit passed. Main rechecked
+unchanged15:23:55Z after published tasks. No waiver/rerun/deadline or sample cut.
+
+Both-size actual published Edge call-context and output-guard tasks passed. The
+fixed fictional overlap now has ESS1,516.20/3,000, only16.20above the unchanged
+1,500floor; its exact missing-guide path remains withheld at1,225.01. Target,
+alpha/max, exact corrections, RNG, source/call rules and budgets are unchanged.
+Numerical support is not empirical calibration, full-night or physical-phone proof.
+Ordinary27 confirms7current assets, equal private checkboxes/status text/archive
+classes and current2024 aria-pressed mode. Direct before/after mode equality
+was not measured; the initial checked-accessor error is preserved and qualified.
+The same phone PNG was confirmed normal at original detail and independently;
+no app/file defect or extra browser/model/network run was established.
+
+Outcome pr533-published-outcome-20261029.json SHA29d36c8e4021a724c4093f06359dc29a2d081178bcd5f241b7f4e0955076422c.
+Final independent audit pr533-final-release-audit.json PASS. Original guide1.0/
+eleven human scopes/hashes/NOT_RUN/null unchanged; ONE later component19->20
+with immutable copy/appendreceipt. LedgerSHAf9fde57ed77b42907e229dacb1b4eca22ffd38103ec5dd69f34ad0b395c84e6d.
+Human, independent calibration, genuine positive2026 and no-paid archive capacity
+remain open; archive stays OFF. No new owner decision is required by this release.
+Carry the final proof checkpoint with the next real source change; no docs-only
+CI push or repeated unchanged demos/probes.
+
+## Historical PR533 local integration checkpoint
 
 Local independent numerical/privacy review, five original call suites, the new
 portable regression, 43 controller groups, all six complete four-output
@@ -24,8 +79,8 @@ Clean source pins 65040a/7af6/efc6 passed independent density/convolution/target
 privacy review and one complete private/PUBLIC/two-House worker case. The new
 portable regression and 43 controller groups pass; all original missing-guide
 withholding assertions remain. Explicit serialized-guide output bans protect
-all public paths. Full six-frame timing, browser tasks and protected release
-are still required. PR532 on abc62535 remains the verified published baseline.
+all public paths. The local six-frame and browser gates passed as listed above; protected
+release was still required at this checkpoint. PR532 on abc62535 remains the verified published baseline.
 No source GET, eligibility, cadence, budget, call or celebration change; archive
 activation remains OFF. One previous unpublished proof checkpoint is carried
 with this source change; no docs-only CI push.

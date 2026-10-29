@@ -1,10 +1,14 @@
 # Background joint-model computation
 
-Verified PR532 update, October29: bounded Virginia typed snapshots, whole-output
-RAW metadata guards and frozen compact history/audit lineage are published on
-abc62535/Pages40882535269. See VIRGINIA_TYPED_SNAPSHOTS.md and saved PR532 receipts.
-Original numerical sources,3k draws/ESS/30s and source budgets are unchanged.
-New development is paused at the owner’s request to conserve usage.
+Verified PR533 update, October29: county-aware shared-factor proposal guidance
+and serialized-guidance output guards are published on b13e22a3/Pages40899111890.
+The proposal changes Q only; the original frozen target, exact density corrections,
+RNG,3k/hardESS/30s and source/call budgets remain. See SOURCE_CALL_CONDITIONING.md
+and pr533-published-outcome-20261029.json. Guidance is constructed inside the
+coordinator; no new Worker input field/import or retained callback is introduced.
+PR532 typed Virginia snapshots and compact lineage remain incorporated.
+Development resumed by direct owner instruction; empirical, human and genuine
+positive2026 acceptance remain open.
 
 The page delegates the existing correlated model to a same-origin computation
 worker. `source_call_conditioning.js`, `chamber_control_model.js` and

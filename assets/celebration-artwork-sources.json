@@ -1,6 +1,6 @@
 {
-  "reviewed_on": "2026-10-28",
-  "scope": "Original repository scenes/music and four owner-supplied fictional images; no eligibility change",
+  "reviewed_on": "2026-10-29",
+  "scope": "Original repository scenes, illustrated fish anchor, ad-free scores and four exact owner-supplied fictional image finales; winner eligibility unchanged",
   "artworks": [
     {
       "path": "assets/milestone-talarico.svg",
@@ -24,8 +24,8 @@
     },
     {
       "path": "scripts/election_night_celebration_scene.js",
-      "source": "Original repository scene layers plus optional labeled owner-supplied Abbott artwork; exact-beat original SVG fallback retained",
-      "sha256": "4f275d06634de42d8e9776eaa5bda6c2ef3fa48629a077360ba9da62f9a85608",
+      "source": "Original repository animation sequences followed by whole supplied Abbott, Graham, Kansas and Mississippi fictional-image finales; exact-beat SVG fallback and visible fiction labels",
+      "sha256": "02c07efabb90fb3174071bb8ea696a72409246684a23a6a2ea875f683b78c3ae",
       "audio": "Original event-specific scores in election_night_celebration_music.js"
     },
     {
@@ -47,7 +47,8 @@
       "sha256": "7fad6e8c0157fcfffcc97f36d40e43b740aac20da60c6fe00472db45b3865c35",
       "revision": "26f7df1f64f4",
       "bytes": 260002,
-      "rights_scope": "Supplied by owner for use in these celebrations; no public-domain or third-party license representation"
+      "rights_scope": "Supplied by owner for use in these celebrations; no public-domain or third-party license representation",
+      "presentation": "Unchanged supplied painting is the contained hero artwork after the original John Brown animation, with visible fictional-art attribution. The local illustrated fallback is assets/milestone-blansas.svg."
     },
     {
       "event": "mississippi",
@@ -68,6 +69,20 @@
       "revision": "90f3e5c8fdee",
       "bytes": 275526,
       "rights_scope": "Supplied by owner for use in these celebrations; no public-domain or third-party license representation"
+    },
+    {
+      "path": "assets/milestone-blansas.svg",
+      "source": "Original repository-native vector revision, October29: recognizable civilian John Brown with swept white hair, long beard and frock coat, Harpers Ferry1859 engine-house cue and later Union-blue ghost-story satire; no external illustration copied",
+      "sha256": "8abb6f61e1726f9332cba515138c9773d54e1866bacb1a30d9c2f06e0e5e3a47",
+      "revision": "6b7cd186527d",
+      "presentation": "Local illustrated fallback and animation vocabulary; visible fictional-ghost-story/not-historical-scene wording. Brown is not presented as a Civil War soldier.",
+      "accessibility": "Local title and description retained; namespace-first canonical SVG; artwork geometry unchanged from reviewed candidate"
+    },
+    {
+      "path": "index.html",
+      "component": "fish-anchor-svg",
+      "source": "Original repository-native vector fish news anchor, October29; expressive mouth/jaw follows captured recording energy when analysis is available. No remote raster copied.",
+      "presentation": "Static when muted, stopped, hidden, reduced-motion or analysis unavailable; no generated speech or phoneme-alignment claim"
     }
   ],
   "identity_reference": "https://vote.charlestoncounty.gov/?r=816",

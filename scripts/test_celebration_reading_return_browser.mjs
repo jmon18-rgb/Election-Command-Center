@@ -12,7 +12,20 @@ try{browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL
   await page.goto(`http://127.0.0.1:${server.address().port}/#electionNight`,{waitUntil:'domcontentloaded'});
   await page.locator('#enMode2026').click();
   await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article').length===19);
+  // Card shells may exist before their asynchronous model frame is accepted.
+  await page.waitForFunction(()=>jointLastResult?.probabilities&&!jointModelPending);
+  await page.evaluate(()=>jointWhenIdle());
   await page.clock.setSystemTime(new Date('2026-11-04T03:00:00Z'));
+  // The preclose-to-results transition changes the exact input context. Let the
+  // existing one-second bootstrap run, then establish an accepted postclose frame
+  // before beginning the reader/announcement fixture. Explicit runFor calls below
+  // retain every original timer, queue, withdrawal and focus assertion.
+  await page.clock.runFor(1100);
+  await page.evaluate(async()=>{await jointRender(true);await jointWhenIdle();});
+  await page.waitForFunction(()=>jointLastResult?.probabilities&&!jointModelPending&&jointCacheKey===jointFrameKey(jointValidatedFrameInputs()));
+  await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now()+1000)));
+  await page.evaluate(async()=>{await jointRender();await jointWhenIdle();});
+  assert.equal(await page.evaluate(()=>Boolean(jointLastResult?.probabilities)&&!jointModelPending&&!jointActiveKey&&jointCacheKey===jointFrameKey(jointValidatedFrameInputs())),true,'Reading fixture starts from an accepted current postclose frame');
   await page.evaluate(()=>{document.querySelector('#enCelebrationAnnouncement').play=()=>Promise.resolve();});
 const call=async(active)=>page.evaluate(active=>{enCivicByWatch['Senate|TX']={provider:'civicAPI',office:'Senate',key:'TX',race_id:87438,total:98001,last_updated:'2026-11-04T02:00:00Z',called:active?'James Talarico':null,candidates:[{name:'James Talarico',party:'D',votes:65000},{name:'Ken Paxton',party:'R',votes:33001}]};delete enCivicErrors['Senate|TX'];enCivicValidatedGenerations['Senate|TX']=enCivicBreaker?.status().generation??0;enRenderMilestones();},active);
 const bulletin=async title=>page.evaluate(title=>enFishShow({kind:'revision',source:'civicAPI',office:'Senate',race:'IA',title:'FICTIONAL '+title,details:'Synthetic queue continuity only; no live source request or result.'}),title);

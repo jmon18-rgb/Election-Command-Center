@@ -1,5 +1,12 @@
 # National needle acceptance decision — October 27, 2026
 
+## October 29 early-indicator extension — display-only, empirical gate unchanged
+
+The unified 32-race early watch compares current admitted matched-area performance with the same reporting areas' declared expectation and method-scenario range. Raw leads, precinct percentages, reference Cook/FLIPR probabilities and source calls do not become a second national likelihood. Provisional 2-state/+3 or 3-state/+5 editorial weather cues do not alter any model output or call. The three new prominent targets KY-06/IN-05/FL-SEN remain explicit matched-input gaps.
+
+Actual page binding is checked with the real frame producer and county compiler diagnostics, including current source/receipt expiry, private context, corrections and ASOF withholding. Engineering correctness and synthetic examples do not establish predictive calibration. The existing zero-admitted-independent-chronology/held-out decision and human/positive 2026 delivery gates remain unchanged. Numerical helper/engine/kernel,3000 draws, hardESS, exact target and 30 s deadline are unchanged by this display extension.
+
+
 ## PR530 conditional support and scheduling — verified, empirical gates unchanged
 
 Resource-aware indexed allocation/Gaussian proposals now support the fixed
