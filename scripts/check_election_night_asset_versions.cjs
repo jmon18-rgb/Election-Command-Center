@@ -54,6 +54,12 @@ function inspect(html,readScript,{fix=false}={}){
 }
 function main(){
  const fix=process.argv.includes('--fix');
+ const workerFile=path.join(ROOT,'scripts/joint_model_worker.js');
+ if(fs.existsSync(workerFile)){
+  const worker=require('./check_joint_model_worker_assets.cjs').inspect(fs.readFileSync(workerFile,'utf8'),name=>fs.readFileSync(path.join(ROOT,'scripts',name+'.js')),{fix});
+  if(!worker.ok){console.error(worker.errors.join('\n'));process.exitCode=1;return;}
+  if(fix&&worker.changed)fs.writeFileSync(workerFile,worker.source);
+ }
  const result=inspect(fs.readFileSync(INDEX,'utf8'),name=>
   fs.readFileSync(path.join(ROOT,name.slice(2))),{fix});
  if(result.errors.length){

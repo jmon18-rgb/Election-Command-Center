@@ -13,6 +13,7 @@
  const iso=x=>typeof x==='string'&&Number.isFinite(Date.parse(x))&&/(?:Z|[+-]\d\d:\d\d)$/.test(x);
  const code=x=>typeof x==='string'&&/^[A-Z]{2}-(?:SEN|GOV|\d{2})$/.test(x);
  const copy=x=>JSON.parse(JSON.stringify(x));
+ const pendingViews=new WeakMap();
  const sourceUrl=x=>typeof x==='string'&&x.length<=500&&/^https?:\/\//.test(x)?x:null;
  // Presentation bands only. Even100% remains a forecast without a validated call.
  function rating(pct,{positive='D',negative='R',calledParty=null}={}){
@@ -178,6 +179,7 @@
  // separate from the temporary DOM node and from all model/source evidence.
  function captureFocus(host,target=host?.ownerDocument.activeElement){
   if(!host||!target||!host.contains(target))return null;
+  const pending=pendingViews.get(host);if(pending?.anchor===target&&pending.bookmark)return {...pending.bookmark};
   if(target.dataset.personalCardLink)return {kind:'card-link',race:target.dataset.personalCardLink};
   if(target.dataset.personalWatchReturn)return {kind:'watch-return',race:target.dataset.personalWatchReturn};
   const watch=target.closest('.early-watch');if(watch)return {kind:'watch',race:target.closest('[data-watch-race]')?.dataset.watchRace||null};
@@ -203,10 +205,42 @@
   }
   if(bookmark.kind==='race'){
    const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===bookmark.race);
+   const pending=pendingViews.get(host);if(pending){pending.bookmark={...bookmark};pending.anchor=card?.querySelector('h4')||null;return pending.anchor;}
    const disclosure=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===bookmark.disclosure);
    return disclosure?.querySelector(':scope > summary')||card?.querySelector('h4')||null;
   }
   return null;
+ }
+
+ // Preserve the actual disclosure DOM while a new input snapshot is computed.
+ // Visibility keeps its layout, aria-hidden/inert remove stale current claims.
+ // Only the reader whose hidden control moved to this heading may return.
+ function setPending(host,message='Updating the model for the current inputs…'){
+  if(!host)return;
+  let state=pendingViews.get(host);
+  if(!state){state={nodes:new Map(),notes:[],busy:host.getAttribute('aria-busy'),bookmark:captureFocus(host),anchor:null};pendingViews.set(host,state);}
+  const doc=host.ownerDocument,active=doc.activeElement;
+  const nodes=[...host.querySelectorAll('.personal-focus-card > :not(h4):not(nav):not(.personal-focus-pending-note),.personal-focus-next,.personal-focus-call-status,.early-watch-signals,.early-watch-race > summary > span,.early-watch-gauge,.early-watch-state,.early-watch-prior-warning,.early-watch-performance')];
+  let readerHidden=false;
+  for(const node of nodes){
+   if(node.contains(active)){readerHidden=true;state.bookmark=captureFocus(host,active);}
+   if(!state.nodes.has(node))state.nodes.set(node,{visibility:node.style.visibility,aria:node.getAttribute('aria-hidden'),inert:node.hasAttribute('inert')});
+   node.style.visibility='hidden';node.setAttribute('aria-hidden','true');node.setAttribute('inert','');
+  }
+  if(!state.status){const p=doc.createElement('p');p.className='personal-focus-pending-message';p.setAttribute('role','status');p.style.cssText='position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap';host.insertBefore(p,host.querySelector('h2')?.nextSibling||host.firstChild);state.status=p;}
+  state.status.textContent=message+' Previous predictions are withheld until this update is checked.';host.setAttribute('aria-busy','true');
+  for(const card of host.querySelectorAll('.personal-focus-card'))if(!card.querySelector('.personal-focus-pending-note')){
+   const p=doc.createElement('p');p.className='personal-focus-pending-note';p.textContent='Forecast updating…';p.style.cssText='position:absolute;top:48px;left:16px;right:16px';card.style.position='relative';card.append(p);state.notes.push(p);
+  }
+  if(readerHidden&&state.bookmark?.race){state.anchor=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===state.bookmark.race)?.querySelector('h4')||null;state.anchor?.focus({preventScroll:true});}
+ }
+ function clearPending(host){
+  const state=pendingViews.get(host);if(!state)return null;
+  const bookmark=host.ownerDocument.activeElement===state.anchor?state.bookmark:null;
+  for(const [node,old]of state.nodes){node.style.visibility=old.visibility;if(old.aria===null)node.removeAttribute('aria-hidden');else node.setAttribute('aria-hidden',old.aria);if(!old.inert)node.removeAttribute('inert');}
+  for(const node of state.notes)node.remove();state.status?.remove();
+  if(state.busy===null)host.removeAttribute('aria-busy');else host.setAttribute('aria-busy',state.busy);
+  pendingViews.delete(host);return bookmark;
  }
 
  function focusReadingTarget(host,target){
@@ -230,6 +264,7 @@
  function openRaceEvidence(host,code){
   const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(x=>x.dataset.race===code);
   const detail=card?.querySelector('[data-disclosure="expectation"]');if(detail)detail.open=true;
+  const pending=pendingViews.get(host);if(pending){pending.bookmark={kind:'race',race:code,disclosure:'expectation'};pending.anchor=card?.querySelector('h4')||null;focusReadingTarget(host,pending.anchor);return;}
   focusReadingTarget(host,detail?.querySelector(':scope > summary')||card?.querySelector('h4'));
  }
  function returnToWatch(host,code){
@@ -261,9 +296,9 @@
    item.append(el('p','early-watch-reference','Owner reference · Cook '+ref.cook+' | FLIPR '+ref.flipr+' · R win '+ref.rep_win_pct.toFixed(1)+'% · projected '+ref.margin_side+'+'+ref.margin_points.toFixed(1)));
    if(row.broadStateProxy)item.append(el('p','early-watch-prior-warning','Broad state prior for redrawn geography · no district-specific historical baseline'+(row.polled?' · district polling also used.':'; no district poll in this estimate.')));
    const gauge=el('div','early-watch-gauge');gauge.setAttribute('role','img');gauge.setAttribute('aria-label',row.code+' '+row.rating.label+'; '+(row.pct===null?'model chance unavailable':'D model chance '+row.pct.toFixed(1)+' percent')+'; forecast unless validated call');if(row.pct!==null){const marker=el('span','');marker.style.left=row.pct+'%';gauge.append(marker);}item.append(gauge);
-   item.append(el('p','',(simulated?'SIMULATED · ':'')+row.status+(row.sourceAt?' · '+(row.ownCounts?'Count':'Call')+' source time '+time(Date.parse(row.sourceAt)):'')),el('small','','Poll-close window · '+row.window+' · eligibility, not an arrival promise'));
+   item.append(el('p','early-watch-state',(simulated?'SIMULATED · ':'')+row.status+(row.sourceAt?' · '+(row.ownCounts?'Count':'Call')+' source time '+time(Date.parse(row.sourceAt)):'')),el('small','','Poll-close window · '+row.window+' · eligibility, not an arrival promise'));
    if(row.note)item.append(el('small','',row.note));
-   if(row.performance&&Array.isArray(row.performance.difference_margin_scenarios)&&row.performance.difference_margin_scenarios.length===2&&row.performance.difference_margin_scenarios.every(finite))item.append(el('p','','Matched-area performance · '+range(row.performance.difference_margin_scenarios)+' margin points vs expected. Inspect the shared race card for areas and assumptions.'));
+   if(row.performance&&Array.isArray(row.performance.difference_margin_scenarios)&&row.performance.difference_margin_scenarios.length===2&&row.performance.difference_margin_scenarios.every(finite))item.append(el('p','early-watch-performance','Matched-area performance · '+range(row.performance.difference_margin_scenarios)+' margin points vs expected. Inspect the shared race card for areas and assumptions.'));
    if(personalCodes.has(row.code)){
     const nav=el('nav','personal-focus-jumps'),button=el('button','','Inspect '+row.code+' needle & evidence');nav.setAttribute('aria-label',row.code+' shared race evidence');button.type='button';button.dataset.personalCardLink=row.code;
     button.addEventListener('click',()=>openRaceEvidence(host,row.code));nav.append(button);item.append(nav);
@@ -275,7 +310,11 @@
  }
 
  function render(host,result,baseline,options={}){
-  if(!host)return;const data=rows(result,baseline,options);host.hidden=!data.length;
+  if(!host)return;
+  const priorReader=host.ownerDocument.activeElement,priorRect=priorReader&&host.contains(priorReader)?priorReader.getBoundingClientRect():null;
+  const toolbarBottom=(host.ownerDocument.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;
+  const pendingReaderVisible=pendingViews.has(host)&&priorRect&&priorRect.top>=toolbarBottom-1&&priorRect.bottom<=host.ownerDocument.defaultView.innerHeight;
+  const resumed=clearPending(host),data=rows(result,baseline,options);host.hidden=!data.length;
   const watchOld=host.querySelector('.early-watch-list'),watchState={open:watchOld?.open,races:Array.from(watchOld?.querySelectorAll('[data-watch-race][open]')||[]).map(x=>x.dataset.watchRace)},watchFocus=captureFocus(host);
   const oldHistory=host.querySelector('.personal-focus-history'),active=host.ownerDocument.activeElement;
   const oldRatingKey=host.querySelector('.personal-focus-rating-key'),ratingKeyOpen=Boolean(oldRatingKey?.open),ratingKeyFocused=Boolean(oldRatingKey?.contains(active));
@@ -285,8 +324,8 @@
   // Keep operator disclosure state by race identity, never by changing row order.
   const openPerformance=new Map(Array.from(host.querySelectorAll('.personal-focus-card')).map(c=>[c.dataset.race,new Set(Array.from(c.querySelectorAll('details[open]')).map(d=>d.dataset.disclosure))]));
   const activeCard=host.ownerDocument.activeElement?.closest?.('.personal-focus-card');
-  const focusedRace=activeCard&&host.contains(activeCard)&&!active.dataset.personalWatchReturn?activeCard.dataset.race:null;
-  const focusedDisclosure=focusedRace?active.closest('summary')?.parentElement.dataset.disclosure:null;
+  const focusedRace=resumed?.kind==='race'?resumed.race:activeCard&&host.contains(activeCard)&&!active.dataset.personalWatchReturn?activeCard.dataset.race:null;
+  const focusedDisclosure=resumed?.kind==='race'?resumed.disclosure:focusedRace?active.closest('summary')?.parentElement.dataset.disclosure:null;
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   const simulated=data.some(x=>x.simulated);
@@ -358,6 +397,10 @@
   for(const summary of host.querySelectorAll('.personal-focus-card summary'))summary.addEventListener('click',event=>activatePersonalDisclosure(host,summary,event));
   if(['watch','jump','card-link','watch-return'].includes(watchFocus?.kind))focusTarget(host,watchFocus)?.focus({preventScroll:true});
   if(focusedRace){const card=Array.from(host.querySelectorAll('.personal-focus-card')).find(c=>c.dataset.race===focusedRace),target=Array.from(card?.querySelectorAll('details')||[]).find(d=>d.dataset.disclosure===focusedDisclosure);(target?.querySelector('summary')||(focusedDisclosure?card?.querySelector('h4'):card?.querySelector('details > summary'))||card?.querySelector('h4'))?.focus({preventScroll:true});}
+  if(pendingReaderVisible&&host.contains(doc.activeElement)){
+   const rect=doc.activeElement.getBoundingClientRect(),top=(doc.querySelector('.en-toolbar')?.getBoundingClientRect().bottom||0)+8;
+   if(rect.top<top||rect.bottom>doc.defaultView.innerHeight-8)doc.defaultView.scrollBy(0,rect.top-top);
+  }
  }
- return Object.freeze({SENATE,HOUSE,rows,render,rating,marginSummary,watchSummary,WATCH,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
+ return Object.freeze({SENATE,HOUSE,rows,render,setPending,clearPending,rating,marginSummary,watchSummary,WATCH,captureFocus,focusTarget,createHistory,HISTORY_KEY,HISTORY_LIMIT,HISTORY_BYTES});
 });

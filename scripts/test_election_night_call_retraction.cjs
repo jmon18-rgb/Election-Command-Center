@@ -26,6 +26,7 @@ Object.assign(context,{enFishPending:[call(),call('ME'),call('NH','Open America'
  clearTimeout:()=>cleared++,enFishReturnFocus:reader,enFishReturnAnchor:null,innerHeight:900,
  $:selector=>selector==='#electionNight .en-toolbar'?{getBoundingClientRect:()=>({bottom:62})}:toast});
 // The extracted revocation path now uses the actual shared reader-return helper.
+vm.runInContext('const jointNationalReaders=new WeakMap();'+segment('jointNationalReadingTarget','jointRenderNeedles'),context);
 vm.runInContext(segment('enReadingReturnAnchor','enFishRenderVoice'),context);
 vm.runInContext(segment('enFishRevokeCall','enFishQueueState'),context);
 records.length=0;

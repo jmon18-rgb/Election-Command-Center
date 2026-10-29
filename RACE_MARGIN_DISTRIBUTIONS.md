@@ -1,6 +1,6 @@
 # Same-joint race margin distributions
 
-The separate conditional-call candidate adds explicit
+The separately released528 conditional-call model adds explicit
 `VALIDATED_CALL_IMPORTANCE_RESAMPLED` and `CALL_AND_COUNTY_IMPORTANCE_RESAMPLED`
 provenance tags. Its uncalled ranges follow the same final weighted elections
 as national outcomes; called races still have no invented final margin. The

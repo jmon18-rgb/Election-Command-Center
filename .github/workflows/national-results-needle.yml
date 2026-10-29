@@ -7,6 +7,9 @@ on:
       - 'index.html'
       - 'scripts/chamber_control_model.js'
       - 'scripts/source_call_conditioning.js'
+      - 'scripts/joint_model_worker*.js'
+      - 'scripts/check_joint_model_worker_assets.cjs'
+      - 'scripts/test_joint_model_worker*'
       - 'scripts/test_source_call_conditioning*'
       - 'scripts/test_chamber_source_call_conditioning.cjs'
       - 'scripts/fictional_call_basis.cjs'
@@ -24,6 +27,7 @@ on:
       - 'scripts/election_night_signals.js'
       - 'scripts/personal_election_focus.js'
       - 'scripts/test_personal_election_focus*'
+      - 'scripts/test_personal_election_pending*'
       - 'scripts/test_rehearsal_readability_browser.mjs'
       - 'scripts/wisconsin_house*.js'
       - 'data/*county*.json'
@@ -46,6 +50,9 @@ jobs:
           node scripts/test_source_call_conditioning.cjs
           node scripts/test_chamber_source_call_conditioning.cjs
           node scripts/test_national_call_conditioning.cjs
+          node scripts/test_joint_model_worker_controller.cjs
+          node scripts/test_joint_model_worker_assets.cjs
+          node scripts/test_joint_model_worker_main_api.cjs
           node scripts/test_national_county_likelihood.cjs
           node scripts/test_official_admission_audit.cjs
           node scripts/test_official_admission_controller.cjs

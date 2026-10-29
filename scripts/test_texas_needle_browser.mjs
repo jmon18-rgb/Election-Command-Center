@@ -4,6 +4,13 @@ import {readFileSync,existsSync,statSync,mkdirSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
 const {chromium}=await import(process.env.PLAYWRIGHT_MODULE_URL||'playwright');
 const root=resolve(import.meta.dirname,'..');
+// Source UI can settle before a background forecast; numeric comparisons use
+// the latest accepted frame without changing any source request or clock.
+async function waitForAcceptedModel(page){
+ await page.waitForFunction(()=>typeof jointWhenIdle==='function'&&jointBasis);
+ await page.evaluate(()=>jointWhenIdle());
+ await page.waitForFunction(()=>Boolean(jointForecastResult()?.probabilities&&jointPulseBaseline?.probabilities&&!jointModelPending));
+}
 const reference=JSON.parse(readFileSync(resolve(root,'data/texas_county_fips_reference.json')));
 const history=JSON.parse(readFileSync(resolve(root,'data/texas_senate_2024_county_baseline_official.json')));
 const types={'.html':'text/html','.js':'text/javascript','.json':'application/json','.svg':'image/svg+xml','.mp3':'audio/mpeg','.jpg':'image/jpeg'};
@@ -46,6 +53,7 @@ try{
   await page.waitForFunction(()=>document.querySelector('[data-tx="state"]')?.textContent.includes('TEST DATA'));
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—');
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:TX-SEN:v1'),null,'Provider test votes never persist a source revision');
+  await waitForAcceptedModel(page);
   const national=await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities));
   scenario='red';await page.clock.setSystemTime(new Date('2026-11-04T03:06:00Z'));
   await host.locator('[data-tx="refresh"]').click();
@@ -63,6 +71,7 @@ try{
   assert(projection.modeled_remaining_two_party_votes_band.every(Number.isFinite));
   assert(projection.modeled_remaining_two_party_votes_band[1]>projection.modeled_remaining_two_party_votes_band[0]);
 
+  await waitForAcceptedModel(page);
   const starting=await page.evaluate(()=>({used:enTexasPilotController.status().projection.assumptions.prior_margin_points,
    linked:jointPulseBaseline.race_probabilities.find(r=>r.race_code==='TX-SEN').model_dem_margin_points}));
   assert.equal(starting.used,starting.linked,'Texas uses the same underlying starting margin as its linked race model');
@@ -75,6 +84,7 @@ try{
   scenario='blue';await page.clock.setSystemTime(new Date('2026-11-04T03:07:00Z'));
   await host.locator('[data-tx="refresh"]').click();
   await page.waitForFunction(first=>window.enTexasPilotController?.status().projection?.dem_win_probability>first+.3,first);
+  await waitForAcceptedModel(page);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),national);
   assert.equal(await page.evaluate(key=>localStorage.getItem(key),'ecc:county-source-revision:2026:TX-SEN:v1')!==null,true,'Validated positive inputs persist ordering metadata');
   scenario='withdrawn';await page.clock.setSystemTime(new Date('2026-11-04T03:07:15Z'));
@@ -111,6 +121,7 @@ try{
   await page.locator('#enMode2024').click();
   await page.waitForFunction(()=>!window.enTexasPilotController?.status().projection);
   assert.equal(await host.locator('[data-tx="chance"]').textContent(),'—','Archive mode removes the live probability');
+  await waitForAcceptedModel(page);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),national,'Corrections and recovery cannot overwrite the polling prior');
   // Exercise the actual view with a delayed linked-prior callback. Source
   // data is synthetic, but neither the shared model nor national odds is edited.
@@ -150,6 +161,7 @@ try{
   assert.equal(await page.evaluate(()=>__startup.controller.status().projection),null);
   assert.match(await page.evaluate(()=>__startup.controller.status().phase),/requires a newer/);
   await page.evaluate(()=>{__startup.controller.destroy();__startup.host.remove();});
+  await waitForAcceptedModel(page);
   assert.equal(await page.evaluate(()=>JSON.stringify(jointPulseBaseline.probabilities)),national);
   // A missing protection asset withholds this estimate without taking down
   // the independent national model or core election-night page.

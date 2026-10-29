@@ -1,5 +1,51 @@
 # Election Night production-readiness assignment
 
+## R0 background worker implemented — finish protected release
+
+Background computation and latest-only atomic frame admission are implemented;
+current numerical source files remain unchanged. Actual worker/full-app/pending
+1366/390 engineering proof passes. A real simultaneous-source regression (TX
+losing its linked polling reference while another frame computed) is repaired;
+shared national eight-source/retraction/withdrawal/rehearsal checks now pass.
+Full DOM now passes locally. ALL exact-current-head workflow parents/latest jobs/external statuses,
+clean mergeability, final CURRENT main Pages, published bytes and appropriate
+browser verification remain required before calling this released. Do not replay
+completed media/528 demonstrations. See JOINT_MODEL_WORKER.md.
+
+Separate ignored look-ahead prototypes improve support in the fixed fictional
+late-call case but require independent target/indexed-law/consumer review and
+have greater computation cost. Do not promote or conflate them with this worker
+release. Original guide/human tasks/results remain unchanged; calibration,
+positive production delivery and archive capacity remain distinct open gates.
+
+## PR528 VERIFIED PUBLISHED — next actual engineering is responsiveness/support
+
+Corrected9879e0df/all37parents/52jobs49SUCCESS3declaredPRnonappSKIP/0external/
+clean passed, merge96f751d9; finalCURRENTmain81287cc9/Pages40796639027SUCCESS,
+38changedpublishedfiles/currentindex/originmaincoherence/no_credit PASS.
+ActualpublishedEdge1366/390 all33newcall-context/range/correction/retraction/
+200callWITHHELD/validwinner/isolation/overflowassertions PASS. Ordinary27
+readonlyreload exactassetorder/privateDOMstatus retained; known0viewportinput
+limit not retried/nointeractive-or-geometryclaim. Sevenpreviews marked/frozen15
+untouched/billing29handoff. Reuse pr528published/exacthead receipts, no replay.
+
+Sourcecalls now condition originalshared factors with exactp/q, one fixed
+boundedcounttarget, engine-owned finalization and hardESS>=.5n. Unusedcalled
+localmargin analytical integration/memoization keep every tested publicoutput/
+weight/seed/requiredcapture/optionalconsumer exact, no NaN publicvalues. Initial
+6bbDOMdynamicUT04fixture failure was corrected without dropping the assertion,
+rerun/waiver/timeoutincrease; nevermerged. Calibration remains unproven.
+
+NEXT named engineering: prevent several-second late-call computation from
+blocking the interface using an isolated modelworker with exactmath and strict
+latest-input/context/retraction/hidden/archive/cancellation guards; do not show
+stale winners while a frame is pending. Independently, improve the allocation
+proposal's look-ahead support while retaining exactcorrection/hardESS/target.
+The declared200call case currentlywithholds covariance (allwinnerskept); never
+weaken the floor or claim full-night learning. No date/human/source403 freeze.
+Originalguide1.0/eleventasks/hash/resultsNOT_RUN/null unchanged; only scoped528
+addendum/componentproof with immutablepriorledgerbytecopy, no rebuild/retest.
+
 ## Current R0 source-call candidate integrated — finish protected release
 
 Branch readiness/source-call-conditioning carries PR527 proof checkpointca7c7d5f

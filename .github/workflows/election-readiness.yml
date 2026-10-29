@@ -56,6 +56,26 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Desktop and mobile outage smoke
         run: node scripts/test_real_browser_election_night.mjs
+      - name: Exact background model bundles, cancellation and responsive desktop and mobile controls
+        if: ${{ !cancelled() }}
+        run: node scripts/test_joint_model_worker_browser.mjs
+      - name: Pending personal forecasts preserve disclosure, keyboard position and clear stale predictions
+        if: ${{ !cancelled() }}
+        run: node scripts/test_personal_election_pending_browser.mjs
+      - name: Full app rejects held old worker frames across calls, context, archive, hidden and timeout recovery
+        if: ${{ !cancelled() }}
+        run: node scripts/test_joint_model_worker_app_browser.mjs
+      - name: Upload background-model and pending-view evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-worker-browser
+          path: |
+            artifacts/readiness/ui-review/model-worker/
+            artifacts/readiness/ui-review/personal-election-pending/
+            artifacts/readiness/ui-review/joint-model-worker-app/
+          if-no-files-found: warn
+          retention-days: 7
       - name: National results failure and recovery
         if: ${{ !cancelled() }}
         run: node scripts/test_election_night_506_live_browser_recovery.mjs

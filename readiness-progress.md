@@ -1,5 +1,67 @@
 # Readiness progress
 
+## Background-model implementation — October28/29 protected review pending
+
+The ready R0 responsiveness task now runs the exact current helper/engine/kernel
+in a fingerprinted same-origin worker. Latest-input/context/source-validity gates
+admit one atomic primary/public/optional bundle; changed inputs immediately
+withhold old odds and call-driver claims. Hidden/archive/rehearsal boundaries,
+terminal timeout without automatic retry, explicit compatibility fallback and
+semantic reader/scroll retention are implemented. The 3,000 draws, fixed target,
+hard ESS floor, source ledger, request cadence and celebration rules are unchanged.
+
+Actual isolated Edge1366/390 worker and full-app held-callback tests pass,
+including private/public atomicity, call correction/withdrawal, hidden/archive,
+rehearsal cancellation/isolation, failures/deadline/no-retry and keyboard readers.
+The shared eight-source browser journey found an actual integration defect:
+clearing displayed baselines also removed TX's internal source prior during a
+concurrent update. A distinct exact, basis/settings-compatible no-call reference
+now survives pending display withdrawal; the original eight/seven-source and
+request-floor assertions pass. Preview pending layout/focus also preserves the
+original nested-area/history/scroll tasks. Core regression checks and full DOM pass;
+protected exact-head/release gates still pending. No published-release claim.
+
+See JOINT_MODEL_WORKER.md and scoped model-worker/personal-pending/full-app
+artifacts. Independent allocation look-ahead remains an ignored prototype under
+separate mathematical review; no prototype math is in this worker change.
+
+## PR528 VERIFIED PUBLISHED — October28 conditional winner-event model
+
+Corrected9879e0df4a6d47a864450682420e7917f81cda6a passed ALL37workflowparents,
+52latestjobs49SUCCESS3declarednonapplicabledeployed-onlySKIP/0external/current
+clean/mergeable. FullDOM40795310398/job123190248263, national40795310528 and
+readiness40795310334 SUCCESS. Merge96f751d9b77750726708d5fc577d17183537da7f;
+finalCURRENTmain81287cc9cc78bf63e8319fba9ce7aa3cd260b98d/Pages40796639027
+SUCCESS. Merge-headPages40796593802 automatically superseded/cancelled by
+routinebriefing40796594532; no manual cancellation/waiver/rerun/timeout increase.
+All38changedpublicfiles/currentindex match00:51:58.886Z usingorigin/mainblobs;
+publiccoherence/index/no_credit PASS; main rechecked unchanged after browser.
+
+Actual publishedEdge1366x900/390x844 all33assertions PASS: broader-call vs own
+returns/range tags/normalkeyboard/correction/exactretraction/lowESSWITHHELD/
+all200validwinners retained/liveisolation/nooverflow; providers/YouTube blocked.
+The normal3000particle coordinator took1151/1133ms includingdriver on this
+desktophost; a phone viewport is not physical-phone speed. No actualpositive
+delivery/calibration/human acceptance claim. Proof pr528-exacthead-gate.json,
+pr528-published-integrity.json, pr528-published-coherence-origin-main.txt and
+pr528-published-9879e0df/source-calls/. Initial6bbfailure/proofs retained.
+
+Ordinary27 readonlyreload shows exacthelper/kernel/engineversions/correctorder;
+private preference-controls/context-status text unchanged, restored2024archive.
+Known0viewportinput limitation not retried; no ordinaryinteractive/geometry
+acceptance. All7previews marked/frozen15 untouched/billing29handoff retained.
+Guide1.0/elevenhuman task scopes/hashes/NOT_RUN/null remain unchanged; only a
+scoped528component addendum/proof is appended after this verified release.
+Appendreceipt/immutablepre528bytecopy retained; currentledgerSHA
+2c9cd7541b8b023cd3cf983183f33064bbc620f52d2f82618390d82b348b693a,
+one componentproof14->15. No guide rebuild/retest.
+
+Remaining concrete R0 engineering: hundreds-of-call proposal support and~3sec
+synchronous late-case cost. VisibleWITHHELD is deliberate, not a full-night
+covariance guarantee. Async worker responsiveness and separately reviewed
+look-ahead allocation guidance are ready next tasks; no external/date blanket
+block. R2 independent validation and realpositive source delivery remain open.
+
 ## October28 R0 conditional-call implementation — protected review next
 
 PR528 initial6bb92b92 passed36parents/48jobs; fullDOM40793713865/job123184910678

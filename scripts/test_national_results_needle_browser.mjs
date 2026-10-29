@@ -55,13 +55,16 @@ try{
   assert.deepEqual(await page.locator('#jointNightNeedle .four-needle-outcome strong').allTextContents(),['—','—','—','—'],'Unavailable data clears previous chances rather than inventing zeroes');
   await page.evaluate(()=>jointRenderNeedles(jointLastResult,{hostIds:['jointNightNeedle']}));
   mkdirSync(resolve(root,'artifacts/readiness'),{recursive:true});await page.locator('#jointNightNeedle').screenshot({path:resolve(root,'artifacts/readiness/four-outcome-probabilities-'+width+'.png')});
-  async function update(next,minute){mode=next;stamp='2026-11-04T03:'+minute+':00Z';await page.clock.setSystemTime(new Date(stamp));
-   await page.evaluate(async()=>{await Promise.all([enIowaPilotController.tick(true),enKansasPilotController.tick(true),enTexasPilotController.tick(true),enWisconsinHouseController.tick(true),enWisconsinHouse03Controller.tick(true),enMichiganHouse04Controller.tick(true),enPennsylvaniaHouse10Controller.tick(true),enNewYorkHouse17Controller.tick(true)]);jointRender(true);});}
+  async function update(next,minute){mode=next;stamp='2026-11-04T03:'+minute+':00Z';
+   // A worker finishes asynchronously. Advance from completed browser time,
+   // rather than stepping backwards or inside the unchanged60-second floor.
+   await page.clock.setSystemTime(new Date(Math.max(Date.parse(stamp),await page.evaluate(()=>Date.now())+120000)));
+   await page.evaluate(async()=>{await Promise.all([enIowaPilotController.tick(true),enKansasPilotController.tick(true),enTexasPilotController.tick(true),enWisconsinHouseController.tick(true),enWisconsinHouse03Controller.tick(true),enMichiganHouse04Controller.tick(true),enPennsylvaniaHouse10Controller.tick(true),enNewYorkHouse17Controller.tick(true)]);await jointRender(true);await jointWhenIdle();});}
   // No controller.tick(), manual refresh, or jointRender(): the actual page's
   // automatic source scheduler must carry changed returns into the national UI.
   mode='blue';stamp='2026-11-04T03:05:15Z';
   await page.clock.runFor(16000);
-  await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.length===8);
+  await page.waitForFunction(()=>jointLastResult?.county_results_update?.used.length===8).catch(async error=>{console.log(JSON.stringify({errors,state:await page.evaluate(()=>({now:Date.now(),used:jointLastResult?.county_results_update?.used,error:jointErrorMessage,pending:jointModelPending,active:jointActiveKey,controller:jointModelController?.state(),phases:[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller,enMichiganHouse04Controller,enPennsylvaniaHouse10Controller,enNewYorkHouse17Controller].map(c=>c.status().phase)}))}));throw error;});
   assert.equal(await page.evaluate(()=>jointLastResult.senate_independent_credit_mode),'no_credit','County conditioning retains explicit Independent control policy');
   assert.notEqual(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline,'Automatic polling moves the national outlook before calls');
   assert.deepEqual(await page.evaluate(()=>[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller,enMichiganHouse04Controller,enPennsylvaniaHouse10Controller,enNewYorkHouse17Controller].map(c=>c.status().automatic_poll_interval_ms)),[15000,15000,15000,15000,15000,15000,15000,15000]);
@@ -99,6 +102,7 @@ try{
   assert(blue.d.state_likelihood_max_ratio.WI<=20+1e-8);
   await update('withdraw-house03','12');
   const retained=await page.evaluate(()=>jointLastResult.county_results_update);
+  if(retained.used.length!==7)console.log(JSON.stringify({retained,state:await page.evaluate(()=>({phases:[enIowaPilotController,enKansasPilotController,enTexasPilotController,enWisconsinHouseController,enWisconsinHouse03Controller,enMichiganHouse04Controller,enPennsylvaniaHouse10Controller,enNewYorkHouse17Controller].map(c=>({phase:c.status().phase,evidence:c.status().evidence?.snapshot.race_code,error:c.status().error})),envelopes:jointCountyEvidence().map(e=>({code:e.snapshot.race_code,context:e.model_context,asof:e.snapshot.snapshot_updated_at})),now:Date.now()}))}));
   assert.equal(retained.used.length,7);assert.equal(retained.house_vote_sources,4);
   assert.equal(retained.state_likelihood_budget_members.WI,2);
   assert(retained.state_likelihood_max_ratio.WI<=Math.sqrt(20)+1e-8,'Retraction cannot reallocate the missing district likelihood budget');
@@ -116,9 +120,9 @@ try{
   await update('test','35');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline);
   await update('blue','40');
   await page.clock.setSystemTime(new Date('2026-11-04T07:00:00Z'));
-  await page.evaluate(()=>jointRender(true));
+  await page.evaluate(async()=>{await jointRender(true);await jointWhenIdle();});
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),baseline,'Expired source evidence cannot move national odds even before a controller refresh');
-  await page.evaluate(async()=>{await Promise.all([enIowaPilotController.tick(true),enKansasPilotController.tick(true),enTexasPilotController.tick(true),enWisconsinHouseController.tick(true),enWisconsinHouse03Controller.tick(true),enMichiganHouse04Controller.tick(true),enPennsylvaniaHouse10Controller.tick(true),enNewYorkHouse17Controller.tick(true)]);jointRender(true);});
+  await page.evaluate(async()=>{await Promise.all([enIowaPilotController.tick(true),enKansasPilotController.tick(true),enTexasPilotController.tick(true),enWisconsinHouseController.tick(true),enWisconsinHouse03Controller.tick(true),enMichiganHouse04Controller.tick(true),enPennsylvaniaHouse10Controller.tick(true),enNewYorkHouse17Controller.tick(true)]);await jointRender(true);await jointWhenIdle();});
   const preserved=await page.evaluate(()=>({model:JSON.stringify(jointLastResult),storage:JSON.stringify({...localStorage})}));
   await page.locator('#enNationalRehearsal > summary').click();
   await page.waitForFunction(()=>document.querySelector('#enNationalStage').textContent.includes('1/5'));
