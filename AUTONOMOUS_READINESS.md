@@ -1,5 +1,23 @@
 # Election Night production-readiness assignment
 
+## R0 background worker implemented — finish protected release
+
+Background computation and latest-only atomic frame admission are implemented;
+current numerical source files remain unchanged. Actual worker/full-app/pending
+1366/390 engineering proof passes. A real simultaneous-source regression (TX
+losing its linked polling reference while another frame computed) is repaired;
+shared national eight-source/retraction/withdrawal/rehearsal checks now pass.
+Full DOM now passes locally. ALL exact-current-head workflow parents/latest jobs/external statuses,
+clean mergeability, final CURRENT main Pages, published bytes and appropriate
+browser verification remain required before calling this released. Do not replay
+completed media/528 demonstrations. See JOINT_MODEL_WORKER.md.
+
+Separate ignored look-ahead prototypes improve support in the fixed fictional
+late-call case but require independent target/indexed-law/consumer review and
+have greater computation cost. Do not promote or conflate them with this worker
+release. Original guide/human tasks/results remain unchanged; calibration,
+positive production delivery and archive capacity remain distinct open gates.
+
 ## PR528 VERIFIED PUBLISHED — next actual engineering is responsiveness/support
 
 Corrected9879e0df/all37parents/52jobs49SUCCESS3declaredPRnonappSKIP/0external/

@@ -8,6 +8,9 @@ const root = path.resolve(__dirname, '..');
 const out = path.join(root, 'artifacts', 'readiness');
 fs.mkdirSync(out, {recursive: true});
 const checks = [
+  ['Latest-snapshot model worker cancellation, immutable inputs and guarded fallback', 'test_joint_model_worker_controller.cjs'],
+  ['Nested worker dependency revisions, fixed order and outer entry identity', 'test_joint_model_worker_assets.cjs'],
+  ['Main-safe exact worker runner and missing-helper covariance withholding', 'test_joint_model_worker_main_api.cjs'],
   ['Validated-call numerical proposal, exact allocation and hard support guards', 'test_source_call_conditioning.cjs'],
   ['Validated-call whole-election transport, replay, baseline and consumer isolation', 'test_chamber_source_call_conditioning.cjs'],
   ['One frozen county target with validated calls, final support and fallback', 'test_national_call_conditioning.cjs'],

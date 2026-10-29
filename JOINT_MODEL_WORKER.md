@@ -1,0 +1,61 @@
+# Background joint-model computation
+
+The page delegates the existing correlated model to a same-origin computation
+worker. `source_call_conditioning.js`, `chamber_control_model.js` and
+`national_county_likelihood.js` remain the numerical implementation. The worker
+uses the same prepared basis, accepted envelopes, fixed 3,000 simulations,
+seed, no-credit Independent accounting, fixed count target and hard ESS floor.
+This changes scheduling and admission, not calibration or source eligibility.
+
+## Exact assets and atomic frames
+
+The worker imports six fixed, fingerprinted local helper/model files. A nested
+asset check updates their identities before the entry's page fingerprint.
+Caller input cannot supply an import URL. The entry also registers a pure main
+thread runner without importing files or installing page message handlers.
+
+Each request snapshots the basis, private/public comparison, settings, accepted
+count envelopes, validated calls and optional open research views. Input values
+stay in page/worker memory; they are not logged, persisted or uploaded. An opaque
+epoch and exact model/context/frame identity accompany every response. The page
+rechecks source admission, call validity, mode, settings and basis before a
+single admission gate commits the complete result. The public comparison and
+optional variants belong to the same frame. History and admission audit observe
+only accepted frames.
+
+One primary worker is owned at a time. A newer input cancels and terminates its
+predecessor, including on correction, withdrawal, context changes and visibility
+loss. Retained callbacks cannot commit. The opt-in fictional rehearsal owns a
+separate worker and never supplies live observations or live history. Closing it,
+changing election mode, hiding the page or replacing model inputs invalidates
+its request. Archive mode permits a fresh Home polling baseline with no live
+calls or count envelopes.
+
+## Pending and unavailable views
+
+Changed inputs immediately withhold previous model odds, winners and driver
+claims before the existing refresh debounce. Source counts, the validated call
+ledger and celebration eligibility remain independent. Personal disclosure DOM
+is retained, with obsolete derived content hidden and inert. The reader keeps a
+semantic bookmark and scroll position; accepted results restore the same control
+or its race heading when the explanation disappears. A user who moves away is
+not pulled back. The national pointer is neutral while unavailable.
+
+If workers or their static assets are unavailable, the same pure computation can
+run synchronously with an explicit compatibility message. It retains all draws
+and support gates and may block controls on a slow device. A 30-second worker
+deadline withholds the frame; it does not retry that costly calculation on the
+main thread or weaken the model. Source reporting continues. Optional research
+failures do not replace the primary model. Prior-only correlation sensitivities
+are unavailable when calls or county returns condition the current forecast.
+
+## Evidence and limits
+
+Unit and real-browser checks exercise exact synchronous/worker equality,
+out-of-order callbacks, cancellation, private/public atomicity, static failures,
+timeout withholding, lifecycle boundaries, keyboard reading and responsive
+controls during a fictional 200-call calculation. These are engineering and
+mathematical checks. Physical-phone performance, genuine post-close production
+delivery and independent chronological predictive calibration remain separate
+open gates. In particular, moving computation off the interface does not make
+the existing low-support 200-call case informative; it remains WITHHELD.

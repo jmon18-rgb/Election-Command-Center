@@ -1,5 +1,30 @@
 # Readiness progress
 
+## Background-model implementation — October28/29 protected review pending
+
+The ready R0 responsiveness task now runs the exact current helper/engine/kernel
+in a fingerprinted same-origin worker. Latest-input/context/source-validity gates
+admit one atomic primary/public/optional bundle; changed inputs immediately
+withhold old odds and call-driver claims. Hidden/archive/rehearsal boundaries,
+terminal timeout without automatic retry, explicit compatibility fallback and
+semantic reader/scroll retention are implemented. The 3,000 draws, fixed target,
+hard ESS floor, source ledger, request cadence and celebration rules are unchanged.
+
+Actual isolated Edge1366/390 worker and full-app held-callback tests pass,
+including private/public atomicity, call correction/withdrawal, hidden/archive,
+rehearsal cancellation/isolation, failures/deadline/no-retry and keyboard readers.
+The shared eight-source browser journey found an actual integration defect:
+clearing displayed baselines also removed TX's internal source prior during a
+concurrent update. A distinct exact, basis/settings-compatible no-call reference
+now survives pending display withdrawal; the original eight/seven-source and
+request-floor assertions pass. Preview pending layout/focus also preserves the
+original nested-area/history/scroll tasks. Core regression checks and full DOM pass;
+protected exact-head/release gates still pending. No published-release claim.
+
+See JOINT_MODEL_WORKER.md and scoped model-worker/personal-pending/full-app
+artifacts. Independent allocation look-ahead remains an ignored prototype under
+separate mathematical review; no prototype math is in this worker change.
+
 ## PR528 VERIFIED PUBLISHED — October28 conditional winner-event model
 
 Corrected9879e0df4a6d47a864450682420e7917f81cda6a passed ALL37workflowparents,

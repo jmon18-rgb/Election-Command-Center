@@ -86,9 +86,9 @@ try{
    return {admitted,withdrawn:!document.querySelector('#enPersonalFocus [data-race="IA-SEN"]').textContent.includes('Own county returns used nationally'),same:JSON.stringify(empty.result.probabilities)===JSON.stringify(sample.baseline.probabilities)};
   });assert.deepEqual(restored,{admitted:true,withdrawn:true,same:true});
   await page.clock.setSystemTime(new Date('2026-11-04T03:00:00Z'));
-  const liveHistory=await page.evaluate(()=>{const context=jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC';jointRender(true);const first=enOutlookHistory.events(context).length;jointRender(true);
-   const same=enOutlookHistory.events(context).length===first,old=jointNationalShift;jointNationalShift=old+.5;jointRender(true);
-   const change=enOutlookHistory.events(context)[0]?.kind||null;jointNationalShift=old;jointRender(true);return{first,same,change};});
+  const liveHistory=await page.evaluate(async()=>{const context=jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC';await jointRender(true);await jointWhenIdle();const first=enOutlookHistory.events(context).length;await jointRender(true);await jointWhenIdle();
+   const same=enOutlookHistory.events(context).length===first,old=jointNationalShift;jointNationalShift=old+.5;await jointRender(true);await jointWhenIdle();
+   const change=enOutlookHistory.events(context)[0]?.kind||null;jointNationalShift=old;await jointRender(true);await jointWhenIdle();return{first,same,change};});
   assert.deepEqual(liveHistory,{first:1,same:true,change:'BASELINE_CHANGE'},'Actual controller logs baseline/settings changes, never calls them returns');
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);
   await page.locator('#enPersonalFocus').screenshot({path:resolve(out,'personal-focus-'+width+'.png')});

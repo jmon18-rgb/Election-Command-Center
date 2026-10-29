@@ -122,7 +122,7 @@ await page.locator('#enNationalRehearsal > summary').click();
   const storyBox=await inView(story);
   assert.equal(await page.evaluate(()=>enMilestoneShown.size),0,'Previews and retracted fixture calls do not leave earned state');// A valid synthetic provider call may legitimately condition the live model.
 // Compare only the pure rehearsal after those calls have been withdrawn.
-await page.evaluate(()=>jointRender(true));
+await page.evaluate(async()=>{await jointRender(true);await jointWhenIdle();});
   const cleared=await page.evaluate(()=>({probabilities:JSON.stringify(jointLastResult.probabilities),calls:jointLastResult.race_probabilities.filter(r=>r.provider_called_party).length,countyInputs:jointLastResult.county_results_update?.used?.length||0}));
   assert.equal(cleared.calls,0);
   assert.equal(cleared.countyInputs,0);

@@ -587,7 +587,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  };
  w.eval('enWatchToggle({office:"Senate",key:"NC"})');
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
- w.eval('jointRender(true)');
+ await w.eval('jointRender(true)');await w.eval('jointWhenIdle()');
  let calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,'R');
  assert.equal(calledRace.dem_beats_rep_pct,0,
@@ -598,13 +598,13 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
  assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null);
  ncHttpStatus=200;
- w.eval('jointRender(false)');
+ await w.eval('jointRender(false)');await w.eval('jointWhenIdle()');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null,
   'A race-specific source failure must release an earlier cached winner call');
  // Only a new validated detail fetch should clear that race's error.
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
- w.eval('jointRender(false)');
+ await w.eval('jointRender(false)');await w.eval('jointWhenIdle()');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,'R');
  // A single upstream 503 makes ALL civicAPI records ineligible. Advancing
@@ -613,7 +613,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
  assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null);
  ncHttpStatus=200;
- w.eval('jointRender(false)');
+ await w.eval('jointRender(false)');await w.eval('jointWhenIdle()');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null,
   'Shared upstream outage must not leave cached calls locking simulation draws');
@@ -626,7 +626,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   'Cooldown expiry alone cannot verify source recovery');
  assert.equal(w.eval("enCivicUsable({office:'Senate',key:'NC'})"),null,
   'Elapsed backoff is not proof of source recovery');
- w.eval('jointRender(false)');
+ await w.eval('jointRender(false)');await w.eval('jointWhenIdle()');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null);
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
@@ -640,25 +640,25 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
   'Revalidating North Carolina cannot revive stale Ohio Senate results');
 
  assert(w.eval("enCivicUsable({office:'Senate',key:'NC'})"));
- w.eval('jointRender(false)');
+ await w.eval('jointRender(false)');await w.eval('jointWhenIdle()');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,'R',
   'Only fresh verified detailed provider response may reactivate source calls');
  ncCalledParty='D';
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
- w.eval('jointRender(false)');
+ await w.eval('jointRender(false)');await w.eval('jointWhenIdle()');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.dem_beats_rep_pct,100,
   'Same-timestamp corrected provider call must reverse simulated winner');
  ncCalledParty=null;
  await w.eval('enCivicFetchOne({office:"Senate",key:"NC"})');
- w.eval('jointRender(false)');
+ await w.eval('jointRender(false)');await w.eval('jointWhenIdle()');
  calledRace=w.eval("jointForecastResult().race_probabilities.find(r=>r.race_code==='NC-SEN')");
  assert.equal(calledRace.provider_called_party,null,
   'Withdrawing a winner call restores uncertain election-night simulation');
  w.eval('enWatchToggle({office:"Senate",key:"NC"})');
  w.fetch=beforeNcFetch;
- w.eval('jointRender(true)');
+ await w.eval('jointRender(true)');await w.eval('jointWhenIdle()');
  // Synthetic provider-call regressions may legitimately queue the Fish Head
  // broadcast. They must not contaminate the independent Fish Head test below.
  w.eval('enFishDismiss()');
@@ -731,6 +731,8 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  if(!priorNightMode2026)get('#enMode2024').click();
  w.Date.now=fishOldClock;
  if(!priorNightVisible)get('#electionNight').classList.remove('active');
+ // Year/source-clock restoration invalidates the previous accepted async frame.
+ await w.eval('jointWhenIdle()');
 
  const bogusCall={kind:'call',source:'civicAPI',title:'VA-02 provider call',
   details:'Preview only; no real returns exist'};
@@ -746,7 +748,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  const beforeCorrelationSenate=w.eval('jointForecastResult().senate_dem_control_pct');
  const beforeCorrelationHouse=w.eval('jointForecastResult().house_dem_control_pct');
  get('#jointHomeCorrelationDetails').open=true;
- w.eval('jointRender(true)');
+ await w.eval('jointRender(true)');await w.eval('jointWhenIdle()');
  assert.match(get('#jointHomeCorrelation').textContent,/Production shared risk/);
  assert.match(get('#jointHomeCorrelation').textContent,/Moderately lower shared risk/);
  assert.match(get('#jointHomeCorrelation').textContent,/2020 \+5\.72 D/);
@@ -1056,7 +1058,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.match(get('#jointNightShadow').textContent,/research only|Research only/i);
  const shadowDisclosure=get('#jointHomeShadow').parentElement;
  shadowDisclosure.open=true;
- w.eval('jointRender(true)');
+ await w.eval('jointRender(true)');await w.eval('jointWhenIdle()');
  assert.match(get('#jointHomeShadow').textContent,/for both chambers vs/);
  assert.match(get('#jointHomeShadow').textContent,/2024 presidential district lean: 435\/435/);
  assert.match(get('#jointHomeShadow').textContent,/do not replace headline odds/);
@@ -1688,10 +1690,13 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.match(get('#racePulse').textContent,/Building comparison history|No meaningful movement/,
   'No eligible recent poll or meaningful movement should produce a truthful empty pulse');
  // DDHQ forecast removed; each race marginal comes from the joint simulation.
+ await w.eval('jointWhenIdle()');
  assert.equal(w.document.querySelector('#scenarioBands'),null);
  assert.equal(w.document.querySelector('#scenarioCenter'),null);
  assert.match(get('#enForecastOdds').textContent,/Our model · D both/);
  assert.match(get('#enForecastOdds').textContent,/linked simulations/);
+ assert.match(get('#enForecastOdds').textContent,/Red Dawn/);
+ assert.doesNotMatch(get('#enForecastOdds').textContent,/R both/,'Neither Democratic majority does not prove a resolved Republican coalition');
  const jointState=w.eval('jointForecastResult()');
  assert.equal(jointState.race_probability_method,'SAME_CORRELATED_DRAWS_AS_CHAMBER_CONTROL');
  const mnOdds=oddsData.records.find(x=>x.race_code==='MN-SEN');
@@ -1838,6 +1843,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  get('#enOfficeSenate').click();
  await w.eval('enLoad(true)');
  w.fetch=preWatchFetch;
+ await w.eval('jointWhenIdle()');
  assert.match(get('#enWatchItems').textContent,/NC-SEN/);
  assert.match(get('#enWatchItems').textContent,/300 counted/);
  // Validated probabilistic source bridge, actual 2026 dashboard controls.
@@ -1855,7 +1861,7 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  assert.equal(get('#enNowcastRows').querySelectorAll('.en-live-race').length,8);
  // Real published polling + House history + audited geography: four
  // exhaustive national scenarios must render, not a DDHQ-only estimate.
- w.eval('jointRender(true)');
+ await w.eval('jointRender(true)');await w.eval('jointWhenIdle()');
  assert.equal(get('#jointHomeCards').querySelectorAll('.joint-cell').length,4);
  assert.equal(get('#jointNightCards').querySelectorAll('.joint-cell').length,4);
  // Pre-election What-if must run the actual correlated model on a COPY of

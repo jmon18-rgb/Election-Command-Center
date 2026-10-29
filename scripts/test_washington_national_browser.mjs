@@ -63,7 +63,7 @@ try{
   assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().automatic_poll_interval_ms),60000);
   const before=requests;await page.evaluate(()=>enWashingtonHouse03Controller.tick(true));assert.equal(requests,before,'Manual refresh cannot bypass the one-minute owned-cache floor');
   async function update(next,minute,sourceMinute=minute){mode=next;stamp='2026-11-04T04:'+sourceMinute+':00Z';statsStamp='2026-11-04T04:'+minute+':00Z';await page.clock.setSystemTime(new Date('2026-11-04T04:'+minute+':05Z'));
-   await page.evaluate(async()=>{await enWashingtonHouse03Controller.tick(true);jointRender(true);});}
+   await page.evaluate(async()=>{await enWashingtonHouse03Controller.tick(true);await jointRender(true);await jointWhenIdle();});}
   await update('correction','08');assert.equal(await page.evaluate(()=>enOfficialAdmissionAudit.events().find(e=>e.code==='WA-03').kind),'CORRECTION');const corrected=await page.evaluate(()=>jointLastResult.county_results_update.used[0].counted_two_party_votes);
   assert.equal(corrected,blue.used[0].counted_two_party_votes-200);
   await update('red','10');assert.notDeepEqual(await page.evaluate(()=>jointLastResult.probabilities),blue.p);
@@ -92,7 +92,7 @@ try{
   await update('remaining_bad_hash','32','26');assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult.probabilities)),beforeRemaining,'Supplement integrity failure falls back to valid counts-only forecast');
   await update('remaining_small','34','26');assert.equal(await page.evaluate(()=>jointLastResult.county_results_update.used[0].official_remaining_sensitivity.whole_counties),6);
   // An old cached supplement cannot resurrect after a newer accepted estimate.
-  statsStamp='2026-11-04T04:28:00Z';await page.clock.setSystemTime(new Date('2026-11-04T04:36:05Z'));await page.evaluate(async()=>{await enWashingtonHouse03Controller.tick(true);jointRender(true);});
+  statsStamp='2026-11-04T04:28:00Z';await page.clock.setSystemTime(new Date('2026-11-04T04:36:05Z'));await page.evaluate(async()=>{await enWashingtonHouse03Controller.tick(true);await jointRender(true);await jointWhenIdle();});
   assert.equal(await page.evaluate(()=>jointLastResult.county_results_update.used[0].official_remaining_sensitivity),undefined);
   await page.locator('#enMode2024').click();await page.evaluate(()=>enWashingtonHouse03Controller.tick());
   assert.equal(await page.evaluate(()=>enWashingtonHouse03Controller.status().evidence),null);assert.deepEqual(errors,[]);

@@ -1592,7 +1592,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=21828156bbd1"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
-<script src="./scripts/personal_election_focus.js?v=74a2acb372f1"></script>
+<script src="./scripts/personal_election_focus.js?v=95bc54576a7c"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
 <script src="./scripts/civicapi_state_batch.js?v=99e987c72cb8"></script>
@@ -1652,6 +1652,8 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
 <script src="./scripts/chamber_control_model.js?v=c5ce6c240f51"></script>
+<script src="./scripts/joint_model_worker.js?v=6dee61ac9506"></script>
+<script src="./scripts/joint_model_worker_controller.js?v=8b4f9e2bb31e"></script>
 <script src="./scripts/electorate_what_if_2026.js?v=1a5fe3701694"></script>
 <script src="./scripts/private_senate_fundamentals.js?v=eb5deec9039e"></script>
 <script src="./scripts/chamber_poll_error_audit.js?v=9e73e0e9f9fe"></script>
@@ -3326,10 +3328,10 @@ function renderEnForecastStrip(){
  const result=jointLastResult;
  box.textContent=result?
   'Our model · D both '+result.actual_dem_both_control_pct.toFixed(1)+'% · '+
-  'Split '+result.probabilities.shrug.toFixed(1)+'% · R both '+
+  'Split '+result.probabilities.shrug.toFixed(1)+'% · Red Dawn '+
   result.probabilities.red_dawn.toFixed(1)+'% · '+
   result.samples.toLocaleString('en-US')+' linked simulations':
-  'Waiting for JackStradamus joint model…';
+  jointModelPending?'Updating forecast · previous predictions withheld…':jointErrorMessage||'Waiting for JackStradamus joint model…';
 }
 /* Election Night: public state-derived feed, no unofficial winner calls. */
 // Election-specific CORS support now documented by Open America (Oct. 2026).
@@ -4060,7 +4062,7 @@ function enRenderAmbientDesk(){
    fetchJSON:async path=>{const response=await fetch('./'+path,{cache:'no-store',credentials:'omit'});
     if(!response.ok)throw Error('Input HTTP '+response.status);return response.json();},
    fetchSource:url=>enCivicFetchJson(url),
-   readPrior:()=>window.CompetitiveNeedlePrior?.read(jointPulseBaseline,'TX-SEN')||null,
+   readPrior:()=>jointCompetitivePrior('TX-SEN'),
    isActive:()=>enModeYear===2026&&enIsVisible(),
    sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker),
    onUpdate:()=>jointQueueRefresh(),
@@ -4074,7 +4076,7 @@ function enRenderAmbientDesk(){
    fetchJSON:async path=>{const response=await fetch('./'+path,{cache:'no-store',credentials:'omit'});
     if(!response.ok)throw Error('Input HTTP '+response.status);return response.json();},
    fetchSource:url=>enCivicFetchJson(url),
-   readPrior:()=>window.CompetitiveNeedlePrior?.read(jointPulseBaseline,'KS-SEN')||null,
+   readPrior:()=>jointCompetitivePrior('KS-SEN'),
    isActive:()=>enModeYear===2026&&enIsVisible(),
    sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker),
    onUpdate:()=>jointQueueRefresh(),
@@ -4088,7 +4090,7 @@ function enRenderAmbientDesk(){
    fetchJSON:async path=>{const response=await fetch('./'+path,{cache:'no-store',credentials:'omit'});
     if(!response.ok)throw Error('Input HTTP '+response.status);return response.json();},
    fetchSource:url=>enCivicFetchJson(url),
-   readPrior:()=>window.CompetitiveNeedlePrior?.read(jointPulseBaseline,'IA-SEN')||null,
+   readPrior:()=>jointCompetitivePrior('IA-SEN'),
    isActive:()=>enModeYear===2026&&enIsVisible(),
    sourceGeneration:()=>window.ElectionNightTransport.generation(enCivicBreaker),
    onUpdate:()=>jointQueueRefresh(),
@@ -4550,6 +4552,15 @@ function jointLiveObservations(){
  }
  return observations;
 }
+const jointNationalReaders=new WeakMap();
+const jointPreviewPendingViews=new WeakMap();
+function jointWithholdNationalReader(host){
+ const reader=host?.contains(document.activeElement)?document.activeElement.closest('.four-needle-driver'):null;
+ if(reader){jointNationalReaders.set(host,{race:reader.dataset.jointDriver});host.tabIndex=-1;host.focus({preventScroll:true});}
+}
+function jointNationalReadingTarget(host,race){
+ return Array.from(host?.querySelectorAll('.four-needle-driver')||[]).find(node=>node.dataset.jointDriver===race&&!node.closest('[inert]'))||host;
+}
 function jointRenderNeedles(result,config={}){
  const baseline=config.baseline||jointPulseBaseline,rows=config.evidence||jointPulseRows;
  const rehearsal=config.rehearsal===true;
@@ -4579,6 +4590,13 @@ function jointRenderNeedles(result,config={}){
    }
   };
   if(!result?.probabilities||keys.some(k=>!Number.isFinite(result.probabilities[k]))){
+   const context=host.querySelector('.four-needle-live-context');if(context){
+    jointWithholdNationalReader(host);
+    context.style.visibility='hidden';context.setAttribute('aria-hidden','true');context.inert=true;
+   }
+   const pointer=host.querySelector('.four-needle-arc-pointer');if(pointer){pointer.setAttribute('x2','230');pointer.setAttribute('y2','62');}
+   const oldLine=host.querySelector('.four-needle-arc-baseline');if(oldLine)oldLine.style.display='none';
+   const prior=host.querySelector('.four-needle-prior-marker');if(prior)prior.hidden=true;
    host.setAttribute('aria-label','Four Endings forecast is unavailable, no result inferred. '+coalitionNote.textContent);
    foot.firstElementChild.textContent='Awaiting validated probabilities';
    foot.lastElementChild.textContent='No source forecast';
@@ -4587,6 +4605,7 @@ function jointRenderNeedles(result,config={}){
    continue;
   }
   const v=keys.map(k=>Math.max(0,result.probabilities[k]));
+  const liveContext=host.querySelector('.four-needle-live-context');if(liveContext){liveContext.style.visibility='';liveContext.removeAttribute('aria-hidden');liveContext.inert=false;}
   const total=v.reduce((a,b)=>a+b,0);
   if(Math.abs(total-100)>.15)throw Error('Needle distribution does not sum to 100%');
   showOutcomes(v);
@@ -4679,6 +4698,7 @@ function jointRenderNeedles(result,config={}){
   const list=elt('div','four-needle-drivers');
   for(const d of movement.drivers){
    const row=elt('a','four-needle-driver');
+   row.dataset.jointDriver=d.race_code;
    row.href='#electionNight';
    row.textContent=d.race_code+
     (d.calledParty?' · PROVIDER CALL '+d.calledParty:'')+
@@ -4690,6 +4710,11 @@ function jointRenderNeedles(result,config={}){
   }
   context.append(list,elt('p','four-needle-disclosure',
    (rehearsal?'SIMULATED COUNTS. ':'')+(countyCount?'Experimental counts-only update across '+countyCount+' contests; '+(houseCount?houseCount+' House district'+(houseCount===1?'':'s')+((result.county_results_update?.house_vote_states||[]).length>1?' across '+result.county_results_update.house_vote_states.length+' states':(result.county_results_update?.house_vote_states||[]).includes('NY')?' in New York':(result.county_results_update?.house_vote_states||[]).includes('MI')?' in Michigan':(result.county_results_update?.house_vote_states||[]).includes('PA')?' in Pennsylvania':(result.county_results_update?.house_vote_states||[]).includes('WA')?' in Washington':(result.county_results_update?.house_vote_states||[]).includes('AZ')?' in Arizona':(result.county_results_update?.house_vote_states||[]).includes('VA')?' in Virginia':' in Wisconsin')+', not national House coverage':'no House vote sources')+'. Other-race movement uses existing shared-error assumptions. Remaining turnout and batch mix are uncertain. Not independently calibrated. ':'')+'Race changes are not a causal decomposition of chamber control. No race call is inferred.'));
+ }
+ if(result)for(const id of config.hostIds||['jointHomeNeedle','jointNightNeedle']){
+  const host=$('#'+id),reader=jointNationalReaders.get(host);if(!reader)continue;
+  if(document.activeElement===host)jointNationalReadingTarget(host,reader.race)?.focus({preventScroll:true});
+  jointNationalReaders.delete(host);
  }
 }
 function jointRenderCards(result){
@@ -4778,7 +4803,7 @@ for(const id of ['jointHomeCorrelationDetails','jointNightCorrelationDetails']){
   if(el.open&&jointBasis)jointRender(true);
  });
 }
-function jointRenderSenateCorrelationResearch(reference,updates){
+function jointRenderSenateCorrelationResearch(reference,updates,variants=null){
  const ids=['jointHomeCorrelation','jointNightCorrelation'];
  if(!jointCorrelationExpanded()||!reference||!jointBasis)return;
  const active=jointUsesPrivateContext()?'your imported fundamentals model':
@@ -4789,14 +4814,15 @@ function jointRenderSenateCorrelationResearch(reference,updates){
   {id:'lower',label:'Lower shared risk stress test',nat:.65,sen:.55}
  ];
  let explanation='';
- if(Object.keys(updates).length){
+ if(Object.keys(updates).length||reference.county_results_update?.used?.length){
   explanation='Research sensitivities are disabled while real vote returns are informing the live election-night forecast.';
  }else try{
   const controls=formats.map(x=>{
-   const out=x.id==='production'?reference:window.ChamberControlModel.simulate(
+   const out=x.id==='production'?reference:variants?variants['correlation_'+x.id]?.result:window.ChamberControlModel.simulate(
     jointBasis,{...jointIndependentControlOptions,samples:3000,seed:20261103,
      nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,
      senateCorrelationResearch:{nationalScale:x.nat,chamberScale:x.sen}});
+   if(!out)throw Error('Research calculation unavailable');
    return {...x,out,shared:Math.hypot(
     jointBasis.assumptions.common_national_sigma*x.nat,
     jointBasis.assumptions.senate_chamber_sigma*x.sen)};
@@ -4869,49 +4895,200 @@ function jointMarginSummaryCodes(){
 }
 function jointModelCodeRevision(){return ['source_call_conditioning','chamber_control_model','national_county_likelihood'].map(name=>document.querySelector('script[src*="/'+name+'.js?"]')?.getAttribute('src')||'').join('|');}
 function jointHistoryRevision(preview=false){return [preview?'SIMULATED':'LIVE',window.ChamberControlModel.VERSION,jointIndependentControlOptions.independentSenateCredit,
- jointModelCodeRevision(),jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
+ jointWorkerCodeRevision(),jointBasis?.generated_from_sources?.model_polling_at||'',preview?0:jointNationalShift,preview?1:jointErrorMultiplier,
  jointUsesPrivateContext()?jointPrivateSource:'PUBLIC',jointUsesPrivateContext()?jointPrivateImportedAt||'':'',jointUsesPrivateContext()?jointPrivateHouse:false].join('|');}
 function renderPersonalElectionFocus(){
+ if(jointModelPending){const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;if(!host.hidden)window.PersonalElectionFocus?.setPending(host);}return;}
  try{window.PersonalElectionFocus?.render($('#enPersonalFocus'),jointLastResult,jointPulseBaseline,
   {year:enModeYear,now:Date.now(),closes:window.ElectionNightPollClosings2026,evidence:jointPulseRows,history:enOutlookHistory,context:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC'});}
  catch{const host=$('#enPersonalFocus');if(host){host.hidden=enModeYear!==2026;host.textContent='Personal race needles unavailable · national forecast remains separate.';}}
 }
+let jointModelPending=false,jointPendingKey='',jointActiveKey='',jointModelPromise=Promise.resolve(),jointRequestEpoch=0,
+ jointObservedInputs='',jointObservedEpoch=0,jointWorkerCompatibility=false,jointUnavailableKey='';
+let jointPriorReference=null;
+function jointCompetitivePrior(code){
+ // Count-source adapters need the unchanged no-call polling reference while
+ // new count frames compute. This is not a current forecast or call ledger.
+ const ref=jointPriorReference;
+ return ref&&ref.basis===jointBasis&&ref.basisKey===JSON.stringify(jointBasis)&&ref.shift===jointNationalShift&&ref.error===jointErrorMultiplier?
+  window.CompetitiveNeedlePrior?.read(ref.result,code)||null:null;
+}
+const jointPendingLayout=new Map();
+function jointPreservePendingLayout(){
+ for(const id of ['jointHomeCards','jointNightCards','jointHomeShadow','jointNightShadow','jointHomeCorrelation','jointNightCorrelation','enNationalNeedleMap','smartBriefGrid','smartNightGrid','senateTideRaces','mississippiSenateWatch','enForecastOdds']){
+  const node=$('#'+id);if(!node||jointPendingLayout.has(node))continue;
+  const rect=node.getBoundingClientRect();if(!rect.height)continue;
+  const style=getComputedStyle(node),extra=style.boxSizing==='border-box'?0:['paddingTop','paddingBottom','borderTopWidth','borderBottomWidth'].reduce((sum,name)=>sum+(parseFloat(style[name])||0),0);
+  jointPendingLayout.set(node,node.style.minHeight);node.style.minHeight=Math.max(0,rect.height-extra)+'px';
+ }
+}
+function jointReleasePendingLayout(){for(const [node,value]of jointPendingLayout)node.style.minHeight=value;jointPendingLayout.clear();}
+function jointWorkerCodeRevision(){return ['election_night_poll_closings_2026','washington_remaining_source','washington_remaining_scenarios','source_call_conditioning','chamber_control_model','national_county_likelihood','joint_model_worker','joint_model_worker_controller'].map(name=>document.querySelector('script[src*="/'+name+'.js?"]')?.getAttribute('src')||'').join('|');}
+function jointWorkerAssetsMatch(){return window.JointModelWorkerRunner?.MODEL_REVISION===jointModelCodeRevision()&&
+ window.JointModelWorkerRunner.IMPORTS.every(asset=>document.querySelector('script[src*="/'+asset.name+'.js?"]')?.getAttribute('src')==='./scripts/'+asset.name+'.js?v='+asset.stamp);}
+function jointWorkerController(){return window.JointModelWorkerController?.create({
+ timeoutMs:30000,clone:value=>typeof structuredClone==='function'?structuredClone(value):JSON.parse(JSON.stringify(value)),
+ workerFactory:()=>{
+  if(!jointWorkerAssetsMatch())throw Error('MODEL_REVISION_MISMATCH');
+  const src=document.querySelector('script[src*="/joint_model_worker.js?"]')?.getAttribute('src');
+  if(!src||typeof Worker!=='function')throw Error('WORKER_UNAVAILABLE');
+  return new Worker(src,{name:'Election model'});
+ }
+});}
+const jointModelController=jointWorkerController();
+function jointValidatedFrameInputs(){
+ const oldRows=jointPulseRows,oldDescriptive=jointDescriptiveReturns;
+ let live,rows,descriptive;
+ try{live=jointLiveObservations();rows=jointPulseRows;descriptive=jointDescriptiveReturns;}
+ finally{jointPulseRows=oldRows;jointDescriptiveReturns=oldDescriptive;}
+ const now=Date.now(),envelopes=enModeYear===2026?jointCountyEvidence():[];
+ const eligibility=envelopes.map(envelope=>{try{window.NationalCountyLikelihood?.compile(envelope,{now});return [envelope?.snapshot?.race_code,Boolean(window.NationalCountyLikelihood)];}catch{return [envelope?.snapshot?.race_code,false];}});
+ return {now,live,rows,descriptive,envelopes,eligibility};
+}
+function jointFrameKey(inputs){
+ // Exact input strings stay in RAM. Only this opaque monotonically increasing
+ // identity crosses the worker boundary; no private numeric fingerprint is logged.
+ const raw=JSON.stringify([jointCurrentSignature(),jointWorkerCodeRevision(),jointBasis,jointUsesPrivateContext()?jointBasisPublic:null,
+  jointUsesPrivateContext(),jointPrivateSource,jointPrivateImportedAt,jointPrivateHouse,
+  jointShadowExpanded(),jointCorrelationExpanded(),jointShadowExpanded()&&!jointUsesPrivateContext()?jointBasisShadow:null,
+  jointShadowExpanded()&&!jointUsesPrivateContext()?jointBasisPresidential:null,inputs.live,inputs.eligibility]);
+ if(raw!==jointObservedInputs){jointObservedInputs=raw;jointObservedEpoch++;}
+ return 'MODEL_FRAME:'+jointObservedEpoch;
+}
+function jointFrameSnapshot(inputs,key){
+ const contextKey=jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC',variants=[];
+ if(jointShadowExpanded()&&!jointUsesPrivateContext()){
+  if(jointBasisShadow)variants.push({id:'house_shadow',basis:jointBasisShadow});
+  if(jointBasisPresidential)variants.push({id:'presidential_shadow',basis:jointBasisPresidential});
+ }
+ if(jointCorrelationExpanded()&&!Object.keys(inputs.live).length){variants.push({id:'correlation_moderate'},{id:'correlation_lower'});}
+ const payload={basis:jointBasis,publicBasis:jointUsesPrivateContext()?jointBasisPublic:null,envelopes:inputs.envelopes,variants,
+  args:{...jointIndependentControlOptions,contextKey,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,now:inputs.now,nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:inputs.live}};
+ const clone=value=>typeof structuredClone==='function'?structuredClone(value):JSON.parse(JSON.stringify(value));
+ return {key,contextKey,modelRevision:jointModelCodeRevision(),frameKind:enModeYear===2024?'POLLING_ARCHIVE_BASELINE':'LIVE',
+  payload:clone(payload),sourceRows:clone(inputs.rows),descriptiveRows:clone(inputs.descriptive),historyRevision:jointHistoryRevision(),pollingAt:jointBasis.generated_from_sources?.model_polling_at};
+}
+function jointFrameCurrent(frame,epoch){return epoch===jointRequestEpoch&&!document.hidden&&frame.key===jointFrameKey(jointValidatedFrameInputs());}
+function jointInvalidateModel(key,message='Updating forecast in the background…'){
+ if(jointModelPending&&jointPendingKey===key)return;
+ if(jointUnavailableKey!==key)jointUnavailableKey='';
+ jointPreservePendingLayout();
+ if($('#enNationalRehearsal')?.open&&enModeYear===2026&&!document.hidden){jointCancelNationalPreview(true);nationalPreviewNeedsRefresh=true;}
+ jointRequestEpoch++;jointModelController?.cancel('INPUT_SNAPSHOT_CHANGED');jointActiveKey='';jointPendingKey=key;jointModelPending=true;
+ jointLastResult=null;jointPublicResult=null;jointPulseBaseline=null;jointPulseRows=[];jointDescriptiveReturns=[];jointCacheKey='';jointErrorMessage=message;
+ jointRenderCards(null);for(const id of ['jointHomeHeadline','jointNightHeadline'])if($('#'+id))$('#'+id).textContent='Forecast updating';
+ jointRenderHouseShadow(null,null,null);
+ for(const id of ['jointHomeCorrelation','jointNightCorrelation'])if($('#'+id))$('#'+id).textContent='Research calculation updating with the current forecast…';
+ window.PersonalElectionFocus?.setPending($('#enPersonalFocus'),message);
+ setModelRaceOddsData(null);enRenderNeedleCartogram();renderSmartRaceDesks();renderSenateTideLine();renderMississippiSenateWatch();renderEnForecastStrip();
+ if($('#privateContextComparison'))$('#privateContextComparison').textContent='Updating the current model and matching public comparison…';
+ if($('#jointRunStatus'))$('#jointRunStatus').textContent=message;
+ enRenderExportControls();
+}
+function jointComputeCompatible(payload){
+ // Compatibility path only when the background entry itself is unavailable.
+ // It calls the same engine/kernel, with no alternate forecast or smaller draw count.
+ const one=(basis,args)=>{let bundle=null,countyUpdateWithheld=false;
+  try{bundle=window.NationalCountyLikelihood?.condition(window.ChamberControlModel,basis,payload.envelopes,args)||null;}catch{countyUpdateWithheld=true;}
+  if(payload.envelopes.length&&!bundle)countyUpdateWithheld=true;
+  const result=bundle?.result||window.ChamberControlModel.simulate(basis,args),diagnostics=bundle?.diagnostics||{used:[],status:'MODEL_UPDATE_WITHHELD'};
+  const baseline=Object.keys(args.live||{}).length||(diagnostics.used||[]).length?window.ChamberControlModel.simulate(basis,{...args,live:{}}):result;
+  return {result,baseline,diagnostics,countyUpdateWithheld};};
+ const primary=one(payload.basis,payload.args),publicComparison=payload.publicBasis?one(payload.publicBasis,{...payload.args,contextKey:'PUBLIC'}):null,variants={};
+ for(const variant of payload.variants){try{
+  const correlation=variant.id.startsWith('correlation_');
+  if(correlation&&(Object.keys(payload.args.live||{}).length||primary.diagnostics.used?.length)){variants[variant.id]={result:null,errorCode:'VARIANT_DISABLED_BY_LIVE_EVIDENCE'};continue;}
+  const options={...jointIndependentControlOptions,samples:3000,seed:20261103,nationalShift:payload.args.nationalShift,errorMultiplier:payload.args.errorMultiplier};
+  if(correlation)options.senateCorrelationResearch=variant.id==='correlation_moderate'?{nationalScale:.8,chamberScale:.65}:{nationalScale:.65,chamberScale:.55};else options.live=payload.args.live;
+  variants[variant.id]={result:window.ChamberControlModel.simulate(correlation?payload.basis:variant.basis,options),errorCode:null};
+ }catch{variants[variant.id]={result:null,errorCode:'OPTIONAL_VARIANT_UNAVAILABLE'};}}
+ return {...primary,publicComparison,variants};
+}
+function jointComputeOnMain(frame,payload=frame.payload){
+ try{if(jointWorkerAssetsMatch()&&window.JointModelWorkerRunner.MODEL_REVISION===frame.modelRevision)return window.JointModelWorkerRunner.run(payload,{contextKey:frame.contextKey,frameKind:frame.frameKind});}
+ catch{} // Preserve the existing safe engine fallback if optional background assets failed.
+ return jointComputeCompatible(payload);
+}
+function jointModelUnavailable(message){
+ jointUnavailableKey=jointPendingKey||jointActiveKey||jointUnavailableKey;
+ jointReleasePendingLayout();
+ jointModelPending=false;jointPendingKey='';jointActiveKey='';jointLastResult=null;jointPublicResult=null;jointPulseBaseline=null;jointCacheKey='';jointErrorMessage=message;
+ jointPulseRows=[];jointDescriptiveReturns=[];jointRenderHouseShadow(null,null,null);
+ for(const id of ['jointHomeCorrelation','jointNightCorrelation'])if($('#'+id))$('#'+id).textContent='Research calculation unavailable.';
+ jointRenderCards(null);renderPersonalElectionFocus();setModelRaceOddsData(null);enRenderNeedleCartogram();renderSmartRaceDesks();renderSenateTideLine();renderMississippiSenateWatch();renderEnForecastStrip();
+ for(const id of ['jointHomeHeadline','jointNightHeadline'])if($('#'+id))$('#'+id).textContent='Forecast unavailable';
+ if($('#jointRunStatus'))$('#jointRunStatus').textContent=message;
+}
 function jointRender(force=false){
- if(!jointBasis||!window.ChamberControlModel){jointRenderCards(null);enRenderNeedleCartogram();return}
- const key=jointCurrentSignature();
- if(!force&&jointLastResult&&jointCacheKey===key){renderPersonalElectionFocus();return;}
- jointCacheKey=key;
- const updates=jointLiveObservations();
+ if(!jointBasis||!window.ChamberControlModel){jointRenderCards(null);enRenderNeedleCartogram();return Promise.resolve({status:'UNAVAILABLE'});}
+ let inputs,key,frame;try{inputs=jointValidatedFrameInputs();key=jointFrameKey(inputs);}catch{jointModelUnavailable('Model inputs unavailable.');return Promise.resolve({status:'UNAVAILABLE'});}
+ if(!force&&jointUnavailableKey===key)return Promise.resolve({status:'UNAVAILABLE'});
+ if(force)jointUnavailableKey='';
+ if(!force&&jointLastResult&&jointCacheKey===key){renderPersonalElectionFocus();return Promise.resolve({status:'CURRENT'});}
+ if(jointActiveKey===key)return jointModelPromise;
+ jointInvalidateModel(key);
+ if(jointRefreshTimer!==null){clearTimeout(jointRefreshTimer);jointRefreshTimer=null;}
+ if(document.hidden){jointModelController?.setEnabled(false,'DOCUMENT_HIDDEN');return Promise.resolve({status:'SKIPPED'});}
+ jointModelController?.setEnabled(true);
+ try{frame=jointFrameSnapshot(inputs,key);}catch{jointModelUnavailable('Model input snapshot unavailable.');return Promise.resolve({status:'UNAVAILABLE'});}
+ const epoch=++jointRequestEpoch;jointActiveKey=key;
+ const accept=(bundle,ticket=null,compatibility=false)=>{
+  if(!jointFrameCurrent(frame,epoch)){if(epoch===jointRequestEpoch){jointModelController?.cancel('SOURCE_VALIDITY_CHANGED');jointActiveKey='';jointQueueRefresh();}return {status:'CANCELLED'};}
+  if(ticket&&!jointModelController.admit(ticket))return {status:'CANCELLED'};
+  jointWorkerCompatibility=compatibility;jointModelPending=false;jointPendingKey='';jointUnavailableKey='';jointErrorMessage=null;jointCacheKey=key;
+  jointApplyFrame(frame,bundle);return {status:'READY'};
+ };
+ if(typeof Worker!=='function'||!jointModelController||!window.JointModelWorkerRunner){
+  try{const decision=accept(jointComputeOnMain(frame),null,true);jointActiveKey='';jointModelPromise=Promise.resolve(decision);return jointModelPromise;}
+  catch{jointActiveKey='';jointModelUnavailable('Model calculation unavailable. Source reporting remains separate.');return Promise.resolve({status:'UNAVAILABLE'});}
+ }
+ const pending=jointModelController.submit({signature:key,contextKey:frame.contextKey,modelRevision:frame.modelRevision,frameKind:frame.frameKind,payload:frame.payload,force:true});
+ jointModelPromise=pending.then(decision=>{
+  if(decision.status==='READY')return accept(decision.payload,decision.ticket);
+  if(decision.status==='SYNC_FALLBACK_REQUIRED'){
+   if(!jointFrameCurrent(frame,epoch))return {status:'CANCELLED'};
+   if(decision.reason==='WORKER_TIMEOUT'){jointModelController.withhold(decision.ticket,'WORKER_TIMEOUT');jointModelUnavailable('Model update timed out. Predictions are withheld; source reporting continues. Use Refresh now to try again.');return {status:'UNAVAILABLE'};}
+   const fallback=jointModelController.runSynchronousFallback(decision.ticket,payload=>jointComputeOnMain(frame,payload));
+   if(fallback.status==='READY')return accept(fallback.payload,fallback.ticket,true);
+   if(fallback.status!=='CANCELLED'&&epoch===jointRequestEpoch)jointModelUnavailable('Model update unavailable. Predictions are withheld; source reporting continues.');
+   return fallback;
+  }
+  if(!['CANCELLED','SKIPPED'].includes(decision.status)&&epoch===jointRequestEpoch)jointModelUnavailable('Model input snapshot unavailable.');
+  return decision;
+ }).catch(()=>{if(epoch===jointRequestEpoch)jointModelUnavailable('Model update unavailable.');return {status:'UNAVAILABLE'};})
+  .finally(()=>{if(epoch===jointRequestEpoch)jointActiveKey='';});
+ return jointModelPromise;
+}
+async function jointWhenIdle(){
+ for(;;){if(jointRefreshTimer!==null){clearTimeout(jointRefreshTimer);jointRefreshTimer=null;void jointRender();}
+  const pending=jointModelPromise;await pending;
+  if(pending===jointModelPromise&&jointRefreshTimer===null&&!jointActiveKey)return;
+ }
+}
+function jointApplyFrame(frame,bundle){
+ const updates=frame.payload.args.live,envelopes=frame.payload.envelopes;
+ jointPulseRows=frame.sourceRows;jointDescriptiveReturns=frame.descriptiveRows;
  try{
-  const args={...jointIndependentControlOptions,contextKey:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC',marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,
-   nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
-  const envelopes=jointCountyEvidence();
-  let conditioned=null,countyUpdateWithheld=false;
-  try{conditioned=window.NationalCountyLikelihood?.condition(window.ChamberControlModel,jointBasis,envelopes,args)||null;}
-  catch(_){countyUpdateWithheld=true;}
-  if(envelopes.length&&!conditioned)countyUpdateWithheld=true;
-  const result=conditioned?.result||window.ChamberControlModel.simulate(jointBasis,args);
+  const conditioned={diagnostics:bundle.diagnostics},countyUpdateWithheld=Boolean(bundle.countyUpdateWithheld),result=bundle.result;
   const countyRows=(conditioned?.diagnostics.used||[]).map(e=>({race_code:e.code,asOf:Date.parse(e.official_remaining_sensitivity?.as_of)>Date.parse(e.as_of)?e.official_remaining_sensitivity.as_of:e.as_of,counted_as_of:e.as_of,remaining_as_of:e.official_remaining_sensitivity?.as_of||null,
    provider:e.code==='VA-02'?'Virginia official · collected copy':e.code==='WA-03'?'Washington official · collected copy':e.code==='ME-SEN'?'civicAPI · first choices (not final RCV)':'civicAPI',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,
    counted_two_party_votes:e.counted_two_party_votes,modeled_remaining_two_party_votes:e.modeled_remaining_two_party_votes,modeled_remaining_two_party_votes_band:e.modeled_remaining_two_party_votes_band,official_remaining_counties:e.official_remaining_sensitivity?.whole_counties||0}));
   jointPulseRows=[...jointPulseRows.filter(e=>!countyRows.some(c=>c.race_code===e.race_code)),...countyRows];
-  jointPulseBaseline=Object.keys(updates).length||countyRows.length?
-   window.ChamberControlModel.simulate(jointBasis,{...args,live:{}}):result;
+  jointPulseBaseline=bundle.baseline;
+  jointPriorReference={basis:jointBasis,basisKey:JSON.stringify(jointBasis),shift:frame.payload.args.nationalShift,error:frame.payload.args.errorMultiplier,result:bundle.baseline};
   jointLastResult=result;
   try{enOutlookHistory?.observe({active:enModeYear===2026,result,envelopes,live:updates,evidence:jointPulseRows,
-   revision:jointHistoryRevision(),pollingAt:jointBasis.generated_from_sources?.model_polling_at,
-   context:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC'});}catch{} // History never feeds or blocks the forecast.
+   revision:frame.historyRevision,pollingAt:frame.pollingAt,
+   context:frame.contextKey});}catch{} // History never feeds or blocks the forecast.
   try{enOfficialAdmissionAudit?.observe({active:enModeYear===2026,simulated:conditioned?.diagnostics?.status==='SIMULATED_NATIONAL_REHEARSAL',
    envelopes,used:conditioned?.diagnostics?.used||[],reason:countyUpdateWithheld?'MODEL_UPDATE_WITHHELD':'NO_LONGER_ADMITTED',
-   modelRevision:[window.ChamberControlModel.VERSION,jointModelCodeRevision(),jointBasis.generated_from_sources?.model_polling_at||'',jointNationalShift,jointErrorMultiplier].join('|'),
-   modelVersion:window.ChamberControlModel.VERSION,pollingAt:jointBasis.generated_from_sources?.model_polling_at,
+   modelRevision:[window.ChamberControlModel.VERSION,jointWorkerCodeRevision(),frame.pollingAt||'',frame.payload.args.nationalShift,frame.payload.args.errorMultiplier].join('|'),
+   modelVersion:window.ChamberControlModel.VERSION,pollingAt:frame.pollingAt,
    kernelRevision:document.querySelector('script[src*="/national_county_likelihood.js?"]')?.getAttribute('src'),
-   modelContext:jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC'});
+   modelContext:frame.contextKey});
   enRenderExportControls();}catch{} // Audit failure cannot alter the forecast.
-  jointRenderSenateCorrelationResearch(result,updates);
-  jointPublicResult=jointUsesPrivateContext()?
-   (window.NationalCountyLikelihood?.condition(window.ChamberControlModel,jointBasisPublic,envelopes,{...args,contextKey:'PUBLIC'}).result||
-    window.ChamberControlModel.simulate(jointBasisPublic,{...args,contextKey:'PUBLIC'})):null;
+  jointRenderSenateCorrelationResearch(result,updates,bundle.variants);
+  jointPublicResult=bundle.publicComparison?.result||null;
   const privateSummary=$('#privateContextComparison');
   if(privateSummary){
    if(jointPublicResult){
@@ -4934,22 +5111,11 @@ function jointRender(force=false){
   renderMississippiSenateWatch();
   renderEnForecastStrip();
   setModelRaceOddsData(jointBuildRaceOddsSnapshot(result,jointBasis));
-  let shadow=null,presidentialShadow=null;
-  if(jointShadowExpanded()&&!jointUsesPrivateContext()){
-   const args={...jointIndependentControlOptions,samples:3000,seed:20261103,
-    nationalShift:jointNationalShift,errorMultiplier:jointErrorMultiplier,live:updates};
-   if(jointBasisShadow){
-    try{shadow=window.ChamberControlModel.simulate(jointBasisShadow,args)}
-    catch(_){shadow=null}
-   }
-   if(jointBasisPresidential){
-    try{presidentialShadow=window.ChamberControlModel.simulate(jointBasisPresidential,args)}
-    catch(_){presidentialShadow=null}
-   }
-  }
+  const shadow=bundle.variants?.house_shadow?.result||null,presidentialShadow=bundle.variants?.presidential_shadow?.result||null;
   jointRenderHouseShadow(result,shadow,presidentialShadow);
+  jointReleasePendingLayout();
   const note=$('#jointRunStatus');
-  if(note)note.textContent=(jointUsesPrivateContext()?(jointPrivateSource==='repository'?'REPOSITORY SENATE/HOUSE FUNDAMENTALS · ':'LOCAL CSV CONTEXT · '):'')+
+  if(note)note.textContent=(jointWorkerCompatibility?'Compatibility calculation on this device · ':'')+(jointUsesPrivateContext()?(jointPrivateSource==='repository'?'REPOSITORY SENATE/HOUSE FUNDAMENTALS · ':'LOCAL CSV CONTEXT · '):'')+
    (result.source_call_conditioning?.status==='WITHHELD'?'Broader call update withheld; validated winners retained · ':result.source_call_conditioning?.conditioned_covariance_applied?'Validated calls condition shared model factors · ':'')+
    (countyUpdateWithheld?'County update unavailable · polling/call model retained · ':'')+
    (countyRows.length?'EXPERIMENTAL · '+countyRows.length+' county race sources · '+(conditioned?.diagnostics.house_vote_sources||0)+' House district sources · ':'')+
@@ -4961,49 +5127,103 @@ function jointRender(force=false){
    ' pts · '+(jointErrorMultiplier===1?'baseline error':
    jointErrorMultiplier>1?'wider error':'narrower error')+
    ' · 34 established D-caucus Senate holdovers · no assumed new Independent caucus credit.';
- }catch(e){
-  jointErrorMessage='Model calculation unavailable: '+String(e.message||e);
-  jointLastResult=null;jointPulseBaseline=null;jointPulseRows=[];setModelRaceOddsData(null);
-  jointRenderCards(null);enRenderNeedleCartogram();jointRenderHouseShadow(null,null,null);
-  renderMississippiSenateWatch();
-  renderEnForecastStrip();
+  if(nationalPreviewNeedsRefresh&&$('#enNationalRehearsal')?.open&&enModeYear===2026&&!document.hidden){nationalPreviewNeedsRefresh=false;void jointStartNationalPreview();}
+ }catch{
+  jointModelUnavailable('Model display unavailable. Source reporting remains separate.');
  }
 }
-let nationalPreviewInputs=null,nationalPreviewStep=0,nationalPreviewVersion=0,nationalPreviewHistory=null;
+let nationalPreviewInputs=null,nationalPreviewStep=0,nationalPreviewVersion=0,nationalPreviewHistory=null,nationalPreviewPromise=Promise.resolve(),nationalPreviewNeedsRefresh=false;
+const nationalPreviewController=jointWorkerController();
+function jointCancelNationalPreview(preserve=false){
+ nationalPreviewVersion++;nationalPreviewController?.cancel('REHEARSAL_CLOSED');
+ if(preserve){jointPreviewPending(true);window.PersonalElectionFocus?.setPending($('#enPersonalFocusPreview'),'Simulated forecast paused for updated model inputs…');if($('#enNationalStage'))$('#enNationalStage').textContent='SIMULATED forecast awaiting updated model inputs…';return;}
+ nationalPreviewNeedsRefresh=false;
+ jointPreviewPending(false);
+ const preview=$('#enNationalPreviewNeedle');if(preview){preview.replaceChildren();preview.removeAttribute('aria-label');preview.removeAttribute('role');}
+ const chances=$('#enNationalPreviewChances');if(chances)chances.textContent='';
+ const personal=$('#enPersonalFocusPreview');if(personal){window.PersonalElectionFocus?.clearPending(personal);personal.replaceChildren();}
+}
+function jointPreviewPending(pending){
+ for(const id of ['enNationalPreviewNeedle','enNationalPreviewChances']){
+  const node=$('#'+id);if(!node)continue;
+  if(id==='enNationalPreviewNeedle'){
+   if(pending){
+    jointWithholdNationalReader(node);
+    if(!jointPreviewPendingViews.has(node))jointPreviewPendingViews.set(node,{label:node.getAttribute('aria-label'),children:Array.from(node.children).map(child=>({child,visibility:child.style.visibility,aria:child.getAttribute('aria-hidden'),inert:child.hasAttribute('inert')}))});
+    for(const {child}of jointPreviewPendingViews.get(node).children){child.style.visibility='hidden';child.setAttribute('aria-hidden','true');child.inert=true;}
+    node.setAttribute('aria-label','Simulated forecast updating; previous simulated predictions withheld.');node.setAttribute('aria-busy','true');
+   }else{
+    const old=jointPreviewPendingViews.get(node);if(old){for(const {child,visibility,aria,inert}of old.children){child.style.visibility=visibility;if(aria===null)child.removeAttribute('aria-hidden');else child.setAttribute('aria-hidden',aria);if(!inert)child.inert=false;}
+     if(old.label===null)node.removeAttribute('aria-label');else node.setAttribute('aria-label',old.label);jointPreviewPendingViews.delete(node);}
+    node.removeAttribute('aria-busy');
+   }
+   continue;
+  }
+  node.style.visibility=pending?'hidden':'';node.inert=pending;
+  if(pending)node.setAttribute('aria-hidden','true');else node.removeAttribute('aria-hidden');
+ }
+}
 async function jointNationalPreview(){
  const version=++nationalPreviewVersion,details=$('#enNationalRehearsal'),status=$('#enNationalStage');
- if(!details.open||enModeYear!==2026)return;
+ nationalPreviewController?.cancel('REHEARSAL_REPLACED');
+ if(!details.open||enModeYear!==2026||document.hidden)return;
  status.textContent='Loading simulated national outlook…';
+ jointPreviewPending(true);
+ window.PersonalElectionFocus?.setPending($('#enPersonalFocusPreview'),'Updating simulated forecast…');
  try{
   if(!jointBasis||!window.NationalCountyLikelihood||!window.NationalNeedleRehearsal)throw Error('National model is still loading');
   if(!nationalPreviewInputs)nationalPreviewInputs=await window.NationalNeedleRehearsal.load(async path=>{
    const r=await fetch('./'+path,{credentials:'omit'});if(!r.ok)throw Error('Historical input HTTP '+r.status);return r.json();});
-  if(version!==nationalPreviewVersion||!details.open||enModeYear!==2026)return;
+  if(version!==nationalPreviewVersion||!details.open||enModeYear!==2026||document.hidden)return;
+  const basis=jointBasis,contextKey=jointUsesPrivateContext()?'LOCAL_RESEARCH_VARIANT':'PUBLIC',modelRevision=jointModelCodeRevision(),inputKey=jointFrameKey(jointValidatedFrameInputs());
   const envelopes=window.NationalNeedleRehearsal.stage(nationalPreviewInputs,nationalPreviewStep,jointBasis);
-  const update=window.NationalCountyLikelihood.condition(window.ChamberControlModel,jointBasis,envelopes,
-   {...jointIndependentControlOptions,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,live:{},rehearsal:true,now:window.NationalNeedleRehearsal.now});
+  const payload={basis,envelopes,publicBasis:null,variants:[],args:{...jointIndependentControlOptions,contextKey,marginSummaryCodes:jointMarginSummaryCodes(),samples:3000,seed:20261103,live:{},rehearsal:true,now:window.NationalNeedleRehearsal.now}};
+  const current=()=>version===nationalPreviewVersion&&details.open&&enModeYear===2026&&!document.hidden&&basis===jointBasis&&inputKey===jointFrameKey(jointValidatedFrameInputs());
+  const compute=value=>jointComputeOnMain({payload:value,contextKey,modelRevision,frameKind:'REHEARSAL'},value);
+  let update,compatibility=false;
+  if(typeof Worker!=='function'||!nationalPreviewController||!window.JointModelWorkerRunner){update=compute(payload);compatibility=true;}
+  else{
+   nationalPreviewController.setEnabled(true);
+   let decision=await nationalPreviewController.submit({signature:'REHEARSAL:'+version,contextKey,modelRevision,frameKind:'REHEARSAL',payload,force:true});
+   if(!current())return;
+   if(decision.status==='SYNC_FALLBACK_REQUIRED'){
+    if(decision.reason==='WORKER_TIMEOUT'){nationalPreviewController.withhold(decision.ticket,'WORKER_TIMEOUT');throw Error('Simulation timed out; previous simulated predictions are withheld');}
+    decision=nationalPreviewController.runSynchronousFallback(decision.ticket,compute);compatibility=true;
+   }
+   if(decision.status!=='READY')return;
+   if(!current()||!nationalPreviewController.admit(decision.ticket))return;
+   update=decision.payload;
+  }
+  if(!current())return;
+  jointPreviewPending(false);
   const host=$('#enNationalPreviewNeedle');host.className=$('#jointNightNeedle').className;
   host.innerHTML=$('#jointNightNeedle').innerHTML;
   host.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
   jointRenderNeedles(update.result,{hostIds:['enNationalPreviewNeedle'],baseline:update.baseline,rehearsal:true,
    evidence:update.diagnostics.used.map(e=>({race_code:e.code,asOf:e.as_of,provider:'SIMULATED',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,counted_two_party_votes:e.counted_two_party_votes}))});
-  status.textContent='SIMULATED · '+(nationalPreviewStep+1)+'/5 · '+window.NationalNeedleRehearsal.labels[nationalPreviewStep];
+  status.textContent='SIMULATED · '+(nationalPreviewStep+1)+'/5 · '+window.NationalNeedleRehearsal.labels[nationalPreviewStep]+(compatibility?' · compatibility calculation on this device':'');
   $('#enNationalPreviewChances').textContent='SIMULATED — '+Object.entries(update.result.probabilities)
    .map(([k,v])=>k.replaceAll('_',' ')+' '+v.toFixed(1)+'%').join(' · ');
   nationalPreviewHistory?.observe({result:update.result,envelopes,revision:jointHistoryRevision(true),pollingAt:jointBasis.generated_from_sources?.model_polling_at,simulated:true});
   window.PersonalElectionFocus?.render($('#enPersonalFocusPreview'),update.result,update.baseline,
    {year:2026,now:window.NationalNeedleRehearsal.now,closes:window.ElectionNightPollClosings2026,simulated:true,history:nationalPreviewHistory});
- }catch(error){if(version===nationalPreviewVersion)status.textContent='Preview unavailable · '+error.message;}
+ }catch{if(version===nationalPreviewVersion){status.textContent='Simulated preview unavailable; live source reporting remains separate.';jointCancelNationalPreview();jointPreviewPending(false);}}
 }
+function jointStartNationalPreview(){nationalPreviewPromise=jointNationalPreview();return nationalPreviewPromise;}
 $('#enNationalRehearsal')?.addEventListener('toggle',()=>{
- if(!$('#enNationalRehearsal').open){nationalPreviewVersion++;return;}
- nationalPreviewStep=0;nationalPreviewHistory=window.PersonalElectionFocus?.createHistory({simulated:true});void jointNationalPreview();
+ if(!$('#enNationalRehearsal').open){jointCancelNationalPreview();return;}
+ nationalPreviewStep=0;nationalPreviewHistory=window.PersonalElectionFocus?.createHistory({simulated:true});void jointStartNationalPreview();
 });
-$('#enNationalNext')?.addEventListener('click',()=>{nationalPreviewStep=(nationalPreviewStep+1)%5;void jointNationalPreview();});
+$('#enNationalNext')?.addEventListener('click',()=>{nationalPreviewStep=(nationalPreviewStep+1)%5;void jointStartNationalPreview();});
 function jointQueueRefresh(){
- if(!jointBasis||jointRefreshTimer!==null)return;
+ if(!jointBasis)return;
+ let key;try{key=jointFrameKey(jointValidatedFrameInputs());}catch{jointModelUnavailable('Model inputs unavailable.');return;}
+ if(jointUnavailableKey===key)return;
+ if(jointLastResult&&jointCacheKey===key)return;
+ jointInvalidateModel(key);
+ if(jointActiveKey===key||jointRefreshTimer!==null)return;
  jointRefreshTimer=setTimeout(()=>{
-  jointRefreshTimer=null;jointRender();
+  jointRefreshTimer=null;void jointRender();
  },1500);
 }
 function jointSetSources(sources,{deferRender=false}={}){
@@ -5037,6 +5257,7 @@ function jointSetSources(sources,{deferRender=false}={}){
   jointPrivatePollData=sources.odds;
   jointPrivateActivate({deferRender});
  }catch(e){jointBasis=null;jointBasisPublic=null;jointBasisShadow=null;jointBasisPresidential=null;
+  jointRequestEpoch++;jointModelController?.cancel('MODEL_INPUTS_UNAVAILABLE');jointCancelNationalPreview();jointActiveKey='';jointModelPending=false;jointPendingKey='';
   jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No reliable joint odds: '+String(e.message||e);
   const tag=$('#modelEngineTag');
@@ -5098,7 +5319,7 @@ async function jointLoadSources(options={}){
   jointSetSources(context,{deferRender:true});
   if(jointBasis?.senate_prior_mode!=='current_2026')return false;
   showSenateEstimates(context.polls);
-  jointRender(true);
+  await jointRender(true);await jointWhenIdle();
   return jointRaceOddsIntegrity()&&jointLastResult!==null;
  }catch(e){
   if(options.preserveOnFailure){
@@ -5106,6 +5327,7 @@ async function jointLoadSources(options={}){
    return false;
   }
   jointBasis=null;jointBasisPublic=null;jointBasisShadow=null;jointBasisPresidential=null;
+  jointRequestEpoch++;jointModelController?.cancel('MODEL_INPUTS_UNAVAILABLE');jointCancelNationalPreview();jointActiveKey='';jointModelPending=false;jointPendingKey='';
   jointLastResult=null;jointCacheKey='';
   jointErrorMessage='No joint probability model: '+String(e.message||e);
   const tag=$('#modelEngineTag');if(tag)tag.textContent='Model input source unavailable';
@@ -5628,10 +5850,13 @@ function enReadingReturnAnchor(target){
  const host=target?.closest?.('#enPersonalFocus,#enPersonalFocusPreview');
  const bookmark=host&&window.PersonalElectionFocus?.captureFocus(host,target);
  const milestone=target?.closest?.('#enMilestoneGrid .en-milestone-card');
- return bookmark?{hostId:host.id,bookmark}:milestone?.dataset.milestone?{milestone:milestone.dataset.milestone}:target?.id?{elementId:target.id}:null;
+ const national=target?.closest?.('#jointHomeNeedle,#jointNightNeedle,#enNationalPreviewNeedle'),driver=target?.closest?.('.four-needle-driver');
+ const nationalRace=driver?.dataset.jointDriver||jointNationalReaders.get(national)?.race;
+ return bookmark?{hostId:host.id,bookmark}:national&&nationalRace?{nationalHostId:national.id,race:nationalRace}:milestone?.dataset.milestone?{milestone:milestone.dataset.milestone}:target?.id?{elementId:target.id}:null;
 }
 function enRestoreReadingFocus(target,anchor,fallbackId){
  const visible=node=>node?.isConnected&&(node.checkVisibility?node.checkVisibility():node.getClientRects().length);
+ if(anchor?.nationalHostId)target=jointNationalReadingTarget(document.getElementById(anchor.nationalHostId),anchor.race);
  if(!visible(target))target=anchor?.hostId?window.PersonalElectionFocus?.focusTarget(document.getElementById(anchor.hostId),anchor.bookmark):anchor?.milestone?Array.from(document.querySelectorAll('#enMilestoneGrid .en-milestone-card')).find(card=>card.dataset.milestone===anchor.milestone):anchor?.elementId?document.getElementById(anchor.elementId):null;
  if(!visible(target))target=document.getElementById(fallbackId);
  target?.focus({preventScroll:true});
@@ -8014,8 +8239,9 @@ async function enLoad(manual=false){
 }
 function enSwitch(year,office,preferredKey=null){
  if(year===2024&&office==='Governor')enArchiveSource='state';
- if(enModeYear!==year)enModeGeneration++;
+ if(enModeYear!==year){enModeGeneration++;jointRequestEpoch++;jointModelController?.cancel('ELECTION_MODE_CHANGED');jointActiveKey='';jointCancelNationalPreview();}
  enModeYear=year;enOffice=office;
+ jointQueueRefresh();
  renderPersonalElectionFocus();
  enData=year===2026?(enOfficeSnapshots[office]||null):null;
  enFetchError=null;enFailures=0;enSelected=preferredKey;enVisibleLimit=120;$('#enSearch').value='';enRender();enRenderMilestones();renderSmartRaceDesks();enLoad(true);
@@ -8105,12 +8331,19 @@ function enReconnectAfterInterruption(force=false){
 }
 document.addEventListener('visibilitychange',()=>{
  if(document.visibilityState==='visible'){
+  jointModelController?.setEnabled(true);void jointRender();
   if(enWakeWanted)void enSyncWake();
   enReconnectAfterInterruption(true);
- }
+ }else jointSuspendModel('DOCUMENT_HIDDEN');
 });
+function jointSuspendModel(reason){
+ jointRequestEpoch++;jointModelController?.setEnabled(false,reason);jointActiveKey='';
+ if(jointRefreshTimer!==null){clearTimeout(jointRefreshTimer);jointRefreshTimer=null;}
+ jointCancelNationalPreview();jointInvalidateModel('SUSPENDED:'+jointRequestEpoch,'Forecast paused while this page is hidden.');
+}
+window.addEventListener('pagehide',()=>jointSuspendModel('PAGE_HIDDEN'));
 window.addEventListener('online',()=>enReconnectAfterInterruption(true));
-window.addEventListener('pageshow',()=>enReconnectAfterInterruption(true));
+window.addEventListener('pageshow',()=>{if(!document.hidden){jointModelController?.setEnabled(true);void jointRender();}enReconnectAfterInterruption(true);});
 window.addEventListener('focus',()=>enReconnectAfterInterruption());
 // A monotonic-enough wall-clock gap flags timer suspension on wake even
 // when the operating system does not dispatch an online/focus event.
@@ -8148,6 +8381,7 @@ $('#enRefresh').addEventListener('click',()=>{
  // Independent request pooling and circuit-breaker still bound civicAPI.
  void enLoad(true);
  if(enModeYear===2026)void enRefreshCivicWatchlist(true);
+ if(jointUnavailableKey)void jointRender(true);
 });
 $('#enSearch').addEventListener('input',()=>{enVisibleLimit=120;enRender()});
 document.querySelector('.tab[data-page="electionNight"]').addEventListener('click',()=>{if(!enData||enModeYear===2026)enLoad(false)});
@@ -8659,6 +8893,7 @@ function updateFeedGlance(){
   Boolean(feedHealth.polls&&pollingSnapshot));
  mark('feedModel','Model',latestSenateEstimates?.generated_at,12,
   Boolean(jointLastResult&&!jointErrorMessage));
+ if(jointModelPending){const model=$('#feedModel');model.dataset.status='pending';model.textContent='Model · updating';model.title='Background calculation pending; previous predictions withheld.';}
  mark('feedNews','News',feedHealth.news?.updated_at,6,
   Boolean(feedHealth.news&&!commandNewsSourceError&&
    (feedHealth.news.pipeline?.successful_queries??0)>0));
