@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T11:55:13.211689+00:00",
+  "updated_at": "2026-10-29T11:59:00.525506+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,34 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 329,
-  "newly_injected_into_model": 6,
-  "injected_poll_ids": [
-    {
-      "race_code": "MA-GOV",
-      "poll_id": "d75f0973-c7ad-4835-9163-1eae53b68db0"
-    },
-    {
-      "race_code": "MA-SEN",
-      "poll_id": "d75f0973-c7ad-4835-9163-1eae53b68db0"
-    },
-    {
-      "race_code": "NH-GOV",
-      "poll_id": "9ca6ae7a-4091-4042-b3a3-d89b4b491a41"
-    },
-    {
-      "race_code": "NH-SEN",
-      "poll_id": "9ca6ae7a-4091-4042-b3a3-d89b4b491a41"
-    },
-    {
-      "race_code": "TX-GOV",
-      "poll_id": "fed5cc59-dd90-4943-88f8-a52dcb154bdc"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "fed5cc59-dd90-4943-88f8-a52dcb154bdc"
-    }
-  ],
+  "matched_primary_observations": 335,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "TX-SEN",
