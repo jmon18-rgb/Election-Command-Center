@@ -370,6 +370,14 @@
   const focusedDisclosure=resumed?.kind==='race'?resumed.disclosure:focusedRace?active.closest('summary')?.parentElement.dataset.disclosure:null;
   // A pending H4 can represent an earlier disclosure; its saved bookmark wins.
   const focusedHeading=resumed?resumed.kind==='race'&&resumed.part==='heading':Boolean(focusedRace&&active===activeCard?.querySelector('h4'));
+  // Retain only the public race-heading node. All prediction and evidence
+  // bodies below it are rebuilt from this render's current inputs as before.
+  const priorHeadings=new Map();
+  for(const card of host.querySelectorAll('.personal-focus-card')){
+   const race=card.dataset.race,heading=card.firstElementChild;
+   const direct=heading?.tagName==='H4'&&card.querySelectorAll(':scope > h4').length===1;
+   priorHeadings.set(race,priorHeadings.has(race)?null:direct?heading:null);
+  }
   host.replaceChildren();if(!data.length)return;
   const doc=host.ownerDocument,el=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;};
   const simulated=data.some(x=>x.simulated);
@@ -396,7 +404,8 @@
    const grid=el('div','personal-focus-grid');
    for(const row of data.filter(x=>x.office===office)){
     const card=el('article','personal-focus-card');card.dataset.race=row.code;
-    const heading=el('h4','',row.code==='OH-SEN'?'Ohio · special Senate':row.code);heading.tabIndex=-1;card.append(heading);
+    const freshHeading=el('h4','',row.code==='OH-SEN'?'Ohio · special Senate':row.code);freshHeading.tabIndex=-1;
+    const priorHeading=priorHeadings.get(row.code),heading=priorHeading&&freshHeading.isEqualNode(priorHeading)?priorHeading:freshHeading;card.append(heading);
     const badge=el('span','personal-focus-rating',(row.simulated?'SIMULATED · ':'')+row.rating.label);badge.dataset.state=row.rating.state;
     badge.title=row.rating.state==='called'?'Validated source call · unofficial':row.rating.state==='pending'?'No supported forecast rating':'Model forecast · not called';
     card.dataset.ratingSide=row.rating.side;card.dataset.ratingKind=row.rating.state;card.append(badge);

@@ -1,5 +1,14 @@
 # Readiness progress
 
+### Stable public race headings — existing phase fixture unchanged
+
+Head216ef0ee failed before any boundary measurement: the native scroll-to-heading action saw its H4 detached during a legitimate Personal redraw. All other34 applicable parents passed; the failed head was not merged or rerun. Its failed step does not measure the repaired phone transaction. Existing immutable zero-draw2d51 proofc48b85de already demonstrates that normal redraw discards the H4 even while semantic focus is restored; that BEFORE proof was reused without another old run.
+
+Normal render now keeps only an exact canonical public race H4 from the current host in a per-render local map. All cards, predictions, source/call/context labels, details and listeners still rebuild from current inputs. Wrong text/shape/attributes, duplicate/absent headings, archive and other hosts use fresh nodes; no persistent map or private basis is retained. Pending disclosure bookmarks and user-moved focus keep their prior precedence. The old additive implementation sentinel oldDisconnected:true is explicitly migrated to false plus same-heading/fresh-card/body checks; all other50 assertion calls remain literal, with10 freshness/isolation checks and2 positive history-setup guards (63 total). A first new history fixture correctly failed the count-envelope guard; its original is preserved, and only source-free fictional history setup was corrected without relaxing the guard or context assertions.
+
+Final index9f57d804/Personal8fb23a0b (Git85b00c5d917b), Personaltest395390d3 and UNCHANGEDphasefixturee227 are independently reviewed. All99 core checks pass with unique source-pinned logs. Actual-page Personal63 and phase86 pass1366/390; phase preserves0px immediate/painted movement and exact frame/bundle/counters with15pins. The separate zero-draw component executes20 affected assertions per width, not the full63-call app suite. Outcome ca0d14bd links all scopes and first failures. All91 canonical stamps,3k/hardESS/30s and source/model/call/media rules remain unchanged. A corrected exact-head gate and final verified publication are still required; no guide append/release claim yet.
+
+
 ### Timed-layout phone repair — complete control rendering
 
 Head a2912cc8 exposed an actual390px geometry failure: the same focusedH4 moved45px while exactCURRENT/frame/epoch/key/wholebundle and source/worker counters stayed unchanged. All other33 applicable parents passed; the failed head was not merged or rerun. The startup-input wait remains separately justified, but did not repair this layout defect.
