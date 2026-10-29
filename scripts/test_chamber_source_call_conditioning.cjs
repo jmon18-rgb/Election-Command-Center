@@ -5,6 +5,10 @@ const fixture=require('./fictional_call_basis.cjs'),basis=fixture(),large=fixtur
 const base={samples:3000,seed:19760408,independentSenateCredit:'no_credit',
  marginSummaryCodes:['IA-SEN','TX-SEN','OH-SEN','ME-SEN','NE-SEN','MI-07']};
 const get=(out,code)=>out.race_probabilities.find(row=>row.race_code===code);
+const finiteNumbers=value=>{
+ if(typeof value==='number')assert(Number.isFinite(value),'An unmaterialized private margin must not leak as a public number');
+ else if(value&&typeof value==='object')for(const entry of Object.values(value))finiteNumbers(entry);
+};
 const stripCall=({source_call_conditioning,...result})=>result;
 // Captured from the pre-call-conditioning engine with this FIXED FICTIONAL
 // fixture. No dynamic/private source input enters these whole-output hashes.
@@ -42,6 +46,7 @@ assert.equal(direct.source_call_conditioning.status,'CONDITIONED');
 assert(get(direct,'ME-SEN').dem_beats_rep_pct>get(plain,'ME-SEN').dem_beats_rep_pct,
  'A validated uncertain winner must inform other races through existing shared covariance');
 assert.equal(direct.source_call_conditioning.weights,undefined,'Public result cannot leak raw proposal weights');
+finiteNumbers(direct);finiteNumbers(packet);finiteNumbers(posterior);
 const reversed=engine.simulate(basis,{...base,live:{'IA-SEN':{mode:'source_called',winnerParty:'R'}}});
 assert(get(reversed,'ME-SEN').dem_beats_rep_pct<get(plain,'ME-SEN').dem_beats_rep_pct);
 assert.deepEqual(engine.simulate(basis,{...base,live:{}}),plain,'Call withdrawal resets the original target exactly');
@@ -127,6 +132,7 @@ assert.deepEqual(p0.seeds,p1.seeds);assert.deepEqual(p0.call_log_weights,p1.call
 const s=helper.assessLogWeights(p0.call_log_weights);assert.equal(s.status,'SUPPORTED');
 const simple=engine.finalizeSourceCallElections(p0).result,explained=engine.finalizeSourceCallElections(p1).result;
 const {control_explanation,vote_seat_explanation,...withoutOptional}=explained;
+finiteNumbers(explained);finiteNumbers(simple);
 assert.deepEqual(withoutOptional,simple,'Optional consumers must not change any conditional election output');
 assert.equal(vote_seat_explanation.status,'EXPERIMENTAL_VOTE_SEAT_REFERENCE_WEIGHTED_NOT_ACTUAL_2026_VOTE');
 assert.equal(control_explanation.both_dem_pct,explained.actual_dem_both_control_pct);

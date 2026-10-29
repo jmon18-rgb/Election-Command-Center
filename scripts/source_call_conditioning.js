@@ -245,7 +245,8 @@
   return Object.freeze({schema:VERSION,callSignature:input.callKey,contextKey:input.context,diagnostics,
    // Consume/copy returned margins synchronously; the prepared plan reuses its
    // working buffer. The engine must recompute every downstream consumer.
-   transport(raw){
+   transport(raw,{requiredCalledMarginCodes=null}={}){
+    if(requiredCalledMarginCodes!==null&&!(requiredCalledMarginCodes instanceof Set))fail('INVALID_CALLED_MARGIN_MATERIALIZATION_SCOPE');
     const n=rows.length;
     if(!raw||raw.margins?.length!==n||raw.localNormals?.length!==n||raw.redrawMargins?.length!==n||!raw.sharedNormals)
      fail('INVALID_RAW_ELECTION_TRANSPORT');
@@ -264,8 +265,16 @@
       const value=raw.margins[row.index]-raw.localNormals[row.index]*row.localSD-raw.redrawMargins[row.index]+dot(loadings[row.index],factorDelta);
       if(!finite(value))fail('NONFINITE_CONDITIONAL_MARGIN');return value;
      });
-     const assignment=allocateWithoutReplacement(bag.values,stateSigns,uniforms,(seat,value,id,sign)=>
-      normalLogCDF(sign*(means[seat]+(value-bag.rows[seat].center)*bag.rows[seat].mix)/bag.rows[seat].localSD));
+     // Distinct indexed bag items can share the same numerical margin. For a
+     // fixed seat their sign probability is identical; memoize only that exact
+     // value calculation, preserving indexed slots, p/q and every RNG draw.
+     let cachedSeat=-1;const valueScores=new Map();
+     const assignment=allocateWithoutReplacement(bag.values,stateSigns,uniforms,(seat,value,id,sign)=>{
+      if(seat!==cachedSeat){cachedSeat=seat;valueScores.clear();}
+      if(valueScores.has(value))return valueScores.get(value);
+      const score=normalLogCDF(sign*(means[seat]+(value-bag.rows[seat].center)*bag.rows[seat].mix)/bag.rows[seat].localSD);
+      valueScores.set(value,score);return score;
+     });
      logWeight+=assignment.logPriorMinusProposal;
      bag.rows.forEach((row,i)=>allocated.set(row.code,(assignment.values[i]-row.center)*row.mix));
     }
@@ -275,8 +284,18 @@
      if(!finite(shifted))fail('NONFINITE_TRANSPORTED_MARGIN');
      const sign=signs.get(row.code);
      if(sign){
-      const draw=truncateToCalledSign(shifted-raw.localNormals[i]*row.localSD,row.localSD,sign,raw.localNormals[i]);
-      output[i]=draw.margin;logWeight+=draw.logProbability;
+      const conditionalMean=shifted-raw.localNormals[i]*row.localSD;
+      if(requiredCalledMarginCodes===null||requiredCalledMarginCodes.has(row.code)){
+       const draw=truncateToCalledSign(conditionalMean,row.localSD,sign,raw.localNormals[i]);
+       output[i]=draw.margin;logWeight+=draw.logProbability;
+      }else{
+       // The winner sign is known. Integrate this unused local margin out
+       // analytically, preserving the identical call-event normalizer. The
+       // original standard local normal was still consumed by the engine.
+       // NaN explicitly marks an unmaterialized PRIVATE buffer entry; the
+       // engine must never expose it or replace it with a fabricated margin.
+       output[i]=NaN;logWeight+=normalLogCDF(sign*conditionalMean/row.localSD);
+      }
      }else output[i]=shifted;
     }
     if(!finite(logWeight))fail('NONFINITE_CALL_IMPORTANCE_WEIGHT');

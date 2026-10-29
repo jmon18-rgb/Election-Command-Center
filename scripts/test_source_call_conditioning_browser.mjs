@@ -63,7 +63,15 @@ try{
   const withdrawn=await page.evaluate(()=>{const {basis,args,baseline}=callReview,result=ChamberControlModel.simulate(basis,{...args,live:{}});PersonalElectionFocus.render(document.querySelector('#enPersonalFocus'),result,baseline,{closes:ElectionNightPollClosings2026,simulated:true});return JSON.stringify(result)===JSON.stringify(baseline);});
   assert.equal(withdrawn,true);assert.equal(await page.locator('#enPersonalFocus .personal-focus-call-status').count(),0);
   assert.doesNotMatch(await me.innerText(),/Broader validated-call context/);
-  await page.evaluate(()=>{const {basis,args,baseline}=callReview,unsupported=structuredClone(basis);unsupported.senate.find(x=>x.code==='IA-SEN').sigma=0;const result=ChamberControlModel.simulate(unsupported,{...args,live:{'IA-SEN':{mode:'source_called',winnerParty:'D'}}});if(result.source_call_conditioning.status!=='WITHHELD')throw Error('Unsupported conditional law must withhold covariance');PersonalElectionFocus.render(document.querySelector('#enPersonalFocus'),result,baseline,{closes:ElectionNightPollClosings2026,simulated:true});});
+  const lateStart=process.hrtime.bigint(),late=await page.evaluate(()=>{
+   const {basis,args,baseline}=callReview,pool=[...basis.senate,...basis.governors,...basis.house].filter(row=>!row.nonrep_independent_proxy||row.mean<0),chosen=pool.slice(0,200);
+   const live=Object.fromEntries(chosen.map(row=>[row.code,{mode:'source_called',winnerParty:row.mean>=0?'D':'R'}]));
+   const result=ChamberControlModel.simulate(basis,{...args,seed:20261103,live});
+   PersonalElectionFocus.render(document.querySelector('#enPersonalFocus'),result,baseline,{closes:ElectionNightPollClosings2026,simulated:true});
+   return {call_count:chosen.length,status:result.source_call_conditioning.status,reason:result.source_call_conditioning.reason,valid_winners_preserved:chosen.every(row=>result.race_probabilities.find(x=>x.race_code===row.code).provider_called_party===(row.mean>=0?'D':'R'))};
+  });
+  late.wall_elapsed_ms_including_driver=Number(process.hrtime.bigint()-lateStart)/1e6;
+  assert.equal(late.status,'WITHHELD');assert.equal(late.reason,'WITHHELD_LOW_EFFECTIVE_SAMPLE_SUPPORT');assert.equal(late.valid_winners_preserved,true);
   assert.match(await page.locator('#enPersonalFocus .personal-focus-call-status').innerText(),/Broader call update withheld.*Validated race winners remain fixed/);
   assert.match(await ia.innerText(),/SIMULATED · D victory/);assert.doesNotMatch(await me.innerText(),/Broader validated-call context/);
   await page.locator('#enPersonalFocus .personal-focus-call-status').scrollIntoViewIfNeeded();await page.screenshot({path:resolve(out,'withheld-call-context-'+width+'.png')});
@@ -72,7 +80,7 @@ try{
   assert.equal(await page.evaluate(()=>JSON.stringify(jointLastResult)),liveBefore);
   assert.doesNotMatch(await page.locator('#enPersonalFocus').innerText(),/SIMULATED|Broader call update withheld/);
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),true);assert.deepEqual(errors,[]);
-  proofs.push({width,height,public_basis_3000_particle_browser_cost:performance,multiple_calls_realistic_bag_browser_cost:multipleCalls,fictional_call_test:report,retraction_exact:true,unsupported_transfer_withheld:true,live_model_unchanged:true,horizontal_overflow:false,blocked_external_requests:external.length});
+  proofs.push({width,height,public_basis_3000_particle_browser_cost:performance,multiple_calls_realistic_bag_browser_cost:multipleCalls,late_200_call_withholding_and_cost:late,fictional_call_test:report,retraction_exact:true,unsupported_transfer_withheld:true,live_model_unchanged:true,horizontal_overflow:false,blocked_external_requests:external.length});
   await context.close();console.log(width+'px validated-call same-draw range/context/correction/retraction/withheld/live-isolation PASS;3000 browser particles '+Math.round(performance.wall_elapsed_ms_including_driver)+'ms including driver');
  }
  writeFileSync(resolve(out,'source-call-conditioning-browser.json'),JSON.stringify({at:new Date().toISOString(),scope:'Isolated actual browser/synthetic calls; public basis timing; no source delivery/calibration/human acceptance',proofs},null,2)+'\n');

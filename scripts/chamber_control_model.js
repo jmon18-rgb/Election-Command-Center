@@ -708,6 +708,7 @@ function senatePollingErrorBudget(info){
    if(weights.size!==435||weightTotal<1e7)
     throw Error('Incomplete nationwide House turnout reference');
   }
+  const callRequiredMargins=callPlan?new Set([...(capture||[]),...(voteSeatEnabled?basis.house.map(row=>row.code):[])]):null;
   const voteSeatBins=voteSeatEnabled?new Map():null;
   let voteSeatWeightedMarginSum=0;
   const pivotalHouse=new Uint32Array(435),pivotalSenate=new Uint32Array(35);
@@ -817,15 +818,16 @@ function senatePollingErrorBudget(info){
      H:a.house_chamber_sigma?houseShock/(a.house_chamber_sigma*errorMultiplier):0,
      S:a.senate_chamber_sigma?senateShock/(a.senate_chamber_sigma*errorMultiplier):0,
      G:a.governor_chamber_sigma?govShock/(a.governor_chamber_sigma*errorMultiplier):0,
-     states:stateDeltas}});
+     states:stateDeltas}},{requiredCalledMarginCodes:callRequiredMargins});
     if(callCapture)callCapture.log_weights[k]=moved.logWeight;
     dHouse=0;dSenate=holdovers;winBattleground=0;voteSeatWeightedMarginNumerator=0;
     for(let j=0;j<polls.length;j++){
      const item=polls[j],isHouse=j<435,isSenate=j>=435&&j<470,scenario=live[item.code];
      const called=scenario?.mode==='source_called'&&['D','R'].includes(scenario.winnerParty);
      const oldDem=called?scenario.winnerParty==='D':callRaw.margins[j]>0;
-     const value=moved.margins[j],dem=value>0;
-     if(called&&dem!==(scenario.winnerParty==='D'))throw Error('Call proposal lost source winner constraint');
+     const value=moved.margins[j],dem=called?scenario.winnerParty==='D':value>0;
+     if(!finite(value)&&(!called||callRequiredMargins.has(item.code)))throw Error('Required call-transport margin was not materialized');
+     if(called&&finite(value)&&(value>0)!==dem)throw Error('Call proposal lost source winner constraint');
      raceDemWins[j]+=Number(dem)-Number(oldDem);
      if(isHouse){if(dem)dHouse++;if(explainControl)houseWinners[j]=Number(dem);
       if(voteSeatEnabled)voteSeatWeightedMarginNumerator+=limit(value,-100,100)*voteSeatArray[j];

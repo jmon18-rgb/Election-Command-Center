@@ -1180,7 +1180,20 @@ function __testWatchedOfficePending(){return enWatchRefreshPending.size}`));
  const evidenceHouse=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"house")');
  assert(evidenceHouse.length>=3);
  assert(evidenceHouse.every(x=>x.scope==='house'&&/^[A-Z]{2}-\d{2}$/.test(x.race_code)));
- assert(evidenceHouse.some(x=>x.race_code==='UT-04'&&x.signal==='Weighting changes the lead'));
+ // The live bundle is rebuilt under today's polling-firm policy in CI.
+ // Its UT-04 weighting range can legitimately stop crossing zero. Pin this
+ // behavior assertion to an explicit fictional range while retaining the
+ // actual-bundle office/coverage checks above and every lead-change assertion.
+ {
+  const weightingFixture={is_election_forecast:false,house:[{
+   race_code:'UT-04',status:'multi_poll',dem_minus_rep:1,state_name:'Utah',
+   independent_pollsters:1,partisan_pollsters:1,contributing_pollsters:2,
+   poll_diagnostics:{latest_poll_age_days:2,model_sensitivity:{
+    alternative_margin_min:-2,alternative_margin_max:3,independent_only_margin:-2}}
+  }]};
+  const evidenceHouse=w.eval('modelEvidenceWatchItems('+JSON.stringify(weightingFixture)+',"house")');
+  assert(evidenceHouse.some(x=>x.race_code==='UT-04'&&x.signal==='Weighting changes the lead'));
+ }
  const evidenceGov=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"governor")');
  assert(evidenceGov.length>=2);
  assert(evidenceGov.every(x=>x.scope==='governor'&&x.race_code.endsWith('-GOV')));

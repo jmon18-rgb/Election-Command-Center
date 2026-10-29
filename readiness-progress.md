@@ -2,6 +2,21 @@
 
 ## October28 R0 conditional-call implementation — protected review next
 
+PR528 initial6bb92b92 passed36parents/48jobs; fullDOM40793713865/job123184910678
+failed its existing UT04 lead-change assumption after CI rebuilt today's polling
+bundle. Original assertion now uses explicit fictional crossing range; actual
+bundle coverage/office/all other assertions retained, positive/negative controls
+PASS. Failedhead never merges/reruns/waives; no timeout increase.
+Independent review also justified exact duplicate-value memoization and analytic
+integration of unused called-local margins: old weights/seeds/captures/all public
+outputs/optionalconsumers remain EXACT, required margins always materialized,
+no private NaN leaks. Published code remains unchanged pending correctedhead.
+Optimized actualEdge1366/390 200-call case takes3023/2842ms and correctly WITHHOLDS
+covariance for lowESS, all winners retained; six-call case1321/1208ms. This is a
+remaining synchronous responsiveness/proposal-support limit, not a waived gate
+or a guarantee of full-night covariance learning. Future worker/look-ahead work
+is a distinct executable improvement; do not claim every engineering row blocked.
+
 New helper/engine/kernel now condition existing validated winner events through
 the SAME joint factors and indexed redraw law, with exact proposal correction.
 Original no-call outputs are pinned by immutable fictional whole-output hashes;

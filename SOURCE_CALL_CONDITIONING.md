@@ -21,6 +21,13 @@ full-support Gaussian variation and an exact density correction. Allocations use
 the same indexed finite population, including duplicates; their sequential
 proposal is corrected by the original uniform without-replacement probability.
 Uncalled local residuals retain their original law and random-number ordering.
+Unused called-local margins may be integrated out analytically while retaining
+the same winner-event normalizer and consuming the original local random draw.
+Every requested county margin and House margin needed by the optional vote-seat
+consumer is materialized from its truncated law. Unmaterialized private entries
+never become public numeric margins or county-likelihood inputs. Repeated numeric
+redraw values share a per-seat score calculation while their indexed slots and
+allocation probabilities remain distinct.
 
 Each complete election receives this log weight:
 
@@ -93,3 +100,11 @@ live/rehearsal isolation and the production 3,000-particle calculation. A phone
 viewport on a desktop host does not measure physical phone speed. No synthetic
 test supplies the independent historical chronologies or held-out elections
 required by NATIONAL_NEEDLE_ACCEPTANCE.md.
+
+A declared 200-call fictional stress pattern does not meet the hard final ESS
+floor with the current proposal. It explicitly withholds covariance transfer,
+preserving verified winners; a full-night guarantee of conditional learning is
+not established. Its several-second synchronous cost is also a remaining
+responsiveness limit, especially for a public/private comparison or slower
+device. Later proposal guidance and asynchronous calculation are distinct next
+engineering tasks; neither may weaken the support floor or alter the target.
