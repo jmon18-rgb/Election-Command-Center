@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-29T01:11:17.124062Z",
-  "source_snapshot": "2026-10-29T01:11:13.377266Z",
+  "generated_at": "2026-10-29T02:05:47.065170Z",
+  "source_snapshot": "2026-10-29T02:05:42.396397Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
   "method_version": "poll-mean-1.5",
@@ -18572,30 +18572,30 @@
       "status": "multi_poll",
       "dem_candidate": "David Crowley",
       "rep_candidate": "Tom Tiffany",
-      "dem_pct": 48.65,
-      "rep_pct": 43.63,
-      "dem_minus_rep": 5.02,
+      "dem_pct": 48.48,
+      "rep_pct": 43.8,
+      "dem_minus_rep": 4.68,
       "independent_pollsters": 3,
-      "contributing_pollsters": 4,
-      "partisan_pollsters": 1,
+      "contributing_pollsters": 5,
+      "partisan_pollsters": 2,
       "poll_diagnostics": {
-        "poll_count": 4,
-        "pollster_spread_points": 1.71,
+        "poll_count": 5,
+        "pollster_spread_points": 1.65,
         "observed_margin_min": 3.0,
         "observed_margin_max": 7.0,
-        "latest_poll_age_days": 7,
+        "latest_poll_age_days": 6,
         "single_poll": false,
         "thin_polling": false,
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
         "model_sensitivity": {
-          "effective_firms": 3.26,
-          "largest_firm_weight_pct": 36.8,
+          "effective_firms": 4.18,
+          "largest_firm_weight_pct": 30.3,
           "independent_only_margin": 5.02,
-          "equal_firms_margin": 4.75,
-          "faster_recency_margin": 5.27,
-          "alternative_margin_min": 4.75,
-          "alternative_margin_max": 5.27,
+          "equal_firms_margin": 4.42,
+          "faster_recency_margin": 4.82,
+          "alternative_margin_min": 4.42,
+          "alternative_margin_max": 5.02,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
         "firm_wave_selection": {
@@ -18603,11 +18603,11 @@
           "quarantined_same_day_firms": []
         },
         "silver_2026_comparison": {
-          "dem_minus_rep": 5.15,
-          "dem_pct": 48.87,
-          "rep_pct": 43.72,
-          "difference_from_live": 0.13,
-          "rated_pollster_count": 2,
+          "dem_minus_rep": 4.76,
+          "dem_pct": 48.65,
+          "rep_pct": 43.88,
+          "difference_from_live": 0.08,
+          "rated_pollster_count": 3,
           "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
           "status": "experimental_not_used_for_headline",
           "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
@@ -18615,7 +18615,7 @@
         "different_matchups_excluded": 0,
         "interpretation": "Observed inter-poll spread, not a calibrated forecast error or evidence of intentional herding."
       },
-      "latest_poll_end": "2026-10-22",
+      "latest_poll_end": "2026-10-23",
       "oldest_included_poll_end": "2026-09-23",
       "pollsters": [
         {
@@ -18628,7 +18628,7 @@
           "rep": 44.0,
           "sample_size": 668,
           "partisan_lean": "",
-          "weight_share": 36.823,
+          "weight_share": 30.322,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.965
@@ -18643,10 +18643,25 @@
           "rep": 46.0,
           "sample_size": 692,
           "partisan_lean": "",
-          "weight_share": 17.799,
+          "weight_share": 14.656,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 0.971
+        },
+        {
+          "name": "Wick",
+          "field_end": "2026-10-23",
+          "poll_id": "bff4925c-2605-4dad-8a1d-5cb4f229c2c0",
+          "question_id": "b5f6f8fd-972d-414f-a461-0b3db4e6a8bf",
+          "sample_population": "lv",
+          "dem": 47.7,
+          "rep": 44.6,
+          "sample_size": 1213,
+          "partisan_lean": "R",
+          "weight_share": 17.655,
+          "quality_rating": null,
+          "quality_multiplier": 1.0,
+          "sample_multiplier": 1.087
         },
         {
           "name": "YouGov",
@@ -18658,7 +18673,7 @@
           "rep": 42.0,
           "sample_size": 1715,
           "partisan_lean": "",
-          "weight_share": 36.189,
+          "weight_share": 29.8,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.165
@@ -18673,7 +18688,7 @@
           "rep": 44.0,
           "sample_size": 662,
           "partisan_lean": "D",
-          "weight_share": 9.189,
+          "weight_share": 7.567,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 0.963

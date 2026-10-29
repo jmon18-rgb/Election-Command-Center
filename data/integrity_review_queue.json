@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-29T01:11:13.132579Z",
+  "updated_at": "2026-10-29T02:05:42.046310Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 65
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 63
   },
   "advisory_related_headlines": [
     {
@@ -86,20 +86,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "14db32c5e8f9265cf302",
-      "headline": "Texas clears voter registration backlog days before early voting - Lubbock Avalanche-Journal",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -261,9 +247,62 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "7853e44c87a2b51cded5",
+      "headline": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "11cd90159865b8ea8b7f",
+      "title": "Judge denies the Justice Department's bid to stop processing California ballots - NPR",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5UcC1DM1UxS3ZmV0ZaNG9McHNXRUpQeXRBNFF1a3FxcFRMRlVnampVcldOYW0tMENNOE9WQTJzLUM1TkstRFVrZVd0SXRHSUFaUHNDaW9qZ3Mzc0NGNUFockZSYVpGdWlOZlpTYlUwOHpoV2ZMNFc4aWJiMXNyU0E?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-10-29T00:52:50Z",
+      "detected_at": "2026-10-29T02:05:42.046310Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation",
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "be777860a0d2125995b1",
+      "title": "Judge declines to block California from counting alleged noncitizen voters\u2019 ballots in DOJ lawsuit - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQeXMzSnMxY2F2dUFwQ2VLcnJiVkJvNzhYdlRXQnZwU1NNdmhUVHdwVjUyWUQ1VmFDZkFIQ0VJUGtUMWJQall0VER1UDRlUGFyYWFNTDRJdUR6ZUZzZHF4UWNRREoxRXA3TU0yX01WNFBtQ3paVFZEWDZsQVpHZ09FLUtIeW5rcGxhWnZBaTJCUmY3ZG1FSE5RWml3cXlDYkEzZVhzcVJPazg3MkxXUkFKN2F4VFMxSTBTeUREa29FZVNuLUpxakdIQzNR?oc=5",
+      "publisher": "NBC News",
+      "published_at": "2026-10-29T00:52:00Z",
+      "detected_at": "2026-10-29T02:05:42.046310Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "3d28d6f3bf27bfd3df38",
       "title": "Civil rights organizations sue Texas secretary of state, DPS director over voter registration delays - Houston Public Media",
@@ -5014,46 +5053,6 @@
         "1 million",
         "2024 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "14db32c5e8f9265cf302",
-      "title": "Texas clears voter registration backlog days before early voting - Lubbock Avalanche-Journal",
-      "url": "https://news.google.com/rss/articles/CBMi7wFBVV95cUxOc2dRWEl1azl3V21kUVB0VXFFNVBEZk03S1hoMjd4c3dKdE91VFZ2Nm1vcTFMMFk0R0dlbjZpT0hQN3MxSExzWXF0blE3OFRaOEJ1Q0NXSjEyOGpNcjVIUmxVcVdHQnY1WU5LZVFCWnRFVDlWTlQwa0NRMkZyMUlONlRlTjcyVjcxWTEzNk1ielkzemxaQkNkZ2xDV2xJV2NmcWxBRUFRSFR0aGZRRUJnM0kzcml0eGpKQnhpVm1BdXVCcnN0czVvZjNWQ3Mwa2g0Yk5PUjdndjl4QU56SkFHZm11bGEwclFQMHN4ZjdZdw?oc=5",
-      "publisher": "Lubbock Avalanche-Journal",
-      "published_at": "2026-10-16T01:37:00Z",
-      "detected_at": "2026-10-16T01:43:11.361701Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "registration",
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4d36db2830d2d75b031c",
-      "title": "Texas clears voter registration backlog days before early voting - Amarillo Globe-News",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxOMlBSb0Rmc3VwY19iRVA0cXlnLV9hSU16dkJBelc1SWJBM2JmZWZ0LVVsWW9nWXp6bXYxbWI5M29ObS1RVDJwLXZkQXFKempXYnlFbnhEYWNGRWtMS1JnWUFZcE5UMkdKNTlnZXVHbjFtUDJ4cFp3VFg5OW9uN0ZYY01iNDVlb1E5R2NxRF9lTW1BUktDNDRWdmRYM0tlQXZEYVQ4UEdNZ3FOWlhSdldQdkgyWXZKMWZmX2g2czI1V3dnOUF2cm9FTEkwQXdaM0lzdTUzX0h2YUNkUnJqbnhGVkRkYm93Y091?oc=5",
-      "publisher": "Amarillo Globe-News",
-      "published_at": "2026-10-16T01:37:00Z",
-      "detected_at": "2026-10-16T02:45:35.209651Z",
-      "state_hints": [
-        "TX"
-      ],
-      "topic_hints": [
-        "registration",
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

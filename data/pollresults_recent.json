@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T01:11:13.688706+00:00",
+  "updated_at": "2026-10-29T02:05:42.698810+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -13,23 +13,43 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 952,
+      "available_in_source": 953,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 317,
-  "newly_injected_into_model": 2,
+  "matched_primary_observations": 319,
+  "newly_injected_into_model": 1,
   "injected_poll_ids": [
     {
-      "race_code": "AL-GOV",
-      "poll_id": "87c6b869-73ff-4c58-b40e-35f7f60e6cc6"
-    },
-    {
-      "race_code": "AL-SEN",
-      "poll_id": "87c6b869-73ff-4c58-b40e-35f7f60e6cc6"
+      "race_code": "WI-GOV",
+      "poll_id": "bff4925c-2605-4dad-8a1d-5cb4f229c2c0"
     }
   ],
   "observations": [
+    {
+      "race_code": "WI-GOV",
+      "race_type": "governor",
+      "state": "WI",
+      "poll_id": "bff4925c-2605-4dad-8a1d-5cb4f229c2c0",
+      "question_id": "b5f6f8fd-972d-414f-a461-0b3db4e6a8bf",
+      "pollster": "Wick",
+      "dem_name": "David Crowley",
+      "rep_name": "Tom Tiffany",
+      "dem": 47.7,
+      "rep": 44.6,
+      "margin": 3.1,
+      "field_end": "2026-10-23",
+      "field_start": "2026-10-19",
+      "posted_date": "2026-10-28",
+      "posted_source_datetime": "2026-10-28T21:34:00",
+      "posted_source_time": "10/28/26 21:34",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://wick.io/law-wisconsin-poll-results",
+      "sample_population": "lv",
+      "sample_size": 1213,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "AL-SEN",
       "race_type": "senate",
