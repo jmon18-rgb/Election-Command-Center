@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T10:01:25.419149Z",
+  "updated_at": "2026-10-29T10:58:32.974166Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 3,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 64
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 62
   },
   "advisory_related_headlines": [
     {
@@ -72,20 +72,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "cf7c8a069689d1e482b4",
-      "headline": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -259,9 +245,40 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "e16a78441dc2d4ee17f8",
+      "headline": "Minnesota is preparing for all possibilities this election \u2014 including potential federal interference - The Globe | Worthington, Minnesota",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "MN"
+      ],
+      "topic_hints": [
+        "election_admin",
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "2544a7aaed60b6522a38",
+      "title": "TPM\u2019s Comprehensive Guide To How Senate Swing States Certify Their Elections\u2014And How Bad Actors Might Screw With It - Talking Points Memo",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPQ2Uyc01uTHo4UWtnNmkyMVFSMDNsUUV0U2dTODh5Yi1BaHI4RnlXTTFXaDF0dDFweU0talNueUdmR2dFYzU2QmNBTTVRQjZuNWdxSHZDeU8yV0JhdGJYaDJMVThVTFdVZVNPR2RpWkk4cXZoSnhVcmFhNmZNTFRNd0ZBYw?oc=5",
+      "publisher": "Talking Points Memo",
+      "published_at": "2026-10-29T10:00:00Z",
+      "detected_at": "2026-10-29T10:58:32.974166Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c6017153f1a1b55ed150",
       "title": "Could Trump interfere with Election Day in Mass.? Officials are preparing - MassLive",
@@ -269,6 +286,23 @@
       "publisher": "MassLive",
       "published_at": "2026-10-29T09:50:00Z",
       "detected_at": "2026-10-29T10:01:25.419149Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5d01e89986d88e502f24",
+      "title": "Could Trump disrupt Election Day in Mass.? Officials are readying for the unknown - MassLive",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNd1ZoQmktb3FvQ0hBSXhnUmZUUEVteHpmX19TTFJSZkdFTVN0a253LWViZFVlNXgtS3ozZWRIR0pyS1o3bk5VTlhuQlgydjB5TWZ4V2FvSDFubi1CUkNUc0E0WXNXUW9uemN2QlU1U3dINEQ4SFJXV3VZa0FNRmFDRjBPUG94cE9zLUYzR2lIYjJBUFpIYkZRNVY2UlVsMk1MZ3l0bEhqNGVwXzlEdW1RTzB5bUNUS3R5dm0tQUk2XzVKdndN?oc=5",
+      "publisher": "MassLive",
+      "published_at": "2026-10-29T09:50:00Z",
+      "detected_at": "2026-10-29T10:58:32.974166Z",
       "state_hints": [],
       "topic_hints": [
         "election_admin"
@@ -311,6 +345,23 @@
       ],
       "topic_hints": [
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b1d0669aca001a10ed6c",
+      "title": "DOJ Says It Won\u2019t Deploy FBI, ICE Agents as Poll Monitors - Newsweek",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOcHFkNDYyaUxfN0F3cTFkNmd2b1pWY3FwcXR4bXVfazJocnlEMWhUNERnTG5iZHhSZ2p5THV2d0FuN1E1UUZraTRzWll3aGtXTWwxX001X0VBWEhiMm5nZjBhZmRoTDAtRkc4TjRuYWpCY3R3a2FIT2ZkZGtpaFhYa0I2SG10dVZwVXdFSWFsanlOQlk?oc=5",
+      "publisher": "Newsweek",
+      "published_at": "2026-10-29T08:49:00Z",
+      "detected_at": "2026-10-29T10:58:32.974166Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4980,68 +5031,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4f51f68b6cbeb0f656ea",
-      "title": "What If ICE Shows Up at the Polls? - The Bulwark",
-      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNVFZmUFZMY2M0ZWxwc2FhWnlfb1lySUVraUpMOVNOMmxjUWQ1WTNaYjFuQlNUaDZqSU1EOXFWNHp2eXNWLUtWdnpNajM4bGdkNk1wOVhTeTZjUnl4bHNTLWx0UlhmUlBuSWtqaThJM3FNaXVKUHExaXBFZHJ6cmRDN2N1QXhWczRGRnBjRU5Ob0dmVmgteWdLY2VTX2Y5ZkJja01TRWhlRjkwaGtvNkp2OWh1bktmOUplYVFnM212bEdfSWJNcTVSZDl2V2pnSVRVM2luaW1UZExYcGJoU1VsYm1ob2NEYlVKc183MVhoX2pXRS1IUGJUNi1VaGJ4cFExZGdPMDVYR2Q?oc=5",
-      "publisher": "The Bulwark",
-      "published_at": "2026-10-16T14:45:26Z",
-      "detected_at": "2026-10-16T15:45:32.075276Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "cf7c8a069689d1e482b4",
-      "title": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail b - The Times of India",
-      "url": "https://news.google.com/rss/articles/CBMiqwJBVV95cUxOOVVaanlOM2pYOFlQcGRUb3NVdFpRQ01RcHA4QlNyTXl4N0hpa2NhdnpIY01tYmpCcDZMM3JnaEp2cUlfbExtcmpwT1pEUDVhUjlLeEV6OTA5N1R3WFRNbjg0NUlGSFlLZHNqaTRMY0hhYUtoMHBLRkdyNzk4RDZIT29FdWxoVHplTFdFUldQN1BuMC13UENoZ3J3Z0U0YVBGaXZkQVRPSWFXN0xEYjkxVmxBOEFPZzZkZzgyRmJScWgxSHEyVWg3d3FqSlhjZ3IwdWJSX3UzMUhOM0UxSzR6V01JUFpTZ0x0WTMxOE42ZHAxUFhlT2kwczFGQlJpSENWaFNEN04yMzQ1S09heF94VFg1bXlVUEQzRThIbkgxT29OSXlETll1Unl1MNIBsAJBVV95cUxPSGRwb0s4VDVsN1JqZVVpbktxUllzaVUxcE9WYUtVb2V4QnVUa1RabXFlZ1liQ3VzWnVJTTltMUFpLTVsUEJtd1FMb1h0a18tWnBQODZuYzgwMl93c05mb2hRUVRSMDc5Mng1R2JRQlZoaEFXN1ktVXhHVy1rY1dWUDhjMmlTWllJNUtDRG1haDBaREt6ZERGVWFxeTBtY01ZS1VXN0RzN2JHY3ZkMGZwLVpQdFZRRlZwRFliUkZqMHN1ck5zdjhkTlNabXlMNEZCNUluT3VkNW8wbm5XRllKZlRPcWtJdm1EVjhHel9hRlo1ckZpQi1xNDFvM1lER2NwaVFSVGtsM1RpQnd6WDBtUENJeUM0VkZpcDJyaFF2WERRRjFtX1VLRDJDVEVwRkRk?oc=5",
-      "publisher": "The Times of India",
-      "published_at": "2026-10-16T14:36:00Z",
-      "detected_at": "2026-10-16T14:47:56.717861Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026",
-        "20,000 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "00f2ed5e36b4823bd54e",
-      "title": "US midterms 2026: DOJ sues California, claims 20,000 suspected \u2018noncitizen voters\u2019; seeks to block mail ballots - inkl",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPUmlITGtLOVZhdHNoNDltc2MtUnJsQU5FYy1XNTVQSS0zQ3djMWJHcmx2aDVGV255OS1mTERUTmQxMkpkOTNUbEozRklHWUFGNXV2VnlJTjUzRzJWZU1Bd1VZelFGX3R0dzA3cFlIbTRsZ2JIMEdaMU5CUUVxWTNDV3RVTU8ySWFzOFFsQUVNTXhwOXBnTlN6TXVvQWVQS0w0QVNDYU5PVThrV0NBbG9JOGxyOWQ2UGVpZngzSllkQVloS0hUTmU5cDZsbHM?oc=5",
-      "publisher": "inkl",
-      "published_at": "2026-10-16T14:36:00Z",
-      "detected_at": "2026-10-16T15:45:32.075276Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026",
-        "20,000 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
