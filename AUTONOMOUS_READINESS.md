@@ -1,6 +1,35 @@
 # Election Night production-readiness assignment
 
-## October29 count-aware proposal — local integration, not published
+## October29 PR533 VERIFIED PUBLISHED — county-aware proposal
+
+Tested e671d5f0 passed all37current-head workflow parents and56latest jobs
+(53SUCCESS/3declared deployed-only PR skips), with0external statuses and clean
+mergeability. Merge0aa75146; final main b13e22a3973a79199a51ac29ad371bf9f6033770,
+Pages40899111890SUCCESS. All33changed public/index files matched origin/main
+at15:15:02.745Z;13coherence checks/index/no_credit passed. Main rechecked
+unchanged15:23:55Z after published tasks. No waiver/rerun/deadline or sample cut.
+
+Both-size actual published Edge call-context and output-guard tasks passed. The
+fixed fictional overlap now has ESS1,516.20/3,000, only16.20above the unchanged
+1,500floor; its exact missing-guide path remains withheld at1,225.01. Target,
+alpha/max, exact corrections, RNG, source/call rules and budgets are unchanged.
+Numerical support is not empirical calibration, full-night or physical-phone proof.
+Ordinary27 confirms7current assets, equal private checkboxes/status text/archive
+classes and current2024 aria-pressed mode. Direct before/after mode equality
+was not measured; the initial checked-accessor error is preserved and qualified.
+The same phone PNG was confirmed normal at original detail and independently;
+no app/file defect or extra browser/model/network run was established.
+
+Outcome pr533-published-outcome-20261029.json SHA29d36c8e4021a724c4093f06359dc29a2d081178bcd5f241b7f4e0955076422c.
+Final independent audit pr533-final-release-audit.json PASS. Original guide1.0/
+eleven human scopes/hashes/NOT_RUN/null unchanged; ONE later component19->20
+with immutable copy/appendreceipt. LedgerSHAf9fde57ed77b42907e229dacb1b4eca22ffd38103ec5dd69f34ad0b395c84e6d.
+Human, independent calibration, genuine positive2026 and no-paid archive capacity
+remain open; archive stays OFF. No new owner decision is required by this release.
+Carry the final proof checkpoint with the next real source change; no docs-only
+CI push or repeated unchanged demos/probes.
+
+## Historical PR533 local integration checkpoint
 
 Local independent numerical/privacy review, five original call suites, the new
 portable regression, 43 controller groups, all six complete four-output
@@ -24,8 +53,8 @@ Clean source pins 65040a/7af6/efc6 passed independent density/convolution/target
 privacy review and one complete private/PUBLIC/two-House worker case. The new
 portable regression and 43 controller groups pass; all original missing-guide
 withholding assertions remain. Explicit serialized-guide output bans protect
-all public paths. Full six-frame timing, browser tasks and protected release
-are still required. PR532 on abc62535 remains the verified published baseline.
+all public paths. The local six-frame and browser gates passed as listed above; protected
+release was still required at this checkpoint. PR532 on abc62535 remains the verified published baseline.
 No source GET, eligibility, cadence, budget, call or celebration change; archive
 activation remains OFF. One previous unpublished proof checkpoint is carried
 with this source change; no docs-only CI push.
