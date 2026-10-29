@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-29T16:05:36.398831Z",
+  "updated_at": "2026-10-29T17:04:20.528051Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -262,6 +262,24 @@
     }
   ],
   "items": [
+    {
+      "id": "91c2df379b9632b971dd",
+      "title": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPME1XbHJUbEsycFJadUpiQVNOTklXU0U3WDVRN3p3YnYxYkphUlhOYTYxVkRZTGVKTWdaYUpMYk55NUM3M040eE5KVjJhaC1CYmxDak1mS0ljQ08xMDRmbjBNYklORGFld3NJUi05TG1RcVhSMVNDcmExWVJWVDNwYlVGS1R4aE5sUS1XR1hNUHZfTzNOcFpwQw?oc=5",
+      "publisher": "Spectrum News",
+      "published_at": "2026-10-29T16:51:00Z",
+      "detected_at": "2026-10-29T17:04:20.528051Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "09f9c3389dda4fde85c6",
       "title": "Lawsuit challenges Oklahoma limits on voter registration data - The Journal Record",
@@ -5017,23 +5035,6 @@
       "state_hints": [],
       "topic_hints": [
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a45a90be3f57fb2e3412",
-      "title": "Early voting starts Monday: What to bring, where to go and how to get help - Click2Houston",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPV2FMRWpuZnAwU3E2cmJZTFpXY0FNUVdlSC1hTnpYVjJIZlFOZnM0cnhmOTZGb3VuM1FidThQbkdXczRHVVh1Tlh0SmNJNVRPRlItWE5hTkFGLW16Nm9VcmdIemVWYS10M1VQeUN0RHlPbHVjMWdUT0NtaVlSY2RzVEJqSVJybG9wckJUS0lPcmNZc0dXdmJVOEU1czMwazBFemJwRTlBcFJZcGtPVkQzbTBleTdCd25xa25zUTlHZnAwU2c?oc=5",
-      "publisher": "Click2Houston",
-      "published_at": "2026-10-16T20:58:29Z",
-      "detected_at": "2026-10-16T21:43:42.593624Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
