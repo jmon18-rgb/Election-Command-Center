@@ -1,6 +1,22 @@
 # JackStradamus · development plan
 
-## October30 — owner-directed readiness closeout IN PROGRESS
+## October30 — PR539 COMPLETE / VERIFIED PUBLISHED
+
+PR539 delivers the MacBook handoff for all ten exact assigned recording names and a strict offline historical-evaluation package preflight. Crawdad remains an unassigned alternate. The preflight checks package hashes, ordered source/availability/capture clocks, frozen expectations and whole-election splits, but never admits a dataset or reports empirical metrics. The reviewed Michigan optional-poster fixture correction preserves all99 original assertions/cases/poses/timers; its first failed head and exact-cause uncertainty remain recorded.
+
+Tested a6591c45b69ed44340fc259ccadf5a23ed57d196 passed all35 applicable PR parents,56 effective jobs (53SUCCESS/3declared deployed-only skips),68 exact check records and0external statuses. After official GitHub recovery, exactly ten previously cancelled jobs received one scoped retry each. Their original cancellations remain historical. Two additional successful browser records carry the original execution times, steps and runners under new IDs; they are tightly verified carried-success aliases, not established physical reruns. The original ten-only blocked audit and the premature restart-description correction are preserved. No source/deadline/sample/assertion change, status waiver or successful-job retry request was used for recovery.
+
+Protected merge f5b4f8f5ccba700775587355f8b10f382aa63edc is complete. Initial actual-published main fcbc2842/Pages41118424343 passed33 changed public-file hashes and the HTTPS Edge1366/390 ten-recording pack journeys with20 source pins each, real IndexedDB persistence/cancellation and complete accepted-model isolation at3000draws. Generated PCM and simulated announcement completion are mechanics tests, not owner listening or physical MacBook/phone acceptance.
+
+An automatic thirteen-file data-only refresh then produced final verified main a7554177ad49766ec479c32d3a98ea76738cf87b/Pages41119152888, all3jobsSUCCESS/attempt1. Its33 effective public paths are13 fresh HTTP checks plus20 unchanged inherited proofs, with0failures/retries. All115 frozen app/art/test Git bodies and92 runtime references remain exact; fresh origin/main coherence passes13 checks/no_credit. The original fcbc browser/ordinary identities remain honest and are inherited only through the reviewed data-only identity manifest; no unchanged browser replay or forecast-equality claim. Current main was remotely rechecked unchanged after publication tasks at20:13:34.660Z.
+
+Ordinary27 had one read-only reload,14 current relevant identities/92total and equal private checkboxes/status/body/archive/mode attributes;2024 remains selected. All seven allowed previews were marked after release conditions passed. Frozen15/billing29 remain untouched. Original guide1.0/PDF/HTML/eleven human scopes/hashes/NOT_RUN-null remain unchanged; exactly one25→26 component was appended. Ledger SHA50bebc65cfb4547b8996f5aaca1ab1190cc238a69028b0bb5a1ef6cf1ed2e994; task hash8c02bfac0b27273028ec2cc46423dc31de4a0a856cbcd49d64b5e723df9644f3. Outcome pr539-published-outcome-20261030.json SHAb981ac22f15c807fcb9ca9c39d3302b5a4a442361fc1e19abaaf62609f60ca33; final published audit b6860c344e75.
+
+Coverage remains18 county routes and7/11 owner Senate county paths. MI/MN/MS/AK and KY06/IN05/FL-SEN current matched packages remain missing. Local Washtenaw2020/Hamilton2024 subsets are not runtime or calibration admissions. Independent whole-election holdouts remain zero/metricsNULL; actual positive2026 delivery and human MacBook/browser/listening/assistive/comprehension results remain open. Archive capture staysOFF/no-paid. One clean unpublished proof checkpoint carries with the next genuine source change; never push docs alone for CI. Older in-progress records below are superseded history.
+
+- [x] **PR539 ten-recording handoff and structural package intake:** verified published; source coverage, independent empirical admission and actual human rehearsal remain open.
+
+## October30 — PR539 first-head preparation history (superseded)
 
 ### PR539 first CI failure retained; reviewed correction awaits final CI
 
