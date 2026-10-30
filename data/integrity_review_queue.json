@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30T00:12:06.561417Z",
+  "updated_at": "2026-10-30T01:14:10.175238Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 71
+    "advisory_related_headline_buckets": 26,
+    "advisory_related_headlines": 69
   },
   "advisory_related_headlines": [
     {
@@ -96,19 +96,6 @@
       "topic_hints": [
         "ballot_access",
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "d3e6c747bbe2c9d5a59b",
-      "headline": "Judge puts Trump DOJ on the clock over last-minute California voter ambush - Raw Story",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -258,9 +245,42 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "8bbb654bbd9b1dfd5c44",
+      "headline": "The Phantom Voter Intimidation Threat - National Review",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "54ad5ea762c6d948ae99",
+      "title": "Mississippi absentee voting surges ahead of 2026 General Election - AOL.com",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQaFdkTzFHSFI3QzB0YldGUE1leWhLZHNRVDg5aTVUdU1PMGxHbTk5MTdmRjRnUHNQWGcxekE0MmRaRlNtRTVRV1ZRRnBDS01SRVRLcGtBRW54dC1FZ0twWXFGd0I1RkYwMnNnSUFIUkNObTlDN1FCbkxRZm95LUFqbXRvT1JuYndDQ20xaA?oc=5",
+      "publisher": "AOL.com",
+      "published_at": "2026-10-29T23:44:58Z",
+      "detected_at": "2026-10-30T01:14:10.175238Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "e788c459cf4fd32da44a",
       "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - The Morning Call",
@@ -4999,25 +5019,6 @@
       "publisher": "Raw Story",
       "published_at": "2026-10-17T23:06:00Z",
       "detected_at": "2026-10-18T00:56:24.000448Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "240c8bd02f484ed1b457",
-      "title": "Judge puts Trump DOJ on the clock over last-minute California voter ambush - Raw Story",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQMnFIaUNDZm9MNktBRHJkU2ZwX1FNRjhGa2RJb3dUVzdKN1NQaWZ4bDBGN0oyaTRjQ0pLV1JkN01vWXdmSjlXWExscE85allfRFNTZ0lqLS14ZmRMTHhEV0ExUzVBTEVCaTlJNm9TM004NS00N3d4WVJBRUE0ajJLYnhWVEd3MzMwZmR5ZE8yRmF0bEo0U19zN2tFWC04cUE2MGfSAbQBQVVfeXFMTy1ldDBVMXdaV3pCWDlPQS1FSGdkRXVGdVdlWVpMRTNZLXNQbkJCeXA4TFdGMlE1M1c5Z2F2VnJXQWtybGtqTVBhek1TSXBvX2NvQmFRWGtMeHYxQ2hHemF0UU5qdVJrZXMwV3RibnFpUHZvUmp5LTMzR1loSG1BWTdMTU56WkZDMm1VMzhsV2FqTlFsVHhudlpMblR5WEJnTXpUTXZVcGZGbFMtb19haFdjX1o5?oc=5",
-      "publisher": "Raw Story",
-      "published_at": "2026-10-17T23:06:00Z",
-      "detected_at": "2026-10-18T10:42:22.519628Z",
       "state_hints": [
         "CA"
       ],

@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-30T00:12:07.200879+00:00",
+  "updated_at": "2026-10-30T01:14:10.834055+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 861,
+      "available_in_source": 862,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1283,
+      "available_in_source": 1285,
       "records_examined": 300
     },
     "governor": {
@@ -17,10 +17,87 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 331,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "matched_primary_observations": 330,
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "MT-01",
+      "poll_id": "81be1cc2-3c9d-4786-9ee7-9d01bceb06e7"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MT-SEN",
+      "race_type": "senate",
+      "state": "MT",
+      "poll_id": "81be1cc2-3c9d-4786-9ee7-9d01bceb06e7",
+      "question_id": "6bca737c-ba02-424d-bb2e-833c3dabb048",
+      "pollster": "Montana State University Billings",
+      "dem_name": "Alani Bankhead",
+      "rep_name": "Kurt Alme",
+      "dem": 21.0,
+      "rep": 30.0,
+      "margin": -9.0,
+      "field_end": "2026-10-21",
+      "field_start": "2026-10-05",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T20:20:00",
+      "posted_source_time": "10/29/26 20:20",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://dailymontanan.com/2026/10/29/mountain-state-poll-shows-close-races-for-federal-offices/",
+      "sample_population": "a",
+      "sample_size": 720,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MT-02",
+      "race_type": "house",
+      "state": "MT",
+      "poll_id": "81be1cc2-3c9d-4786-9ee7-9d01bceb06e7",
+      "question_id": "b58771db-ecb1-4541-9630-7d90f0df9fad",
+      "pollster": "Montana State University Billings",
+      "dem_name": "Brian Miller",
+      "rep_name": "Troy Downing",
+      "dem": 18.0,
+      "rep": 29.0,
+      "margin": -11.0,
+      "field_end": "2026-10-21",
+      "field_start": "2026-10-05",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T20:20:00",
+      "posted_source_time": "10/29/26 20:20",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://dailymontanan.com/2026/10/29/mountain-state-poll-shows-close-races-for-federal-offices/",
+      "sample_population": "a",
+      "sample_size": 350,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MT-01",
+      "race_type": "house",
+      "state": "MT",
+      "poll_id": "81be1cc2-3c9d-4786-9ee7-9d01bceb06e7",
+      "question_id": "8a35f1b1-0eb3-4702-a753-60a3e6ec50fa",
+      "pollster": "Montana State University Billings",
+      "dem_name": "Sam Forstag",
+      "rep_name": "Aaron Flint",
+      "dem": 49.0,
+      "rep": 32.0,
+      "margin": 17.0,
+      "field_end": "2026-10-21",
+      "field_start": "2026-10-05",
+      "posted_date": "2026-10-29",
+      "posted_source_datetime": "2026-10-29T20:20:00",
+      "posted_source_time": "10/29/26 20:20",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://dailymontanan.com/2026/10/29/mountain-state-poll-shows-close-races-for-federal-offices/",
+      "sample_population": "a",
+      "sample_size": 287,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "AZ-01",
       "race_type": "house",
@@ -30,9 +107,9 @@
       "pollster": "Keating Research, Inc.",
       "dem_name": "Amish Shah",
       "rep_name": "Jay Feely",
-      "dem": 49.0,
+      "dem": 49.4,
       "rep": 45.0,
-      "margin": 4.0,
+      "margin": 4.4,
       "field_end": "2026-10-28",
       "field_start": "2026-10-26",
       "posted_date": "2026-10-29",
