@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-30T14:10:23.509982Z",
+  "updated_at": "2026-10-30T15:05:53.782591Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -261,6 +261,24 @@
     }
   ],
   "items": [
+    {
+      "id": "771377c5737f93a379eb",
+      "title": "Dead Registrants Still Haunt Voter Rolls in These Battleground States Days Ahead of Midterms - The Daily Signal",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPamFWUVZYTlNxRGV3amJ0TTZkbVE3TzNjUHRmRHZaZzE2ckJqTjdzaHFJeWVnVWp2amEtTlNuRmx2c3VibzNUWmRNcmFsZmw0bEJPb2hVOG4xYlRlUFBPSTVTOW56RUFuLXNhb05zYTRZMHpXWlh4WmFtM3dlNUFZRHFQOE1UWHJSSWZIbFNIeTVuRVV6X2JZbTVydUNKaHJfRVhXdEZaR3czM3pnMHJZdEpQV3RJdVhTamJEZU1ZN3FyODF6QjZ3Z1VmM0c?oc=5",
+      "publisher": "The Daily Signal",
+      "published_at": "2026-10-30T12:00:00Z",
+      "detected_at": "2026-10-30T15:05:53.782591Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "5f03a22536a8a26fa45b",
       "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
@@ -5002,26 +5020,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5a5ee1995a19adc8a673",
-      "title": "Trump director of election security sparked Georgia office raid, affidavit says - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQWFNyVlNGblFCd3ZfSEo5RGl2Z1htZGh0eGhxRkJBeGFGU2JKUG5haW5VYlM5RDBXTEV0Y2R0WVdzQTh3MU5lcFgyXzJ4aXJjcm1xcjE2Vzh0T3NzWVl6ck96eDF2MW1lREd1TFZ5Rl9MT2JVcFdyelFwOUJhbGMwWWg3VGZzSi1OYlRrQXUzaVk1YUJWelJjXzJfVmV1dFExRm1hYzNteDFwZ9IBrwFBVV95cUxNU0ljTjFlZmY5cExkci1ETmZKU2d5bm5lZ2NFVTBNUjM2RmdGVHhlNi1EMDFQYzl2Y2FtbXpGY3JDSlZmejZYWGpfenBlaHdQSFJqNENPNWhCWFVJTk0wUW15V3FwTjlFLWpUR3BacEF6U2theFBDdHUwNDZac0NzN3JyR1pEcG9pWU5WTVh6MmxDVHpzT2JJQ0FLNlR3Q25nWjhYcHdKT05mSk5xaDEw?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-19T08:02:48Z",
-      "detected_at": "2026-10-19T14:51:17.673123Z",
-      "state_hints": [
-        "GA"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
