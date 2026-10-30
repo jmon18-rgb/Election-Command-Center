@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30T13:52:19.421008Z",
+  "updated_at": "2026-10-30T15:59:44.939883Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 4,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 76
+    "advisory_related_headline_buckets": 26,
+    "advisory_related_headlines": 75
   },
   "advisory_related_headlines": [
     {
@@ -38,10 +38,10 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "5f03a22536a8a26fa45b",
-      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
-      "possibly_related_articles": 6,
-      "distinct_publishers": 6,
+      "lead_id": "93ffda5e7658f1a8b047",
+      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - \u6bce\u65e5\u65b0\u805e",
+      "possibly_related_articles": 7,
+      "distinct_publishers": 7,
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -120,19 +120,6 @@
       ],
       "topic_hints": [
         "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "10037a360d2c902fcd7f",
-      "headline": "Michigan advocates work to ease election security anxieties as November 3 approaches - Michigan Advance",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [
-        "MI"
-      ],
-      "topic_hints": [
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
@@ -258,9 +245,113 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "7853e44c87a2b51cded5",
+      "headline": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "ad403963b4e37f54005e",
+      "title": "California officials confirm grand jury subpoenas as states, civil groups brace to protect elections from federal encroachment - CyberScoop",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE0zcEYxc1NBcGpnWml3UDhSZFlTWjAzMDNJdDNLSVVZcm9uMHNSMjRWbWlVcXBuQTJ0akVpZ25ZMzlJTUNZS2YtTExDSlRfRlVLUExNSUphQWYzV09vcVE2R3paWDZWX0h0eDJrT3FuSklzeXhXblJoYw?oc=5",
+      "publisher": "CyberScoop",
+      "published_at": "2026-10-30T15:59:22Z",
+      "detected_at": "2026-10-30T15:59:44.939883Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "41e548bbb7bed5b4eeba",
+      "title": "How to \u2018Vote Without Fear\u2019 in Minnesota? Election officials and advocates offer advice for a safe Election Day. - Sahan Journal",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQX1FERndiZHhKcjFQLTVHdzlrN216STh0QzZHSk1ieGdyOHNfbVVQQ1JJSHNsYUp2THVsdGVNN2dZTXVqbVJGU2FybG94R3NOQUF3MVJMVzUydWFObFpDaW9FZERZM2JsNGFLamIyTTV2SFJ5NGIydW9PZFhOVU9rRGltY2lHbW1oRXk0eFVfVFpOTEJVbGVDMVZUcw?oc=5",
+      "publisher": "Sahan Journal",
+      "published_at": "2026-10-30T15:43:40Z",
+      "detected_at": "2026-10-30T15:59:44.939883Z",
+      "state_hints": [
+        "MN"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "20cd09bc944233d50b09",
+      "title": "Election groups, Democrats dig in on midterm prep - Roll Call",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOb0RFRC1JOTAtbGotbkd3dlpJQlhUdTVIcE1TRkU0QXFkUk9MdTZDNnB5REc5ZTVNeWZUZ2JFbDJsTnliQTQ3SmFycDNrUk5FUDNBSk5rdHZPb05rUEgtVjdncDFZQWpTbHkxOW5KWlB2VC1jTllYRFFrdTVoM2NYT2FkR3M?oc=5",
+      "publisher": "Roll Call",
+      "published_at": "2026-10-30T15:14:20Z",
+      "detected_at": "2026-10-30T15:59:44.939883Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "771377c5737f93a379eb",
+      "title": "Dead Registrants Still Haunt Voter Rolls in These Battleground States Days Ahead of Midterms - The Daily Signal",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPamFWUVZYTlNxRGV3amJ0TTZkbVE3TzNjUHRmRHZaZzE2ckJqTjdzaHFJeWVnVWp2amEtTlNuRmx2c3VibzNUWmRNcmFsZmw0bEJPb2hVOG4xYlRlUFBPSTVTOW56RUFuLXNhb05zYTRZMHpXWlh4WmFtM3dlNUFZRHFQOE1UWHJSSWZIbFNIeTVuRVV6X2JZbTVydUNKaHJfRVhXdEZaR3czM3pnMHJZdEpQV3RJdVhTamJEZU1ZN3FyODF6QjZ3Z1VmM0c?oc=5",
+      "publisher": "The Daily Signal",
+      "published_at": "2026-10-30T12:00:00Z",
+      "detected_at": "2026-10-30T15:05:53.782591Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "93ffda5e7658f1a8b047",
+      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - \u6bce\u65e5\u65b0\u805e",
+      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9WR05EWnQ2ZWNqby1TcHhVUmpHWHR3WkFuMEt5RElRem5LeG1MakNCd3F6Y0Q4c2pSRmJvZGdnV1BjSk1NNENQZkpxXzdWOG5sblB3U2JBOU13YWNlckVacUxOa0xVQjR5alRSY3B5NUFtczA?oc=5",
+      "publisher": "\u6bce\u65e5\u65b0\u805e",
+      "published_at": "2026-10-30T08:30:46Z",
+      "detected_at": "2026-10-30T15:59:44.939883Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "5f03a22536a8a26fa45b",
       "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
@@ -4921,107 +5012,6 @@
       "headline_numbers_unverified": [
         "2026"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "454f9be5d2a8db1bd78a",
-      "title": "Foreign Interference and the Democratic Self-Defense Trap: A European Perspective Going into the 2026 Midterms - Just Security",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQeFpldDRIUEs1akNNQVZZMnpaOENqTUEtaDEyd2tnMlJpcUJXVWpGLUlySTFLWGlUMDNtUE1tckl1cHV5TTRhV0F0VFpJc1lmT1NaNlk4c09FdVBnempRd3prRzNORkVXWXp3dzdXSC0wQmNVbGI5RkFkUWZHTWpyY2hGQWc2RUh0bEJ6SE1yYUw?oc=5",
-      "publisher": "Just Security",
-      "published_at": "2026-10-19T12:50:45Z",
-      "detected_at": "2026-10-19T12:57:49.244625Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "10037a360d2c902fcd7f",
-      "title": "Michigan advocates work to ease election security anxieties as November 3 approaches - Michigan Advance",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOazd2NGJSbHF6b0RXYTNWeVl3MUdDMV9faDRCekFLek5hVWpTQmtZOENoRU1MMkJjckpPS1VTOFd5S3RRcmFZbUhvQzZEX0VKc0FTSDY1UW5FdS1XNW91dHNrczliSnZJbmZwQldhM0hLWUFyYURnY05KRjYzUG13SW95Sll3M09obUF0QXMxbXpFMG5ZRm45WG4tOXN6dlQzb1VGeGFWeUxEcmpYYUlraTlSNzdWa29LYkhrTm1MTVgzZw?oc=5",
-      "publisher": "Michigan Advance",
-      "published_at": "2026-10-19T09:28:47Z",
-      "detected_at": "2026-10-19T09:50:35.837918Z",
-      "state_hints": [
-        "MI"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "3 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8f3626794ff37fbfd674",
-      "title": "Michigan advocates work to ease election security anxieties as Nov. 3 approaches - Michigan Advance",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOazd2NGJSbHF6b0RXYTNWeVl3MUdDMV9faDRCekFLek5hVWpTQmtZOENoRU1MMkJjckpPS1VTOFd5S3RRcmFZbUhvQzZEX0VKc0FTSDY1UW5FdS1XNW91dHNrczliSnZJbmZwQldhM0hLWUFyYURnY05KRjYzUG13SW95Sll3M09obUF0QXMxbXpFMG5ZRm45WG4tOXN6dlQzb1VGeGFWeUxEcmpYYUlraTlSNzdWa29LYkhrTm1MTVgzZw?oc=5",
-      "publisher": "Michigan Advance",
-      "published_at": "2026-10-19T09:28:47Z",
-      "detected_at": "2026-10-19T14:51:17.673123Z",
-      "state_hints": [
-        "MI"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "3 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4ad98c88ecb8fa8af392",
-      "title": "What you need to know about the 2026 US midterm elections - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQb25zakJSUXdaWnMxY0VpS2s4X2tGOGdVNGZwdHYzUGpzUVVhZzNsNjc5SUZ2aFRLUFhPbGNLYWE5dEtDN3piWl9MS1RibnFGcFlnNm00OWlZeWxZeVh2WnFyWDhfdE9yWDJtTGdsWFFYSk1lVWtQNGRMOWFtaHV2WkthSExabUNLeFRHaThYRWYwUTRpd1l5YVhhbw?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-10-19T09:03:55Z",
-      "detected_at": "2026-10-19T10:46:39.270395Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5a5ee1995a19adc8a673",
-      "title": "Trump director of election security sparked Georgia office raid, affidavit says - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQWFNyVlNGblFCd3ZfSEo5RGl2Z1htZGh0eGhxRkJBeGFGU2JKUG5haW5VYlM5RDBXTEV0Y2R0WVdzQTh3MU5lcFgyXzJ4aXJjcm1xcjE2Vzh0T3NzWVl6ck96eDF2MW1lREd1TFZ5Rl9MT2JVcFdyelFwOUJhbGMwWWg3VGZzSi1OYlRrQXUzaVk1YUJWelJjXzJfVmV1dFExRm1hYzNteDFwZ9IBrwFBVV95cUxNU0ljTjFlZmY5cExkci1ETmZKU2d5bm5lZ2NFVTBNUjM2RmdGVHhlNi1EMDFQYzl2Y2FtbXpGY3JDSlZmejZYWGpfenBlaHdQSFJqNENPNWhCWFVJTk0wUW15V3FwTjlFLWpUR3BacEF6U2theFBDdHUwNDZac0NzN3JyR1pEcG9pWU5WTVh6MmxDVHpzT2JJQ0FLNlR3Q25nWjhYcHdKT05mSk5xaDEw?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-19T08:02:48Z",
-      "detected_at": "2026-10-19T14:51:17.673123Z",
-      "state_hints": [
-        "GA"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
