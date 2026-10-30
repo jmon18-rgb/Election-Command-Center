@@ -1,26 +1,74 @@
 {
-  "updated_at": "2026-10-30T13:52:20.166567+00:00",
+  "updated_at": "2026-10-30T14:10:24.126862+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 865,
+      "available_in_source": 866,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1286,
+      "available_in_source": 1287,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 971,
+      "available_in_source": 972,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 342,
+  "matched_primary_observations": 344,
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
+    {
+      "race_code": "KS-SEN",
+      "race_type": "senate",
+      "state": "KS",
+      "poll_id": "03a5f4fe-8984-49ba-b8ce-2044bab54108",
+      "question_id": "83bd4e5f-7776-44ec-8285-e157b843da0a",
+      "pollster": "Emerson College",
+      "dem_name": "Adam Hamilton",
+      "rep_name": "Roger Marshall",
+      "dem": 49.5,
+      "rep": 47.1,
+      "margin": 2.4,
+      "field_end": "2026-10-28",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T09:50:00",
+      "posted_source_time": "10/30/26 09:50",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://emersoncollegepolling.com/october-2026-kansas-poll-hamilton-maintains-edge-over-marshall/",
+      "sample_population": "lv",
+      "sample_size": 800,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "KS-GOV",
+      "race_type": "governor",
+      "state": "KS",
+      "poll_id": "03a5f4fe-8984-49ba-b8ce-2044bab54108",
+      "question_id": "1f50cef6-e2d7-4471-a7c7-11b14e1f0eb0",
+      "pollster": "Emerson College",
+      "dem_name": "Cindy Holscher",
+      "rep_name": "Ty Masterson",
+      "dem": 47.5,
+      "rep": 52.5,
+      "margin": -5.0,
+      "field_end": "2026-10-28",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T09:50:00",
+      "posted_source_time": "10/30/26 09:50",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://emersoncollegepolling.com/october-2026-kansas-poll-hamilton-maintains-edge-over-marshall/",
+      "sample_population": "lv",
+      "sample_size": 800,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-SEN",
       "race_type": "senate",
