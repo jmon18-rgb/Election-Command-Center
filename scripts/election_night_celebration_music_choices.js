@@ -14,10 +14,10 @@
   "abbott": {
     "id": "abbott",
     "title": "Walk This Way",
-    "artist": "Aerosmith",
+    "artist": "Owner-supplied recording",
     "kind": "OWNER_REQUEST",
     "fallback": "The campaign-sign exit march",
-    "hint": "Suggested track for your local audio file; the original score plays until you choose a file."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "graham": {
     "id": "graham",
@@ -78,10 +78,10 @@
   "blexas": {
     "id": "blexas",
     "title": "We Are the Champions",
-    "artist": "Queen",
-    "kind": "CREATIVE_SUGGESTION",
+    "artist": "Owner-supplied recording",
+    "kind": "OWNER_REQUEST",
     "fallback": "Two-star victory fanfare",
-    "hint": "Suggested track for your local audio file; the original score plays until you choose a file."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "tsunami": {
     "id": "tsunami",
@@ -109,11 +109,11 @@
   },
   "louisiana_senate": {
     "id": "louisiana_senate",
-    "title": "THE CRAWFISH HAVE TAKEN THE SENATE",
-    "artist": "Project original",
-    "kind": "ORIGINAL_CUE",
+    "title": "Neck in LSU’s Death Valley",
+    "artist": "Owner-supplied recording",
+    "kind": "OWNER_REQUEST",
     "fallback": "THE CRAWFISH HAVE TAKEN THE SENATE",
-    "hint": "An original claw-click, parade-bass and comic Mardi Gras brass cue. Your own saved audio can replace it."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   }
 }).map(([id,row])=>[id,Object.freeze(row)])));
  function forEvent(id){return Object.prototype.hasOwnProperty.call(CHOICES,id)?CHOICES[id]:null;}

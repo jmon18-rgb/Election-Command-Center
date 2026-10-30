@@ -1,5 +1,38 @@
 # National needle acceptance decision — October 27, 2026
 
+## October30 — historical package preflight under review
+
+The offline `scripts/preflight_historical_evaluation_package.cjs` command checks
+one explicitly supplied local package before any empirical evaluation. Retained
+originals and normalized records must match their hashes; source publication,
+first availability and capture clocks must be ordered. Independently reviewed
+pre-election cutoffs and earliest usable-return evidence bind both frozen model
+and polling-only expectations to the same election and race. Complete declared
+candidate/geography rosters, correction chains, reuse review and disjoint
+whole-election development/holdout identities remain required.
+
+Run `node scripts/preflight_historical_evaluation_package.cjs path/to/manifest.json`.
+Missing or contradictory fields block the check. A structural pass still says
+`STRUCTURAL_PREFLIGHT_PASS_REQUIRES_INDEPENDENT_ADMISSION`: it authenticates
+neither the publisher HTTP response nor declared legal/independence reviews.
+Original-to-normalized cells and the retained review documents still require
+independent admission. The reader is confined to that package directory and
+performs no network request, discovery, forecast call or original-body upload.
+
+This adds a missing intake safeguard, not an empirical result. Admitted datasets
+and held-out elections remain **zero**; all accuracy metrics remain **null**.
+The existing chronological evaluation and separate national-transfer gates are
+unchanged. Newly prepared Washtenaw2020 and Hamilton2024 historical subsets stay
+local and do not supply a 2026 source, complete geography, chronology or frozen
+expectations. Human MacBook/phone/listening acceptance remains open.
+
+## October30 — PR538 verified published
+
+This is a presentation and stricter raw-source-marker release. The one correlated pipeline, all numerical helper/engine/kernel bodies,3,000draws/hardESS/30s, state budgets, chamber thresholds and no_credit34D holdovers are unchanged. Test-data rejection tightens the existing producer; it creates no new winner or national probability authority. Calibration and positive-delivery acceptance remain open.
+
+Tested dc1b8bdb; all35 workflow parents/56jobs53SUCCESS3declaredSKIP/0external passed. Final main02e803a9 / Pages41066872682 and40changed bytes/coherence13/no_credit/110source bodies are verified; current main unchanged14:08Z. Outcome d9bfcb19, published audit b5f31da9. Guide1.0/eleven human scopes/hashes/NOT_RUN-null unchanged; ONE25th component appended, ledger d1bc6a12. No unchanged guide rebuild, repeated import or old demo.
+
+
 ## October30 — PR537 COMPLETE / VERIFIED PUBLISHED
 
 Seven owner recording assignments are saved privately and reload-verified in the app browser: Buckeye Battle Cry→Ohio, Last Dance→Graham, John Brown’s Body→Kansas, It’s Corn→Iowa, Eyes of Texas→Talarico, Union Dixie Trap→Mississippi and Ding-Dong→Maine. Michigan has its own original cue and three-beat “FEAR CAMPAIGN: SIGNAL LOST” satire. Only the existing admitted fresh post-close Michigan Democratic Senate call earns it. The original ten transport priorities, source/call rules, numerical model, all eleven prior stories/scenes/scores and other guards are unchanged.

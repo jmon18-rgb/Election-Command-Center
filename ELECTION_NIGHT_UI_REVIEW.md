@@ -1,5 +1,12 @@
 # Election-night usability and visual review
 
+## October30 — PR538 verified published
+
+The actual published new-story journeys pass1366/390 with23source pins each, stable complete frames, keyboard/mute/Skip/reduced-motion/queue/retraction guards, exact whole accepted-model preview isolation and no overflow. One missing-scene390 context checks both whole-contained posters with22pins. Original503/fresh200recovery evidence is preserved. Ordinary27 is read-only14refs/92total and private settings/archive equality, not geometry or human listening.
+
+Tested dc1b8bdb; all35 workflow parents/56jobs53SUCCESS3declaredSKIP/0external passed. Final main02e803a9 / Pages41066872682 and40changed bytes/coherence13/no_credit/110source bodies are verified; current main unchanged14:08Z. Outcome d9bfcb19, published audit b5f31da9. Guide1.0/eleven human scopes/hashes/NOT_RUN-null unchanged; ONE25th component appended, ledger d1bc6a12. No unchanged guide rebuild, repeated import or old demo.
+
+
 ## October30 — PR537 COMPLETE / VERIFIED PUBLISHED
 
 Seven owner recording assignments are saved privately and reload-verified in the app browser: Buckeye Battle Cry→Ohio, Last Dance→Graham, John Brown’s Body→Kansas, It’s Corn→Iowa, Eyes of Texas→Talarico, Union Dixie Trap→Mississippi and Ding-Dong→Maine. Michigan has its own original cue and three-beat “FEAR CAMPAIGN: SIGNAL LOST” satire. Only the existing admitted fresh post-close Michigan Democratic Senate call earns it. The original ten transport priorities, source/call rules, numerical model, all eleven prior stories/scenes/scores and other guards are unchanged.

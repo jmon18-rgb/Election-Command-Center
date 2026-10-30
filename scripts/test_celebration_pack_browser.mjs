@@ -24,7 +24,10 @@ const rows=[
  ['blue_corn',"It's Corn - Songify This ft. Tariq and Recess Therapy.mp3",'5-It-s-Corn-Songify-This-ft.-Tariq-and-Recess-Therapy.mp3'],
  ['talarico','The Eyes of Texas.mp3','6-The-Eyes-of-Texas.mp3'],
  ['mississippi','Union Dixie Trap Remix.mp3','3-Union-Dixie-Trap-Remix.mp3'],
- ['maine','Ding Dong the Witch is Dead.mp3','8-Ding-Dong-the-Witch-is-Dead.mp3']
+ ['maine','Ding Dong the Witch is Dead.mp3','8-Ding-Dong-the-Witch-is-Dead.mp3'],
+ ['louisiana_senate',"Neck in LSU's Death Valley.mp3",'1-Neck-in-LSU-s-Death-Valley.mp3'],
+ ['blexas','Queen - We Are The Champions (Official Video Remastered).mp3','1-Queen-We-Are-The-Champions-Official-Video-Remastered-.mp3'],
+ ['abbott','RUN DMC - Walk This Way (Official HD Video) ft. Aerosmith.mp3','2-RUN-DMC-Walk-This-Way-Official-HD-Video-ft.-Aerosmith.mp3']
 ];
 function pcm(name,mimeType='audio/mpeg'){const samples=8000*4,buffer=Buffer.alloc(44+samples*2);buffer.write('RIFF',0);buffer.writeUInt32LE(buffer.length-8,4);buffer.write('WAVEfmt ',8);buffer.writeUInt32LE(16,16);buffer.writeUInt16LE(1,20);buffer.writeUInt16LE(1,22);buffer.writeUInt32LE(8000,24);buffer.writeUInt32LE(16000,28);buffer.writeUInt16LE(2,32);buffer.writeUInt16LE(16,34);buffer.write('data',36);buffer.writeUInt32LE(samples*2,40);for(let i=0;i<samples;i++)buffer.writeInt16LE(Math.round(Math.sin(i*2*Math.PI*220/8000)*256),44+i*2);return {name,mimeType,buffer};}
 const terminal=()=>{const s=document.querySelector('#privateContextStatus')?.textContent||'';return jointPrivateSource==='repository'&&s.startsWith('Repository fundamentals ACTIVE')||s.startsWith('Repository fundamentals unavailable:')||s.startsWith('Private context not applied:');};
@@ -60,8 +63,8 @@ try{
   const s=await open(width),{page}=s,proof={width,races:[]},workers=s.counter.workers;await preview(page);
   assert.equal(await page.locator('#enCelebrationLocalFile').getAttribute('multiple'),null,'Original one-file picker stays single');assert.equal(await page.locator('#enCelebrationPackFiles').getAttribute('multiple'),'');
   for(const [column,duplicate]of [[1,'Ohio State University, Buckeye Battle Cry 2.mp3'],[2,'7-Ohio-State-University-Buckeye-Battle-Cry-2.mp3']]){
-   const before=await page.evaluate(()=>__packProbe.calls().length);await choose(page,[...rows.map(row=>pcm(row[column])),pcm(duplicate),pcm('unknown-fictional.mp3')]);await saved(page,7);
-   assert.match(await page.locator('#enCelebrationPackStatus').innerText(),/1 unrecognized file was skipped.*1 duplicate assignment was skipped/);assert.equal(await page.evaluate(()=>__packProbe.calls().length),before+7);assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original');await metadata(page,column-1);proof[column===1?'original_names':'attachment_names']={committed:7,duplicate_first:true,unknown_skipped:true};
+   const before=await page.evaluate(()=>__packProbe.calls().length);await choose(page,[...rows.map(row=>pcm(row[column])),pcm(duplicate),pcm('unknown-fictional.mp3')]);await saved(page,rows.length);
+   assert.match(await page.locator('#enCelebrationPackStatus').innerText(),/1 unrecognized file was skipped.*1 duplicate assignment was skipped/);assert.equal(await page.evaluate(()=>__packProbe.calls().length),before+rows.length);assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original');await metadata(page,column-1);proof[column===1?'original_names':'attachment_names']={committed:rows.length,duplicate_first:true,unknown_skipped:true};
   }
   await page.locator('#enCelebrationPreviewChoice').selectOption('talarico');await page.locator('#enCelebrationPackChoose').focus();await page.keyboard.press('Tab');assert.equal(await page.locator('#enMilestoneSpotlight').evaluate(e=>e.contains(document.activeElement)),true);const reading=await page.locator('#enMilestoneSpotlight').evaluate(e=>({top:e.scrollTop,focus:document.activeElement.id}));await page.clock.runFor(32);assert.deepEqual(await page.locator('#enMilestoneSpotlight').evaluate(e=>({top:e.scrollTop,focus:document.activeElement.id})),reading);
   assert.equal(await page.evaluate(()=>JSON.stringify([jointLastResult,jointPublicResult,jointPulseBaseline])===__packLiveBefore),true);assert.equal(s.counter.workers,workers);assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);await page.screenshot({path:resolve(out,'pack-saved-'+width+'.png')});await pins(s);

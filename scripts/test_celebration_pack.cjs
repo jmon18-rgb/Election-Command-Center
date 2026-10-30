@@ -8,12 +8,15 @@ const names=[
  ['5-It-s-Corn-Songify-This-ft.-Tariq-and-Recess-Therapy.mp3','blue_corn'],
  ['6-The-Eyes-of-Texas.mp3','talarico'],
  ['3-Union-Dixie-Trap-Remix.mp3','mississippi'],
- ['8-Ding-Dong-the-Witch-is-Dead.mp3','maine']
+ ['8-Ding-Dong-the-Witch-is-Dead.mp3','maine'],
+ ['1-Neck-in-LSU-s-Death-Valley.mp3','louisiana_senate'],
+ ['1-Queen-We-Are-The-Champions-Official-Video-Remastered-.mp3','blexas'],
+ ['2-RUN-DMC-Walk-This-Way-Official-HD-Video-ft.-Aerosmith.mp3','abbott']
 ];
 let groups=0;function test(label,run){run();groups++;}
 function file(name){return {name};}
 function invalid(input,reason){const r=pack.plan(input);assert.equal(r.status,'INVALID_PACK');assert.equal(r.reason,reason);assert.deepEqual(r.entries,[]);return r;}
-test('Seven exact owner filenames map in selected order and preserve file references',()=>{
+test('Ten exact owner filenames map in selected order and preserve file references',()=>{
  const files=names.map(([name])=>file(name)),r=pack.plan(files);
  assert.equal(r.status,'READY');assert.deepEqual(r.entries.map(e=>e.id),names.map(([,id])=>id));
  assert.equal(r.skipped,0);assert.equal(r.duplicates,0);
@@ -47,9 +50,10 @@ test('Result containers are frozen but selected File/Blob and input list are unt
 test('Planner reads only filename once, never bytes/size/type/storage/URL or playback',()=>{let nameReads=0;const f={get name(){nameReads++;return names[0][0];}};for(const key of ['size','type','arrayBuffer','stream','text','slice','play'])Object.defineProperty(f,key,{get(){throw Error('not allowed '+key);}});assert.equal(pack.plan([f]).entries[0].file,f);assert.equal(nameReads,1);});
 test('CJS and browser UMD expose only the frozen planner',()=>{assert.deepEqual(Object.keys(pack),['plan']);assert(Object.isFrozen(pack));const sandbox={window:{}};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'election_night_celebration_pack.js'),'utf8'),sandbox);assert.deepEqual(Object.keys(sandbox.window.ElectionNightCelebrationPack),['plan']);assert(Object.isFrozen(sandbox.window.ElectionNightCelebrationPack));assert.equal(sandbox.window.ElectionNightCelebrationPack.plan([file(names[0][0])]).entries[0].id,'ohio');});
 test('Exact original owner labels map without slug or keyword guessing',()=>{
- const originals=[['Ohio State University, Buckeye Battle Cry.mp3','ohio'],['Ohio State University, Buckeye Battle Cry 2.mp3','ohio'],['Donna Summer - Last Dance [Original Video] (1978).mp3','graham'],['Union Dixie Trap Remix.mp3','mississippi'],["John Brown's Body - American Abolitionist Song.mp3",'blansas'],["It's Corn - Songify This ft. Tariq and Recess Therapy.mp3",'blue_corn'],['The Eyes of Texas.mp3','talarico'],['Ding Dong the Witch is Dead.mp3','maine']];
+ const originals=[['Ohio State University, Buckeye Battle Cry.mp3','ohio'],['Ohio State University, Buckeye Battle Cry 2.mp3','ohio'],['Donna Summer - Last Dance [Original Video] (1978).mp3','graham'],['Union Dixie Trap Remix.mp3','mississippi'],["John Brown's Body - American Abolitionist Song.mp3",'blansas'],["It's Corn - Songify This ft. Tariq and Recess Therapy.mp3",'blue_corn'],['The Eyes of Texas.mp3','talarico'],['Ding Dong the Witch is Dead.mp3','maine'],["Neck in LSU's Death Valley.mp3",'louisiana_senate'],['Queen - We Are The Champions (Official Video Remastered).mp3','blexas'],['RUN DMC - Walk This Way (Official HD Video) ft. Aerosmith.mp3','abbott']];
  for(const [name,id]of originals){assert.equal(pack.plan([file(name)]).entries[0].id,id);assert.equal(pack.plan([file('4-'+name)]).entries[0].id,id);}
  invalid([file('Donna Summer Last Dance.mp3')],'NO_MATCHED_FILES');
 });
-test('Mixed original and attachment aliases keep first event file truthfully',()=>{const first=file('Ohio State University, Buckeye Battle Cry 2.mp3'),r=pack.plan([first,...names.map(([name])=>file(name)),file('The Eyes of Texas.mp3')]);assert.equal(r.status,'READY');assert.equal(r.entries.length,7);assert.equal(r.entries[0].file,first);assert.equal(r.entries[0].id,'ohio');assert.equal(r.skipped,2);assert.equal(r.duplicates,2);});
-console.log(`Private song-pack planner PASS ${groups} groups: seven exact mappings, bounded explicit FileList, duplicate-first/unknown-skip, malformed-name rejection, unchanged Blob references and no contents/network/storage/playback.`);
+test('Mixed original and attachment aliases keep first event file truthfully',()=>{const first=file('Ohio State University, Buckeye Battle Cry 2.mp3'),r=pack.plan([first,...names.map(([name])=>file(name)),file('The Eyes of Texas.mp3')]);assert.equal(r.status,'READY');assert.equal(r.entries.length,10);assert.equal(r.entries[0].file,first);assert.equal(r.entries[0].id,'ohio');assert.equal(r.skipped,2);assert.equal(r.duplicates,2);});
+test('Unassigned Crawdad alternate never overwrites the chosen Louisiana track or guesses Florida',()=>{const alternate=file('2-The-Crawdad-Song-Foggy-Mountain-Boys.mp3'),r=pack.plan([alternate,...names.map(([name])=>file(name))]);assert.equal(r.status,'READY');assert.equal(r.entries.length,10);assert.equal(r.skipped,1);assert.equal(r.duplicates,0);assert.equal(r.entries.find(e=>e.id==='louisiana_senate').file.name,names[7][0]);assert(!r.entries.some(e=>e.id==='florida_senate'));invalid([alternate],'NO_MATCHED_FILES');});
+console.log(`Private song-pack planner PASS ${groups} groups: ten exact mappings, bounded explicit FileList, duplicate-first/unknown-skip, unassigned alternate exclusion, malformed-name rejection, unchanged Blob references and no contents/network/storage/playback.`);
