@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30T18:58:07.207881Z",
+  "updated_at": "2026-10-30T19:49:37.566684Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 75
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 73
   },
   "advisory_related_headlines": [
     {
@@ -149,17 +149,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "3d4dcbcc0e0c5a43a400",
-      "headline": "Early voting in NC in 2026. Everything you need to know. - News-Topic",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "aa38e4e452516fd5af20",
       "headline": "Will ICE agents play a role in the 2026 US midterm elections? - Al Jazeera",
       "possibly_related_articles": 2,
@@ -257,9 +246,39 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "8bbb654bbd9b1dfd5c44",
+      "headline": "The Phantom Voter Intimidation Threat - National Review",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "077fc89e54dd7e3e9501",
+      "title": "Alaska Senate: Judge fast tracks new bids to dismiss DOJ lawsuit over 2nd Sullivan candidacy - CNBC",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPbWpsMTBpSFJISFJGU3JJRTRJUVlSb3hoLUR1S2o3bDJoZklvWEFEeXRYeGU2RmJYbFF6UWdLNXQzLWVqdTQ0LUwyeTJBZlhiaTdHTTBJOUNROE9fN1FKT0Z5ZmNFRjA4ZHNyRU1JZ2EtT3k3ZEJDeTh6dE1YV1U2MjM1RThFb3RqZm43WG5KVkdUd9IBlwFBVV95cUxQY3Z1VGo3RUR6WFZJOEllamxMeFpybk9wREM0Ry1WazlrdmktWDhweV93TWM0bFdtc0I1VnFyZm5RVmtKWXZMLVo4TFJOUXBtMEpwTjBhMDY4RVY1QzlFYU1jVGpST2xSWjloVXdIcGJtT3VMT2ZmRTdQV1RuNElNSmhnNktEeWYzTXRIbVVLNE9FaDE5MVBN?oc=5",
+      "publisher": "CNBC",
+      "published_at": "2026-10-30T16:33:03Z",
+      "detected_at": "2026-10-30T19:49:37.566684Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ad403963b4e37f54005e",
       "title": "California officials confirm grand jury subpoenas as states, civil groups brace to protect elections from federal encroachment - CyberScoop",
@@ -4992,25 +5011,6 @@
       ],
       "headline_numbers_unverified": [
         "2 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "db1807d0335a3cb2cb73",
-      "title": "Early voting in NC in 2026. Everything you need to know. - Carolina Public Press",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPcTB2b3lvUGVEWkQ4TEhwSThSSlBTRW9TbUZaZ3FxTWtpWkVyX25SRWxpNTV5bEttNU1Mc2txMm9fVXMzakNUUk1fMzgyRFFabW1rZGU0eU9VRGVfc3A4U0ZHWnBYWTZYUUx6ZEdicXZnQmhCR2M4elg3UVF0U3lCWk9YUDVHcWpUZnVzbXpuT01PZVRWeHNfSA?oc=5",
-      "publisher": "Carolina Public Press",
-      "published_at": "2026-10-19T14:40:54Z",
-      "detected_at": "2026-10-19T14:51:17.673123Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],

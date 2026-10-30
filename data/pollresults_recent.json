@@ -1,31 +1,111 @@
 {
-  "updated_at": "2026-10-30T18:58:08.051511+00:00",
+  "updated_at": "2026-10-30T19:49:38.686067+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 868,
+      "available_in_source": 870,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1291,
+      "available_in_source": 1292,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 974,
+      "available_in_source": 975,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 348,
-  "newly_injected_into_model": 1,
+  "matched_primary_observations": 349,
+  "newly_injected_into_model": 3,
   "injected_poll_ids": [
     {
-      "race_code": "AZ-GOV",
-      "poll_id": "a8a24b3f-2400-4622-9bf7-15cca87342d9"
+      "race_code": "FL-GOV",
+      "poll_id": "5823662f-30b2-42b1-a224-9352ede8ad74"
+    },
+    {
+      "race_code": "FL-SEN",
+      "poll_id": "5823662f-30b2-42b1-a224-9352ede8ad74"
+    },
+    {
+      "race_code": "LA-SEN",
+      "poll_id": "8336d95c-e120-482d-ba1c-42b88a343483"
     }
   ],
   "observations": [
+    {
+      "race_code": "LA-SEN",
+      "race_type": "senate",
+      "state": "LA",
+      "poll_id": "8336d95c-e120-482d-ba1c-42b88a343483",
+      "question_id": "991ffdf0-cfe0-44eb-8299-13c908b761a7",
+      "pollster": "Hart Research Associates",
+      "dem_name": "Jamie Davis",
+      "rep_name": "Julia Letlow",
+      "dem": 45.0,
+      "rep": 45.0,
+      "margin": 0.0,
+      "field_end": "2026-10-29",
+      "field_start": "2026-10-28",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T15:24:00",
+      "posted_source_time": "10/30/26 15:24",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.perdidostreet.news/p/new-poll-shows-toss-up-in-louisiana-senate-contest-as-turnout-in-early-vote-buoys-democrats-hopes-of",
+      "sample_population": "lv",
+      "sample_size": 502,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "FL-SEN",
+      "race_type": "senate",
+      "state": "FL",
+      "poll_id": "5823662f-30b2-42b1-a224-9352ede8ad74",
+      "question_id": "fc429313-70a2-43da-8882-9f31debb6272",
+      "pollster": "InsiderAdvantage",
+      "dem_name": "Angie Nixon",
+      "rep_name": "Ashley Moody",
+      "dem": 43.0,
+      "rep": 49.0,
+      "margin": -6.0,
+      "field_end": "2026-10-29",
+      "field_start": "2026-10-28",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T15:01:00",
+      "posted_source_time": "10/30/26 15:01",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://insideradvantage.com/insideradvantage-florida-survey-donalds-49-jolly-45-moody-49-nixon-43/",
+      "sample_population": "lv",
+      "sample_size": 1200,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "FL-GOV",
+      "race_type": "governor",
+      "state": "FL",
+      "poll_id": "5823662f-30b2-42b1-a224-9352ede8ad74",
+      "question_id": "f7d58f95-f5de-4430-8853-837533e8b4c2",
+      "pollster": "InsiderAdvantage",
+      "dem_name": "David Jolly",
+      "rep_name": "Byron Donalds",
+      "dem": 45.0,
+      "rep": 49.0,
+      "margin": -4.0,
+      "field_end": "2026-10-29",
+      "field_start": "2026-10-28",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T15:01:00",
+      "posted_source_time": "10/30/26 15:01",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://insideradvantage.com/insideradvantage-florida-survey-donalds-49-jolly-45-moody-49-nixon-43/",
+      "sample_population": "lv",
+      "sample_size": 1200,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "AZ-GOV",
       "race_type": "governor",
