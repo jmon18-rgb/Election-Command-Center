@@ -113,6 +113,7 @@ const checks = [
   ['Fast lane request budget', 'test_election_night_fast_lane.cjs'],
   ['Rehearsal isolation', 'test_election_night_rehearsal.cjs'],
   ['Historical clock archive admissibility', 'test_historical_election_clock_replay.cjs'],
+  ['Historical package retained bytes, ordered clocks, frozen priors and whole-election splits (structural preflight only)', 'test_historical_evaluation_package_preflight.cjs'],
   ['Raw returns cannot calibrate national odds', 'test_joint_needle_raw_returns_gate.cjs'],
   ['Senate holdover accounting', 'test_senate_holdover_audit.cjs'],
   ['506 race gap desk', 'test_election_night_506_live_gap_desk.cjs']

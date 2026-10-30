@@ -19,7 +19,13 @@
   ['Union-Dixie-Trap-Remix.mp3','mississippi'],
   ['Union Dixie Trap Remix.mp3','mississippi'],
   ['Ding-Dong-the-Witch-is-Dead.mp3','maine'],
-  ['Ding Dong the Witch is Dead.mp3','maine']
+  ['Ding Dong the Witch is Dead.mp3','maine'],
+  ['Neck-in-LSU-s-Death-Valley.mp3','louisiana_senate'],
+  ["Neck in LSU's Death Valley.mp3",'louisiana_senate'],
+  ['Queen-We-Are-The-Champions-Official-Video-Remastered-.mp3','blexas'],
+  ['Queen - We Are The Champions (Official Video Remastered).mp3','blexas'],
+  ['RUN-DMC-Walk-This-Way-Official-HD-Video-ft.-Aerosmith.mp3','abbott'],
+  ['RUN DMC - Walk This Way (Official HD Video) ft. Aerosmith.mp3','abbott']
  ]);
  function result(status,entries,skipped,duplicates,reason){
   return Object.freeze({status,entries:Object.freeze(entries.map(entry=>Object.freeze(entry))),skipped,duplicates,reason});

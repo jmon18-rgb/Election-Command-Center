@@ -1,5 +1,31 @@
 # National needle acceptance decision — October 27, 2026
 
+## October30 — historical package preflight under review
+
+The offline `scripts/preflight_historical_evaluation_package.cjs` command checks
+one explicitly supplied local package before any empirical evaluation. Retained
+originals and normalized records must match their hashes; source publication,
+first availability and capture clocks must be ordered. Independently reviewed
+pre-election cutoffs and earliest usable-return evidence bind both frozen model
+and polling-only expectations to the same election and race. Complete declared
+candidate/geography rosters, correction chains, reuse review and disjoint
+whole-election development/holdout identities remain required.
+
+Run `node scripts/preflight_historical_evaluation_package.cjs path/to/manifest.json`.
+Missing or contradictory fields block the check. A structural pass still says
+`STRUCTURAL_PREFLIGHT_PASS_REQUIRES_INDEPENDENT_ADMISSION`: it authenticates
+neither the publisher HTTP response nor declared legal/independence reviews.
+Original-to-normalized cells and the retained review documents still require
+independent admission. The reader is confined to that package directory and
+performs no network request, discovery, forecast call or original-body upload.
+
+This adds a missing intake safeguard, not an empirical result. Admitted datasets
+and held-out elections remain **zero**; all accuracy metrics remain **null**.
+The existing chronological evaluation and separate national-transfer gates are
+unchanged. Newly prepared Washtenaw2020 and Hamilton2024 historical subsets stay
+local and do not supply a 2026 source, complete geography, chronology or frozen
+expectations. Human MacBook/phone/listening acceptance remains open.
+
 ## October30 — PR538 verified published
 
 This is a presentation and stricter raw-source-marker release. The one correlated pipeline, all numerical helper/engine/kernel bodies,3,000draws/hardESS/30s, state budgets, chamber thresholds and no_credit34D holdovers are unchanged. Test-data rejection tightens the existing producer; it creates no new winner or national probability authority. Calibration and positive-delivery acceptance remain open.

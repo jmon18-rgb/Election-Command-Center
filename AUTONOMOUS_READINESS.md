@@ -1,5 +1,15 @@
 # Election Night production-readiness assignment
 
+## October30 — owner-directed readiness closeout IN PROGRESS
+
+The owner asked to finish core coverage, validation and real-use readiness ASAP. These are the active priorities; no further creative additions are queued. Coordinated source work has prepared two distinct local historical subsets: official Washtenaw2020 Senate (150 precincts/seven candidates with separate invalid-ballot accounting) and official Hamilton2024 IN05 (220 precincts/four named candidates plus aggregate write-ins). Their original bytes, reconciliation and independent reviews remain local. Neither is a 2026 connection, complete geography bridge, method/remaining-vote input, reuse grant or chronological calibration dataset. Exact new KY2024Fayette and FL2024Senate original-byte403 stops are preserved; no retries or workarounds.
+
+The owner will use a MacBook; browser choice and actual rehearsal feedback are pending. A concrete handoff fix extends Load supplied song pack from the original seven to all ten assigned recordings with exact original/attachment filenames; unassigned Crawdad stays excluded. Existing desktop/mobile actual-picker/IndexedDB tests now exercise all ten, with original cancellation/private-context/model-isolation safeguards retained. Actual owner MacBook listening, physical-device/assistive/comprehension results remain NOT_RUN.
+
+A new offline historical-package preflight is under independent review before source promotion. It checks retained hashes, ordered native/availability/capture clocks, documented pre-election/earliest-return cutoffs, frozen model and polling-only expectations, complete declared rosters/correction chains and whole-election split separation. Even structural success cannot admit data or claim independent authenticity/rights: admitted datasets remain zero and metrics null. First vintage/clock counterexamples and corrections remain explicit.
+
+Current runtime scope remains18county routes and7/11 owner Senate county paths; MI/MN/MS/AK and KY06/IN05/FL-SEN current matched packages remain missing. Numerical65040/7af6/efc6,3000draws/hardESS/30s, source/call eligibility/cadence/budgets, original guide/eleven human task scopes and archiveOFF/no-paid guards are unchanged. PR538 remains the verified production baseline until protected exact-head CI/final-main Pages/actual changed-byte/browser publication proves a new release. Carry local561 proof checkpoint; never push docs solely for CI.
+
 ## October30 — PR538 COMPLETE / VERIFIED PUBLISHED
 
 Two owner-requested stretch-win stories are delivered: Florida’s flip-flop alligator launches a peninsula spacecraft, and Louisiana’s giant blue crawfish commandeers a Senate float and orbital gumbo parade. Both have original three-beat SVG animation, stable finales, contained poster fallbacks and distinct ad-free cues. Only an existing admitted, fresh, post-final-close Democratic provider call for FL-special or LA earns one; private-scenario odds and raw leads do not. All twelve prior stories/scenes/whole scores, seven private music assignments, the original ten transport priorities and numerical core remain unchanged.
