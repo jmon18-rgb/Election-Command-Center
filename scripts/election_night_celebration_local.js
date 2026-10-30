@@ -119,7 +119,16 @@
     if(typeof activeUrl!=='string'||!activeUrl.startsWith('blob:'))throw Error('Local URL unavailable');
     audio.controls=true;audio.preload='auto';audio.src=activeUrl;audio.hidden=false;phase='ready';
     for(const [type,status,nextPhase]of [['playing','PLAYING','playing'],['pause','PAUSED','paused'],['ended','ENDED','ended'],['error','FILE_PLAYBACK_ERROR','error']]){
-     const handler=()=>{if(epoch!==current)return;if(!active()){stop();return;}phase=nextPhase;emit(status,id,{fallback:false,metadata:details});};
+     const handler=()=>{
+      if(epoch!==current)return;if(!active()){stop();return;}
+      // Chrome may queue pause after a decode error and rejected play(). That
+      // event must not turn a broken file back into resumable/finished audio.
+      if(type!=='error'&&(audio?.error||((type==='pause'||type==='ended')&&phase==='error'))){
+       if(phase!=='error'){phase='error';emit('FILE_PLAYBACK_ERROR',id,{fallback:false,metadata:details});}
+       return;
+      }
+      phase=nextPhase;emit(status,id,{fallback:false,metadata:details});
+     };
      if(audio.addEventListener){audio.addEventListener(type,handler);listeners.push([type,handler]);}
     }
    }catch{stop();return emit('PLAYBACK_UNAVAILABLE',id,{fallback:true});}
@@ -127,8 +136,15 @@
     await audio.play();
     if(!active()){if(epoch===current)stop();return cancelled();}
     phase='playing';return emit('PLAYING',id,{fallback:false,metadata:details});
-   }catch{
+   }catch(error){
     if(!active()){if(epoch===current)stop();return cancelled();}
+    // A codec/media failure can emit `error` before rejecting play(). Do not
+    // overwrite that failure with autoplay advice: pressing Play cannot repair
+    // an unsupported file. Keep this file's controls and avoid another score.
+    if(phase==='error')return {status:'FILE_PLAYBACK_ERROR',id,fallback:false,metadata:details};
+    if(audio?.error||error?.name==='NotSupportedError'){
+     phase='error';return emit('FILE_PLAYBACK_ERROR',id,{fallback:false,metadata:details});
+    }
     // A rejected play promise is not permission to overlap an original score.
     // Keep native controls and this Blob URL available for an explicit Play.
     phase='ready';return emit('PRESS_PLAY',id,{fallback:false,metadata:details});

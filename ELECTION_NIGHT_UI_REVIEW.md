@@ -1,5 +1,15 @@
 # Election-night usability and visual review
 
+## October30 — PR539 COMPLETE / VERIFIED PUBLISHED
+
+The actual pack journeys retain ten original/attachment-name assignments at both widths, reload persistence, six real delayed IndexedDB races, invalid/oversized preflight guards, partial-storage failure and accepted-model isolation at3000draws. Generated PCM is not an owner-MP3/listening or physical-device proof. Representative390 saved settings were inspected at original detail. Source coverage, real positive delivery and human rehearsal remain open.
+
+PR539 is verified published: tested a6591c45 /protected merge f5b4f8f5; final verified main a7554177ad49766ec479c32d3a98ea76738cf87b/Pages41119152888SUCCESS. All35 PR parents/56effective jobs53SUCCESS3declaredSKIP/68 retained checks/0external pass. Ten cancelled-slot retries and two execution-identical carried-success record aliases are accounted separately; original failures/history remain preserved, with no status or deadline waiver.
+
+The final33 public paths are13 fresh data-only HTTP checks plus20 unchanged inherited fcbc proofs;0failures/retries. All115 frozen Git bodies/92references remain exact; current coherence13/no_credit passes. Actual HTTPS Edge1366/390 journeys were executed at fcbc2842 with20pins/ten mappings and are explicitly inherited through a strictly reviewed data-only identity manifest, never retimed or replayed. Ordinary27 kept2024/private preferences with14current relevant references/92total; no ordinary geometry/forecast-equality claim.
+
+Outcome SHAb981ac22f15c807fcb9ca9c39d3302b5a4a442361fc1e19abaaf62609f60ca33, final published audit b6860c344e75. Original guide1.0/PDF/HTML/eleven human scopes/hashes/NOT_RUN-null are unchanged; ONE component25→26 only, ledger SHA50bebc65cfb4547b8996f5aaca1ab1190cc238a69028b0bb5a1ef6cf1ed2e994. No repeated guide build, owner imports or unchanged demos. This is an unpublished proof checkpoint for the next genuine source change, not a CI-only push.
+
 ## October30 — PR538 verified published
 
 The actual published new-story journeys pass1366/390 with23source pins each, stable complete frames, keyboard/mute/Skip/reduced-motion/queue/retraction guards, exact whole accepted-model preview isolation and no overflow. One missing-scene390 context checks both whole-contained posters with22pins. Original503/fresh200recovery evidence is preserved. Ordinary27 is read-only14refs/92total and private settings/archive equality, not geometry or human listening.

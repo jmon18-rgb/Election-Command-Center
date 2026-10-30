@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "event": "2026-11-03",
-  "last_verified": "2026-10-27",
+  "last_verified": "2026-10-30",
   "status": "OFFICIAL_HUMAN_FALLBACK_LINKS_NOT_AUTOMATED_RESULTS",
   "links": [
     {
@@ -406,6 +406,18 @@
       "scope_note": "Official page currently announces availability after8:00 on November3,2026. This is future reporting guidance, not observed counted votes or an automated race feed.",
       "race_ids": [
         "House|MT-01"
+      ]
+    },
+    {
+      "state": "MO",
+      "name": "Missouri official election results landing",
+      "url": "https://www.sos.mo.gov/elections/results",
+      "mode": "november_2026_results_not_yet_published",
+      "verified_at": "2026-10-30",
+      "source_reference": "https://www.sos.mo.gov/elections/results",
+      "scope_note": "Missouri Secretary of State Election Night Reporting landing. The reviewed list contains the August2026 primary and earlier elections, but no November2026 general-result entry. Human-check landing only: current2026 vote counts, winner calls, access/reuse rights and automated source or native race identity remain unverified.",
+      "race_ids": [
+        "House|MO-01"
       ]
     }
   ],
@@ -1230,6 +1242,12 @@
         "verified_at": "2026-10-27",
         "verification": "Original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
         "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/wisconsin"
+      },
+      {
+        "id": "House|MO-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/missouri-us-house-1-general-election",
+        "verified_at": "2026-10-30",
+        "verification": "Exact November3,2026 Missouri U.S.House District1 metadata reviewed on the public base race page. Its default view is FORECAST, not a result or call; no actual result or winner call verified. A Results tab is declared, but its separate reader request returned Cache miss and its body was not reviewed. Human manual check only; no automated vote/call ingestion, machine identity or rights admission."
       }
     ]
   }

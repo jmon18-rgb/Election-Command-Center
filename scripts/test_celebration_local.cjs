@@ -88,6 +88,22 @@ function record(id='talarico'){
  // the caller to overlap a procedural original cue, and still obeys teardown.
  const blockedAudio=new FakeAudio(()=>Promise.reject(Error('autoplay blocked'))),blockedURL=fakeURL(),manual=local.create({audio:blockedAudio,url:blockedURL,store:{get:id=>Promise.resolve(record(id))}});
  const rejected=await manual.play('talarico');assert.equal(rejected.status,'PRESS_PLAY');assert.equal(rejected.fallback,false);assert.equal(blockedAudio.hidden,false);assert.equal(blockedAudio.controls,true);assert.equal(blockedURL.revoked.length,0);blockedAudio.dispatchEvent(new Event('playing'));assert.equal(manual.state().phase,'playing');manual.stop();assert.equal(blockedURL.revoked.length,1);
+ // Actual native media failures must not be overwritten by autoplay advice,
+ // whether the error event arrives before or after the play promise rejects.
+ for(const kind of ['error-event-first','native-error-only','unsupported-promise']){
+  const events=[],u=fakeURL(),a=new FakeAudio(()=>{
+   if(kind!=='unsupported-promise')a.error={code:4};
+   if(kind==='error-event-first')a.dispatchEvent(new Event('error'));
+   const error=Error('unsupported recording');error.name='NotSupportedError';return Promise.reject(error);
+  }),p=local.create({audio:a,url:u,store:{get:id=>Promise.resolve(record(id))},onStatus:s=>events.push(s.status)});
+  const result=await p.play('talarico');assert.equal(result.status,'FILE_PLAYBACK_ERROR',kind);assert.equal(result.fallback,false);assert.equal(p.state().phase,'error');assert.equal(a.hidden,false);assert.equal(a.controls,true);assert.equal(u.revoked.length,0);
+  a.dispatchEvent(new Event('pause'));a.dispatchEvent(new Event('ended'));
+  if(a.error)a.dispatchEvent(new Event('playing'));
+  assert.equal(p.state().phase,'error','Later native events cannot erase the file error');
+  assert.deepEqual(events,['LOADING','FILE_PLAYBACK_ERROR'],'One accurate failure message; no Press Play or overlapping fallback');p.stop();assert.equal(u.revoked.length,1);
+ }
+ const permissionAudio=new FakeAudio(()=>{const error=Error('user gesture required');error.name='NotAllowedError';return Promise.reject(error);}),permissionPlayer=local.create({audio:permissionAudio,url:fakeURL(),store:{get:id=>Promise.resolve(record(id))}});
+ assert.equal((await permissionPlayer.play('talarico')).status,'PRESS_PLAY','A real autoplay permission rejection still offers native Play');permissionPlayer.close();
  let valid=true;const held=deferred(),validAudio=new FakeAudio(),guarded=local.create({audio:validAudio,url:fakeURL(),store:{get:()=>held.promise}}),guardedRead=guarded.play('talarico',{valid:()=>valid});valid=false;held.resolve(record());assert.equal((await guardedRead).status,'CANCELLED');assert.equal(validAudio.playCalls,0);
  player.close();
  console.log('Private local celebration audio PASS: unchanged Blob bytes/committed persistence, exact event/type/size bounds, storage failure, stale-read/play cancellation, native Play recovery and complete URL teardown. Fictional bytes; no network, recording or human listening claim.');

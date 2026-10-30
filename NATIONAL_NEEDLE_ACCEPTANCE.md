@@ -1,6 +1,16 @@
 # National needle acceptance decision — October 27, 2026
 
-## October30 — historical package preflight under review
+## October30 — PR539 COMPLETE / VERIFIED PUBLISHED
+
+The strict historical-package preflight is delivered, including retained hashes, ordered clocks, documented prior cutoffs/earliest returns, frozen contemporaneous expectations and whole-election split checks. Structural success still admits zero datasets and reports NULL/NOT_ESTIMABLE metrics. Runtime county coverage and numerical65040/7af6/efc6/3000draws/hardESS/30s/no_credit are unchanged. Independent original chronologies/rights/heldouts and separate national validation are still required.
+
+PR539 is verified published: tested a6591c45 /protected merge f5b4f8f5; final verified main a7554177ad49766ec479c32d3a98ea76738cf87b/Pages41119152888SUCCESS. All35 PR parents/56effective jobs53SUCCESS3declaredSKIP/68 retained checks/0external pass. Ten cancelled-slot retries and two execution-identical carried-success record aliases are accounted separately; original failures/history remain preserved, with no status or deadline waiver.
+
+The final33 public paths are13 fresh data-only HTTP checks plus20 unchanged inherited fcbc proofs;0failures/retries. All115 frozen Git bodies/92references remain exact; current coherence13/no_credit passes. Actual HTTPS Edge1366/390 journeys were executed at fcbc2842 with20pins/ten mappings and are explicitly inherited through a strictly reviewed data-only identity manifest, never retimed or replayed. Ordinary27 kept2024/private preferences with14current relevant references/92total; no ordinary geometry/forecast-equality claim.
+
+Outcome SHAb981ac22f15c807fcb9ca9c39d3302b5a4a442361fc1e19abaaf62609f60ca33, final published audit b6860c344e75. Original guide1.0/PDF/HTML/eleven human scopes/hashes/NOT_RUN-null are unchanged; ONE component25→26 only, ledger SHA50bebc65cfb4547b8996f5aaca1ab1190cc238a69028b0bb5a1ef6cf1ed2e994. No repeated guide build, owner imports or unchanged demos. This is an unpublished proof checkpoint for the next genuine source change, not a CI-only push.
+
+## October30 — historical package preflight contract (released by PR539; empirical admission open)
 
 The offline `scripts/preflight_historical_evaluation_package.cjs` command checks
 one explicitly supplied local package before any empirical evaluation. Retained

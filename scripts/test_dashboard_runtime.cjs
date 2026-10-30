@@ -1017,7 +1017,13 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  assert.equal(get('#modelBoard').querySelectorAll('.model-race-win-probabilities').length,
   senateRows.length,'Every polled Senate row must expose source-matched two-party model odds');
  assert.match(senateRows[0].querySelector('.model-race-win-probabilities').textContent,/D .*%R .*%/);
- assert.match(senateRows[0].querySelector('.model-race-edge').textContent,/Poll [DR] [+-]/);
+ const firstSenatePoll=model.senate_all.find(row=>row.race_code===senateRows[0].dataset.modelRace);
+ assert(firstSenatePoll&&['single_poll','multi_poll'].includes(firstSenatePoll.status)&&Number.isFinite(firstSenatePoll.dem_minus_rep),
+  'A compact row must bind a current eligible numeric polling source; missing data cannot masquerade as Even');
+ const expectedFirstPollMargin=Math.abs(firstSenatePoll.dem_minus_rep)<.05?'Even':
+  (firstSenatePoll.dem_minus_rep>0?'D +':'R +')+Math.abs(firstSenatePoll.dem_minus_rep).toFixed(1);
+ assert.equal(senateRows[0].querySelector('.model-race-edge small').textContent.split(' · ')[0],
+  'Poll '+expectedFirstPollMargin,'Compact poll label must exactly match its source, including genuine tied averages');
  assert.match(senateRows[0].querySelector('.model-race-edge').textContent,
   /baseline assumed spread σ [\d.]+ pts · experimental/,
   'Compact race rows must identify baseline spread rather than an error interval');
