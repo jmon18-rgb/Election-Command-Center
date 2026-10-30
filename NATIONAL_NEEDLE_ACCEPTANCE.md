@@ -1,5 +1,18 @@
 # National needle acceptance decision — October 27, 2026
 
+## October30 — PR540 COMPLETE / VERIFIED PUBLISHED
+
+Tested c30e925ac24c96bf2f70bf16aa73f6b18dc10e7d passed all34 applicable PR parents/0push parents,56 latest jobs (53SUCCESS/3declared deployed-only PR skips),56 exact checks and0external statuses, allattempt1. Protected merge cdf31d3e is complete; final verified main 59acbdc7c364611f67e2e8f66dac423733c770e6/Pages41138565971 passed all3deployment jobs. The cancelled initial-merge Pages record is preserved and was never used as a success gate or manually rerun.
+
+All29 actual changed public/index HTTP bodies match origin/main with0failures/retries; coherence13/currentindex/no_credit and126 frozen source bodies/92ordered Git-blob references pass. Actual published HTTPS Chrome1366/390 journeys each verify20 source pins, native bad-file error4/rejection/late-pause persistence, valid generated audio playback and real IndexedDB reload, mute/close/cross-story cancellation, full accepted3000-draw model-bundle isolation and no extra worker/provider requests. Generated media and simulated announcement completion are mechanics, not owner MacBook/hearing or actual positive election delivery.
+
+This is a native-audio/diagnostic and source-backed release-check correction. The numerical helper/engine/kernel, exact target/RNG/3000draws/hardESS/30s/state budgets/no_credit and source/call eligibility remain unchanged. The actual45–45 poll is distinct from model odds; no model bug or empirical accuracy is established.
+
+Outcome pr540-published-outcome-20261030.json SHA66940eccd47821781333c1021665be286d4187ce4e50e20502153d59d727e7c9; independent published audit21f8f479, gateaudit84fa76f0. Original guide1.0/PDF/HTML/eleven human scopes/hashes/NOT_RUN-null remain unchanged; exactly one26→27 component appended, ledger SHA50467eabad2429f01af6dd9b74a8d6dcad4fa65b438b1928c359991e55d1042b/taskhash8c02bfac0b27273028ec2cc46423dc31de4a0a856cbcd49d64b5e723df9644f3. This is one unpublished proof checkpoint to carry with the next real source change; never push docs alone for CI.
+
+Coverage remains18county routes/7of11 owner Senate county paths; MI/MN/MS/AK and KY06/IN05/FL-SEN current matched packages remain missing. Independent whole-election holdouts remain zero and empirical metricsNULL/NOT_ESTIMABLE. Actual positive2026 delivery and physical-device/listening/assistive/comprehension acceptance remain open. Archive capture staysOFF/no-paid. The reviewed offline chronological replay/scoring candidate is the next concrete engineering change; its synthetic mechanics admit no dataset or calibration.
+
+
 ## October30 — PR539 COMPLETE / VERIFIED PUBLISHED
 
 The strict historical-package preflight is delivered, including retained hashes, ordered clocks, documented prior cutoffs/earliest returns, frozen contemporaneous expectations and whole-election split checks. Structural success still admits zero datasets and reports NULL/NOT_ESTIMABLE metrics. Runtime county coverage and numerical65040/7af6/efc6/3000draws/hardESS/30s/no_credit are unchanged. Independent original chronologies/rights/heldouts and separate national validation are still required.
