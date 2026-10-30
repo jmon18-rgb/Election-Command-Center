@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30T01:14:10.175238Z",
+  "updated_at": "2026-10-30T02:09:07.509102Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 69
+    "advisory_related_headline_buckets": 27,
+    "advisory_related_headlines": 72
   },
   "advisory_related_headlines": [
     {
@@ -96,6 +96,17 @@
       "topic_hints": [
         "ballot_access",
         "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "e788c459cf4fd32da44a",
+      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - The Morning Call",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -245,17 +256,6 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "8bbb654bbd9b1dfd5c44",
-      "headline": "The Phantom Voter Intimidation Threat - National Review",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -305,6 +305,23 @@
       "publisher": "Orlando Sentinel",
       "published_at": "2026-10-29T22:22:07Z",
       "detected_at": "2026-10-29T22:53:14.822741Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5a4c2737f22ab5f303ed",
+      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Boston Herald",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9LTmZSUS1FTEQ3U2F1ZS1CX1dZaWF5VHIxcHRhVHdIc3A1REs4LVhvb1o3aWZ3TFg1M3JOMy1ub0dFRy1pTldUU1RLVzc4R2xwaFZwT2I0WnVVbkFLdTEydTE1SDlrZjFIWkhreXJqNU1uUVFRLURubkhpbS1Odw?oc=5",
+      "publisher": "Boston Herald",
+      "published_at": "2026-10-29T22:21:47Z",
+      "detected_at": "2026-10-30T02:09:07.509102Z",
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -382,6 +399,28 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a4491509667b9416c59d",
+      "title": "Mississippi absentee voting surges ahead of 2026 General Election - WJTV",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYkZJQTNQaWNpOWU4MGxjazBDMEtvMEI3T01Td2VBc2xEc3R1VjZfSzZoN3F0Slk2NGFocXJ4ZWlhOFBEMWo3OGVTaEpVMEFTb0wzVmI2Z0I0dzdLbU14bVBxOE9lUG9jN0VaY05SdWI0a2l5Q1dqRlplY0RnUWdubXR0X2RRYW1jam5mc1JsUFU2VHRqVHlEQkM4TGFEVnlCc01SY1Q0YkbSAagBQVVfeXFMUGJGSUEzUGljaTllODBsY2swQzBLbzBCN09NU3dlQXNsRHN0dVY2X0s2aDdxdEpZNjRhaHFyeGVpYThQRDFqNzhlU2hKVTBBU29MM1ZiNmdCNHc3S21NeG1QcThPZVBvYzdFWmNOUnViNGtpeUNXakZaZWNEZ1Fnbm10dF9kUWFtY2puZnNSbFBVNlR0alR5REJDOExhRFZ5QnNNUmNUNGJG?oc=5",
+      "publisher": "WJTV",
+      "published_at": "2026-10-29T18:44:56Z",
+      "detected_at": "2026-10-30T02:09:07.509102Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4986,46 +5025,6 @@
         "17, ",
         "2026"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bc7fe3db2fe769140010",
-      "title": "Justice Department Vows to Prosecute California Election Officials Who Tabulate Unlawful Ballots - PJ Media",
-      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOQWVVclZKVUlLbl9VR2lrSDdORjVCRFZIWjIydjJ4WlV4MF9aMnBvbjBRUE9fVllfRUQ4aU1DbzdUSVV0dGh6VkV3MjFfMTc3b19nN1dHTndfRFpXMmUwaUIwdlVyNWNreERaaFpkR05FRXZiekMzV2VvTmRFeWZQbmZubVZFeFZfUDFvdkRSZWxiZGxwWmMwV0Jlc1VtUlFvUFV0ZkRycmRfNDlIRTJfVFR2dWVsYl80bGIweVQwX0NVeGhUV1ZfQzZrQlA2a0ZIa0JzRVhaWE1feld4cEdxeWJqNA?oc=5",
-      "publisher": "PJ Media",
-      "published_at": "2026-10-18T00:10:00Z",
-      "detected_at": "2026-10-18T00:56:24.000448Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d3e6c747bbe2c9d5a59b",
-      "title": "Judge puts Trump DOJ on the clock over last-minute California voter ambush - Raw Story",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPLWV0MFUxd1pXekJYOU9BLUVIZ2RFdUZ1V2VZWkxFM1ktc1BuQkJ5cDhMV0YyUTUzVzlnYXZWcldBa3Jsa2pNUGF6TVNJcG9fY29CYVFYa0x4djFDaEd6YXRRTmp1UmtlczBXdGJucWlQdm9SanktMzNHWWhIbUFZN0xNTnpaRkMybVUzOGxXYWpOUWxUeG52WkxuVHlYQmdNelRNdlVwZkZsUy1vX2FoV2NfWjnSAbQBQVVfeXFMTy1ldDBVMXdaV3pCWDlPQS1FSGdkRXVGdVdlWVpMRTNZLXNQbkJCeXA4TFdGMlE1M1c5Z2F2VnJXQWtybGtqTVBhek1TSXBvX2NvQmFRWGtMeHYxQ2hHemF0UU5qdVJrZXMwV3RibnFpUHZvUmp5LTMzR1loSG1BWTdMTU56WkZDMm1VMzhsV2FqTlFsVHhudlpMblR5WEJnTXpUTXZVcGZGbFMtb19haFdjX1o5?oc=5",
-      "publisher": "Raw Story",
-      "published_at": "2026-10-17T23:06:00Z",
-      "detected_at": "2026-10-18T00:56:24.000448Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
