@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-30T20:53:14.931743+00:00",
+  "updated_at": "2026-10-30T21:50:09.996702+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 870,
+      "available_in_source": 871,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 353,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "SC-SEN",
+      "poll_id": "799adc95-7605-40d1-b686-80b11548e471"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "SC-SEN",
+      "race_type": "senate",
+      "state": "SC",
+      "poll_id": "799adc95-7605-40d1-b686-80b11548e471",
+      "question_id": "910b183b-14f5-4e3f-93ec-553d53b4d8e9",
+      "pollster": "Patinkin Research Strategies",
+      "dem_name": "Annie Andrews",
+      "rep_name": "Darline Graham",
+      "dem": 48.0,
+      "rep": 43.0,
+      "margin": 5.0,
+      "field_end": "2026-10-29",
+      "field_start": "2026-10-27",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T17:21:00",
+      "posted_source_time": "10/30/26 17:21",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://static1.squarespace.com/static/54512d3ce4b07de69d8320c7/t/6ae4f0f24aec54388059c463/1793388786248/PRS%2BProjectVOTE.SCSW+Poll+Release.103026.pdf",
+      "sample_population": "lv",
+      "sample_size": 500,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "NV-GOV",
       "race_type": "governor",
