@@ -1,5 +1,12 @@
 # National needle acceptance decision — October 27, 2026
 
+## October30 — PR538 verified published
+
+This is a presentation and stricter raw-source-marker release. The one correlated pipeline, all numerical helper/engine/kernel bodies,3,000draws/hardESS/30s, state budgets, chamber thresholds and no_credit34D holdovers are unchanged. Test-data rejection tightens the existing producer; it creates no new winner or national probability authority. Calibration and positive-delivery acceptance remain open.
+
+Tested dc1b8bdb; all35 workflow parents/56jobs53SUCCESS3declaredSKIP/0external passed. Final main02e803a9 / Pages41066872682 and40changed bytes/coherence13/no_credit/110source bodies are verified; current main unchanged14:08Z. Outcome d9bfcb19, published audit b5f31da9. Guide1.0/eleven human scopes/hashes/NOT_RUN-null unchanged; ONE25th component appended, ledger d1bc6a12. No unchanged guide rebuild, repeated import or old demo.
+
+
 ## October30 — PR537 COMPLETE / VERIFIED PUBLISHED
 
 Seven owner recording assignments are saved privately and reload-verified in the app browser: Buckeye Battle Cry→Ohio, Last Dance→Graham, John Brown’s Body→Kansas, It’s Corn→Iowa, Eyes of Texas→Talarico, Union Dixie Trap→Mississippi and Ding-Dong→Maine. Michigan has its own original cue and three-beat “FEAR CAMPAIGN: SIGNAL LOST” satire. Only the existing admitted fresh post-close Michigan Democratic Senate call earns it. The original ten transport priorities, source/call rules, numerical model, all eleven prior stories/scenes/scores and other guards are unchanged.
