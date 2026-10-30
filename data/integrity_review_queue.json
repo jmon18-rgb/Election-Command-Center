@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T22:49:07.076454Z",
+  "updated_at": "2026-10-30T23:47:10.924158Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -385,6 +385,24 @@
       "state_hints": [],
       "topic_hints": [
         "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3e9743eff0236f30b7a8",
+      "title": "The Real Threat of Election Interference - The Atlantic",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPX3E1eHBlcUhEYUxlVDZaTmFzQjl4TGxENjRySUhaZk5kZDdoT3diSjR0R2pyMjVJMHh2cXI0M2N5RTNISFNBbkVFZzA3U3hLUllrdmxvNkVlZlVpYXhxS2V0bFBadG9VUEdRYW5fR0Fhcnp4RWZIMC1aRG5OaXRtUlJtS1NtRXJrTmlUUW1ya0RZUTRJd19XcUExc1h0UGNqb0pwbQ?oc=5",
+      "publisher": "The Atlantic",
+      "published_at": "2026-10-30T11:00:00Z",
+      "detected_at": "2026-10-30T23:47:10.924158Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -4985,27 +5003,6 @@
       ],
       "headline_numbers_unverified": [
         "28 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3b6154045883ef155c34",
-      "title": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
-      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQYUlxNGhHV3ZyM2NHakVza3pObUNnRlZRZ0l6VmVmd3NtRUF3dUVveW5fMkdGZEM2TGZFQ1NyR0I0TEIyUk0xeG1YOFc2bGVxcnZxTzJzSHRlNGdtZm1GQkxDVWp0aVRWMlQxZENLX0EyNTB5Y1V3QTlGZFVneURYMEpuV3dPTmRubFlCUUZVajd2X0hDb1hhdUhxUVFJaVMzaDdPc1ZaVDBKdHl6aTh0YVdBX0I4Y04xSDVNeklmOU1JX3U3SkxrWU53Njh6N3BmMHJN?oc=5",
-      "publisher": "Scripps News",
-      "published_at": "2026-10-19T19:24:59Z",
-      "detected_at": "2026-10-19T19:46:58.679097Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "2 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
