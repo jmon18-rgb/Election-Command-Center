@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T19:55:08.256578+00:00",
+  "updated_at": "2026-10-30T20:53:14.931743+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,18 +9,42 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1292,
+      "available_in_source": 1293,
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 975,
+      "available_in_source": 976,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 352,
+  "matched_primary_observations": 353,
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
+    {
+      "race_code": "NV-GOV",
+      "race_type": "governor",
+      "state": "NV",
+      "poll_id": "2c439f8f-6952-4786-a607-570aa7951a3a",
+      "question_id": "07ddae68-83c9-4bef-b6de-cd13c25ae51f",
+      "pollster": "Noble Predictive Insights",
+      "dem_name": "Aaron Ford",
+      "rep_name": "Joe Lombardo",
+      "dem": 47.0,
+      "rep": 47.0,
+      "margin": 0.0,
+      "field_end": "2026-10-28",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T16:03:00",
+      "posted_source_time": "10/30/26 16:03",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.noblepredictiveinsights.com/post/nevada-poll-of-record-lombardo-ford-deadlocked-at-47",
+      "sample_population": "lv",
+      "sample_size": 487,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "LA-SEN",
       "race_type": "senate",
