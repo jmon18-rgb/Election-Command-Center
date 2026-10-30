@@ -39,6 +39,7 @@
   if(host&&id==='nebraska'&&['scene','complete'].includes(phase))return renderNebraska(host,{phase,beat,preview});
   if(host&&id==='blue_corn'&&['scene','complete'].includes(phase))return renderIowa(host,{phase,beat,preview});
   if(host&&id==='maine'&&['scene','complete'].includes(phase))return renderMaine(host,{phase,beat,preview});
+  if(host&&id==='michigan'&&['scene','complete'].includes(phase))return renderMichigan(host,{phase,beat,preview});
   if(host&&['ohio','blexas','tsunami'].includes(id)&&['scene','complete'].includes(phase))return renderFinalRoster(host,{id,phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
@@ -334,5 +335,46 @@
   svg.append(text(id==='tsunami'?'PREVIEW ONLY · NOT A FORECAST TRIGGER OR VERIFIED OUTCOME':preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL',490,520,id==='tsunami'?16:17,'#bfdfe9'));
   return finish(host,svg,animated,id,index,phase);
  }
+ // BEGIN MICHIGAN ORIGINAL SCENE
+ function renderMichigan(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#eef9ff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':'Michigan fear-campaign machine satire; '+(preview?'simulated preview, no real victory claim':'source-reported unofficial call'),'data-scene':'michigan','data-beat':index}),animated=[];
+  const mitten='M43 198L31 167 24 144 8 124Q-7 106 7 94Q20 86 38 107L43 117 42 51Q42 33 53 31L59 10Q66-5 77 8L84 25 92 15Q104 5 112 19L118 42 124 36Q137 31 140 47L144 70 151 66Q164 65 166 84L166 134Q162 170 146 198Z';
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:'#071b30'}),el('path',{d:'M0 440Q245 393 490 440T980 440V540H0Z',fill:'#103650'}),text('MICHIGAN · U.S. SENATE',490,40,23,'#b6e8ff'));
+  if(index<2){
+   svg.append(text(index===0?'PANICCAST':'THE VOTERS FOUND MUTE',490,104,index===0?49:36,index===0?'#ffd2bf':'#c7f3ff'));
+   const machine=el('g',{'data-layer':'michigan-panic-machine'});
+   machine.append(el('rect',{x:110,y:150,width:510,height:272,rx:23,fill:index===0?'#9e3c45':'#514355',stroke:'#f5a1a3','stroke-width':7}),el('rect',{x:139,y:175,width:452,height:45,rx:9,fill:'#261f33'}),text('24-HOUR FEAR SUBSCRIPTION',365,206,23,'#ffcfbd'),el('circle',{cx:365,cy:304,r:75,fill:'#1d293c',stroke:'#ffc5b5','stroke-width':8}),el('path',{d:'M311 315A58 58 0 0 1 419 315',fill:'none',stroke:'#ff8b73','stroke-width':11,'stroke-linecap':'round'}),text('FEAR',365,361,21,'#ffc5b5'));
+   const needle=el('path',{d:'M365 307L365 250',stroke:'#fff3ce','stroke-width':9,'stroke-linecap':'round','data-layer':'michigan-fear-dial',style:'transform-box:view-box;transform-origin:365px 307px;transform:rotate('+(index===0?54:-54)+'deg)'});machine.append(needle,el('circle',{cx:365,cy:307,r:12,fill:'#fff3ce'}));
+   for(const x of [155,190,225])machine.append(el('rect',{x,y:365,width:20,height:27,rx:4,fill:index===0?'#ffb47e':'#588097'}));
+   machine.append(el('path',{d:'M510 365h63m-63 15h63m-63 15h63',stroke:'#251d30','stroke-width':8,'stroke-linecap':'round'}));svg.append(machine);
+   animated.push({node:needle,frames:index===0?[{transform:'rotate(-54deg)'},{transform:'rotate(62deg)'},{transform:'rotate(54deg)'}]:[{transform:'rotate(54deg)'},{transform:'rotate(-54deg)'}],duration:index===0?1100:650});
+   const horns=el('g',{'data-layer':'michigan-megaphones'});
+   [[700,235,-13],[819,300,13],[713,385,3]].forEach(([x,y,angle],i)=>{
+    const position=el('g',{transform:'translate('+x+' '+y+') rotate('+angle+')'}),horn=el('g',{'data-layer':'michigan-megaphone',style:'transform-box:fill-box;transform-origin:center;transform:scale('+(index===0?'1,1':'.78,.16')+')'});
+    horn.append(el('path',{d:'M-45-21L40-47Q76-50 77-4Q78 45 40 43L-45 20Z',fill:i%2?'#f0a34b':'#f27b98',stroke:'#ffe2c3','stroke-width':5,'stroke-linejoin':'round'}),el('ellipse',{cx:45,cy:-2,rx:20,ry:43,fill:'#582c4a',stroke:'#ffe2c3','stroke-width':4}),el('path',{d:'M-42 20L-31 59-12 59-15 20',fill:'#b55c6d',stroke:'#ffe2c3','stroke-width':4}));position.append(horn);horns.append(position);
+    animated.push({node:horn,frames:index===0?[{transform:'scale(.9,1)'},{transform:'scale(1.08,1.08)'},{transform:'scale(1,1)'}]:[{transform:'scale(1,1)'},{transform:'scale(.78,.16)'}],duration:index===0?1100:850,delay:i*100});
+   });svg.append(horns);
+   if(index===0)svg.append(text('PANIC!  MORE PANIC!  RENEW NOW!',490,472,28,'#ffd3bf'));
+   else{
+    const ballot=el('g',{'data-layer':'michigan-ballot-mute',style:'transform-box:fill-box;transform-origin:center'});
+    ballot.append(el('path',{d:mitten,transform:'translate(647 205) scale(.8)',fill:'#167fbd',stroke:'#b7eeff','stroke-width':7}),el('rect',{x:652,y:302,width:230,height:92,rx:20,fill:'#c5f4ff',stroke:'#07649b','stroke-width':7}),text('MUTE',767,363,43,'#053e63'),el('path',{d:'M692 292H838',stroke:'#06273c','stroke-width':12,'stroke-linecap':'round'}));svg.append(ballot,text('ONE BALLOT BOX. ZERO FEAR UPGRADES.',490,472,27,'#c2ebff'));
+    animated.push({node:ballot,frames:[{transform:'translateY(30px)',opacity:0},{transform:'translateY(0)',opacity:1}],duration:600});
+   }
+  }else{
+   svg.append(text('FEAR CAMPAIGN:',490,96,43),text('SIGNAL LOST',490,153,57,'#8be1ff'));
+   const confetti=el('g',{'data-layer':'michigan-blue-confetti',style:'transform-box:fill-box;transform-origin:center'});for(let i=0;i<20;i++)confetti.append(el('rect',{x:80+i*43,y:183+(i%4)*47,width:11,height:21,rx:3,fill:i%3?'#70cfff':'#e0f7ff',transform:'rotate('+(i*23)+' '+(80+i*43)+' '+(183+(i%4)*47)+')'}));svg.append(confetti);
+   animated.push({node:confetti,frames:[{transform:'translateY(-35px)',opacity:0},{transform:'translateY(0)',opacity:1}],duration:1000});
+   const map=el('g',{'data-layer':'michigan-blue-mitten'});map.append(el('path',{d:mitten,transform:'translate(600 190) scale(.9)',fill:'#218ed6',stroke:'#b2edff','stroke-width':7}),el('path',{d:'M540 205L567 189 600 194 620 182 641 188 625 204 591 207 572 220Z',fill:'#218ed6',stroke:'#b2edff','stroke-width':5}));svg.append(map);
+   const receipt=el('g',{'data-layer':'michigan-fear-receipt',style:'transform-box:fill-box;transform-origin:center'});receipt.append(el('path',{d:'M135 208H580V368L552 357 525 369 499 357 472 369 446 357 419 369 392 357 366 369 339 357 312 369 285 357 258 369 231 357 205 369 178 357 135 369Z',fill:'#e1f6ef',stroke:'#8fd3e3','stroke-width':5}),text('ERROR:',356,265,35,'#17465b'),text('VOTERS NOT SCARED',356,310,30,'#17465b'),text('SUBSCRIPTION CANCELLED',356,345,19,'#27647b'));svg.append(receipt);
+   animated.push({node:receipt,frames:[{transform:'translateY(-25px)',opacity:0},{transform:'translateY(0)',opacity:1}],duration:750});
+   svg.append(text('MICHIGAN DECLINES THE FEAR SUBSCRIPTION.',490,438,27,'#bdeaff'),text('ILLUSTRATIVE MITTEN · NOT A RESULTS MAP',490,475,20,'#b1d7e7'));
+  }
+  svg.append(text('FICTIONAL POLITICAL SATIRE · '+(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL'),490,520,17,'#c4deed'));
+  return finish(host,svg,animated,'michigan',index,phase);
+ }
+ // END MICHIGAN ORIGINAL SCENE
  return Object.freeze({render,clear});
 });

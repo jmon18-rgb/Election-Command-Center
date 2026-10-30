@@ -6,10 +6,10 @@
   "talarico": {
     "id": "talarico",
     "title": "The Eyes of Texas",
-    "artist": "University of Texas Longhorn Band",
+    "artist": "Owner-supplied recording",
     "kind": "OWNER_REQUEST",
     "fallback": "Blue stadium fanfare",
-    "hint": "Suggested track for your local audio file; the original score plays until you choose a file."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "abbott": {
     "id": "abbott",
@@ -22,18 +22,18 @@
   "graham": {
     "id": "graham",
     "title": "Last Dance",
-    "artist": "Donna Summer",
-    "kind": "CREATIVE_SUGGESTION",
+    "artist": "Owner-supplied recording",
+    "kind": "OWNER_REQUEST",
     "fallback": "Last-call disco",
-    "hint": "Suggested track for your local audio file; the original score plays until you choose a file."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "blansas": {
     "id": "blansas",
-    "title": "John Brown’s Body / Glory, Hallelujah",
-    "artist": "Traditional melody · a new project arrangement",
-    "kind": "HISTORICAL_COMPOSITION_CANDIDATE",
+    "title": "John Brown’s Body",
+    "artist": "Owner-supplied recording",
+    "kind": "OWNER_REQUEST",
     "fallback": "Prairie fife and drum",
-    "hint": "Traditional-song reference; the original score plays until you choose your audio."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "nebraska": {
     "id": "nebraska",
@@ -45,35 +45,35 @@
   },
   "mississippi": {
     "id": "mississippi",
-    "title": "Hit the Road Jack",
-    "artist": "Ray Charles",
-    "kind": "CREATIVE_SUGGESTION",
+    "title": "Union Dixie Trap",
+    "artist": "Owner-supplied recording",
+    "kind": "OWNER_REQUEST",
     "fallback": "Blue-river brass shuffle",
-    "hint": "Suggested track for your local audio file; the original score plays until you choose a file."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "blue_corn": {
     "id": "blue_corn",
-    "title": "Electric harvest two-step",
-    "artist": "Project original",
-    "kind": "ORIGINAL_CUE",
+    "title": "It’s Corn",
+    "artist": "Owner-supplied recording",
+    "kind": "OWNER_REQUEST",
     "fallback": "Electric harvest two-step",
-    "hint": "This original score is already available. Choose your own audio to replace it."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "maine": {
     "id": "maine",
     "title": "Ding-Dong! The Witch Is Dead",
-    "artist": "The Wizard of Oz film cast",
-    "kind": "CREATIVE_SUGGESTION",
+    "artist": "Owner-supplied recording",
+    "kind": "OWNER_REQUEST",
     "fallback": "Broom-and-bells sendoff",
-    "hint": "Suggested track for your local audio file; the original score plays until you choose a file."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "ohio": {
     "id": "ohio",
-    "title": "Thunderstruck",
-    "artist": "AC/DC",
-    "kind": "CREATIVE_SUGGESTION",
+    "title": "Buckeye Battle Cry",
+    "artist": "Owner-supplied recording",
+    "kind": "OWNER_REQUEST",
     "fallback": "Buckeye blue-shock riff",
-    "hint": "Suggested track for your local audio file; the original score plays until you choose a file."
+    "hint": "Owner-selected track. Your saved local file plays first; otherwise the original score remains available."
   },
   "blexas": {
     "id": "blexas",
@@ -90,6 +90,14 @@
     "kind": "CREATIVE_SUGGESTION",
     "fallback": "The rising tide finale",
     "hint": "Suggested track for your local audio file; the original score plays until you choose a file."
+  },
+  "michigan": {
+    "id": "michigan",
+    "title": "FEAR CAMPAIGN: SIGNAL LOST",
+    "artist": "Project original",
+    "kind": "ORIGINAL_CUE",
+    "fallback": "FEAR CAMPAIGN: SIGNAL LOST",
+    "hint": "This original score is already available. Choose your own audio to replace it."
   }
 }).map(([id,row])=>[id,Object.freeze(row)])));
  function forEvent(id){return Object.prototype.hasOwnProperty.call(CHOICES,id)?CHOICES[id]:null;}

@@ -1,5 +1,12 @@
 # Readiness progress
 
+## October30 — Michigan celebration and owner private soundtracks in implementation
+
+Owner supplied eight MP3 files (seven unique; the Buckeye copies match) and chose Union Dixie Trap for Mississippi, with an original Michigan cue. The new Michigan three-beat panic-machine/ballot-box satire is earned only by the existing admitted, fresh, post-close Michigan D Senate call. Presentation reads the already accepted call cache passively; the exact ten transport-priority items, acquisition hooks, source validation and request budgets remain unchanged. Eleven earned IDs survive reload; Tsunami remains preview only. All eleven previous stories, scenes and complete music scores are retained. The private-file registry accepts Michigan so its missing-file state can fall back to the new original cue.
+
+No supplied recording is committed or published. Existing private IndexedDB setup has confirmed Texas/Eyes of Texas and Ohio/Buckeye; the other five files are being saved through the normal private file picker. The owner-approved mappings are Last Dance→Graham, John Brown’s Body→Kansas, It’s Corn→Iowa, Union Dixie Trap→Mississippi and Ding-Dong→Maine. The bounded pack picker recognizes both original labels and attachment filenames, preflights all matched files and reports separate committed saves; cancellation can let one in-flight save finish but stops the old continuation. Browser-local storage is specific to that browser profile and is not a sync or backup promise. Local new Michigan99-assert/21-pin and real browser song-pack20-pin journeys pass1366/390, along with103 retained core checks and the19 planner/11 UI focused groups. The final full-DOM and exact-head protected review/publication remain pending; no release or human listening claim. Numerical core, county-source routes, calls and every other celebration guard are unchanged.
+
+
 ## October29 ET / October30 UTC — PR536 COMPLETE / VERIFIED PUBLISHED
 
 Tested0de978e534f15869564d92b7f0cb2035015dd6e7 passed all35 applicable workflow parents and55 latest jobs (52SUCCESS,3declared PR-only deployment skips,0external); exact check identities matched. Protected merge80059ead, final CURRENTmain37ea85896deb5bab730d967a0ee9e8f82a2dd02f / Pages40978188429 SUCCESS. All39 selected changed public files, including the current index, match origin/main; coherence13/no_credit PASS. Main was rechecked unchanged after all published tasks.
