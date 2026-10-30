@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30T09:03:33.534685Z",
+  "updated_at": "2026-10-30T10:01:36.017664Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
     "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 73
+    "advisory_related_headlines": 75
   },
   "advisory_related_headlines": [
     {
@@ -38,6 +38,17 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
+      "lead_id": "5f03a22536a8a26fa45b",
+      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
+      "possibly_related_articles": 5,
+      "distinct_publishers": 5,
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
       "lead_id": "9a571dc4f7d0ba776e3e",
       "headline": "Judge weighs whether California can count up to 20,000 ballots disputed by US government - Sun Sentinel",
       "possibly_related_articles": 4,
@@ -60,17 +71,6 @@
       "topic_hints": [
         "election_admin",
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "e788c459cf4fd32da44a",
-      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - The Morning Call",
-      "possibly_related_articles": 4,
-      "distinct_publishers": 4,
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -107,6 +107,20 @@
       "topic_hints": [
         "ballot_access",
         "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "54ad5ea762c6d948ae99",
+      "headline": "Mississippi absentee voting surges ahead of 2026 General Election - AOL.com",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -244,21 +258,26 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "7853e44c87a2b51cded5",
-      "headline": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "5f03a22536a8a26fa45b",
+      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9oVVplR3lNOGRZeDZKd0h6d0tmeTVsb0xkM0xmem50YkRkRUh6SVIzRV9qcW9TcmNpb1dJRG5KaDFudEMzUWItU0tQN0I0Yl8xUmttVmEzQWM1aEJ4MFc5VGdzNXl0Um9kbklyYkxxQ3N2TkxLeWhFU3d6QThEQWs?oc=5",
+      "publisher": "Daily Bulletin",
+      "published_at": "2026-10-30T04:25:03Z",
+      "detected_at": "2026-10-30T10:01:36.017664Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "e8aa84a1ac6a59120325",
       "title": "Arkansas secretary of state asks U.S. Supreme Court to reverse ruling allowing electronic signatures for voter registration - The Arkansas Democrat-Gazette",
@@ -286,6 +305,28 @@
       "publisher": "AOL.com",
       "published_at": "2026-10-29T23:44:58Z",
       "detected_at": "2026-10-30T01:14:10.175238Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7b5e696be2cf723772ff",
+      "title": "Mississippi absentee voting surges ahead of 2026 General Election - WJTV",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQenFUOURJMnFMem5idTAxSEtvc0xPMWtvQlJXRVlWbFhrOTRZdE9wbl9QbndOTUhZbk5JY1pUX2JjTnFxZXdzbzJkVzd6SElKMmhTR2JBMnc1cURPZ0o1UEFESlJ2N0FvSzl1d3lISW9OUDdUN2NfZTgwVmxjMEZJSEdwOFlzV3VtMEFlV0Z2N3pLSThqbjA2aGtMV21zdGZJNWln?oc=5",
+      "publisher": "WJTV",
+      "published_at": "2026-10-29T23:44:56Z",
+      "detected_at": "2026-10-30T10:01:36.017664Z",
       "state_hints": [
         "MS"
       ],
@@ -458,6 +499,24 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "60714bd50485ae865eed",
+      "title": "Election expert sounds alarm on how noncitizens are landing on voter rolls - AOL.com",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNeFlxcjJaaGVVODRLQjFCcmJtTXpxWTVHa0x1T3ByLXNxb2dFLXpWSVd5emN2RTlDSHdhcjg0b0FvTm15Tl9BSDRJUE1KU19mMTZzT2lDWHJVamhNVVBrNTZFOHVhOGhYbmk5LTRKOW16WDJaUmRqMG41RlVpQmo3ZFp0OHhaMExTTk0xZw?oc=5",
+      "publisher": "AOL.com",
+      "published_at": "2026-10-29T18:41:22Z",
+      "detected_at": "2026-10-30T10:01:36.017664Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4966,62 +5025,6 @@
         "2026",
         "3"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "cff94bfd02137375ab2a",
-      "title": "60 Minutes Transcript: Election officials describe impacts of ongoing voting investigations - CBS News",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTUdXV0JzZ0NpT0ZXYWFpcWwxSDh2YVR6SFF6YkxJdGxZWVJPTWFLc0FidEVhaDE4Y1Y3N0hLdmhTVC04Y2s3NjliOGZ3WVJObERUb0RZMnBZdnR5UmVESW5GSG9GRFQ4Yk9VVkZxZElBVlNXZk9ldmJIbFhRWXVhUjdoVmhTLThBNGJxY3NZemtJcVR0ZXhkcjYyR1NoUHRp?oc=5",
-      "publisher": "CBS News",
-      "published_at": "2026-10-18T23:38:57Z",
-      "detected_at": "2026-10-19T00:57:50.286810Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "60 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9e5f4870dfd13f2158ab",
-      "title": "60 Minutes Transcript: Election officials describe impacts of federal actions on voting - CBS News",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNTUdXV0JzZ0NpT0ZXYWFpcWwxSDh2YVR6SFF6YkxJdGxZWVJPTWFLc0FidEVhaDE4Y1Y3N0hLdmhTVC04Y2s3NjliOGZ3WVJObERUb0RZMnBZdnR5UmVESW5GSG9GRFQ4Yk9VVkZxZElBVlNXZk9ldmJIbFhRWXVhUjdoVmhTLThBNGJxY3NZemtJcVR0ZXhkcjYyR1NoUHRp?oc=5",
-      "publisher": "CBS News",
-      "published_at": "2026-10-18T23:38:00Z",
-      "detected_at": "2026-10-19T01:45:15.795954Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "60 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "23c2f47f5e6c0ab2109d",
-      "title": "Seton Hall students voice concerns about election integrity ahead of midterms - The Setonian",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPMmowYkU2RnNOMzdNbGFLN1lHcy12MlZsVkl4U3JySm5Mb08xbWpnS01qNDZsaEpkajF5cVc4YVhZaU9NSFRJT0tZMjFYbGV6SXRiQnpuQ05teXl6QmFIbGtrNG1UR2xLQTRhZnJFdGJLUGxoYlV3b0pBeEJiaHBZYWtzUktwVVlyUl9QSzZBSWtHNFNzU0pZenROZHYzRXhOT1Q5TGxGWXF2X2FfdWUzMDNUb2R2Um5KTHRQeWZR?oc=5",
-      "publisher": "The Setonian",
-      "published_at": "2026-10-18T19:00:00Z",
-      "detected_at": "2026-10-18T22:40:00.910999Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
