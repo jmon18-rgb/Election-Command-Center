@@ -256,3 +256,35 @@ jobs:
             artifacts/readiness/ui-review/announcement-motion-integrated/
           if-no-files-found: warn
           retention-days: 7
+
+  michigan-private-song-pack:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the existing pinned browser runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Michigan story preserves validated-call and preview isolation guards
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/michigan-celebration
+        run: node scripts/test_michigan_celebration_browser.mjs
+      - name: Private supplied song pack commits safely and survives reload
+        if: ${{ !cancelled() }}
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/celebration-song-pack
+        run: node scripts/test_celebration_pack_browser.mjs
+      - name: Upload bounded Michigan and private pack evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: michigan-private-song-pack
+          path: |
+            artifacts/readiness/ui-review/michigan-celebration/
+            artifacts/readiness/ui-review/celebration-song-pack/
+          if-no-files-found: warn
+          retention-days: 7

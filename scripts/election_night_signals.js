@@ -46,7 +46,10 @@
    description:'A Democratic Texas governor call against Greg Abbott. No Senate result is required.'},
   {id:'mississippi',title:'MISSISSIPPI TURNS THE PAGE',tag:'An outdated mascot meets the retirement crate.',
    icon:'🌊',type:'all',needs:[{office:'Senate',key:'MS',party:'D'}],
-   description:'A source-reported Democratic Mississippi Senate call, subject to the existing exact-race source checks. Not certification.'}
+   description:'A source-reported Democratic Mississippi Senate call, subject to the existing exact-race source checks. Not certification.'},
+  {id:'michigan',title:'FEAR CAMPAIGN: SIGNAL LOST',tag:'Michigan declines the fear subscription.',
+   icon:'📴',type:'all',needs:[{office:'Senate',key:'MI',party:'D'}],
+   description:'A source-reported Democratic Michigan Senate call, subject to the existing exact-race source checks. Not certification.'}
  ]);
  const TRACKED=Object.freeze([
   {office:'Senate',key:'SC'},{office:'Senate',key:'TX'},{office:'Governor',key:'TX'},

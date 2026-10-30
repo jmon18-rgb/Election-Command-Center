@@ -1,5 +1,14 @@
 # National needle acceptance decision — October 27, 2026
 
+## October29 ET / October30 UTC — PR536 verified published
+
+Original Fish Head and timed Election Night presentation are COMPLETE. Tested0de978e5 passed all35 workflow parents/55latest jobs (52SUCCESS,3declared PR skips,0external); protected merge80059ead, final CURRENTmain37ea8589 / Pages40978188429 SUCCESS. All39 selected changed public files/current index and coherence13/no_credit match origin/main. Actual HTTPS1366/390 unified161, native60, Personal63 and phase86 assertions pass; same-frame presentation reader0px. Ordinary27 read-only preserves private preferences/status and2024archive with14current assets; no ordinary interaction/geometry or across-reload forecast-equality claim.
+
+Guide1.0/eleven human scopes/hashes/NOT_RUN-null remain unchanged; ONE536component22→23 appended after verified publication. Ledgerf16ab11c; addendum operator-layout-addendum-pr536-20261030.txt. Outcome pr536-published-outcome-20261030.json (2c31ddd8), independent audit2ffdb73c. Earlier candidate notes below are historical, with no pending536gate or unchanged replay. Model/source/call rules and open empirical/human/positive/capacity gates remain. The ignored initial-clock fixture correction preserves all86 assertions and carries with the next real source change, never a CI-only push.
+
+This is a presentation and reader-lifetime release. Numerical helper/engine/kernel identities, one correlated pipeline,3,000draws/hardESS/30s, source clocks/admission, budgets and winner eligibility are unchanged. Same accepted model bundles remain identical during pure presentation ticks. Clean CI does not close empirical evaluation, actual post-close delivery or human acceptance.
+
+
 ## October29 — PR535 presentation delivery, empirical gate unchanged
 
 Integrated Early indicators/Poop Meter, originalunderpantsSVGs, reversevisualorder and compactheader are verifiedpublished on4e7c3656/Pages40953771565. All35exactheadparents/55latestjobs pass;24publicfiles/coherence and actual1366/390all157/23pins pass. The actualreader-restoration and wake-summary fixes preserve numerical/source/classifier/call authority and exactliveoutput; no meter threshold/likelihood/route change. Original11humanscopes/hash/NOT_RUN/null remain; one22ndscopedcomponent records engineering proof. Independentheldout calibration, actualpositive2026 delivery, human/physicaldevice/listening/assistive acceptance and incomplete matchedsource coverage remain open. See auditedpr535-published-outcome-20261029.json.

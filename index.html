@@ -1630,6 +1630,10 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
    <button id="enCelebrationLocalChoose" type="button">Choose an audio file</button>
    <button id="enCelebrationLocalRemove" type="button" disabled>Remove saved audio</button>
    <input id="enCelebrationLocalFile" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg,.flac" hidden>
+   <button id="enCelebrationPackChoose" type="button">Load supplied song pack</button>
+   <input id="enCelebrationPackFiles" type="file" accept="audio/mpeg,.mp3" multiple hidden>
+   <p class="tiny" id="enCelebrationPackHelp">Select several supplied tracks to assign them together. Recognized names go to their celebrations; files stay in this browser.</p>
+   <p class="tiny" id="enCelebrationPackStatus" role="status" aria-live="polite"></p>
   </div>
   <details class="en-celebration-music-settings">
    <summary>Other versions &amp; optional YouTube</summary>
@@ -1735,13 +1739,14 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 </details>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
-<script src="./scripts/election_night_celebration_player.js?v=c1323c671a78"></script>
+<script src="./scripts/election_night_celebration_player.js?v=a644b65b2ec1"></script>
 <script src="./scripts/election_night_announcement_motion.js?v=71716b57b5f2"></script>
 <script src="./scripts/election_night_celebration_online.js?v=b0163b7f8211"></script>
-<script src="./scripts/election_night_celebration_local.js?v=cb2655f0b013"></script>
-<script src="./scripts/election_night_celebration_music.js?v=6a479f8a84b1"></script>
-<script src="./scripts/election_night_celebration_music_choices.js?v=d6d015761993"></script>
-<script src="./scripts/election_night_celebration_scene.js?v=eea0c6fcdbf5"></script>
+<script src="./scripts/election_night_celebration_local.js?v=8efdd613eff6"></script>
+<script src="./scripts/election_night_celebration_pack.js?v=971259116a7a"></script>
+<script src="./scripts/election_night_celebration_music.js?v=095587efc26b"></script>
+<script src="./scripts/election_night_celebration_music_choices.js?v=a64b1c3f21d8"></script>
+<script src="./scripts/election_night_celebration_scene.js?v=46b2ab94dbb5"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
@@ -1768,7 +1773,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/election_night_nowcast.js?v=b8cd63572ea1"></script>
 <script src="./scripts/election_night_early_signals.js?v=36958b325016"></script>
 <script src="./scripts/election_night_priority.js?v=67317c95ade2"></script>
-<script src="./scripts/election_night_signals.js?v=de465c6b3fd3"></script>
+<script src="./scripts/election_night_signals.js?v=a4ebd9d2b4cf"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_indicator_status.js?v=0248c0cbc715"></script>
 <script src="./scripts/election_night_early_weather.js?v=def635952113"></script>
@@ -6610,6 +6615,7 @@ const enMilestonePosters=Object.freeze({
  blue_corn:{file:'blue-corn',alt:'A large ear of corn with blue kernels: one blue kernel of truth'},
  blansas:{file:'blansas',asset:'celebration-owner-kansas.jpg',revision:'26f7df1f64f4',fallbackRevision:'6b7cd186527d',alt:'Owner-supplied fictional Kansas painting: John Brown versus a Confederate soldier with stylized blue splashes'},
  maine:{file:'maine',alt:'Original cartoon witch with a hat labelled Collins beside a broom'},
+ michigan:{file:'michigan',alt:'Original political satire: a panic machine is muted by a Michigan ballot box, with Voters Not Scared and blue mitten confetti'},
  nebraska:{file:'nebraska',alt:'Blue tractor across Nebraska cornfields: Osborn independent corn-fed rebellion'},
  ohio:{file:'ohio',alt:'A buckeye nut cracked by a vivid blue lightning bolt: Sherrod Brown comeback'},
  talarico:{file:'talarico',alt:'Electric-blue horns hand gesture and a Texas Senate victory star for James Talarico'},
@@ -6623,17 +6629,23 @@ let enMilestoneShown=new Set();
 try{
  const saved=JSON.parse(localStorage.getItem(enMilestoneSeenKey)||'[]');
  if(Array.isArray(saved))enMilestoneShown=new Set(saved.filter(id=>
-  window.ElectionNightSignals?.MILESTONES.some(x=>x.id===id)).slice(0,10));
+  window.ElectionNightSignals?.MILESTONES.some(x=>x.id===id)).slice(0,window.ElectionNightSignals?.MILESTONES.length||0));
 }catch{}
 function enMilestonePersist(){
  try{localStorage.setItem(enMilestoneSeenKey,JSON.stringify([...enMilestoneShown]))}catch{}
 }
 function enMilestoneEvidence(){
- const rows=Object.create(null);
- for(const item of window.ElectionNightSignals?.TRACKED||[]){
-  const key=enWatchId(item);
-  const civic=enCivicUsable(item);
-  if(civic)rows[key]=civic;
+ const rows=Object.create(null),seen=new Set();
+ // Presentation may read an already admitted call without granting another
+ // transport slot, discovery request or healthy-primary fallback exception.
+ for(const spec of window.ElectionNightSignals?.MILESTONES||[]){
+  for(const item of spec.needs||[]){
+   const key=enWatchId(item);
+   if(seen.has(key))continue;
+   seen.add(key);
+   const civic=enCivicUsable(item);
+   if(civic)rows[key]=civic;
+  }
  }
  return rows;
 }
@@ -6641,6 +6653,7 @@ function enMilestoneRender(item,demo=false){
  if(enModeYear!==2026||!item)return false;
  ++enCelebrationModalEpoch;
  enCelebrationStopMedia();
+ const packStatus=$('#enCelebrationPackStatus');if(packStatus)packStatus.textContent='';
  const tsunami=item.id==='tsunami';
  $('#enMilestoneKicker').textContent=demo?'PREVIEW · FICTIONAL ACHIEVEMENT':
   'SOURCE-REPORTED CALL · UNOFFICIAL';
@@ -6777,6 +6790,7 @@ function enCelebrationDismiss(restore=true){
  if(enFishPending.length&&!enFishCurrent)enFishNextBulletin();
 }
 function enCelebrationSyncMusic(){
+ const packStatus=$('#enCelebrationPackStatus');if(packStatus)packStatus.textContent='';
  ++enCelebrationSettingsEpoch;
  const track=enCelebrationOnline?.track(enCelebrationCurrent,enCelebrationMusicSettings);
  const pick=window.ElectionNightCelebrationMusicChoices?.forEvent(enCelebrationCurrent),pickNode=$('#enCelebrationTrackPick');
@@ -6825,14 +6839,43 @@ $('#enCelebrationMusicQuick').addEventListener('click',()=>{
 });
 $('#enCelebrationLocalChoose').addEventListener('click',()=>$('#enCelebrationLocalFile').click());
 $('#enCelebrationLocalFile').addEventListener('change',async event=>{
- const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=++enCelebrationSettingsEpoch,file=event.target.files?.[0];event.target.value='';if(!file)return;
+ const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=++enCelebrationSettingsEpoch,file=event.target.files?.[0];event.target.value='';
+ const packStatus=$('#enCelebrationPackStatus');if(packStatus)packStatus.textContent='';if(!file)return;
  const saved=await enCelebrationLocal?.save(id,file);
  if(id!==enCelebrationCurrent||modalEpoch!==enCelebrationModalEpoch||settingsEpoch!==enCelebrationSettingsEpoch||!$('#enMilestoneSpotlight').open)return;
  if(saved?.status!=='SAVED'){$('#enCelebrationOnlineStatus').textContent=saved?.status==='FILE_TOO_LARGE'?'Choose an audio file smaller than 16 MB.':'Could not save that audio file. Try MP3, M4A, WAV or OGG; the original score is still available.';return;}
  enCelebrationMusicSettings.mode='original';enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
 });
+$('#enCelebrationPackChoose').addEventListener('click',()=>$('#enCelebrationPackFiles').click());
+async function enCelebrationImportPack(files){
+ const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=++enCelebrationSettingsEpoch;
+ const current=()=>id===enCelebrationCurrent&&modalEpoch===enCelebrationModalEpoch&&settingsEpoch===enCelebrationSettingsEpoch&&$('#enMilestoneSpotlight').open;
+ const status=$('#enCelebrationPackStatus'),plan=window.ElectionNightCelebrationPack?.plan(files);
+ if(!current())return;
+ if(!enCelebrationLocal||plan?.status!=='READY'){status.textContent='Select up to 16 supplied MP3 files with their original names. No tracks were changed.';return;}
+ // Validate every matched file before the first write. Each save is committed
+ // separately; cancellation may let its one in-flight transaction finish.
+ if(plan.entries.some(row=>window.ElectionNightCelebrationLocal?.validate(row.file)?.status!=='VALID')){status.textContent='A matched file is invalid or larger than 16 MB. No tracks were changed.';return;}
+ let saved=0,failed=0;
+ for(const row of plan.entries){
+  if(!current())return;
+  status.textContent='Saving track '+(saved+failed+1)+' of '+plan.entries.length+' in this browser…';
+  const result=await enCelebrationLocal.save(row.id,row.file);
+  if(result?.status==='SAVED')saved++;else failed++;
+  if(!current())return;
+ }
+ enCelebrationMusicSettings.mode='original';enCelebrationOnline?.save(enCelebrationStorage,enCelebrationMusicSettings);enCelebrationSyncMusic();enCelebrationMaybeReplayMusic();
+ status.textContent='Saved '+saved+' track'+(saved===1?'':'s')+' in this browser.'+(failed?' '+failed+' could not be saved.':'')+(plan.skipped>plan.duplicates?' '+(plan.skipped-plan.duplicates)+' unrecognized file'+(plan.skipped-plan.duplicates===1?' was':'s were')+' skipped.':'')+(plan.duplicates?' '+plan.duplicates+' duplicate assignment'+(plan.duplicates===1?' was':'s were')+' skipped.':'');
+}
+$('#enCelebrationPackFiles').addEventListener('change',event=>{
+ const selected=event.target.files;if(!selected?.length)return;
+ if(selected.length>16){++enCelebrationSettingsEpoch;event.target.value='';$('#enCelebrationPackStatus').textContent='Choose no more than 16 files at once. No tracks were changed.';return;}
+ const files=Array.from(selected);event.target.value='';void enCelebrationImportPack(files);
+});
 $('#enCelebrationLocalRemove').addEventListener('click',async()=>{
- const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=++enCelebrationSettingsEpoch,removed=await enCelebrationLocal?.remove(id);
+ const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=++enCelebrationSettingsEpoch;
+ const packStatus=$('#enCelebrationPackStatus');if(packStatus)packStatus.textContent='';
+ const removed=await enCelebrationLocal?.remove(id);
  if(id!==enCelebrationCurrent||modalEpoch!==enCelebrationModalEpoch||settingsEpoch!==enCelebrationSettingsEpoch||!$('#enMilestoneSpotlight').open)return;
  if(removed?.status!=='REMOVED'){$('#enCelebrationOnlineStatus').textContent='Could not remove saved audio from this browser.';return;}
  enCelebrationSyncMusic();if(enCelebrationMusicSettings.mode==='original')enCelebrationMaybeReplayMusic();

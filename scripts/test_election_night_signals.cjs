@@ -198,3 +198,62 @@ assert.equal(signals.explainNeedle(next,prior,[]).liveCount,0);
 console.log('Election-night needle movement and source-called milestone rules PASS');
 
 const oldAK=mk('Senate','AK','Daniel J. Jr. Sullivan','R');oldAK.last_updated='2026-11-04T06:10:00Z';assert.equal(signals.validatedCall(oldAK,Date.parse('2026-11-04T06:15:00Z')),null,'A cached older Alaska source cannot award a Republican chamber seat from the wrong Sullivan/RCV contract');
+
+// Fictional normalized Michigan calls only: this does not establish a live
+// provider race ID, ballot roster, source delivery or a new collection route.
+// Acquisition remains the original fixed ten items. A new story only reads
+// a Michigan call already admitted by the existing provider path.
+assert.deepEqual(signals.TRACKED,[
+ {office:'Senate',key:'SC'},{office:'Senate',key:'TX'},{office:'Governor',key:'TX'},
+ {office:'Senate',key:'IA'},{office:'Governor',key:'IA'},
+ {office:'Senate',key:'KS'},{office:'Senate',key:'ME'},{office:'Senate',key:'NE'},
+ {office:'Senate',key:'OH-special'},{office:'Senate',key:'MS'}
+],'Adding a celebration must not change the transport-tracked cohort');
+const miSpec=signals.MILESTONES.find(x=>x.id==='michigan');
+assert.deepEqual(miSpec.needs,[{office:'Senate',key:'MI',party:'D'}]);
+assert.equal(miSpec.type,'all');
+const miCall=()=>mk('Senate','MI','Fictional Michigan Democrat','D','Fictional Michigan Republican');
+const miState=(row,now=at,year=2026)=>signals.evaluateMilestones(
+ row?{'Senate|MI':row}:{},{now,year}).find(x=>x.id==='michigan');
+assert.equal(miState(null).state,'waiting','No cached call cannot earn Michigan');
+const earnedMi=miState(miCall());
+assert.equal(earnedMi.state,'earned');
+assert.equal(earnedMi.evidence[0].key,'Senate|MI');
+assert.equal(earnedMi.evidence[0].call.sourceClass,'provider_reported_unofficial');
+assert.equal(earnedMi.evidence[0].call.certified,false);
+assert.equal(miState({...miCall(),called:null}).state,'waiting','A raw lead is not a call');
+assert.equal(miState({...miCall(),called:'Fictional Michigan Republican'}).state,'waiting','An R call cannot earn Michigan');
+assert.equal(miState(miCall(),at,2024).state,'waiting','Archive cannot earn Michigan');
+for(const [change,label]of [
+ [r=>{r.provider='Open America'},'Primary raw counts are not the civicAPI call ledger'],
+ [r=>{r.office='Governor'},'Wrong office under a Michigan Senate dictionary key'],
+ [r=>{r.key='OH-special'},'Wrong contest under a Michigan dictionary key'],
+ [r=>{r.race_id=0},'No invented or missing provider race identity'],
+ [r=>{r.called='Unlisted winner'},'Winner must match exactly one listed candidate'],
+ [r=>{r.candidates.push({...r.candidates[0]})},'Duplicate candidate identity'],
+ [r=>{r.total=0},'Zero votes cannot earn a call'],
+ [r=>{r.candidates[0].votes=0},'A called candidate must have positive votes'],
+ [r=>{r.stale=true},'Stale source'],[r=>{r.sourceStale=true},'Source-wide unavailable flag'],
+ [r=>{r.last_updated='2024-11-04T02:00:00Z'},'Historical source timestamp'],
+ [r=>{r.last_updated='2026-11-04T01:59:59.999Z'},'Pre-final-close source flag cannot revive later'],
+ [r=>{r.last_updated='2026-11-04T03:15:00.001Z'},'Future source timestamp beyond existing15min guard']
+]){const row=miCall();change(row);assert.equal(miState(row).state,'waiting',label);}
+const earlyMi=miCall();earlyMi.last_updated='2026-11-04T01:00:00Z';
+assert.equal(miState(earlyMi,Date.parse(earlyMi.last_updated)).state,'waiting','Michigan earliest local close does not award a statewide call');
+const finalMi=miCall();finalMi.last_updated='2026-11-04T02:00:00Z';
+assert.equal(miState(finalMi,Date.parse(finalMi.last_updated)-1).state,'waiting','Michigan cannot earn before final9PMET close');
+assert.equal(miState(finalMi,Date.parse(finalMi.last_updated)).state,'earned','The exact installed final-close boundary is unchanged');
+assert.equal(miState(finalMi,Date.parse(finalMi.last_updated)+180*60000).state,'earned','Existing inclusive three-hour freshness boundary');
+assert.equal(miState(finalMi,Date.parse(finalMi.last_updated)+180*60000+1).state,'waiting','Expired call is withdrawn without a new threshold');
+const miAll=signals.evaluateMilestones({'Senate|MI':miCall()},{year:2026,now:at});
+assert.deepEqual(miAll.filter(x=>x.state==='earned').map(x=>x.id),['michigan'],'Michigan cannot borrow or award another state milestone');
+const miGain=signals.changingMilestones([],miAll);
+assert.deepEqual(miGain.gained,['michigan']);
+assert.deepEqual(signals.changingMilestones(miGain.active,miAll).gained,[],'Repeated identical call does not regain a seen event');
+const miWithdrawal=signals.changingMilestones(miGain.active,signals.evaluateMilestones(
+ {'Senate|MI':{...miCall(),called:null}},{year:2026,now:at}));
+assert.deepEqual(miWithdrawal.withdrawn,['michigan'],'A corrected or withdrawn call revokes Michigan');
+assert.deepEqual(signals.changingMilestones(miWithdrawal.active,miAll).gained,['michigan'],'A genuinely readmitted call can recover');
+const miWindow={};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'election_night_signals.js'),'utf8'),{window:miWindow});
+assert.equal(miWindow.ElectionNightSignals.evaluateMilestones({'Senate|MI':miCall()},{year:2026,now:at}).find(x=>x.id==='michigan').state,'waiting','Missing shared final-close validator fails closed for Michigan');
+console.log('Michigan passive-call celebration: unchanged acquisition cohort, final-close/freshness/identity/withdrawal/dedup guards PASS');

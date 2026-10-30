@@ -16,7 +16,8 @@
   talarico:[['🤘','HOOK ’EM BLUE','Raise the blue horns, Texas.'],['⭐','TALARICO TAKES THE STAGE','One Senate call. One enormous victory lap.'],['💙','TEXAS SENATE: TALARICO','The governor race has its own story.']],
   abbott:[['🌳','THE CAMPAIGN HAS A PROBLEM','Fictional election-night artwork. Not a real event.'],['💙','TIMBER, INCUMBENT','A theatrical send-off for an era of Texas politics.'],['🎉','TEXAS GOVERNOR FLIPS','An election defeat. A new chapter.']],
   mississippi:[['🌊','A CHANGE IN THE CURRENT','Mississippi turns the page.'],['📦','STRAIGHT INTO STORAGE','The retired mascot gets a very blue sendoff.'],['💙','MISSISSIPPI SENATE FLIPS','Leave the old symbols behind.']],
-  tsunami:[['🌊','A VERY LARGE WAVE','Preview the grand finale.'],['🌊 🌊','PLEASE SECURE YOUR LAWN SIGNS','The tide has theatrical ambitions.'],['💙','BLUE TSUNAMI','Preview only until national conditions can be verified.']]
+  tsunami:[['🌊','A VERY LARGE WAVE','Preview the grand finale.'],['🌊 🌊','PLEASE SECURE YOUR LAWN SIGNS','The tide has theatrical ambitions.'],['💙','BLUE TSUNAMI','Preview only until national conditions can be verified.']],
+  michigan:[['📡','FEAR CAMPAIGN: SIGNAL LOST','The panic machine has a customer-service issue.'],['🔇','MICHIGAN PRESSES MUTE','Your fear subscription has been cancelled.'],['💙','ERROR: VOTERS NOT SCARED','Michigan declines the fear subscription.']]
  });
  function create({render=()=>{},announce=done=>done(),music=()=>{},valid=()=>true,
   setTimer=setTimeout,clearTimer=clearTimeout,onIdle=()=>{},reducedMotion=()=>false}={}){

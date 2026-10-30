@@ -13,7 +13,8 @@
   blue_corn:{title:'Electric harvest two-step',bpm:116,key:67,voice:'pluck',kit:'country',melody:[0,7,4,7,2,7,4,9,5,12,9,12,7,14,11,7]},
   maine:{title:'Broom-and-bells sendoff',bpm:132,key:69,voice:'bell',kit:'waltz',minor:true,melody:[0,3,7,12,10,7,5,8,12,17,15,12,7,10,14,7]},
   ohio:{title:'Buckeye blue-shock riff',bpm:128,key:52,voice:'bright',kit:'rock',minor:true,melody:[0,0,12,0,7,10,7,3,0,0,15,12,10,7,3,0]},
-  tsunami:{title:'The rising tide finale',bpm:100,key:60,voice:'bell',kit:'swell',melody:[0,4,7,12,2,5,9,14,4,7,12,16,7,11,14,19]}
+  tsunami:{title:'The rising tide finale',bpm:100,key:60,voice:'bell',kit:'swell',melody:[0,4,7,12,2,5,9,14,4,7,12,16,7,11,14,19]},
+  michigan:{title:'FEAR CAMPAIGN: SIGNAL LOST',bpm:112,key:62,voice:'brass',kit:'industrial-funk',minor:true,melody:[0,3,7,10,9,7,5,3,0,7,12,10,7,3,0,12]}
  });
  const DURATION=7.05;
  function score(id){
@@ -21,6 +22,23 @@
   const events=[],beat=60/theme.bpm,add=(instrument,at,duration,note,level)=>{
    if(at>=DURATION-.12)return;events.push({instrument,at,duration:Math.min(duration,DURATION-at-.02),note,level});
   };
+  if(id==='michigan'){
+   // Three original scene cues: PANICCAST pulses, a ballot-stamp choke/rest,
+   // then comic brass and industrial-funk confetti. No song tune or recording.
+   for(let i=0;i<8;i++){add('bright',i*.22,.12,83+i%2,.028);add('hat',i*.22+.1,.035,0,.012);}
+   add('snare',1.8,.22,0,.009);
+   add('pluck',2.4,.1,theme.key+7,.032);add('pluck',2.52,.09,theme.key-5,.025);add('kick',2.7,.1,38,.055);
+   for(const interval of [0,3,7])add('pad',3,.36,theme.key-12+interval,.01);
+   // The deliberate quiet interval belongs to the composition, not app mute.
+   const accents=[0,.18,.36,.72,.9,1.08,1.44,1.62,1.8];
+   for(let i=0;i<accents.length;i++)add('brass',4.8+accents[i],.13,theme.key+theme.melody[i],.045);
+   add('brass',6.85,.16,theme.key+12,.045);
+   for(const [offset,interval]of [[0,0],[.28,7],[.72,0],[1.12,10],[1.56,7],[1.88,0]])add('bass',4.8+offset,.17,theme.key-24+interval,.06);
+   for(let i=0;i<4;i++){add('kick',4.8+i*.56,.14,38,.075);add('snare',5.08+i*.56,.1,0,.035);}
+   for(let i=0;i<15;i++)add('hat',4.8+i*.145,.035,0,.014);
+   for(const at of [4.8,6.1])for(const interval of [0,3,7])add('pad',at,.45,theme.key-12+interval,.01);
+   return {id,title:theme.title,bpm:theme.bpm,duration:DURATION,events:events.sort((a,b)=>a.at-b.at)};
+  }
   const roots=[0,5,7,0],third=theme.minor?3:4;
   for(let bar=0;bar<4;bar++){
    const at=bar*1.7,root=roots[bar];for(const interval of [0,third,7])add('pad',at,1.58,theme.key-12+root+interval,.015);
