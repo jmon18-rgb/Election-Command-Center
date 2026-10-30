@@ -958,7 +958,7 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 .en-fish-talking .fish-anchor-mouth{transform-box:view-box;transform-origin:320px 214px;transform:scaleY(calc(.06 + .94 * var(--fish-speech-level,0)));transition:transform 45ms linear}
 .en-fish-talking .fish-anchor-jaw{transform-box:view-box;transform-origin:320px 224px;transform:translateY(calc(20px * var(--fish-speech-level,0)));transition:transform 45ms linear}
 .en-fish-talking[data-photo-ready=true][data-animate=false]>.fish-anchor-svg{display:none}
-.en-fish-talking>.en-fish-still{display:none;width:100%;height:auto;object-fit:contain}
+.en-fish-talking>.en-fish-still{display:block;width:100%;height:auto;object-fit:contain}.en-fish-talking>.en-fish-still[hidden],.en-fish-talking[data-image-error=true]>.en-fish-still{display:none}.en-fish-image-error{font-size:12px;line-height:1.5;padding:16px;color:#b6cbe0}
 .en-fish-talking[data-photo-ready=true][data-animate=false]>.en-fish-still{display:block}
 .en-celebration-fish-frame{width:min(100%,300px);margin:0 auto 12px}
 .en-celebration-fish-frame[hidden]{display:none!important}
@@ -983,8 +983,16 @@ body[data-active-page="electionNight"] .hero-actions{display:none}
 body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active-page="electionNight"] .feed-command-strip{margin-top:12px;margin-bottom:8px}body[data-active-page="electionNight"] .tabs{margin-top:4px;margin-bottom:15px}#electionNight>.sectionhead{margin-bottom:7px;align-items:flex-start}#electionNight>.sectionhead .detail{font-size:11px;line-height:1.5;margin-top:4px}#electionNight #enChecked{font-size:10px;white-space:nowrap}#electionNight :is(#enMode2026,#enMode2024,#enRefresh){min-height:44px}#electionNight .en-quick-actions{gap:7px;margin:5px 0 9px;align-items:flex-start}#electionNight .en-quick-fish{min-height:44px;padding:8px 11px;font-size:12px}#electionNight .en-display-options>summary,#electionNight .en-fish-settings>summary{display:flex;align-items:center;min-height:44px;padding:7px 9px;font-size:12px;cursor:pointer}#electionNight .en-display-options>summary:before,#electionNight .en-fish-settings>summary:before{content:'▸';margin-right:5px}#electionNight .en-display-options[open]>summary:before,#electionNight .en-fish-settings[open]>summary:before{content:'▾'}#electionNight .en-display-options p{font-size:11px;max-width:280px;margin:8px 0}#electionNight .en-fish-settings{padding:0}#jointNightPanelSnapshotStatus{font-size:11px;line-height:1.4;margin:7px 0}#electionNight .en-nmap-intro{font-size:11px;line-height:1.45;margin:8px 0}
 @media(max-width:650px){body[data-active-page="electionNight"] .feed-strip-title{flex-basis:auto;margin:0;font-size:8px;gap:4px}body[data-active-page="electionNight"] .feed-command-strip{gap:5px;padding:6px 8px}body[data-active-page="electionNight"] .feed-glance{font-size:9px;padding:4px 5px;min-height:36px}body[data-active-page="electionNight"] .feed-strip-details{margin-left:auto}body[data-active-page="electionNight"] .feed-strip-details>summary{min-height:36px;display:flex;align-items:center}body[data-active-page="electionNight"] .feed-command-strip:not(:has(.feed-strip-details[open])) :is(#feedPolls,#feedNews,#feedSecurity){display:none}}
 @media(max-width:500px){.en-early-panel{padding:12px}.en-early-panel-head{margin-bottom:10px}.en-early-panel-head h3{font-size:1.05rem}.en-poop-top h4{font-size:.75rem}.en-poop-level{font-size:.82rem;max-width:64%}.en-poop-scale{gap:5px}.en-poop-scale li{font-size:.7rem;padding:7px 3px}.en-poop-scale li[data-selected="true"]{padding:6px 2px}.en-poop-icon{width:48px;height:48px}.en-poop-tile-label{min-height:2.5em}.en-poop-glance{font-size:.72rem}#electionNight #enChecked{font-size:9px}#electionNight>.sectionhead{gap:6px}#electionNight>.sectionhead>div{min-width:0}#electionNight>.sectionhead h2{letter-spacing:.1em}#electionNight .en-quick-fish{font-size:11px;padding:7px 9px}#electionNight .en-display-options>summary,#electionNight .en-fish-settings>summary{font-size:11px;padding:7px 8px}#electionNight .joint-title{gap:8px}#electionNight .joint-title .label{font-size:8px}}
+
+/* Presentation emphasis follows Eastern election-night phases, not data gates. */
+.en-early-layout-toggle{min-height:44px;min-width:64px;border:1px solid #3b5a70;border-radius:8px;background:#172d42;color:#c7e4fa;padding:7px 10px;font-size:11px;font-weight:750;cursor:pointer}
+.en-early-panel-head{flex-wrap:wrap}.en-early-panel-head .en-early-scope{margin-left:auto}
+.en-early-panel[data-layout="COMPACT"]{padding:12px 16px}.en-early-panel[data-layout="COMPACT"] .en-poop-scale{display:none}.en-early-panel[data-layout="COMPACT"] .en-early-panel-head{margin-bottom:7px}.en-early-panel[data-layout="COMPACT"] #enEarlyIndicatorTitle{font-size:15px}.en-early-panel[data-layout="COMPACT"] .en-poop-meter{margin-top:0}.en-early-panel[data-layout="COMPACT"] .en-poop-glance{margin:4px 0 0}
+.en-early-panel[data-phase="EARLY_INDICATORS"][data-layout="EXPANDED"]{border-color:#60cfc2;box-shadow:0 0 0 1px #60cfc235;background:linear-gradient(130deg,#18394a,#112332)}
+#enEarlyLayoutAuto{min-height:44px;padding:6px 8px}#siteModeLabel{max-width:46%;text-align:right;line-height:1.5}
+@media(max-width:650px){.en-early-panel-head{gap:7px}.en-early-layout-toggle{font-size:10px}.en-early-panel[data-layout="COMPACT"]{padding:10px 12px}}
 </style></head><body>
-<header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode">PRE-ELECTION MODE</div></div></header>
+<header class="top"><div class="shell topin"><div class="brand"><span class="logo">≈</span>IN SEARCH OF <b>BLUE WAVES</b></div><div class="mode" id="siteModeLabel">PRE-ELECTION MODE</div></div></header>
 <main class="shell"><section class="hero hero-waves" aria-label="In Search of Blue Waves — 2026 election data">
   <div class="hero-copy"><div class="eyebrow">2026 U.S. MIDTERMS · NOVEMBER 3</div><h1>In Search of <em>Blue Waves</em></h1>
   
@@ -1267,7 +1275,8 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
   <summary><strong>Display options</strong><span id="enWakeBadge" class="en-wake-badge" role="status" hidden></span></summary>
   <p id="enWakeStatus" role="status">Keep this tab visible; browser/OS may still sleep</p>
   <button id="enScreenAwake" type="button" class="chip" aria-pressed="false">Keep display awake</button>
- </details>
+ <p class="en-live-note" id="enNightSchedule">Automatic Eastern-time layout: first returns from 6 p.m.; early indicators 7:30–9 p.m.; main race watch after 9; overnight counting after 2 a.m. Time changes the presentation, never whether a result is admitted or a race is called. Your chosen page, archive and expanded details take priority.</p>
+</details>
  <details class="en-fish-settings"><summary aria-label="Fish Head sound">Sound</summary>
   <button id="enFishVoice" type="button" aria-pressed="true">Sound: on</button>
   <p>Your Fish Head MP3 plays on every new breaking-results alert. Preview once to enable sound in browsers that block automatic audio.</p>
@@ -1328,7 +1337,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 </section>
  </div>
  <section id="enEarlyIndicatorPanel" class="en-early-panel" aria-labelledby="enEarlyIndicatorTitle">
-  <header class="en-early-panel-head"><div><span class="label">EARLY RETURNS</span><h3 id="enEarlyIndicatorTitle">Early indicators</h3></div><span class="en-early-scope">Relative performance<br>not win odds</span></header>
+  <header class="en-early-panel-head"><div><span class="label">EARLY RETURNS</span><h3 id="enEarlyIndicatorTitle">Early indicators</h3></div><span class="en-early-scope">Relative performance<br>not win odds</span><button type="button" id="enEarlyLayoutToggle" class="en-early-layout-toggle" aria-controls="enPoopMeter" aria-expanded="true">Compact view</button></header>
   <section id="enPoopMeter" class="en-poop-meter" aria-labelledby="enPoopTitle" data-stage="UNRATED">
    <div class="en-poop-top"><h4 id="enPoopTitle">The Poop Meter</h4><p id="enPoopLevel" class="en-poop-level" role="status" aria-live="polite">Waiting for usable returns</p></div>
    <ol class="en-poop-scale" aria-label="Underperformance warning scale, from worst on the left to best on the right">
@@ -1394,6 +1403,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
     <button type="button" id="enEarlyWatchOpen">Open the shared race watch ↗</button>
     <button type="button" id="enEarlyWeatherPreview">Preview “storm brewing”</button>
    </div>
+   <p class="en-live-note">The meter is featured from 7:30–9 p.m. Eastern on November 3. Outside that window it stays compact; every race and comparison remains available. <button type="button" id="enEarlyLayoutAuto" class="textlink" hidden>Use automatic layout</button></p>
    <p id="enEarlyHealth" class="en-live-note" role="status">Waiting for source-validated early results…</p>
    <p id="enPoopReason" class="en-poop-reason">At least two states need usable matched returns before this meter gets a rating.</p>
    <p id="enPoopCoverage" class="en-poop-coverage">Covered evidence only · not national win odds.</p>
@@ -1599,64 +1609,11 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 
   <h3 id="enMilestoneTitle"></h3>
   <div class="en-celebration-stage" id="enCelebrationStage" hidden>
-   <div class="en-fish-talking en-celebration-fish-frame" id="enCelebrationFishTalking" data-animate="true" hidden>
-    <svg class="fish-anchor-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Original illustrated fish news anchor: a green fish with expressive eyes, fins, scales and a large speaking mouth against a blue broadcast backdrop">
- <style>
-  .fish-anchor-svg{display:block;width:100%;height:auto;overflow:hidden}
-  .fish-anchor-svg .fish-anchor-mouth{transform-box:view-box;transform-origin:320px 214px;transform:scaleY(calc(.06 + .94 * var(--fish-speech-level,0)));transition:transform 55ms linear}
-  .fish-anchor-svg .fish-anchor-jaw{transform-box:view-box;transform-origin:320px 224px;transform:translateY(calc(20px * var(--fish-speech-level,0)));transition:transform 55ms linear}
-  @media(prefers-reduced-motion:reduce){.fish-anchor-svg .fish-anchor-mouth,.fish-anchor-svg .fish-anchor-jaw{transition:none}}
- </style>
- <rect width="480" height="360" rx="22" fill="#0c3157"/>
- <path d="M0 58H480M0 116H480M0 174H480M0 232H480M0 290H480M80 0V360M160 0V360M240 0V360M320 0V360M400 0V360" fill="none" stroke="#3f82ac" stroke-width="1" opacity=".2"/>
- <path d="M0 245L480 72V132L0 305Z" fill="#247eaf" opacity=".18"/>
- <path d="M24 80H103M24 91H78M404 270H453M426 281H453" stroke="#74cfff" stroke-width="3" opacity=".45"/>
- <text x="24" y="36" fill="#b9e9ff" font-family="Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="2">ELECTION DESK</text>
- <rect x="354" y="16" width="104" height="30" rx="7" fill="#922e48"/>
- <circle cx="368" cy="31" r="4" fill="#ffd8d8"/>
- <text x="411" y="36" text-anchor="middle" fill="#fff0ed" font-family="Arial,sans-serif" font-size="12" font-weight="800">FISH CAM</text>
- <!-- Original fish anatomy, not a traced raster or a remote character image. -->
- <path d="M151 271Q124 282 112 319H314Q302 285 273 273Z" fill="#17304b" stroke="#628dab" stroke-width="4"/>
- <path d="M170 274L202 310 224 282 248 310 275 273Z" fill="#e1e6ce"/>
- <path d="M208 298L224 291 238 298 228 311 238 327H208L218 311Z" fill="#d57b52"/>
- <path d="M151 128L130 105 163 109 157 77 186 94 198 63 218 89 244 68 252 99 278 86 277 121Z" fill="#d5a84f" stroke="#738344" stroke-width="4" stroke-linejoin="round"/>
- <path d="M144 194Q108 171 83 186L102 209 75 225Q112 239 145 219Z" fill="#d3a34a" stroke="#7c7e3e" stroke-width="4"/>
- <path d="M133 175Q136 113 191 99Q237 78 289 104Q327 117 341 150Q359 170 385 177Q414 183 411 208Q407 233 382 241Q367 279 318 288Q268 298 223 280Q171 281 145 245Q124 219 133 175Z" fill="#a6b961" stroke="#4d7253" stroke-width="5"/>
- <path d="M145 214Q158 258 219 267Q264 289 318 274Q358 265 380 237Q320 254 284 232Q236 208 200 177Q166 174 145 214Z" fill="#cfcd7e"/>
- <path d="M160 158Q153 195 174 226M175 155Q166 196 187 229M190 157Q180 193 200 223" fill="none" stroke="#6f8e4d" stroke-width="6" stroke-linecap="round"/>
- <g fill="none" stroke="#6c9450" stroke-width="3" opacity=".65" stroke-linecap="round">
-  <path d="M177 125Q185 137 194 125M199 117Q208 130 217 117M223 112Q231 125 240 112M158 142Q167 154 175 142M207 144Q216 157 225 144M184 246Q193 258 202 246M206 252Q215 264 224 252M230 260Q239 272 248 260M254 265Q263 277 272 265"/>
- </g>
- <ellipse cx="243" cy="142" rx="25" ry="29" fill="#edf0ce" stroke="#6b8652" stroke-width="4"/>
- <ellipse cx="250" cy="147" rx="10" ry="15" fill="#1d4d64"/>
- <ellipse cx="253" cy="149" rx="5" ry="10" fill="#0b2334"/>
- <circle cx="250" cy="142" r="3" fill="#fff"/>
- <path d="M218 112Q242 98 264 119" fill="none" stroke="#526e43" stroke-width="8" stroke-linecap="round"/>
- <ellipse cx="310" cy="150" rx="37" ry="39" fill="#f5efcf" stroke="#77874d" stroke-width="5"/>
- <ellipse cx="320" cy="156" rx="16" ry="22" fill="#25617c"/>
- <ellipse cx="324" cy="158" rx="9" ry="17" fill="#0b2334"/>
- <circle cx="318" cy="147" r="6" fill="#fff"/>
- <path d="M277 112Q312 93 341 117" fill="none" stroke="#577343" stroke-width="10" stroke-linecap="round"/>
- <path d="M350 177Q366 171 379 180M350 189Q367 183 382 191" fill="none" stroke="#768e4c" stroke-width="4" stroke-linecap="round"/>
- <ellipse cx="391" cy="195" rx="4" ry="3" fill="#52744c"/>
- <!-- Mouth and jaw use the SVG viewBox coordinate system, never image guesses. -->
- <g class="fish-anchor-mouth" data-fish-mouth="cavity">
-  <path d="M261 214Q316 208 379 214Q363 253 319 258Q281 251 261 214Z" fill="#173141" stroke="#8b8150" stroke-width="2"/>
-  <ellipse cx="321" cy="246" rx="31" ry="8" fill="#d68f76"/>
-  <path d="M280 217L286 227 293 216M352 216L359 227 365 216" fill="#f3ead0"/>
- </g>
- <g class="fish-anchor-jaw" data-fish-mouth="jaw">
-  <path d="M266 224Q321 244 381 223Q363 273 319 281Q282 271 266 224Z" fill="#d4ce83" stroke="#879654" stroke-width="3"/>
-  <path d="M270 226Q319 246 377 226" fill="none" stroke="#af8353" stroke-width="9" stroke-linecap="round"/>
-  <path d="M300 263Q318 270 337 261" fill="none" stroke="#aeaa65" stroke-width="3" stroke-linecap="round"/>
- </g>
- <path d="M261 214Q316 208 379 214" fill="none" stroke="#ba8c56" stroke-width="8" stroke-linecap="round"/>
- <rect x="21" y="311" width="438" height="32" rx="8" fill="#0a68a2" stroke="#6ccefa" stroke-width="2"/>
- <text x="38" y="333" fill="#effbff" font-family="Arial,sans-serif" font-size="21" font-weight="900" letter-spacing="2">FISH NEWS</text>
- <text x="442" y="332" text-anchor="end" fill="#b9e9ff" font-family="Arial,sans-serif" font-size="11" font-weight="700">THE BREAKING DESK</text>
-</svg>
+   <div class="en-fish-talking en-celebration-fish-frame" id="enCelebrationFishTalking" data-animate="false" data-static-original="true" hidden>
 
-    <img class="en-celebration-fish en-fish-still" id="enCelebrationFish" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="Original Fish Head still; image reference in the breaking-news panel" hidden>
+
+    <img class="en-celebration-fish en-fish-still" id="enCelebrationFish" src="./assets/fish-head-original.jpg" alt="SpongeBob’s original Realistic Fish Head news anchor" loading="eager" hidden>
+     <p class="en-fish-image-error" hidden>Original Fish Head image unavailable.</p>
    </div>
    <div class="en-celebration-visual" id="enCelebrationVisual" aria-hidden="true" hidden></div>
    <div class="en-celebration-icon" id="enCelebrationIcon" aria-hidden="true"></div>
@@ -1729,64 +1686,11 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
   <div class="en-fish-bumper"><span class="en-fish-live-dot" aria-hidden="true"></span>WE INTERRUPT THIS ELECTION<span class="en-fish-bumper-side">BIKINI BOTTOM NEWS NETWORK</span></div>
   <div class="en-fish-broadcast">
    <figure class="en-fish-art">
-    <div class="en-fish-talking" id="enFishTalking" data-animate="true">
-     <svg class="fish-anchor-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-label="Original illustrated fish news anchor: a green fish with expressive eyes, fins, scales and a large speaking mouth against a blue broadcast backdrop">
- <style>
-  .fish-anchor-svg{display:block;width:100%;height:auto;overflow:hidden}
-  .fish-anchor-svg .fish-anchor-mouth{transform-box:view-box;transform-origin:320px 214px;transform:scaleY(calc(.06 + .94 * var(--fish-speech-level,0)));transition:transform 55ms linear}
-  .fish-anchor-svg .fish-anchor-jaw{transform-box:view-box;transform-origin:320px 224px;transform:translateY(calc(20px * var(--fish-speech-level,0)));transition:transform 55ms linear}
-  @media(prefers-reduced-motion:reduce){.fish-anchor-svg .fish-anchor-mouth,.fish-anchor-svg .fish-anchor-jaw{transition:none}}
- </style>
- <rect width="480" height="360" rx="22" fill="#0c3157"/>
- <path d="M0 58H480M0 116H480M0 174H480M0 232H480M0 290H480M80 0V360M160 0V360M240 0V360M320 0V360M400 0V360" fill="none" stroke="#3f82ac" stroke-width="1" opacity=".2"/>
- <path d="M0 245L480 72V132L0 305Z" fill="#247eaf" opacity=".18"/>
- <path d="M24 80H103M24 91H78M404 270H453M426 281H453" stroke="#74cfff" stroke-width="3" opacity=".45"/>
- <text x="24" y="36" fill="#b9e9ff" font-family="Arial,sans-serif" font-size="15" font-weight="800" letter-spacing="2">ELECTION DESK</text>
- <rect x="354" y="16" width="104" height="30" rx="7" fill="#922e48"/>
- <circle cx="368" cy="31" r="4" fill="#ffd8d8"/>
- <text x="411" y="36" text-anchor="middle" fill="#fff0ed" font-family="Arial,sans-serif" font-size="12" font-weight="800">FISH CAM</text>
- <!-- Original fish anatomy, not a traced raster or a remote character image. -->
- <path d="M151 271Q124 282 112 319H314Q302 285 273 273Z" fill="#17304b" stroke="#628dab" stroke-width="4"/>
- <path d="M170 274L202 310 224 282 248 310 275 273Z" fill="#e1e6ce"/>
- <path d="M208 298L224 291 238 298 228 311 238 327H208L218 311Z" fill="#d57b52"/>
- <path d="M151 128L130 105 163 109 157 77 186 94 198 63 218 89 244 68 252 99 278 86 277 121Z" fill="#d5a84f" stroke="#738344" stroke-width="4" stroke-linejoin="round"/>
- <path d="M144 194Q108 171 83 186L102 209 75 225Q112 239 145 219Z" fill="#d3a34a" stroke="#7c7e3e" stroke-width="4"/>
- <path d="M133 175Q136 113 191 99Q237 78 289 104Q327 117 341 150Q359 170 385 177Q414 183 411 208Q407 233 382 241Q367 279 318 288Q268 298 223 280Q171 281 145 245Q124 219 133 175Z" fill="#a6b961" stroke="#4d7253" stroke-width="5"/>
- <path d="M145 214Q158 258 219 267Q264 289 318 274Q358 265 380 237Q320 254 284 232Q236 208 200 177Q166 174 145 214Z" fill="#cfcd7e"/>
- <path d="M160 158Q153 195 174 226M175 155Q166 196 187 229M190 157Q180 193 200 223" fill="none" stroke="#6f8e4d" stroke-width="6" stroke-linecap="round"/>
- <g fill="none" stroke="#6c9450" stroke-width="3" opacity=".65" stroke-linecap="round">
-  <path d="M177 125Q185 137 194 125M199 117Q208 130 217 117M223 112Q231 125 240 112M158 142Q167 154 175 142M207 144Q216 157 225 144M184 246Q193 258 202 246M206 252Q215 264 224 252M230 260Q239 272 248 260M254 265Q263 277 272 265"/>
- </g>
- <ellipse cx="243" cy="142" rx="25" ry="29" fill="#edf0ce" stroke="#6b8652" stroke-width="4"/>
- <ellipse cx="250" cy="147" rx="10" ry="15" fill="#1d4d64"/>
- <ellipse cx="253" cy="149" rx="5" ry="10" fill="#0b2334"/>
- <circle cx="250" cy="142" r="3" fill="#fff"/>
- <path d="M218 112Q242 98 264 119" fill="none" stroke="#526e43" stroke-width="8" stroke-linecap="round"/>
- <ellipse cx="310" cy="150" rx="37" ry="39" fill="#f5efcf" stroke="#77874d" stroke-width="5"/>
- <ellipse cx="320" cy="156" rx="16" ry="22" fill="#25617c"/>
- <ellipse cx="324" cy="158" rx="9" ry="17" fill="#0b2334"/>
- <circle cx="318" cy="147" r="6" fill="#fff"/>
- <path d="M277 112Q312 93 341 117" fill="none" stroke="#577343" stroke-width="10" stroke-linecap="round"/>
- <path d="M350 177Q366 171 379 180M350 189Q367 183 382 191" fill="none" stroke="#768e4c" stroke-width="4" stroke-linecap="round"/>
- <ellipse cx="391" cy="195" rx="4" ry="3" fill="#52744c"/>
- <!-- Mouth and jaw use the SVG viewBox coordinate system, never image guesses. -->
- <g class="fish-anchor-mouth" data-fish-mouth="cavity">
-  <path d="M261 214Q316 208 379 214Q363 253 319 258Q281 251 261 214Z" fill="#173141" stroke="#8b8150" stroke-width="2"/>
-  <ellipse cx="321" cy="246" rx="31" ry="8" fill="#d68f76"/>
-  <path d="M280 217L286 227 293 216M352 216L359 227 365 216" fill="#f3ead0"/>
- </g>
- <g class="fish-anchor-jaw" data-fish-mouth="jaw">
-  <path d="M266 224Q321 244 381 223Q363 273 319 281Q282 271 266 224Z" fill="#d4ce83" stroke="#879654" stroke-width="3"/>
-  <path d="M270 226Q319 246 377 226" fill="none" stroke="#af8353" stroke-width="9" stroke-linecap="round"/>
-  <path d="M300 263Q318 270 337 261" fill="none" stroke="#aeaa65" stroke-width="3" stroke-linecap="round"/>
- </g>
- <path d="M261 214Q316 208 379 214" fill="none" stroke="#ba8c56" stroke-width="8" stroke-linecap="round"/>
- <rect x="21" y="311" width="438" height="32" rx="8" fill="#0a68a2" stroke="#6ccefa" stroke-width="2"/>
- <text x="38" y="333" fill="#effbff" font-family="Arial,sans-serif" font-size="21" font-weight="900" letter-spacing="2">FISH NEWS</text>
- <text x="442" y="332" text-anchor="end" fill="#b9e9ff" font-family="Arial,sans-serif" font-size="11" font-weight="700">THE BREAKING DESK</text>
-</svg>
+    <div class="en-fish-talking" id="enFishTalking" data-animate="false" data-static-original="true">
 
-     <img class="en-fish-still" src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Realistic_Fish_Head.jpg" alt="Original Realistic Fish Head still" loading="lazy">
+
+     <img class="en-fish-still" src="./assets/fish-head-original.jpg" alt="SpongeBob’s original Realistic Fish Head news anchor" loading="eager">
+     <p class="en-fish-image-error" hidden>Original Fish Head image unavailable.</p>
     </div>
     <figcaption>FISH HEAD · BREAKING DESK</figcaption>
    </figure>
@@ -1804,7 +1708,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
   </div>
   <audio id="enFishAudio" preload="auto" src="./assets/audio/breaking-news-in-the-2026-midterm-elections.mp3"></audio>
   <p id="enFishAudioStatus" class="en-fish-audio-status" role="status">Your recorded breaking-news announcement plays at the start of each bulletin.</p>
-  <p class="en-fish-attribution">Animated anchor: original illustration; mouth follows your recording’s sound, not generated speech or exact phonemes. <label><input type="checkbox" id="enFishAnimate" checked> Animate the fish anchor</label> Original still (when available): HandyGames / CC BY 3.0 · <a href="https://commons.wikimedia.org/wiki/File:Realistic_Fish_Head.jpg" target="_blank" rel="noopener noreferrer">Wikimedia Commons ↗</a>. Results remain source-attributed.</p>
+  <p class="en-fish-attribution">Original Fish Head still · HandyGames · <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener noreferrer">CC BY 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Realistic_Fish_Head.jpg" target="_blank" rel="noopener noreferrer">image source ↗</a> · unchanged image. Your original recording supplies the voice.</p>
  </div>
 </aside>
 <section class="en-alert-desk" aria-label="Watchlist election alerts">
@@ -1869,7 +1773,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/election_night_indicator_status.js?v=0248c0cbc715"></script>
 <script src="./scripts/election_night_early_weather.js?v=def635952113"></script>
 <script src="./scripts/election_night_poop_meter.js?v=e97eea7deb51"></script>
-<script src="./scripts/personal_election_focus.js?v=8a3865ac232b"></script>
+<script src="./scripts/personal_election_focus.js?v=85b00c5d917b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=395ee89c6934"></script>
 <script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
@@ -1921,30 +1825,35 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/kansas_needle_view.js?v=6d0143911871"></script>
 <script src="./scripts/texas_civic_county_source.js?v=39f7fc1483ca"></script>
 <script src="./scripts/texas_needle_view.js?v=05b3161eac7e"></script>
+<script src="./scripts/election_night_presentation_clock.js?v=e2aec21d8746"></script>
 <script>
 // Owned app ID fast path only: these283fixed IDs must remain unique. Other selectors retain querySelector; no element cache.
 const appUniqueLookupIds=new Set(["ballotDem","ballotDemLabel","ballotRep","ballotRepLabel","bullCoverageSummary","bullDailyPulse","bullScoreStates","changesSince","countdown","electorateLabDetails","enActivityBox","enActivityFeed","enAdvancedLab","enAlertClear","enAlertCount","enAlertDesktop","enAlertItems","enAlertPermission","enAllOfficeSummary","enArchiveIntro","enArchiveOutcome","enArchiveSource","enArchiveSourceLabel","enCalls","enCandidateList","enCelebrationAnnouncement","enCelebrationCaption","enCelebrationFish","enCelebrationIcon","enCelebrationLine","enCelebrationLocalAudio","enCelebrationLocalChoose","enCelebrationLocalFile","enCelebrationLocalName","enCelebrationLocalRemove","enCelebrationMusicLabel","enCelebrationMusicMode","enCelebrationMusicQuick","enCelebrationOnlinePlayer","enCelebrationOnlineStatus","enCelebrationOriginal","enCelebrationPreviewChoice","enCelebrationSound","enCelebrationStage","enCelebrationVideoInput","enCelebrationVideoLink","enCelebrationVideoSave","enCelebrationVisual","enCelebrationsOpen","enChecked","enConnection","enCoverageReconciliation","enDLeads","enDetailMeta","enDetailSummary","enDetailTitle","enDistrictPulse","enEarlyHealth","enEarlySignals","enExportChanges","enExportResults","enExportStatus","enFishAudio","enFishAudioStatus","enFishDismiss","enFishHeadline","enFishMode","enFishPlayClip","enFishPreview","enFishSource","enFishToast","enFishVoice","enForecastOdds","enHealthHeadline","enHealthRows","enInspectSources","enIowaRaceNeedle","enJohnBrownPosterTitle","enKansasRaceNeedle","enLiveCoverageTriage","enMilestoneArt","enMilestoneClose","enMilestoneDescription","enMilestoneDesk","enMilestoneGrid","enMilestoneKicker","enMilestonePoster","enMilestonePunch","enMilestoneSource","enMilestoneSpotlight","enMilestoneTitle","enMode2024","enMode2026","enNationalArizonaHouse06Source","enNationalMaineSource","enNationalMichiganHouse07Source","enNationalNebraskaSource","enNationalNeedleMap","enNationalNext","enNationalOhioSource","enNationalPennsylvaniaHouse07Source","enNationalPennsylvaniaHouse08Source","enNationalPreviewChances","enNationalPreviewNeedle","enNationalRehearsal","enNationalRows","enNationalSenate","enNationalSouthCarolinaSource","enNationalStage","enNationalSummary","enNationalToggle","enNationalVirginiaHouse02Source","enNationalWashingtonHouseSource","enNowcastRows","enNowcastSummary","enOfficeGovernor","enOfficeHouse","enOfficeSenate","enOfficialBackstopsList","enOhioOfficialCountyDesk","enPersonalFocus","enPersonalFocusPreview","enPinArea","enPollReference","enRLeads","enRaceDeskDetails","enRaceHeading","enRaceList","enRaces","enRefresh","enRehearsalNext","enRehearsalPanel","enRehearsalPrev","enRehearsalReset","enRehearsalRows","enRehearsalStage","enRehearsalToggle","enScreenAwake","enSearch","enSourceDesk","enSourceReadiness","enStatus","enTexasRaceNeedle","enTsunamiMeme","enTsunamiPreview","enWakeStatus","enWatchCount","enWatchError","enWatchForm","enWatchInput","enWatchItems","feedModel","feedResults","forecastGateList","forecastGateStatus","freshness","genericDelta","genericDetail","genericFresh","genericMargin","healthDot","healthText","houseSwingDistribution","houseSwingNote","houseSwingSummary","impactState","integrityFeedStatus","jackRadar","jointError","jointHomeCorrelationDetails","jointHomeShadow","jointNightCorrelationDetails","jointNightNeedle","jointNightPanel","jointNightShadow","jointRunStatus","jointSwing","labDemo","labHispanicShare","labHispanicShift","labNoncollegeShare","labNoncollegeShift","labReset","labResults","labRun","labScope","labState","labStatus","mississippiSenateWatch","mississippiWatchAsOf","modelBack","modelBoard","modelChart","modelChartNote","modelCloseTotal","modelDemName","modelDemPct","modelDetail","modelDetailCaption","modelDetailEyebrow","modelDetailStats","modelDetailTitle","modelDetailsFooter","modelEngineTag","modelEvidenceList","modelEvidenceNote","modelHistoryContext","modelOddsBar","modelOddsContext","modelOddsNumbers","modelOddsReconciliation","modelOfficeTitle","modelPollAll","modelPollIncluded","modelPollRows","modelPollStatus","modelProbabilityCoverage","modelRaceTotal","modelRepName","modelRepPct","modelThinTotal","modelTrendChange","modelTrendChart","modelTrendNote","modelUpdated","newPolls","newsFeedStatus","pollLeadNote","pollLeadSummary","pollLeadTrack","privateContextClear","privateContextComparison","privateContextEnabled","privateContextFiles","privateContextHouse","privateContextRemember","privateContextStatus","pulseAsOf","raceCount","raceList","raceNewest","racePulse","raceSearch","raceSort","raceStatus","raceTable","raceWorkbench","seatHistoricalBar","seatHistoricalCount","seatHouseBar","seatHouseCount","seatInventoryAsOf","seatInventoryNote","seatRedistrictingNote","seatSenateBar","seatSenateCount","seatTwoCycleNote","security","securityCount","securityOrder","securitySearch","senateBacktestNote","senateBacktestRaces","senateBacktestSummary","senateBiasNote","senateBiasRows","senateBiasSummary","senateHistoryStatus","senateTideAsOf","senateTideRaces","updated","wireCount","wireCoverage","wireModel","wireMore","wireOffice","wireResults","wireSearch","wireSponsor","wireSubstateCount","wireSubstateSignals","wireUpdated","wireWindow"]);
 const $=s=>typeof s==='string'&&document.compatMode==='CSS1Compat'&&/^#[A-Za-z_][A-Za-z0-9_-]*$/.test(s)&&appUniqueLookupIds.has(s.slice(1))?document.getElementById(s.slice(1)):document.querySelector(s);
 // Shared polling snapshot is read by the early Briefing renderer.
 let latestSenateEstimates=null;
-function activatePage(tab,updateUrl){
+let enNightPresentationReady=false,enEarlyLayoutChoice='AUTO',enAutoNightNavigationAllowed=location.hash==='';
+function activatePage(tab,updateUrl,options={}){
 if(!tab)return;
 document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===tab)));
 document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===tab.dataset.page));
 document.body.dataset.activePage=tab.dataset.page;
 if(tab.dataset.page!=='electionNight'&&document.querySelector('#enMilestoneSpotlight')?.open)enCelebrationDismiss(false);
-if(tab.dataset.page==='electionNight'){
+if(tab.dataset.page==='electionNight'&&!options.quiet){
  const controls=document.querySelector('#electionNight .en-toolbar');
  controls?.scrollIntoView({block:'start'});
  if(updateUrl)controls?.querySelector('.en-toggle [aria-pressed="true"]')?.focus({preventScroll:true});
 }
-if(updateUrl&&window.history?.replaceState)history.replaceState(null,'','#'+tab.dataset.page)
+if(updateUrl&&window.history?.replaceState)history.replaceState(null,'','#'+tab.dataset.page);
+if(enNightPresentationReady)enUpdateNightPresentation();
 }
-document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>activatePage(t,true)));
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{enAutoNightNavigationAllowed=false;activatePage(t,true)}));
+for(const type of ['pointerdown','keydown','wheel','touchstart'])document.addEventListener(type,()=>{enAutoNightNavigationAllowed=false},{once:true,capture:true,passive:true});
 
 const tabFromHash=()=>document.querySelector('.tab[data-page="'+
  ((location.hash.slice(1).split('/')[0]==='races')?'model':location.hash.slice(1).split('/')[0])+'"]');
 window.addEventListener('hashchange',()=>{
+ enAutoNightNavigationAllowed=false;
  activatePage(tabFromHash(),false);
  if(location.hash.startsWith('#races'))$('#raceWorkbench').open=true;
  if(location.hash.startsWith('#model')&&typeof latestSenateEstimates!=='undefined'&&latestSenateEstimates){modelApplyHash();renderModelOverview(latestSenateEstimates)}
@@ -6822,23 +6731,10 @@ function enAnnouncementMotionSlot(kind){
 function enAnnouncementMotionStop(kind){
  try{const slot=enAnnouncementMotionSlots[kind];if(slot){slot.epoch++;slot.motion?.stop();}}catch{}
 }
-function enAnnouncementMotionStart(kind,{resume=false}={}){
- try{
-  const slot=enAnnouncementMotionSlot(kind);if(!slot)return false;
-  const epoch=++slot.epoch;
-  if(!enAnnouncementMotionActive(kind)){slot.motion.stop();return false;}
-  const context=enAnnouncementMotionContext(resume);
-  const started=slot.motion.start();
-  // Never await this before audio.play(). Native clip playback is independent
-  // of the optional analysis context, including failed/suspended resumes.
-  if(resume&&context?.state==='suspended'&&typeof context.resume==='function'){
-   let result;try{result=context.resume();}catch{return started;}
-   Promise.resolve(result).then(()=>{
-    if(slot.epoch===epoch&&enAnnouncementMotionActive(kind))slot.motion.start();
-   },()=>{/* Static fish; native playback remains independent. */});
-  }
-  return started;
- }catch{return false;}
+function enAnnouncementMotionStart(){
+ // Keep the exact original JPG static. Native recording playback and music
+ // retain their existing lifecycles; no microphone or analysis graph is used.
+ return false;
 }
 
 let enCelebrationMusicEpoch=0;
@@ -7105,29 +7001,22 @@ const enCelebrationPlayer=window.ElectionNightCelebrationPlayer?.create({
 });
 window.enCelebrationPlayer=enCelebrationPlayer;
 
-const enFishAnimateKey='electionNightFishAnimateV1';
-try{$('#enFishAnimate').checked=localStorage.getItem(enFishAnimateKey)!=='off';}catch{}
+// Both announcement surfaces retain the same original image and phase guards.
 function enFishPrepareStill(host){
- const image=host?.querySelector?.('.en-fish-still');if(!image||host.dataset.animate!=='false')return;
+ const image=host?.querySelector?.('.en-fish-still'),error=host?.querySelector?.('.en-fish-image-error');
+ if(!host||!image)return false;
  const src=image.getAttribute('src');
- // A display:none lazy image may expose intrinsic dimensions while complete is
- // still false and never reach the ready selector. An explicit static choice
- // must finish loading/decoding the SAME existing asset, without changing URL.
- image.loading='eager';
- const sync=()=>{
+ host.dataset.animate='false';host.dataset.staticOriginal='true';image.loading='eager';
+ const sync=failed=>{
   if(host.querySelector('.en-fish-still')!==image||image.getAttribute('src')!==src)return;
-  host.dataset.photoReady=String(Boolean(image.complete&&image.naturalWidth>0));
+  const ready=Boolean(image.complete&&image.naturalWidth>0);
+  host.dataset.photoReady=String(ready);host.dataset.imageError=String(failed===true&&!ready);
+  if(error)error.hidden=!(failed===true&&!ready);
  };
- try{const decoded=image.decode?.();if(decoded&&typeof decoded.then==='function')decoded.then(sync,sync);else sync();}catch{sync();}
+ image.addEventListener('load',()=>sync(false));image.addEventListener('error',()=>sync(true));
+ sync(image.complete&&image.naturalWidth===0);return true;
 }
-
-function enFishApplyAnimation(){
- const enabled=$('#enFishAnimate').checked;
- for(const [kind,id]of [['bulletin','enFishTalking'],['celebration','enCelebrationFishTalking']]){const host=$('#'+id);host.dataset.animate=String(enabled);enAnnouncementMotionStop(kind);if(enabled)enAnnouncementMotionStart(kind,{resume:true});else enFishPrepareStill(host);}
-}
-for(const id of ['enFishTalking','enCelebrationFishTalking']){const host=$('#'+id),image=host.querySelector('.en-fish-still');const sync=()=>{host.dataset.photoReady=String(Boolean(image.complete&&image.naturalWidth>0));};image.addEventListener('load',sync);image.addEventListener('error',sync);sync();}
-$('#enFishAnimate').addEventListener('change',()=>{try{localStorage.setItem(enFishAnimateKey,$('#enFishAnimate').checked?'on':'off');}catch{}enFishApplyAnimation();});
-for(const id of ['enFishTalking','enCelebrationFishTalking']){const host=$('#'+id);host.dataset.animate=String($('#enFishAnimate').checked);if(!$('#enFishAnimate').checked)enFishPrepareStill(host);}
+for(const id of ['enFishTalking','enCelebrationFishTalking'])enFishPrepareStill($('#'+id));
 document.addEventListener('visibilitychange',()=>{if(document.hidden){enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');}});
 window.addEventListener('pagehide',()=>{enAnnouncementMotionStop('bulletin');enAnnouncementMotionStop('celebration');});
 
@@ -9063,7 +8952,89 @@ window.addEventListener('pageshow',()=>{if(!document.hidden){jointModelControlle
 window.addEventListener('focus',()=>enReconnectAfterInterruption());
 // A monotonic-enough wall-clock gap flags timer suspension on wake even
 // when the operating system does not dispatch an online/focus event.
-setInterval(()=>{enReconnectAfterInterruption()},60000);
+setInterval(()=>{enReconnectAfterInterruption();if(enNightPresentationReady)enUpdateNightPresentation();},60000);
+document.addEventListener('visibilitychange',()=>{if(enNightPresentationReady&&!document.hidden)enUpdateNightPresentation();});
+window.addEventListener('focus',()=>{if(enNightPresentationReady)enUpdateNightPresentation();});
+
+// The clock changes presentation only. It never admits data, calls a race,
+// changes source freshness, or starts a fetch/model calculation.
+function enPreservePresentationReader(action,force=false){
+ const panel=$('#enEarlyIndicatorPanel'),doc=document,view=window,active=doc.activeElement;
+ const rect=panel?.getBoundingClientRect(),toolbar=document.querySelector('#electionNight .en-toolbar')?.getBoundingClientRect().bottom||0;
+ const y=Math.max(0,Math.min(view.innerHeight-1,Math.round((Math.max(0,toolbar)+view.innerHeight)/2)));
+ const usable=node=>{
+  if(!node||node.closest?.('#enEarlyIndicatorPanel,[hidden],[inert]'))return false;
+  const r=node.getBoundingClientRect();return r.width>0&&r.height>0&&r.bottom>Math.max(0,toolbar)&&r.top<view.innerHeight;
+ };
+ // A focused, visible race reader has an explicit semantic identity. A grid
+ // gutter at the viewport midpoint must not strand the automatic layout.
+ let node=active?.closest?.('.personal-focus-card')&&usable(active)?active:null;
+ for(const fraction of [.5,.25,.75]){
+  if(node)break;
+  const candidate=doc.elementFromPoint?.(Math.round(view.innerWidth*fraction),y)?.closest?.('.personal-focus-card,.en-input-health,.en-race-panel,.en-detail,details,p,h2,h3,h4');
+  if(usable(candidate))node=candidate;
+ }
+ const before=node?.getBoundingClientRect();
+ if(!force&&!node&&rect?.bottom<=0&&view.scrollY>0)return false;
+ action();
+ if(node?.isConnected&&before&&active===doc.activeElement){
+  const after=node.getBoundingClientRect(),delta=after.top-before.top;
+  if(after.width>0&&after.height>0&&Number.isFinite(delta)&&Math.abs(delta)>.1&&Math.abs(delta)<view.innerHeight*2)view.scrollBy(0,delta);
+ }
+ return true;
+}
+function enUpdateNightPresentation(now=Date.now(),force=false){
+ // The label and Auto control can wrap the phone header. Render them inside
+ // the same reader-preserving transaction as a layout change.
+ const applyControls=(panel,toggle,automatic,clockAvailable=true)=>{
+  const expanded=panel?.dataset.layout!=='COMPACT';
+  if(toggle){toggle.setAttribute('aria-expanded',String(expanded));toggle.textContent=expanded?'Compact view':'Show meter';toggle.title=clockAvailable?'':'Automatic timing unavailable; manual meter display still works.';}
+  if(automatic)automatic.hidden=!clockAvailable||enEarlyLayoutChoice==='AUTO';
+ };
+ const clock=window.ElectionNightPresentationClock;
+ if(typeof clock?.evaluate!=='function'){
+  // A failed optional clock cannot remove the original meter or strand its
+  // manual control. It grants no automatic navigation or timing claim.
+  const panel=$('#enEarlyIndicatorPanel'),toggle=$('#enEarlyLayoutToggle'),automatic=$('#enEarlyLayoutAuto');
+  const controlsApplied=Boolean(panel&&force&&enEarlyLayoutChoice!=='AUTO'&&enPreservePresentationReader(()=>{panel.dataset.layout=enEarlyLayoutChoice;applyControls(panel,toggle,automatic,false);},true));
+  if(!controlsApplied)applyControls(panel,toggle,automatic,false);
+  const badge=$('#siteModeLabel');if(badge){badge.textContent='VIEW TIMING UNAVAILABLE';badge.title='Manual views remain available; this is not a results status.';}
+  document.body.dataset.nightPhase='UNKNOWN';return false;
+ }
+ const visible=!document.hidden,activePage=document.body.dataset.activePage||'brief';
+ const rehearsal=Boolean((typeof enRehearsalActive!=='undefined'&&enRehearsalActive)||$('#enNationalRehearsal')?.open||$('#enMilestoneSpotlight')?.open||!$('#enFishToast')?.hidden);
+ const state=clock.evaluate({now,modeYear:enModeYear,visible,page:activePage,rehearsalOpen:rehearsal,layoutChoice:enEarlyLayoutChoice});
+ const labels={UNKNOWN:'CLOCK UNAVAILABLE',PRE_ELECTION:'PRE-ELECTION MODE',ELECTION_DAY:'ELECTION DAY',FIRST_RETURNS:'FIRST RETURNS',EARLY_INDICATORS:'EARLY INDICATORS',MAIN_COUNT:'RACE WATCH',OVERNIGHT:'OVERNIGHT COUNT',FOLLOW_UP:'RESULTS FOLLOW-UP'};
+ const badge=$('#siteModeLabel');if(badge){badge.textContent=activePage==='electionNight'&&enModeYear===2024?'2024 ARCHIVE':activePage==='electionNight'&&enModeYear!==2026?'MODE UNAVAILABLE':labels[state.phase]||'CLOCK UNAVAILABLE';badge.title=state.phaseLabel+' · Eastern time; not a results status';}
+ document.body.dataset.nightPhase=state.phase;
+ // Only the default, untouched landing page may open itself at first returns.
+ // An explicit link, manual archive, interaction or rehearsal always wins.
+ if(enAutoNightNavigationAllowed&&location.hash===''&&activePage==='brief'&&visible&&!enElectionNightManualArchive&&!rehearsal&&enModeYear===2026){
+  const landing=clock.evaluate({now,modeYear:2026,visible:true,page:'electionNight',rehearsalOpen:false});
+  if(landing.autoLandingWindow){
+   const tab=document.querySelector('.tab[data-page="electionNight"]');
+   if(tab){enAutoNightNavigationAllowed=false;activatePage(tab,false,{quiet:true});if(window.history?.replaceState)history.replaceState(null,'','#electionNight');else location.hash='electionNight';return true;}
+  }
+ }
+ const panel=$('#enEarlyIndicatorPanel'),toggle=$('#enEarlyLayoutToggle'),automatic=$('#enEarlyLayoutAuto');
+ if(!panel)return false;panel.dataset.phase=state.phase;
+ if(visible&&activePage==='electionNight'&&enModeYear===2026&&!rehearsal){
+  const layout=state.desiredLayout,rect=panel.getBoundingClientRect();
+  if(panel.dataset.layout!==layout){
+   const reading=panel.contains(document.activeElement)||$('#enEarlySignalsDetails')?.open||rect.top<0&&rect.bottom>0;
+   if(!force&&reading)panel.dataset.layoutDeferred=layout;
+   else{const changed=enPreservePresentationReader(()=>{panel.dataset.layout=layout;delete panel.dataset.layoutDeferred;applyControls(panel,toggle,automatic);},force);if(!changed)panel.dataset.layoutDeferred=layout;else return state;}
+  }
+ }
+ applyControls(panel,toggle,automatic);
+ return state;
+}
+$('#enEarlyLayoutToggle').addEventListener('click',()=>{enEarlyLayoutChoice=$('#enEarlyIndicatorPanel').dataset.layout==='COMPACT'?'EXPANDED':'COMPACT';enUpdateNightPresentation(Date.now(),true);});
+$('#enEarlyLayoutAuto').addEventListener('click',event=>{
+ const owned=document.activeElement===event.currentTarget;
+ enEarlyLayoutChoice='AUTO';enUpdateNightPresentation(Date.now(),true);
+ if(owned)$('#enEarlyLayoutToggle')?.focus({preventScroll:true});
+});
 
 $('#enInspectSources').addEventListener('click',event=>{
  event.preventDefault();
@@ -9073,10 +9044,10 @@ $('#enInspectSources').addEventListener('click',event=>{
  desk.scrollIntoView({block:'start',behavior:'auto'});
  desk.querySelector('summary').focus({preventScroll:true});
 });
-$('#enMode2026').addEventListener('click',()=>enSwitch(2026,enOffice));
+$('#enMode2026').addEventListener('click',()=>{enSwitch(2026,enOffice);enUpdateNightPresentation(Date.now(),true);});
 $('#enMode2024').addEventListener('click',()=>{
  enElectionNightManualArchive=true;
- enSwitch(2024,enOffice);
+ enSwitch(2024,enOffice);enUpdateNightPresentation(Date.now(),true);
 });
 $('#enArchiveSource').addEventListener('change',event=>{
  enElectionNightManualArchive=true;
@@ -9108,6 +9079,7 @@ document.querySelector('.tab[data-page="brief"]').addEventListener('click',()=>{
 });
 enResumeRestore();
 enRender();renderSmartRaceDesks();
+enNightPresentationReady=true;enUpdateNightPresentation();
 if(location.hash.split('/')[0]==='#electionNight')enLoad(true);
 else if(enModeYear===2026&&Date.now()>=Date.parse('2026-11-03T05:00:00Z')&&
  document.querySelector('#brief')?.classList.contains('active'))void enLoad(false);

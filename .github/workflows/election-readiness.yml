@@ -225,6 +225,10 @@ jobs:
         env:
           UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/unified-early-indicators
         run: node scripts/test_unified_early_indicator_browser.mjs
+      - name: Eastern presentation phases preserve source requests, explicit navigation and readers
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/election-night-presentation
+        run: node scripts/test_election_night_presentation_browser.mjs
       - name: County comparison opens the existing matched-area evidence
         env:
           UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/county-comparison-discovery
@@ -246,6 +250,7 @@ jobs:
           name: early-indicators-celebration-details
           path: |
             artifacts/readiness/ui-review/unified-early-indicators/
+            artifacts/readiness/ui-review/election-night-presentation/
             artifacts/readiness/ui-review/county-comparison-discovery/
             artifacts/readiness/ui-review/celebration-owner-finale/
             artifacts/readiness/ui-review/announcement-motion-integrated/

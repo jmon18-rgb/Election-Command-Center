@@ -1,5 +1,35 @@
 # Celebration production inventory - October 27, 2026
 
+### Second review fixture repairs — runtime unchanged
+
+Head171e passed the repaired mobile-image and heartbeat guards, but failed two distinct browser prerequisites. Unified lost its execution context during startup before any component assertions; exact cause remains unknown. Its local and published checks now use the same normal #electionNight URL and native initial load, retaining the explicit tab click/all160 original assertions. A161st assertion rejects unexpected post-load document navigation; bounded lifecycle diagnostics were added without retry, sleep or deadline change. Both widths/24pins pass. Root/default-navigation coverage remains in the phase suite.
+
+The phone Personal range-focus assertion also failed; exact CI state was not recorded. One controlled original-static-input delay confirmed that18retained SVGs can coexist with pending/inert ranges and legitimateH4 focus, then the open summary recovers after CURRENT. The fixture now waits genuine startup-input terminal state and exact accepted CURRENT before its component/range checks; it never forces private inputs or focus. All51 original assertions/poses remain literal; both widths pass. Public boolean/focus diagnostics were added. Product indexdb773177/Personal2d51 and model/source/media behavior are unchanged. Independent fixture reviewd0619df9 passes. A new corrected exact-head gate/publication is required; no waiver, successful-job rerun or guide append.
+
+
+### Initial review failures repaired — corrected protected head required
+
+Initial d30efae1 finished with35parents32SUCCESS/3FAILURE and55jobs49SUCCESS/3declaredSKIP/3FAILURE; no rerun/cancel/waiver. Mobile guard's old remote-image literal and open-tab test's old exact heartbeat string were stale. They now verify the exact localJPEG/attribution and execute the actual60000ms callback; all original geometry/clock/source safeguards and new negative controls pass.
+
+The phase CI reader precondition failed before the layout action; its exact CI interleaving remains unknown. Separately, one zero-draw actual-component counterexample confirmed a real H4→same-race-summary focus change during normal redraw. Genuine heading bookmarks now carry part:'heading'; pending summary bookmarks and user-selected controls retain precedence. The original non-atomic phase reader fixture/pose/focus/COMPACT/2px assertions remain unchanged and now pass both sizes with0px movement. All original Personal browser assertions remain, with additive heading/pending/resume controls.
+
+Final Personal source2d51ae7c/Git100a079d92bf is independently reviewed. Final indexdb773177d96b5af540e9aac8f3ce6e7abe728d05f3c7e8ebf605923b8089be27 retains the same timing/native-media/data/model behavior plus this heading fix. All99 portable checks, full Personal browser, original phase15pins and combined160assertions/24pins pass on the frozen corrected runtime. One earlier full Personal run has uncaptured starting-source identity and is explicitly not used as final proof; no mid-run mutation claim. The corrected head must pass all exact-head CI/publication gates; no release/guide append yet.
+
+
+## Owner follow-up in progress — original Fish Head and timed night presentation
+
+The exact previously referenced Realistic Fish Head JPEG is now local:41,844bytes,478×569,SHA256d75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06. Both announcement surfaces use that unchanged still and the original native recording. Substitute SVGs/default animation control are removed; playback, queues, calls and music retain their existing authority. Native-audio/image/error and legacy tall-layout tests pass both sizes; all99 portable checks and the combined160-assertion/24-pin journey pass. Full exact-head CI and protected publication are still required.
+
+A pure Eastern-time presentation clock features Early indicators7:30–9p.m.Nov3; outside that window the four-tile scale is compact, with current stage/watch/details and manual expansion available. A fresh or untouched default homepage can open Election Night6p.m.–6a.m.; explicit links, interaction, archive choices and rehearsal take priority. Existing midnight2026 data handoff and every source/poll-close/cadence/model rule are unchanged. The static top badge now reflects the phase or selected archive. Later phases emphasize main count/overnight/results follow-up without asserting completion.
+
+Actual both-size phase tasks pass all boundaries/manual/archive/rehearsal/hidden/missing-clock cases and preserve the whole accepted3k model bundle, request/worker counters and reading position0px. First Auto-button focus loss and desktop grid-gutter deferral are preserved and repaired; the original reader pose/assertion/tolerance remains. A later nohash state-accessor failure was harness-only and is retained with its DOM-based correction. Final sourceindex9e6f8574 differs from tested1015ee35 only by two empty-line spaces (closure receipt retained); no runtime change or local rerun. Independent source review passes. Exact-head CI and protected publication remain required; no release claim or guide append yet.
+
+
+## October29 — PR535 integrated warning artwork, celebration authority unchanged
+
+Four original decorative underwear SVGs now make the shared Early indicators/Poop Meter scale graphical: Full-blown shitLEFT, then Turtling/Skid marks, CleanRIGHT. It is an editorial current matched-performance display; it does not grant a call or earned celebration. Existing whole owner-image finales, native-recording fish motion, ad-free original/local audio, optionalYouTube and allqueue/retraction/mute/reducedmotion guards remain unchanged. PR535 finalmain4e7c3656/Pages40953771565/24publicfiles/coherence and actual1366/390all157/23pinsPASS. No unchanged media demos or guide rebuild; human listening remainsNOT_RUN. One22ndverifiedcomponent/addendum records only the new layout scope.
+
+
 ## October 29 — PR534 verified published: Poop Meter, county comparisons and celebration finales
 
 PR534 tested cbcf30ec6ab60144485e42fac0f642a33bb16620 passed all 35 applicable workflow parents and 55 latest jobs (52 SUCCESS / 3 declared nonapplicable PR deployment skips), with matching check/job identities, zero external statuses and clean mergeability. Protected merge 7cd60db79a40c830f8909603c19035c8ba78c215; final current main 5322e5e6320000441fb585b5ba7ffb49ac9d14df, Pages 40939361659 SUCCESS. All 57 changed public/index files matched origin/main at 19:24:26Z, no failures/retries; 13 coherence checks/index/no_credit passed. Main was rechecked unchanged after published tasks at 19:29:40Z. No waiver, successful-job rerun, sample/case/assertion cut or deadline increase.

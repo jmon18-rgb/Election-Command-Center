@@ -1,13 +1,74 @@
 # Readiness progress
 
-### PR535 corrected wake-status visibility — new exact-head gate required
+### Stable public race headings — existing phase fixture unchanged
+
+Head216ef0ee failed before any boundary measurement: the native scroll-to-heading action saw its H4 detached during a legitimate Personal redraw. All other34 applicable parents passed; the failed head was not merged or rerun. Its failed step does not measure the repaired phone transaction. Existing immutable zero-draw2d51 proofc48b85de already demonstrates that normal redraw discards the H4 even while semantic focus is restored; that BEFORE proof was reused without another old run.
+
+Normal render now keeps only an exact canonical public race H4 from the current host in a per-render local map. All cards, predictions, source/call/context labels, details and listeners still rebuild from current inputs. Wrong text/shape/attributes, duplicate/absent headings, archive and other hosts use fresh nodes; no persistent map or private basis is retained. Pending disclosure bookmarks and user-moved focus keep their prior precedence. The old additive implementation sentinel oldDisconnected:true is explicitly migrated to false plus same-heading/fresh-card/body checks; all other50 assertion calls remain literal, with10 freshness/isolation checks and2 positive history-setup guards (63 total). A first new history fixture correctly failed the count-envelope guard; its original is preserved, and only source-free fictional history setup was corrected without relaxing the guard or context assertions.
+
+Final index9f57d804/Personal8fb23a0b (Git85b00c5d917b), Personaltest395390d3 and UNCHANGEDphasefixturee227 are independently reviewed. All99 core checks pass with unique source-pinned logs. Actual-page Personal63 and phase86 pass1366/390; phase preserves0px immediate/painted movement and exact frame/bundle/counters with15pins. The separate zero-draw component executes20 affected assertions per width, not the full63-call app suite. Outcome ca0d14bd links all scopes and first failures. All91 canonical stamps,3k/hardESS/30s and source/model/call/media rules remain unchanged. A corrected exact-head gate and final verified publication are still required; no guide append/release claim yet.
+
+
+### Timed-layout phone repair — complete control rendering
+
+Head a2912cc8 exposed an actual390px geometry failure: the same focusedH4 moved45px while exactCURRENT/frame/epoch/key/wholebundle and source/worker counters stayed unchanged. All other33 applicable parents passed; the failed head was not merged or rerun. The startup-input wait remains separately justified, but did not repair this layout defect.
+
+Source review found that the dataset layout changed inside reader preservation while the button label and Auto control rendered afterward. An exact-CSS zero-draw361px component exposed51px of post-guard header reflow. The first negative-control attempt was masked by native browser anchoring and is preserved as a failed assertion; an explicit identical no-UA-anchoring control reproduces old-reader51px movement versus0px on the repair. This proves the transaction gap, not the exact Linux45px font identity. All control rendering now occurs inside the existing layout transaction; deferral/manual/archive/rehearsal/auto-landing and missing-clock semantics remain unchanged.
+
+Fixed index3038ae22 is independently reviewed (e753c326/72cff1f4). All99 portable checks pass, and the unchanged86-assert actual-page phase journey passes1366/390 with0px immediate/painted movement, stable focus/wholeframe/bundle/counters and15pins (proof42a291cb). Personal2d51, phasefixturee227,91script stamps,3k/hardESS/30s and every model/source/call/media rule are unchanged. The corrected source head still requires ALL applicable CI, protected merge and final published-byte/browser verification; no guide append or release claim yet.
+
+
+### Presentation-only checks wait for completed native bootstrap
+
+Head6a522b95 kept focus on the correct race but failed the original timed-collapse <=2px geometry assertion. Its exact viewport/displacement and concurrent state were not recorded, so the CI cause remains unknown. One bounded original-pose Chrome diagnostic passed both widths with0px immediate/painted movement, exactCURRENT and unchanged frame/bundle.
+
+A separate controlled actual-input proof establishes the old lifecycle insufficiency: baseline -> idle -> networkidle can return while a later native repository-input worker is still pending. The revised phase fixture waits native input terminal state and the producer's exact acceptedCURRENT after networkidle, then reasserts that condition before the original reader pose. All69 original assertions/cases/poses/tolerances remain, with17 additive concurrent-frame/epoch/key/bundle/counter and post-paint checks. Failure logs now include bounded public geometry; no private values or raw keys. Runtime indexdb773177/Personal2d51, all3k samples, source/model/media authority and deadlines are unchanged. The controlled proof does not establish the earlier CI cause. Independent reviews fbd158b0/d1bf0eae pass; corrected exact-head CI and verified publication remain required.
+
+
+### Second review fixture repairs — runtime unchanged
+
+Head171e passed the repaired mobile-image and heartbeat guards, but failed two distinct browser prerequisites. Unified lost its execution context during startup before any component assertions; exact cause remains unknown. Its local and published checks now use the same normal #electionNight URL and native initial load, retaining the explicit tab click/all160 original assertions. A161st assertion rejects unexpected post-load document navigation; bounded lifecycle diagnostics were added without retry, sleep or deadline change. Both widths/24pins pass. Root/default-navigation coverage remains in the phase suite.
+
+The phone Personal range-focus assertion also failed; exact CI state was not recorded. One controlled original-static-input delay confirmed that18retained SVGs can coexist with pending/inert ranges and legitimateH4 focus, then the open summary recovers after CURRENT. The fixture now waits genuine startup-input terminal state and exact accepted CURRENT before its component/range checks; it never forces private inputs or focus. All51 original assertions/poses remain literal; both widths pass. Public boolean/focus diagnostics were added. Product indexdb773177/Personal2d51 and model/source/media behavior are unchanged. Independent fixture reviewd0619df9 passes. A new corrected exact-head gate/publication is required; no waiver, successful-job rerun or guide append.
+
+
+### Initial review failures repaired — corrected protected head required
+
+Initial d30efae1 finished with35parents32SUCCESS/3FAILURE and55jobs49SUCCESS/3declaredSKIP/3FAILURE; no rerun/cancel/waiver. Mobile guard's old remote-image literal and open-tab test's old exact heartbeat string were stale. They now verify the exact localJPEG/attribution and execute the actual60000ms callback; all original geometry/clock/source safeguards and new negative controls pass.
+
+The phase CI reader precondition failed before the layout action; its exact CI interleaving remains unknown. Separately, one zero-draw actual-component counterexample confirmed a real H4→same-race-summary focus change during normal redraw. Genuine heading bookmarks now carry part:'heading'; pending summary bookmarks and user-selected controls retain precedence. The original non-atomic phase reader fixture/pose/focus/COMPACT/2px assertions remain unchanged and now pass both sizes with0px movement. All original Personal browser assertions remain, with additive heading/pending/resume controls.
+
+Final Personal source2d51ae7c/Git100a079d92bf is independently reviewed. Final indexdb773177d96b5af540e9aac8f3ce6e7abe728d05f3c7e8ebf605923b8089be27 retains the same timing/native-media/data/model behavior plus this heading fix. All99 portable checks, full Personal browser, original phase15pins and combined160assertions/24pins pass on the frozen corrected runtime. One earlier full Personal run has uncaptured starting-source identity and is explicitly not used as final proof; no mid-run mutation claim. The corrected head must pass all exact-head CI/publication gates; no release/guide append yet.
+
+
+## Owner follow-up in progress — original Fish Head and timed night presentation
+
+The exact previously referenced Realistic Fish Head JPEG is now local:41,844bytes,478×569,SHA256d75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06. Both announcement surfaces use that unchanged still and the original native recording. Substitute SVGs/default animation control are removed; playback, queues, calls and music retain their existing authority. Native-audio/image/error and legacy tall-layout tests pass both sizes; all99 portable checks and the combined160-assertion/24-pin journey pass. Full exact-head CI and protected publication are still required.
+
+A pure Eastern-time presentation clock features Early indicators7:30–9p.m.Nov3; outside that window the four-tile scale is compact, with current stage/watch/details and manual expansion available. A fresh or untouched default homepage can open Election Night6p.m.–6a.m.; explicit links, interaction, archive choices and rehearsal take priority. Existing midnight2026 data handoff and every source/poll-close/cadence/model rule are unchanged. The static top badge now reflects the phase or selected archive. Later phases emphasize main count/overnight/results follow-up without asserting completion.
+
+Actual both-size phase tasks pass all boundaries/manual/archive/rehearsal/hidden/missing-clock cases and preserve the whole accepted3k model bundle, request/worker counters and reading position0px. First Auto-button focus loss and desktop grid-gutter deferral are preserved and repaired; the original reader pose/assertion/tolerance remains. A later nohash state-accessor failure was harness-only and is retained with its DOM-based correction. Final sourceindex9e6f8574 differs from tested1015ee35 only by two empty-line spaces (closure receipt retained); no runtime change or local rerun. Independent source review passes. Exact-head CI and protected publication remain required; no release claim or guide append yet.
+
+
+## October 29 — PR535 verified published: integrated early indicators and cleaner graphics
+
+Tested head3f4cbe7da19bd819bc304abb06aefc51b19c7c27 passed all 35 applicable workflow parents and 55 latest jobs (52 SUCCESS, 3 declared nonapplicable PR deployment skips), with exact check/job agreement, zero external statuses and clean mergeability. Protected merge3e7d793d89f31922567548b377b589caa7b4e554; final current main4e7c36569d0cf725c31e76717dd42bba5dbd2e17, Pages40953771565 SUCCESS. All 24 changed public/index files matched origin/main at21:01:52.617Z without retry;13 coherence checks/current index/no_credit passed. Main remained unchanged after published tasks at21:03:40.477Z.
+
+One 2026 Early indicators panel precedes the19 personal needles, with the same32-race watch and shared evidence drawer. Four original underwear SVGs run Full-blown shit on the LEFT through Turtling/Skid marks to Clean on the RIGHT. Semantic indices and rules are unchanged. The shorter header retains source/model/context/experimental labels,44px primary controls and all five reachable feeds. Published1366/390 tasks passed all157 assertions and23 unique source pins each, including keyboard use, warnings/withholding, exact live-output isolation and no overflow. Actual pending-reader movement was0/−0.5px with focus and drawer preserved. Fictional examples are visibly marked; providers were blocked.
+
+Initial7f8 failed both original Cartogram wake-denial visibility assertions. The corrected summary badge preserves original messages and native request order; both parents passed on3f4. Original failures and reader traces remain immutable. No rerun, waiver, deadline, sample or assertion cut. Ordinary27 read-only reload retained2024 and private checkbox/status/archive/mode-ARIA equality;13 identities matched. The initial wrong order selector is qualified and preserved; the corrected actual meter order passes. No ordinary geometry, interaction, across-reload forecast equality or empirical/human/positive-delivery claim.
+
+Original guide1.0 and eleven human scopes/hash/NOT_RUN/null results remain unchanged. ONE component21→22 appended after publication; ledger SHA95ba6382f992eed15c1d61bca0714d8c0226c176d2c1847099f345b32d002812. Outcome pr535-published-outcome-20261029.json SHAee5618589bff94bdab6b80e30699b4c7531517008ab107776279218196b190a6; independent audit979e6db0. Original outcome and path-only corrective sidecar retained. No pending535 gate. Carry this proof in one unpublished docs checkpoint with the next source change; never push solely to restart CI. The owner layout task is complete; source, calibration, human, positive-delivery and capacity fields remain open.
+
+
+### Historical PR535 wake-status repair — verified by the release above
 
 Initial7f8b2926 failed both Cartogram operator parents on the original requirement that denied wake-lock status remains visible with Display options closed. The compact header had moved the full status into its drawer. A small explicit-state badge now remains in the summary for active/denied/unsupported/released opt-in states; the full original explanations stay in the drawer, and OFF/late-after-OFF badges remain hidden. All five original messages and native request/release/retry ordering are byte-preserved; independent11-group review passes. No permission or OS-setting change.
 
 The original full hierarchy tasks now pass1366/390 with every assertion retained. The unified journey adds the same controlled denial→closed-visible-badge→Off sequence before header measurement:157assertions passbothwidths, including all previous148. Failedhead/logs retained, no rerun/waiver/timeoutincrease. Sourceindex6d6cf1c7; corrected protected gate/publication still required. Numerical/classifier/rate/collector/routes/calls/music unchanged.
 
 
-## October 29 owner layout correction — integrated early indicators, release pending
+## Historical PR535 preparation — now verified above
 
 The owner requests one integrated early-indicator/Poop Meter panel, Full-blown shit on the LEFT through Clean undies on the RIGHT, original stained-underwear illustrations, and a cleaner graphical top. The new panel precedes19needles; detailed explanations stay in one shared disclosure. Semantic stage indices, currentness and18route/17D-R/32watch contracts are unchanged. EN-only chrome is compact; model/results status remains visible and all5source states reachable. Modes/Refresh/preview/watch controls are44px. Saved-layout review measured phone forecast start722→476px and meter15850→1982px.
 

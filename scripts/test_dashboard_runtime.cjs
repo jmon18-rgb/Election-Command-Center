@@ -522,12 +522,20 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  assert.equal(fish.getAttribute('role'),'dialog',
   'Fish bulletin must be an accessible foreground interruption');
  assert.match(get('#enFishToast .en-fish-art img').src,
-  /upload\.wikimedia\.org\/wikipedia\/commons\/d\/d4\/Realistic_Fish_Head\.jpg/,
-  'Retain the actual Commons-licensed still as the optional original-image choice');
+  /assets\/fish-head-original\.jpg(?:\?v=[a-f0-9]+)?$/,
+  'Retain the exact original Fish Head JPEG as the default local image');
+ const fishOriginalJpgBytes=fs.readFileSync(path.join(ROOT,'assets/fish-head-original.jpg'));
+ assert.equal(fishOriginalJpgBytes.length,41844);
+ assert.equal(require('node:crypto').createHash('sha256').update(fishOriginalJpgBytes).digest('hex'),
+  'd75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06',
+  'The original image bytes remain unchanged');
  assert.match(get('#enFishToast .en-fish-attribution').textContent,
   /HandyGames.*CC BY 3\.0/);
- assert(get('#enFishTalking svg'),'Default animated fish is a real local SVG, with the licensed still retained separately');
- assert.equal(get('#enFishTalking').dataset.animate,'true','Original SVG animation is enabled by default');
+ assert.equal(w.document.querySelector('#enFishTalking svg'),null,'No substitute drawing replaces the original Fish Head');
+ assert.equal(get('#enFishTalking').dataset.staticOriginal,'true');
+ assert.equal(get('#enFishTalking').dataset.animate,'false','Original JPEG remains unanimated');
+ assert.equal(w.document.querySelector('#enFishAnimate'),null,'Owner removed the substitute-animation preference');
+ assert.equal(w.eval("enAnnouncementMotionStart('bulletin',{resume:true})"),false,'Static original never starts an analysis branch');
  const soundtrack=get('#enFishAudio');
  assert.match(soundtrack.getAttribute('src'),
   /assets\/audio\/breaking-news-in-the-2026-midterm-elections\.mp3$/,
@@ -704,6 +712,9 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  assert.equal(get('#enMilestonePoster').hidden,true,'Owner picture is reserved until after announcement and animation');
  assert.equal(get('#enCelebrationStage').dataset.phase,'announcement');
  assert.equal(get('#enCelebrationFishTalking').hidden,false);
+ assert.equal(get('#enCelebrationFish').src,get('#enFishToast .en-fish-art img').src,'Both announcement surfaces use the exact same original image');
+ assert.equal(get('#enCelebrationFishTalking').querySelector('svg'),null);
+ assert.equal(get('#enCelebrationFishTalking').dataset.staticOriginal,'true');
  assert.equal(w.eval('enCelebrationPlayer.skip()'),true,'Normal skip selects the intended complete finale');
  assert.equal(get('#enCelebrationStage').dataset.phase,'complete');
  const ownerKansasFinal=get('#enCelebrationVisual img.en-celebration-owner-image');
@@ -713,7 +724,7 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  assert(ownerKansasFinal.getAttribute('src').includes('celebration-owner-kansas.jpg?v=26f7df1f64f4'));
  assert.match(ownerKansasFinal.alt,/John Brown/i);
  assert.match(get('#enCelebrationVisual .en-celebration-owner-label').textContent,/FICTIONAL.*POLITICAL SATIRE.*SIMULATED PREVIEW/);
- assert.equal(get('#enCelebrationFishTalking').hidden,true,'The talking fish leaves when the picture finale appears');
+ assert.equal(get('#enCelebrationFishTalking').hidden,true,'The original Fish Head leaves when the picture finale appears');
  assert(get('#enMilestonePoster').getAttribute('src').includes('celebration-owner-kansas.jpg?v=26f7df1f64f4'),
   'Kansas achievement must feature the owner-supplied fictional painting');
  assert(get('#enMilestonePoster').classList.contains('owner-celebration-art'));
