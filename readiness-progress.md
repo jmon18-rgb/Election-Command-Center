@@ -1,5 +1,12 @@
 # Readiness progress
 
+## October30 — Stretch Senate celebrations and explicit test-data rejection in implementation
+
+Florida special Senate and Louisiana Senate now have separate three-beat original cartoons and ad-free scores: an alligator launches a Florida-shaped spacecraft, and a giant blue crawfish commandeers a Senate float/orbital gumbo parade. Their correct existing conditions are Senate|FL-special and Senate|LA Democratic calls, after the installed final-close and freshness rules. Existing ten transport priorities and acquisition/cache policies remain; the two new stories read already admitted calls passively. All twelve prior stories, scenes, complete scores, private owner mappings and numerical inputs stay unchanged. Private-scenario Lean D labels are conditional estimates, not victory authority.
+
+A zero-GET actual-producer counterexample found an existing generic-source gap: explicit test_data:true search/detail records could normalize into a call after losing that marker. The shared generic disabled-source predicate now rejects it before normalization. Both real positive controls and separate search/detail/both marker negatives pass through the actual matcher/normalizer and celebration consumer. Original failure/proof is preserved. No new source, GET, route, cadence, budget or winner authority is added. Appropriate final tests, protected review and publication are pending; this is not a released or human-listening claim.
+
+
 ## October30 — PR537 COMPLETE / VERIFIED PUBLISHED
 
 Seven owner recording assignments are saved privately and reload-verified in the app browser: Buckeye Battle Cry→Ohio, Last Dance→Graham, John Brown’s Body→Kansas, It’s Corn→Iowa, Eyes of Texas→Talarico, Union Dixie Trap→Mississippi and Ding-Dong→Maine. Michigan has its own original cue and three-beat “FEAR CAMPAIGN: SIGNAL LOST” satire. Only the existing admitted fresh post-close Michigan Democratic Senate call earns it. The original ten transport priorities, source/call rules, numerical model, all eleven prior stories/scenes/scores and other guards are unchanged.

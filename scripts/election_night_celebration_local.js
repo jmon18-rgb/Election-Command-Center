@@ -6,7 +6,7 @@
  if(root)root.ElectionNightCelebrationLocal=api;
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
- const IDS=Object.freeze(['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','michigan','tsunami']);
+ const IDS=Object.freeze(['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','michigan','tsunami','florida_senate','louisiana_senate']);
  const ID_SET=new Set(IDS),MAX_FILE_BYTES=16*1024*1024,DB_NAME='bluewaves_celebration_audio_v1',STORE='tracks',SCHEMA='browser-local-celebration-audio-v1';
  const TYPES=Object.freeze({mp3:['audio/mpeg','audio/mp3'],wav:['audio/wav','audio/x-wav','audio/wave','audio/vnd.wave'],m4a:['audio/mp4','audio/x-m4a'],mp4:['audio/mp4'],aac:['audio/aac','audio/x-aac'],ogg:['audio/ogg','application/ogg'],oga:['audio/ogg','application/ogg'],opus:['audio/ogg','audio/opus'],flac:['audio/flac','audio/x-flac'],webm:['audio/webm']});
  const ACCEPT='audio/*,'+Object.keys(TYPES).map(ext=>'.'+ext).join(',');

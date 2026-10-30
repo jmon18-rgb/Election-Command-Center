@@ -40,6 +40,8 @@
   if(host&&id==='blue_corn'&&['scene','complete'].includes(phase))return renderIowa(host,{phase,beat,preview});
   if(host&&id==='maine'&&['scene','complete'].includes(phase))return renderMaine(host,{phase,beat,preview});
   if(host&&id==='michigan'&&['scene','complete'].includes(phase))return renderMichigan(host,{phase,beat,preview});
+  if(host&&id==='florida_senate'&&['scene','complete'].includes(phase))return renderFloridaSenate(host,{phase,beat,preview});
+  if(host&&id==='louisiana_senate'&&['scene','complete'].includes(phase))return renderLouisianaSenate(host,{phase,beat,preview});
   if(host&&['ohio','blexas','tsunami'].includes(id)&&['scene','complete'].includes(phase))return renderFinalRoster(host,{id,phase,beat,preview});
   if(!host||id!=='talarico'||!['scene','complete'].includes(phase))return false;
   const index=phase==='complete'?2:beat;
@@ -376,5 +378,85 @@
   return finish(host,svg,animated,'michigan',index,phase);
  }
  // END MICHIGAN ORIGINAL SCENE
+ // BEGIN FLORIDA LOUISIANA ORIGINAL SCENES
+ // Original comic props only: these are not reporting maps or forecast inputs.
+ function stretchStage(host,id,index,preview){
+  const doc=host.ownerDocument,el=(tag,attrs={},label)=>{const n=doc.createElementNS(NS,tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,String(v));if(label!==undefined)n.textContent=label;return n;};
+  const text=(label,x,y,size=28,color='#eef9ff')=>el('text',{x,y,'text-anchor':'middle','font-family':'Arial,sans-serif','font-size':size,'font-weight':800,fill:color},label);
+  const svg=el('svg',{viewBox:'0 0 980 540',role:'img','aria-label':(id==='florida_senate'?'Florida flip-flop alligator and peninsula space-rocket satire':'Louisiana blue crawfish, Mardi Gras Senate float and orbital gumbo satire')+'; '+(preview?'simulated preview, no real victory claim':'source-reported unofficial call'),'data-scene':id,'data-beat':index}),animated=[];
+  svg.append(el('rect',{width:980,height:540,rx:24,fill:id==='florida_senate'?'#071d37':'#151d3d'}),text(id==='florida_senate'?'FLORIDA · U.S. SENATE':'LOUISIANA · U.S. SENATE',490,39,23,'#b6e8ff'));
+  return{el,text,svg,animated};
+ }
+ function stretchConfetti(el){
+  const group=el('g',{'data-layer':'stretch-confetti'});for(let i=0;i<28;i++){const x=44+i*33,y=164+(i%5)*48;group.append(el(i%4?'rect':'circle',i%4?{x,y,width:10,height:20,rx:2,fill:['#65d9ff','#ffcd72','#b7a1ff'][i%3],transform:'rotate('+(i*31)+' '+x+' '+y+')'}:{cx:x,cy:y,r:6,fill:'#c2efff'}));}return group;
+ }
+ function floridaGator(el,{astronaut=false}={}){
+  const g=el('g',{'data-layer':astronaut?'florida-gator-astronaut':'florida-flipflop-gator'});
+  g.append(el('path',{d:'M70 90Q-12 88-36 155Q9 139 79 141Z',fill:'#47bfa3',stroke:'#a9f5d1','stroke-width':5}),el('ellipse',{cx:117,cy:112,rx:77,ry:61,fill:'#38b18e',stroke:'#a9f5d1','stroke-width':5}),el('ellipse',{cx:141,cy:123,rx:42,ry:42,fill:'#9ae4b1'}),el('path',{d:'M62 70L69 50 86 67 95 43 110 63 126 43 139 66',fill:'#229f84',stroke:'#a9f5d1','stroke-width':3}),el('path',{d:'M82 149L75 185M151 154L160 187',stroke:'#47bfa3','stroke-width':25,'stroke-linecap':'round'}));
+  for(const [x,angle]of [[71,-7],[166,8]])g.append(el('ellipse',{cx:x,cy:193,rx:36,ry:12,fill:'#39b9ed',stroke:'#d4f9ff','stroke-width':4,transform:'rotate('+angle+' '+x+' 193)'}),el('path',{d:'M'+(x-15)+' 191L'+x+' 178L'+(x+12)+' 191',fill:'none',stroke:'#064d7f','stroke-width':6,'stroke-linecap':'round'}));
+  if(astronaut)g.append(el('circle',{cx:205,cy:43,r:91,fill:'#8be4ff','fill-opacity':.15,stroke:'#a0e5ff','stroke-width':8}),el('path',{d:'M153-15Q182-32 213-24',fill:'none',stroke:'#e4fbff','stroke-width':11,'stroke-linecap':'round'}));
+  g.append(el('path',{d:'M122 47Q116-4 168-16Q206-24 230 2L286 6Q324 6 327 34Q328 64 284 71L175 78Z',fill:'#47bfa3',stroke:'#b6f4ca','stroke-width':5,'stroke-linejoin':'round'}),el('path',{d:'M179 47H307Q294 75 208 67Z',fill:'#113e53'}),el('path',{d:'M193 48L201 60 210 48 220 62 231 48 242 61 253 48 265 58 277 48 290 56 299 48',fill:'#f6ffdf'}),el('ellipse',{cx:172,cy:5,rx:23,ry:28,fill:'#9df0c1',stroke:'#b6f4ca','stroke-width':4}),el('ellipse',{cx:211,cy:7,rx:23,ry:27,fill:'#9df0c1',stroke:'#b6f4ca','stroke-width':4}),el('ellipse',{cx:178,cy:4,rx:9,ry:15,fill:'#123d50'}),el('ellipse',{cx:217,cy:5,rx:9,ry:14,fill:'#123d50'}),el('circle',{cx:181,cy:0,r:3,fill:'#fff'}),el('circle',{cx:220,cy:1,r:3,fill:'#fff'}),el('ellipse',{cx:294,cy:21,rx:6,ry:4,fill:'#166f66'}),el('ellipse',{cx:313,cy:24,rx:5,ry:4,fill:'#166f66'}));
+  return g;
+ }
+ function floridaRocket(el){
+  const g=el('g',{'data-layer':'florida-peninsula-rocket'}),state='M240 135H442L452 160 483 165 503 196 511 230 532 270 552 315 565 365 555 400 537 389 517 351 496 325 484 293 474 256 453 224 431 202 405 187 365 178 341 163 304 165 284 150H240Z';
+  g.append(el('path',{d:'M291 206Q206 276 157 363Q253 321 338 245Z',fill:'#f8a647'}),el('path',{d:'M302 218Q248 268 218 311Q276 292 325 244Z',fill:'#fff1ad'}),el('path',{d:state,fill:'#159de1',stroke:'#b9f3ff','stroke-width':7,'stroke-linejoin':'round'}),el('path',{d:'M470 252L485 285 503 321',fill:'none',stroke:'#82d8f8','stroke-width':5}),el('circle',{cx:468,cy:238,r:24,fill:'#122e4c',stroke:'#d9fbff','stroke-width':6}),el('path',{d:'M451 236Q468 220 486 236L483 246H455Z',fill:'#83dfaa'}),el('circle',{cx:462,cy:233,r:4,fill:'#123b40'}),el('circle',{cx:478,cy:233,r:4,fill:'#123b40'}),el('path',{d:'M335 163L312 199 338 220 365 178',fill:'#284f95',stroke:'#b9f3ff','stroke-width':5}));return g;
+ }
+ function renderFloridaSenate(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const{el,text,svg,animated}=stretchStage(host,'florida_senate',index,preview);
+  if(index===0){
+   svg.append(text('DO NOT PRESS THE BLUE BUTTON',490,99,36,'#ffe2a4'),el('path',{d:'M0 435H980V540H0Z',fill:'#123c5a'}));
+   const console=el('g',{'data-layer':'florida-forbidden-console'});console.append(el('rect',{x:555,y:149,width:340,height:270,rx:20,fill:'#32496b',stroke:'#9dddf3','stroke-width':6}),el('rect',{x:580,y:171,width:290,height:50,rx:7,fill:'#162a43'}),text('LAUNCH CONTROL',725,203,24,'#ffcf80'),el('path',{d:'M586 242L865 394M586 394L865 242',stroke:'#e3ad50','stroke-width':17,opacity:.3}),el('circle',{cx:727,cy:311,r:61,fill:'#073254',stroke:'#ffdc8e','stroke-width':8}),el('ellipse',{cx:727,cy:298,rx:48,ry:38,fill:'#21b8ff',stroke:'#c0f5ff','stroke-width':6}),text('FORBIDDEN',727,381,21,'#ffdf9e'));svg.append(console);
+   const gator=el('g',{'data-layer':'florida-button-operator',transform:'translate(112 219)'}),motion=el('g');motion.append(floridaGator(el),el('path',{d:'M173 98Q335 145 470 91L610 74',fill:'none',stroke:'#50c7a7','stroke-width':24,'stroke-linecap':'round'}),el('path',{d:'M604 64L630 72 605 83',fill:'none',stroke:'#b9f4cb','stroke-width':6,'stroke-linecap':'round'}));gator.append(motion);svg.append(gator,text('SECURITY CHECK: TWO FLIP-FLOPS.',490,469,26,'#c3eaff'));
+   animated.push({node:motion,frames:[{transform:'translateX(-14px)'},{transform:'translateX(0)'}],duration:1150});
+  }else if(index===1){
+   svg.append(text('THE PENINSULA HAS LEFT THE CHAT',490,97,35),el('path',{d:'M68 148H220M704 175H902M82 363H193M777 350H922',stroke:'#4c8aac','stroke-width':5,'stroke-linecap':'round'}));
+   const rocket=el('g',{'data-layer':'florida-launch',transform:'translate(38 -5) rotate(-29 450 270)'}),motion=el('g',{'data-layer':'florida-rocket-motion'});motion.append(floridaRocket(el));rocket.append(motion);svg.append(rocket);
+   const alert=el('g',{'data-layer':'florida-breach-alert',transform:'rotate(5 760 298)'});alert.append(el('rect',{x:647,y:235,width:245,height:125,rx:15,fill:'#f6da83',stroke:'#fff1b9','stroke-width':5}),text('MODEL',770,280,29,'#183655'),text('BREACH',770,321,37,'#183655'));svg.append(alert,text('NASA HAS REQUESTED THE GATOR’S RÉSUMÉ.',490,469,25,'#bfeeff'));
+   animated.push({node:motion,frames:[{transform:'translate(-65px,65px)',opacity:.4},{transform:'translate(0,0)',opacity:1}],duration:1500},{node:alert,frames:[{opacity:0},{opacity:1}],duration:550,delay:400});
+  }else{
+   svg.append(text('FLORIDA MAN HAS',490,91,40),text('BREACHED THE MODEL',490,143,48,'#8be8ff'),stretchConfetti(el));
+   const gator=el('g',{'data-layer':'florida-orbital-gator',transform:'translate(151 221) scale(.88)'});gator.append(floridaGator(el,{astronaut:true}));svg.append(gator);
+   const badge=el('g',{'data-layer':'florida-gator-credentials',transform:'rotate(6 708 302)'});badge.append(el('rect',{x:533,y:218,width:344,height:174,rx:17,fill:'#e3f8ec',stroke:'#8ad9ef','stroke-width':6}),el('rect',{x:558,y:245,width:86,height:106,rx:8,fill:'#1a7ca7'}),el('path',{d:'M571 290Q592 260 632 285V309H576Z',fill:'#80e3b1'}),el('circle',{cx:599,cy:282,r:5,fill:'#173a48'}),text('ALLIGATOR',751,262,25,'#184663'),text('CREDENTIALS',751,298,23,'#184663'),text('LICENSE: VIBES',751,345,20,'#17658a'));svg.append(badge,text('CHECK THE ALLIGATOR’S CREDENTIALS.',490,458,29,'#bceeff'),text('ILLUSTRATIVE FLORIDA · NOT A RESULTS MAP',490,486,18,'#b5d9ea'));
+   animated.push({node:badge,frames:[{opacity:0},{opacity:1}],duration:800});
+  }
+  svg.append(text('FICTIONAL POLITICAL SATIRE · '+(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL'),490,520,17,'#c4deed'));
+  return finish(host,svg,animated,'florida_senate',index,phase);
+ }
+ function louisianaCrawfish(el){
+  const g=el('g',{'data-layer':'louisiana-blue-crawfish'});
+  for(const side of [-1,1])for(let i=0;i<4;i++)g.append(el('path',{d:'M'+(side*32)+' '+(28+i*22)+'L'+(side*(69+i*4))+' '+(45+i*22)+'L'+(side*(91+i*3))+' '+(38+i*24),fill:'none',stroke:'#5bd6ff','stroke-width':8,'stroke-linecap':'round'}));
+  g.append(el('path',{d:'M-35 72Q-70 122-24 161L0 180 24 161Q70 122 35 72Z',fill:'#138dce',stroke:'#afefff','stroke-width':5}),el('path',{d:'M-39 108Q0 125 39 108M-38 133Q0 151 38 133M-24 155L0 174 24 155',fill:'none',stroke:'#063f82','stroke-width':8}),el('path',{d:'M-24 162L-55 192-16 194 0 179 16 194 55 192 24 162Z',fill:'#5bd6ff',stroke:'#bdf3ff','stroke-width':4}),el('ellipse',{cx:0,cy:32,rx:48,ry:66,fill:'#239fe5',stroke:'#b2eeff','stroke-width':5}),el('path',{d:'M-19-14L-34-51M19-14L34-51',stroke:'#74dfff','stroke-width':9,'stroke-linecap':'round'}),el('circle',{cx:-35,cy:-53,r:13,fill:'#edfcff'}),el('circle',{cx:35,cy:-53,r:13,fill:'#edfcff'}),el('circle',{cx:-31,cy:-53,r:6,fill:'#122e53'}),el('circle',{cx:39,cy:-53,r:6,fill:'#122e53'}),el('path',{d:'M-12-16Q-120-114-109-43M12-16Q107-113 116-43',fill:'none',stroke:'#8ee9ff','stroke-width':5,'stroke-linecap':'round'}),el('path',{d:'M-17 39Q0 55 17 39',fill:'none',stroke:'#063d79','stroke-width':6,'stroke-linecap':'round'}));
+  for(const side of [-1,1]){const arm=el('g',{transform:'scale('+side+' 1)'});arm.append(el('path',{d:'M37 22L87-6 106-64',fill:'none',stroke:'#1d9ce0','stroke-width':23,'stroke-linecap':'round'}),el('path',{d:'M91-56Q48-96 79-129Q97-146 117-124L127-95 143-124Q175-129 176-97Q178-56 125-40Z',fill:'#39c4f4',stroke:'#b7f4ff','stroke-width':5}),el('path',{d:'M127-95L125-65',stroke:'#09659f','stroke-width':5}));g.append(arm);}
+  return g;
+ }
+ function louisianaTrumpet(el,x,y,flip=1){const group=el('g',{'data-layer':'louisiana-brass-horn',transform:'translate('+x+' '+y+') scale('+flip+' 1)'});group.append(el('path',{d:'M0 0H92L134-36V62L92 28H0Z',fill:'#ffd66e',stroke:'#fff0ad','stroke-width':5,'stroke-linejoin':'round'}),el('ellipse',{cx:135,cy:13,rx:19,ry:50,fill:'#b57a32',stroke:'#ffe89b','stroke-width':5}),el('path',{d:'M24 0V-28H57V0M39-28V-43',fill:'none',stroke:'#ffdc83','stroke-width':8,'stroke-linecap':'round'}));return group;}
+ function renderLouisianaSenate(host,{phase,beat,preview}){
+  const index=phase==='complete'?2:beat;if(!Number.isInteger(index)||index<0||index>2)return false;
+  const{el,text,svg,animated}=stretchStage(host,'louisiana_senate',index,preview);
+  if(index===0){
+   svg.append(text('THE CRAWFISH HAS THE FLOOR',490,96,38,'#f4dc9a'),el('path',{d:'M0 440Q240 408 490 440T980 439V540H0Z',fill:'#2d3260'}));
+   const float=el('g',{'data-layer':'louisiana-senate-float'});float.append(el('path',{d:'M131 328H849L815 439H166Z',fill:'#6d4ea0',stroke:'#c9b2fa','stroke-width':6}),el('path',{d:'M151 350H829L819 383H160Z',fill:'#e4b751'}),el('circle',{cx:230,cy:437,r:26,fill:'#152b4b',stroke:'#91d7f3','stroke-width':6}),el('circle',{cx:750,cy:437,r:26,fill:'#152b4b',stroke:'#91d7f3','stroke-width':6}),el('rect',{x:388,y:359,width:204,height:57,rx:8,fill:'#173f70'}),text('SENATE',490,399,30));svg.append(float);
+   const crab=el('g',{'data-layer':'louisiana-float-commandeer',transform:'translate(490 232) scale(.86)'});crab.append(louisianaCrawfish(el));svg.append(crab);
+   const gavel=el('g',{'data-layer':'louisiana-crawfish-gavel',transform:'rotate(-24 709 220)'});gavel.append(el('path',{d:'M670 258L736 159',stroke:'#f5c55e','stroke-width':15,'stroke-linecap':'round'}),el('rect',{x:703,y:133,width:88,height:39,rx:8,fill:'#f4ca63',stroke:'#fff0ae','stroke-width':5}));svg.append(gavel,louisianaTrumpet(el,118,240),louisianaTrumpet(el,860,240,-1),text('NOBODY CHECKED THE GUEST LIST.',490,479,27,'#cbdfff'));
+   animated.push({node:float,frames:[{transform:'translateY(14px)'},{transform:'translateY(0)'}],duration:1200},{node:gavel,frames:[{opacity:0},{opacity:1}],duration:550});
+  }else if(index===1){
+   svg.append(text('ORBITAL GUMBO PARADE',490,96,42,'#f6dda0'),el('ellipse',{cx:490,cy:302,rx:410,ry:145,fill:'none',stroke:'#6965a6','stroke-width':4,'stroke-dasharray':'12 14',transform:'rotate(-11 490 302)'}));
+   for(let i=0;i<12;i++)svg.append(el('circle',{cx:80+i*74,cy:160+(i%3)*92,r:i%2?9:6,fill:['#c5adfa','#ffcf70','#5bceef'][i%3]}));
+   const orchestra=el('g',{'data-layer':'louisiana-orbital-gumbo'});orchestra.append(el('path',{d:'M297 302Q300 432 490 438Q680 432 683 302Z',fill:'#147bb6',stroke:'#b1eeff','stroke-width':7}),el('ellipse',{cx:490,cy:302,rx:194,ry:42,fill:'#d09a46',stroke:'#ffdd8b','stroke-width':7}),el('ellipse',{cx:490,cy:294,rx:171,ry:27,fill:'#9d673e'}),el('path',{d:'M310 330H264Q239 330 246 364H322M670 330H716Q741 330 734 364H658',fill:'none',stroke:'#77d9f7','stroke-width':14}),el('rect',{x:365,y:345,width:250,height:58,rx:12,fill:'#173d73'}),text('ZERO-G GUMBO',490,384,27));
+   const conductor=el('g',{'data-layer':'louisiana-crawfish-conductor',transform:'translate(490 222) scale(.68)'});conductor.append(louisianaCrawfish(el));orchestra.append(conductor);svg.append(orchestra,louisianaTrumpet(el,115,234),louisianaTrumpet(el,866,234,-1));
+   const notes=el('g',{'data-layer':'louisiana-orbital-notes'});for(const [x,y]of [[202,350],[748,175],[784,398]])notes.append(el('path',{d:'M'+x+' '+y+'v-49l29-8v45m-29 0a11 8 0 1 1-1-1m30-8a11 8 0 1 1-1-1',fill:'none',stroke:'#ffe09b','stroke-width':6,'stroke-linecap':'round'}));svg.append(notes,text('ROLL CALL? MORE LIKE CRAWL CALL.',490,479,27,'#cbdfff'));
+   animated.push({node:orchestra,frames:[{transform:'translateY(25px)'},{transform:'translateY(0)'}],duration:1300},{node:notes,frames:[{opacity:0,transform:'translateY(18px)'},{opacity:1,transform:'translateY(0)'}],duration:900});
+  }else{
+   svg.append(text('GEAUX BLUE',490,110,69,'#a4eaff'),stretchConfetti(el));
+   const hero=el('g',{'data-layer':'louisiana-crawfish-senate-finale'}),position=el('g',{transform:'translate(490 259) scale(.79)'});hero.append(louisianaCrawfish(el));position.append(hero);svg.append(position,louisianaTrumpet(el,127,268),louisianaTrumpet(el,853,268,-1));
+   svg.append(el('rect',{x:344,y:394,width:292,height:45,rx:11,fill:'#264e85',stroke:'#9ce4ff','stroke-width':4}),text('SENATE PARADE PERMIT',490,424,21,'#fff2bf'),text('THE CRAWFISH HAVE TAKEN THE SENATE',490,478,31,'#dfedff'));
+   animated.push({node:hero,frames:[{opacity:0,transform:'translateY(25px) scale(.9)'},{opacity:1,transform:'translateY(0) scale(1)'}],duration:850});
+  }
+  svg.append(text('FICTIONAL POLITICAL SATIRE · '+(preview?'SIMULATED PREVIEW · NO REAL VICTORY CLAIM':'SOURCE-REPORTED CALL · UNOFFICIAL'),490,520,17,'#c4deed'));
+  return finish(host,svg,animated,'louisiana_senate',index,phase);
+ }
+ // END FLORIDA LOUISIANA ORIGINAL SCENES
  return Object.freeze({render,clear});
 });

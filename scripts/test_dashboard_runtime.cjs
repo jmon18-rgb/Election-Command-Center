@@ -161,8 +161,16 @@ async function settle(){
  const legacyCelebrationIds=['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi'];
  assert.deepEqual(Array.from(w.ElectionNightSignals?.MILESTONES||[],x=>x.id).slice(0,10),legacyCelebrationIds,
   'The dashboard must load the exact ten separately guarded celebration events');
- assert.deepEqual(Array.from(w.ElectionNightSignals?.MILESTONES||[],x=>x.id),[...legacyCelebrationIds,'michigan'],
-  'Only the owner-authorized guarded Michigan event is added to the original ten');
+ assert.deepEqual(Array.from(w.ElectionNightSignals?.MILESTONES||[],x=>x.id).slice(0,11),[...legacyCelebrationIds,'michigan'],
+  'All eleven prior earned celebrations retain their exact order');
+ const stretchCelebrationIds=['florida_senate','louisiana_senate'];
+ assert.deepEqual(Array.from(w.ElectionNightSignals?.MILESTONES||[],x=>x.id),[...legacyCelebrationIds,'michigan',...stretchCelebrationIds],
+  'Exactly two separately guarded stretch events append to the eleven prior earned cards');
+ const legacyStoryIds=[...legacyCelebrationIds,'tsunami','michigan'];
+ assert.deepEqual(Object.keys(w.ElectionNightCelebrationPlayer.STORIES).slice(0,12),legacyStoryIds,
+  'Every original twelve-story offset remains intact, including preview-only tsunami before Michigan');
+ assert.deepEqual(Object.keys(w.ElectionNightCelebrationPlayer.STORIES),[...legacyStoryIds,...stretchCelebrationIds],
+  'Exactly fourteen stories retain the old twelve and append the two stretch finales');
  w.eval(read('scripts/election_night_poll_closings_2026.js'));
  w.eval(read('scripts/house_early_watch_reference.js'));
  w.eval(read('scripts/election_night_indicator_status.js'));
@@ -693,15 +701,23 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  get('#enAlertClear').click();
  fishAudioPlays=beforeSourceCallFishPlays;
  assert.equal(get('#enMilestoneDesk').hidden,false,'2026 mode reveals achievements');
- assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,11,'The owner-authorized Michigan celebration is added to the ten original earned cards');
- assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card:not([data-milestone="michigan"])').length,10,'All ten original cards remain');
+ assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card').length,13,'The two owner-authorized stretch celebrations append to the eleven prior earned cards');
+ assert.equal(get('#enMilestoneGrid').querySelectorAll('.en-milestone-card:not([data-milestone="michigan"]):not([data-milestone="florida_senate"]):not([data-milestone="louisiana_senate"])').length,10,'All ten original cards remain');
  assert.equal(get('#jointNightSensitivity').open,false,
   'Keep optional probability-model switches off the ambient election-night screen');
  const posterCards=[...get('#enMilestoneGrid').querySelectorAll('.en-milestone-card')];
- assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,11,
-  'Every milestone including Michigan gets its own original or owner-supplied illustrated thumbnail');
- assert.equal(posterCards.filter(el=>el.dataset.milestone!=='michigan'&&el.querySelector('img.en-milestone-thumb')).length,10,'All ten original thumbnails remain');
+ assert.deepEqual(posterCards.slice(0,11).map(el=>el.dataset.milestone),[...legacyCelebrationIds,'michigan'],
+  'The original eleven card order and all old indices remain intact');
+ assert.deepEqual(posterCards.map(el=>el.dataset.milestone),[...legacyCelebrationIds,'michigan',...stretchCelebrationIds]);
+ assert.equal(new Set(posterCards.map(el=>el.dataset.milestone)).size,13,'Each earned card has a unique event ID');
+ assert.equal(posterCards.filter(el=>el.querySelector('img.en-milestone-thumb')).length,13,
+  'All thirteen earned cards retain a distinct illustrated thumbnail');
+ assert.equal(posterCards.filter(el=>legacyCelebrationIds.includes(el.dataset.milestone)&&el.querySelector('img.en-milestone-thumb')).length,10,'All ten original thumbnails remain');
  assert(posterCards.find(el=>el.dataset.milestone==='michigan').querySelector('img.en-milestone-thumb').getAttribute('src').includes('assets/milestone-michigan.svg'),'Michigan uses its own original illustrated poster');
+ const stretchPosterSources=stretchCelebrationIds.map(id=>posterCards.find(el=>el.dataset.milestone===id).querySelector('img.en-milestone-thumb').getAttribute('src'));
+ assert(stretchPosterSources[0].includes('assets/milestone-florida.svg'),'Florida has its own original gator/rocket poster');
+ assert(stretchPosterSources[1].includes('assets/milestone-louisiana.svg'),'Louisiana has its own original crawfish/parade poster');
+ assert.equal(new Set(stretchPosterSources).size,2,'The two stretch posters are distinct, not reused old artwork');
  assert(posterCards[3].querySelector('img.en-milestone-thumb').getAttribute('src')
   .includes('celebration-owner-kansas.jpg?v=26f7df1f64f4'),
   'Kansas thumbnail must use the exact owner-supplied painting revision');

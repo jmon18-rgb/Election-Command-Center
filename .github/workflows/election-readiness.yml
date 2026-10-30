@@ -86,6 +86,31 @@ jobs:
             artifacts/readiness/ui-review/model-worker-public-guard/
           if-no-files-found: warn
           retention-days: 7
+
+  stretch-senate-celebrations:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the existing pinned browser runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chromium
+      - name: Florida and Louisiana preserve call, scene, queue and fallback guards
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/stretch-senate-celebrations
+        run: node scripts/test_stretch_celebration_browser.mjs
+      - name: Upload bounded stretch celebration evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: stretch-senate-celebrations
+          path: artifacts/readiness/ui-review/stretch-senate-celebrations/
+          if-no-files-found: warn
+          retention-days: 7
       - name: National results failure and recovery
         if: ${{ !cancelled() }}
         run: node scripts/test_election_night_506_live_browser_recovery.mjs

@@ -98,6 +98,22 @@
     "kind": "ORIGINAL_CUE",
     "fallback": "FEAR CAMPAIGN: SIGNAL LOST",
     "hint": "This original score is already available. Choose your own audio to replace it."
+  },
+  "florida_senate": {
+    "id": "florida_senate",
+    "title": "FLORIDA MAN HAS BREACHED THE MODEL",
+    "artist": "Project original",
+    "kind": "ORIGINAL_CUE",
+    "fallback": "FLORIDA MAN HAS BREACHED THE MODEL",
+    "hint": "An original gator sneak, forbidden-button boop and rocket-brass finale. Your own saved audio can replace it."
+  },
+  "louisiana_senate": {
+    "id": "louisiana_senate",
+    "title": "THE CRAWFISH HAVE TAKEN THE SENATE",
+    "artist": "Project original",
+    "kind": "ORIGINAL_CUE",
+    "fallback": "THE CRAWFISH HAVE TAKEN THE SENATE",
+    "hint": "An original claw-click, parade-bass and comic Mardi Gras brass cue. Your own saved audio can replace it."
   }
 }).map(([id,row])=>[id,Object.freeze(row)])));
  function forEvent(id){return Object.prototype.hasOwnProperty.call(CHOICES,id)?CHOICES[id]:null;}

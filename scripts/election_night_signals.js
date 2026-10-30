@@ -49,7 +49,13 @@
    description:'A source-reported Democratic Mississippi Senate call, subject to the existing exact-race source checks. Not certification.'},
   {id:'michigan',title:'FEAR CAMPAIGN: SIGNAL LOST',tag:'Michigan declines the fear subscription.',
    icon:'📴',type:'all',needs:[{office:'Senate',key:'MI',party:'D'}],
-   description:'A source-reported Democratic Michigan Senate call, subject to the existing exact-race source checks. Not certification.'}
+   description:'A source-reported Democratic Michigan Senate call, subject to the existing exact-race source checks. Not certification.'},
+  {id:'florida_senate',title:'FLORIDA MAN HAS BREACHED THE MODEL',tag:'Stretch win · The alligator has launch clearance.',
+   icon:'🐊',type:'all',needs:[{office:'Senate',key:'FL-special',party:'D'}],
+   description:'A source-reported Democratic Florida special Senate call. Forecast ratings and uncalled leads never unlock this celebration. Not certification.'},
+  {id:'louisiana_senate',title:'THE CRAWFISH HAVE TAKEN THE SENATE',tag:'Stretch win · Geaux completely off the rails.',
+   icon:'🦞',type:'all',needs:[{office:'Senate',key:'LA',party:'D'}],
+   description:'A source-reported Democratic Louisiana Senate call. Forecast ratings and uncalled leads never unlock this celebration. Not certification.'}
  ]);
  const TRACKED=Object.freeze([
   {office:'Senate',key:'SC'},{office:'Senate',key:'TX'},{office:'Governor',key:'TX'},
