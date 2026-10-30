@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T03:59:03.249197Z",
+  "updated_at": "2026-10-30T04:58:20.128269Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -8,7 +8,7 @@
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
     "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 72
+    "advisory_related_headlines": 73
   },
   "advisory_related_headlines": [
     {
@@ -64,6 +64,17 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
+      "lead_id": "e788c459cf4fd32da44a",
+      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - The Morning Call",
+      "possibly_related_articles": 4,
+      "distinct_publishers": 4,
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
       "lead_id": "3b6154045883ef155c34",
       "headline": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
       "possibly_related_articles": 3,
@@ -96,17 +107,6 @@
       "topic_hints": [
         "ballot_access",
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "e788c459cf4fd32da44a",
-      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - The Morning Call",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 3,
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -308,6 +308,23 @@
       "publisher": "The Morning Call",
       "published_at": "2026-10-29T22:25:30Z",
       "detected_at": "2026-10-29T23:48:57.693451Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6d225da0a3eec93e138c",
+      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - The Press Democrat",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5HaDBiQVhfaGNPQmlOREgxQ29TaWZhcmRDX2ZnYi1GSktmMTFzc3doTFlFZU1BdmhJVldjNWFWX0EwaWszOW5lSnZLX2VsXzlCZUJDRnZlTmFIaTdEWFJnN0hQX1hMVVBaaktBZlZENmpCSWhFZ1g3Nnh5bFplTWc?oc=5",
+      "publisher": "The Press Democrat",
+      "published_at": "2026-10-29T22:22:24Z",
+      "detected_at": "2026-10-30T04:58:20.128269Z",
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -5003,25 +5020,6 @@
       "topic_hints": [
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7daf29b764a643b992ab",
-      "title": "\u2018We didn\u2019t ask you to remove them\u2019: DOJ\u2019s California lawsuit aims to get around federal voter protections - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxOb2NyWTJTdS1hUWM0Q1BydmZBNGpiRTlJOUJSQ25aUjlYZFJMU2hkcDFreVQxb25Mdmlnd1dYeGcxYXc0bW5DRGlJQTcwNXdPbC1odHpSaDIwLTVXREsyLWpublRYS2x2UG90T0x1QWJNbHRESFpyUTlWeWh3UXZWejhCbjduMkNtTlpCNVg4LUE0NS1DVnFTT0YzS0UyeUdYVWl2eFo3TlF1OU9yNkgtMDk0SjVDeERZOG81ekVwbElOTUVBLWpwbjZvNk83U2tSVmtONFRHSVhrMnNxb0E?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-18T16:57:10Z",
-      "detected_at": "2026-10-18T17:39:40.360708Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
