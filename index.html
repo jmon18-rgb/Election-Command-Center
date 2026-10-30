@@ -1626,13 +1626,13 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
   <p class="en-celebration-online-status" id="enCelebrationOnlineStatus" role="status">Ad-free music uses your saved audio file or the original score.</p>
   <p class="en-celebration-track-pick" id="enCelebrationTrackPick"></p>
   <div class="en-celebration-local-settings">
-   <span id="enCelebrationLocalName">Audio files stay in this browser; they are never uploaded.</span>
+   <span id="enCelebrationLocalName">Songs are saved only in this browser. Load your song files here to use your recordings.</span>
    <button id="enCelebrationLocalChoose" type="button">Choose an audio file</button>
    <button id="enCelebrationLocalRemove" type="button" disabled>Remove saved audio</button>
    <input id="enCelebrationLocalFile" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg,.flac" hidden>
    <button id="enCelebrationPackChoose" type="button">Load supplied song pack</button>
    <input id="enCelebrationPackFiles" type="file" accept="audio/mpeg,.mp3" multiple hidden>
-   <p class="tiny" id="enCelebrationPackHelp">Select several supplied tracks to assign them together. Recognized names go to their celebrations; files stay in this browser.</p>
+   <p class="tiny" id="enCelebrationPackHelp">Unzip the song pack, then select its MP3 files together. Import once in each browser or device; recordings do not sync. Files stay here and are never uploaded.</p>
    <p class="tiny" id="enCelebrationPackStatus" role="status" aria-live="polite"></p>
   </div>
   <details class="en-celebration-music-settings">
@@ -1742,7 +1742,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/election_night_celebration_player.js?v=4e47e4fbc915"></script>
 <script src="./scripts/election_night_announcement_motion.js?v=71716b57b5f2"></script>
 <script src="./scripts/election_night_celebration_online.js?v=b0163b7f8211"></script>
-<script src="./scripts/election_night_celebration_local.js?v=0ce8ba303775"></script>
+<script src="./scripts/election_night_celebration_local.js?v=c5fae4c4e71a"></script>
 <script src="./scripts/election_night_celebration_pack.js?v=ae67ef6b819e"></script>
 <script src="./scripts/election_night_celebration_music.js?v=fa3762c7d456"></script>
 <script src="./scripts/election_night_celebration_music_choices.js?v=6e35f715e937"></script>
@@ -6816,7 +6816,11 @@ function enCelebrationLocalStatus(state){
 async function enCelebrationSyncLocal(){
  const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=enCelebrationSettingsEpoch,request=++enCelebrationInfoEpoch,info=await enCelebrationLocal?.info(id);
  if(id!==enCelebrationCurrent||modalEpoch!==enCelebrationModalEpoch||settingsEpoch!==enCelebrationSettingsEpoch||request!==enCelebrationInfoEpoch||!$('#enMilestoneSpotlight').open)return;
- $('#enCelebrationLocalName').textContent=info?.metadata?'Saved for this celebration: '+info.metadata.name:'Audio files stay in this browser; they are never uploaded. Up to 16 MB per celebration.';
+ const localMessage=info?.status==='MISSING'?'No recording saved for this celebration in this browser. Load the song pack here; recordings do not sync between browsers or devices.':
+  info?.status==='STORAGE_UNAVAILABLE'?'This browser could not open saved song storage. The original score is still available.':
+  info?.status==='INVALID_STORED_FILE'?'The saved recording could not be read. Choose that song file again to replace it.':
+  'Saved audio is unavailable in this browser right now. The original score is still available.';
+ $('#enCelebrationLocalName').textContent=info?.metadata?'Saved for this celebration: '+info.metadata.name:localMessage+' Files are never uploaded. Up to 16 MB per celebration.';
  $('#enCelebrationLocalRemove').disabled=!info?.metadata;
 }
 function enCelebrationMaybeReplayMusic(){

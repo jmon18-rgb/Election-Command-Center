@@ -314,3 +314,28 @@ jobs:
           if-no-files-found: warn
           retention-days: 7
 
+
+  chrome-audio-recovery:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the pinned browser runtime and actual Chrome
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chrome
+      - name: Native Chrome distinguishes missing recordings, codec errors and playable audio
+        env:
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/chrome-celebration-audio
+        run: node scripts/test_chrome_celebration_audio_browser.mjs
+      - name: Upload native Chrome audio recovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrome-celebration-audio
+          path: artifacts/readiness/ui-review/chrome-celebration-audio/
+          if-no-files-found: warn
+          retention-days: 7
