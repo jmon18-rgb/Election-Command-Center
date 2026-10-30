@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-30T11:53:46.416088+00:00",
+  "updated_at": "2026-10-30T13:08:22.028249+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 863,
+      "available_in_source": 865,
       "records_examined": 300
     },
     "house": {
@@ -13,31 +13,147 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 969,
+      "available_in_source": 971,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 329,
-  "newly_injected_into_model": 4,
+  "matched_primary_observations": 333,
+  "newly_injected_into_model": 3,
   "injected_poll_ids": [
     {
-      "race_code": "AZ-GOV",
-      "poll_id": "03c27ee2-712b-428b-baf6-01cc2897247f"
+      "race_code": "KS-GOV",
+      "poll_id": "57631c63-27a4-4cb7-adcb-99233e0056d8"
     },
     {
-      "race_code": "CA-GOV",
-      "poll_id": "00e214c1-1c4a-44af-98f6-368455b7332d"
+      "race_code": "TX-GOV",
+      "poll_id": "efb35ed0-feb9-4785-8f6c-67a2f28a3148"
     },
     {
-      "race_code": "FL-GOV",
-      "poll_id": "1e6f3670-4580-45df-928a-94a521db841c"
-    },
-    {
-      "race_code": "FL-SEN",
-      "poll_id": "1e6f3670-4580-45df-928a-94a521db841c"
+      "race_code": "TX-SEN",
+      "poll_id": "efb35ed0-feb9-4785-8f6c-67a2f28a3148"
     }
   ],
   "observations": [
+    {
+      "race_code": "TX-SEN",
+      "race_type": "senate",
+      "state": "TX",
+      "poll_id": "efb35ed0-feb9-4785-8f6c-67a2f28a3148",
+      "question_id": "67ab4426-8d0b-433b-a476-d314d6c7f865",
+      "pollster": "Quantus Insights",
+      "dem_name": "James Talarico",
+      "rep_name": "Ken Paxton",
+      "dem": 48.4,
+      "rep": 49.4,
+      "margin": -1.0,
+      "field_end": "2026-10-28",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T08:41:00",
+      "posted_source_time": "10/30/26 08:41",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://quantusinsights.org/polling/f/texas-survey-paxton-up-one-abbott-ahead-by-five",
+      "sample_population": "lv",
+      "sample_size": 1207,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "TX-GOV",
+      "race_type": "governor",
+      "state": "TX",
+      "poll_id": "efb35ed0-feb9-4785-8f6c-67a2f28a3148",
+      "question_id": "438c67d3-c6e6-4df9-b36d-d101b46245c4",
+      "pollster": "Quantus Insights",
+      "dem_name": "Gina Hinojosa",
+      "rep_name": "Greg Abbott",
+      "dem": 46.3,
+      "rep": 51.6,
+      "margin": -5.3,
+      "field_end": "2026-10-28",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T08:41:00",
+      "posted_source_time": "10/30/26 08:41",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://quantusinsights.org/polling/f/texas-survey-paxton-up-one-abbott-ahead-by-five",
+      "sample_population": "lv",
+      "sample_size": 1214,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "KS-SEN",
+      "race_type": "senate",
+      "state": "KS",
+      "poll_id": "57631c63-27a4-4cb7-adcb-99233e0056d8",
+      "question_id": "6d29d6c5-c77b-44d3-8832-d70450a765e8",
+      "pollster": "The Washington Post/George Mason University Schar School of Policy and Government",
+      "dem_name": "Adam Hamilton",
+      "rep_name": "Roger Marshall",
+      "dem": 54.0,
+      "rep": 44.0,
+      "margin": 10.0,
+      "field_end": "2026-10-26",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T08:38:00",
+      "posted_source_time": "10/30/26 08:38",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.washingtonpost.com/tablet/2026/10/30/oct-22-26-2026-washington-post-schar-school-kansas-poll/",
+      "sample_population": "lv",
+      "sample_size": 801,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "KS-SEN",
+      "race_type": "senate",
+      "state": "KS",
+      "poll_id": "57631c63-27a4-4cb7-adcb-99233e0056d8",
+      "question_id": "dafb371e-1151-4a4b-8704-8529f8a5ac93",
+      "pollster": "The Washington Post/George Mason University Schar School of Policy and Government",
+      "dem_name": "Adam Hamilton",
+      "rep_name": "Roger Marshall",
+      "dem": 52.0,
+      "rep": 43.0,
+      "margin": 9.0,
+      "field_end": "2026-10-26",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T08:38:00",
+      "posted_source_time": "10/30/26 08:38",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.washingtonpost.com/tablet/2026/10/30/oct-22-26-2026-washington-post-schar-school-kansas-poll/",
+      "sample_population": "lv",
+      "sample_size": 801,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "KS-GOV",
+      "race_type": "governor",
+      "state": "KS",
+      "poll_id": "57631c63-27a4-4cb7-adcb-99233e0056d8",
+      "question_id": "dfc3041d-b936-4966-bf21-2ed4ba372bfb",
+      "pollster": "The Washington Post/George Mason University Schar School of Policy and Government",
+      "dem_name": "Cindy Holscher",
+      "rep_name": "Ty Masterson",
+      "dem": 51.0,
+      "rep": 45.0,
+      "margin": 6.0,
+      "field_end": "2026-10-26",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T08:38:00",
+      "posted_source_time": "10/30/26 08:38",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.washingtonpost.com/tablet/2026/10/30/oct-22-26-2026-washington-post-schar-school-kansas-poll/",
+      "sample_population": "lv",
+      "sample_size": 801,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-SEN",
       "race_type": "senate",
