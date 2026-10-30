@@ -1,5 +1,16 @@
 # National needle acceptance decision — October 27, 2026
 
+## October30 — offline chronological replay/scoring source integration
+
+The new Node-only `scripts/historical_evaluation_replay.cjs` fills the execution gap after the released package preflight. An explicit offline caller supplies retained bytes, reviewed decoders and all three frozen predictors. It owns the package, snapshots and predictor slots, records chronological outputs without final truth in the predictor packet, and decodes final truth in a separate scoring phase. The existing preflight initially reads and hashes every retained artifact, including truth; this is a decoding/scoring lifecycle guarantee, not a claim that truth bytes were never read.
+
+Callbacks are trusted research code, not a security sandbox or proof of contemporaneous provenance. The package entry point currently requires an exhaustive native two-candidate roster; a third candidate rejects before prediction. Remaining-vote units mean valid votes in that binary contest, not all ballots. Protocol levels/targets/units, withheld/retracted/recovered transitions, counted totals and usable race/election denominators are retained. Unchanged consecutive states do not gain score weight; separate method summaries do not establish paired baseline skill. See `HISTORICAL_EVALUATION_REPLAY.md`.
+
+The separate scorePaired, aggregatePaired and scoreRetainedPairedTrace APIs compare model versus each fixed polling-only/naive-count baseline on exactly shared selected event IDs. Cohort IDs/hashes, asymmetric withholding, ties, negative remaining and usable/undefined race/election counts stay visible. Extended loss means are formed on identical common cohorts before absolute baseline-minus-model gains; infinite/undefined differences are retained. Coverage and width remain side by side. Existing unpaired summaries keep their null paired-skill marker.
+
+Focused source checks now pass locally: all sixteen original controls plus ten named paired-arithmetic controls. Independent changed-code review, protected CI and publication remain pending. These synthetic mechanics use zero actual datasets and zero model draws. Actual historical normalizers/frozen predictors, independently admitted chronology/rights/whole-election heldouts, empirical paired common-cohort skill and national chamber/Four-Endings transfer remain open. Empirical datasets/heldouts remain zero and acceptance metricsNULL/NOT_ESTIMABLE; the formal R2 NO-GO remains unchanged. No browser/runtime index, numerical forecast, source/call authority or operator guide/task change is part of this utility.
+
+
 ## October30 — PR540 COMPLETE / VERIFIED PUBLISHED
 
 Tested c30e925ac24c96bf2f70bf16aa73f6b18dc10e7d passed all34 applicable PR parents/0push parents,56 latest jobs (53SUCCESS/3declared deployed-only PR skips),56 exact checks and0external statuses, allattempt1. Protected merge cdf31d3e is complete; final verified main 59acbdc7c364611f67e2e8f66dac423733c770e6/Pages41138565971 passed all3deployment jobs. The cancelled initial-merge Pages record is preserved and was never used as a success gate or manually rerun.
