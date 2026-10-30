@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-10-30T00:11:38.449977+00:00",
+  "generated_at": "2026-10-30T02:22:48.083103+00:00",
   "races": [
     {
       "checked_window_utc": "2026-10-25T19:00:00+00:00",
@@ -878,14 +878,44 @@
       "race_id": 87355
     },
     {
+      "checked_window_utc": "2026-10-30T02:00:00+00:00",
+      "district": "OH-07",
+      "race_id": 87356
+    },
+    {
+      "checked_window_utc": "2026-10-30T02:00:00+00:00",
+      "district": "OH-08",
+      "race_id": 87357
+    },
+    {
       "checked_window_utc": "2026-10-29T14:00:00+00:00",
       "district": "OH-09",
       "race_id": 87358
     },
     {
+      "checked_window_utc": "2026-10-30T02:00:00+00:00",
+      "district": "OH-10",
+      "race_id": 87359
+    },
+    {
+      "checked_window_utc": "2026-10-30T02:00:00+00:00",
+      "district": "OH-11",
+      "race_id": 87360
+    },
+    {
+      "checked_window_utc": "2026-10-30T02:00:00+00:00",
+      "district": "OH-12",
+      "race_id": 87361
+    },
+    {
       "checked_window_utc": "2026-10-29T14:00:00+00:00",
       "district": "OH-13",
       "race_id": 87362
+    },
+    {
+      "checked_window_utc": "2026-10-30T02:00:00+00:00",
+      "district": "OH-14",
+      "race_id": 87363
     },
     {
       "checked_window_utc": "2026-10-29T00:00:00+00:00",
@@ -941,6 +971,11 @@
       "checked_window_utc": "2026-10-29T08:00:00+00:00",
       "district": "TN-02",
       "race_id": 87449
+    },
+    {
+      "checked_window_utc": "2026-10-30T02:00:00+00:00",
+      "district": "TN-03",
+      "race_id": 87450
     },
     {
       "checked_window_utc": "2026-10-29T08:00:00+00:00",
@@ -1006,6 +1041,11 @@
       "checked_window_utc": "2026-10-25T17:00:00+00:00",
       "district": "WI-07",
       "race_id": 87489
+    },
+    {
+      "checked_window_utc": "2026-10-30T02:00:00+00:00",
+      "district": "WI-08",
+      "race_id": 87490
     }
   ],
   "schema_version": "1.0",
