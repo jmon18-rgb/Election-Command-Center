@@ -17,7 +17,9 @@
   abbott:[['🌳','THE CAMPAIGN HAS A PROBLEM','Fictional election-night artwork. Not a real event.'],['💙','TIMBER, INCUMBENT','A theatrical send-off for an era of Texas politics.'],['🎉','TEXAS GOVERNOR FLIPS','An election defeat. A new chapter.']],
   mississippi:[['🌊','A CHANGE IN THE CURRENT','Mississippi turns the page.'],['📦','STRAIGHT INTO STORAGE','The retired mascot gets a very blue sendoff.'],['💙','MISSISSIPPI SENATE FLIPS','Leave the old symbols behind.']],
   tsunami:[['🌊','A VERY LARGE WAVE','Preview the grand finale.'],['🌊 🌊','PLEASE SECURE YOUR LAWN SIGNS','The tide has theatrical ambitions.'],['💙','BLUE TSUNAMI','Preview only until national conditions can be verified.']],
-  michigan:[['📡','FEAR CAMPAIGN: SIGNAL LOST','The panic machine has a customer-service issue.'],['🔇','MICHIGAN PRESSES MUTE','Your fear subscription has been cancelled.'],['💙','ERROR: VOTERS NOT SCARED','Michigan declines the fear subscription.']]
+  michigan:[['📡','FEAR CAMPAIGN: SIGNAL LOST','The panic machine has a customer-service issue.'],['🔇','MICHIGAN PRESSES MUTE','Your fear subscription has been cancelled.'],['💙','ERROR: VOTERS NOT SCARED','Michigan declines the fear subscription.']],
+  florida_senate:[['🐊','THE ALLIGATOR HAS THE LAUNCH CODES','Someone left the enormous blue button unattended.'],['🚀','FLORIDA HAS LEFT THE GROUP CHAT','The peninsula is now a spacecraft. Please remain Floridian.'],['🛸','FLORIDA MAN HAS BREACHED THE MODEL','Check the alligator’s credentials. Immediately.']],
+  louisiana_senate:[['🦞','THE CRAWFISH HAVE SEIZED THE FLOAT','A routine parade has become a constitutional inconvenience.'],['🎺','GEAUX COMPLETELY OFF THE RAILS','The brass band has obtained launch clearance.'],['💙','THE CRAWFISH HAVE TAKEN THE SENATE','The gumbo is now in charge of the space program.']]
  });
  function create({render=()=>{},announce=done=>done(),music=()=>{},valid=()=>true,
   setTimer=setTimeout,clearTimer=clearTimeout,onIdle=()=>{},reducedMotion=()=>false}={}){

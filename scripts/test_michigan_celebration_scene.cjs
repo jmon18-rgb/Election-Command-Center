@@ -19,7 +19,10 @@ let groups=0;
 // all original11 scene bodies/shared props/owner-image lifecycle, normalized
 // solely for cross-platform Git line endings. No runtime Git dependency.
 {
- const source=fs.readFileSync(path.join(root,'scripts/election_night_celebration_scene.js'),'utf8').replace(/\r\n/g,'\n');
+ const source=fs.readFileSync(path.join(root,'scripts/election_night_celebration_scene.js'),'utf8').replace(/\r\n/g,'\n')
+  .replace("  if(host&&id==='florida_senate'&&['scene','complete'].includes(phase))return renderFloridaSenate(host,{phase,beat,preview});\n",'')
+  .replace("  if(host&&id==='louisiana_senate'&&['scene','complete'].includes(phase))return renderLouisianaSenate(host,{phase,beat,preview});\n",'')
+  .replace(/ \/\/ BEGIN FLORIDA LOUISIANA ORIGINAL SCENES\n[\s\S]*? \/\/ END FLORIDA LOUISIANA ORIGINAL SCENES\n/,'');
  const dispatch="  if(host&&id==='michigan'&&['scene','complete'].includes(phase))return renderMichigan(host,{phase,beat,preview});\n";
  assert.equal(source.split(dispatch).length,2);const before=source.replace(dispatch,'').replace(/ \/\/ BEGIN MICHIGAN ORIGINAL SCENE\n[\s\S]*? \/\/ END MICHIGAN ORIGINAL SCENE\n/,'');
  assert.equal(crypto.createHash('sha256').update(before).digest('hex'),'02c07efabb90fb3174071bb8ea696a72409246684a23a6a2ea875f683b78c3ae');groups++;

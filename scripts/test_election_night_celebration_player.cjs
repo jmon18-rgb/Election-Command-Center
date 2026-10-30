@@ -3,6 +3,7 @@ const assert=require('node:assert/strict');
 const {create,STORIES}=require('./election_night_celebration_player.js');
 assert.deepEqual(Object.keys(STORIES).slice(0,11),['graham','blexas','blue_corn','blansas','maine','nebraska','ohio','talarico','abbott','mississippi','tsunami'],'All eleven original key offsets preserve the existing missing-music-helper fallback');
 assert.equal(Object.keys(STORIES)[11],'michigan','New Michigan story appends after all existing fallback offsets');
+assert.deepEqual(Object.keys(STORIES).slice(12),['florida_senate','louisiana_senate'],'Stretch stories append after every prior fallback offset');
 assert.doesNotMatch(JSON.stringify(STORIES.graham),/lindsey/i,'Graham story must not name the previous seat holder');
 let tasks=new Map(),clock=0,id=0,done,allowed=new Set(['graham','blansas']),events=[],sounds=[];
 const player=create({setTimer:(fn,ms)=>{tasks.set(++id,{fn,at:clock+ms});return id},

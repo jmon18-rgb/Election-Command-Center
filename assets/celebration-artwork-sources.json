@@ -91,6 +91,22 @@
       "sha256": "e04eaefd0330bab343b57d10734184f89f721c4468119985f7f8de28988f6089",
       "presentation": "Three original animation beats and a full-contained static fallback; fictional political satire, not reporting geography or winner evidence.",
       "rights_scope": "Original repository vector artwork; no outside recording or image rights claim"
+    },
+    {
+      "event": "florida_senate",
+      "path": "assets/milestone-florida.svg",
+      "source": "Original repository-native vector political satire, October30; Original fictional Florida Senate political satire. A grinning alligator in flip-flops launches an illustrative Florida peninsula as a space rocket and presents a ridiculous credentials card. Not a results map, forecast, reporting boundary or winner claim.",
+      "sha256": "caf8c6946e929269204fb458dab1647ab920cff2aa8f6c326d97998a653e604e",
+      "presentation": "Three original native-SVG animation beats and a whole-contained static poster fallback; clear simulated-preview/source-unofficial and fictional-satire labels. No real winner, forecast or reporting-geography claim.",
+      "rights_scope": "Original repository vector artwork; no outside image, recording or license claim"
+    },
+    {
+      "event": "louisiana_senate",
+      "path": "assets/milestone-louisiana.svg",
+      "source": "Original repository-native vector political satire, October30; Original fictional Louisiana Senate political satire. A giant blue crawfish with enormous claws commandeers a Mardi Gras Senate float, conducts an orbital gumbo brass parade and celebrates Geaux Blue. Not an actual result, forecast or winner claim.",
+      "sha256": "3893582461c69ce8949b3b56ce80ebd270cfc145812c6102fe1618c55aeee895",
+      "presentation": "Three original native-SVG animation beats and a whole-contained static poster fallback; clear simulated-preview/source-unofficial and fictional-satire labels. No real winner, forecast or reporting-geography claim.",
+      "rights_scope": "Original repository vector artwork; no outside image, recording or license claim"
     }
   ],
   "identity_reference": "https://vote.charlestoncounty.gov/?r=816",
@@ -99,7 +115,7 @@
   "preview_limit": "All previews are fictional achievements, never proof of votes or winner calls",
   "music": {
     "path": "scripts/election_night_celebration_music.js",
-    "source": "Eleven retained original procedural instrumental compositions plus the original Michigan fear-campaign cue",
+    "source": "Twelve retained original procedural instrumental compositions plus the original Florida and Louisiana stretch-win cues",
     "third_party_recordings": false,
     "requested_commercial_or_fight_song_recordings": "Owner-supplied files may be saved privately in browser-local IndexedDB through the normal picker. No supplied recording is bundled, uploaded or granted public distribution rights.",
     "preview_outputs": "Local artifacts/readiness/music-previews/*.wav rendered from the same production scores"

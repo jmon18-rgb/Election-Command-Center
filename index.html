@@ -1739,14 +1739,14 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 </details>
 </section>
 <footer class="footer"><span>2026 ELECTION COMMAND CENTER · CLARITY OVER NOISE</span><span><a href="https://github.com/jmon18-rgb/Election-Command-Center">Source code ↗</a> · <span id="updated">Briefing pending</span></span></footer></main>
-<script src="./scripts/election_night_celebration_player.js?v=a644b65b2ec1"></script>
+<script src="./scripts/election_night_celebration_player.js?v=4e47e4fbc915"></script>
 <script src="./scripts/election_night_announcement_motion.js?v=71716b57b5f2"></script>
 <script src="./scripts/election_night_celebration_online.js?v=b0163b7f8211"></script>
-<script src="./scripts/election_night_celebration_local.js?v=8efdd613eff6"></script>
+<script src="./scripts/election_night_celebration_local.js?v=0ce8ba303775"></script>
 <script src="./scripts/election_night_celebration_pack.js?v=971259116a7a"></script>
-<script src="./scripts/election_night_celebration_music.js?v=095587efc26b"></script>
-<script src="./scripts/election_night_celebration_music_choices.js?v=a64b1c3f21d8"></script>
-<script src="./scripts/election_night_celebration_scene.js?v=46b2ab94dbb5"></script>
+<script src="./scripts/election_night_celebration_music.js?v=fa3762c7d456"></script>
+<script src="./scripts/election_night_celebration_music_choices.js?v=8c0673c0aa9f"></script>
+<script src="./scripts/election_night_celebration_scene.js?v=1d159715d3f2"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
 <script src="./scripts/civicapi_nh_governor_adapter.js?v=165fc37d665a"></script>
@@ -1773,7 +1773,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/election_night_nowcast.js?v=b8cd63572ea1"></script>
 <script src="./scripts/election_night_early_signals.js?v=36958b325016"></script>
 <script src="./scripts/election_night_priority.js?v=67317c95ade2"></script>
-<script src="./scripts/election_night_signals.js?v=a4ebd9d2b4cf"></script>
+<script src="./scripts/election_night_signals.js?v=461778571b69"></script>
 <script src="./scripts/election_night_poll_closings_2026.js?v=39c725fe013b"></script>
 <script src="./scripts/election_night_indicator_status.js?v=0248c0cbc715"></script>
 <script src="./scripts/election_night_early_weather.js?v=def635952113"></script>
@@ -6616,6 +6616,8 @@ const enMilestonePosters=Object.freeze({
  blansas:{file:'blansas',asset:'celebration-owner-kansas.jpg',revision:'26f7df1f64f4',fallbackRevision:'6b7cd186527d',alt:'Owner-supplied fictional Kansas painting: John Brown versus a Confederate soldier with stylized blue splashes'},
  maine:{file:'maine',alt:'Original cartoon witch with a hat labelled Collins beside a broom'},
  michigan:{file:'michigan',alt:'Original political satire: a panic machine is muted by a Michigan ballot box, with Voters Not Scared and blue mitten confetti'},
+ florida_senate:{file:'florida',alt:'Original fictional political satire: a flip-flop-wearing alligator launches a blue Florida-shaped rocket after pressing an enormous blue button'},
+ louisiana_senate:{file:'louisiana',alt:'Original fictional political satire: a giant blue crawfish commands a Senate parade float with a brass band and an orbital gumbo pot'},
  nebraska:{file:'nebraska',alt:'Blue tractor across Nebraska cornfields: Osborn independent corn-fed rebellion'},
  ohio:{file:'ohio',alt:'A buckeye nut cracked by a vivid blue lightning bolt: Sherrod Brown comeback'},
  talarico:{file:'talarico',alt:'Electric-blue horns hand gesture and a Texas Senate victory star for James Talarico'},
@@ -7167,7 +7169,7 @@ const enBatchPilotSlots=new Set(['Senate|AK','Governor|AK','Senate|ME',
  'Governor|CA','Senate|DE','Senate|SD','Governor|SD','Senate|WY','Governor|WY',
  'Governor|MD','Senate|MS','Governor|HI','Governor|OK']);
 function enBatchPilot(item){return Boolean(item&&enBatchPilotSlots.has(enWatchId(item)))}
-function enCivicSourceDisabled(x){return Boolean(x&&(x.is_test===true||x.test===true||
+function enCivicSourceDisabled(x){return Boolean(x&&(x.is_test===true||x.test===true||x.test_data===true||
  x.mock===true||x.is_mock===true||x.active===false||x.live===false))}
 function enCivicElectionDateValid(x){
  return typeof x==='string'&&

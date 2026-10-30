@@ -1,0 +1,41 @@
+'use strict';
+// Pure presentation regression. Reads production code/assets; writes nothing.
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
+let root=path.resolve(__dirname,'..');while(!fs.existsSync(path.join(root,'index.html'))){const parent=path.dirname(root);assert.notEqual(parent,root);root=parent;}
+const scene=require(path.join(root,'scripts/election_night_celebration_scene.js')),source=fs.readFileSync(path.join(root,'scripts/election_night_celebration_scene.js'),'utf8').replace(/\r\n/g,'\n');
+class Node{constructor(tag,doc){this.tagName=tag;this.ownerDocument=doc;this.children=[];this.attributes=new Map();this.dataset={};this.hidden=false;this.textContent='';this.animations=[];}setAttribute(k,v){this.attributes.set(k,String(v));}getAttribute(k){return this.attributes.get(k)??null;}hasAttribute(k){return this.attributes.has(k);}removeAttribute(k){this.attributes.delete(k);}append(...nodes){for(const node of nodes){node.parentElement=this;this.children.push(node);}}replaceChildren(...nodes){for(const node of this.children)node.parentElement=null;this.children=[];this.append(...nodes);}animate(frames,options){const value={frames,options,cancelled:false,cancel(){this.cancelled=true;}};this.animations.push(value);return value;}}
+function fixture(reduced=false){const media={matches:reduced,listeners:new Set(),addEventListener(t,f){this.listeners.add(f);},removeEventListener(t,f){this.listeners.delete(f);},reduce(){this.matches=true;for(const fn of this.listeners)fn({matches:true});}},doc={defaultView:{matchMedia:()=>media},createElementNS:(ns,tag)=>{assert.equal(ns,'http://www.w3.org/2000/svg');return new Node(tag,doc);}};return{host:new Node('div',doc),media};}
+const all=(n,p)=>[...(p(n)?[n]:[]),...n.children.flatMap(child=>all(child,p))],text=n=>all(n,v=>v.tagName==='text').map(v=>v.textContent).join(' | '),motions=n=>all(n,()=>true).flatMap(v=>v.animations),layer=(n,name)=>all(n,v=>v.getAttribute('data-layer')===name);
+const specs=[{id:'florida_senate',asset:'milestone-florida.svg',key:'florida',title:'FLORIDA MAN HAS BREACHED THE MODEL',layers:['florida-button-operator','florida-peninsula-rocket','florida-gator-credentials'],caption:/FLORIDA MAN HAS.*BREACHED THE MODEL/},{id:'louisiana_senate',asset:'milestone-louisiana.svg',key:'louisiana',title:'THE CRAWFISH HAVE TAKEN THE SENATE',layers:['louisiana-senate-float','louisiana-orbital-gumbo','louisiana-crawfish-senate-finale'],caption:/GEAUX BLUE.*THE CRAWFISH HAVE TAKEN THE SENATE/}];
+let groups=0;
+// Frozen original twelve scenes, props and owner-art/clear/finish lifecycle.
+// No runtime Git, archived-source or build dependency; only the two new exact
+// dispatches and one marked original-vector block are removed for the inverse.
+{
+ let before=source;for(const dispatch of["  if(host&&id==='florida_senate'&&['scene','complete'].includes(phase))return renderFloridaSenate(host,{phase,beat,preview});\n","  if(host&&id==='louisiana_senate'&&['scene','complete'].includes(phase))return renderLouisianaSenate(host,{phase,beat,preview});\n"]){assert.equal(before.split(dispatch).length,2);before=before.replace(dispatch,'');}
+ const marked=/ \/\/ BEGIN FLORIDA LOUISIANA ORIGINAL SCENES\n[\s\S]*? \/\/ END FLORIDA LOUISIANA ORIGINAL SCENES\n/g;assert.equal([...before.matchAll(marked)].length,1);before=before.replace(marked,'');assert.equal(crypto.createHash('sha256').update(before).digest('hex'),'fe0fefdaa7ee3a7d173f910cb27148ca51f700e6246e242ffcbd35ad141b822e');groups++;
+}
+for(const spec of specs){
+ for(const reduced of[false,true])for(const preview of[false,true]){
+  const{host,media}=fixture(reduced);assert.equal(scene.render(host,{id:spec.id,phase:'announcement',preview}),false);assert.equal(host.children.length,0);assert.equal(host.hidden,true);assert.equal(media.listeners.size,0);
+  for(const beat of[0,1,2]){
+   assert.equal(scene.render(host,{id:spec.id,phase:'scene',beat,preview}),true);assert.equal(host.hidden,false);assert.equal(host.dataset.celebrationScene,spec.id);assert.equal(host.dataset.beat,String(beat));assert.equal(media.listeners.size,1);assert.equal(host.children[0].getAttribute('viewBox'),'0 0 980 540');assert.equal(host.children[0].getAttribute('role'),'img');assert.match(host.children[0].getAttribute('aria-label'),/satire/);assert.equal(layer(host,spec.layers[beat]).length,1);
+   assert.match(text(host),/FICTIONAL POLITICAL SATIRE/);assert.match(text(host),preview?/SIMULATED PREVIEW.*NO REAL VICTORY CLAIM/:/SOURCE-REPORTED CALL.*UNOFFICIAL/);assert.equal(motions(host).length>0,!reduced);assert(motions(host).every(animation=>animation.options.duration<=1500&&animation.options.fill==='both'));assert.equal(all(host,n=>['image','img','script','iframe','foreignObject','audio','video'].includes(n.tagName)).length,0);
+   if(spec.id==='florida_senate'&&beat===0){assert.equal(layer(host,'florida-flipflop-gator').length,1);assert.match(text(host),/DO NOT PRESS THE BLUE BUTTON/);}
+   if(spec.id==='florida_senate'&&beat===2)assert.match(text(host),/CHECK THE ALLIGATOR’S CREDENTIALS/);
+   if(spec.id==='louisiana_senate'){assert.equal(layer(host,'louisiana-blue-crawfish').length,1);assert.equal(layer(host,'louisiana-brass-horn').length,2);if(beat===1)assert.match(text(host),/ORBITAL GUMBO PARADE.*ZERO-G GUMBO/);}
+  }
+  const old=motions(host);assert.equal(scene.render(host,{id:spec.id,phase:'complete',beat:0,preview}),true);assert.equal(host.dataset.beat,'2');assert.equal(motions(host).length,0);assert(old.every(a=>a.cancelled));assert.match(text(host),spec.caption);scene.clear(host);assert.equal(host.hidden,true);assert.equal(host.children.length,0);assert.equal(media.listeners.size,0);assert.equal(host.getAttribute('data-celebration-scene'),null);groups++;
+ }
+ {
+  const{host,media}=fixture();for(const beat of[-1,3,NaN,'1',null]){assert.equal(scene.render(host,{id:spec.id,phase:'scene',beat}),false);assert.equal(host.children.length,0);assert.equal(media.listeners.size,0);}
+  assert.equal(scene.render(null,{id:spec.id,phase:'scene'}),false);assert.equal(scene.render(host,{id:spec.id,phase:'unknown'}),false);scene.render(host,{id:spec.id,phase:'scene',beat:0});const running=motions(host);assert(running.length>0);media.reduce();assert(running.every(a=>a.cancelled));scene.clear(host);assert.equal(media.listeners.size,0);
+  const other=spec.id==='florida_senate'?'louisiana_senate':'florida_senate';media.matches=false;scene.render(host,{id:spec.id,phase:'scene',beat:0});const previous=motions(host);scene.render(host,{id:other,phase:'scene',beat:1});assert(previous.every(a=>a.cancelled));assert.equal(host.dataset.celebrationScene,other);assert.equal(layer(host,spec.layers[0]).length,0);scene.clear(host);assert.equal(media.listeners.size,0);groups++;
+ }
+ {
+  const asset=fs.readFileSync(path.join(root,'assets',spec.asset),'utf8');assert.match(asset,/<svg\b[^>]*xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);assert.match(asset,/viewBox="0 0 980 620"/);assert(asset.includes('aria-labelledby="'+spec.key+'-title '+spec.key+'-desc"'));assert(asset.includes('<title id="'+spec.key+'-title">'+spec.title+'</title>'));assert.match(asset,new RegExp('<desc id="'+spec.key+'-desc">Original fictional '+(spec.key==='florida'?'Florida':'Louisiana')+' Senate political satire\\.'));
+  assert.match(asset,/FICTIONAL POLITICAL SATIRE/);assert.match(asset,/SIMULATED PREVIEW/);assert.match(asset,/NOT A RESULTS MAP OR A WINNER CLAIM/);assert.doesNotMatch(asset,/<(?:script|image|iframe|foreignObject|audio|video)\b|(?:href|onload|onclick)\s*=|https?:\/\/(?!www\.w3\.org\/2000\/svg)/i);const ids=[...asset.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);assert.deepEqual(ids,[spec.key+'-title',spec.key+'-desc']);assert.match(asset,spec.id==='florida_senate'?/LICENSE: VIBES/:/GEAUX BLUE/);groups++;
+ }
+}
+assert.deepEqual(Object.keys(scene).sort(),['clear','render'],'No new fetch, eligibility or model API');
+console.log(JSON.stringify({status:'PASS',groups,original11_focused_groups_retained:true,added_static_poster_groups:2,original12_source_inverse_byte_exact:true,scenes:2,beats_each:3,preview_unofficial_labels:true,reduced_motion_clear_finish_invalid:true,production_files_only:true,model_draws:0,source_GETs:0,file_writes:0,runtime_Git_or_build_dependency:false}));
