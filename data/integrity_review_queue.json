@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30T19:55:07.656714Z",
+  "updated_at": "2026-10-30T20:53:14.134624Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
     "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 73
+    "advisory_related_headlines": 72
   },
   "advisory_related_headlines": [
     {
@@ -75,19 +75,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "3b6154045883ef155c34",
-      "headline": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 3,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "943ca4486e33563f77e7",
       "headline": "Court dismisses Emeka Ike\u2019s N10bn suit against Wike\u2019s aide - Punch Newspapers",
       "possibly_related_articles": 3,
@@ -121,6 +108,19 @@
       "topic_hints": [
         "ballot_access",
         "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "3b6154045883ef155c34",
+      "headline": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -260,6 +260,25 @@
     }
   ],
   "items": [
+    {
+      "id": "dac25b21a19d15ae64c9",
+      "title": "Explaining the Case of the Two Dan Sullivans on Alaska\u2019s Ballot - FactCheck.org",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQcTZmdG9ZaGtWeVNiaURueHRTY0QwUTExVFFQWERNd1lPbFVjaV82bkQxWU5qMVViMEtSdjFVTXVxMkxYcXJMYV9JNzVRNEhMaU5zamY2emFWeU9xR0VlUU5zMjJhbkxJQ3c1ZzlMTnRRMU1Pb1JuZ2xzaUw2LXhJdkFiSlZjWmR3XzJtbkNPRElNNmxVWTIwWlNJVjJjdw?oc=5",
+      "publisher": "FactCheck.org",
+      "published_at": "2026-10-30T20:15:00Z",
+      "detected_at": "2026-10-30T20:53:14.134624Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "077fc89e54dd7e3e9501",
       "title": "Alaska Senate: Judge fast tracks new bids to dismiss DOJ lawsuit over 2nd Sullivan candidacy - CNBC",
@@ -4990,27 +5009,6 @@
       ],
       "headline_numbers_unverified": [
         "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6f920a0496d6221b67c8",
-      "title": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Rocky Mount Telegram",
-      "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxQVzB5MVRjQ1M1SnhJbGZZRnBqamNtY3R5cWVBdURIcE9NeVNmM0hwN3lvUVpCekg0ZlFDYmg2dzFMVzVGT2FqYThLcjM4T3RZOVd6cWExQVEtc2RwVkRmcGx5WllOUDNqQ1BKRkJJVVdTV2lOX2FGN2pNUUg2WlVTV1NRbW9BdWpXUS10c3M2M25adkEyRElLTGhCTVppa19iOXFROGREa2wwUXFxMWZvZ0tRSFhiODVfYTZZaUlNSEp3dXZDRjhKQTdOSE1YcDRUdTRmYS02U3lCN0ZwblNhelIxWXNTS0s5S1VLMDNkM09iMXVaZTN5SGFHRjhTTDQ2a0FSb2JockxuT1ZaWDhlWFh6eUQ5ektJUnY1YUl2QVZfNFJBZGc?oc=5",
-      "publisher": "Rocky Mount Telegram",
-      "published_at": "2026-10-19T17:28:45Z",
-      "detected_at": "2026-10-19T17:43:59.359978Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "2 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
