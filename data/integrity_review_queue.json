@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30T10:01:36.017664Z",
+  "updated_at": "2026-10-30T10:50:11.207469Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
     "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 75
+    "advisory_related_headlines": 76
   },
   "advisory_related_headlines": [
     {
@@ -40,8 +40,8 @@
     {
       "lead_id": "5f03a22536a8a26fa45b",
       "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
-      "possibly_related_articles": 5,
-      "distinct_publishers": 5,
+      "possibly_related_articles": 6,
+      "distinct_publishers": 6,
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -349,6 +349,23 @@
       "publisher": "The Morning Call",
       "published_at": "2026-10-29T22:25:30Z",
       "detected_at": "2026-10-29T23:48:57.693451Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "62227e0a4bcba9ca9f70",
+      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Hartford Courant",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFA3cmJJT0RFZENNV1J1MGhhQTFrRVNQYkNMX3laZ3luUklWeE53UGphRG9rU0FULUdsX3VWMGw4NFQ5RDVBX0hnZlJRZERUeURpN0R5eVhVSGtFR2hzR1czWE5nSFVwNFh2c2tYX1BsTk1rdGdVWnZr?oc=5",
+      "publisher": "Hartford Courant",
+      "published_at": "2026-10-29T22:22:55Z",
+      "detected_at": "2026-10-30T10:50:11.207469Z",
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -5005,26 +5022,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "18945c53831cc2aae671",
-      "title": "PA election 2026: Your guide to voting on Nov. 3 - Spotlight PA",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOVjlUTHVReEtJRTB5TzduMEhDWTNlVVpJejc5Qmp0cFRaaS1OUnZWdmV4WDQ1Q0NlS3BjZmUzdFpJVVZDZVRhOHhGRzVub2lZN3EyUEFfd3NKU0NnVWV5a3lvS2R5VGlyNE9ESlBVdTNweFZlNnZjRnRwdHdnM05LWHhISjVBdGhKVEt5YlBkVURNS0dFV0oxNDVlZzJyRzczblVPSkhhVlhYM2ZKTFo5ZGhQQkRIU29QNmFJQ3dn?oc=5",
-      "publisher": "Spotlight PA",
-      "published_at": "2026-10-19T08:00:00Z",
-      "detected_at": "2026-10-19T08:52:46.503167Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026",
-        "3"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
