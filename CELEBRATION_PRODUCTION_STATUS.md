@@ -1,13 +1,22 @@
 # Celebration production inventory - October 27, 2026
 
-### Second review fixture repairs — runtime unchanged
+## October29 ET / October30 UTC — PR536 verified published
+
+Original Fish Head and timed Election Night presentation are COMPLETE. Tested0de978e5 passed all35 workflow parents/55latest jobs (52SUCCESS,3declared PR skips,0external); protected merge80059ead, final CURRENTmain37ea8589 / Pages40978188429 SUCCESS. All39 selected changed public files/current index and coherence13/no_credit match origin/main. Actual HTTPS1366/390 unified161, native60, Personal63 and phase86 assertions pass; same-frame presentation reader0px. Ordinary27 read-only preserves private preferences/status and2024archive with14current assets; no ordinary interaction/geometry or across-reload forecast-equality claim.
+
+Guide1.0/eleven human scopes/hashes/NOT_RUN-null remain unchanged; ONE536component22→23 appended after verified publication. Ledgerf16ab11c; addendum operator-layout-addendum-pr536-20261030.txt. Outcome pr536-published-outcome-20261030.json (2c31ddd8), independent audit2ffdb73c. Earlier candidate notes below are historical, with no pending536gate or unchanged replay. Model/source/call rules and open empirical/human/positive/capacity gates remain. The ignored initial-clock fixture correction preserves all86 assertions and carries with the next real source change, never a CI-only push.
+
+Both bulletin and celebration surfaces use exact fish-head-original.jpg (41,844bytes; SHA256d75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06), whole and unanimated. No replacement SVG or production audio analysis; original native recording, queue/retraction/dedup/mute/skip/replay/reduced-motion rules remain. The older Fish mouth-animation notes below are superseded for this owner-approved still.
+
+
+### Historical PR536 second-review fixture notes — superseded above
 
 Head171e passed the repaired mobile-image and heartbeat guards, but failed two distinct browser prerequisites. Unified lost its execution context during startup before any component assertions; exact cause remains unknown. Its local and published checks now use the same normal #electionNight URL and native initial load, retaining the explicit tab click/all160 original assertions. A161st assertion rejects unexpected post-load document navigation; bounded lifecycle diagnostics were added without retry, sleep or deadline change. Both widths/24pins pass. Root/default-navigation coverage remains in the phase suite.
 
 The phone Personal range-focus assertion also failed; exact CI state was not recorded. One controlled original-static-input delay confirmed that18retained SVGs can coexist with pending/inert ranges and legitimateH4 focus, then the open summary recovers after CURRENT. The fixture now waits genuine startup-input terminal state and exact accepted CURRENT before its component/range checks; it never forces private inputs or focus. All51 original assertions/poses remain literal; both widths pass. Public boolean/focus diagnostics were added. Product indexdb773177/Personal2d51 and model/source/media behavior are unchanged. Independent fixture reviewd0619df9 passes. A new corrected exact-head gate/publication is required; no waiver, successful-job rerun or guide append.
 
 
-### Initial review failures repaired — corrected protected head required
+### Historical PR536 initial-review notes — superseded above
 
 Initial d30efae1 finished with35parents32SUCCESS/3FAILURE and55jobs49SUCCESS/3declaredSKIP/3FAILURE; no rerun/cancel/waiver. Mobile guard's old remote-image literal and open-tab test's old exact heartbeat string were stale. They now verify the exact localJPEG/attribution and execute the actual60000ms callback; all original geometry/clock/source safeguards and new negative controls pass.
 
@@ -16,7 +25,7 @@ The phase CI reader precondition failed before the layout action; its exact CI i
 Final Personal source2d51ae7c/Git100a079d92bf is independently reviewed. Final indexdb773177d96b5af540e9aac8f3ce6e7abe728d05f3c7e8ebf605923b8089be27 retains the same timing/native-media/data/model behavior plus this heading fix. All99 portable checks, full Personal browser, original phase15pins and combined160assertions/24pins pass on the frozen corrected runtime. One earlier full Personal run has uncaptured starting-source identity and is explicitly not used as final proof; no mid-run mutation claim. The corrected head must pass all exact-head CI/publication gates; no release/guide append yet.
 
 
-## Owner follow-up in progress — original Fish Head and timed night presentation
+## Historical PR536 preparation — verified release above
 
 The exact previously referenced Realistic Fish Head JPEG is now local:41,844bytes,478×569,SHA256d75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06. Both announcement surfaces use that unchanged still and the original native recording. Substitute SVGs/default animation control are removed; playback, queues, calls and music retain their existing authority. Native-audio/image/error and legacy tall-layout tests pass both sizes; all99 portable checks and the combined160-assertion/24-pin journey pass. Full exact-head CI and protected publication are still required.
 

@@ -1,5 +1,18 @@
 # Readiness progress
 
+## October29 ET / October30 UTC — PR536 COMPLETE / VERIFIED PUBLISHED
+
+Tested0de978e534f15869564d92b7f0cb2035015dd6e7 passed all35 applicable workflow parents and55 latest jobs (52SUCCESS,3declared PR-only deployment skips,0external); exact check identities matched. Protected merge80059ead, final CURRENTmain37ea85896deb5bab730d967a0ee9e8f82a2dd02f / Pages40978188429 SUCCESS. All39 selected changed public files, including the current index, match origin/main; coherence13/no_credit PASS. Main was rechecked unchanged after all published tasks.
+
+Delivered: exact original SpongeBob Fish Head JPEG on both announcement surfaces, unanimated with original native audio; Early indicators expand7:30–9p.m.Eastern Nov3 and compact outside that window with manual controls; a fresh/untouched default homepage may open Election Night6p.m.–6a.m. Explicit links, interaction, archive choices and rehearsal retain priority. Complete layout/control rendering and canonical publicH4 reuse preserve reading while prediction/source/call/context bodies refresh normally. No source, model, call, cadence, draw, ESS or music authority changed.
+
+Actual published HTTPS Edge1366/390: unified161/24pins, native Fish60/18, Personal63/26 and presentation86/15 PASS. Presentation reader movement is0px immediately and after paint with the same frame/bundle/counters. Providers were blocked; no actual positive delivery, feed-health, physical-phone, listening, assistive or calibration acceptance is claimed. Ordinary27 received one read-only reload:14current identities/order and private checkbox/status/body/archive/modeARIA equality; kept2024archive. Known viewport/input limits and denied15/29 handles were not retried.
+
+The initial published phase fixture crossed its one-second pre6p.m. starting margin under a flowing installed clock; FIRST_RETURNS is a phase witness, exact Date was not captured. Original failure remains. The affected ignored wrapper now fixes only its declared initialDate before navigation; all86 assertions/poses/deadlines remain, timers continue, no product edit or successful-task repeat. Carry that harness correction with the next real source change; never push solely to restart CI.
+
+Outcome pr536-published-outcome-20261030.json SHA2c31ddd8; independent audit2ffdb73c. Guide1.0/PDF/HTML/eleven human scopes/hashes/NOT_RUN-null unchanged; ONE536component22→23 appended after verified proof with immutable precopy/receipt. Current ledger SHA f16ab11c91050d497abccff43986c4ae68a80623ac4bc4bc399fa3656e5456ed; addendum operator-layout-addendum-pr536-20261030.txt. One local docs-only proof checkpoint stays unpublished and carries with the next coherent source change. No active536 gate, reapplication or unchanged demo. Earlier candidate/failure notes below are historical; source/evaluation/human/positive-delivery/capacity gates remain open. New material feedback or admissible evidence reopens actual engineering.
+
+
 ### Stable public race headings — existing phase fixture unchanged
 
 Head216ef0ee failed before any boundary measurement: the native scroll-to-heading action saw its H4 detached during a legitimate Personal redraw. All other34 applicable parents passed; the failed head was not merged or rerun. Its failed step does not measure the repaired phone transaction. Existing immutable zero-draw2d51 proofc48b85de already demonstrates that normal redraw discards the H4 even while semantic focus is restored; that BEFORE proof was reused without another old run.
@@ -25,14 +38,14 @@ Head6a522b95 kept focus on the correct race but failed the original timed-collap
 A separate controlled actual-input proof establishes the old lifecycle insufficiency: baseline -> idle -> networkidle can return while a later native repository-input worker is still pending. The revised phase fixture waits native input terminal state and the producer's exact acceptedCURRENT after networkidle, then reasserts that condition before the original reader pose. All69 original assertions/cases/poses/tolerances remain, with17 additive concurrent-frame/epoch/key/bundle/counter and post-paint checks. Failure logs now include bounded public geometry; no private values or raw keys. Runtime indexdb773177/Personal2d51, all3k samples, source/model/media authority and deadlines are unchanged. The controlled proof does not establish the earlier CI cause. Independent reviews fbd158b0/d1bf0eae pass; corrected exact-head CI and verified publication remain required.
 
 
-### Second review fixture repairs — runtime unchanged
+### Historical PR536 second-review fixture notes — superseded above
 
 Head171e passed the repaired mobile-image and heartbeat guards, but failed two distinct browser prerequisites. Unified lost its execution context during startup before any component assertions; exact cause remains unknown. Its local and published checks now use the same normal #electionNight URL and native initial load, retaining the explicit tab click/all160 original assertions. A161st assertion rejects unexpected post-load document navigation; bounded lifecycle diagnostics were added without retry, sleep or deadline change. Both widths/24pins pass. Root/default-navigation coverage remains in the phase suite.
 
 The phone Personal range-focus assertion also failed; exact CI state was not recorded. One controlled original-static-input delay confirmed that18retained SVGs can coexist with pending/inert ranges and legitimateH4 focus, then the open summary recovers after CURRENT. The fixture now waits genuine startup-input terminal state and exact accepted CURRENT before its component/range checks; it never forces private inputs or focus. All51 original assertions/poses remain literal; both widths pass. Public boolean/focus diagnostics were added. Product indexdb773177/Personal2d51 and model/source/media behavior are unchanged. Independent fixture reviewd0619df9 passes. A new corrected exact-head gate/publication is required; no waiver, successful-job rerun or guide append.
 
 
-### Initial review failures repaired — corrected protected head required
+### Historical PR536 initial-review notes — superseded above
 
 Initial d30efae1 finished with35parents32SUCCESS/3FAILURE and55jobs49SUCCESS/3declaredSKIP/3FAILURE; no rerun/cancel/waiver. Mobile guard's old remote-image literal and open-tab test's old exact heartbeat string were stale. They now verify the exact localJPEG/attribution and execute the actual60000ms callback; all original geometry/clock/source safeguards and new negative controls pass.
 
@@ -41,7 +54,7 @@ The phase CI reader precondition failed before the layout action; its exact CI i
 Final Personal source2d51ae7c/Git100a079d92bf is independently reviewed. Final indexdb773177d96b5af540e9aac8f3ce6e7abe728d05f3c7e8ebf605923b8089be27 retains the same timing/native-media/data/model behavior plus this heading fix. All99 portable checks, full Personal browser, original phase15pins and combined160assertions/24pins pass on the frozen corrected runtime. One earlier full Personal run has uncaptured starting-source identity and is explicitly not used as final proof; no mid-run mutation claim. The corrected head must pass all exact-head CI/publication gates; no release/guide append yet.
 
 
-## Owner follow-up in progress — original Fish Head and timed night presentation
+## Historical PR536 preparation — verified release above
 
 The exact previously referenced Realistic Fish Head JPEG is now local:41,844bytes,478×569,SHA256d75b2b704124d775e880ad9a8b42d76a4816b8f3c23139578b7375ff7cc79c06. Both announcement surfaces use that unchanged still and the original native recording. Substitute SVGs/default animation control are removed; playback, queues, calls and music retain their existing authority. Native-audio/image/error and legacy tall-layout tests pass both sizes; all99 portable checks and the combined160-assertion/24-pin journey pass. Full exact-head CI and protected publication are still required.
 
