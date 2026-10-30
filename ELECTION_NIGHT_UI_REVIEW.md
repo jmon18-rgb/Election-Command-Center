@@ -1,5 +1,18 @@
 # Election-night usability and visual review
 
+## October30 — PR540 COMPLETE / VERIFIED PUBLISHED
+
+Tested c30e925ac24c96bf2f70bf16aa73f6b18dc10e7d passed all34 applicable PR parents/0push parents,56 latest jobs (53SUCCESS/3declared deployed-only PR skips),56 exact checks and0external statuses, allattempt1. Protected merge cdf31d3e is complete; final verified main 59acbdc7c364611f67e2e8f66dac423733c770e6/Pages41138565971 passed all3deployment jobs. The cancelled initial-merge Pages record is preserved and was never used as a success gate or manually rerun.
+
+All29 actual changed public/index HTTP bodies match origin/main with0failures/retries; coherence13/currentindex/no_credit and126 frozen source bodies/92ordered Git-blob references pass. Actual published HTTPS Chrome1366/390 journeys each verify20 source pins, native bad-file error4/rejection/late-pause persistence, valid generated audio playback and real IndexedDB reload, mute/close/cross-story cancellation, full accepted3000-draw model-bundle isolation and no extra worker/provider requests. Generated media and simulated announcement completion are mechanics, not owner MacBook/hearing or actual positive election delivery.
+
+Ordinary27 had one allowed read-only reload: all92 actual DOM script identities/order match current Git, private checkbox/status/body/archive and mode ARIA equality holds,2024 remains selected. All seven allowed previews16/17/18/20/21/27/32 are retained; historical views are not forged current-release proof. Frozen15/billing29 remain untouched. No ordinary input, geometry, screenshot-limit retry or across-reload forecast-equality claim.
+
+Existing390 Chrome native-error and playing PNGs were visually inspected at original detail. The dedicated file error, file chooser/pack help and healthy native controls are visible. These are fictional/generated test media; no human listening or physical-device acceptance is inferred.
+
+Outcome pr540-published-outcome-20261030.json SHA66940eccd47821781333c1021665be286d4187ce4e50e20502153d59d727e7c9; independent published audit21f8f479, gateaudit84fa76f0. Original guide1.0/PDF/HTML/eleven human scopes/hashes/NOT_RUN-null remain unchanged; exactly one26→27 component appended, ledger SHA50467eabad2429f01af6dd9b74a8d6dcad4fa65b438b1928c359991e55d1042b/taskhash8c02bfac0b27273028ec2cc46423dc31de4a0a856cbcd49d64b5e723df9644f3. This is one unpublished proof checkpoint to carry with the next real source change; never push docs alone for CI.
+
+
 ## October30 — PR539 COMPLETE / VERIFIED PUBLISHED
 
 The actual pack journeys retain ten original/attachment-name assignments at both widths, reload persistence, six real delayed IndexedDB races, invalid/oversized preflight guards, partial-storage failure and accepted-model isolation at3000draws. Generated PCM is not an owner-MP3/listening or physical-device proof. Representative390 saved settings were inspected at original detail. Source coverage, real positive delivery and human rehearsal remain open.

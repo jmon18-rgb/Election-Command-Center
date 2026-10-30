@@ -1,5 +1,30 @@
 # JackStradamus · development plan
 
+## October30 — offline chronological replay/scoring source integration
+
+The new Node-only `scripts/historical_evaluation_replay.cjs` fills the execution gap after the released package preflight. An explicit offline caller supplies retained bytes, reviewed decoders and all three frozen predictors. It owns the package, snapshots and predictor slots, records chronological outputs without final truth in the predictor packet, and decodes final truth in a separate scoring phase. The existing preflight initially reads and hashes every retained artifact, including truth; this is a decoding/scoring lifecycle guarantee, not a claim that truth bytes were never read.
+
+Callbacks are trusted research code, not a security sandbox or proof of contemporaneous provenance. The package entry point currently requires an exhaustive native two-candidate roster; a third candidate rejects before prediction. Remaining-vote units mean valid votes in that binary contest, not all ballots. Protocol levels/targets/units, withheld/retracted/recovered transitions, counted totals and usable race/election denominators are retained. Unchanged consecutive states do not gain score weight; separate method summaries do not establish paired baseline skill. See `HISTORICAL_EVALUATION_REPLAY.md`.
+
+The separate scorePaired, aggregatePaired and scoreRetainedPairedTrace APIs compare model versus each fixed polling-only/naive-count baseline on exactly shared selected event IDs. Cohort IDs/hashes, asymmetric withholding, ties, negative remaining and usable/undefined race/election counts stay visible. Extended loss means are formed on identical common cohorts before absolute baseline-minus-model gains; infinite/undefined differences are retained. Coverage and width remain side by side. Existing unpaired summaries keep their null paired-skill marker.
+
+Focused source checks now pass locally: all sixteen original controls plus ten named paired-arithmetic controls. Independent changed-code review, protected CI and publication remain pending. These synthetic mechanics use zero actual datasets and zero model draws. Actual historical normalizers/frozen predictors, independently admitted chronology/rights/whole-election heldouts, empirical paired common-cohort skill and national chamber/Four-Endings transfer remain open. Empirical datasets/heldouts remain zero and acceptance metricsNULL/NOT_ESTIMABLE; the formal R2 NO-GO remains unchanged. No browser/runtime index, numerical forecast, source/call authority or operator guide/task change is part of this utility.
+
+
+## October30 — PR540 COMPLETE / VERIFIED PUBLISHED
+
+Tested c30e925ac24c96bf2f70bf16aa73f6b18dc10e7d passed all34 applicable PR parents/0push parents,56 latest jobs (53SUCCESS/3declared deployed-only PR skips),56 exact checks and0external statuses, allattempt1. Protected merge cdf31d3e is complete; final verified main 59acbdc7c364611f67e2e8f66dac423733c770e6/Pages41138565971 passed all3deployment jobs. The cancelled initial-merge Pages record is preserved and was never used as a success gate or manually rerun.
+
+All29 actual changed public/index HTTP bodies match origin/main with0failures/retries; coherence13/currentindex/no_credit and126 frozen source bodies/92ordered Git-blob references pass. Actual published HTTPS Chrome1366/390 journeys each verify20 source pins, native bad-file error4/rejection/late-pause persistence, valid generated audio playback and real IndexedDB reload, mute/close/cross-story cancellation, full accepted3000-draw model-bundle isolation and no extra worker/provider requests. Generated media and simulated announcement completion are mechanics, not owner MacBook/hearing or actual positive election delivery.
+
+- [x] **PR540 Chrome audio recovery and per-browser import diagnostics:** verified published. Actual Mac listening remains open.
+- [ ] **R2 chronological execution/scoring infrastructure:** reviewed portable candidate is ready for separate integration. Real adapters, paired baseline skill, national transfer and empirical admission remain open.
+
+Outcome pr540-published-outcome-20261030.json SHA66940eccd47821781333c1021665be286d4187ce4e50e20502153d59d727e7c9; independent published audit21f8f479, gateaudit84fa76f0. Original guide1.0/PDF/HTML/eleven human scopes/hashes/NOT_RUN-null remain unchanged; exactly one26→27 component appended, ledger SHA50467eabad2429f01af6dd9b74a8d6dcad4fa65b438b1928c359991e55d1042b/taskhash8c02bfac0b27273028ec2cc46423dc31de4a0a856cbcd49d64b5e723df9644f3. This is one unpublished proof checkpoint to carry with the next real source change; never push docs alone for CI.
+
+Coverage remains18county routes/7of11 owner Senate county paths; MI/MN/MS/AK and KY06/IN05/FL-SEN current matched packages remain missing. Independent whole-election holdouts remain zero and empirical metricsNULL/NOT_ESTIMABLE. Actual positive2026 delivery and physical-device/listening/assistive/comprehension acceptance remain open. Archive capture staysOFF/no-paid. The reviewed offline chronological replay/scoring candidate is the next concrete engineering change; its synthetic mechanics admit no dataset or calibration.
+
+
 ## October30 — PR539 COMPLETE / VERIFIED PUBLISHED
 
 PR539 delivers the MacBook handoff for all ten exact assigned recording names and a strict offline historical-evaluation package preflight. Crawdad remains an unassigned alternate. The preflight checks package hashes, ordered source/availability/capture clocks, frozen expectations and whole-election splits, but never admits a dataset or reports empirical metrics. The reviewed Michigan optional-poster fixture correction preserves all99 original assertions/cases/poses/timers; its first failed head and exact-cause uncertainty remain recorded.
