@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-30T22:30:17.649953Z",
+  "updated_at": "2026-10-30T22:49:07.076454Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
     "primary_source_checked": 3,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 72
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 70
   },
   "advisory_related_headlines": [
     {
@@ -108,19 +108,6 @@
       "topic_hints": [
         "ballot_access",
         "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "3b6154045883ef155c34",
-      "headline": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - Scripps News",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -254,6 +241,20 @@
       "distinct_publishers": 1,
       "state_hints": [],
       "topic_hints": [
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "e16a78441dc2d4ee17f8",
+      "headline": "Minnesota is preparing for all possibilities this election \u2014 including potential federal interference - The Globe | Worthington, Minnesota",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "MN"
+      ],
+      "topic_hints": [
+        "election_admin",
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
@@ -419,6 +420,23 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "47ab0a979e521504a84a",
+      "title": "Feds ramp up election enforcement, criminal voting charges in NC ahead of midterm elections - WRAL",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPc3duNTB0Q3RETV9rTXRJM0RUUDhrNjJvQkthQWlqeWNYUVQzcXdVNmRydEg0cy1sZHN3aTM4VGdjaEQtQV84R1J0WHlTWXMwX25GcVlScFJ3Vk9FREZvbl8zSzM3Z1NYQk1TaEVLYjVZaVBHaUN5M0pCMEthUXlxaXBWWE1OMTZTd1JsM0tJcVNYMjBsU3lYV0VkZUo2U01qRGRfdFhpSmFKQy1hVzYtT1dBUzBzMnNLSTA1UXBZZ0w?oc=5",
+      "publisher": "WRAL",
+      "published_at": "2026-10-30T04:17:35Z",
+      "detected_at": "2026-10-30T22:49:07.076454Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4980,27 +4998,6 @@
       "publisher": "Scripps News",
       "published_at": "2026-10-19T19:24:59Z",
       "detected_at": "2026-10-19T19:46:58.679097Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "2 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "54585422604e071b6c38",
-      "title": "Justice Department charges more than 2 dozen in California sweep targeting alleged noncitizen voters - NBC26",
-      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOcE52dmRQR003MS1lVDdKUlJaS3BvTmRMNlVMQlJ0bTJEUl9mMUtreUZvOUxTRXE2cDZPV05EcnZMd0hjX1RnZXpKNDlNY2FNMHczcUk1YzFxNkJXaXktT2lqS2QzWloxOElWakZxV1VtajRxbE5XV2NNY0dXUFhxUms4UWFRckZjM05zbEVuNUFFSGEzNXh1aGQtaV9mbVZYbFkyMi1xOE1zTnRlOWNuelhpQ2dCaGxhTUlodmRMZGFrSHlTUlQyV2xfYw?oc=5",
-      "publisher": "NBC26",
-      "published_at": "2026-10-19T19:24:59Z",
-      "detected_at": "2026-10-19T21:44:58.994667Z",
       "state_hints": [
         "CA"
       ],

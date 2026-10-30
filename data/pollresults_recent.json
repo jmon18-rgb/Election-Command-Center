@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-30T22:30:18.070492+00:00",
+  "updated_at": "2026-10-30T22:49:07.721953+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 873,
+      "available_in_source": 874,
       "records_examined": 300
     },
     "house": {
@@ -17,27 +17,58 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 354,
-  "newly_injected_into_model": 4,
-  "injected_poll_ids": [
-    {
-      "race_code": "FL-GOV",
-      "poll_id": "63f40723-ec76-453c-90cd-01e1224edc02"
-    },
-    {
-      "race_code": "FL-SEN",
-      "poll_id": "63f40723-ec76-453c-90cd-01e1224edc02"
-    },
-    {
-      "race_code": "MN-GOV",
-      "poll_id": "913c201c-a821-4a56-b3c5-91e86b15af5f"
-    },
-    {
-      "race_code": "MN-SEN",
-      "poll_id": "913c201c-a821-4a56-b3c5-91e86b15af5f"
-    }
-  ],
+  "matched_primary_observations": 358,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
+    {
+      "race_code": "AK-SEN",
+      "race_type": "senate",
+      "state": "AK",
+      "poll_id": "0c4baea9-f768-41f4-8f0b-49246ff20b7f",
+      "question_id": "3a290d14-add4-4aa7-9ef8-97a17e55c38a",
+      "pollster": "Alaska Survey Research",
+      "dem_name": "Mary Peltola",
+      "rep_name": "Dan Sullivan",
+      "dem": 50.8,
+      "rep": 49.2,
+      "margin": 1.6,
+      "field_end": "2026-10-29",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T18:27:00",
+      "posted_source_time": "10/30/26 18:27",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/The_Real_ASR/status/2116291676176331181",
+      "sample_population": "lv",
+      "sample_size": 1326,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AK-SEN",
+      "race_type": "senate",
+      "state": "AK",
+      "poll_id": "0c4baea9-f768-41f4-8f0b-49246ff20b7f",
+      "question_id": "daf8be4e-97e0-424d-aaf9-e6b49f283dbc",
+      "pollster": "Alaska Survey Research",
+      "dem_name": "Mary Peltola",
+      "rep_name": "Dan Sullivan",
+      "dem": 47.7,
+      "rep": 45.9,
+      "margin": 1.8,
+      "field_end": "2026-10-29",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-30",
+      "posted_source_datetime": "2026-10-30T18:27:00",
+      "posted_source_time": "10/30/26 18:27",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://x.com/The_Real_ASR/status/2116291676176331181",
+      "sample_population": "lv",
+      "sample_size": 1326,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-SEN",
       "race_type": "senate",
