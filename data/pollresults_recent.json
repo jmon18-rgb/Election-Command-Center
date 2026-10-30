@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-10-30T15:05:54.543011+00:00",
+  "updated_at": "2026-10-30T15:59:45.670595+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 867,
+      "available_in_source": 868,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1290,
+      "available_in_source": 1291,
       "records_examined": 300
     },
     "governor": {
@@ -17,26 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 344,
-  "newly_injected_into_model": 4,
-  "injected_poll_ids": [
-    {
-      "race_code": "CA-01",
-      "poll_id": "66b29119-e2b2-4e4d-bc04-da0f9e0080ad"
-    },
-    {
-      "race_code": "CA-22",
-      "poll_id": "ad1fed79-6d60-436e-9da3-eeabf167f693"
-    },
-    {
-      "race_code": "CA-48",
-      "poll_id": "fc5ad0d1-af35-4f32-92ed-867bd3a31a13"
-    },
-    {
-      "race_code": "SD-GOV",
-      "poll_id": "61f15781-75a4-47c4-a04a-da825f9d1778"
-    }
-  ],
+  "matched_primary_observations": 348,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "SD-GOV",
