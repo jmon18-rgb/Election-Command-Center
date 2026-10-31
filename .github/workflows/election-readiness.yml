@@ -419,3 +419,29 @@ jobs:
           path: artifacts/readiness/ui-review/integrity-review/
           if-no-files-found: warn
           retention-days: 7
+
+  priority-movement-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the pinned browser runtime
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0
+          npx playwright install --with-deps chrome
+      - name: Raw movement priorities preserve chronological history and accepted model outputs
+        env:
+          BROWSER_CHANNEL: chrome
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/priority-movements
+        run: node scripts/test_election_night_movement_priority_browser.mjs
+      - name: Upload native movement priority and model isolation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: priority-movement-browser
+          path: artifacts/readiness/ui-review/priority-movements/
+          if-no-files-found: warn
+          retention-days: 7
