@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-30T23:47:11.211915Z",
+  "updated_at": "2026-10-31T01:12:02.280962Z",
   "generic_ballot": {
     "summary": {
       "dem": 50.6,
@@ -932,7 +932,7 @@
           "rep_name": "Byron Donalds",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "c71fd2a8-15f9-401b-927e-7ce9d1c01537",
           "sample_population": "lv",
@@ -1198,12 +1198,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://jamesmadison.org/new-jmi-poll-republicans-hold-double-digit-leads-in-key-statewide-races-florida-voters-focused-on-affordability/",
-          "sample_population": "lv",
-          "question_id": "44aa8db1-cfa0-4b07-938c-a708f8567f1a",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "7f8493dd-4729-4532-a244-239a7481b877",
@@ -1615,7 +1610,7 @@
           "release_date": null,
           "question_id": "eb4ae581-25d7-43fd-9123-100333d1e19f",
           "sample_population": "lv",
-          "upstream_posted_date": "2026-10-09",
+          "upstream_posted_date": null,
           "source_poll_url": "https://jamesmadison.org/new-jmi-poll-republicans-hold-double-digit-leads-in-key-statewide-races-florida-voters-focused-on-affordability/",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
@@ -1820,7 +1815,7 @@
           "rep_name": "Andy Biggs",
           "other": 0.8,
           "other_name": "Risa Lombardo",
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "9488d2bc-6dd4-49f2-971b-da61f1ef7f52",
           "sample_population": "lv",
@@ -2133,7 +2128,7 @@
           "rep_name": "Ken Paxton",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "e9558cc2-a959-4ff4-911a-bd339357c493",
           "sample_population": "lv",
@@ -2142,6 +2137,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
           "lv_selected_over_rv": true
+        },
+        {
+          "poll_id": "f31e142f-d353-45f2-8409-f4e442b6383c",
+          "question_id": "75b612a0-cf18-4fd4-84d2-09c61a12ca31",
+          "field_end": "2026-10-26",
+          "pollster": "Data for Progress",
+          "dem": 49.0,
+          "rep": 45.0,
+          "margin": 4.0,
+          "sample_size": 712,
+          "partisan_lean": "",
+          "dem_name": "James Talarico",
+          "rep_name": "Ken Paxton",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-30",
+          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
         },
         {
           "poll_id": "fed5cc59-dd90-4943-88f8-a52dcb154bdc",
@@ -2235,7 +2252,7 @@
           "rep_name": "Ken Paxton",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "3614ff38-afab-41f9-b54f-179c6f7aec16",
           "sample_population": "lv",
@@ -2770,22 +2787,6 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "b7eb2254-ebd3-4fee-baf7-62027d626ee3",
-          "field_end": "2026-08-26",
-          "pollster": "Overton Insights",
-          "dem": 50.0,
-          "rep": 50.0,
-          "margin": 0.0,
-          "sample_size": 1167,
-          "partisan_lean": "",
-          "dem_name": "James Talarico",
-          "rep_name": "Ken Paxton",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
       "recent_poll_count": 39,
@@ -2883,6 +2884,28 @@
           "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
+          "poll_id": "f31e142f-d353-45f2-8409-f4e442b6383c",
+          "question_id": "96a21d1a-1f5d-41fc-947d-7841538759b7",
+          "field_end": "2026-10-26",
+          "pollster": "Data for Progress",
+          "dem": 47.0,
+          "rep": 48.0,
+          "margin": -1.0,
+          "sample_size": 712,
+          "partisan_lean": "",
+          "dem_name": "Gina Hinojosa",
+          "rep_name": "Greg Abbott",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-30",
+          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
+        {
           "poll_id": "fed5cc59-dd90-4943-88f8-a52dcb154bdc",
           "field_end": "2026-10-25",
           "pollster": "Barbara Jordan Public Policy Research and Survey Center",
@@ -2937,7 +2960,7 @@
           "rep_name": "Greg Abbott",
           "other": 0.9,
           "other_name": "Pat Dixon",
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "d1c17272-a2aa-47a0-b3dc-9562ce074fff",
           "sample_population": "lv",
@@ -2976,7 +2999,7 @@
           "rep_name": "Greg Abbott",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "4c5ec262-3c41-4a96-a86e-7d2f16c5b5b0",
           "sample_population": "lv",
@@ -3407,22 +3430,6 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "b7eb2254-ebd3-4fee-baf7-62027d626ee3",
-          "field_end": "2026-08-26",
-          "pollster": "Overton Insights",
-          "dem": 48.8,
-          "rep": 51.2,
-          "margin": -2.4,
-          "sample_size": 1167,
-          "partisan_lean": "",
-          "dem_name": "Gina Hinojosa",
-          "rep_name": "Greg Abbott",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
       "recent_poll_count": 32,
@@ -3651,12 +3658,7 @@
           "other": 1.5,
           "other_name": "Thomas Laehn",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://emersoncollegepolling.com/iowa-2026-poll-u-s-senate-race-tightens-sand-maintains-edge-for-governor/",
-          "sample_population": "lv",
-          "question_id": "fc072182-5e11-4d7f-a9fc-a2c600820502",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "50b4c2bf-e3d4-4ac1-bb5d-7db0280110e4",
@@ -4091,12 +4093,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://emersoncollegepolling.com/iowa-2026-poll-u-s-senate-race-tightens-sand-maintains-edge-for-governor/",
-          "sample_population": "lv",
-          "question_id": "e5a35ef5-9f24-4a30-8294-32bfa2df20ca",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "50b4c2bf-e3d4-4ac1-bb5d-7db0280110e4",
@@ -4792,7 +4789,7 @@
           "rep_name": "Lisa Demuth",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "bdee3660-8720-4d56-a0a4-7ecad7a5199e",
           "sample_population": "lv",
@@ -4879,12 +4876,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.thedailyagenda.com/p/morning-take-the-daily-agenda-poll",
-          "sample_population": "rv",
-          "question_id": "eba0d290-870a-4e16-bba1-2aec8416f4ff",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "6dc1e5c8-81c7-4fdc-aaee-f5d0ba3bd532",
@@ -5149,12 +5141,7 @@
           "other": 4.0,
           "other_name": "Jeff Wadlin",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://x.com/LandonWall_/status/2108601370580332749",
-          "sample_population": "lv",
-          "question_id": "386d610d-c0df-48bb-8d98-99484cee4f95",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 3,
@@ -5179,7 +5166,7 @@
         "rep_name": "Jay Feely",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-30T23:47:11.211915Z",
+        "first_seen_at": "2026-10-31T01:12:02.280962Z",
         "release_date": null,
         "question_id": "8d9925e0-0ade-4b86-9fff-4f58f41bab9d",
         "sample_population": "lv",
@@ -5203,7 +5190,7 @@
           "rep_name": "Jay Feely",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "8d9925e0-0ade-4b86-9fff-4f58f41bab9d",
           "sample_population": "lv",
@@ -5355,6 +5342,28 @@
           "sample_population": "lv",
           "question_id": "f7998992-e6f5-4932-acbb-a358221f4f9b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "6aa99f8a-1d58-4606-9f29-bd132b6f9dc1",
+          "question_id": "7559da64-b0ca-4af7-8640-776fec81242b",
+          "field_end": "2026-10-25",
+          "pollster": "Data for Progress",
+          "dem": 50.0,
+          "rep": 46.0,
+          "margin": 4.0,
+          "sample_size": 622,
+          "partisan_lean": "",
+          "dem_name": "Abdul El-Sayed",
+          "rep_name": "Mike Rogers",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-30",
+          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
         },
         {
           "poll_id": "4567e642-9d14-4530-9c86-e17199675130",
@@ -5570,12 +5579,7 @@
           "other": 3.0,
           "other_name": "Lydia Christensen",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
-          "sample_population": "lv",
-          "question_id": "945eeac0-0a07-4e9a-a371-5615b6530aba",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "2dc1e826-8970-4611-8cfa-14268c7d1bd4",
@@ -5949,7 +5953,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 35,
+      "recent_poll_count": 36,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -6021,6 +6025,28 @@
           "sample_population": "lv",
           "question_id": "328b8800-2d4c-4278-9538-980fbbaa7f3b",
           "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "6aa99f8a-1d58-4606-9f29-bd132b6f9dc1",
+          "question_id": "41d4152e-5d34-4f66-90ff-f0e7199d6af7",
+          "field_end": "2026-10-25",
+          "pollster": "Data for Progress",
+          "dem": 52.0,
+          "rep": 43.0,
+          "margin": 9.0,
+          "sample_size": 622,
+          "partisan_lean": "",
+          "dem_name": "Jocelyn Benson",
+          "rep_name": "John James",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-30",
+          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
         },
         {
           "poll_id": "c506a63c-4d38-4a19-9173-98e168424ae5",
@@ -6136,12 +6162,7 @@
           "other": 4.0,
           "other_name": "Anthony Hudson",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
-          "sample_population": "lv",
-          "question_id": "ad32693b-03c8-4766-ae9a-38a319560977",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "2dc1e826-8970-4611-8cfa-14268c7d1bd4",
@@ -6352,7 +6373,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 21,
+      "recent_poll_count": 22,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -6631,12 +6652,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://results.surveyusa.com/client/PollReport.aspx?g=01471c0a-ab87-499e-8974-8526fea475d2",
-          "sample_population": "lv",
-          "question_id": "71e98a33-6a34-4df8-92b9-15ac798e35a5",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "e7cc6f1e-4f63-4e26-a0ce-9e80afbf497d",
@@ -6758,29 +6774,52 @@
       "race_type": "senate",
       "state": "ME",
       "district": "SEN",
-      "latest_field_end": "2026-10-26",
+      "latest_field_end": "2026-10-27",
       "latest": {
-        "poll_id": "d65e372a-89eb-4af1-9f7b-88ee5d8975a4",
-        "field_end": "2026-10-26",
-        "pollster": "CNN/SSRS",
-        "dem": 49.0,
+        "poll_id": "ace5053f-e892-4ca2-a2d9-b96249dc8c27",
+        "question_id": "c29ddc73-2224-4f76-8907-7efbc30e620c",
+        "field_end": "2026-10-27",
+        "pollster": "Data for Progress",
+        "dem": 50.0,
         "rep": 45.0,
-        "margin": 4.0,
-        "sample_size": 783,
+        "margin": 5.0,
+        "sample_size": 652,
         "partisan_lean": "",
         "dem_name": "Troy Jackson",
         "rep_name": "Susan Collins",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-29T10:58:33.600918+00:00",
+        "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-29",
-        "source_poll_url": "https://edition.cnn.com/2026/10/29/politics/cnn-polls-michigan-maine-texas-kansas-senate-races-midterms-vis",
+        "upstream_posted_date": "2026-10-30",
+        "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
         "sample_population": "lv",
-        "question_id": "75fb90ed-fca3-438f-b345-1bfd969fdab7",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "ace5053f-e892-4ca2-a2d9-b96249dc8c27",
+          "question_id": "c29ddc73-2224-4f76-8907-7efbc30e620c",
+          "field_end": "2026-10-27",
+          "pollster": "Data for Progress",
+          "dem": 50.0,
+          "rep": 45.0,
+          "margin": 5.0,
+          "sample_size": 652,
+          "partisan_lean": "",
+          "dem_name": "Troy Jackson",
+          "rep_name": "Susan Collins",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-30",
+          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "d65e372a-89eb-4af1-9f7b-88ee5d8975a4",
           "field_end": "2026-10-26",
@@ -6815,7 +6854,7 @@
           "rep_name": "Susan Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "affd988a-3dbb-42da-8b36-6409a6910f4e",
           "sample_population": "lv",
@@ -6880,7 +6919,7 @@
           "rep_name": "Susan Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "c3f69e5a-d0fc-4e59-8b8d-47e08e73ca3f",
           "sample_population": "lv",
@@ -6946,12 +6985,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.washingtonpost.com/politics/2026/10/09/poll-democrat-troy-jackson-narrowly-leads-susan-collins-maine-senate-race/?pwapi_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFzb24iOiJnaWZ0IiwibmJmIjoxNzkxNTE4NDAwLCJpc3MiOiJzdWJzY3JpcHRpb25zIiwiZXhwIjoxNzkyOTAwNzk5LCJpYXQiOjE3OTE1MTg0MDAsImp0aSI6IjE4NjJkMzQ0LWQ0ZmMtNGIyMy05NzAwLTgwNWU1YTNjMWZlNCIsInVybCI6Imh0dHBzOi8vd3d3Lndhc2hpbmd0b25wb3N0LmNvbS9wb2xpdGljcy8yMDI2LzEwLzA5L3BvbGwtZGVtb2NyYXQtdHJveS1qYWNrc29uLW5hcnJvd2x5LWxlYWRzLXN1c2FuLWNvbGxpbnMtbWFpbmUtc2VuYXRlLXJhY2UvIn0.2_6lAaaYMcbP0y7_Ioe4GYgRcQnYJkY6IAE55nzmhAs",
-          "sample_population": "lv",
-          "question_id": "af612594-c904-4416-8528-c46abeecc093",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "3ee37c1b-1cc6-4e47-8cca-03f4c7c46fdb",
@@ -7194,7 +7228,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 23,
+      "recent_poll_count": 24,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -7216,7 +7250,7 @@
         "rep_name": "Jon Husted",
         "other": 1.6,
         "other_name": "Gregory Levy",
-        "first_seen_at": "2026-10-30T23:47:11.211915Z",
+        "first_seen_at": "2026-10-31T01:12:02.280962Z",
         "release_date": null,
         "question_id": "2c97932b-20ea-4c93-8abb-70414417da3c",
         "sample_population": "lv",
@@ -7240,7 +7274,7 @@
           "rep_name": "Jon Husted",
           "other": 1.6,
           "other_name": "Gregory Levy",
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "2c97932b-20ea-4c93-8abb-70414417da3c",
           "sample_population": "lv",
@@ -7347,7 +7381,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
@@ -7738,7 +7772,7 @@
           "rep_name": "Vivek Ramaswamy",
           "other": 2.1,
           "other_name": "Donald Kissick",
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "33054139-a1b1-46a2-b9a6-5eb6eaa06757",
           "sample_population": "lv",
@@ -7761,7 +7795,7 @@
           "rep_name": "Vivek Ramaswamy",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "723e97d1-6029-4b0d-95dc-7f8ee78290ae",
           "sample_population": "lv",
@@ -7992,29 +8026,52 @@
       "race_type": "governor",
       "state": "ME",
       "district": "GOV",
-      "latest_field_end": "2026-10-26",
+      "latest_field_end": "2026-10-27",
       "latest": {
-        "poll_id": "d65e372a-89eb-4af1-9f7b-88ee5d8975a4",
-        "field_end": "2026-10-26",
-        "pollster": "CNN/SSRS",
-        "dem": 53.0,
-        "rep": 39.0,
-        "margin": 14.0,
-        "sample_size": 783,
+        "poll_id": "ace5053f-e892-4ca2-a2d9-b96249dc8c27",
+        "question_id": "f25037ae-0a27-4167-b597-706dca563a88",
+        "field_end": "2026-10-27",
+        "pollster": "Data for Progress",
+        "dem": 49.0,
+        "rep": 37.0,
+        "margin": 12.0,
+        "sample_size": 652,
         "partisan_lean": "",
         "dem_name": "Hannah Pingree",
         "rep_name": "Bobby Charles",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-29T10:58:33.600918+00:00",
+        "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
         "release_date": null,
-        "upstream_posted_date": "2026-10-29",
-        "source_poll_url": "https://edition.cnn.com/2026/10/29/politics/cnn-polls-michigan-maine-texas-kansas-senate-races-midterms-vis",
+        "upstream_posted_date": "2026-10-30",
+        "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
         "sample_population": "lv",
-        "question_id": "c38d334d-ec5e-47ac-9f62-7690e7bc6e65",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "date_provenance": "PollResults ingestion date, NOT public release date",
+        "model_source": "pollresults_secondary_fallback"
       },
       "polls": [
+        {
+          "poll_id": "ace5053f-e892-4ca2-a2d9-b96249dc8c27",
+          "question_id": "f25037ae-0a27-4167-b597-706dca563a88",
+          "field_end": "2026-10-27",
+          "pollster": "Data for Progress",
+          "dem": 49.0,
+          "rep": 37.0,
+          "margin": 12.0,
+          "sample_size": 652,
+          "partisan_lean": "",
+          "dem_name": "Hannah Pingree",
+          "rep_name": "Bobby Charles",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-30",
+          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+          "sample_population": "lv",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback"
+        },
         {
           "poll_id": "d65e372a-89eb-4af1-9f7b-88ee5d8975a4",
           "field_end": "2026-10-26",
@@ -8049,7 +8106,7 @@
           "rep_name": "Bobby Charles",
           "other": 7.0,
           "other_name": "Rick Bennett",
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "828023d7-a89e-4734-8909-e03a9fac7e0c",
           "sample_population": "lv",
@@ -8095,13 +8152,11 @@
           "other_name": "Rick Bennett",
           "first_seen_at": "2026-10-23T00:57:50.492444+00:00",
           "release_date": null,
-          "question_id": "0323398c-c289-44ef-9237-6a32d93b3b1f",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-10-22",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "0323398c-c289-44ef-9237-6a32d93b3b1f",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "b2cf5601-98ad-4a7f-acd3-1be546e39bc3",
@@ -8138,12 +8193,7 @@
           "other": 11.0,
           "other_name": "Rick Bennett",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.washingtonpost.com/politics/2026/10/09/poll-democrat-troy-jackson-narrowly-leads-susan-collins-maine-senate-race/?pwapi_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZWFzb24iOiJnaWZ0IiwibmJmIjoxNzkxNTE4NDAwLCJpc3MiOiJzdWJzY3JpcHRpb25zIiwiZXhwIjoxNzkyOTAwNzk5LCJpYXQiOjE3OTE1MTg0MDAsImp0aSI6IjE4NjJkMzQ0LWQ0ZmMtNGIyMy05NzAwLTgwNWU1YTNjMWZlNCIsInVybCI6Imh0dHBzOi8vd3d3Lndhc2hpbmd0b25wb3N0LmNvbS9wb2xpdGljcy8yMDI2LzEwLzA5L3BvbGwtZGVtb2NyYXQtdHJveS1qYWNrc29uLW5hcnJvd2x5LWxlYWRzLXN1c2FuLWNvbGxpbnMtbWFpbmUtc2VuYXRlLXJhY2UvIn0.2_6lAaaYMcbP0y7_Ioe4GYgRcQnYJkY6IAE55nzmhAs",
-          "sample_population": "lv",
-          "question_id": "b57120d9-b08c-480a-95a9-f351f144f3b6",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "3ee37c1b-1cc6-4e47-8cca-03f4c7c46fdb",
@@ -8290,7 +8340,7 @@
           "release_date": null
         }
       ],
-      "recent_poll_count": 15,
+      "recent_poll_count": 16,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -8357,7 +8407,7 @@
           "rep_name": "Michele Tafoya",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "67551c6a-989f-4564-a596-26cafac5d751",
           "sample_population": "lv",
@@ -8465,12 +8515,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.thedailyagenda.com/p/morning-take-the-daily-agenda-poll",
-          "sample_population": "rv",
-          "question_id": "dd86ac0c-c537-4fb5-b001-3f7c5b2aecbe",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "9d918f3b-4659-4879-b001-4d30b9d71d0b",
@@ -8486,12 +8531,7 @@
           "other": 4.0,
           "other_name": "Marisa Simonetti",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://x.com/DrewSav/status/2108502733045334207",
-          "sample_population": "lv",
-          "question_id": "00104b8c-ac19-4496-86c1-13753c15c6b0",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "52eaab2c-6b66-41b8-baca-8041921f9c98",
@@ -8673,7 +8713,7 @@
           "rep_name": "Darline Graham",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "4377654d-c6b1-49d1-9540-cf833100a098",
           "sample_population": "lv",
@@ -8696,7 +8736,7 @@
           "rep_name": "Darline Graham",
           "other": 2.0,
           "other_name": "Mark Hackett",
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "d2ef23bf-014c-470a-8640-7986e948b9e9",
           "sample_population": "lv",
@@ -9048,7 +9088,7 @@
         "rep_name": "Alan Wilson",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-30T23:47:11.211915Z",
+        "first_seen_at": "2026-10-31T01:12:02.280962Z",
         "release_date": null,
         "question_id": "a8276d0f-9b2c-4b94-b14f-9932e74f2fc8",
         "sample_population": "lv",
@@ -9072,7 +9112,7 @@
           "rep_name": "Alan Wilson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "a8276d0f-9b2c-4b94-b14f-9932e74f2fc8",
           "sample_population": "lv",
@@ -9095,7 +9135,7 @@
           "rep_name": "Alan Wilson",
           "other": 1.0,
           "other_name": "Walid Hakim",
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "b70f8dff-4f6d-4750-a117-cd5922f197d5",
           "sample_population": "lv",
@@ -9943,7 +9983,7 @@
           "rep_name": "Steve Hilton",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "bd11cead-5447-4b9c-aba5-55eb077a2ef4",
           "sample_population": "lv",
@@ -9988,12 +10028,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://manhattan.institute/article/californias-contradictions-survey-analysis-of-2026-voter-preferences-statewide-and-in-los-angeles",
-          "sample_population": "lv",
-          "question_id": "2d372280-3711-475d-a937-22f2bfd4072f",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "fea7a488-3333-408d-978b-724fcb87cedf",
@@ -10098,7 +10133,7 @@
         "rep_name": "Bruce Blakeman",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-30T23:47:11.211915Z",
+        "first_seen_at": "2026-10-31T01:12:02.280962Z",
         "release_date": null,
         "question_id": "d9c80bec-c221-4f89-a145-612027d268dc",
         "sample_population": "lv",
@@ -10122,7 +10157,7 @@
           "rep_name": "Bruce Blakeman",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "d9c80bec-c221-4f89-a145-612027d268dc",
           "sample_population": "lv",
@@ -11896,7 +11931,7 @@
           "rep_name": "Tom Tiffany",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "ae78fc43-5f3b-4f1b-ab79-4d782e934476",
           "sample_population": "lv",
@@ -11941,12 +11976,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
-          "sample_population": "lv",
-          "question_id": "9fa329b6-4e61-49b7-a88b-ac8b32a25d6c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "e80692e3-d61f-4f4a-8f64-71722b2d86f8",
@@ -12195,7 +12225,7 @@
         "rep_name": "Brian Fitzpatrick",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-30T23:47:11.211915Z",
+        "first_seen_at": "2026-10-31T01:12:02.280962Z",
         "release_date": null,
         "question_id": "647d6f76-0bba-4caf-9086-af309c58f784",
         "sample_population": "lv",
@@ -12219,7 +12249,7 @@
           "rep_name": "Brian Fitzpatrick",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "647d6f76-0bba-4caf-9086-af309c58f784",
           "sample_population": "lv",
@@ -12289,7 +12319,7 @@
         "rep_name": "Ryan E. Mackenzie",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-30T23:47:11.211915Z",
+        "first_seen_at": "2026-10-31T01:12:02.280962Z",
         "release_date": null,
         "question_id": "96cf897e-1fae-4ca2-89d6-94973d7d04f3",
         "sample_population": "lv",
@@ -12313,7 +12343,7 @@
           "rep_name": "Ryan E. Mackenzie",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "96cf897e-1fae-4ca2-89d6-94973d7d04f3",
           "sample_population": "lv",
@@ -12383,7 +12413,7 @@
         "rep_name": "Scott Perry",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-30T23:47:11.211915Z",
+        "first_seen_at": "2026-10-31T01:12:02.280962Z",
         "release_date": null,
         "question_id": "840ae67f-bfb6-423e-81ea-a4b12e61dde7",
         "sample_population": "lv",
@@ -12407,7 +12437,7 @@
           "rep_name": "Scott Perry",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "840ae67f-bfb6-423e-81ea-a4b12e61dde7",
           "sample_population": "lv",
@@ -12710,7 +12740,7 @@
         "rep_name": "Rob Bresnahan Jr.",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-10-30T23:47:11.211915Z",
+        "first_seen_at": "2026-10-31T01:12:02.280962Z",
         "release_date": null,
         "question_id": "9a4f7766-8cd4-4f69-9c2a-9b5f7937815b",
         "sample_population": "lv",
@@ -12734,7 +12764,7 @@
           "rep_name": "Rob Bresnahan Jr.",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "first_seen_at": "2026-10-31T01:12:02.280962Z",
           "release_date": null,
           "question_id": "9a4f7766-8cd4-4f69-9c2a-9b5f7937815b",
           "sample_population": "lv",
@@ -14804,12 +14834,7 @@
           "other": 3.0,
           "other_name": "Ken Krawchuk",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://x.com/rbrtraining/status/2108302504446337272",
-          "sample_population": "lv",
-          "question_id": "4e948d00-322c-402a-b658-3a26a7ce1b02",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "fe6f0db7-dd91-43fa-9ed7-e98efa899443",
@@ -15425,91 +15450,6 @@
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
-      "race_code": "TN-GOV",
-      "race_type": "governor",
-      "state": "TN",
-      "district": "GOV",
-      "latest_field_end": "2026-10-16",
-      "latest": {
-        "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f",
-        "field_end": "2026-10-16",
-        "pollster": "Spry Strategies",
-        "dem": 32.0,
-        "rep": 43.5,
-        "margin": -11.5,
-        "sample_size": 635,
-        "partisan_lean": "",
-        "dem_name": "Jerri Green",
-        "rep_name": "Marsha Blackburn",
-        "other": 11.9,
-        "other_name": "David Hatley",
-        "first_seen_at": "2026-10-20T17:43:18.288907+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
-        "sample_population": "lv",
-        "question_id": "3911c448-145b-4e31-89e1-4249d96217af",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
-      },
-      "polls": [
-        {
-          "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f",
-          "field_end": "2026-10-16",
-          "pollster": "Spry Strategies",
-          "dem": 32.0,
-          "rep": 43.5,
-          "margin": -11.5,
-          "sample_size": 635,
-          "partisan_lean": "",
-          "dem_name": "Jerri Green",
-          "rep_name": "Marsha Blackburn",
-          "other": 11.9,
-          "other_name": "David Hatley",
-          "first_seen_at": "2026-10-20T17:43:18.288907+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
-          "sample_population": "lv",
-          "question_id": "3911c448-145b-4e31-89e1-4249d96217af",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "86685846-3312-46a3-b60c-ad10e3055620",
-          "field_end": "2026-09-12",
-          "pollster": "TargetSmart",
-          "dem": 36.0,
-          "rep": 45.0,
-          "margin": -9.0,
-          "sample_size": 600,
-          "partisan_lean": "D",
-          "dem_name": "Jerri Green",
-          "rep_name": "Marsha Blackburn",
-          "other": 10.0,
-          "other_name": "David Hatley",
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "83074200-303b-4eb1-ae96-fa16b4cc5da1",
-          "field_end": "2026-08-26",
-          "pollster": "Targoz Market Research",
-          "dem": 34.0,
-          "rep": 55.0,
-          "margin": -21.0,
-          "sample_size": 601,
-          "partisan_lean": "",
-          "dem_name": "Jerri Green",
-          "rep_name": "Marsha Blackburn",
-          "other": 7.0,
-          "other_name": "Generic Candidate",
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 3,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
       "race_code": "TX-15",
       "race_type": "house",
       "state": "TX",
@@ -15592,6 +15532,75 @@
         }
       ],
       "recent_poll_count": 3,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "TN-GOV",
+      "race_type": "governor",
+      "state": "TN",
+      "district": "GOV",
+      "latest_field_end": "2026-10-16",
+      "latest": {
+        "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f",
+        "field_end": "2026-10-16",
+        "pollster": "Spry Strategies",
+        "dem": 32.0,
+        "rep": 43.5,
+        "margin": -11.5,
+        "sample_size": 635,
+        "partisan_lean": "",
+        "dem_name": "Jerri Green",
+        "rep_name": "Marsha Blackburn",
+        "other": 11.9,
+        "other_name": "David Hatley",
+        "first_seen_at": "2026-10-20T17:43:18.288907+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-10-20",
+        "source_poll_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
+        "sample_population": "lv",
+        "question_id": "3911c448-145b-4e31-89e1-4249d96217af",
+        "date_provenance": "PollResults ingestion date, NOT public release date"
+      },
+      "polls": [
+        {
+          "poll_id": "ab6bbf3e-1625-4cc4-b385-c84de5abc74f",
+          "field_end": "2026-10-16",
+          "pollster": "Spry Strategies",
+          "dem": 32.0,
+          "rep": 43.5,
+          "margin": -11.5,
+          "sample_size": 635,
+          "partisan_lean": "",
+          "dem_name": "Jerri Green",
+          "rep_name": "Marsha Blackburn",
+          "other": 11.9,
+          "other_name": "David Hatley",
+          "first_seen_at": "2026-10-20T17:43:18.288907+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-20",
+          "source_poll_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
+          "sample_population": "lv",
+          "question_id": "3911c448-145b-4e31-89e1-4249d96217af",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "86685846-3312-46a3-b60c-ad10e3055620",
+          "field_end": "2026-09-12",
+          "pollster": "TargetSmart",
+          "dem": 36.0,
+          "rep": 45.0,
+          "margin": -9.0,
+          "sample_size": 600,
+          "partisan_lean": "D",
+          "dem_name": "Jerri Green",
+          "rep_name": "Marsha Blackburn",
+          "other": 10.0,
+          "other_name": "David Hatley",
+          "first_seen_at": null,
+          "release_date": null
+        }
+      ],
+      "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -16437,12 +16446,7 @@
           "other": 5.0,
           "other_name": "Chris Schmidt",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.mynbc5.com/article/poll-new-york-21-constantino-gendebien/74082680",
-          "sample_population": "lv",
-          "question_id": "bd5b910d-b9d0-40fb-9acc-cb9fbd16dc52",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "9638b442-e23a-4634-bfb2-06fe882c1a6a",
@@ -16458,12 +16462,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.nny360.com/news/stlawrencecounty/latest-polls-show-gendebien-dem-for-ny-21-close-to-or-leading-republican-opponent-constantino/article_a292a635-2230-53bb-94e0-d80edc984973.html",
-          "sample_population": "lv",
-          "question_id": "d00aec86-f4a7-43f0-afc3-961e1e854bdf",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "ad89fbf0-7dfe-454d-b5e8-8aa6ce85a136",
@@ -16581,25 +16580,9 @@
           "other_name": "Lynn Chapman",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "988adfe9-8318-4ceb-89bc-3fe87708f7da",
-          "field_end": "2026-08-26",
-          "pollster": "Strategies 360",
-          "dem": 42.0,
-          "rep": 45.0,
-          "margin": -3.0,
-          "sample_size": 400,
-          "partisan_lean": "D",
-          "dem_name": "Teresa Benitez-Thompson",
-          "rep_name": "David Flippo",
-          "other": 7.0,
-          "other_name": "Lynn Chapman",
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 3,
+      "recent_poll_count": 2,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -17680,75 +17663,6 @@
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
-      "race_code": "GA-07",
-      "race_type": "house",
-      "state": "GA",
-      "district": "07",
-      "latest_field_end": "2026-10-09",
-      "latest": {
-        "poll_id": "a0be903c-529d-483d-a76c-0ff238468750",
-        "field_end": "2026-10-09",
-        "pollster": "20/20 Insight",
-        "dem": 47.0,
-        "rep": 45.0,
-        "margin": 2.0,
-        "sample_size": 457,
-        "partisan_lean": "D",
-        "dem_name": "Tony Kozycki",
-        "rep_name": "Rich McCormick",
-        "other": null,
-        "other_name": null,
-        "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-12",
-        "source_poll_url": "https://kozyckiforcongress.com/docs/releases/rel-255316a80123.pdf",
-        "sample_population": "lv",
-        "question_id": "d23af6a4-2457-4379-9e86-b89b0d4e436c",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
-      },
-      "polls": [
-        {
-          "poll_id": "a0be903c-529d-483d-a76c-0ff238468750",
-          "field_end": "2026-10-09",
-          "pollster": "20/20 Insight",
-          "dem": 47.0,
-          "rep": 45.0,
-          "margin": 2.0,
-          "sample_size": 457,
-          "partisan_lean": "D",
-          "dem_name": "Tony Kozycki",
-          "rep_name": "Rich McCormick",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-12",
-          "source_poll_url": "https://kozyckiforcongress.com/docs/releases/rel-255316a80123.pdf",
-          "sample_population": "lv",
-          "question_id": "d23af6a4-2457-4379-9e86-b89b0d4e436c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "9b91ef78-703c-4c40-8ae9-47cb323a5d33",
-          "field_end": "2026-08-26",
-          "pollster": "20/20 Insight",
-          "dem": 43.0,
-          "rep": 46.0,
-          "margin": -3.0,
-          "sample_size": 445,
-          "partisan_lean": "D",
-          "dem_name": "Tony Kozycki",
-          "rep_name": "Rich McCormick",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 2,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
       "race_code": "NM-02",
       "race_type": "house",
       "state": "NM",
@@ -17815,6 +17729,59 @@
         }
       ],
       "recent_poll_count": 2,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "GA-07",
+      "race_type": "house",
+      "state": "GA",
+      "district": "07",
+      "latest_field_end": "2026-10-09",
+      "latest": {
+        "poll_id": "a0be903c-529d-483d-a76c-0ff238468750",
+        "field_end": "2026-10-09",
+        "pollster": "20/20 Insight",
+        "dem": 47.0,
+        "rep": 45.0,
+        "margin": 2.0,
+        "sample_size": 457,
+        "partisan_lean": "D",
+        "dem_name": "Tony Kozycki",
+        "rep_name": "Rich McCormick",
+        "other": null,
+        "other_name": null,
+        "first_seen_at": null,
+        "release_date": null,
+        "upstream_posted_date": "2026-10-12",
+        "source_poll_url": "https://kozyckiforcongress.com/docs/releases/rel-255316a80123.pdf",
+        "sample_population": "lv",
+        "question_id": "d23af6a4-2457-4379-9e86-b89b0d4e436c",
+        "date_provenance": "PollResults ingestion date, NOT public release date"
+      },
+      "polls": [
+        {
+          "poll_id": "a0be903c-529d-483d-a76c-0ff238468750",
+          "field_end": "2026-10-09",
+          "pollster": "20/20 Insight",
+          "dem": 47.0,
+          "rep": 45.0,
+          "margin": 2.0,
+          "sample_size": 457,
+          "partisan_lean": "D",
+          "dem_name": "Tony Kozycki",
+          "rep_name": "Rich McCormick",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": null,
+          "release_date": null,
+          "upstream_posted_date": "2026-10-12",
+          "source_poll_url": "https://kozyckiforcongress.com/docs/releases/rel-255316a80123.pdf",
+          "sample_population": "lv",
+          "question_id": "d23af6a4-2457-4379-9e86-b89b0d4e436c",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        }
+      ],
+      "recent_poll_count": 1,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -17943,12 +17910,7 @@
         "other": 1.0,
         "other_name": "Generic Candidate",
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-09",
-        "source_poll_url": "https://www.politico.com/newsletters/playbook-pm/2026/10/09/trumps-real-prize-01114521",
-        "sample_population": "lv",
-        "question_id": "80364f7c-dbc6-481e-8153-e52e43462dde",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17965,12 +17927,7 @@
           "other": 1.0,
           "other_name": "Generic Candidate",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.politico.com/newsletters/playbook-pm/2026/10/09/trumps-real-prize-01114521",
-          "sample_population": "lv",
-          "question_id": "80364f7c-dbc6-481e-8153-e52e43462dde",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "dd868875-dbac-40ed-9868-28a6ac89deca",
@@ -17986,12 +17943,7 @@
           "other": 2.0,
           "other_name": "Thomas Aaron Bailey",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.politico.com/newsletters/playbook-pm/2026/10/09/trumps-real-prize-01114521",
-          "sample_population": "lv",
-          "question_id": "f956449b-7004-472e-ba17-01a8d71f03b6",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "2949eb66-3630-401b-9325-7955092f5566",
@@ -18256,12 +18208,7 @@
         "other": 6.0,
         "other_name": "Brett Smith",
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-09",
-        "source_poll_url": "https://www.opb.org/article/2026/10/08/new-polls-kotek-may-lead/",
-        "sample_population": "lv",
-        "question_id": "933d5778-7d88-49bb-8c98-754884bb8c29",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -18278,12 +18225,7 @@
           "other": 6.0,
           "other_name": "Brett Smith",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.opb.org/article/2026/10/08/new-polls-kotek-may-lead/",
-          "sample_population": "lv",
-          "question_id": "933d5778-7d88-49bb-8c98-754884bb8c29",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "90f93f41-89eb-44d8-bc23-f6d5f2116d95",
@@ -19123,12 +19065,7 @@
         "other": 9.0,
         "other_name": "Douglas Mangeris",
         "first_seen_at": null,
-        "release_date": null,
-        "upstream_posted_date": "2026-10-09",
-        "source_poll_url": "https://www.the-downballot.com/p/morning-digest-why-democrats-think-561",
-        "sample_population": "lv",
-        "question_id": "74292b9e-4f1b-4dd7-ae88-de7117714d4c",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -19145,12 +19082,7 @@
           "other": 9.0,
           "other_name": "Douglas Mangeris",
           "first_seen_at": null,
-          "release_date": null,
-          "upstream_posted_date": "2026-10-09",
-          "source_poll_url": "https://www.the-downballot.com/p/morning-digest-why-democrats-think-561",
-          "sample_population": "lv",
-          "question_id": "74292b9e-4f1b-4dd7-ae88-de7117714d4c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -20025,49 +19957,6 @@
       ],
       "recent_poll_count": 1,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
-      "race_code": "TN-SEN",
-      "race_type": "senate",
-      "state": "TN",
-      "district": "SEN",
-      "latest_field_end": "2026-08-26",
-      "latest": {
-        "poll_id": "83074200-303b-4eb1-ae96-fa16b4cc5da1",
-        "field_end": "2026-08-26",
-        "pollster": "Targoz Market Research",
-        "dem": 33.0,
-        "rep": 58.0,
-        "margin": -25.0,
-        "sample_size": 607,
-        "partisan_lean": "",
-        "dem_name": "Marquita Bradshaw",
-        "rep_name": "Bill Hagerty",
-        "other": 5.0,
-        "other_name": "Generic Candidate",
-        "first_seen_at": null,
-        "release_date": null
-      },
-      "polls": [
-        {
-          "poll_id": "83074200-303b-4eb1-ae96-fa16b4cc5da1",
-          "field_end": "2026-08-26",
-          "pollster": "Targoz Market Research",
-          "dem": 33.0,
-          "rep": 58.0,
-          "margin": -25.0,
-          "sample_size": 607,
-          "partisan_lean": "",
-          "dem_name": "Marquita Bradshaw",
-          "rep_name": "Bill Hagerty",
-          "other": 5.0,
-          "other_name": "Generic Candidate",
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 1,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     }
   ],
   "source": {
@@ -20081,7 +19970,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-10-30T23:47:11.211915Z",
+    "last_attempt_at": "2026-10-31T01:12:02.280962Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -20090,11 +19979,114 @@
     "status": "ok"
   },
   "changes": {
-    "new_polls": [],
-    "new_poll_count": 0,
+    "new_polls": [
+      {
+        "race_code": "ME-SEN",
+        "race_type": "senate",
+        "poll_id": "ace5053f-e892-4ca2-a2d9-b96249dc8c27",
+        "pollster": "Data for Progress",
+        "field_end": "2026-10-27",
+        "dem": 50.0,
+        "rep": 45.0,
+        "margin": 5.0,
+        "dem_name": "Troy Jackson",
+        "rep_name": "Susan Collins",
+        "sample_size": 652,
+        "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+        "release_date": null,
+        "source_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "ME-GOV",
+        "race_type": "governor",
+        "poll_id": "ace5053f-e892-4ca2-a2d9-b96249dc8c27",
+        "pollster": "Data for Progress",
+        "field_end": "2026-10-27",
+        "dem": 49.0,
+        "rep": 37.0,
+        "margin": 12.0,
+        "dem_name": "Hannah Pingree",
+        "rep_name": "Bobby Charles",
+        "sample_size": 652,
+        "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+        "release_date": null,
+        "source_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "TX-SEN",
+        "race_type": "senate",
+        "poll_id": "f31e142f-d353-45f2-8409-f4e442b6383c",
+        "pollster": "Data for Progress",
+        "field_end": "2026-10-26",
+        "dem": 49.0,
+        "rep": 45.0,
+        "margin": 4.0,
+        "dem_name": "James Talarico",
+        "rep_name": "Ken Paxton",
+        "sample_size": 712,
+        "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+        "release_date": null,
+        "source_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "TX-GOV",
+        "race_type": "governor",
+        "poll_id": "f31e142f-d353-45f2-8409-f4e442b6383c",
+        "pollster": "Data for Progress",
+        "field_end": "2026-10-26",
+        "dem": 47.0,
+        "rep": 48.0,
+        "margin": -1.0,
+        "dem_name": "Gina Hinojosa",
+        "rep_name": "Greg Abbott",
+        "sample_size": 712,
+        "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+        "release_date": null,
+        "source_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "MI-SEN",
+        "race_type": "senate",
+        "poll_id": "6aa99f8a-1d58-4606-9f29-bd132b6f9dc1",
+        "pollster": "Data for Progress",
+        "field_end": "2026-10-25",
+        "dem": 50.0,
+        "rep": 46.0,
+        "margin": 4.0,
+        "dem_name": "Abdul El-Sayed",
+        "rep_name": "Mike Rogers",
+        "sample_size": 622,
+        "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+        "release_date": null,
+        "source_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+        "source": "pollresults_secondary_fallback"
+      },
+      {
+        "race_code": "MI-GOV",
+        "race_type": "governor",
+        "poll_id": "6aa99f8a-1d58-4606-9f29-bd132b6f9dc1",
+        "pollster": "Data for Progress",
+        "field_end": "2026-10-25",
+        "dem": 52.0,
+        "rep": 43.0,
+        "margin": 9.0,
+        "dem_name": "Jocelyn Benson",
+        "rep_name": "John James",
+        "sample_size": 622,
+        "first_seen_at": "2026-10-31T01:12:02.585184+00:00",
+        "release_date": null,
+        "source_url": "https://www.dataforprogress.org/blog/2026/10/30/democratic-senate-candidates-lead-in-maine-michigan-and-texas",
+        "source": "pollresults_secondary_fallback"
+      }
+    ],
+    "new_poll_count": 6,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-10-30T23:47:11.211915Z",
-    "previous_snapshot_at": "2026-10-30T22:49:07.289370Z",
+    "comparison_at": "2026-10-31T01:12:02.280962Z",
+    "previous_snapshot_at": "2026-10-30T23:47:11.211915Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -20216,15 +20208,29 @@
       "dem": 50.6,
       "rep": 42.2,
       "pollsters": 18
+    },
+    {
+      "date": "2026-10-31",
+      "margin": 8.5,
+      "dem": 50.6,
+      "rep": 42.2,
+      "pollsters": 18
     }
   ],
-  "newly_detected_count": 28,
+  "newly_detected_count": 27,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 358,
-    "newly_injected_into_model": 0,
-    "newly_injected_by_race": {},
+    "matched_observations": 336,
+    "newly_injected_into_model": 6,
+    "newly_injected_by_race": {
+      "ME-GOV": 1,
+      "ME-SEN": 1,
+      "MI-GOV": 1,
+      "MI-SEN": 1,
+      "TX-GOV": 1,
+      "TX-SEN": 1
+    },
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
   },
   "secondary_source_retention": {
