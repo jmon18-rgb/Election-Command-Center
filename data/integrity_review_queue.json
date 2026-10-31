@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-31T15:46:46.662004Z",
+  "updated_at": "2026-10-31T16:48:48.064675Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 71
+    "advisory_related_headlines": 72
   },
   "advisory_related_headlines": [
     {
@@ -107,6 +107,17 @@
       ],
       "topic_hints": [
         "ballot_access",
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "776ba768acda54bdd91b",
+      "headline": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - Modern Ghana",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
+      "state_hints": [],
+      "topic_hints": [
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
@@ -243,17 +254,6 @@
       "topic_hints": [
         "election_admin",
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "7118a47a2e7e5904afed",
-      "headline": "Liberman's Yisrael Beytenu projected to win seven seats in next Knesset, election data predicts - The Jerusalem Post",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     }
@@ -399,6 +399,25 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "933bd6f18190fc4a222a",
+      "title": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - France 24",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNd2xHSGlWUWZwM0R0N3pISWQzdFF6Znc2RzBiMDFMQXZMeEp5NElSZmJyS1VyMWk5SHY0SFhVNjh4aF9sZnhqQWZkNllRUzVZcEZUVVBrLVk4V0trMHJ4MDdtYS1uLUFYSG5wbGxydWUtVlUza2JEdFgweGJfOUU5TmRBeVFkME5RcEQ1VmlSMXlDRk05a2JUaHNZMmwwUmx5eXhOdmtqbzR6M1pTNTZzRUlCcGhaLWl1ZXFnSWh6cDR1dmFuRmlsZVF5ZDN6aXNYM1pJ?oc=5",
+      "publisher": "France 24",
+      "published_at": "2026-10-31T09:40:54Z",
+      "detected_at": "2026-10-31T16:48:48.064675Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "24"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5211,24 +5230,6 @@
       "detected_at": "2026-10-20T11:45:43.865148Z",
       "state_hints": [],
       "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b58793767d5dd77cea56",
-      "title": "US: Order \u2018No ICE\u2019 Zones during Election Period - Human Rights Watch",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNMnlyN1NIS1RFNVBqZHVWMjhkN2hqNzFIbXZnbGRFNVJiTlhxTlY1dDNiUFMzQ0VtcVV5SkFDck1xVzRQeHZtTG5lYWpwSkpNOVdOd3JsbFN2dnVwRllBX1ZfNnBiczZiQ2lTLWYwcXV4dnFsbjVfUHZEd2JieXZLTzdxY2x3dTA?oc=5",
-      "publisher": "Human Rights Watch",
-      "published_at": "2026-10-20T10:00:00Z",
-      "detected_at": "2026-10-20T10:45:52.289856Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
