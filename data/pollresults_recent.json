@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-31T07:26:13.801205+00:00",
+  "updated_at": "2026-10-31T10:47:21.753026+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 877,
+      "available_in_source": 878,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,38 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 981,
+      "available_in_source": 982,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 343,
+  "matched_primary_observations": 344,
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
+    {
+      "race_code": "NE-GOV",
+      "race_type": "governor",
+      "state": "NE",
+      "poll_id": "96d6e3cb-710e-4140-86b4-4f4f2545b2bd",
+      "question_id": "574a0713-6f56-4e79-9a38-5aef1ac1a75e",
+      "pollster": "The New York Times/Siena University",
+      "dem_name": "Lynne Walz",
+      "rep_name": "Jim Pillen",
+      "dem": 39.57,
+      "rep": 53.09,
+      "margin": -13.52,
+      "field_end": "2026-10-29",
+      "field_start": "2026-10-23",
+      "posted_date": "2026-10-31",
+      "posted_source_datetime": "2026-10-31T05:00:00",
+      "posted_source_time": "10/31/26 05:00",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.nytimes.com/interactive/2026/10/31/polls/times-siena-ne-poll-toplines.html",
+      "sample_population": "lv",
+      "sample_size": 809,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "MI-SEN",
       "race_type": "senate",

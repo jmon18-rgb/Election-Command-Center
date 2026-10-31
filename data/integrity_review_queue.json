@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-31T07:26:13.247614Z",
+  "updated_at": "2026-10-31T10:47:21.080766Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 69
+    "advisory_related_headline_buckets": 23,
+    "advisory_related_headlines": 67
   },
   "advisory_related_headlines": [
     {
@@ -107,19 +107,6 @@
       ],
       "topic_hints": [
         "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "d132723b07829233f4fa",
-      "headline": "DOJ charges 28 in California with voting crimes as election tensions escalate - Houston Public Media",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
@@ -258,9 +245,57 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "7118a47a2e7e5904afed",
+      "headline": "Liberman's Yisrael Beytenu projected to win seven seats in next Knesset, election data predicts - The Jerusalem Post",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "d2927ba40f57c51b47b7",
+      "title": "US Supreme Court allows states to use SAVE database \u2014 France 24 - UA.NEWS",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZ19pNE1oUXhuczh0eGd4ZkV6dk8zMWdGSURQWGZ2RjUxbDdZWENtUU92czEtRlJ2Z1dLUnFLQ2FrcW5PZ3BWRHJXQlNoRV9yME9QLTJ1WE9uUjdHWm43RHp1Njh5cEIwdDdqOFFzcV9qemkxalJ5M05QOGxGQ1dXNEJxRWZGdjI0ci1YcllLN0pCYW5HMUNRa1p5X2hwUQ?oc=5",
+      "publisher": "UA.NEWS",
+      "published_at": "2026-10-31T09:56:23Z",
+      "detected_at": "2026-10-31T10:47:21.080766Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "24"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b0dd5cfb27c75efee917",
+      "title": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - inkl",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRnlIc1MzM0pLTU9mSHYzeEQ3Y2liNi1NVnpkRUc1LTE4NFRYTE1KMmd5MG5uamhZNks1SmtmMDJNTzVlMXhfNHFKa1BGTk9EZXJoM0NUUC1QczlCTzhGQ1hVSFRMNUxkQUNsWWNqX21pX3hfQmlzczg5ZHdUY05NbUF0MmxXd1Q1cUhoenB4bm9icHBHU0JMNFVhREZTdDdGVFo5blZR?oc=5",
+      "publisher": "inkl",
+      "published_at": "2026-10-31T09:40:54Z",
+      "detected_at": "2026-10-31T09:51:46.252402Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "db5d4e03c66dd40d3176",
       "title": "Defending election workers from unlawful threats and coercion - Protect Democracy",
@@ -324,6 +359,28 @@
       "promoted_to_incident_id": null,
       "review_notes": "One proceeding: United States of America v. State of Alaska et al., 3:26-cv-00376-SLG. Reviewed filed-document COPY text hosted by Democracy Docket, not an authenticated official court-host original. The October 30 order, Document 64, grants expedited consideration only: DOJ responses to the three amended-complaint dismissal motions are due October 30 at 1 p.m.; replies October 31 at noon, as written in the order. It does not grant dismissal, a certification block, or other merits relief. The checked passage in the October 29 first amended complaint, Document 43, describes requested certification-related declaratory and injunctive relief; a request is not a finding or an operative remedy. Reader-extracted document text was available. The direct original PDF request for Document 64 returned 403 and stopped, with no alternate retrieval. No owned original PDF bytes or hash. Voter impacts, remedies, probabilities and a later merits outcome are not established. This review does not admit an Alaska ballot, party, RCV, results or call-source contract.",
       "reviewed_as_of": "2026-10-30"
+    },
+    {
+      "id": "942efb4e2656aff015e7",
+      "title": "Judge Gives Trump DOJ New Deadline in Fight Over 20,000 California Ballots - Newsweek",
+      "url": "https://news.google.com/rss/articles/CBMi0AJBVV95cUxNaG1vd3VmNDAzY1h2ZEhCZUpGU0IxU3hvMDhsQS1uenp3S01oU3hiT2w5eTllc3VuaVQwSVFCQ0xvM1RQQkpEUVdqYURaWHNWZHFBd29ITk92ZmlqS0I0RnNDWHVNeXpFWGpRT3E0S1kxZE5zZ1UtcHBjSGQtZ28tb0VfMzRvR3dZQ2Y1WThXWUFvWGJjNldrZE93aWo3MXk0NXNRQ3RTRjVFamFuMWoxQ3gwSXNyRWhvc3JUMWxEWG5KeE5faS1sLXdiN0tSeDBxdWFHVDk2NXRYeGJsQ3RqY1JVTXpOdDhqaWtzYTRKM2ZiMkRoMU9IbF9HWUUtNjdzeGdsd1FhN3FBem1Fck9yNlVQdzJvdXBqbmRhRzBWQjRFcWlSRGxac2Y4UktzT1N5VlU1TEZoRldXLXlHbnZUNEVlNDd2cl8wME1aVm5jMDk?oc=5",
+      "publisher": "Newsweek",
+      "published_at": "2026-10-30T18:05:00Z",
+      "detected_at": "2026-10-31T10:47:21.080766Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
     },
     {
       "id": "077fc89e54dd7e3e9501",
@@ -5189,65 +5246,6 @@
       "headline_numbers_unverified": [
         "28 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "dc1903b56d0dee524518",
-      "title": "Early voting brings long lines in Tarrant County - FOX 4 News Dallas-Fort Worth",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNT3VEc2lFN296NTE1bXVuRmxOOHpyY3BjRlJBVHdlcU5hcm5BRkV6aHR6bm43WjFQcGZfdDZWLUJNaWlWNXdoZ2xCV3FpRmFBSTFDZHNndnNrX1RBXzJDdmtPQXg4SXgwOW4yRkhlVFktOTNYcXdqbzRhbTNvb2Z1NTVsZllKY2tVbVJkV1NMeXVIV2xQeEtIMV9JQdIBoAFBVV95cUxPeVdULWg3UGo4bFZTTGRQNGt4RUJsXy15NGhmNVhCZC1jQTlLYnBLNXloR0lRSDFKZWZHdVU2cFp1TWV1VnRiY1ZQWFdMTFM0SDJleGdyeG1JUzktNlJwTC1fb2szMXRsMmZKN0otRU5YU1laMWF3RF81cWdSSm0wMG0zZWxhYmY0YlVhR1NXMzR2a1NJU0FpZUNxYXczbkxi?oc=5",
-      "publisher": "FOX 4 News Dallas-Fort Worth",
-      "published_at": "2026-10-19T22:42:30Z",
-      "detected_at": "2026-10-20T11:45:43.865148Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "4 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6a4248b7e272e7ea9f39",
-      "title": "DOJ charges 28 in California with voting crimes as election tensions escalate - NPR",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQYW4zMDRzNTBxQ3NwZkVPUXlsUk1qWDFYbmZmd0VTZEFteV9YQmlYZUFDYkYyQ0dYSlkxZXY3Z2xxU2QtMFlIQk5Idm5FUmFTemticGx4WGl2VXMxUGQwTENKNndjSF9QVHF3UmZ1eVFNTldfbFpMS1U5TDh5TlR4UTh5amJncVVILWx3N3FpVWFXMVk2Qk14cWlkUHNGeF9PWUo3NmZzSm5NS1pLVEtaMDluV0FLMlRaYnhkRFppQ3JoNWkyWGJQeg?oc=5",
-      "publisher": "NPR",
-      "published_at": "2026-10-19T22:10:06Z",
-      "detected_at": "2026-10-20T04:44:52.097789Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "28 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e6347eec68a45b0f1e15",
-      "title": "Feds arrest alleged noncitizen voters in California amid broader election fight with state - Los Angeles Times",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQMFpKeml2bGpJVXBOQnhMekxqOG1veUc2ZWx1Sk5Idk9mOS1nZFJZd0M1bkJGRmEzVnkyZ3N3UTkxWEVfbDBlOER3ak9yMEU4NW15dEZoRy1iRkhXZEtBbmN4MkdWN3FTVDRnT3RiUWVGN09oM1R4TXdJeFNHUFRid3lNcDFYYzFNSDRDQXJxV01Ld2lrUHVlSWFBWlczWi1POWNsVkppanU1aXBNbm11LXNMQ0pHcm5lbnZJSV9R?oc=5",
-      "publisher": "Los Angeles Times",
-      "published_at": "2026-10-19T20:56:00Z",
-      "detected_at": "2026-10-19T22:43:28.633011Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
