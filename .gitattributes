@@ -4,6 +4,9 @@
 *.mjs text eol=lf
 *.html text eol=lf
 
+# Keep the owner-requested built-in recordings byte-for-byte on every checkout.
+assets/celebration-audio/*.mp3 -text
+
 # Preserve normalized official-source excerpt fingerprints across platforms.
 data/kansas_historical_sources/*-excerpt.txt text eol=lf
 

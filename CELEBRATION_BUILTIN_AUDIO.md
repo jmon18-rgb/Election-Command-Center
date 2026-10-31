@@ -1,0 +1,9 @@
+# Built-in celebration recordings
+
+The owner requested the supplied celebration songs built into the website on October 30, 2026. The ten already-assigned originals are site assets under `assets/celebration-audio/`. The manifest records their exact bytes, SHA-256, supplied filenames and event identities. Earlier private-import receipts remain unchanged historical records. The ZIP, private inputs, preferences and keys are not site assets. No license terms are inferred by the manifest.
+
+Ad-free playback uses a valid optional saved replacement first, then the current event's built-in recording, then its original score. Songs are requested only for the active celebration, with `preload="none"`; the whole pack is not downloaded on startup. The existing native audio element, announcement-first sequence, sound preference, cancellation and winner-eligibility rules remain authoritative. YouTube remains an explicit optional choice.
+
+Browsers may require a click or tap. A rejected autoplay request keeps native Play controls available and does not overlap an original score. An invalid selected replacement remains a visible file error; removing it restores the built-in/default music. A built-in network/codec error stops and clears native playback before one guarded original-score fallback. Late errors, close, mute, replacement and withdrawal cannot revive a cancelled player. Static site URLs are never treated as revocable Blob URLs.
+
+Nebraska, Michigan, Florida Senate and preview-only Tsunami retain their original cues. Crawdad remains unassigned. A built-in asset is available across browser profiles; optional saved replacements remain local to one profile. Neither browser playback tests nor deployed-byte checks establish human hearing, physical-device acceptance, recording rights, empirical forecast accuracy or actual positive election delivery.

@@ -1,5 +1,11 @@
 # Election-night usability and visual review
 
+## October30 — PR541 COMPLETE / VERIFIED PUBLISHED
+
+Offline chronological replay and explicit paired research arithmetic are verified published at c6a250a9/Pages41147469069; all3PRparents/14jobs13SUCCESS1declaredSKIP/14checks/0external pass, with27fresh public hashes, coherence13/no_credit and129source bodies. The application runtime is unchanged: original540 Chrome/ordinary evidence stays at59ac through the exact92-reference/20-pin/sixWorker/23asset identity manifest. No fresh browser, Mac hearing, current-render/forecast equality, dataset admission or calibration claim.
+
+Outcome be05301cd69aed0167edb3487b35a8c294d14ec6501f45d54ef4cab8f84c899f and independent published audit aefc0c0392b0799bf3732cbce11c7256f5116f667d14dbda7942559bc22e85af are retained. Exactly one27→28 component was appended; original guide1.0/eleven human tasks/results remain unchanged. MacBookChrome audio feedback is pending;540fix/private ten-song handoff remains live. See readiness-progress.md and pr541-remaining-readiness-assessment.json for exact remaining inputs/triggers. No new media or playback demo is required.
+
 ## October30 — PR540 COMPLETE / VERIFIED PUBLISHED
 
 Tested c30e925ac24c96bf2f70bf16aa73f6b18dc10e7d passed all34 applicable PR parents/0push parents,56 latest jobs (53SUCCESS/3declared deployed-only PR skips),56 exact checks and0external statuses, allattempt1. Protected merge cdf31d3e is complete; final verified main 59acbdc7c364611f67e2e8f66dac423733c770e6/Pages41138565971 passed all3deployment jobs. The cancelled initial-merge Pages record is preserved and was never used as a success gate or manually rerun.

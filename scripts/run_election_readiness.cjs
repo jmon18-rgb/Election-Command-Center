@@ -96,6 +96,7 @@ const checks = [
   ['Michigan panic-machine scene and poster preserve existing artwork', 'test_michigan_celebration_scene.cjs'],
   ['Florida and Louisiana stretch scenes preserve all prior scenes and reduced motion', 'test_stretch_celebration_scene.cjs'],
   ['Owner soundtrack references and original Michigan cue have no playback authority', 'test_celebration_music_choices.cjs'],
+  ['Exact site recordings preserve private overrides, native controls and single guarded fallback', 'test_celebration_builtin_audio.cjs'],
   ['Celebration playback and revoked-call queue', 'test_election_night_celebration_player.cjs'],
   ['Original celebration music, bounded mix and cancellation', 'test_celebration_music.cjs'],
   ['Optional visible YouTube identity and local preferences', 'test_celebration_online.cjs'],

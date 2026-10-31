@@ -1622,22 +1622,22 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
    <p class="tiny" id="enCelebrationMusicLabel"></p>
   </div>
   <div id="enCelebrationOnlinePlayer" class="en-celebration-online-player" hidden></div>
-  <audio id="enCelebrationLocalAudio" class="en-celebration-local-audio" controls preload="none" aria-label="Your ad-free celebration audio" hidden></audio>
-  <p class="en-celebration-online-status" id="enCelebrationOnlineStatus" role="status">Ad-free music uses your saved audio file or the original score.</p>
+  <audio id="enCelebrationLocalAudio" class="en-celebration-local-audio" controls preload="none" aria-label="Celebration song playback" hidden></audio>
+  <p class="en-celebration-online-status" id="enCelebrationOnlineStatus" role="status">Built-in songs are ready. Press Play if your browser asks.</p>
   <p class="en-celebration-track-pick" id="enCelebrationTrackPick"></p>
   <div class="en-celebration-local-settings">
-   <span id="enCelebrationLocalName">Songs are saved only in this browser. Load your song files here to use your recordings.</span>
-   <button id="enCelebrationLocalChoose" type="button">Choose an audio file</button>
+   <span id="enCelebrationLocalName">Built-in songs are ready. You can optionally choose a replacement file for this browser.</span>
+   <button id="enCelebrationLocalChoose" type="button">Use my own recording</button>
    <button id="enCelebrationLocalRemove" type="button" disabled>Remove saved audio</button>
    <input id="enCelebrationLocalFile" type="file" accept="audio/*,.mp3,.m4a,.wav,.ogg,.flac" hidden>
-   <button id="enCelebrationPackChoose" type="button">Load supplied song pack</button>
+   <button id="enCelebrationPackChoose" type="button">Import replacement song pack</button>
    <input id="enCelebrationPackFiles" type="file" accept="audio/mpeg,.mp3" multiple hidden>
-   <p class="tiny" id="enCelebrationPackHelp">Unzip the song pack, then select its MP3 files together. Import once in each browser or device; recordings do not sync. Files stay here and are never uploaded.</p>
+   <p class="tiny" id="enCelebrationPackHelp">The supplied songs are built in; no setup is needed. Optional replacement files stay in this browser. To replace several songs, unzip your pack and select its MP3 files together.</p>
    <p class="tiny" id="enCelebrationPackStatus" role="status" aria-live="polite"></p>
   </div>
   <details class="en-celebration-music-settings">
    <summary>Other versions &amp; optional YouTube</summary>
-   <label>Playback <select id="enCelebrationMusicMode"><option value="original">Ad-free · your audio or original score</option><option value="youtube">YouTube · may include ads</option></select></label>
+   <label>Playback <select id="enCelebrationMusicMode"><option value="original">Built-in songs · ad-free</option><option value="youtube">YouTube · may include ads</option></select></label>
    <label>YouTube link for this celebration <input id="enCelebrationVideoInput" type="url" placeholder="https://www.youtube.com/watch?v=…"></label>
    <button id="enCelebrationVideoSave" type="button">Use this version</button>
    <button id="enCelebrationOriginal" type="button">Use ad-free music instead</button>
@@ -1742,10 +1742,10 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/election_night_celebration_player.js?v=4e47e4fbc915"></script>
 <script src="./scripts/election_night_announcement_motion.js?v=71716b57b5f2"></script>
 <script src="./scripts/election_night_celebration_online.js?v=b0163b7f8211"></script>
-<script src="./scripts/election_night_celebration_local.js?v=c5fae4c4e71a"></script>
+<script src="./scripts/election_night_celebration_local.js?v=cd0b3c1ee1ea"></script>
 <script src="./scripts/election_night_celebration_pack.js?v=ae67ef6b819e"></script>
 <script src="./scripts/election_night_celebration_music.js?v=fa3762c7d456"></script>
-<script src="./scripts/election_night_celebration_music_choices.js?v=6e35f715e937"></script>
+<script src="./scripts/election_night_celebration_music_choices.js?v=04a1ceed8ae4"></script>
 <script src="./scripts/election_night_celebration_scene.js?v=1d159715d3f2"></script>
 <script src="./scripts/house_early_watch_reference.js?v=e1b9bc598b36"></script>
 <script src="./scripts/civicapi_nh_adapter.js?v=6eaa0d8f80cf"></script>
@@ -6755,7 +6755,7 @@ function enAnnouncementMotionStart(){
 let enCelebrationMusicEpoch=0;
 let enCelebrationModalEpoch=0,enCelebrationSettingsEpoch=0,enCelebrationInfoEpoch=0;
 const enCelebrationOnline=window.ElectionNightCelebrationOnline;
-const enCelebrationLocal=window.ElectionNightCelebrationLocal?.create({audio:$('#enCelebrationLocalAudio'),onStatus:enCelebrationLocalStatus});
+const enCelebrationLocal=window.ElectionNightCelebrationLocal?.create({audio:$('#enCelebrationLocalAudio'),onStatus:enCelebrationLocalStatus,builtIns:window.ElectionNightCelebrationMusicChoices?.bundledForEvent});
 const enCelebrationStorage=(()=>{try{return localStorage}catch{return null}})();
 const enCelebrationMusicSettings=enCelebrationOnline?.read(enCelebrationStorage,Object.keys(window.ElectionNightCelebrationPlayer?.STORIES||enMilestonePosters))||{mode:'original',videos:{}};
 function enCelebrationOpen(){
@@ -6800,27 +6800,30 @@ function enCelebrationSyncMusic(){
  $('#enCelebrationMusicMode').value=enCelebrationMusicSettings.mode;
  const quick=$('#enCelebrationMusicQuick'),online=enCelebrationMusicSettings.mode==='youtube';
  quick.textContent=online?'Use ad-free music':'Ad-free music';quick.setAttribute('aria-pressed',String(!online));
- quick.setAttribute('aria-label',online?'Use ad-free music instead of YouTube.':'Ad-free music selected. Choose your audio below or use the original score.');
+ quick.setAttribute('aria-label',online?'Use built-in ad-free music instead of YouTube.':'Built-in songs selected. Your optional saved recording takes priority.');
  $('#enCelebrationVideoInput').value=track?'https://www.youtube.com/watch?v='+track.id:'';
  const link=$('#enCelebrationVideoLink');link.hidden=!track;
  if(track){link.href='https://www.youtube.com/watch?v='+track.id;link.textContent='Open '+track.title+' on YouTube ↗';}
- $('#enCelebrationOnlineStatus').textContent=online?(track?track.title+'. YouTube may include ads; press Play if your browser asks.':'No YouTube track selected; the original score will play.'):'Ad-free music selected. Your saved audio plays first; otherwise the original score.';
+ $('#enCelebrationOnlineStatus').textContent=online?(track?track.title+'. YouTube may include ads; press Play if your browser asks.':'No YouTube track selected; built-in music is available.'):'Built-in ad-free music selected. Your optional saved recording takes priority.';
  enCelebrationSyncLocal();
 }
 function enCelebrationLocalStatus(state){
  if(state.id!==enCelebrationCurrent||!$('#enMilestoneSpotlight').open||enCelebrationMusicSettings.mode!=='original')return;
- const messages={LOADING:'Loading your saved audio…',PLAYING:'Your audio is playing here, without ads.',PRESS_PLAY:'Press Play on the audio controls to start your saved track.',PAUSED:'Your audio is paused. Press Play to resume.',ENDED:'Your audio finished. Use the audio controls to replay it.',FILE_PLAYBACK_ERROR:'This file could not play. Choose another file or remove it to use the original score.'};
+ const bundled=state.source==='BUNDLED';
+ const messages={LOADING:'Loading celebration audio…',PLAYING:bundled?'Built-in song is playing, without ads.':'Your audio is playing here, without ads.',PRESS_PLAY:'Press Play on the audio controls to start the song.',PAUSED:'Song paused. Press Play to resume.',ENDED:'Song finished. Use the audio controls to replay it.',FILE_PLAYBACK_ERROR:'This file could not play. Choose another file or remove your override to return to the built-in song or original score.',BUILTIN_PLAYBACK_ERROR:'Ad-free original score. The built-in song could not load.'};
  if(messages[state.status])$('#enCelebrationOnlineStatus').textContent=messages[state.status];
- if(state.metadata)$('#enCelebrationMusicLabel').textContent='Your audio · '+state.metadata.name;
+ if(state.metadata)$('#enCelebrationMusicLabel').textContent=bundled?'Built-in song · '+state.metadata.name:'Your audio · '+state.metadata.name;
 }
 async function enCelebrationSyncLocal(){
  const id=enCelebrationCurrent,modalEpoch=enCelebrationModalEpoch,settingsEpoch=enCelebrationSettingsEpoch,request=++enCelebrationInfoEpoch,info=await enCelebrationLocal?.info(id);
  if(id!==enCelebrationCurrent||modalEpoch!==enCelebrationModalEpoch||settingsEpoch!==enCelebrationSettingsEpoch||request!==enCelebrationInfoEpoch||!$('#enMilestoneSpotlight').open)return;
- const localMessage=info?.status==='MISSING'?'No recording saved for this celebration in this browser. Load the song pack here; recordings do not sync between browsers or devices.':
-  info?.status==='STORAGE_UNAVAILABLE'?'This browser could not open saved song storage. The original score is still available.':
-  info?.status==='INVALID_STORED_FILE'?'The saved recording could not be read. Choose that song file again to replace it.':
-  'Saved audio is unavailable in this browser right now. The original score is still available.';
- $('#enCelebrationLocalName').textContent=info?.metadata?'Saved for this celebration: '+info.metadata.name:localMessage+' Files are never uploaded. Up to 16 MB per celebration.';
+ const bundled=window.ElectionNightCelebrationMusicChoices?.bundledForEvent(id);
+ const storageNote=info?.status==='STORAGE_UNAVAILABLE'?' Optional saved-audio storage is unavailable.':info?.status==='INVALID_STORED_FILE'?' The saved replacement could not be read.':'';
+ const localMessage=bundled?'Built-in song: '+bundled.title+'. Ready on this device; no import needed.'+storageNote:
+  info?.status==='STORAGE_UNAVAILABLE'?'Saved-audio storage is unavailable. The built-in original score is ready.':
+  info?.status==='INVALID_STORED_FILE'?'The saved replacement could not be read. The built-in original score is ready.':
+  'An original score is built in for this celebration.';
+ $('#enCelebrationLocalName').textContent=info?.metadata?'Saved for this celebration: '+info.metadata.name:localMessage+' Optional replacement files stay in this browser; up to 16 MB per celebration.';
  $('#enCelebrationLocalRemove').disabled=!info?.metadata;
 }
 function enCelebrationMaybeReplayMusic(){
@@ -6947,11 +6950,19 @@ async function enCelebrationMusic(id,reason){
   // The player starts music just before it paints the first scene. Let that
   // synchronous paint finish before testing this async playback's phase guard.
   await Promise.resolve();if(!valid())return;
-  const local=await enCelebrationLocal.play(id,{valid});
+  const local=await enCelebrationLocal.play(id,{valid,onFallback:()=>{
+   if(valid()&&enCelebrationMusicSettings.mode==='original')enCelebrationPlayOriginalScore(id,'Ad-free original score. The built-in song could not load.');
+  }});
   if(!valid()||!local.fallback)return;
-  $('#enCelebrationOnlineStatus').textContent='Ad-free original score. Choose your own audio file to replace it.';
+  $('#enCelebrationOnlineStatus').textContent='Ad-free original score. An optional audio file can replace it.';
  }
- // Original short synthesized cue; no commercial song/recording is bundled.
+ enCelebrationPlayOriginalScore(id);
+}
+function enCelebrationPlayOriginalScore(id,message){
+ const label=$('#enCelebrationMusicLabel'),theme=window.ElectionNightCelebrationMusic?.THEMES[id];
+ if(label)label.textContent='Original score · '+(theme?.title||'synthesized victory cue');
+ if(message)$('#enCelebrationOnlineStatus').textContent=message;
+ // Original cue remains for unassigned stories and failed built-in requests.
  try{
   const Context=window.AudioContext||window.webkitAudioContext;
   if(!Context)return;
