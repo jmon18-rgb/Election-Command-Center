@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T21:45:38.421122+00:00",
+  "updated_at": "2026-10-31T22:46:47.429745+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1294,
+      "available_in_source": 1296,
       "records_examined": 300
     },
     "governor": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 348,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "MI-13",
+      "poll_id": "ad3ff838-af47-4dca-8c1d-356fd150fb80"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "MI-13",
+      "race_type": "house",
+      "state": "MI",
+      "poll_id": "ad3ff838-af47-4dca-8c1d-356fd150fb80",
+      "question_id": "6b1a87be-394b-4b8a-91db-6fdc56505814",
+      "pollster": "Center for Strategic Politics",
+      "dem_name": "Donavan McKinney",
+      "rep_name": "Taras Nykoriak",
+      "dem": 69.0,
+      "rep": 19.0,
+      "margin": 50.0,
+      "field_end": "2026-10-30",
+      "field_start": "2026-10-28",
+      "posted_date": "2026-10-31",
+      "posted_source_datetime": "2026-10-31T18:21:00",
+      "posted_source_time": "10/31/26 18:21",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://stratpolitics.org/2026/10/mi-13-general-election-poll-oct-2026/",
+      "sample_population": "lv",
+      "sample_size": 310,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "FL-SEN",
       "race_type": "senate",

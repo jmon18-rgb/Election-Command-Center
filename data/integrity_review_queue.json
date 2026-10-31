@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-31T21:45:37.571338Z",
+  "updated_at": "2026-10-31T22:46:46.844216Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 70
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 72
   },
   "advisory_related_headlines": [
     {
@@ -287,6 +287,24 @@
       "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
       "published_at": "2026-10-31T19:32:46Z",
       "detected_at": "2026-10-31T20:47:39.495528Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e677d11e5c32d16f30a9",
+      "title": "US election officials brace for violence, intimidation at polling booths - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNcGlreWJQcDN4TlRqblFZU1pwNG83WWh3WTJMazNUS21jTXBhYzhuaFNWNG1BeVB0TXNhSHIzUm0tdGowaWNDbXFPYUUxR2dZaEpFZzV5MFN6Tkh0eVZMU0E3RzZocXZRS1FLSjB4Mk9hSVhmbzVmUFU1ZURoMWRoRllsbW5wV0cxOVdqUkpvdGVyMWswOFpUXzdtMHpQOVpLT1NIZWRHcVd5czdsckk0dUJn?oc=5",
+      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "published_at": "2026-10-31T19:32:46Z",
+      "detected_at": "2026-10-31T22:46:46.844216Z",
       "state_hints": [],
       "topic_hints": [
         "security",
@@ -5214,27 +5232,6 @@
       ],
       "headline_numbers_unverified": [
         "26 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7dc1b0834743e23f4b9e",
-      "title": "DOJ Charges 28 California Green Card Holders with Election Voting Fraud Days Before Midterms - Latin Times",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNYTQ3MmdQWDlaV0hEbFpZbXp1V3JvSGVRMm5STE5xUlNhMFQwRjZpbG9vSmVtNXNnQkVYTHNNWjFVZE55ZDdISm44NkR3Nm01Q2lmR1YxMnYtdzk3b1I4VDlpMmNfd2ZUbnprMFNsZkVwSDBYMWlfNnB0ZXJYeU1vTE1TN0h4bzlTYkNlMkJQOExBeGxzUC1CUFpDWVBYaXZHWDFOaGRiVlliakU0dmk5VFdqQlJ6R0o0WkNnamVn?oc=5",
-      "publisher": "Latin Times",
-      "published_at": "2026-10-20T14:50:30Z",
-      "detected_at": "2026-10-20T15:46:28.708788Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "28 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],

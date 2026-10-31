@@ -1,9 +1,9 @@
 {
   "schema_version": "experimental-race-odds-v1",
   "status": "experimental_poll_margin_probability_not_chamber_forecast",
-  "generated_at": "2026-10-31T21:45:41.476811+00:00",
-  "polling_source_generated_at": "2026-10-31T21:45:41.366393Z",
-  "polling_source_snapshot": "2026-10-31T21:45:38.013839Z",
+  "generated_at": "2026-10-31T22:46:51.278671+00:00",
+  "polling_source_generated_at": "2026-10-31T22:46:51.109161Z",
+  "polling_source_snapshot": "2026-10-31T22:46:47.216726Z",
   "historical_senate_elections": 3,
   "historical_senate_races": 42,
   "senate_baseline_rmse_points": 5.633,
@@ -16,7 +16,7 @@
   "can_infer_blue_tsunami": false,
   "number_of_races_by_office": {
     "senate": 25,
-    "house": 84,
+    "house": 85,
     "governor": 33
   },
   "records": [
@@ -994,6 +994,21 @@
       "rep_beats_dem_pct": 22.8,
       "tight_error_dem_pct": 83.98,
       "wide_error_dem_pct": 72.45
+    },
+    {
+      "office": "house",
+      "race_code": "MI-13",
+      "label": "Michigan 13",
+      "dem_minus_rep": 50.0,
+      "contributing_firms": 1,
+      "independent_firms": 0,
+      "latest_poll_end": "2026-10-30",
+      "sigma_points": 11.34,
+      "uncertainty_multiplier": 1.512,
+      "dem_beats_rep_pct": 100.0,
+      "rep_beats_dem_pct": 0.0,
+      "tight_error_dem_pct": 100.0,
+      "wide_error_dem_pct": 99.98
     },
     {
       "office": "house",
