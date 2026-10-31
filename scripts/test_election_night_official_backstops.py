@@ -7,6 +7,24 @@ from urllib.parse import urlparse
 
 ROOT=Path(__file__).resolve().parents[1]
 
+def _official_manual_reference_host_allowed(item):
+    """Human-reference catalog test only; never a provider or ingestion allowlist."""
+    parsed=urlparse(item["url"])
+    if item.get("race_ids")==["House|NY-13"] or parsed.hostname=="vote.nyc":
+        note=item.get("scope_note","")
+        return (item["url"]=="https://vote.nyc/page/election-results-summary"
+                and item.get("state")=="NY"
+                and item.get("race_ids")==["House|NY-13"]
+                and item.get("mode")=="county_results_directory_only"
+                and item.get("source_reference")==item["url"]
+                and item.get("general_2026_results_verified") is False
+                and item.get("primary_results_used_as_general_votes") is False
+                and "2026 primary" in note
+                and "November 3 general results not verified" in note
+                and "not an independently reconciled NY-13 district total" in note)
+    return bool(parsed.hostname and parsed.hostname.endswith((".gov",".us","wyo.gov","nh.gov")))
+
+
 class OfficialBackstopsTests(unittest.TestCase):
     def setUp(self):
         self.ledger=json.loads((ROOT/"data/election_night_source_coverage.json").read_text())
@@ -142,7 +160,7 @@ class OfficialBackstopsTests(unittest.TestCase):
         for item in self.links["links"]:
             parsed=urlparse(item["url"])
             self.assertEqual(parsed.scheme,"https")
-            self.assertTrue(parsed.hostname.endswith((".gov",".us","wyo.gov","nh.gov")))
+            self.assertTrue(_official_manual_reference_host_allowed(item))
             self.assertTrue(item["race_ids"])
             self.assertTrue(all(x.split("|",1)[1][:2]==item["state"] for x in item["race_ids"]))
             self.assertIn(item["mode"],{
@@ -215,6 +233,60 @@ class OfficialBackstopsTests(unittest.TestCase):
         miss=next(x for x in self.links["links"] if x["state"]=="MS")
         self.assertEqual(miss["mode"],"certified_only_not_election_night")
         self.assertEqual(miss["race_ids"],["Senate|MS"])
+
+
+    def test_ny13_manual_NYC_scope_is_exact_and_never_primary_vote_admission(self):
+        evidence=json.loads((ROOT/"data/new_york_house_13_manual_reference_evidence.json").read_text())
+        self.assertEqual(evidence["id"],"House|NY-13")
+        nyc=next(row for row in self.links["links"] if row["race_ids"]==["House|NY-13"])
+        self.assertEqual(nyc["url"],evidence["official"]["url"])
+        self.assertEqual(nyc["source_reference"],nyc["url"])
+        self.assertEqual(nyc["mode"],"county_results_directory_only")
+        self.assertIn("2026 primary",nyc["scope_note"])
+        self.assertIn("November 3 general results not verified",nyc["scope_note"])
+        self.assertIn("not an independently reconciled NY-13 district total",nyc["scope_note"])
+        self.assertFalse(nyc["general_2026_results_verified"])
+        self.assertFalse(nyc["primary_results_used_as_general_votes"])
+        self.assertEqual(evidence["jurisdiction"]["official_county_labels"],["New York","Bronx"])
+        self.assertEqual(nyc["jurisdiction_reference"],evidence["jurisdiction"]["url"])
+        page=next(row for row in self.links["public_editorial_calls"]["race_pages"] if row["id"]=="House|NY-13")
+        observed=evidence["ddhq"]
+        self.assertEqual(page["url"],observed["url"])
+        self.assertEqual(page["source_directory"],observed["source_directory"])
+        self.assertEqual(observed["observed_header"],"2026 New York US House 13")
+        self.assertEqual(observed["observed_election_date"],"2026-11-03")
+        self.assertEqual(observed["source_display_clock_as_read"],"Oct 23, 2:32 PM")
+        self.assertTrue(observed["http_status_not_exposed"])
+        self.assertFalse(observed["results_body_read"])
+        self.assertIn("no actual result or winner call verified",page["verification"])
+        self.assertTrue(evidence["no_actual_results_verified"])
+        for key in ("automatic_vote_ingestion_authorized","automated_call_authorized",
+                    "native_results_machine_identifier_verified","rights_or_license_grant_claimed",
+                    "county_results_complete_or_matched_claimed"):
+            self.assertFalse(evidence[key])
+        self.assertTrue(_official_manual_reference_host_allowed(nyc))
+        mutations=[
+            {"url":"https://vote.nyc/page/election-results-summary-2024"},
+            {"url":"https://vote.nyc/page/election-results-summary/"},
+            {"url":"https://vote.nyc/page/election-results-summary?race=13"},
+            {"url":"https://www.vote.nyc/page/election-results-summary"},
+            {"url":"https://vote.nyc.evil.example/page/election-results-summary"},
+            {"url":"https://nyenr.elections.ny.gov/"},
+            {"race_ids":["House|NY-26"]},
+            {"race_ids":["House|NY-13","House|NY-26"]},
+            {"state":"NJ"},
+            {"mode":"2026_results_landing"},
+            {"source_reference":"https://vote.nyc/"},
+            {"general_2026_results_verified":True},
+            {"primary_results_used_as_general_votes":True},
+            {"scope_note":"NYC results"},
+        ]
+        for updates in mutations:
+            with self.subTest(updates=updates):
+                self.assertFalse(_official_manual_reference_host_allowed({**nyc,**updates}))
+        for old in self.links["links"]:
+            if old is not nyc:
+                self.assertTrue(_official_manual_reference_host_allowed(old))
 
 if __name__=="__main__":
     unittest.main()

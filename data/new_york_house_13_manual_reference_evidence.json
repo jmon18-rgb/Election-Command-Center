@@ -1,0 +1,97 @@
+{
+  "schema": "ny13-manual-reference-source-evidence-v1",
+  "reviewed_at": "2026-10-31",
+  "retained_at_utc": "2026-10-31T13:45:10.610Z",
+  "purpose": "Repair a missing human-reference mapping after a source-health withdrawal; admit no votes, source IDs, calls, county allocation, model input or new route.",
+  "id": "House|NY-13",
+  "official": {
+    "url": "https://vote.nyc/page/election-results-summary",
+    "mode": "county_results_directory_only",
+    "source_reference": "https://vote.nyc/page/election-results-summary",
+    "reader_reference": "turn489view0",
+    "content_type": "text/html",
+    "http_status_not_exposed": true,
+    "native_body_sha256": null,
+    "reader_cache_notice": "Crawled: today",
+    "page_scope_as_read": "2026 primary results index, including NY13 New York County and Bronx rows.",
+    "general_2026_results_verified": false,
+    "primary_results_used_as_general_votes": false,
+    "ENR_target_opened": false,
+    "CVR_or_results_files_opened": false,
+    "scope": "Official NYC results directory only. November3general results not verified; primary and county figures cannot be substituted, added or treated as an independently reconciled NY13 district total."
+  },
+  "jurisdiction": {
+    "url": "https://vote.nyc/sites/default/files/pdf/maps/cd/2026/CD_2024_13.pdf",
+    "reader_final_url": "https://vote.nyc/sites/default/files/pdf/maps/cd/2026/CD_2024_13.pdf#page=1",
+    "reader_reference": "turn491view0",
+    "content_type": "application/pdf",
+    "http_status_not_exposed": true,
+    "native_PDF_sha256": null,
+    "reader_cache_notice": "Crawled: 8 months ago",
+    "created_date_as_printed": "2/11/2026",
+    "official_district_label": "Congressional District 13",
+    "official_county_labels": [
+      "New York",
+      "Bronx"
+    ],
+    "borough_names": [
+      "Manhattan (New York County)",
+      "Bronx"
+    ],
+    "map_parts": 2,
+    "scope": "Official map hosted in the NYC Board2026 map directory supports the two-county jurisdiction. It is not voting data, an outstanding-vote estimate or proof of general-election reporting completeness."
+  },
+  "ddhq": {
+    "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-york-us-house-13-general-election",
+    "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/new-york/new-york",
+    "observed_directory_link": 27,
+    "observed_header": "2026 New York US House 13",
+    "observed_election_date": "2026-11-03",
+    "observed_state": "NY",
+    "observed_office": "House",
+    "observed_district": 13,
+    "method": "Normal public search returned the New York County publisher directory; its actually observed link27 was clicked to this exact base page. No NY26 URL substitution or forecast-suffix trimming.",
+    "reader_reference": "turn490view0",
+    "content_type": "text/html",
+    "http_status_not_exposed": true,
+    "native_body_sha256": null,
+    "verification_level": "READER_VISIBLE_CACHED_BASE_PAGE_IDENTITY_ONLY",
+    "reader_cache_notice": "Crawled: last week",
+    "source_display_clock_as_read": "Oct 23, 2:32 PM",
+    "page_kind": "PUBLIC_PRE_ELECTION_FORECAST_LANDING",
+    "fresh_native_HTTP_or_last_published_time_claimed": false,
+    "results_navigation_seen": true,
+    "results_body_read": false,
+    "forecast_values_not_model_inputs": true
+  },
+  "source_receipt": {
+    "path": "artifacts/readiness/county-outstanding-owner-audit-20261031/outstanding/ny13-manual-reference/ny13-reader-source-receipt.json",
+    "sha256": "29f82719ba040c2419705fbf5c7f873a5a4107a06da76e60281c90952f149649"
+  },
+  "original_NY26_directory_evidence": {
+    "path": "data/current_gap_manual_reference_directory_evidence.json",
+    "retained_raw_checkout_sha256": "bd537a1fefaa6b74951336dc8d26b38fa2ad89162328bc7d83c7e9fe6ed30823",
+    "canonical_Git_LF_sha256": "44eb543d35c9bfda55fd6c3b4befb82540650e553671bfec3e7bcc0df66170fc",
+    "reused_for_NY13_jurisdiction_or_live_results": false,
+    "unchanged": true
+  },
+  "source_catalog_before": {
+    "path": "data/election_night_official_backstops.json",
+    "raw_sha256": "39207293b7ec2e401b3eb3ea7e471e07ad012fa0be0513b332d1f553a5b233a7",
+    "canonical_LF_sha256": "39207293b7ec2e401b3eb3ea7e471e07ad012fa0be0513b332d1f553a5b233a7"
+  },
+  "test_host_exception_scope": "Exact official NYC URL + NY state + NY13-only race IDs + directory-only mode + explicit unverified-general/primary-only qualifiers. A test-catalog predicate, not a product/provider allowlist.",
+  "no_actual_results_verified": true,
+  "automatic_vote_ingestion_authorized": false,
+  "automated_call_authorized": false,
+  "native_results_machine_identifier_verified": false,
+  "rights_or_license_grant_claimed": false,
+  "county_results_complete_or_matched_claimed": false,
+  "limits": [
+    "June2026primary material establishes human directory/jurisdiction scope only; never primary-to-general vote transfer.",
+    "New York County and Bronx portions require actual district-part reconciliation; no sum of county totals or complete district return is claimed.",
+    "Cached publisher forecast body and source display clock establish identity only, not current election returns, a winner call, first-publication time or originHTTP200.",
+    "No Results/ENR/CVR/raw-voter/premium link was opened, no source ID/hint was restored and no product request budget or native feed admission changed.",
+    "Official map reader text is not an authenticated downloaded nativePDF; source-body hashes were not available."
+  ]
+}
