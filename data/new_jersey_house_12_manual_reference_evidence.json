@@ -1,0 +1,68 @@
+{
+  "schema": "nj12-manual-reference-source-evidence-v1",
+  "reviewed_at": "2026-10-31",
+  "retained_at_utc": "2026-10-31T12:26:14.253Z",
+  "purpose": "Source-health withdrawal exposed a missing human reference. This record admits no votes, source IDs, calls, model input or new county route.",
+  "id": "House|NJ-12",
+  "official": {
+    "url": "https://www.nj.gov/state/elections/election-night-results.shtml",
+    "mode": "county_results_directory_only",
+    "reused_catalog_verified_at": "2026-10-25",
+    "new_retrieval_performed": false,
+    "source_reference": "https://www.nj.gov/state/elections/election-night-results.shtml",
+    "scope": "Existing reviewed official county-site directory only. Neither official nor unofficial statewide election-night totals; no independently reconciled NJ-07 or NJ-12 district total."
+  },
+  "ddhq": {
+    "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-jersey-us-house-12-general-election",
+    "observed_header": "2026 New Jersey US House 12",
+    "observed_election_date": "2026-11-03",
+    "observed_state": "NJ",
+    "observed_office": "House",
+    "observed_district": 12,
+    "method": "Normal public search returned this exact publisher href; one subsequent primary reader open of that returned href. URL was not constructed from NJ-07.",
+    "reader_reference": "turn487view0",
+    "reader_line_locators": {
+      "date": 26,
+      "header": 41,
+      "state": 47,
+      "duplicate_header": 49,
+      "navigation": 51,
+      "page_title": 72,
+      "forecast": 74,
+      "forecast_label": 78,
+      "source_display_clock": 81
+    },
+    "content_type": "text/html",
+    "http_status_not_exposed": true,
+    "verification_level": "READER_VISIBLE_BASE_PAGE_IDENTITY_ONLY",
+    "public_page_read_without_account": true,
+    "page_kind": "PUBLIC_PRE_ELECTION_FORECAST_LANDING",
+    "reader_cache_notice": "Crawled: last week",
+    "source_display_clock_as_read": "Oct 19, 2:33 PM",
+    "fresh_native_HTTP_or_last_published_time_claimed": false,
+    "results_navigation_seen": true,
+    "results_body_read": false,
+    "search_results_body_not_used_for_count_or_call_proof": true,
+    "forecast_values_not_model_inputs": true
+  },
+  "original_directory_evidence": {
+    "path": "data/current_gap_manual_reference_directory_evidence.json",
+    "sha256": "bd537a1fefaa6b74951336dc8d26b38fa2ad89162328bc7d83c7e9fe6ed30823"
+  },
+  "source_catalog_before": {
+    "path": "data/election_night_official_backstops.json",
+    "sha256": "8172d994ea0380ab007747b041d627758616a5b3dd7d50c98aaa627ef6da4acc"
+  },
+  "no_actual_results_verified": true,
+  "automatic_vote_ingestion_authorized": false,
+  "automated_call_authorized": false,
+  "native_results_machine_identifier_verified": false,
+  "rights_or_license_grant_claimed": false,
+  "county_results_complete_or_matched_claimed": false,
+  "limits": [
+    "Publisher reader content is cached; review date is identity inspection, not fresh results availability, first-publication time or service uptime.",
+    "The base-page title contains Results but the returned body is a pre-election forecast; it establishes no counted ballots or winner call.",
+    "No Results/early-voting/premium page was clicked; no paywall bypass or recording/license/source-rights grant is implied.",
+    "Existing official NJ page was reused without a new request. Provider source coverage remains unresolved with timeout/null ID/unusable hint and false live/call audit flags."
+  ]
+}

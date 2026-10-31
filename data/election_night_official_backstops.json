@@ -278,9 +278,10 @@
       "url": "https://www.nj.gov/state/elections/election-night-results.shtml",
       "mode": "county_results_directory_only",
       "verified_at": "2026-10-25",
-      "scope_note": "NJ explicitly posts neither official nor unofficial Election Night results statewide; use the listed county sites. County results are partial, not an independently reconciled NJ-07 district total.",
+      "scope_note": "NJ explicitly posts neither official nor unofficial Election Night results statewide; use the listed county sites. County results are partial, not an independently reconciled NJ-07 or NJ-12 district total.",
       "race_ids": [
-        "House|NJ-07"
+        "House|NJ-07",
+        "House|NJ-12"
       ],
       "source_reference": "https://www.nj.gov/state/elections/election-night-results.shtml"
     },
@@ -554,6 +555,13 @@
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-jersey-us-house-7-general-election",
         "verified_at": "2026-10-25",
         "verification": "Exact Nov 3 2026 House 7 header and forecast landing inspected; no actual result or winner call verified"
+      },
+      {
+        "id": "House|NJ-12",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-jersey-us-house-12-general-election",
+        "verified_at": "2026-10-31",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/new-jersey-us-house-12-general-election",
+        "verification": "Exact Nov 3 2026 New Jersey House 12 header and public forecast landing read from publisher base URL; cached reader may be older, no actual result or winner call verified"
       },
       {
         "id": "House|CA-01",
