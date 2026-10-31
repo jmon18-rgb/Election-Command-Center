@@ -8664,6 +8664,30 @@ function enDownloadCsv(csv,kind){
 $('#enExportResults').addEventListener('click',()=>enDownloadCsv(enBuildResultsCsv(),'reported-results'));
 $('#enExportChanges').addEventListener('click',()=>enDownloadCsv(enBuildActivityCsv(),'reporting-activity'));
 
+// Display-only movement order. Keep the stored/resumed/exported history untouched.
+function enMovementPriorityTier(event){
+ return event.withdrawn||event.delta<=0?0:event.leaderChanged?1:event.newRace?2:3;
+}
+function enMovementRecordTime(event){
+ return typeof event.at==='string'?Date.parse(event.at):NaN;
+}
+function enPriorityMovementEvents(events,office,ranked){
+ const scores=new Map();
+ for(const row of ranked||[]){
+  if(!Number.isFinite(row?.editorScore))continue;
+  const id=enWatchId(enHouseSourceItem(row));
+  if(!scores.has(id))scores.set(id,row.editorScore);
+ }
+ return events.map((event,index)=>({event,index,tier:enMovementPriorityTier(event),
+   time:enMovementRecordTime(event),score:scores.get(enWatchId(enHouseSourceItem(event)))}))
+  .filter(row=>row.event.office===office)
+  .sort((a,b)=>a.tier-b.tier||
+   Number(Number.isFinite(b.time))-Number(Number.isFinite(a.time))||
+   (Number.isFinite(a.time)?b.time-a.time:0)||
+   Number(Number.isFinite(b.score))-Number(Number.isFinite(a.score))||
+   (Number.isFinite(a.score)?b.score-a.score:0)||a.index-b.index)
+  .map(row=>row.event);
+}
 function enRenderMovement(){
  const host=$('#enActivityFeed');host.replaceChildren();
  $('#enActivityBox').hidden=enModeYear!==2026;
@@ -8672,8 +8696,9 @@ function enRenderMovement(){
   host.append(elt('div','en-message','No changes between 2026 snapshots observed in this browser session yet. Live updates are not replayed retroactively.'));
   return;
  }
- const visible=enMovements.filter(x=>x.office===enOffice).slice(0,8);
+ const visible=enPriorityMovementEvents(enMovements,enOffice,smartRaceRanked()).slice(0,8);
  if(!visible.length){host.append(elt('div','en-message','No new reporting movements in this office yet.'));return}
+ host.append(elt('div','tiny','Priority order: revisions, lead changes, first reports, added votes. Times are snapshot record timestamps.'));
  for(const x of visible){
   const row=elt('div','en-activity-item'),heading=elt('strong','',x.key+(x.withdrawn?' · REMOVED FROM FEED':'')+(x.newRace?' · NEW REPORTING':'')+(x.leaderChanged?' · LEAD CHANGED':'')),
     diff=elt('span',x.delta<0?'en-revision':'',x.withdrawn?'Race no longer present in the source; do not count its old votes as a zero':
@@ -8681,7 +8706,12 @@ function enRenderMovement(){
       x.delta<0?Math.abs(x.delta).toLocaleString()+' votes revised downward':
       x.delta>0?'+'+x.delta.toLocaleString()+' recorded votes since prior update':
       'Candidate totals revised; total ballots unchanged');
-  row.append(heading,diff);host.append(row);
+  const known=Number.isFinite(enMovementRecordTime(x));
+  const when=elt(known?'time':'small','tiny',known?
+   'Snapshot record time · '+x.at:'Snapshot record time unknown');
+  if(known&&/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/i.test(x.at))
+   when.setAttribute('datetime',x.at);
+  row.append(heading,diff,when);host.append(row);
  }
 }
 

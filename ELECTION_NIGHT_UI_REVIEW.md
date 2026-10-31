@@ -1,5 +1,13 @@
 # Election-night usability and visual review
 
+## October31 — Priority reporting movements: tested source, publication pending
+
+The eight visible activity rows now prioritize withdrawals/net downward or candidate-only revisions, then observed lead changes, first reports and routine additions. The existing next.as_of value is labelled as snapshot record time; missing/invalid times stay unknown. Current exact-race scores are only a tie-breaker after event class and valid record time. No provider call event is invented. The actual comparator, seventy-event store, recovery validation/save/restore, activity CSV, model functions, source eligibility, deadlines, state shares and celebrations remain unchanged.
+
+Focused9/core115 and actual Chrome1366/390 checks pass. The final6daf native fixture retains all23 first-body pins and the whole accepted3k private/public/baseline bundle, cache identity, request epoch, history, private booleans and request/Worker counters while exercising only fictional comparator records in RAM. Native geometry has no horizontal overflow and the export button receives focus. Resume checks here are source/projection preservation, not a new persistent reload; global RNG is not instrumented. The two original passing capture tasks remain immutable with their mobile screenshot limits. The final525 proof adds actual native post-capture label occlusion checks and its390 PNG visibly includes the fictional-data banner. No CSS, viewport size, application function, provider source or call authority is overridden.
+
+This is local automated evidence. The protected current-head gate and actual published journey are still pending. Guide1.0/PDF/HTML and all eleven human task scopes/results remain unchanged and NOT_RUN/null until actual answers are received.
+
 ## October31 — PR545 COMPLETE / VERIFIED PUBLISHED
 
 PR545 delivers strict UTF8 for the existing editorial-review subprocess and committed browser prerequisites based on actual app/CURRENT readiness plus native source-body pins within one shared30s. Two qualified MN/NC source decisions were applied once through the installed guarded CLI: ten checked leads remain editorial triage, not incidents, verified voter impacts or call/model authority. The other248 rows/order/clocks and impact ledger were preserved. Original encoding, caller-binding and earlier browser failures remain retained with their actual scope.

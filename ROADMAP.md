@@ -1,5 +1,13 @@
 # JackStradamus · development plan
 
+## October31 — Priority reporting movements: local checks complete, release pending
+
+The remaining U18 activity-window contract is implemented: withdrawals, net downward and candidate-only revisions appear before lead changes, first reports and routine vote additions. Within each class, valid newest snapshot-record times precede the existing exact-race editor score and stable input order. Only the current office's first eight display rows change order. The raw seventy-event history, interruption recovery and activity CSV remain chronological and unchanged; no call, source, statistical threshold or forecast authority is added.
+
+All115 core checks and nine focused controls pass. Actual Chrome1366/390 checks pass on the final6daf fixture with23 native first-response pins, accepted3k object/value/epoch isolation, unchanged request/Worker counters, native focus and no overflow. Two earlier mechanically passing captures are retained with their mobile label-crop/occlusion limits; the final capture places the fictional-data label below sticky controls and verifies native painted visibility after capture. These are fictional component mechanics, not actual positive delivery, human comprehension or physical-device acceptance. Independent integration review, protected CI/merge and published proof remain required before this change is released.
+
+The U10 governor comparison was already implemented and is not duplicated. Current county/matched-area packages, independent chronological validation inputs, authoritative first-publication metadata and actual operator acceptance remain separate open requirements; this source completion does not establish100% acceptance.
+
 ## October31 — PR545 COMPLETE / VERIFIED PUBLISHED
 
 PR545 delivers strict UTF8 for the existing editorial-review subprocess and committed browser prerequisites based on actual app/CURRENT readiness plus native source-body pins within one shared30s. Two qualified MN/NC source decisions were applied once through the installed guarded CLI: ten checked leads remain editorial triage, not incidents, verified voter impacts or call/model authority. The other248 rows/order/clocks and impact ledger were preserved. Original encoding, caller-binding and earlier browser failures remain retained with their actual scope.
