@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-31T10:47:21.080766Z",
+  "updated_at": "2026-10-31T11:47:07.968385Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 67
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 69
   },
   "advisory_related_headlines": [
     {
@@ -259,6 +259,60 @@
     }
   ],
   "items": [
+    {
+      "id": "a8ee1eceed79cf3675c5",
+      "title": "Volunteer Poll Monitors Are Hoping for a Smooth Election Day, But Training for Trouble - Mother Jones",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOOXRwN2ZfU3dBQ0dBWU1iRVdpTUxCS2R5V3JBQkplNWRSam1tTFZ5dkxLSkxkcnJMWTBrV05TMTk3cTY3NFJKQ2VKUEszdGwtWUdESUxMazdDNEZXa09Xd0RZWmptRWhZWnp4RWcwV0liSmRCMzAzVU4tQjZRRmF6TXR0azBCRUFtOWpiaDRfVnk5eXdKUjRkWUxmOVgxbDEtdG1VekNWNjhuS3QzVllXaGlPNmI4Z215ZTFuX1E2VVEtZGt0WkZWNVRpZ1lRNG8?oc=5",
+      "publisher": "Mother Jones",
+      "published_at": "2026-10-31T11:30:06Z",
+      "detected_at": "2026-10-31T11:47:07.968385Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "bc422c443af4528f8fe0",
+      "title": "Trump Moves To Curtail Voting Rights Ahead Of November 3 Midterms, SAVE Act Targets Proof Of Citizenship - NewsCord",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNcDgyMU4tSjBwQnZqOTVOS1k5QW5ZTDhxWXBZMWgwVzZrbjFKR25fSXZvYkFoNS1hOExIZElURGpJV3VXc3VxTkVSUG4zZEM5LWZRbWRFbmFUOVozaHBObl95UHd1cDA1ZmpSSGhQVE1VdjdKRzRmcU5PU0NrRy1vLV9PLVVhakE3UVpYNWxUYVJzb244OFR3c1FjZnVFa0JOLW9xNFdndWxjVWlPLWxCUmZSdkg0RnNQYU9taWF1aXVoVWF0QVZ0NV9Bal85UUU?oc=5",
+      "publisher": "NewsCord",
+      "published_at": "2026-10-31T11:22:28Z",
+      "detected_at": "2026-10-31T11:47:07.968385Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "776ba768acda54bdd91b",
+      "title": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - Modern Ghana",
+      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxON0Y5bVo0N1lyUzNJS1Q2OXRDdkdhU3FCSHdQVnhHVXd0VXVtRy1ESmJFaGpfUV9Pc2pHTEcyRnVmSjRPY2ZiTzNjZmZ0c1VSNldGNHRJRFl6endKRk0tbXFnUmxwTXMzTEJaRmdwSDBtVnp4R3NYc3VpNzd2Q1BkXzhLQWp1NVVIOEZScXVCalQ0RjdqN0xXRdIBlwFBVV95cUxQNDl5NzZjbG0tcDU5MXZXY0Y4YmVfUTd4T3lUNjcyV29QYzlrUWRPYmJpQjdUdVRPT0FvR0Jkd0swWFNydjFRN3ZvTlFOVDVnWTEwemk2NktRanI2bU4yVGdfWnVuTThsWmRqOV80VXR5TVFiNXFtb3VxUGFBRnpjMmd5SW9zTF9fRnV0SEk0SkUzZ2loRkVR?oc=5",
+      "publisher": "Modern Ghana",
+      "published_at": "2026-10-31T11:21:00Z",
+      "detected_at": "2026-10-31T11:47:07.968385Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "d2927ba40f57c51b47b7",
       "title": "US Supreme Court allows states to use SAVE database \u2014 France 24 - UA.NEWS",
@@ -5184,67 +5238,6 @@
       "headline_numbers_unverified": [
         "28 ",
         "20,000 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "0e33d3349ae385f28979",
-      "title": "California vs. DOJ: Election Integrity Takes a Back Seat to Partisan Politics - Independent Voter News",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQanhjT0FZZ3ByNzRaSGNIdU9BSVgzc3RoSmhLM3ZyQmJYQ1h3YkZhZ3dULUFrcDljdDFTakM5d3RmMnA5MFVib2w3bDRmYkNNZmxXQ3RsdWhFTWYzVkhTZ21RcC0tWTJndG9vLUoycDZxZ0ZUSzYza0o1SDhUdzRYWnctTW5uc3dqNG5UOFBHbm9sYnd5S2c?oc=5",
-      "publisher": "Independent Voter News",
-      "published_at": "2026-10-19T23:55:28Z",
-      "detected_at": "2026-10-20T00:59:06.343390Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "129ba5391a07821ed41a",
-      "title": "DOJ charges 28 with unlawful voting, other election-related offenses in California - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNzVWRUJJYnB5bW5JZi11SmdUbmN5bnhhWFVGd0loaGJ3RE9HemVjRXlLNE1xYlcwdGh1ellXTW1jUTJpeGN6aENwTmVZODI4bjJHNndJRWFXWTlwMDJPTXlCNVBMcWR1Tjk4eFFSa0tmNFZJMEprLUlXWk5ZQ3JZbWxKQ09pWEFtZHhLeTU0Q1hWZnotSE1vWGdFVDVzdnPSAaQBQVVfeXFMUHZVRVdKREI5UUpKYThzUWlOQS0xQ0dXOGYtMDJvT1M3MDdRR01HeFg0cTk1V3BDQjl1di1td3R6Ql9hMkxHQjFPN044Tkl2akYyVnpWYlJHSjF4eTBZalNpX1dzNzc5NVlseDVBbmFIVW5VSnNjY2xxQ3RMR0stTWtfUUUzbWVpUXNOQVlsU2ZFMjV3VjQxaU1qcDBnS3JXUTRuUHg?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-19T23:25:47Z",
-      "detected_at": "2026-10-20T12:57:41.234712Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "28 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d132723b07829233f4fa",
-      "title": "DOJ charges 28 in California with voting crimes as election tensions escalate - Houston Public Media",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQMEZ3SDdSbVFyVFlqZVRhejFzSFExcFo5MkI3ZlhIWkV6WEVjWTJ3WFcwaTljMGh3UFpaOHBuRU1qclZhdnpQUGVKdkRSbDdwNWV2UW1XX1BKWmFOY3J3NmxsdDVKQUtvUDFzWnByVkpycDdLMUhEZVVGNjdjX2FxeUZrN09qOUplQjVKMDZoNlBMU1VEZkNDVmx5R0lmQUs3eVpuMXVXT1FvNm54MEQ5aTVJS2V2MTkwbVp6LUo0WGluWVQwWGdTZmdGUEpUMnd2LVRGNGpSZ2RMZw?oc=5",
-      "publisher": "Houston Public Media",
-      "published_at": "2026-10-19T23:10:00Z",
-      "detected_at": "2026-10-20T02:47:07.729521Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "28 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
