@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T16:48:48.740333+00:00",
+  "updated_at": "2026-10-31T17:43:40.578637+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -9,7 +9,7 @@
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1293,
+      "available_in_source": 1294,
       "records_examined": 300
     },
     "governor": {
@@ -17,7 +17,7 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 350,
+  "matched_primary_observations": 348,
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
@@ -606,9 +606,9 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "Angie Nixon",
       "rep_name": "Ashley Moody",
-      "dem": 43.0,
-      "rep": 49.0,
-      "margin": -6.0,
+      "dem": 42.7,
+      "rep": 48.5,
+      "margin": -5.8,
       "field_end": "2026-10-29",
       "field_start": "2026-10-28",
       "posted_date": "2026-10-30",
@@ -630,9 +630,9 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "David Jolly",
       "rep_name": "Byron Donalds",
-      "dem": 45.0,
+      "dem": 44.9,
       "rep": 49.0,
-      "margin": -4.0,
+      "margin": -4.1,
       "field_end": "2026-10-29",
       "field_start": "2026-10-28",
       "posted_date": "2026-10-30",
