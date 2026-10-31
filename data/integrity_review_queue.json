@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-31T14:47:09.684796Z",
+  "updated_at": "2026-10-31T15:46:46.662004Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -259,6 +259,41 @@
     }
   ],
   "items": [
+    {
+      "id": "bde6610a8168d2351477",
+      "title": "How Trump and his allies seek to interfere in the US midterm elections - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQUkl2NzcxQzJaWTM4S0NiaXAzNkw1QWdLd1ZPa19tOTloZWRFQVZSR1FqVzZ3SGY1QTdILUU2NkJZcVBmWG84bmdoZEd6eHVxQTF1LTN2WUY5dExBWmFGSExDUDRzOXY3ZlN0eXBsSnNIa2JwdkNBODJVZWlrRjZnd2VaZy1UblpOYkw2NzF4ZGNpS2hQWWJYOVp5TVlQbF9CSnh6aVdPN1A4Zw?oc=5",
+      "publisher": "The Guardian",
+      "published_at": "2026-10-31T15:00:00Z",
+      "detected_at": "2026-10-31T15:46:46.662004Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "39d0eed8e4edc2de0958",
+      "title": "Trump DOJ Blocked Nationwide From Threatening Election Officials - Newsweek",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPc0Y2REZpLUlJSmhwU0M4Mlg0MWpFMVBESENRLVpncE82a1VyaXJKUjhINXppVnFfd1ZoWVJSZHNIc1ZRYnY4Q1ZYWXp4Y2Vic3RDLTZDLWhudVJPRXlpemVvUGM0UGVEMWZqeVkwdFg4a1h4dFBtN3RlTGpaeXVmRWNqLU9nU0JGSkc1eGdfV0Rtb19tQ1Z3R0J5VnZ6SFk?oc=5",
+      "publisher": "Newsweek",
+      "published_at": "2026-10-31T14:57:00Z",
+      "detected_at": "2026-10-31T15:46:46.662004Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c8dff0ab88daece56461",
       "title": "Who will win the 2026 midterm elections? Polls and predictions - The Times",
@@ -5197,45 +5232,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9da73048c41c7480e65a",
-      "title": "New Jersey attorney general announces voter protections, election security measures ahead of November election - WRNJ Radio",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQMlp0UlBRTGd2TnVEcWktbFppNll3SmJYbnhzMnk1RmcxU0IxcEFwbklYdzZsX09oOXVSMGpHbVJ2V3VZdFlZM0NHWmdPV1UxS0xBd3BiRHBOS25LSVJJUU5wV2YxNTdabzlVNHN6RzhqMVE1UjZ1ZS0wWmZ1cDI5Z2l3bE1oeTdxTjV6ZndhM1ozRHlmQldrWEtHM3gzak9LS1ZCcENkVGdSUXhqWG1FcFBmdFBiam1DTV9KMThuYUVfYUxJUlUxTEx4Wkc?oc=5",
-      "publisher": "WRNJ Radio",
-      "published_at": "2026-10-20T09:39:44Z",
-      "detected_at": "2026-10-20T13:53:35.761932Z",
-      "state_hints": [
-        "NJ"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "24151f484a7602fa1c92",
-      "title": "Judicial Watch: 578 Noncitizens Voted in DC\u2019s June 2026 Election - Judicial Watch",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBfZVB0ZHR3cElrYUlNbU5SdkVlWDZMQ2ZfcUtXa3Ixazg1MVJBaEliQ1BRNWNfMFVfWV95TzRFeDhVWllTNnFJVGpVUUhRZ1JLVEVYWGhqckstdGlrM2pMaDlMb2Y2OUxDR0FWUG5ia0FlaXR6?oc=5",
-      "publisher": "Judicial Watch",
-      "published_at": "2026-10-20T01:25:06Z",
-      "detected_at": "2026-10-20T05:45:14.337815Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "578 ",
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

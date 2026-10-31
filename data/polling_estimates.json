@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-31T14:47:13.865351Z",
-  "source_snapshot": "2026-10-31T14:47:10.036101Z",
+  "generated_at": "2026-10-31T15:46:50.931763Z",
+  "source_snapshot": "2026-10-31T15:46:47.032185Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
   "method_version": "poll-mean-1.5",
@@ -3393,15 +3393,15 @@
       "status": "multi_poll",
       "dem_candidate": "Angie Nixon",
       "rep_candidate": "Ashley Moody",
-      "dem_pct": 43.9,
-      "rep_pct": 49.47,
-      "dem_minus_rep": -5.57,
-      "independent_pollsters": 8,
-      "contributing_pollsters": 14,
+      "dem_pct": 43.14,
+      "rep_pct": 48.75,
+      "dem_minus_rep": -5.61,
+      "independent_pollsters": 9,
+      "contributing_pollsters": 15,
       "partisan_pollsters": 6,
       "poll_diagnostics": {
-        "poll_count": 14,
-        "pollster_spread_points": 2.68,
+        "poll_count": 15,
+        "pollster_spread_points": 2.58,
         "observed_margin_min": -10.0,
         "observed_margin_max": -1.0,
         "latest_poll_age_days": 1,
@@ -3410,13 +3410,13 @@
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
         "model_sensitivity": {
-          "effective_firms": 11.5,
-          "largest_firm_weight_pct": 12.8,
-          "independent_only_margin": -5.49,
-          "equal_firms_margin": -5.75,
-          "faster_recency_margin": -5.48,
-          "alternative_margin_min": -5.75,
-          "alternative_margin_max": -5.48,
+          "effective_firms": 12.47,
+          "largest_firm_weight_pct": 11.6,
+          "independent_only_margin": -5.55,
+          "equal_firms_margin": -5.77,
+          "faster_recency_margin": -5.53,
+          "alternative_margin_min": -5.77,
+          "alternative_margin_max": -5.53,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
         "firm_wave_selection": {
@@ -3424,11 +3424,11 @@
           "quarantined_same_day_firms": []
         },
         "silver_2026_comparison": {
-          "dem_minus_rep": -5.58,
-          "dem_pct": 43.87,
-          "rep_pct": 49.45,
+          "dem_minus_rep": -5.62,
+          "dem_pct": 43.16,
+          "rep_pct": 48.78,
           "difference_from_live": -0.01,
-          "rated_pollster_count": 11,
+          "rated_pollster_count": 12,
           "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
           "status": "experimental_not_used_for_headline",
           "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
@@ -3449,7 +3449,7 @@
           "rep": 51.6,
           "sample_size": 1067,
           "partisan_lean": "R",
-          "weight_share": 6.106,
+          "weight_share": 5.536,
           "quality_rating": 1.1,
           "quality_multiplier": 0.955,
           "sample_multiplier": 1.059
@@ -3464,7 +3464,7 @@
           "rep": 48.0,
           "sample_size": 1063,
           "partisan_lean": "D",
-          "weight_share": 1.827,
+          "weight_share": 1.657,
           "quality_rating": 1.4,
           "quality_multiplier": 0.85,
           "sample_multiplier": 1.058
@@ -3479,7 +3479,7 @@
           "rep": 48.0,
           "sample_size": 1014,
           "partisan_lean": "R",
-          "weight_share": 3.526,
+          "weight_share": 3.197,
           "quality_rating": 1.1,
           "quality_multiplier": 0.775,
           "sample_multiplier": 1.049
@@ -3494,7 +3494,7 @@
           "rep": 51.0,
           "sample_size": 515,
           "partisan_lean": "R",
-          "weight_share": 4.771,
+          "weight_share": 4.326,
           "quality_rating": 2.7,
           "quality_multiplier": 1.087,
           "sample_multiplier": 0.916
@@ -3509,7 +3509,7 @@
           "rep": 49.0,
           "sample_size": 1200,
           "partisan_lean": "R",
-          "weight_share": 6.333,
+          "weight_share": 5.742,
           "quality_rating": 2,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.084
@@ -3524,7 +3524,7 @@
           "rep": 50.0,
           "sample_size": 625,
           "partisan_lean": "",
-          "weight_share": 5.074,
+          "weight_share": 4.6,
           "quality_rating": 2.6,
           "quality_multiplier": 1.15,
           "sample_multiplier": 0.952
@@ -3539,7 +3539,7 @@
           "rep": 47.6,
           "sample_size": 2351,
           "partisan_lean": "",
-          "weight_share": 7.739,
+          "weight_share": 7.017,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.241
@@ -3554,7 +3554,7 @@
           "rep": 49.0,
           "sample_size": 916,
           "partisan_lean": "",
-          "weight_share": 12.357,
+          "weight_share": 11.205,
           "quality_rating": 2.4,
           "quality_multiplier": 1.1,
           "sample_multiplier": 1.027
@@ -3569,7 +3569,7 @@
           "rep": 49.0,
           "sample_size": 859,
           "partisan_lean": "",
-          "weight_share": 12.092,
+          "weight_share": 10.964,
           "quality_rating": 1.5,
           "quality_multiplier": 0.988,
           "sample_multiplier": 1.014
@@ -3584,7 +3584,7 @@
           "rep": 52.0,
           "sample_size": 847,
           "partisan_lean": "",
-          "weight_share": 4.918,
+          "weight_share": 4.459,
           "quality_rating": 1.8,
           "quality_multiplier": 0.95,
           "sample_multiplier": 1.011
@@ -3599,10 +3599,25 @@
           "rep": 50.4,
           "sample_size": 813,
           "partisan_lean": "",
-          "weight_share": 12.835,
+          "weight_share": 11.638,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.003
+        },
+        {
+          "name": "The Political Matrix/The Listener Group",
+          "field_end": "2026-10-28",
+          "poll_id": "c69c6758-b7d5-450d-81dd-c1c7f2ad1268",
+          "question_id": "d11d5f5e-d28f-43d6-8882-fee61bfd205b",
+          "sample_population": "lv",
+          "dem": 35.8,
+          "rep": 41.8,
+          "sample_size": 500,
+          "partisan_lean": "",
+          "weight_share": 9.327,
+          "quality_rating": null,
+          "quality_multiplier": 1.0,
+          "sample_multiplier": 0.91
         },
         {
           "name": "University of North Florida",
@@ -3614,7 +3629,7 @@
           "rep": 49.0,
           "sample_size": 1471,
           "partisan_lean": "",
-          "weight_share": 9.484,
+          "weight_share": 8.599,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.13
@@ -3629,7 +3644,7 @@
           "rep": 49.0,
           "sample_size": 800,
           "partisan_lean": "D",
-          "weight_share": 4.635,
+          "weight_share": 4.203,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.0
@@ -3644,7 +3659,7 @@
           "rep": 49.0,
           "sample_size": 3812,
           "partisan_lean": "",
-          "weight_share": 8.304,
+          "weight_share": 7.529,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.256
@@ -15426,15 +15441,15 @@
       "status": "multi_poll",
       "dem_candidate": "David Jolly",
       "rep_candidate": "Byron Donalds",
-      "dem_pct": 44.22,
-      "rep_pct": 48.64,
-      "dem_minus_rep": -4.42,
-      "independent_pollsters": 8,
-      "contributing_pollsters": 15,
+      "dem_pct": 43.74,
+      "rep_pct": 47.89,
+      "dem_minus_rep": -4.16,
+      "independent_pollsters": 9,
+      "contributing_pollsters": 16,
       "partisan_pollsters": 7,
       "poll_diagnostics": {
-        "poll_count": 15,
-        "pollster_spread_points": 3.39,
+        "poll_count": 16,
+        "pollster_spread_points": 3.37,
         "observed_margin_min": -10.0,
         "observed_margin_max": 2.0,
         "latest_poll_age_days": 1,
@@ -15443,13 +15458,13 @@
         "stale_latest_poll": false,
         "high_poll_disagreement": false,
         "model_sensitivity": {
-          "effective_firms": 12.27,
-          "largest_firm_weight_pct": 12.2,
-          "independent_only_margin": -4.68,
-          "equal_firms_margin": -4.57,
-          "faster_recency_margin": -4.31,
-          "alternative_margin_min": -4.68,
-          "alternative_margin_max": -4.31,
+          "effective_firms": 13.23,
+          "largest_firm_weight_pct": 11.1,
+          "independent_only_margin": -4.29,
+          "equal_firms_margin": -4.38,
+          "faster_recency_margin": -4.03,
+          "alternative_margin_min": -4.38,
+          "alternative_margin_max": -4.03,
           "interpretation": "Alternative polling-weight choices; NOT an election forecast interval or a statistical confidence interval."
         },
         "firm_wave_selection": {
@@ -15457,11 +15472,11 @@
           "quarantined_same_day_firms": []
         },
         "silver_2026_comparison": {
-          "dem_minus_rep": -4.41,
-          "dem_pct": 44.22,
-          "rep_pct": 48.63,
-          "difference_from_live": 0.01,
-          "rated_pollster_count": 12,
+          "dem_minus_rep": -4.17,
+          "dem_pct": 43.77,
+          "rep_pct": 47.93,
+          "difference_from_live": -0.01,
+          "rated_pollster_count": 13,
           "source_url": "https://www.natesilver.net/p/pollster-ratings-silver-bulletin",
           "status": "experimental_not_used_for_headline",
           "method": "Jan 2026 predictive plus-minus with capped exponential multiplier; same eligibility, recency, sample and 0.5 sponsorship; NOT an outcome forecast."
@@ -15482,7 +15497,7 @@
           "rep": 47.4,
           "sample_size": 1067,
           "partisan_lean": "R",
-          "weight_share": 5.806,
+          "weight_share": 5.288,
           "quality_rating": 1.1,
           "quality_multiplier": 0.955,
           "sample_multiplier": 1.059
@@ -15497,7 +15512,7 @@
           "rep": 47.0,
           "sample_size": 920,
           "partisan_lean": "D",
-          "weight_share": 2.592,
+          "weight_share": 2.361,
           "quality_rating": 1.4,
           "quality_multiplier": 0.85,
           "sample_multiplier": 1.028
@@ -15512,7 +15527,7 @@
           "rep": 49.0,
           "sample_size": 1014,
           "partisan_lean": "R",
-          "weight_share": 3.353,
+          "weight_share": 3.054,
           "quality_rating": 1.1,
           "quality_multiplier": 0.775,
           "sample_multiplier": 1.049
@@ -15527,7 +15542,7 @@
           "rep": 50.0,
           "sample_size": 515,
           "partisan_lean": "R",
-          "weight_share": 4.536,
+          "weight_share": 4.132,
           "quality_rating": 2.7,
           "quality_multiplier": 1.087,
           "sample_multiplier": 0.916
@@ -15542,7 +15557,7 @@
           "rep": 46.0,
           "sample_size": 1200,
           "partisan_lean": "R",
-          "weight_share": 3.162,
+          "weight_share": 2.88,
           "quality_rating": 1.7,
           "quality_multiplier": 0.951,
           "sample_multiplier": 1.084
@@ -15557,7 +15572,7 @@
           "rep": 49.0,
           "sample_size": 1200,
           "partisan_lean": "R",
-          "weight_share": 6.022,
+          "weight_share": 5.485,
           "quality_rating": 2,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.084
@@ -15572,7 +15587,7 @@
           "rep": 48.0,
           "sample_size": 625,
           "partisan_lean": "",
-          "weight_share": 4.824,
+          "weight_share": 4.394,
           "quality_rating": 2.6,
           "quality_multiplier": 1.15,
           "sample_multiplier": 0.952
@@ -15587,7 +15602,7 @@
           "rep": 45.9,
           "sample_size": 2351,
           "partisan_lean": "",
-          "weight_share": 7.359,
+          "weight_share": 6.703,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.241
@@ -15602,7 +15617,7 @@
           "rep": 47.8,
           "sample_size": 916,
           "partisan_lean": "",
-          "weight_share": 11.749,
+          "weight_share": 10.702,
           "quality_rating": 2.4,
           "quality_multiplier": 1.1,
           "sample_multiplier": 1.027
@@ -15617,7 +15632,7 @@
           "rep": 51.0,
           "sample_size": 858,
           "partisan_lean": "",
-          "weight_share": 11.494,
+          "weight_share": 10.47,
           "quality_rating": 1.5,
           "quality_multiplier": 0.988,
           "sample_multiplier": 1.014
@@ -15632,7 +15647,7 @@
           "rep": 52.0,
           "sample_size": 849,
           "partisan_lean": "",
-          "weight_share": 4.678,
+          "weight_share": 4.261,
           "quality_rating": 1.8,
           "quality_multiplier": 0.95,
           "sample_multiplier": 1.012
@@ -15647,10 +15662,25 @@
           "rep": 48.36,
           "sample_size": 813,
           "partisan_lean": "",
-          "weight_share": 12.204,
+          "weight_share": 11.116,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.003
+        },
+        {
+          "name": "The Political Matrix/The Listener Group",
+          "field_end": "2026-10-28",
+          "poll_id": "c69c6758-b7d5-450d-81dd-c1c7f2ad1268",
+          "question_id": "020dad14-c2f2-49ba-86f0-71869055d6db",
+          "sample_population": "lv",
+          "dem": 38.8,
+          "rep": 40.3,
+          "sample_size": 500,
+          "partisan_lean": "",
+          "weight_share": 8.909,
+          "quality_rating": null,
+          "quality_multiplier": 1.0,
+          "sample_multiplier": 0.91
         },
         {
           "name": "University of North Florida",
@@ -15662,7 +15692,7 @@
           "rep": 49.0,
           "sample_size": 1471,
           "partisan_lean": "",
-          "weight_share": 9.017,
+          "weight_share": 8.214,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.13
@@ -15677,7 +15707,7 @@
           "rep": 46.0,
           "sample_size": 800,
           "partisan_lean": "D",
-          "weight_share": 4.407,
+          "weight_share": 4.014,
           "quality_rating": null,
           "quality_multiplier": 1.0,
           "sample_multiplier": 1.0
@@ -15692,7 +15722,7 @@
           "rep": 50.0,
           "sample_size": 825,
           "partisan_lean": "",
-          "weight_share": 8.799,
+          "weight_share": 8.015,
           "quality_rating": 3,
           "quality_multiplier": 1.25,
           "sample_multiplier": 1.006
