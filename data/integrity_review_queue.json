@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-31T08:54:21.222973Z",
+  "updated_at": "2026-10-31T09:51:46.252402Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -261,6 +261,23 @@
     }
   ],
   "items": [
+    {
+      "id": "b0dd5cfb27c75efee917",
+      "title": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - inkl",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRnlIc1MzM0pLTU9mSHYzeEQ3Y2liNi1NVnpkRUc1LTE4NFRYTE1KMmd5MG5uamhZNks1SmtmMDJNTzVlMXhfNHFKa1BGTk9EZXJoM0NUUC1QczlCTzhGQ1hVSFRMNUxkQUNsWWNqX21pX3hfQmlzczg5ZHdUY05NbUF0MmxXd1Q1cUhoenB4bm9icHBHU0JMNFVhREZTdDdGVFo5blZR?oc=5",
+      "publisher": "inkl",
+      "published_at": "2026-10-31T09:40:54Z",
+      "detected_at": "2026-10-31T09:51:46.252402Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "db5d4e03c66dd40d3176",
       "title": "Defending election workers from unlawful threats and coercion - Protect Democracy",
@@ -5229,25 +5246,6 @@
       "headline_numbers_unverified": [
         "28 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e6347eec68a45b0f1e15",
-      "title": "Feds arrest alleged noncitizen voters in California amid broader election fight with state - Los Angeles Times",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQMFpKeml2bGpJVXBOQnhMekxqOG1veUc2ZWx1Sk5Idk9mOS1nZFJZd0M1bkJGRmEzVnkyZ3N3UTkxWEVfbDBlOER3ak9yMEU4NW15dEZoRy1iRkhXZEtBbmN4MkdWN3FTVDRnT3RiUWVGN09oM1R4TXdJeFNHUFRid3lNcDFYYzFNSDRDQXJxV01Ld2lrUHVlSWFBWlczWi1POWNsVkppanU1aXBNbm11LXNMQ0pHcm5lbnZJSV9R?oc=5",
-      "publisher": "Los Angeles Times",
-      "published_at": "2026-10-19T20:56:00Z",
-      "detected_at": "2026-10-19T22:43:28.633011Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
