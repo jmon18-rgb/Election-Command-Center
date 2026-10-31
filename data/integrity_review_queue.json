@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-31T01:16:08.050882Z",
+  "updated_at": "2026-10-31T02:05:37.592229Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 247,
@@ -292,6 +292,26 @@
       ],
       "topic_hints": [
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "13aa9633cd5ac2ee836d",
+      "title": "Alaska Senate election: DOJ wants to 'segregate' all ballots for 2nd Sullivan candidate - CNBC",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPbWpsMTBpSFJISFJGU3JJRTRJUVlSb3hoLUR1S2o3bDJoZklvWEFEeXRYeGU2RmJYbFF6UWdLNXQzLWVqdTQ0LUwyeTJBZlhiaTdHTTBJOUNROE9fN1FKT0Z5ZmNFRjA4ZHNyRU1JZ2EtT3k3ZEJDeTh6dE1YV1U2MjM1RThFb3RqZm43WG5KVkdUd9IBlwFBVV95cUxQY3Z1VGo3RUR6WFZJOEllamxMeFpybk9wREM0Ry1WazlrdmktWDhweV93TWM0bFdtc0I1VnFyZm5RVmtKWXZMLVo4TFJOUXBtMEpwTjBhMDY4RVY1QzlFYU1jVGpST2xSWjloVXdIcGJtT3VMT2ZmRTdQV1RuNElNSmhnNktEeWYzTXRIbVVLNE9FaDE5MVBN?oc=5",
+      "publisher": "CNBC",
+      "published_at": "2026-10-30T16:33:03Z",
+      "detected_at": "2026-10-31T02:05:37.592229Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4976,27 +4996,6 @@
       "state_hints": [
         "CA",
         "NY"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "28 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "89feb44eebc76258be9d",
-      "title": "Prosecutors charge 28 foreign nationals in California for voter fraud - Cal Coast News",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQSFluUmdnUnlrb0lRcU4zZWh6VlhaTllQNDd0eHk1WGZiYWdSODVfMXdQQmtKbG92ZDVzQ2s0QWVTRGJZZHZ5SldhQkZ4N3pLZ0JMTjNRSmJuVkdEN2o4ZUFyV19UanB0SVJmOWVqXzlHWkFEcFVUcUpzN1lzS0hmMmg4ZDZ6SV9zNEZieENNNVVEbWt0VjU0UkpJRzRKdUltTUJRdzlR?oc=5",
-      "publisher": "Cal Coast News",
-      "published_at": "2026-10-19T19:49:49Z",
-      "detected_at": "2026-10-19T21:44:58.994667Z",
-      "state_hints": [
-        "CA"
       ],
       "topic_hints": [
         "election_admin"
