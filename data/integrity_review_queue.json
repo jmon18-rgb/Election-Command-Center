@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-31T13:04:28.324350Z",
+  "updated_at": "2026-10-31T13:53:17.254786Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 69
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 71
   },
   "advisory_related_headlines": [
     {
@@ -259,6 +259,25 @@
     }
   ],
   "items": [
+    {
+      "id": "c8dff0ab88daece56461",
+      "title": "Who will win the 2026 midterm elections? Polls and predictions - The Times",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQVTQ3c210WFhibU1kMk1ZS0ZCMGwyenJEampyWkhCdUlwV3AzTjVSb0JkQ196QTlYU1RORU1WSmQtalo0NzZ2cVZtajFTSWg1Q3BLRVpFQm5qeWl5NzRVM2JockdHazktMERtbW5HSEtYc2pDUmRhNDdDVm55RlRpUC1iZDBXelU2RUdWYXZ2MHViUDJfalRNM0M1aUJYeUxNWVlWd00xNEs?oc=5",
+      "publisher": "The Times",
+      "published_at": "2026-10-31T13:48:30Z",
+      "detected_at": "2026-10-31T13:53:17.254786Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "a8ee1eceed79cf3675c5",
       "title": "Volunteer Poll Monitors Are Hoping for a Smooth Election Day, But Training for Trouble - Mother Jones",
@@ -5216,28 +5235,6 @@
       "headline_numbers_unverified": [
         "578 ",
         "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "56cdabac6faec6276b1f",
-      "title": "DOJ Charges 28 Green Card Holders With Voting Crimes, Moves to Block 20,000 California Ballots - Law Commentary",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPUTFrd3VqS0Q1el9sb2hYb3luN2Rfa0pMNWZ3MHRwMXJzdklWWXVnUWk3N2Z6QXg0dUliTUQyTXpiQTBmQmhEVEpfZ250RjdfU216Wlg3cUJvaGsxS1YzdVp5NF9ucVRIazN3bmVhT3RybnVwZVh3d09yOXpHalNlVmlKYXF4amZiZUJhdXd2SGlDNDc0cUxYYnNncFpONms?oc=5",
-      "publisher": "Law Commentary",
-      "published_at": "2026-10-20T00:16:36Z",
-      "detected_at": "2026-10-20T00:59:06.343390Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "28 ",
-        "20,000 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
