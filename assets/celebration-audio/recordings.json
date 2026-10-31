@@ -1,0 +1,89 @@
+{
+  "schema": "site-builtin-celebration-recordings-v1",
+  "source": "OWNER_SUPPLIED_FILES",
+  "direction": "Owner requested these already-assigned recordings built into the website across browsers/devices on October30,2026. Earlier per-profile import receipts remain historical.",
+  "license_status": "No third-party license terms or rights grant inferred by this manifest.",
+  "private_overrides": "Optional browser-local replacement files remain local; private CSV/preferences/keys and the ZIP are not site assets.",
+  "tracks": [
+    {
+      "id": "ohio",
+      "title": "Buckeye Battle Cry",
+      "path": "assets/celebration-audio/ohio-81a3bd69e70e8a14.mp3",
+      "bytes": 688870,
+      "sha256": "81a3bd69e70e8a14c08ce80b54922e5bd53a6a0fd112be0acec39b3c21ce7500",
+      "supplied_filename": "1-Ohio-State-University-Buckeye-Battle-Cry.mp3"
+    },
+    {
+      "id": "graham",
+      "title": "Last Dance",
+      "path": "assets/celebration-audio/graham-20f5631487da03e2.mp3",
+      "bytes": 5263915,
+      "sha256": "20f5631487da03e29aba8d505ed1fcee3bc491ebe0ceb800bb0817f963f32f66",
+      "supplied_filename": "2-Donna-Summer-Last-Dance-Original-Video-1978-.mp3"
+    },
+    {
+      "id": "blansas",
+      "title": "John Brown’s Body",
+      "path": "assets/celebration-audio/blansas-a3c5d7fd565dc945.mp3",
+      "bytes": 2657051,
+      "sha256": "a3c5d7fd565dc945495c44d4689b4ba1afab09db57641245ff3799886aa77664",
+      "supplied_filename": "4-John-Brown-s-Body-American-Abolitionist-Song.mp3"
+    },
+    {
+      "id": "blue_corn",
+      "title": "It’s Corn",
+      "path": "assets/celebration-audio/blue-corn-d7a4150df752408f.mp3",
+      "bytes": 4232600,
+      "sha256": "d7a4150df752408f6ba26180554402e9c0f8c5856134f1ae503f0cc56eec1add",
+      "supplied_filename": "5-It-s-Corn-Songify-This-ft.-Tariq-and-Recess-Therapy.mp3"
+    },
+    {
+      "id": "talarico",
+      "title": "The Eyes of Texas",
+      "path": "assets/celebration-audio/talarico-48e8b057d64f240d.mp3",
+      "bytes": 1009012,
+      "sha256": "48e8b057d64f240d52b7a1fcaa8599e463f04a74751bf5bb1669b0fd6686b320",
+      "supplied_filename": "6-The-Eyes-of-Texas.mp3"
+    },
+    {
+      "id": "mississippi",
+      "title": "Union Dixie Trap",
+      "path": "assets/celebration-audio/mississippi-23c808dfaa31c0e0.mp3",
+      "bytes": 2234349,
+      "sha256": "23c808dfaa31c0e0b752ba6b4899917326c52ff0def5e74ce954649da26aabfe",
+      "supplied_filename": "3-Union-Dixie-Trap-Remix.mp3"
+    },
+    {
+      "id": "maine",
+      "title": "Ding-Dong! The Witch Is Dead",
+      "path": "assets/celebration-audio/maine-4fff395ae450c272.mp3",
+      "bytes": 3927908,
+      "sha256": "4fff395ae450c272c0b9e83fd90c87081f5c4905b1ffb879c054afad56ec7811",
+      "supplied_filename": "8-Ding-Dong-the-Witch-is-Dead.mp3"
+    },
+    {
+      "id": "louisiana_senate",
+      "title": "Neck in LSU’s Death Valley",
+      "path": "assets/celebration-audio/louisiana-senate-86bb90b9bafe6f1b.mp3",
+      "bytes": 506242,
+      "sha256": "86bb90b9bafe6f1bc1f6c7a2446b2643e3afe88d3dc06ef4bc9bd6cc8d361931",
+      "supplied_filename": "1-Neck-in-LSU-s-Death-Valley.mp3"
+    },
+    {
+      "id": "blexas",
+      "title": "We Are the Champions",
+      "path": "assets/celebration-audio/blexas-41f3d0e67727f8b8.mp3",
+      "bytes": 2691543,
+      "sha256": "41f3d0e67727f8b8b3def63d5077342f06e2d5296a3c273a934fe0e988e1cb65",
+      "supplied_filename": "1-Queen-We-Are-The-Champions-Official-Video-Remastered-.mp3"
+    },
+    {
+      "id": "abbott",
+      "title": "Walk This Way",
+      "path": "assets/celebration-audio/abbott-0ebc3f04d2484a6d.mp3",
+      "bytes": 5850729,
+      "sha256": "0ebc3f04d2484a6db99600ff819c10438a3beeed3566db4b03fa7b5151642fcf",
+      "supplied_filename": "2-RUN-DMC-Walk-This-Way-Official-HD-Video-ft.-Aerosmith.mp3"
+    }
+  ]
+}

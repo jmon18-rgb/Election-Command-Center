@@ -1,5 +1,9 @@
 # Celebration production inventory - October 27, 2026
 
+## October30 — built-in supplied songs requested; implementation under review
+
+The owner now requests the ten assigned supplied songs built into the website across browsers/devices. This supersedes the required per-profile import architecture for those ten songs. Exact original MP3s are content-addressed site assets; optional replacement files, ZIP/private CSV/preferences/keys stay local. See CELEBRATION_BUILTIN_AUDIO.md and assets/celebration-audio/recordings.json. Default resolution is saved replacement → event-specific built-in → original cue, with no startup pack download. Browser Sound/Play activation may still be necessary. Existing native cancellation, current-call eligibility, scenes, original cues and unassigned Crawdad remain unchanged. This source is not yet a verified release.
+
 ## October30 — PR541 COMPLETE / VERIFIED PUBLISHED
 
 Offline chronological replay and explicit paired research arithmetic are verified published at c6a250a9/Pages41147469069; all3PRparents/14jobs13SUCCESS1declaredSKIP/14checks/0external pass, with27fresh public hashes, coherence13/no_credit and129source bodies. The application runtime is unchanged: original540 Chrome/ordinary evidence stays at59ac through the exact92-reference/20-pin/sixWorker/23asset identity manifest. No fresh browser, Mac hearing, current-render/forecast equality, dataset admission or calibration claim.

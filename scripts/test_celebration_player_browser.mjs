@@ -1,4 +1,5 @@
 // Actual browser playback mechanics; media completion and calls are simulated.
+// Assigned built-in AUDIO requests return404 so all retained original-score drills remain covered.
 import assert from 'node:assert/strict';
 import {createServer} from 'node:http';
 import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
@@ -41,10 +42,10 @@ try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const width of [1440,390]){
   const context=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
-  const page=await context.newPage(),errors=[];currentPage=page;
+  const page=await context.newPage(),errors=[],builtin404=[];currentPage=page;
   page.on('pageerror',e=>errors.push(e.message));
   await page.clock.install();
-  await page.route('**/*',route=>new URL(route.request().url()).hostname==='127.0.0.1'?route.continue():route.abort());
+  await page.route('**/*',route=>{const url=new URL(route.request().url());if(url.hostname==='127.0.0.1'&&/^\/assets\/celebration-audio\/[a-z0-9-]+-[a-f0-9]{16}\.mp3$/.test(url.pathname)){builtin404.push(url.pathname);return route.fulfill({status:404,contentType:'audio/mpeg',body:''});}return url.hostname==='127.0.0.1'?route.continue():route.abort();});
   // This retained eleven-scene drill exercises the original Abbott animation
   // as the supported missing-photo fallback. The supplied-art drill covers the
   // preferred image, its containment, attribution and default presentation.
@@ -64,8 +65,8 @@ try{
   await page.route('**/assets/milestone-mississippi.svg',route=>route.abort());
   await page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.mississippi}).click();
   // This retained drill validates every original score and its fallback art.
-  // Select that supported preference explicitly now that fresh profiles prefer
-  // the owner's requested YouTube tracks. The separate popup drill covers them.
+  // Select ad-free mode explicitly; assigned audio404 above forces the actual
+  // native built-in-failure path. Separate default-success tests cover the songs.
   await page.locator('#enCelebrationMusicQuick').click();
   assert.equal(await page.locator('#enCelebrationMusicMode').inputValue(),'original');
   await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
@@ -94,6 +95,8 @@ try{
    }
    await page.evaluate(()=>document.querySelector('#enCelebrationAnnouncement').dispatchEvent(new Event('ended')));
    assert.equal(await page.locator('#enCelebrationStage').getAttribute('data-phase'),'scene');
+   await page.waitForFunction(()=>enCelebrationNotes.length===1&&document.querySelector('#enCelebrationLocalAudio').hidden&&document.querySelector('#enCelebrationLocalAudio').getAttribute('src')===null);
+   assert.equal(await page.evaluate(()=>enCelebrationNotes.length),1,'The selected original score starts exactly once after native built-in teardown or an unassigned cue');
    if(id==='graham'){
     assert.doesNotMatch(await page.locator('#enCelebrationStage').innerText(),/lindsey/i);
     const thumbnail=page.locator('#enMilestoneGrid .en-milestone-card').filter({hasText:titles.graham}).locator('img');
@@ -429,6 +432,8 @@ try{
   assert.equal(await page.locator('#enMilestoneSpotlight').isVisible(),true,'Missing animation script falls back to the existing poster');
   assert.equal(await page.evaluate(()=>enCelebrationPlayer.state().active),null);
   assert.deepEqual(errors,[]);
+  assert(builtin404.length>0,'Retained original-score drill exercised actual assigned built-in audio404');
+  writeFileSync(resolve(out,`celebration-original-score-builtins-404-${width}.json`),JSON.stringify({status:'PASS_SIMULATED_MISSING_BUILTINS_ORIGINAL_DRILL',width,audio_transport_fault:{status:404,paths:builtin404},website_HTML_script_overrides_for_audio:false,default_builtin_success:'COVERED_SEPARATELY',human_listening:'NOT_RUN'},null,2)+'\n');
   console.log(`${width}px: full preview roster, announcement ordering, autoplay failure, mute, skip and responsive layout PASS`);
   await context.close();
  }

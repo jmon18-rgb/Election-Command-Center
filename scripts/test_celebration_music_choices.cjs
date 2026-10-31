@@ -7,5 +7,8 @@ for(const [id,title,artist,kind]of [['nebraska','Sideline brass and halftime bas
 const michigan=choices.forEvent('michigan');assert.equal(michigan.title,music.THEMES.michigan.title);assert.equal(michigan.kind,'ORIGINAL_CUE');assert.equal(michigan.artist,'Project original');assert.equal(michigan.fallback,music.THEMES.michigan.title);
 assert(Object.isFrozen(choices.CHOICES));for(const [id,row]of Object.entries(choices.CHOICES)){assert(Object.isFrozen(row));assert.equal(row.id,id);assert.equal(choices.forEvent(id),row);assert.deepEqual(Object.keys(row).sort(),['artist','fallback','hint','id','kind','title'],'Track references contain no recording URL/bytes, upload, playback mode or winner authority');assert.throws(()=>{row.title='Unexpected';},TypeError);}
 for(const id of ['not-an-event','constructor','__proto__',null])assert.equal(choices.forEvent(id),null);
-assert.deepEqual(Object.keys(choices).sort(),['CHOICES','forEvent']);
-console.log('Celebration track metadata PASS: ten owner-supplied mappings, original Michigan/Nebraska/Florida and all other fallback scores preserved, no recording/playback authority.');
+assert.deepEqual(Object.keys(choices).sort(),['BUNDLED','CHOICES','bundledForEvent','forEvent']);
+assert(Object.isFrozen(choices.BUNDLED));assert.deepEqual(Object.keys(choices.BUNDLED).sort(),Object.keys(supplied).sort());
+for(const [id,title]of Object.entries(supplied)){const row=choices.bundledForEvent(id);assert.equal(row.title,title);assert.equal(row.id,id);assert(Object.isFrozen(row));assert.match(choices.forEvent(id).hint,/Built into the site; no import is needed/);assert.throws(()=>{row.src='https://unexpected.invalid/track.mp3';},TypeError);}
+for(const id of ['not-an-event','constructor','__proto__',null,'michigan','nebraska','florida_senate','tsunami'])assert.equal(choices.bundledForEvent(id),null);
+console.log('Celebration track metadata PASS: ten exact built-in mappings, optional saved overrides, original Michigan/Nebraska/Florida and all other fallback scores preserved; no winner authority.');
