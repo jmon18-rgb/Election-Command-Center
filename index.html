@@ -3386,7 +3386,32 @@ for(const x of items.slice(0,12)){
 const card=elt('div','racecard');card.append(elt('strong','',x.title||'Unspecified report'));
 card.append(elt('div','meta',[x.publisher,x.published_at?new Date(x.published_at).toLocaleDateString():null,(x.state_hints||[]).join(', '),x.review_status].filter(Boolean).join(' · ')));
 if((x.headline_numbers_unverified||[]).length)card.append(elt('div','unotes','Headline numbers (unverified): '+x.headline_numbers_unverified.join(', ')));
-const a=elt('a','pollsource','Review original report ↗');a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';card.append(a);box.append(card)
+const a=elt('a','pollsource','Review original report ↗');a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';card.append(a);
+if(x.review_status==='primary_source_checked'){
+ const review=elt('details','integrity-source-review');
+ review.append(elt('summary','','Reviewed sources and limits'));
+ const sources=Array.isArray(x.primary_sources)?x.primary_sources.filter(s=>s&&typeof s==='object'):[];
+ const cases=[...new Set(sources.map(s=>s.case_number).filter(s=>typeof s==='string'&&s.trim()))];
+ review.append(elt('div','meta','Checked '+(typeof x.reviewed_as_of==='string'&&x.reviewed_as_of?x.reviewed_as_of:'date not recorded')+(cases.length?' · Case '+cases.join('; '):'')));
+ review.append(elt('p','tiny','Source-specific review does not verify allegations, affected voters or an election outcome.'));
+ for(const source of sources){
+  const item=elt('div','item');item.append(elt('strong','',typeof source.publisher==='string'?source.publisher:'Reviewed source'));
+  if(source.source_kind==='primary_document_copy_court_order'||source.source_kind==='primary_document_copy_pleading_allegations_not_findings'||source.retrieval_method==='reader_extracted_document_text')
+   item.append(elt('div','tiny','Copied-document TEXT review · not official-host or native-original authentication.'));
+  if(typeof source.source_kind==='string')item.append(elt('div','meta','Source type: '+source.source_kind.replaceAll('_',' ')+(source.document_number?' · Document '+String(source.document_number):'')+(typeof source.filed_date==='string'?' · Filed '+source.filed_date:'')));
+  let url=null;try{if(typeof source.url==='string'&&!/[\u0000-\u0020\u007f]/.test(source.url)){const candidate=new URL(source.url);if(candidate.protocol==='https:'&&!candidate.username&&!candidate.password)url=candidate;}}catch{}
+  if(url){const link=elt('a','pollsource','Read reviewed source ('+url.hostname+') ↗');link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';item.append(link);}
+  else item.append(elt('div','tiny','Reviewed source link is unavailable or unsupported.'));
+  if(typeof source.evidence_limit==='string'&&source.evidence_limit)item.append(elt('p','tiny',source.evidence_limit));
+  review.append(item);
+ }
+ if(!sources.length)review.append(elt('p','tiny','No reviewed source attachment is recorded.'));
+ if(typeof x.review_notes==='string'&&x.review_notes)review.append(elt('p','detail',x.review_notes));
+ review.append(elt('p','tiny',x.impact_counts_verified===true?'Impact-count verification is recorded separately.':'Voter-impact counts are not verified by this review.'));
+ review.append(elt('p','tiny',x.promoted_to_incident_id?'Curated case reference: '+String(x.promoted_to_incident_id)+'. This is not an affected-voter total.':'Not promoted to a curated incident.'));
+ card.append(review);
+}
+box.append(card)
 }
  if(impactLedger){renderBullStateScores();if(latestSenateEstimates)showSenateEstimates(latestSenateEstimates);}
 }
