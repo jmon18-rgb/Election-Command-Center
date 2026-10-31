@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-31T05:51:50.644027Z",
+  "updated_at": "2026-10-31T07:05:37.134584Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -261,6 +261,24 @@
     }
   ],
   "items": [
+    {
+      "id": "db5d4e03c66dd40d3176",
+      "title": "Defending election workers from unlawful threats and coercion - Protect Democracy",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOajlCazB0NVcwMzhFTTFpTURORlp3ZW1yT2kwaGp3R19aYUI3M2R3QVVvelFveHgtMEFRRWRJeTZEWVgtQTdNdTJvSTJHWEt3dmU1NGlvYkhySE9fTHU1a19OOUdockE0RzFvbVpuTTdHZDdxemRkZGhBRW5vNmQtVko3R2VrdHpGUmdPa0tzYXlQWUhkdHlNOTRtLVc?oc=5",
+      "publisher": "Protect Democracy",
+      "published_at": "2026-10-31T00:02:07Z",
+      "detected_at": "2026-10-31T07:05:37.134584Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "dac25b21a19d15ae64c9",
       "title": "Explaining the Case of the Two Dan Sullivans on Alaska\u2019s Ballot - FactCheck.org",
@@ -5230,28 +5248,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "296aede59b4e79642b1e",
-      "title": "DOJ Charges 28 California Residents With Voting-Related Crimes Amid Trump\u2019s Voter Fraud Push - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOUGFnd0pFQW12VHVoR204NnlmM1A4YzN5N1FqYXo5RC1NNEVUd0J5TUhfTTlVd0xYWWZoa0p6SU1lTmdGV181VjRlTllPbXNtai1wWXVxZWgtMW04U1F2aHlqakxPSjJMeGFWbjJ6ZW40T0VzS0YydkI3UEFKNVljS3JYNF9JQUg2Vl96RlNaOWsyc0JuUE13cjV1bw?oc=5",
-      "publisher": "The New York Times",
-      "published_at": "2026-10-19T20:25:34Z",
-      "detected_at": "2026-10-19T21:44:58.994667Z",
-      "state_hints": [
-        "CA",
-        "NY"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "28 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
