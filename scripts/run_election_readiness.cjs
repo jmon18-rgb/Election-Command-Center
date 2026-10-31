@@ -116,6 +116,8 @@ const checks = [
   ['Historical clock archive admissibility', 'test_historical_election_clock_replay.cjs'],
   ['Historical package retained bytes, ordered clocks, frozen priors and whole-election splits (structural preflight only)', 'test_historical_evaluation_package_preflight.cjs'],
   ['Offline chronological replay/scoring mechanics only (zero admitted datasets or calibration)', 'test_historical_evaluation_replay.cjs'],
+  ['Research preference/participation and active-input arithmetic (pure assumptions; no model draws)', 'test_research_sensitivity_contracts.cjs'],
+  ['Accepted race-input snapshot binding and research UI identity (pure VM; no browser)', 'test_research_ui_bindings.cjs'],
   ['Raw returns cannot calibrate national odds', 'test_joint_needle_raw_returns_gate.cjs'],
   ['Senate holdover accounting', 'test_senate_holdover_audit.cjs'],
   ['506 race gap desk', 'test_election_night_506_live_gap_desk.cjs']
