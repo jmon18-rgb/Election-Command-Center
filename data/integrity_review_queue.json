@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-31T18:55:50.117703Z",
+  "updated_at": "2026-10-31T19:47:48.785567Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 72
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 70
   },
   "advisory_related_headlines": [
     {
@@ -116,17 +116,6 @@
       "headline": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - Modern Ghana",
       "possibly_related_articles": 3,
       "distinct_publishers": 3,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "bd8fec64c12ae34380a2",
-      "headline": "Noncitizens don't vote in large numbers in US elections. Here's proof - Snopes",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
       "state_hints": [],
       "topic_hints": [
         "election_admin"
@@ -256,9 +245,37 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "7118a47a2e7e5904afed",
+      "headline": "Liberman's Yisrael Beytenu projected to win seven seats in next Knesset, election data predicts - The Jerusalem Post",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "4e83b2be9d9a56ef6c82",
+      "title": "Tracking the DOJ's effort to get U.S. voter registration data - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPeTJpLXRiM0o5ci12VHV5MnlPYzVzWUF1MkZiOUktMnZMZzZscmNiNVA3UW1UY3piYUk4MlM1dV9MNVZlSjZ5eVo1SDM4TjZvS1JBOXVsaEh3X2hkak5CZVB4bmhPc3NnaW14X21Nd2IzLTQwTFlrM0ZvaW1rQ2ZIa0J4cWE2U0VySGFlSWRzYVFmNl9KU1VScl9TeG1KOFRJRlkwZjRraE1HTEZMcjNLTVR4eG0?oc=5",
+      "publisher": "NBC News",
+      "published_at": "2026-10-31T18:20:00Z",
+      "detected_at": "2026-10-31T19:47:48.785567Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "bde6610a8168d2351477",
       "title": "How Trump and his allies seek to interfere in the US midterm elections - The Guardian",
@@ -5211,23 +5228,6 @@
       "publisher": "Snopes",
       "published_at": "2026-10-20T10:05:29Z",
       "detected_at": "2026-10-20T14:48:34.161178Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "870223db7b27736d8a97",
-      "title": "Noncitizens don't vote in large numbers in US elections. Here's proof - Snopes.com",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1hSW1xWEpCVUdtOW80ZEFFMFhadVNWdnhFcTVlN1Ewb2FrRGtyUThxVXBpVVNHWTlEZmRDSWczRkZEMmI4Yk1sUmUxQWFlVFpUNXNVbU9PbWY2bTJYNkJXWXVlUnJER01FZVdsUzRrN3JaV0ZzYXlnbWlmSDNuZw?oc=5",
-      "publisher": "Snopes.com",
-      "published_at": "2026-10-20T10:04:30Z",
-      "detected_at": "2026-10-20T11:45:43.865148Z",
       "state_hints": [],
       "topic_hints": [
         "election_admin"
