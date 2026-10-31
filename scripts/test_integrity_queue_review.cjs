@@ -32,4 +32,33 @@ fails((q,d)=>d.operations[0].after.primary_sources[0].url='javascript:alert(1)',
 fails((q,d)=>d.operations[0].after.primary_sources[0].url='https://name:secret@example.org/doc',/HTTPS/);
 fails((q,d)=>d.source_contract_sha256='0'.repeat(64),/triage source changed/);
 fails((q,d)=>d.operations[0].after.reviewed_as_of='2026-02-30',/Invalid checked date/);
+// BEGIN exact-source nonASCII child-encoding regression
+// This retained source-native title is used only in fabricated duplicate-row
+// transport mechanics. It is not an admitted incident, election or court dataset.
+const nativeTitle='Minnesota is preparing for all possibilities this election — including potential federal interference - The Globe | Worthington, Minnesota';
+const transportQueue=structuredClone(old);
+const transportA={...lead('native-text-a'),title:nativeTitle,publisher:'Transport-only mechanical publisher A',state_hints:['MN']};
+const transportB={...lead('native-text-b'),title:nativeTitle,publisher:'Transport-only mechanical publisher B',state_hints:['MN']};
+transportQueue.items.push(transportA,transportB);
+const transportQueueBefore=JSON.stringify(transportQueue),transportDeltaBefore=JSON.stringify(delta);
+const hostileKeys=['PYTHONIOENCODING','PYTHONUTF8','LC_ALL','LANG'],priorEncoding=Object.fromEntries(hostileKeys.map(k=>[k,process.env[k]]));
+let nativeTextChecked=false;
+try{
+ process.env.PYTHONIOENCODING='cp1252:surrogateescape';process.env.PYTHONUTF8='0';process.env.LC_ALL='C';process.env.LANG='C';
+ const transported=applyReviewDelta(transportQueue,delta);
+ const nativeGroup=transported.queue.advisory_related_headlines.find(x=>x.lead_id===transportA.id);
+ assert(nativeGroup,'The actual existing triage must retain the pending duplicate-title advisory');
+ assert.equal(nativeGroup.headline,nativeTitle,'Native source punctuation must survive child Python transport despite hostile inherited encoding');
+ assert.equal(nativeGroup.possibly_related_articles,2);
+ assert.equal(nativeGroup.distinct_publishers,2);
+ assert.equal(nativeGroup.review_status,'advisory_overlap_only_not_independently_verified');
+ assert.deepEqual(transported.queue.items.find(x=>x.id===transportA.id),transportA);
+ assert.deepEqual(transported.queue.items.find(x=>x.id===transportB.id),transportB);
+ assert.equal(JSON.stringify(transportQueue),transportQueueBefore);
+ assert.equal(JSON.stringify(delta),transportDeltaBefore);
+ nativeTextChecked=true;
+}finally{for(const k of hostileKeys)if(priorEncoding[k]===undefined)delete process.env[k];else process.env[k]=priorEncoding[k];}
+assert.equal(nativeTextChecked,true);
+console.log(JSON.stringify({status:'PASS_NATIVE_TITLE_UTF8_CHILD_TRANSPORT',hostile_inherited_cp1252:true,actual_existing_triage:true,source_native_title_retained:true,synthetic_transport_only:true,network:0,queue_writes:0,model_runs:0}));
+// END exact-source nonASCII child-encoding regression
 console.log(JSON.stringify({status:'PASS_KEYED_EDITORIAL_REVIEW_MECHANICS',preserved_latest_other_rows:true,exact_ID_and_JSON_stringify_preimage:true,actual_existing_pure_triage:true,curated_promotion_and_numeric_fields_rejected:true,network:0,model_runs:0}));

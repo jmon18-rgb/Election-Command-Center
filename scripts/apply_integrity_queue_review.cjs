@@ -38,7 +38,7 @@ function applyReviewDelta(latest,delta,{python=process.env.INTEGRITY_REVIEW_PYTH
  next.items=next.items.map(item=>replacements.get(item.id)||item);
  // Run the actual existing pure triage, not a second implementation or main().
  const code='import importlib.util,json,sys;sys.dont_write_bytecode=True;s=importlib.util.spec_from_file_location("editorial_queue_triage",sys.argv[1]);m=importlib.util.module_from_spec(s);s.loader.exec_module(m);q=json.load(sys.stdin);metrics,groups=m.triage(q);print(json.dumps({"review_metrics":metrics,"advisory_related_headlines":groups}))';
- const result=JSON.parse(cp.execFileSync(python,['-c',code,TRIAGE],{input:JSON.stringify(next.items),encoding:'utf8',maxBuffer:4*1024*1024,env:{...process.env,PYTHONDONTWRITEBYTECODE:'1'}}));
+ const result=JSON.parse(cp.execFileSync(python,['-c',code,TRIAGE],{input:JSON.stringify(next.items),encoding:'utf8',maxBuffer:4*1024*1024,env:{...process.env,PYTHONDONTWRITEBYTECODE:'1',PYTHONUTF8:'1',PYTHONIOENCODING:'utf-8:strict'}}));
  assert(result&&result.review_metrics&&Array.isArray(result.advisory_related_headlines),'Existing triage result required');
  next.review_metrics=result.review_metrics;next.advisory_related_headlines=result.advisory_related_headlines;
  return {queue:next,changed_ids:[...seen],before_queue_sha256:hash(JSON.stringify(latest)),after_queue_sha256:hash(JSON.stringify(next)),scope:'Editorial source-text review only; no curated incident, impact, score, probability or election-source admission.'};
