@@ -87,6 +87,7 @@ const checks = [
   ['Texas strict county-source contract', 'test_texas_civic_county_source.cjs'],
   ['Competitive race source request priority', 'test_election_night_transport.cjs'],
   ['Competitive source revision persistence', 'test_competitive_source_revision.cjs'],
+  ['Rejected county corrections retain advisory quarantine through retries and JSON reload', 'test_advisory_quarantine.cjs'],
   ['Linked competitive-race starting priors', 'test_competitive_needle_prior.cjs'],
   ['Source audit reporting safeguards', 'test_election_readiness_source_snapshot.cjs'],
   ['Michigan call eligibility with unchanged acquisition and persistent dedup', 'test_michigan_celebration_authority.cjs'],
@@ -121,6 +122,7 @@ const checks = [
   ['Keyed editorial source review preserves newer records and forbids impact or score promotion', 'test_integrity_queue_review.cjs'],
   ['Raw movement display prioritizes corrections without reordering source history or CSV', 'test_election_night_movement_priority.cjs'],
   ['Raw returns cannot calibrate national odds', 'test_joint_needle_raw_returns_gate.cjs'],
+  ['National Independent county driver labels preserve candidate axes without model draws', 'test_national_driver_candidate_axis.cjs'],
   ['Senate holdover accounting', 'test_senate_holdover_audit.cjs'],
   ['506 race gap desk', 'test_election_night_506_live_gap_desk.cjs']
 ];

@@ -1801,7 +1801,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/wisconsin_house_county_source.js?v=6c3ef7b151b8"></script>
 <script src="./scripts/wisconsin_house_evidence.js?v=74eb656ba330"></script>
 <script src="./scripts/washington_official_house_source.js?v=4d98a8fe062c"></script>
-<script src="./scripts/washington_remaining_source.js?v=a106231b5d51"></script>
+<script src="./scripts/washington_remaining_source.js?v=46684e4ee772"></script>
 <script src="./scripts/washington_remaining_scenarios.js?v=1a313f060a7e"></script>
 <script src="./scripts/washington_official_cache.js?v=b02890ee5301"></script>
 <script src="./scripts/washington_remaining_usage.js?v=dcb4f1f71271"></script>
@@ -1828,7 +1828,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/official_admission_audit.js?v=c2720f504058"></script>
 <script src="./scripts/national_needle_rehearsal.js?v=02f20194577c"></script>
 <script src="./scripts/chamber_control_model.js?v=36064c2a9836"></script>
-<script src="./scripts/joint_model_worker.js?v=c3fe6409588a"></script>
+<script src="./scripts/joint_model_worker.js?v=ad5e934dd984"></script>
 <script src="./scripts/recorded_asset_lineage.js?v=11a33d968f4c"></script>
 <script src="./scripts/joint_count_snapshot_policy.js?v=e929d5be3a7a"></script>
 <script src="./scripts/joint_model_worker_controller.js?v=bf97f411e662"></script>
@@ -4761,7 +4761,7 @@ function jointLiveObservations(){
     source:'civicAPI',asOf:verified.at};
    jointPulseRows.push({race_code:r.code,office,provider:'civicAPI',
     reporting:civic.percent_reporting,asOf:verified.at,
-    calledParty:verified.party});
+    calledParty:verified.party,...(r.code==='NE-SEN'&&r.nonrep_independent_proxy===true?{candidate_contrast:'NE_OSBORN_RICKETTS_V1'}:{})});
    continue;
   }
   const x=jointSourceItem(r);
@@ -4934,13 +4934,19 @@ function jointRenderNeedles(result,config={}){
   for(const d of movement.drivers){
    const row=elt('a','four-needle-driver');
    row.dataset.jointDriver=d.race_code;
-   row.href='#electionNight';
-   row.textContent=d.race_code+
+    row.href='#electionNight';
+    const independent=d.race_code==='NE-SEN',contrastKnown=independent?
+     d.candidate_contrast==='NE_OSBORN_RICKETTS_V1'&&(d.evidence_kind!=='county_likelihood'||
+      Number.isSafeInteger(d.counted_named_candidate_votes)&&d.counted_named_candidate_votes===d.counted_two_party_votes):
+     d.candidate_contrast===undefined;
+    if(!contrastKnown){row.textContent=d.race_code+' · Candidate contrast unavailable; no party odds or counted-vote labels inferred.';list.append(row);continue;}
+    const positiveLabel=independent?'Osborn':'D',voteLabel=independent?'Osborn/Ricketts named-candidate votes':'D/R votes';
+    row.textContent=d.race_code+
     (d.calledParty?' · PROVIDER CALL '+d.calledParty:'')+
     (d.early?' · EARLY SIGNAL':'')+
-    ' · D win '+d.from.toFixed(1)+' → '+d.to.toFixed(1)+'% ('+
+    ' · '+positiveLabel+' win '+d.from.toFixed(1)+' → '+d.to.toFixed(1)+'% ('+
     (d.delta>=0?'+':'')+d.delta.toFixed(1)+' pp) · '+
-    d.provider+(d.official_remaining_counties?' · counts '+new Date(d.counted_as_of).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+', estimate '+new Date(d.remaining_as_of).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'')+' · '+(d.evidence_kind==='county_likelihood'?d.reporting_counties+(/^(?:WI-(?:01|03)|MI-(?:04|07)|AZ-06|VA-02|PA-(?:07|08|10)|NY-17|WA-03)$/.test(d.race_code)?' district/county parts':' counties')+' · '+d.counted_two_party_votes.toLocaleString('en-US')+' D/R votes'+(Number.isFinite(d.modeled_remaining_two_party_votes)?(d.race_code==='ME-SEN'?' · modeled county named-candidate remaining ':' · modeled remaining ')+d.modeled_remaining_two_party_votes.toLocaleString('en-US')+' ('+(d.official_remaining_counties?'historical/official estimate sensitivity; '+d.official_remaining_counties+' whole counties; Thurston historical; not exact ballots: ':'turnout scenario ')+d.modeled_remaining_two_party_votes_band.map(n=>n.toLocaleString('en-US')).join('–')+')':''):d.reporting.toFixed(0)+'% precincts');
+    d.provider+(d.official_remaining_counties?' · counts '+new Date(d.counted_as_of).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})+', estimate '+new Date(d.remaining_as_of).toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'}):'')+' · '+(d.evidence_kind==='county_likelihood'?d.reporting_counties+(/^(?:WI-(?:01|03)|MI-(?:04|07)|AZ-06|VA-02|PA-(?:07|08|10)|NY-17|WA-03)$/.test(d.race_code)?' district/county parts':' counties')+' · '+d.counted_two_party_votes.toLocaleString('en-US')+' '+voteLabel+(Number.isFinite(d.modeled_remaining_two_party_votes)?(independent?' · modeled Osborn/Ricketts votes remaining ':d.race_code==='ME-SEN'?' · modeled county named-candidate remaining ':' · modeled remaining ')+d.modeled_remaining_two_party_votes.toLocaleString('en-US')+' ('+(d.official_remaining_counties?'historical/official estimate sensitivity; '+d.official_remaining_counties+' whole counties; Thurston historical; not exact ballots: ':'turnout scenario ')+d.modeled_remaining_two_party_votes_band.map(n=>n.toLocaleString('en-US')).join('–')+')':''):d.reporting.toFixed(0)+'% precincts');
    list.append(row);
   }
   context.append(list,elt('p','four-needle-disclosure',
@@ -5518,6 +5524,7 @@ function jointApplyFrame(frame,bundle){
   const conditioned={diagnostics:bundle.diagnostics},countyUpdateWithheld=Boolean(bundle.countyUpdateWithheld),result=bundle.result;
   const countyRows=(conditioned?.diagnostics.used||[]).map(e=>({race_code:e.code,asOf:Date.parse(e.official_remaining_sensitivity?.as_of)>Date.parse(e.as_of)?e.official_remaining_sensitivity.as_of:e.as_of,counted_as_of:e.as_of,remaining_as_of:e.official_remaining_sensitivity?.as_of||null,
    provider:e.code==='VA-02'?'Virginia official · collected copy':e.code==='WA-03'?'Washington official · collected copy':e.code==='ME-SEN'?'civicAPI · first choices (not final RCV)':'civicAPI',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,
+   ...(e.code==='NE-SEN'?{candidate_contrast:e.candidate_contrast,counted_named_candidate_votes:e.counted_named_candidate_votes}:{}),
    counted_two_party_votes:e.counted_two_party_votes,modeled_remaining_two_party_votes:e.modeled_remaining_two_party_votes,modeled_remaining_two_party_votes_band:e.modeled_remaining_two_party_votes_band,official_remaining_counties:e.official_remaining_sensitivity?.whole_counties||0}));
   jointPulseRows=[...jointPulseRows.filter(e=>!countyRows.some(c=>c.race_code===e.race_code)),...countyRows];
   jointPulseBaseline=bundle.baseline;
@@ -5647,7 +5654,7 @@ async function jointNationalPreview(){
   host.innerHTML=$('#jointNightNeedle').innerHTML;
   host.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));
   jointRenderNeedles(update.result,{hostIds:['enNationalPreviewNeedle'],baseline:update.baseline,rehearsal:true,
-   evidence:update.diagnostics.used.map(e=>({race_code:e.code,asOf:e.as_of,provider:'SIMULATED',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,counted_two_party_votes:e.counted_two_party_votes}))});
+   evidence:update.diagnostics.used.map(e=>({race_code:e.code,asOf:e.as_of,provider:'SIMULATED',evidence_kind:'county_likelihood',reporting_counties:e.reporting_counties,counted_two_party_votes:e.counted_two_party_votes,...(e.code==='NE-SEN'?{candidate_contrast:e.candidate_contrast,counted_named_candidate_votes:e.counted_named_candidate_votes}:{})}))});
   status.textContent='SIMULATED · '+(nationalPreviewStep+1)+'/5 · '+window.NationalNeedleRehearsal.labels[nationalPreviewStep]+(compatibility?' · compatibility calculation on this device':'');
   $('#enNationalPreviewChances').textContent='SIMULATED — '+Object.entries(update.result.probabilities)
    .map(([k,v])=>k.replaceAll('_',' ')+' '+v.toFixed(1)+'%').join(' · ');

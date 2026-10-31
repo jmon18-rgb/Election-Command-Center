@@ -8,6 +8,7 @@
  const whole=Object.freeze(['53011','53015','53041','53049','53059','53069']);
  const close=Date.parse('2026-11-04T04:00:00Z');
  const english=x=>Array.isArray(x)&&x.length===1&&x[0].languageId==='en'?x[0].text:null;
+ function explicitlyNonProduction(x){return x&&typeof x==='object'&&(('isProduction'in x&&x.isProduction!==true)||('test_data'in x&&x.test_data!==false)||['mock','is_test','test','is_mock','isTest'].some(k=>x[k]===true));}
  const time=x=>{if(typeof x!=='string'||!/^2026-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,7})?(?:Z|[+-]\d{2}:\d{2})$/.test(x))return NaN;
   if(new Date(Date.UTC(+x.slice(0,4),+x.slice(5,7)-1,+x.slice(8,10))).toISOString().slice(0,10)!==x.slice(0,10))return NaN;return Date.parse(x);};
  function receiptCurrent(fetchedAt,now=Date.now()){const fetched=time(fetchedAt);return Number.isFinite(now)&&Number.isFinite(fetched)&&fetched<=now+60000&&now-fetched<=1800000;}
@@ -26,10 +27,10 @@
   if(record.status==='SOURCE_UNAVAILABLE'&&record.payload===null)return {status:'REMAINING_UNAVAILABLE',counties:[]};
   if(record.status!=='COLLECTED_OFFICIAL_ESTIMATES'||record.http_status!==200||!record.payload||JSON.stringify(record.payload).length>1000000)throw Error('Unbounded/unverified remaining payload');
   const d=record.payload,s=d.data?.[0],g=s?.groups?.[0];
-  if([d,s].some(x=>x&&(('isProduction'in x&&x.isProduction!==true)||('test_data'in x&&x.test_data!==false))))throw Error('Explicit test/unverified remaining source');
+  if([d,s,g].some(explicitlyNonProduction))throw Error('Explicit test/unverified remaining source');
   if(!Array.isArray(d.data)||d.data.length!==1||s.id!==statId||english(s.name)!=="Estimated Ballots Left to Count - The following is an estimation of how many ballots are left to count by county."||s.viewBy!==1||!Array.isArray(s.groups)||s.groups.length!==1||g.id!==groupId||english(g.name)!=="Estimated Ballots Left to Count"||!Array.isArray(g.children)||g.children.length!==39)throw Error('Remaining statistic identity drift');
   const seen=new Set(),counties=[],excluded=[];
-  for(const x of g.children){const pin=identities.find(c=>c.id===x.id);
+  for(const x of g.children){if(explicitlyNonProduction(x))throw Error('Explicit test/unverified remaining source');const pin=identities.find(c=>c.id===x.id);
    if(!pin||seen.has(x.id)||english(x.name)!==pin.name||x.children!==null||!Number.isSafeInteger(x.value)||x.value<0||x.value>10000000)throw Error('Remaining county matrix/value drift');
    seen.add(x.id);if(!whole.includes(pin.county_fips))continue;
    const reason=countyClockReason(x.lastUpdated,now,fetched,paired);
