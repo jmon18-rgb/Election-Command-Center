@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-31T13:53:17.771207+00:00",
+  "updated_at": "2026-10-31T14:47:10.259431+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 879,
+      "available_in_source": 880,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,71 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 983,
+      "available_in_source": 987,
       "records_examined": 300
     }
   },
   "matched_primary_observations": 346,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 2,
+  "injected_poll_ids": [
+    {
+      "race_code": "FL-GOV",
+      "poll_id": "1463c401-194c-4f2b-a897-d274eaa1618f"
+    },
+    {
+      "race_code": "FL-SEN",
+      "poll_id": "1463c401-194c-4f2b-a897-d274eaa1618f"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "FL-SEN",
+      "race_type": "senate",
+      "state": "FL",
+      "poll_id": "1463c401-194c-4f2b-a897-d274eaa1618f",
+      "question_id": "1cce081f-190f-448f-81a8-a5b7a4bc577a",
+      "pollster": "Stetson University Center for Public Opinion Research",
+      "dem_name": "Angie Nixon",
+      "rep_name": "Ashley Moody",
+      "dem": 45.0,
+      "rep": 49.0,
+      "margin": -4.0,
+      "field_end": "2026-10-30",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-31",
+      "posted_source_datetime": "2026-10-31T10:18:00",
+      "posted_source_time": "10/31/26 10:18",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.stetson.edu/artsci/cpor/",
+      "sample_population": "lv",
+      "sample_size": 859,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "FL-GOV",
+      "race_type": "governor",
+      "state": "FL",
+      "poll_id": "1463c401-194c-4f2b-a897-d274eaa1618f",
+      "question_id": "346ad1e5-cd92-4cfb-accb-ff872f81fd52",
+      "pollster": "Stetson University Center for Public Opinion Research",
+      "dem_name": "David Jolly",
+      "rep_name": "Byron Donalds",
+      "dem": 45.0,
+      "rep": 51.0,
+      "margin": -6.0,
+      "field_end": "2026-10-30",
+      "field_start": "2026-10-26",
+      "posted_date": "2026-10-31",
+      "posted_source_datetime": "2026-10-31T10:18:00",
+      "posted_source_time": "10/31/26 10:18",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.stetson.edu/artsci/cpor/",
+      "sample_population": "lv",
+      "sample_size": 858,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "TX-SEN",
       "race_type": "senate",
