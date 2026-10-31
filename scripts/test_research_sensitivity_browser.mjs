@@ -68,6 +68,37 @@ const currentPredicate=()=>Boolean(
  jointCompletedFrame.modelRevision===jointModelCodeRevision()&&jointCompletedFrame.payload.args.samples===3000&&
  jointCompletedFrame.payload.args.independentSenateCredit==='no_credit'&&modelOddsValidate(modelRaceOddsData,latestSenateEstimates)
 );
+const researchApplicationReady=({refs})=>{
+ const tab=document.querySelector('[data-page="brief"]'),root=document.querySelector('#brief'),lab=document.querySelector('#electorateLabDetails');
+ return Boolean((()=>Boolean(
+ enModeYear===2026&&jointCompletedFrame&&jointBasis&&jointLastResult?.samples===3000&&jointPulseBaseline?.samples===3000&&
+ !jointModelPending&&!jointAsOfSnapshot&&!jointActiveKey&&jointRefreshTimer===null&&
+ jointCacheKey===jointCompletedFrame.key&&jointCompletedFrame.key===jointFrameKey(jointValidatedFrameInputs())&&
+ jointCompletedFrame.modelRevision===jointModelCodeRevision()&&jointCompletedFrame.payload.args.samples===3000&&
+ jointCompletedFrame.payload.args.independentSenateCredit==='no_credit'&&modelOddsValidate(modelRaceOddsData,latestSenateEstimates)
+))()&&!document.hidden&&document.body.dataset.activePage==='brief'&&location.hash==='#brief'&&tab?.getAttribute('aria-selected')==='true'&&root?.classList.contains('active')&&getComputedStyle(root).display!=='none'&&lab&&lab.querySelector(':scope > summary')&&['labScope','labMode','labScale','labRun','labStatus','labResults'].every(id=>document.getElementById(id))&&typeof labRender==='function'&&typeof window.ElectorateWhatIf2026?.evaluate==='function'&&typeof window.ActiveRaceInputDiagnostics?.explain==='function'&&window.ChamberControlModel&&JSON.stringify([...document.querySelectorAll('script[src]')].map(n=>n.getAttribute('src')))===JSON.stringify(refs));
+};
+// Targeted app + first-response-source readiness; one shared native 30s budget.
+// Background network silence is not used as a proxy for these explicit facts.
+async function waitForApplicationSourceReady(page,predicate,args,{served,pinErrors,pinFiles,listeners}){
+ const deadline=performance.now()+30000;
+ const remaining=()=>{const ms=deadline-performance.now();if(ms<=0)throw new Error('Application/source readiness exceeded 30000ms');return Math.ceil(ms);};
+ let listener,timer;
+ const pins=new Promise((resolve,reject)=>{
+  listener=()=>{if(pinErrors.length)reject(new Error('First-response source verification failed: '+pinErrors.join('; ')));else if(pinFiles.every(file=>served.has(file)))resolve();};
+  listeners.add(listener);
+  timer=setTimeout(()=>reject(new Error('Application/source readiness exceeded 30000ms; missing pinned bodies: '+pinFiles.filter(file=>!served.has(file)).join(', '))),remaining());
+  listener();
+ });
+ try{
+  await Promise.all([pins,page.waitForFunction(predicate,args,{timeout:remaining(),polling:100})]);
+  // Recheck the same semantic state after all required first bodies completed,
+  // under the original shared deadline rather than starting another wait budget.
+  await page.waitForFunction(predicate,args,{timeout:remaining(),polling:100});
+  assert.deepEqual(pinErrors,[]);
+  assert.equal(served.size,pinFiles.length);
+ }finally{clearTimeout(timer);listeners.delete(listener);}
+}
 async function waitCurrent(page){await page.waitForFunction(initialInputTerminal);await page.evaluate(()=>jointWhenIdle());await page.waitForFunction(currentPredicate);}
 async function selectRace(page,office,code){
  await page.locator('[data-model-scope="'+office+'"]').click();
@@ -120,13 +151,14 @@ try{
   browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
   const context=await browser.newContext({viewport:{width,height},serviceWorkers:'block',reducedMotion:'reduce'}),page=await context.newPage();activePage=page;
   const errors=[],blocked=[],pinErrors=[],pendingPins=[],served=new Map(),reserved=new Set(),counters={requests:0,workers:0,external_attempts:0};
+  const pinReadinessListeners=new Set(),signalPinReadiness=()=>{for(const listener of pinReadinessListeners)listener();};
   page.on('pageerror',e=>errors.push(e.message));page.on('request',()=>counters.requests++);page.on('worker',()=>counters.workers++);
   context.on('response',response=>{
    const u=new URL(response.url()),prefix=dashboard?.pathname||'/',own=dashboard?u.origin===dashboard.origin:u.hostname==='127.0.0.1';
    if(!own||!u.pathname.startsWith(prefix))return;
    const file=u.pathname===prefix?'index.html':decodeURIComponent(u.pathname.slice(prefix.length));
    if(!pinFiles.includes(file)||reserved.has(file))return;reserved.add(file);
-   pendingPins.push(response.body().then(body=>{assert.equal(response.status(),200,file);assert(body.equals(pinned[file]),'First actual response bytes: '+file);served.set(file,hash(body));}).catch(e=>pinErrors.push(e.message)));
+   pendingPins.push(response.body().then(body=>{assert.equal(response.status(),200,file);assert(body.equals(pinned[file]),'First actual response bytes: '+file);served.set(file,hash(body));}).catch(e=>pinErrors.push(e.message)).finally(signalPinReadiness));
   });
   await context.route('**/*',route=>{
    const u=new URL(route.request().url()),own=dashboard?u.origin===dashboard.origin&&u.pathname.startsWith(dashboard.pathname):u.hostname==='127.0.0.1';
@@ -163,7 +195,7 @@ try{
   // above belong to Model. Navigate through the actual page controls.
   await page.locator('[data-page="brief"]').click();
   // Complete native bootstrap first; only then pause app timers during synchronous research.
-  await page.waitForLoadState('networkidle');await waitCurrent(page);
+  await waitForApplicationSourceReady(page,researchApplicationReady,{refs:runtimeReferences},{served,pinErrors,pinFiles,listeners:pinReadinessListeners});await waitCurrent(page);
   assert(counters.workers>0,'Use a genuine application Worker, not a synchronous fallback');
   assert.equal(await page.evaluate(()=>jointWorkerCompatibility),false);
   await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now()+1000)));await waitCurrent(page);

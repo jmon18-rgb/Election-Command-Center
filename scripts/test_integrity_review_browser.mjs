@@ -29,6 +29,31 @@ const server=dashboard?null:createServer((req,res)=>{let p;try{p=decodeURICompon
 if(server)await new Promise(ok=>server.listen(0,'127.0.0.1',ok));
 const terminal=()=>jointPrivateSource==='repository'&&(document.querySelector('#privateContextStatus')?.textContent||'').startsWith('Repository fundamentals ACTIVE');
 const current=()=>Boolean(enModeYear===2026&&jointBasis&&jointCompletedFrame&&jointLastResult?.samples===3000&&jointPulseBaseline?.samples===3000&&!jointModelPending&&!jointAsOfSnapshot&&!jointActiveKey&&jointRefreshTimer===null&&jointCacheKey===jointCompletedFrame.key&&jointCompletedFrame.key===jointFrameKey(jointValidatedFrameInputs())&&jointCompletedFrame.modelRevision===jointModelCodeRevision()&&jointCompletedFrame.payload.args.independentSenateCredit==='no_credit');
+const integrityApplicationReady=({queueJSON,impactJSON,refs,visibleTitles,disclosures})=>{
+ const tab=document.querySelector('[data-page="integrity"]'),root=document.querySelector('#integrity'),box=document.querySelector('#integrityQueue');
+ return Boolean((()=>Boolean(enModeYear===2026&&jointBasis&&jointCompletedFrame&&jointLastResult?.samples===3000&&jointPulseBaseline?.samples===3000&&!jointModelPending&&!jointAsOfSnapshot&&!jointActiveKey&&jointRefreshTimer===null&&jointCacheKey===jointCompletedFrame.key&&jointCompletedFrame.key===jointFrameKey(jointValidatedFrameInputs())&&jointCompletedFrame.modelRevision===jointModelCodeRevision()&&jointCompletedFrame.payload.args.independentSenateCredit==='no_credit'))()&&!document.hidden&&document.body.dataset.activePage==='integrity'&&location.hash==='#integrity'&&tab?.getAttribute('aria-selected')==='true'&&root?.classList.contains('active')&&getComputedStyle(root).display!=='none'&&box&&JSON.stringify(integrityQueueData)===queueJSON&&JSON.stringify(impactLedger)===impactJSON&&JSON.stringify([...box.querySelectorAll(':scope > .racecard')].map(n=>n.querySelector(':scope > strong')?.textContent))===JSON.stringify(visibleTitles)&&box.querySelectorAll('details.integrity-source-review').length===disclosures&&[...box.querySelectorAll('details')].every(n=>!n.open)&&JSON.stringify([...document.querySelectorAll('script[src]')].map(n=>n.getAttribute('src')))===JSON.stringify(refs));
+};
+// Targeted app + first-response-source readiness; one shared native 30s budget.
+// Background network silence is not used as a proxy for these explicit facts.
+async function waitForApplicationSourceReady(page,predicate,args,{served,pinErrors,pinFiles,listeners}){
+ const deadline=performance.now()+30000;
+ const remaining=()=>{const ms=deadline-performance.now();if(ms<=0)throw new Error('Application/source readiness exceeded 30000ms');return Math.ceil(ms);};
+ let listener,timer;
+ const pins=new Promise((resolve,reject)=>{
+  listener=()=>{if(pinErrors.length)reject(new Error('First-response source verification failed: '+pinErrors.join('; ')));else if(pinFiles.every(file=>served.has(file)))resolve();};
+  listeners.add(listener);
+  timer=setTimeout(()=>reject(new Error('Application/source readiness exceeded 30000ms; missing pinned bodies: '+pinFiles.filter(file=>!served.has(file)).join(', '))),remaining());
+  listener();
+ });
+ try{
+  await Promise.all([pins,page.waitForFunction(predicate,args,{timeout:remaining(),polling:100})]);
+  // Recheck the same semantic state after all required first bodies completed,
+  // under the original shared deadline rather than starting another wait budget.
+  await page.waitForFunction(predicate,args,{timeout:remaining(),polling:100});
+  assert.deepEqual(pinErrors,[]);
+  assert.equal(served.size,pinFiles.length);
+ }finally{clearTimeout(timer);listeners.delete(listener);}
+}
 async function accepted(page){await page.waitForFunction(terminal);await page.evaluate(()=>jointWhenIdle());await page.waitForFunction(current);}
 async function saveBoundary(page){await page.evaluate(()=>{
  const refs=[jointLastResult,jointPublicResult,jointPulseBaseline,jointBasis,jointBasisPublic,jointCompletedFrame,modelRaceOddsData,impactLedger];
@@ -46,12 +71,13 @@ try{
   browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
   const context=await browser.newContext({viewport:{width,height},reducedMotion:'reduce',serviceWorkers:'block'}),page=await context.newPage();activePage=page;
   const errors=[],blocked=[],served=new Map(),reserved=new Set(),pendingPins=[],pinErrors=[],counts={requests:0,workers:0,external_attempts:0};
+  const pinReadinessListeners=new Set(),signalPinReadiness=()=>{for(const listener of pinReadinessListeners)listener();};
   page.on('pageerror',e=>errors.push(e.message));page.on('request',()=>counts.requests++);page.on('worker',()=>counts.workers++);
-  context.on('response',response=>{const u=new URL(response.url()),prefix=dashboard?.pathname||'/',own=dashboard?u.origin===dashboard.origin:u.hostname==='127.0.0.1';if(!own||!u.pathname.startsWith(prefix))return;const file=u.pathname===prefix?'index.html':decodeURIComponent(u.pathname.slice(prefix.length));if(!pinFiles.includes(file)||reserved.has(file))return;reserved.add(file);pendingPins.push(response.body().then(b=>{assert.equal(response.status(),200,file);assert(b.equals(pinned[file]),'Actual first-response pin: '+file);served.set(file,hash(b));}).catch(e=>pinErrors.push(e.message)));});
+  context.on('response',response=>{const u=new URL(response.url()),prefix=dashboard?.pathname||'/',own=dashboard?u.origin===dashboard.origin:u.hostname==='127.0.0.1';if(!own||!u.pathname.startsWith(prefix))return;const file=u.pathname===prefix?'index.html':decodeURIComponent(u.pathname.slice(prefix.length));if(!pinFiles.includes(file)||reserved.has(file))return;reserved.add(file);pendingPins.push(response.body().then(b=>{assert.equal(response.status(),200,file);assert(b.equals(pinned[file]),'Actual first-response pin: '+file);served.set(file,hash(b));}).catch(e=>pinErrors.push(e.message)).finally(signalPinReadiness));});
   await context.route('**/*',route=>{const u=new URL(route.request().url()),own=dashboard?u.origin===dashboard.origin&&u.pathname.startsWith(dashboard.pathname):u.hostname==='127.0.0.1';if(own)return route.continue();counts.external_attempts++;blocked.push(u.hostname);return route.abort();});
   await page.clock.install({time:new Date()});const url=new URL(dashboard?.href||'http://127.0.0.1:'+server.address().port+'/');url.hash='electionNight';await page.goto(url.href,{waitUntil:'load'});await page.locator('#enMode2026').click();await accepted(page);
   await page.waitForFunction(({queueAt,impactAt})=>integrityQueueData?.updated_at===queueAt&&impactLedger?.updated_at===impactAt,{queueAt:expectedQueue.updated_at,impactAt:expectedImpact.updated_at});
-  await page.locator('[data-page="integrity"]').click();await page.waitForLoadState('networkidle');await accepted(page);assert(counts.workers>0);assert.equal(await page.evaluate(()=>jointWorkerCompatibility),false);
+  await page.locator('[data-page="integrity"]').click();await waitForApplicationSourceReady(page,integrityApplicationReady,{queueJSON:JSON.stringify(expectedQueue),impactJSON:JSON.stringify(expectedImpact),refs,visibleTitles:expectedVisible.map(row=>row.title),disclosures:expectedChecked.length},{served,pinErrors,pinFiles,listeners:pinReadinessListeners});await accepted(page);assert(counts.workers>0);assert.equal(await page.evaluate(()=>jointWorkerCompatibility),false);
   assert.deepEqual(await page.evaluate(()=>[...document.querySelectorAll('script[src]')].map(n=>n.getAttribute('src'))),refs);
   await page.clock.pauseAt(new Date(await page.evaluate(()=>Date.now()+1000)));await accepted(page);await saveBoundary(page);const baselineCounts={...counts};
   const canonical=await page.evaluate(()=>{const cards=[...document.querySelectorAll('#integrityQueue > .racecard')];return{full_queue_matches_input:JSON.stringify(integrityQueueData),card_titles:cards.map(n=>n.querySelector(':scope > strong')?.textContent),summary:document.querySelector('#integrityQueueSummary').textContent,disclosures:document.querySelectorAll('#integrityQueue details.integrity-source-review').length,all_closed:[...document.querySelectorAll('#integrityQueue details')].every(n=>!n.open)};});

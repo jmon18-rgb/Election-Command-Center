@@ -1,5 +1,13 @@
 # JackStradamus · development plan
 
+## October31 — UTF-8 tooling and browser-readiness integration
+
+The next source candidate fixes the reviewed-queue Python subprocess's Windows text decoding and installs the explicit app/current-model/first-response-pin readiness checks within the same30s ceiling. All previous cases, assertions, widths, research2k/production3k inputs and model deadlines remain. The actual first binding error and all original network-idle failures are preserved; no website-cause claim or deadline waiver is made.
+
+Two qualified MN/NC source updates were applied once through the installed corrected keyed CLI:10checked/240pending/250total, with all248 other rows/order/clocks/new-lead metadata, unchanged Python triage and impact ledger retained. General guidance and prosecutor allegations are labelled with their authentication and outcome limits. This adds no incident, voter-impact, source/call authority or forecast likelihood. The separate Alaska segregation headline stays pending. The broad integrity backlog, real source coverage, empirical and human acceptance rows remain open.
+
+The first integrated114core checks and actual Chrome1366/390 source-disclosure task pass. Protected exact-head CI, merge and actual final-current-main publication verification remain pending; this integration note is not a release or100% completion claim.
+
 ## October31 — PR544 COMPLETE / VERIFIED PUBLISHED
 
 Native collapsed reviewed-source disclosures now show safe source links, dates, case identifiers and explicit evidence limits. Exactly five editorial decisions were applied once; eight checked leads are not incidents or verified voter impacts. All245 other rows/order/clocks, the impact ledger and source/call/model authority are preserved. The bounded12-card window displayed four checked cards in the actual journeys; all five decisions are validated in data.
