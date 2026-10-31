@@ -391,3 +391,31 @@ jobs:
           path: artifacts/readiness/ui-review/research-sensitivity/
           if-no-files-found: warn
           retention-days: 7
+
+  integrity-review-browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install the pinned browser and DOM runtimes
+        run: |
+          npm install --no-save --no-package-lock playwright@1.57.0 jsdom@26.1.0
+          npx playwright install --with-deps chrome
+      - name: Actual source disclosure rejects unsafe links and retains pending and empty states
+        run: node scripts/test_integrity_review_disclosure.cjs
+      - name: Reviewed sources and limits remain readable without changing forecasts or risk totals
+        env:
+          BROWSER_CHANNEL: chrome
+          UI_REVIEW_OUTPUT_DIR: artifacts/readiness/ui-review/integrity-review
+        run: node scripts/test_integrity_review_browser.mjs
+      - name: Upload native source-disclosure and model isolation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integrity-review-browser
+          path: artifacts/readiness/ui-review/integrity-review/
+          if-no-files-found: warn
+          retention-days: 7

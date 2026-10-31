@@ -1,5 +1,13 @@
 # JackStradamus · development plan
 
+## October30 — reviewed-source disclosure integration
+
+The actual queue renderer now has native collapsed source/limits details with safe links, checked dates, case identities, review notes and authentication limits. Keyed editorial tooling accepts only reviewed four-field decisions against exact current item hashes, preserves newer rows and uses the unchanged existing pure triage. Five accepted decisions cover two Alaska leads about ONE case, Mississippi legal background, the Arkansas certiorari/extension lineage, and a distinct D.D.C. copied-text procedural followup. This working source change moves checked leads3→8/pending247→242, retains245 other rows/feed clocks, and leaves the impact ledger, source/call eligibility and all numerical bodies unchanged. Advisory buckets remain24; their related-headline count70→69 is the actual existing triage output, not a voter/incident total.
+
+All114core checks, both focused editorial/DOM controls, the complete actual dashboard DOM suite, and native Chrome1366/390 source-disclosure and research journeys pass locally. The bounded first12-card native view exposes four checked cards per viewport; all five data decisions are independently validated, not claimed as five newly visible incidents. Both browser fixtures now use a fresh Chrome process per viewport while retaining every original width, assertion, input, sample and30-second wait. This responds to the preserved published second-context failures without claiming their exact cause or a product defect.
+
+Independent integrated source audit75990318032343434e0fe11b0fcd46891c5cd6869a182b851a0d831bdd232f78 passes. Exact-head CI, protected merge and actual publication remain pending. The substantive primary-source backlog, current lawful consequences/unique voter records, chronological calibration, missing native return packages, real positive delivery, capacity/no-paid proof and human acceptance remain open. Primary-source copies and party requests are expressly distinguished from native authenticated court findings.
+
 ## October30 — PR543 COMPLETE / VERIFIED PUBLISHED
 
 Nationwide preference/participation-composition assumptions, modest/base/large scaling and actual Independent-axis withholding are delivered. The matched2,000-draw research comparison leaves production3,000-draw frames unchanged. House/Senate details now describe active captured input weights and anchors in a RAM-only WeakMap; unavailable exact public House anchors remain withheld. These are explicit assumptions and input explanations, not measured turnout, empirical accuracy or Silver final odds.

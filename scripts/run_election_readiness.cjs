@@ -118,6 +118,7 @@ const checks = [
   ['Offline chronological replay/scoring mechanics only (zero admitted datasets or calibration)', 'test_historical_evaluation_replay.cjs'],
   ['Research preference/participation and active-input arithmetic (pure assumptions; no model draws)', 'test_research_sensitivity_contracts.cjs'],
   ['Accepted race-input snapshot binding and research UI identity (pure VM; no browser)', 'test_research_ui_bindings.cjs'],
+  ['Keyed editorial source review preserves newer records and forbids impact or score promotion', 'test_integrity_queue_review.cjs'],
   ['Raw returns cannot calibrate national odds', 'test_joint_needle_raw_returns_gate.cjs'],
   ['Senate holdover accounting', 'test_senate_holdover_audit.cjs'],
   ['506 race gap desk', 'test_election_night_506_live_gap_desk.cjs']

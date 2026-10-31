@@ -115,8 +115,9 @@ function assertAccepted(state){for(const key of ['all_object_identities','whole_
 async function fill(page,values){for(const[id,value]of Object.entries(values))await page.locator('#'+id).fill(String(value));}
 let browser,activePage;const reports=[];
 try{
- browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
  for(const[width,height]of[[1366,900],[390,844]]){
+  // Each viewport represents a separate browser/device session. Keep paused clocks and transport lifecycle state isolated.
+  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
   const context=await browser.newContext({viewport:{width,height},serviceWorkers:'block',reducedMotion:'reduce'}),page=await context.newPage();activePage=page;
   const errors=[],blocked=[],pinErrors=[],pendingPins=[],served=new Map(),reserved=new Set(),counters={requests:0,workers:0,external_attempts:0};
   page.on('pageerror',e=>errors.push(e.message));page.on('request',()=>counters.requests++);page.on('worker',()=>counters.workers++);
@@ -218,7 +219,7 @@ try{
   await page.locator('#labReset').click();assert.equal(await page.locator('#labMode').inputValue(),'margin');assert.equal(await page.locator('#labScale').inputValue(),'1');assert.equal(await page.locator('#labScope').inputValue(),'single');assert.equal(await page.locator('#labState').isEnabled(),true);assert.equal(await page.locator('#labCompositionFields').isHidden(),true);assert.match(await page.locator('#labResults').innerText(),/Published forecast unchanged/);assertAccepted(await acceptedUnchanged(page));assert.deepEqual(counters,beforeResearch);
   await Promise.all(pendingPins);assert.deepEqual(errors,[]);assert.deepEqual(pinErrors,[]);assert.equal(served.size,pinFiles.length);for(const file of pinFiles)assert(served.has(file),file+' first response pinned');
   reports.push({width,height,diagnostics:{imported_senate:importedSenate,imported_house:importedHouse,mixed_private_context_public_house:mixed,public_house:publicHouse,public_senate:publicSenate,capture},scenario,invalid,native_disclosure_keyboard:true,keyboard_table:{...scrollBefore,after_left:scrollAfter},accepted_bundle_identity_and_values_preserved:true,source_requests_and_live_workers_added_by_research:0,observed_session_counters:{...counters},genuine_worker_required:true,research_samples_per_election:2000,real_main_thread_research_elections:2,production_samples:3000,canonical_runtime_reference_count:runtimeReferences.length,canonical_runtime_reference_order_sha256:hash(runtimeReferences.join('\n')),fixed_worker_imports:workerImports,blocked_provider_hosts:[...new Set(blocked)],source_pins:Object.fromEntries(served)});
-  await context.close();
+  await context.close();await browser.close();browser=null;
  }
  for(const file of pinFiles)if(!dashboard)assert(readFileSync(resolve(root,file)).equals(pinned[file]),'Source stayed frozen through browser run: '+file);
  writeFileSync(resolve(out,'research-sensitivity-browser.json'),JSON.stringify({status:'PASS',at:new Date().toISOString(),harness_sha256:harnessSHA,published_https:Boolean(dashboard),published_main:publishedMain,pages_run:dashboard?process.env.DASHBOARD_TEST_PAGES_RUN:null,source_pin_count:pinFiles.length,reports,scope:'Actual application controls and native Worker with external providers blocked. Explicit fictional composition assumptions; no Census/turnout estimates, empirical skill, calibrated national transfer or physical-device acceptance. Private inputs and complete accepted bundles stay in RAM, not proof output. No runtime source/function or website-body override.'},null,2)+'\n');
