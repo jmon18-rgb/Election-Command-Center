@@ -3,7 +3,7 @@
 (function(){
  'use strict';
  const PROTOCOL='joint-model-worker-v1';
- const IMPORTS=Object.freeze(([{"name":"election_night_poll_closings_2026","stamp":"39c725fe013b"},{"name":"washington_remaining_source","stamp":"a106231b5d51"},{"name":"washington_remaining_scenarios","stamp":"1a313f060a7e"},{"name":"source_call_conditioning","stamp":"9180df7432b1"},{"name":"chamber_control_model","stamp":"36064c2a9836"},{"name":"national_county_likelihood","stamp":"48e16427f122"}]).map(Object.freeze));
+ const IMPORTS=Object.freeze(([{"name":"election_night_poll_closings_2026","stamp":"39c725fe013b"},{"name":"washington_remaining_source","stamp":"46684e4ee772"},{"name":"washington_remaining_scenarios","stamp":"1a313f060a7e"},{"name":"source_call_conditioning","stamp":"9180df7432b1"},{"name":"chamber_control_model","stamp":"36064c2a9836"},{"name":"national_county_likelihood","stamp":"48e16427f122"}]).map(Object.freeze));
  const MODEL_REVISION="./scripts/source_call_conditioning.js?v=9180df7432b1|./scripts/chamber_control_model.js?v=36064c2a9836|./scripts/national_county_likelihood.js?v=48e16427f122";
  const ERROR_CODES=Object.freeze(['INVALID_REQUEST','STATIC_MODEL_UNAVAILABLE','MODEL_COMPUTATION_FAILED','INVALID_MODEL_RESULT']);
  const VARIANT_IDS=Object.freeze(['house_shadow','presidential_shadow','correlation_moderate','correlation_lower']);

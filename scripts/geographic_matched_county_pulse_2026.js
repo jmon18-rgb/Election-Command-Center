@@ -42,6 +42,9 @@
   let reference=null,latest=-Infinity,providers=new Set(),previousYear=null;
   for(const id of ids){
    const row=rows[id];
+   // Any persisted conflict marker withholds the WHOLE numeric sample;
+   // last-good county counts remain available for audit, never cherry-picked.
+   if(row&&own(row,'advisory_quarantine')){rejected++;continue;}
    if(!row||id!==row.race_key+'|'+row.county_id||
       row.race_key!==raceKey||!returns.validate(row)){
     rejected++;continue;

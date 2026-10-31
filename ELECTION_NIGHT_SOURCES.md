@@ -2,6 +2,14 @@
 
 Updated October 13, 2026. Goal: a useful, trustworthy watch-through-the-evening dashboard that **keeps actual vote counts separate from race calls, from projections, and from polling averages.**
 
+## County and remaining-ballot eligibility
+
+Missing county rows and missing candidate totals are unavailable evidence, never implied zero votes. The eighteen connected county routes require their complete matched county or district-part roster. Unreported counties remain in the historical turnout scenarios; those scenarios are not a measured count of ballots outstanding. County timing, voting-method selection and shared reporting error remain uncertain. Seven of the eleven owner Senate county paths are connected; Michigan, Minnesota, Mississippi and Alaska still require admissible current source packages. KY-06, IN-05 and FL-SEN also lack the required current matched-area packages.
+
+Washington's optional estimate supplement rejects known test/mock or nonproduction markers on the payload, statistic, group or any county, including counties outside WA-03. Rejecting the supplement preserves independently valid counted votes and the historical remaining-turnout fallback. The supplement covers six whole WA-03 counties only; Thurston's whole-county estimate is never allocated to its district part. Neither an estimate of zero nor a precinct percentage certifies that all ballots have been counted.
+
+The separate generic county comparison keeps its last good rows for audit after a conflicting correction, but their descriptive comparison stays quarantined through retries and JSON reloads. Only a valid explicitly marked source revision newer than both the retained row and the conflicting report can restore eligibility. This advisory state does not feed the national model. Correct source identity and numerical safeguards do not establish predictive calibration: independent chronological whole-election validation remains required.
+
 ## October 24 — Minnesota official export-file identities (mock data quarantined)
 
 Minnesota SOS offers machine-readable, **semicolon-delimited, 16-column candidate-area records** for the 2026 general election through its [official download index](https://electionresults.sos.mn.gov/Select/MediaFiles/Index?ersElectionId=201) and publishes the [field layout](https://electionresults.sos.mn.gov/Results/MediaFileLayout/Index?erselectionId=201). Independent review confirms specific Senate statewide and county files, U.S. House district and county files, governor statewide, and precinct reporting statistics on the official `electionresultsfiles.sos.mn.gov/20261103/` host. The SOS says the files can update every 15 minutes or less on Election Night, but precinct-level files are **not available until the next morning**. County IDs in those files must be independently joined to official FIPS before use in the county needle.

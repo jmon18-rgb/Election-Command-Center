@@ -100,6 +100,44 @@ class OfficialBackstopsTests(unittest.TestCase):
         self.assertIn("neither official nor unofficial",nj["scope_note"])
         self.assertIn("not an independently reconciled",nj["scope_note"])
 
+
+    def test_nj12_withdrawal_has_grounded_manual_references_not_a_restored_feed(self):
+        evidence=json.loads((ROOT/"data/new_jersey_house_12_manual_reference_evidence.json").read_text())
+        self.assertEqual(evidence["id"],"House|NJ-12")
+        nj=next(row for row in self.links["links"] if row["state"]=="NJ")
+        self.assertEqual(set(nj["race_ids"]),{"House|NJ-07","House|NJ-12"})
+        self.assertEqual(nj["url"],evidence["official"]["url"])
+        self.assertEqual(nj["mode"],"county_results_directory_only")
+        self.assertIn("neither official nor unofficial",nj["scope_note"])
+        self.assertIn("not an independently reconciled NJ-07 or NJ-12 district total",nj["scope_note"])
+        self.assertFalse(evidence["official"]["new_retrieval_performed"])
+        page=next(row for row in self.links["public_editorial_calls"]["race_pages"]
+                  if row["id"]=="House|NJ-12")
+        observed=evidence["ddhq"]
+        self.assertEqual(page["url"],observed["url"])
+        self.assertEqual(page["url"],"https://votes.decisiondeskhq.com/races/2026-11-03/new-jersey-us-house-12-general-election")
+        self.assertEqual(observed["observed_header"],"2026 New Jersey US House 12")
+        self.assertEqual(observed["observed_election_date"],"2026-11-03")
+        self.assertEqual(observed["observed_state"],"NJ")
+        self.assertEqual(observed["observed_office"],"House")
+        self.assertEqual(observed["observed_district"],12)
+        self.assertEqual(observed["verification_level"],"READER_VISIBLE_BASE_PAGE_IDENTITY_ONLY")
+        self.assertEqual(observed["page_kind"],"PUBLIC_PRE_ELECTION_FORECAST_LANDING")
+        self.assertTrue(observed["public_page_read_without_account"])
+        self.assertTrue(observed["results_navigation_seen"])
+        self.assertFalse(observed["results_body_read"])
+        self.assertFalse(observed["fresh_native_HTTP_or_last_published_time_claimed"])
+        self.assertIn("cached reader",page["verification"])
+        self.assertIn("no actual result or winner call verified",page["verification"])
+        self.assertTrue(evidence["no_actual_results_verified"])
+        for key in ("automatic_vote_ingestion_authorized","automated_call_authorized",
+                    "native_results_machine_identifier_verified","rights_or_license_grant_claimed",
+                    "county_results_complete_or_matched_claimed"):
+            self.assertFalse(evidence[key])
+        self.assertFalse(any(key in page for key in
+                            ("reported_votes","winner","winner_call","forecast_probability",
+                             "provider_race_id","source_registry")))
+
     def test_links_cannot_masquerade_as_live_results(self):
         for item in self.links["links"]:
             parsed=urlparse(item["url"])
