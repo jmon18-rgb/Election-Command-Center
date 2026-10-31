@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-10-31T19:47:48.785567Z",
+  "updated_at": "2026-10-31T20:47:39.495528Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -259,6 +259,45 @@
     }
   ],
   "items": [
+    {
+      "id": "4604a09b1c24f2d6e1e1",
+      "title": "Analysis: More than 40% of names on DOJ list of alleged noncitizens not on California's voter rolls - PBS",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNUTlRUHRKUC04Q2ZKLTlQdGxMc08tRGxNU2dVSjFpcmdiSmtEcU1vcGpFNHBYQWxoYXBteGVaUUtKQWZwRkxoODd0b3VtR0lacTV2R1h1T3Q4dXBvUkItdjRocUl1bkhiN29SNTZMVy1VTW40UFFRbmkzVWJZcFNyQVMxMzFMLWtjZXVYWE02SlFWYVF1MlBDcEZHWU16d2tVMEZEYTVzcVBvN3JiUG45cjBIcWM5d1FmSmNRRG9oMkhEdXItbi1qemlmOXVDMTTSAdQBQVVfeXFMTlZZbDFEWnBPVG1BQnc0SVpQSVMtUTNfT0doV1ZlX01IZ3piT2l5S1R1Q3VjQkFvYUZJY0EzXzNEbTFTdnRkZ2VSMk5rQXJjMHRtWjU5LVBOZnhyMGsyNDNZTEw5N3JTQl91UW9Kam1NTUNmNGx1Q3ZhRWZmUmhRZlplMzdnRHBrcDdJNFBiOGpGV1dKNVUwclFMbHFPanpUSm94bUxydVFXS0pCanhEbVVfOGNCd1o2eDd4anhUMnkwMjJpYlpFSDY3TlNqNDNQaGFRQS0?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-10-31T20:03:15Z",
+      "detected_at": "2026-10-31T20:47:39.495528Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [
+        "40"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3f71b2ec9cd501fce792",
+      "title": "US election officials brace for violence and intimidation at polling booths - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNcGlreWJQcDN4TlRqblFZU1pwNG83WWh3WTJMazNUS21jTXBhYzhuaFNWNG1BeVB0TXNhSHIzUm0tdGowaWNDbXFPYUUxR2dZaEpFZzV5MFN6Tkh0eVZMU0E3RzZocXZRS1FLSjB4Mk9hSVhmbzVmUFU1ZURoMWRoRllsbW5wV0cxOVdqUkpvdGVyMWswOFpUXzdtMHpQOVpLT1NIZWRHcVd5czdsckk0dUJn?oc=5",
+      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "published_at": "2026-10-31T19:32:46Z",
+      "detected_at": "2026-10-31T20:47:39.495528Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "4e83b2be9d9a56ef6c82",
       "title": "Tracking the DOJ's effort to get U.S. voter registration data - NBC News",
@@ -5197,42 +5236,6 @@
       "headline_numbers_unverified": [
         "28 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3d4dcbcc0e0c5a43a400",
-      "title": "Early voting in NC in 2026. Everything you need to know. - News-Topic",
-      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQR29Qdk5mTE9nY0VYeHJqWGdsME9CZmw4X0dqMTR1aTVReHYtM1hBdHd5OEQwTmtYYnEzTXVXTkthRm8tb2h0amo4ZXR5QWlUdWg1bVVuRTF3a3NJX3RFUXVLTUtud2dVSFp3ZUFoZE5LM1FJQldnd0dsdEo1MWxUVGxWQ3ozWHo0aHhzd04tS3VtZnBHMHVBX2xscENFTFo0eG5kcGI1UVNULXJSTjBhSnI4eXpPNkZ6NmJsSnU3ZzhmWDhXZ1VQQ1N1alg4MUxWUEI2dTlrNWduODQ?oc=5",
-      "publisher": "News-Topic",
-      "published_at": "2026-10-20T14:03:00Z",
-      "detected_at": "2026-10-20T20:47:47.148953Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bd8fec64c12ae34380a2",
-      "title": "Noncitizens don't vote in large numbers in US elections. Here's proof - Snopes",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1hSW1xWEpCVUdtOW80ZEFFMFhadVNWdnhFcTVlN1Ewb2FrRGtyUThxVXBpVVNHWTlEZmRDSWczRkZEMmI4Yk1sUmUxQWFlVFpUNXNVbU9PbWY2bTJYNkJXWXVlUnJER01FZVdsUzRrN3JaV0ZzYXlnbWlmSDNuZw?oc=5",
-      "publisher": "Snopes",
-      "published_at": "2026-10-20T10:05:29Z",
-      "detected_at": "2026-10-20T14:48:34.161178Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
