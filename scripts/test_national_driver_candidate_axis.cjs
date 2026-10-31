@@ -68,10 +68,10 @@ check('Rehearsal projection retains the same typed axis without inventing a rema
 });
 const ordinary={code:'OH-SEN',as_of:'2026-11-04T04:05:00Z',reporting_counties:3,counted_two_party_votes:20000,modeled_remaining_two_party_votes:10000,modeled_remaining_two_party_votes_band:[5000,15000]};
 check('Existing D/R current driver wording and all numeric formatting stay exact',()=>{
- assert.equal(render(current([ordinary])).text[0],'OH-SEN · D win 40.0 → 60.0% (+20.0 pp) · civicAPI · 3 counties · 20,000 D/R votes · modeled remaining 10,000 (turnout scenario 5,000–15,000)');
+ assert.equal(render(current([ordinary])).text[0],'OH-SEN · EARLY SIGNAL · D win 40.0 → 60.0% (+20.0 pp) · civicAPI · 3 counties · 20,000 D/R votes · modeled remaining 10,000 (turnout scenario 5,000–15,000)');
 });
 check('Existing D/R rehearsal wording stays exact',()=>{
- assert.equal(render(rehearsal([ordinary])).text[0],'OH-SEN · D win 40.0 → 60.0% (+20.0 pp) · SIMULATED · 3 counties · 20,000 D/R votes');
+ assert.equal(render(rehearsal([ordinary])).text[0],'OH-SEN · EARLY SIGNAL · D win 40.0 → 60.0% (+20.0 pp) · SIMULATED · 3 counties · 20,000 D/R votes');
 });
 check('Existing validated Republican-call row retains typed Independent candidate labels',()=>{
  const c={jointPulseRows:[],r:{code:'NE-SEN',nonrep_independent_proxy:true},office:'Senate',civic:{percent_reporting:100},verified:{party:'R',at:'2026-11-04T04:05:00Z'}};
