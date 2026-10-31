@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-31T01:12:02.585184+00:00",
+  "updated_at": "2026-10-31T01:16:08.611352+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,34 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 336,
-  "newly_injected_into_model": 6,
-  "injected_poll_ids": [
-    {
-      "race_code": "ME-GOV",
-      "poll_id": "ace5053f-e892-4ca2-a2d9-b96249dc8c27"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "ace5053f-e892-4ca2-a2d9-b96249dc8c27"
-    },
-    {
-      "race_code": "MI-GOV",
-      "poll_id": "6aa99f8a-1d58-4606-9f29-bd132b6f9dc1"
-    },
-    {
-      "race_code": "MI-SEN",
-      "poll_id": "6aa99f8a-1d58-4606-9f29-bd132b6f9dc1"
-    },
-    {
-      "race_code": "TX-GOV",
-      "poll_id": "f31e142f-d353-45f2-8409-f4e442b6383c"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "f31e142f-d353-45f2-8409-f4e442b6383c"
-    }
-  ],
+  "matched_primary_observations": 342,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "MI-SEN",
