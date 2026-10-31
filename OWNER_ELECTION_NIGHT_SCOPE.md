@@ -1,5 +1,11 @@
 # Personal election-night dashboard — owner scope, October 27
 
+## October30 — PR541 COMPLETE / VERIFIED PUBLISHED
+
+Offline chronological replay and explicit paired research arithmetic are verified published at c6a250a9/Pages41147469069; all3PRparents/14jobs13SUCCESS1declaredSKIP/14checks/0external pass, with27fresh public hashes, coherence13/no_credit and129source bodies. The application runtime is unchanged: original540 Chrome/ordinary evidence stays at59ac through the exact92-reference/20-pin/sixWorker/23asset identity manifest. No fresh browser, Mac hearing, current-render/forecast equality, dataset admission or calibration claim.
+
+Outcome be05301cd69aed0167edb3487b35a8c294d14ec6501f45d54ef4cab8f84c899f and independent published audit aefc0c0392b0799bf3732cbce11c7256f5116f667d14dbda7942559bc22e85af are retained. Exactly one27→28 component was appended; original guide1.0/eleven human tasks/results remain unchanged. MacBookChrome audio feedback is pending;540fix/private ten-song handoff remains live. See readiness-progress.md and pr541-remaining-readiness-assessment.json for exact remaining inputs/triggers. No new media or playback demo is required.
+
 ## October30 — PR540 COMPLETE / VERIFIED PUBLISHED
 
 Chrome native media errors now survive both the play-promise rejection and later pause event. Normal autoplay recovery remains available. Browser-local MISSING/STORAGE/INVALID messages distinguish a missing import from an unreadable recording. All ten supplied MP3s previously played through native Chrome155 in isolated tests; Queen begins after about2.974s. The owner uses MacBook Chrome and Safari mobile. Supplied songs remain private per browser/profile: transfer the private ten-file ZIP, unzip, then Load supplied song pack once there. IAB32 assignments remain unchanged; no MP3/ZIP/private CSV/key is committed or publicly hosted, and actual Mac playback/listening remains unobserved.

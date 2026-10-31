@@ -1,5 +1,11 @@
 # National needle acceptance decision — October 27, 2026
 
+## October30 — PR541 COMPLETE / VERIFIED PUBLISHED
+
+Offline chronological replay and explicit paired research arithmetic are verified published at c6a250a9/Pages41147469069; all3PRparents/14jobs13SUCCESS1declaredSKIP/14checks/0external pass, with27fresh public hashes, coherence13/no_credit and129source bodies. The application runtime is unchanged: original540 Chrome/ordinary evidence stays at59ac through the exact92-reference/20-pin/sixWorker/23asset identity manifest. No fresh browser, Mac hearing, current-render/forecast equality, dataset admission or calibration claim.
+
+Outcome be05301cd69aed0167edb3487b35a8c294d14ec6501f45d54ef4cab8f84c899f and independent published audit aefc0c0392b0799bf3732cbce11c7256f5116f667d14dbda7942559bc22e85af are retained. Exactly one27→28 component was appended; original guide1.0/eleven human tasks/results remain unchanged. MacBookChrome audio feedback is pending;540fix/private ten-song handoff remains live. See readiness-progress.md and pr541-remaining-readiness-assessment.json for exact remaining inputs/triggers. No new media or playback demo is required.
+
 ## October30 — offline chronological replay/scoring source integration
 
 The new Node-only `scripts/historical_evaluation_replay.cjs` fills the execution gap after the released package preflight. An explicit offline caller supplies retained bytes, reviewed decoders and all three frozen predictors. It owns the package, snapshots and predictor slots, records chronological outputs without final truth in the predictor packet, and decodes final truth in a separate scoring phase. The existing preflight initially reads and hashes every retained artifact, including truth; this is a decoding/scoring lifecycle guarantee, not a claim that truth bytes were never read.
@@ -8,7 +14,7 @@ Callbacks are trusted research code, not a security sandbox or proof of contempo
 
 The separate scorePaired, aggregatePaired and scoreRetainedPairedTrace APIs compare model versus each fixed polling-only/naive-count baseline on exactly shared selected event IDs. Cohort IDs/hashes, asymmetric withholding, ties, negative remaining and usable/undefined race/election counts stay visible. Extended loss means are formed on identical common cohorts before absolute baseline-minus-model gains; infinite/undefined differences are retained. Coverage and width remain side by side. Existing unpaired summaries keep their null paired-skill marker.
 
-Focused source checks now pass locally: all sixteen original controls plus ten named paired-arithmetic controls. Independent changed-code review, protected CI and publication remain pending. These synthetic mechanics use zero actual datasets and zero model draws. Actual historical normalizers/frozen predictors, independently admitted chronology/rights/whole-election heldouts, empirical paired common-cohort skill and national chamber/Four-Endings transfer remain open. Empirical datasets/heldouts remain zero and acceptance metricsNULL/NOT_ESTIMABLE; the formal R2 NO-GO remains unchanged. No browser/runtime index, numerical forecast, source/call authority or operator guide/task change is part of this utility.
+PR541 is now verified published after independent changed-code review, all applicable exact-head CI and current-main publication checks. All sixteen original controls plus ten named paired-arithmetic controls passed; the source-integration record below is completed history. These synthetic mechanics use zero actual datasets and zero model draws. Actual historical normalizers/frozen predictors, independently admitted chronology/rights/whole-election heldouts, empirical paired common-cohort skill and national chamber/Four-Endings transfer remain open. Empirical datasets/heldouts remain zero and acceptance metricsNULL/NOT_ESTIMABLE; the formal R2 NO-GO remains unchanged. No browser/runtime index, numerical forecast, source/call authority or operator guide/task change is part of this utility.
 
 
 ## October30 — PR540 COMPLETE / VERIFIED PUBLISHED
