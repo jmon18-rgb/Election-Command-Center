@@ -339,6 +339,21 @@
       ]
     },
     {
+      "state": "NY",
+      "name": "New York City official results index (NY-13)",
+      "url": "https://vote.nyc/page/election-results-summary",
+      "mode": "county_results_directory_only",
+      "verified_at": "2026-10-31",
+      "source_reference": "https://vote.nyc/page/election-results-summary",
+      "jurisdiction_reference": "https://vote.nyc/sites/default/files/pdf/maps/cd/2026/CD_2024_13.pdf",
+      "scope_note": "Official NYC results index lists NY-13 for New York County (Manhattan) and Bronx in the 2026 primary. November 3 general results not verified. This is a human-check directory, not an independently reconciled NY-13 district total; never substitute or sum primary or county totals as general-election votes.",
+      "general_2026_results_verified": false,
+      "primary_results_used_as_general_votes": false,
+      "race_ids": [
+        "House|NY-13"
+      ]
+    },
+    {
       "state": "OR",
       "name": "Oregon official general-election guidance",
       "url": "https://sos.oregon.gov/elections/Pages/current-election.aspx",
@@ -963,6 +978,13 @@
         "verified_at": "2026-10-27",
         "verification": "Publisher public directory declares this exact 2026 general-election race link; WI02 separately resolved by ordinary public race search. Human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
         "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/new-york"
+      },
+      {
+        "id": "House|NY-13",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/new-york-us-house-13-general-election",
+        "verified_at": "2026-10-31",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/new-york/new-york",
+        "verification": "Exact 2026 New York US House 13 base href observed in publisher county directory and opened by that link. Cached reader shows Oct 23 pre-election forecast; no actual result or winner call verified. Review date is identity inspection, not fresh results availability."
       },
       {
         "id": "House|OH-01",
