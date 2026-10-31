@@ -1,5 +1,13 @@
 # JackStradamus · development plan
 
+## October30 — remaining research controls in source integration
+
+The reviewed nationwide preference/participation-composition lab and captured per-race active-input explanations are now promoted for testing. National scope requires all50actual House state identities; named cohorts and remainder use explicit disjoint assumed voter shares/preferences/relative participation, with modest/base/large scaling and the existing ±12-point guard. Independent/non-Democratic Senate axes stay unchanged and listed. Existing2,000matched-draw research simulation remains separate from production3,000draws and live source/call admission.
+
+Active House/Senate anchor and polling weights describe the basis captured with the accepted race snapshot in a RAM-only WeakMap. Missing exact public House anchors remain unavailable; no anchor is reverse-engineered from clipped odds. No diagnostic fields are added to forecasts, history, exports, worker messages or persistence. Actual source context distinguishes repository/local inputs; public rows do not deny imports active elsewhere.
+
+The original electorate test is byte-identical and passed against the promoted real model;113core checks, the complete actual dashboard DOM suite and targeted Chrome1366/390 controls pass. Independent source/integration/fixture/workflow reviews pass; exact-head protected publication remains pending. The first DOM missing-helper fixture error and mobile native-scroll observation failure are retained. A scoped manual-module load and a real native-scroll commit observation preserve every original assertion, width, sample and deadline; no product/numerical repair or human latency claim. Keep the research implementation boxes open until verified publication. Empirical demographic joins, predictive skill and independent whole-election validation remain separate open gates. Next reviewed source work is the keyed Alaska/source-limits disclosure candidate.
+
 ## October30 — PR542 COMPLETE / VERIFIED PUBLISHED; next roadmap source work active
 
 The ten assigned supplied songs are now built into the site at the owner's explicit request, superseding required per-browser imports for those defaults. Optional private replacements remain local; private ZIP/CSV/preferences/keys remain unpublished. Actual published Chrome1366/390 native playback covered all ten, plus a390 storage-denied context, and saved-override/error-recovery checks passed. Native controls may still require a click or tap. No actual owner hearing or universal device permission claim.

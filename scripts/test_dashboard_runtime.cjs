@@ -195,6 +195,9 @@ async function settle(){
  w.eval(read('scripts/official_admission_audit.js'));
  assert(w.OfficialAdmissionAudit?.create,'Official model admission evidence must load before app');
  w.eval(read('scripts/electorate_what_if_2026.js'));
+ w.eval(read('scripts/active_race_input_diagnostics.js'));
+ assert.equal(typeof w.ActiveRaceInputDiagnostics?.explain,'function',
+  'Load the actual active-input helper in production order before app rendering');
  assert(w.ElectorateWhatIf2026,'What-if electorate scenario module must load before app');
  w.eval(read('scripts/chamber_poll_error_audit.js'));
  assert(w.JackErrorAudit,'Retrospective Senate error audit must be loaded before app');
