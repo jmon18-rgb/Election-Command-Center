@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T11:46:53.894500Z",
+  "updated_at": "2026-11-01T13:00:38.609018Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -269,6 +269,23 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "52fbae6d50ab0e505538",
+      "title": "India opposition holds major rally against voter roll revisions - DW.com",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNS09QVUljNWxnMDB1UndSazY1QlZLZUNFbVR3d3Zwa0lySC1MQjI0eGozYl90Rjhwb3Fma3ZpeXFxbVVub21leERkczJNZGxSQXQ4WnF0N0dVbWl0cGFEM291d3Q3Q24zc3JxM3hDek9oSk1oWVFrZlh5bUo5RFZVZ19YQno4dHBoYkFRd0s4SEdmSjk2Qmx4Zmk4SVNWRU4tN2F4THhCeW9NTlVoUVZv?oc=5",
+      "publisher": "DW.com",
+      "published_at": "2026-11-01T06:59:52Z",
+      "detected_at": "2026-11-01T13:00:38.609018Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5216,23 +5233,6 @@
       "promoted_to_incident_id": "tx-bexar-leon-valley-scanner-jam-20261020",
       "review_notes": "Primary on-record event or court action corroborated; allegation/administrative report does not establish eligible ballots lost. See curated linked case for exact scope and status.",
       "reviewed_as_of": "2026-10-22"
-    },
-    {
-      "id": "a7d5aae73db0567fd22d",
-      "title": "Trump Administration Bought Data Broker Info To Beef up Your Voter Record. A Lawsuit Calls It \u2018Sweeping Surveillance\u2019 - All About Cookies",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFB6MzRVeU9RTm9DWHR6ODZpdG5uenhTT01jcWRMd21kSlZpOGlPWXozcW1IOFhkTmE5cXBkeVQ1RlhTMTR6OElwWTBCc1RYVHNMMVE5ZW1QNU5qOEljTUV5bTRoeFpWMm9BbWN3RzRXdk1VQWkxX2c?oc=5",
-      "publisher": "All About Cookies",
-      "published_at": "2026-10-20T18:13:00Z",
-      "detected_at": "2026-10-20T18:53:05.288966Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
     }
   ]
 }
