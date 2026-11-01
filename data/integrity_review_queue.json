@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-01T04:59:45.611721Z",
+  "updated_at": "2026-11-01T05:55:27.319744Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -382,6 +382,25 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "65eea503d7fa3b98472e",
+      "title": "Trump administration retools its battle over elections to keep fights alive after Election Day - The Washington Post",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPRGpZalZEVFBBcWgyOG9KakozUkpWVEktNXN2eVQycUM3RXY5TDZacXB2UjBwd1FIeTRNY2xDc3V6Z0VSeVdFc3BGaXNHeFBlcllvV05mZ3hEQ0ZtMzFCSUFLbzFrZzZJVmM0NFBBcTdDZ0NHa3RBNDRvOG1LUGl5R1doejJfQlY4eFJBT1EzajBRa05acDMyTTB0UjRVYzJqTXQxWnF0VDBPcUF3Yk1mZjBPclltQTZSNzI4cVVqWFZrV0tMalRxcWVaVFpVemJZbUhXOS1uT054LTA?oc=5",
+      "publisher": "The Washington Post",
+      "published_at": "2026-10-31T17:00:00Z",
+      "detected_at": "2026-11-01T05:55:27.319744Z",
+      "state_hints": [
+        "WA"
+      ],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5210,26 +5229,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4ec78fbbe58ee2638209",
-      "title": "Breaking Elections Lawsuit 2026: What All Voters Must Know - LawFold.com",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9seTQ3YnRsdTRGczF5RjhaOWtWVlI4TlZhZ05uYmEzN25HOVJJSVJFdjJGalpIQmFuVWI2RllBbTZMbkpMX0IzVFVuM2pkZTF0QmhDclBOUjJoa1FzVDk3czNB?oc=5",
-      "publisher": "LawFold.com",
-      "published_at": "2026-10-20T17:46:52Z",
-      "detected_at": "2026-10-20T19:46:15.263027Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
