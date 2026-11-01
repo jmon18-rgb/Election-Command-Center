@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T16:48:11.944661+00:00",
+  "updated_at": "2026-11-01T17:44:01.435619+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,66 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 348,
-  "newly_injected_into_model": 14,
-  "injected_poll_ids": [
-    {
-      "race_code": "IA-GOV",
-      "poll_id": "4be09574-d2f7-41cc-804a-911ff78f94cd"
-    },
-    {
-      "race_code": "IA-SEN",
-      "poll_id": "4be09574-d2f7-41cc-804a-911ff78f94cd"
-    },
-    {
-      "race_code": "KS-GOV",
-      "poll_id": "d12ca396-9967-4c5a-b3af-5754f8a2ff05"
-    },
-    {
-      "race_code": "KS-SEN",
-      "poll_id": "d12ca396-9967-4c5a-b3af-5754f8a2ff05"
-    },
-    {
-      "race_code": "ME-GOV",
-      "poll_id": "29bc618a-daa1-4fb2-9acf-5bee75f2bbbf"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "29bc618a-daa1-4fb2-9acf-5bee75f2bbbf"
-    },
-    {
-      "race_code": "MI-GOV",
-      "poll_id": "69fc5034-470a-42cb-b49a-0c989fcc6047"
-    },
-    {
-      "race_code": "MI-SEN",
-      "poll_id": "69fc5034-470a-42cb-b49a-0c989fcc6047"
-    },
-    {
-      "race_code": "NC-SEN",
-      "poll_id": "affe090f-1582-4758-9ad6-3d3a3e136282"
-    },
-    {
-      "race_code": "NE-GOV",
-      "poll_id": "261adc4a-cfbe-4fe7-9455-24765fbcea0c"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "178f4a20-3a0b-4f63-9a03-19811b8277aa"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "178f4a20-3a0b-4f63-9a03-19811b8277aa"
-    },
-    {
-      "race_code": "TX-GOV",
-      "poll_id": "4a8b3e3c-bb46-4a52-a75b-3eef218075c0"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "4a8b3e3c-bb46-4a52-a75b-3eef218075c0"
-    }
-  ],
+  "matched_primary_observations": 362,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "OH-SEN",

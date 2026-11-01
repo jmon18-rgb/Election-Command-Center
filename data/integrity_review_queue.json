@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-01T16:48:11.351256Z",
+  "updated_at": "2026-11-01T17:44:00.656532Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
-    "awaiting_primary_source": 241,
-    "primary_source_checked": 9,
+    "awaiting_primary_source": 242,
+    "primary_source_checked": 8,
     "advisory_related_headline_buckets": 27,
     "advisory_related_headlines": 76
   },
@@ -260,6 +260,23 @@
   ],
   "items": [
     {
+      "id": "4df0354889c02cd4ec6c",
+      "title": "Thousands of Indians protest voter list change - Taipei Times",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5MZWxBQWFGbkFtaU96dENUX3IyaG5za21xM0s5akhSRVJKRXFVcUcxeVk2eDhkcmF0WEx0MnN2VC1vSHRYNHkzOS1ScnZWODl0eU9DUlFXakkxdDlURXY1OV82OFdLbEFKcVo3ZWp4NVA3OTdlRE5kNQ?oc=5",
+      "publisher": "Taipei Times",
+      "published_at": "2026-11-01T16:00:00Z",
+      "detected_at": "2026-11-01T17:44:00.656532Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "a86a2f526dfda9866d51",
       "title": "Data analysts flag mismatches in Trump administration California voter eligibility list - The Hill",
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPb0h2a0xmZzcyZHpwU0FMSjE1NWJvRFJ1b2N4QXRKTVVRNWY3UWJxTVJodGFEd0ZYVmtyRkVEM1FWUmFXWTgxdHpxaXpnajNGc054WVZMUDdhcnBWdDhDbXBkemxmX012a0xVUVdmZVBnalN1RE85MDFDU3lZRUpGU3lIbG4wbUxXZ1pwMUhnbC1jVGPSAZgBQVVfeXFMUDJSTVBmdGR3QXZ0RnY5amtGQlpIemYtc3M0Z0dYNWxCdWJ5Q1FhNUVhVUt1Y2NBXzF2cU82dTN2ckw1bzFEd0ZVWHBMSk9IQ3B3eURSN2cxak9weGo1Y25BWXhxYVdTWFVRLWlsMDQ5ZlpaeVF2bzJMR2JmZzRILVhSeUo0WTVpN2F4d3JjLVdodklLa1lSWGQ?oc=5",
@@ -325,6 +342,23 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a6df10dcfeab5d11a2eb",
+      "title": "Bulgarians vote in a presidential runoff marked by regional security threats - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPLThLRFFnU0JSQWJ0X28wUHRnOXZNRGVPbXNuUFpWdzUySzNSNUkxVElnY3RCNW5jUjdVQlhfU0tXZGFoYy1DcUhSZFpRMDFrTDYtS1Jqem03VHFLTDNVVmZ3VFBkeHNGUFI0enhQVjR0azhwUWRiakktNXNBQmt6TF9ubG9qUzRRd1NTZkFfc1lNdDZMbzJFT0lnVWI2UC0wamJmQjZ4MEpEZDhRMTBFTWRnNF9iaTg?oc=5",
+      "publisher": "NBC News",
+      "published_at": "2026-11-01T08:40:17Z",
+      "detected_at": "2026-11-01T17:44:00.656532Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5164,53 +5198,6 @@
       "state_hints": [],
       "topic_hints": [
         "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "71bfe27c9db9259369f2",
-      "title": "\u2018Borders on the absurd.\u2019 California fights Trump lawsuit to set aside 20,000 ballots - CalMatters",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE14a3FwQnNPMHlDUkUyVGdiYkl2RlNmSWhsbHhWQnRFMHFOUEVTU1NtWXV5bjhybGZmenVQZ0dNa0lXOHFsQ3FLMjhtNTltaXRlR2tpd3U3YkxWNGwwcGVLX25NRTA0ZlUweWUwRG50ZmRQRG5sTU5WdXVzYmM3QQ?oc=5",
-      "publisher": "CalMatters",
-      "published_at": "2026-10-21T00:21:45Z",
-      "detected_at": "2026-10-21T00:58:21.300668Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 ballots"
-      ],
-      "review_status": "primary_source_checked",
-      "primary_sources": [
-        {
-          "publisher": "US Department of Justice Oct 15 complaint announcement",
-          "url": "https://www.justice.gov/usao-cdca/pr/united-states-sues-california-after-determining-more-20000-likely-noncitizens-are"
-        }
-      ],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": "ca-doj-voter-letter-review-demand-20261013",
-      "review_notes": "Primary on-record event or court action corroborated; allegation/administrative report does not establish eligible ballots lost. See curated linked case for exact scope and status.",
-      "reviewed_as_of": "2026-10-22"
-    },
-    {
-      "id": "ec3a7f9a1ebec12e6513",
-      "title": "Voters, election officials report scanner issues at early voting site in Leon Valley - KSAT",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOcl81dVBtTE1hV0pzM190YmltMlBUcEFoT2w2cVBBR3R2N1A5Mjhnakw1RFVjTUx0TmhxanhNcTAyaFBkd3dkS1pFcHdsVUQtbktfcVVIT19ORGtIQk55V0ZaUU9QUFI5blJMcE0xOFJkX3U3c1l1X3pzd3RXblJ1aV9HLTNPSnhRRzd2SkpiUzZVVk9ERy1Uc1dGLVNsUHRSNnhnMGFkSmMtV1VMMndlTTlTVHFPbmtwNVVHSXAwYjQzSnQySnc?oc=5",
-      "publisher": "KSAT",
-      "published_at": "2026-10-20T23:39:49Z",
-      "detected_at": "2026-10-21T01:47:30.294329Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
