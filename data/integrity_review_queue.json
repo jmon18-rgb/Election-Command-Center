@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-01T02:58:54.780152Z",
+  "updated_at": "2026-11-01T04:00:44.560571Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -290,6 +290,26 @@
         "registration"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "af5510022cf629575a25",
+      "title": "10 Challenges to Holding Safe Elections in the 2026 Midterms - Global Project Against Hate and Extremism",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNZUN5b1pkWWtUZkcydkhHN1dFbHhuWTZVUHFDVURBaUZqM1MwVVJ6Q2l2M3Z6Zy02enVSWjZfMUtvbm5ndlB5dVdXVG5RVkF6Y3dSTlNzV1pERGp1S01fdnhqQnJqNW84bDNRRkJ6SXZ1QjVRcWpzbHVmU25KVVFYcUVVbTJpS05FMjI4WjRNOGQ3b2ctZHFzWi1n?oc=5",
+      "publisher": "Global Project Against Hate and Extremism",
+      "published_at": "2026-10-31T21:09:25Z",
+      "detected_at": "2026-11-01T04:00:44.560571Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "10 ",
+        "2026 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5209,27 +5229,6 @@
       ],
       "headline_numbers_unverified": [
         "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "78ae1edeaa23b4c211ed",
-      "title": "U.S. Officials Advise 10 States To Prepare For Trump Midterm Election Interference: 6 outlets compared - NewsCord",
-      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPVHlfYnl2Q01kQkxiaEJmcm5aTFo1ZGs5QklYc1BFb1BoTUNKQy05UXUyQ1RhU1N3ZmhSMmNYazVNRXFWRWZYdGlvemZRWlhZa2xkSTB3YThSZGxxUnJiSlotV2x1OUtzbjd3NEVGM1p1SGhWand3cmVZY2JpRUx1ZUdUTWJ4WUNzZDVLdVk2cGE4QVJIakxfamdfUng1VmR1eWlYMHJMQjEzOG9VenI1Zl9peG96LVF6b3FQanVMQ3dmTDliZjhPdm52eTNIaDEtU0JYaXZDZWszbzJHS1doZVlYa3ZGMWZVMUE?oc=5",
-      "publisher": "NewsCord",
-      "published_at": "2026-10-20T16:49:31Z",
-      "detected_at": "2026-10-20T17:43:17.661827Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "10 ",
-        "6 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
