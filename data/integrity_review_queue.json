@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T18:56:00.636642Z",
+  "updated_at": "2026-11-01T19:49:26.270354Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -259,6 +259,25 @@
     }
   ],
   "items": [
+    {
+      "id": "117dfd66ced171f88779",
+      "title": "Judge tosses Trump's attempt to block Alaska Senate results if GOP incumbent loses - NPR",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPc0tqclpGdHZtME0wZFY2LWpLZHF3TG5BMmk3RUM2SkdvWVI5c0tJa2pOTzJvN19pRFhkQng0ZUloMGVmSUZoQ1V3cE5PWkRWX1ppaHpFV0F4WDVVSVF1eDFPT2N3WnBROEpOdVR3QkYtZVZTcl8wNGpLZ05wSi1fdE5tbU5nNE9UX2VQX0gxbWlhQQ?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-11-01T19:04:46Z",
+      "detected_at": "2026-11-01T19:49:26.270354Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "fb9436db234bda1efcde",
       "title": "Ex US spy chiefs say Trump 'willing to go beyond limits' at midterms - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
@@ -5178,25 +5197,6 @@
         "OH"
       ],
       "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1e2f71b8422d0f8fcbf6",
-      "title": "Court Cases - Federal Interference with State Election Officials Challenge (DSCC) - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxPaUE3WkxtVHZTZE94eXU5ZFRXWVJsRklDU1Z4bXAtNzNVemxxdmoxUFlZc1otbXVpRmVtV3dqZ001eFBZeXNuZEhSanRJOHQ5YU10aUhRNmFnc2V1cEJyVUwyMEZ2VzBSd1MzNkZqT1U3ZS1QQlAwalJZX0tRa3VvcDUzOVlBNlpUQ2pPUVpsMEIxRWliblJHTDc2dVZreno0ZmtEa3Z4WQ?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-10-21T05:00:02Z",
-      "detected_at": "2026-10-21T06:58:51.936009Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation",
-        "security",
         "election_admin"
       ],
       "headline_numbers_unverified": [],

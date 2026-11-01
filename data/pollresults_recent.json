@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-01T18:56:01.366535+00:00",
+  "updated_at": "2026-11-01T19:49:27.079424+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 890,
+      "available_in_source": 892,
       "records_examined": 300
     },
     "house": {
@@ -21,6 +21,30 @@
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
+    {
+      "race_code": "LA-SEN",
+      "race_type": "senate",
+      "state": "LA",
+      "poll_id": "38f19daa-ba64-473d-9baf-d72b0fae2520",
+      "question_id": "e8602d71-e459-451d-bd90-5333a67c6c62",
+      "pollster": "Lincoln Park Strategies",
+      "dem_name": "Jamie Davis",
+      "rep_name": "Julia Letlow",
+      "dem": 47.0,
+      "rep": 47.0,
+      "margin": 0.0,
+      "field_end": "2026-10-31",
+      "field_start": "2026-10-29",
+      "posted_date": "2026-11-01",
+      "posted_source_datetime": "2026-11-01T14:04:00",
+      "posted_source_time": "11/1/26 14:04",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.instagram.com/p/DfNPHJBIZMH/",
+      "sample_population": "lv",
+      "sample_size": null,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "OH-SEN",
       "race_type": "senate",
