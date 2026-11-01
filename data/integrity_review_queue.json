@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T22:46:46.751222Z",
+  "updated_at": "2026-11-01T23:44:20.381742Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 242,
     "primary_source_checked": 8,
-    "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 76
+    "advisory_related_headline_buckets": 28,
+    "advisory_related_headlines": 78
   },
   "advisory_related_headlines": [
     {
@@ -260,6 +260,23 @@
   ],
   "items": [
     {
+      "id": "c236927f70e2ffae34fc",
+      "title": "Justice Department urges sanctions for database analysis critical of its noncitizen voting claims - PBS",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPUGFGR191UVI0NGV4dFNpeFFqWExkSTJFc0xqZk5BZDR2bkhnSVlsNjl3MU82U3J6Rk0xSENOOUdKRmNvRXQ0QkV5NUZxTkFNRDhYeDhXSE45R2xkYUJUZnZFVDZDbmZ5eTY4TkVfbGctRlNoT2FkUUhWdV9vUWw5Q0ZKVGxBeGJkTEdNNFlXOF9yTnNwRmN6MEFJdFo4ZS1oeE8xRkVDQW01cmNHSGQwSFZITlpTaHY5ek9MWm02VVZlXzRhVnNMN29BUXJWZ3E00gHWAUFVX3lxTE83ZTVGSGs1XzVuS1pIWnBSRHVTNVNNX09nakpyNXJYc3lvVzJvYTdkc01uMTZ5Zy0yRWNfaVdCY013bm1Nck5mUjJwSXVNRzBRR1pSR19GNGVJWmxPQmQ4QWxwbWkxWlJzcDRtbEJWQmZpdTdrbk1EVzRuOUJVd3M4SXYzdUZJcWh4RUkzQzN1MGJYb2xLaWdQZWZpZFBsbkY5Z2dsR2xhbEMxVkF4TmplMDQ5QnYwM2tHZzN3RnFvaGNJbEd5QVZzT3p4UnhiVVdvLTVZN2c?oc=5",
+      "publisher": "PBS",
+      "published_at": "2026-11-01T23:18:16Z",
+      "detected_at": "2026-11-01T23:44:20.381742Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "f1012ceecb5c2872e39d",
       "title": "Pa. election 2026: What to do if you see ICE at your polling place - Metro Philadelphia",
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOX093aEJ0eUt1R3E5RFJnRVBtSXpMQU1zMFp0Tkl1ZXNBdkx5VmsxTkRIT2s2UURpQXFoRm1WN0VjeDhnMDlBQ0t5RThCN09KS04xMU00NHM1RTFNOU9sNXY5dVVpelpURlNLMEtSMzZTYlVsb0xZSk9YZENUQjA1bEFzamREd1U?oc=5",
@@ -275,6 +292,26 @@
       "headline_numbers_unverified": [
         "2026"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "285230692654f9561ac6",
+      "title": "Judge tosses Trump's attempt to block Alaska Senate results if GOP incumbent loses - Oregon Public Broadcasting - OPB",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMFVlRy02czdSQkJpTFl1UEVxRi1WU1lka21BQW9VbnROV3BjQldSa3hHM0NyeUpteUtpRGJkcGdleWlmNE94VlZ3V3paNm1MWW54bVFZRjQwbFpZZ3NnM1FBbTh3dEpPZm0wbGg3NnpqakVnbl9iM2NTX3ZuLW9FVWZFOXlnOGRFQThKNEtLN1N4OGRaQVJz?oc=5",
+      "publisher": "Oregon Public Broadcasting - OPB",
+      "published_at": "2026-11-01T19:20:52Z",
+      "detected_at": "2026-11-01T23:44:20.381742Z",
+      "state_hints": [
+        "AK",
+        "OR"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5162,43 +5199,6 @@
       "topic_hints": [
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d4e89d42c7bf52a3742e",
-      "title": "RI election officials have a plan if federal agents come to polls - The Providence Journal",
-      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPeHZiY0NlNTlISlJ3S2d4Q1l6OUFEYXplb3F0Z0FtUGdCZko3bGtJRXRWRVhsWWRobl8ybExHVDduX0Y2bHhQWE95M1kwallQM2htblU2R041ZmhFMF9rdlotd0ZZa2NvWGVLeV8xV0Vwczd3UlNfQ0dEOWtjRE51ZE5ZSU1FaFo4aHdzdXBfN1k5bXBWcTAyRDBfb2F4cmxlUy1GbHdkYmFFUXFMRDc2d3lCUE1JMzdkbEI4NlQtaGdFTWlFTHN5ZVgteVlKel9kT1RQQkhjRUJmM2s?oc=5",
-      "publisher": "The Providence Journal",
-      "published_at": "2026-10-21T10:04:00Z",
-      "detected_at": "2026-10-21T10:46:51.981755Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "0c99435bb285c1398c6e",
-      "title": "Kansas SOS candidates point to audits, voter rolls and early voting - The Topeka Capital-Journal",
-      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxPTXdKODBhWFNESDQzdm9kWWFIUUdwVG50ZVphNnF1UEhEbmR1TnJ0VDcwaDFLbE5YSmxWOVc0S2VBTXE0NTJaVG0tOFBxcnF6b3BpcXlBbUhteHhiX2VJMzdudU5acS1FOWU0c01Wb0RMV0E2MVdjbHFHWlo2R0l5QndFcGQwTnNPUHRfd3NmTWptQ0ZHTDJFbFZVNG05eGgyWk45T1FTeWRwWkxzWHcyeTY5U2tKa01wcElGa1dSOGRlclZWNm93OGdWSFdmNU42UG9paDdEODRHcFFha0VwalZR?oc=5",
-      "publisher": "The Topeka Capital-Journal",
-      "published_at": "2026-10-21T09:09:00Z",
-      "detected_at": "2026-10-21T13:52:54.489681Z",
-      "state_hints": [
-        "KS"
-      ],
-      "topic_hints": [
-        "registration",
-        "ballot_access"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",

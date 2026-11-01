@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T22:46:47.581680+00:00",
+  "updated_at": "2026-11-01T23:44:21.083688+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,26 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 362,
-  "newly_injected_into_model": 4,
-  "injected_poll_ids": [
-    {
-      "race_code": "MN-SEN",
-      "poll_id": "d4400760-72bc-49ff-9842-f8cb3e3e38bf"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "a516eb44-5932-41e4-8d9c-00b5db2cd325"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "a6c01fbe-a7ca-4d4b-ab7a-00a70463db67"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "a516eb44-5932-41e4-8d9c-00b5db2cd325"
-    }
-  ],
+  "matched_primary_observations": 365,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "OH-SEN",
@@ -95,9 +78,9 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "Peggy Flanagan",
       "rep_name": "Michele Tafoya",
-      "dem": 49.0,
-      "rep": 46.0,
-      "margin": 3.0,
+      "dem": 49.3,
+      "rep": 46.4,
+      "margin": 2.9,
       "field_end": "2026-10-30",
       "field_start": "2026-10-29",
       "posted_date": "2026-11-01",
