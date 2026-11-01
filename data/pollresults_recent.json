@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-01T19:49:27.079424+00:00",
+  "updated_at": "2026-11-01T20:48:57.851911+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 892,
+      "available_in_source": 893,
       "records_examined": 300
     },
     "house": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 362,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "OH-SEN",
+      "poll_id": "a6c01fbe-a7ca-4d4b-ab7a-00a70463db67"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "OH-SEN",
+      "race_type": "senate",
+      "state": "OH",
+      "poll_id": "a6c01fbe-a7ca-4d4b-ab7a-00a70463db67",
+      "question_id": "84c90a52-46f3-46be-ba7f-deb55121fc78",
+      "pollster": "InsiderAdvantage",
+      "dem_name": "Sherrod Brown",
+      "rep_name": "Jon Husted",
+      "dem": 49.0,
+      "rep": 47.0,
+      "margin": 2.0,
+      "field_end": "2026-10-30",
+      "field_start": "2026-10-29",
+      "posted_date": "2026-11-01",
+      "posted_source_datetime": "2026-11-01T15:17:00",
+      "posted_source_time": "11/1/26 15:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://insideradvantage.com/final-insideradvantage-ohio-survey-brown-49-husted-47-acton-49-ramaswamy-46/",
+      "sample_population": "lv",
+      "sample_size": 1200,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "LA-SEN",
       "race_type": "senate",

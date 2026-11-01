@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-01T19:49:26.270354Z",
+  "updated_at": "2026-11-01T20:48:57.131232Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -259,6 +259,27 @@
     }
   ],
   "items": [
+    {
+      "id": "f1012ceecb5c2872e39d",
+      "title": "Pa. election 2026: What to do if you see ICE at your polling place - Metro Philadelphia",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOX093aEJ0eUt1R3E5RFJnRVBtSXpMQU1zMFp0Tkl1ZXNBdkx5VmsxTkRIT2s2UURpQXFoRm1WN0VjeDhnMDlBQ0t5RThCN09KS04xMU00NHM1RTFNOU9sNXY5dVVpelpURlNLMEtSMzZTYlVsb0xZSk9YZENUQjA1bEFzamREd1U?oc=5",
+      "publisher": "Metro Philadelphia",
+      "published_at": "2026-11-01T19:49:35Z",
+      "detected_at": "2026-11-01T20:48:57.131232Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "117dfd66ced171f88779",
       "title": "Judge tosses Trump's attempt to block Alaska Senate results if GOP incumbent loses - NPR",
@@ -5178,25 +5199,6 @@
       ],
       "topic_hints": [
         "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "347955b209aaf4998a3e",
-      "title": "Ohio groups take measures to protect voting during November midterm election - Ohio Capital Journal",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUmZ3bUIzUmtfZWlybWRDZEhhZlBZckRaYTJBOTdSUGU1WFBDRHE4d21EMVphUDBWRFJkVHRaOEFyVURiVjYwTlg4X0xkNGY3QzdfSU84U3c5LXdMTDViZG9Ccy1NMlNsTXdMcDhiUGY4aTA4aGdQR2x4NmhETGx0Y09idlZISFY2a0pMQkxTc1Z5dWxVNjVhR3A0bjlieDFBb1dibmNmblVOc2tCSGFQUk1VRnY5Vl9vbWNR?oc=5",
-      "publisher": "Ohio Capital Journal",
-      "published_at": "2026-10-21T07:58:57Z",
-      "detected_at": "2026-10-21T08:50:32.040777Z",
-      "state_hints": [
-        "OH"
-      ],
-      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
