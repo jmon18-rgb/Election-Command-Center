@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-11-01T01:07:59.834195+00:00",
+  "generated_at": "2026-11-01T02:02:35.146725+00:00",
   "methodology": {
     "calls": "No licensed professional call provider or verified control attribution in this ledger",
     "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
@@ -6836,11 +6836,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
