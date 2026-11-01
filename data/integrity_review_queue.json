@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-01T15:46:32.431708Z",
+  "updated_at": "2026-11-01T16:48:11.351256Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 241,
@@ -260,6 +260,25 @@
   ],
   "items": [
     {
+      "id": "a86a2f526dfda9866d51",
+      "title": "Data analysts flag mismatches in Trump administration California voter eligibility list - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPb0h2a0xmZzcyZHpwU0FMSjE1NWJvRFJ1b2N4QXRKTVVRNWY3UWJxTVJodGFEd0ZYVmtyRkVEM1FWUmFXWTgxdHpxaXpnajNGc054WVZMUDdhcnBWdDhDbXBkemxmX012a0xVUVdmZVBnalN1RE85MDFDU3lZRUpGU3lIbG4wbUxXZ1pwMUhnbC1jVGPSAZgBQVVfeXFMUDJSTVBmdGR3QXZ0RnY5amtGQlpIemYtc3M0Z0dYNWxCdWJ5Q1FhNUVhVUt1Y2NBXzF2cU82dTN2ckw1bzFEd0ZVWHBMSk9IQ3B3eURSN2cxak9weGo1Y25BWXhxYVdTWFVRLWlsMDQ5ZlpaeVF2bzJMR2JmZzRILVhSeUo0WTVpN2F4d3JjLVdodklLa1lSWGQ?oc=5",
+      "publisher": "The Hill",
+      "published_at": "2026-11-01T15:15:00Z",
+      "detected_at": "2026-11-01T16:48:11.351256Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "018a3a4786034065baa7",
       "title": "Mail Bag: Find out what your neighbors are endorsing this election - The Napa Valley Register",
       "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQYWR3Z2otby1acDJKWFdibFZ0QW12NkxYdG9QMEswM1R3TUhycTBWQ2xnanUydXgwdm5wYjMwNkVsWTdFM0hzUGJ0SnA4YzF2NHdTdEdHTHJZanpoTzJzQXNQQnlSNnhhSXJFU1pOZ3JMeWtWRExXaFQ4ODdhRm95U0laVVpaNzB0NW15QlhORVJNNVk0Z0pfTXQyRi0tSmZxT2xYWWFsbEdndExRcEE4XzMyM0tTN3NZam1pSnpkQ1VUVFh3bWgwTmVNd0I3WlprSWFfczNHZUNxWVZGZkZiRktRYkFuN1ZGQ2NRdF9B?oc=5",
@@ -361,6 +380,23 @@
       "headline_numbers_unverified": [
         "40"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "16a824f7dba12d69fb22",
+      "title": "Rahul Gandhi: India's opposition rallies against voter roll revision exercise - BBC",
+      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9vemJrY091NzlUb1prS24tVkYxQ2pzdmFaZUdfUms4WVYya0t2d1FFeTVKNmJtTEExLWxJeVlveVZ3Ml9fVV9sZ3VMbGRtZV9ZV19yR0lLaThiVUZuakE?oc=5",
+      "publisher": "BBC",
+      "published_at": "2026-11-01T00:12:07Z",
+      "detected_at": "2026-11-01T16:48:11.351256Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5178,45 +5214,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2dc1f495d8601588e605",
-      "title": "How to vote in NYC 2026: Dates, ballot proposals, rights - Epicenter NYC",
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE94bkMxcmh0S0VWMkJuZEtxTVlFZGI2aUtPWFdueDFreEVVM2kzZWFnV2dCQjFmWjg1N0tUNEVDZF93SnktaE9sMXNiUHFVQ0xaUnJFQ1dmRFM5VnZWYlpYRmVkNEkyTU5JeDBmNlJFc3lEdw?oc=5",
-      "publisher": "Epicenter NYC",
-      "published_at": "2026-10-20T23:29:44Z",
-      "detected_at": "2026-10-21T00:58:21.300668Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ea5bf057cb52b9bab8a2",
-      "title": "Explainer: Three issues defining the 2026 US midterm elections - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQLWRpTF93cTF0cl9YYWU4bDBNcHRtSmlaR21FemFtZ3BFZkFOWng3NjhtTHhQNWhtSnRUbm5TZTNld3ZUTmxWSDFRVXRzQTNHUElfU0pibVAtQWxPc3NIcjNjWkVnNG5kb24tN0NvU0VCbDl4OFpxRjc3VC1pTlRXb2hrbkVpaGJjRTFSS1p3TTdSclhVX2NF?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-10-20T21:23:43Z",
-      "detected_at": "2026-10-21T10:46:51.981755Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
