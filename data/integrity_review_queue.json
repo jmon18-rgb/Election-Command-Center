@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-01T21:47:03.502186Z",
+  "updated_at": "2026-11-01T22:46:46.751222Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 242,
@@ -300,6 +300,24 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "7dc0d44283526030602a",
+      "title": "DOJ withheld key data from court-ordered voter list disclosure, experts say - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQamRsdFdVWTRRMTlULWtDSWVkS3FjWllaRlRkS0NLOThnTkJWUGJRT3VPMjBLaElPZG8xY1BOTEdmMEFrN2VESVhUbVVYREpKSHZhX3lMeGM1ak5iSnpackl2MjllQV9CLWloc05YbUZKdG1GZ3VfS3Jzdjl2Snd1QVE0U3puS3prekVSZjlmWjl0dFRXRVNiTjNDbDVyYVJKSWdaeDZWam5mQzg?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-11-01T18:56:15Z",
+      "detected_at": "2026-11-01T22:46:46.751222Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "fb9436db234bda1efcde",
       "title": "Ex US spy chiefs say Trump 'willing to go beyond limits' at midterms - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVmhNamZHNVVCTGNGVjQ4Zl9aY3p4bnBHam1adEM2amtST05nSl9Wa1RVUFAxbUNkSDV4YWtBeGFPdEhlT3FuUEdXTzY4MTQzX1FydXlhakdzRndDbXg3LVVSREVhYjBONUJHXzBlRG5mRTdGVUV2VmZEenlDWllRdGFzMk5xQUFyUnNnZ0NlWUdiVk9mR0NvUm5BNFV3UEtEbGNyX05Kd251MDJBSnhDcE9aVQ?oc=5",
@@ -361,6 +379,24 @@
       "detected_at": "2026-11-01T15:46:32.431708Z",
       "state_hints": [],
       "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f4ab69bd4b1a31cca8eb",
+      "title": "Delhi rally demands election chief resign over voter list cuts - Business Day",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOZXNYSmNxa0VDallwVXhtd25JSVlqWGdfZnBiVUxIM09WS21lN3ZQRDJZcjhYbUhYQVkybGdldXlmRk5zeXBsN1pQSnNPaU8zZmdTZzlqWjVxazdaTlRxT29iTFZlbUw2Y1Z0QllwTHBSaUc0N3hxNFdTVFk2dm54MF9EN1lMX2ZBWHRKbzBXZVU0U3kwS3NFdDhpcHJTN1lPdHBVdHRycEVObHVpdmlJMEMySUdPQQ?oc=5",
+      "publisher": "Business Day",
+      "published_at": "2026-11-01T13:25:05Z",
+      "detected_at": "2026-11-01T22:46:46.751222Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -5163,43 +5199,6 @@
       "topic_hints": [
         "registration",
         "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "049faea71b94a44bdb4f",
-      "title": "Amid election challenges, Mass. election officials reassure voters - WGBH",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPNjdlbG9ZZ0lQcDQ4VHItcjFYVDhyVkRoWXBOMmsyeW01S2Y5Y2ZPalBHSTB1ZEJFYW5UZkdMQUVnWXBDWjNhZ1I4bFFOZ2ZDOGppblJXSzJXTFZsN3VEcXRKMUl6U29IWU15endnUzZPSVJWODJYUGtWNWxiYTZURldVMm02OXlkWDdobzlFT0hhRWFmYkY0ckZiRDZNYzVxNXBLSXZpMlJ3NTA?oc=5",
-      "publisher": "WGBH",
-      "published_at": "2026-10-21T09:04:28Z",
-      "detected_at": "2026-10-21T09:47:47.678335Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d3f1768c1dc89bfdf5c7",
-      "title": "Faith Leaders Unite Across Religions to Counter Voter Intimidation on Election Day in Nine Battleground States, Including Pennsylvania - Bucks County Beacon",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxNbjJqSzluUnVrbFRzaVhQZkFpSEtJNGxXQTJLZ1BjOFdsZndkR0sxOG1aRmh5SXRhb3loWjREdXBteDRJeGJtU1IxcENRSi1ZMnpibnRZaC1JWXlUYjFmVnZwbG5oZHBGTTA4bmVGeVlEeWFpUGE4dmFIRUpoZU1aMWdTc2pBOE1Yai1rSzJMcW5xU3M2MW1vcFhKNkdodVpRb0gzTlhkSGhRRGQ0dGxOVW5RUkJnUE8wT2E5dXNPelhKQnJMYUVxWDZfeG1iTXZZOU5CQWRBMUU2aUZRWC1SS0xlSGVBS0FtbzU1NmVycVdfS1N5TmI3QWlSeUozcVZmQ3c?oc=5",
-      "publisher": "Bucks County Beacon",
-      "published_at": "2026-10-21T08:00:00Z",
-      "detected_at": "2026-10-21T08:50:32.040777Z",
-      "state_hints": [
-        "PA"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",

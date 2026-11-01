@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-01T21:47:04.189064+00:00",
+  "updated_at": "2026-11-01T22:46:47.581680+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 893,
+      "available_in_source": 895,
       "records_examined": 300
     },
     "house": {
@@ -13,14 +13,103 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 996,
+      "available_in_source": 998,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 363,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "matched_primary_observations": 362,
+  "newly_injected_into_model": 4,
+  "injected_poll_ids": [
+    {
+      "race_code": "MN-SEN",
+      "poll_id": "d4400760-72bc-49ff-9842-f8cb3e3e38bf"
+    },
+    {
+      "race_code": "OH-GOV",
+      "poll_id": "a516eb44-5932-41e4-8d9c-00b5db2cd325"
+    },
+    {
+      "race_code": "OH-GOV",
+      "poll_id": "a6c01fbe-a7ca-4d4b-ab7a-00a70463db67"
+    },
+    {
+      "race_code": "OH-SEN",
+      "poll_id": "a516eb44-5932-41e4-8d9c-00b5db2cd325"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "OH-SEN",
+      "race_type": "senate",
+      "state": "OH",
+      "poll_id": "a516eb44-5932-41e4-8d9c-00b5db2cd325",
+      "question_id": "6f37b46c-a2bd-46d5-8413-123428560f69",
+      "pollster": "Concord Public Opinion Partners",
+      "dem_name": "Sherrod Brown",
+      "rep_name": "Jon Husted",
+      "dem": 46.0,
+      "rep": 42.0,
+      "margin": 4.0,
+      "field_end": "2026-10-24",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-11-01",
+      "posted_source_datetime": "2026-11-01T17:42:00",
+      "posted_source_time": "11/1/26 17:42",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://concordpublicopinionpartners.org/polls/ohio-ge-2026-oct",
+      "sample_population": "lv",
+      "sample_size": 469,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "OH-GOV",
+      "race_type": "governor",
+      "state": "OH",
+      "poll_id": "a516eb44-5932-41e4-8d9c-00b5db2cd325",
+      "question_id": "a7fb2f97-d655-4849-ba8e-8096859faf71",
+      "pollster": "Concord Public Opinion Partners",
+      "dem_name": "Amy Acton",
+      "rep_name": "Vivek Ramaswamy",
+      "dem": 49.0,
+      "rep": 39.0,
+      "margin": 10.0,
+      "field_end": "2026-10-24",
+      "field_start": "2026-10-22",
+      "posted_date": "2026-11-01",
+      "posted_source_datetime": "2026-11-01T17:42:00",
+      "posted_source_time": "11/1/26 17:42",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://concordpublicopinionpartners.org/polls/ohio-ge-2026-oct",
+      "sample_population": "lv",
+      "sample_size": 469,
+      "partisan_lean": "D",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "MN-SEN",
+      "race_type": "senate",
+      "state": "MN",
+      "poll_id": "d4400760-72bc-49ff-9842-f8cb3e3e38bf",
+      "question_id": "5fc38d2e-96c1-4f04-a6b7-30c73006a774",
+      "pollster": "InsiderAdvantage",
+      "dem_name": "Peggy Flanagan",
+      "rep_name": "Michele Tafoya",
+      "dem": 49.0,
+      "rep": 46.0,
+      "margin": 3.0,
+      "field_end": "2026-10-30",
+      "field_start": "2026-10-29",
+      "posted_date": "2026-11-01",
+      "posted_source_datetime": "2026-11-01T17:04:00",
+      "posted_source_time": "11/1/26 17:04",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://insideradvantage.com/insideradvantage-final-minnesota-senate-survey-flanagan-49-tafoya-46/",
+      "sample_population": "lv",
+      "sample_size": 1200,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "OH-SEN",
       "race_type": "senate",
@@ -30,9 +119,33 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "Sherrod Brown",
       "rep_name": "Jon Husted",
-      "dem": 49.0,
+      "dem": 48.8,
       "rep": 47.0,
-      "margin": 2.0,
+      "margin": 1.8,
+      "field_end": "2026-10-30",
+      "field_start": "2026-10-29",
+      "posted_date": "2026-11-01",
+      "posted_source_datetime": "2026-11-01T15:17:00",
+      "posted_source_time": "11/1/26 15:17",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://insideradvantage.com/final-insideradvantage-ohio-survey-brown-49-husted-47-acton-49-ramaswamy-46/",
+      "sample_population": "lv",
+      "sample_size": 1200,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "OH-GOV",
+      "race_type": "governor",
+      "state": "OH",
+      "poll_id": "a6c01fbe-a7ca-4d4b-ab7a-00a70463db67",
+      "question_id": "9586d63e-b7e5-4d73-8f5d-1580152fb811",
+      "pollster": "InsiderAdvantage",
+      "dem_name": "Amy Acton",
+      "rep_name": "Vivek Ramaswamy",
+      "dem": 49.2,
+      "rep": 46.3,
+      "margin": 2.9,
       "field_end": "2026-10-30",
       "field_start": "2026-10-29",
       "posted_date": "2026-11-01",
