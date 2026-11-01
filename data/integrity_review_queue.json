@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-01T13:00:38.609018Z",
+  "updated_at": "2026-11-01T13:55:15.220099Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
-    "awaiting_primary_source": 240,
-    "primary_source_checked": 10,
+    "awaiting_primary_source": 241,
+    "primary_source_checked": 9,
     "advisory_related_headline_buckets": 27,
     "advisory_related_headlines": 76
   },
@@ -260,6 +260,26 @@
   ],
   "items": [
     {
+      "id": "edacaad2c0a58a3b33ec",
+      "title": "Confirmed | More than 210,000 Spaniards in the United States will be able to vote in the Nov. 29 election - El Cronista",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOcWJuUFlGRHVWSWRLRS0ySzdzS3JkejZvdl93aWU3eDJyVjJRaU5aWUNraW5LY3Vpb05pSUtMRlVMeVZPOVhkWlNlVllRR2hXb09NbUNzSGloOUVZaEIzaFhhR0dudUZXb2E5cXRBenltaV8xWVdmaUtKRFd2TlVENXRuYVBrekM1Ni1tVUdLOFFLMGQ4YlBjQjFaZWdoakwzMXhlNXdtOWkxSUtTcUdxRzZnVXpVdkNkS2VJZkNrOHpOS3oxZ1dka1BlazRkaG5pNkE?oc=5",
+      "publisher": "El Cronista",
+      "published_at": "2026-11-01T11:23:00Z",
+      "detected_at": "2026-11-01T13:55:15.220099Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "210,000 ",
+        "29 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "c01889f81a3f5c39508c",
       "title": "Supreme Court allows Trump to implement parts of his mail-in voting executive order - ABC News - Breaking News, Latest News and Videos",
       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLUpWVmxZNkVNNGxlamhNRjkteVhjUVJNMXhDQ3Vyc3V3UkdTVEcyeUM0ZnEzTUlJQXRYMUZsNkZ5LTN5Q0VzWDFrVmVFSVlpOFBSaEpwa19qd0Q4SExzankxMEpIQjMxT2k5R0Z3emE0cDFCNng3V3lwVjBQUDg1NNIBhgFBVV95cUxOWGtmd1BpZ1U2QlJOeTZIcXhKMTVTOVFEZDJKcDJPS1NzX2NsOG1RT2w2TkpUMDkwTWY1QzlZcGt4LVlmNV9NZlFVUG04S0Y1U2hUSUdFSk5sUlFId1VsZzlnd1JvOGlWQnY2LThiN1J6cjZDSjdSWHd3elNWS3FpYWJqMXFnUQ?oc=5",
@@ -283,6 +303,23 @@
       "publisher": "DW.com",
       "published_at": "2026-11-01T06:59:52Z",
       "detected_at": "2026-11-01T13:00:38.609018Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5e530f175274c80ca44f",
+      "title": "India news: Opposition holds major rally in Delhi over voter roll revisions - DW.com",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNS09QVUljNWxnMDB1UndSazY1QlZLZUNFbVR3d3Zwa0lySC1MQjI0eGozYl90Rjhwb3Fma3ZpeXFxbVVub21leERkczJNZGxSQXQ4WnF0N0dVbWl0cGFEM291d3Q3Q24zc3JxM3hDek9oSk1oWVFrZlh5bUo5RFZVZ19YQno4dHBoYkFRd0s4SEdmSjk2Qmx4Zmk4SVNWRU4tN2F4THhCeW9NTlVoUVZv?oc=5",
+      "publisher": "DW.com",
+      "published_at": "2026-11-01T06:59:52Z",
+      "detected_at": "2026-11-01T13:55:15.220099Z",
       "state_hints": [],
       "topic_hints": [
         "registration"
@@ -5187,52 +5224,6 @@
       "primary_sources": [],
       "impact_counts_verified": false,
       "promoted_to_incident_id": null
-    },
-    {
-      "id": "297d9c03c742c179ce4e",
-      "title": "Georgia could have an automatic recount in 2026 under new law - Ballotpedia News",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxObnVFVGtfS0gtRW84U2dZMm5BUEVKRlpXbU9ORnBNMmxxYk55ZU12SUNucmZZZUE4VmRDNEI1ZHFoX3pialF2bGVyTmd3WE1SMmV1cndDMTRrVHlmblZWRlg0OUZWRkJHUGZiVUlDTUpoTXdXM194SXNnby1aOTMtR0NtdEFxa2FNV1NpYjlWSzByU2tIODVwUEw1Qnd2QlJ2SmQxVTM2bw?oc=5",
-      "publisher": "Ballotpedia News",
-      "published_at": "2026-10-20T20:41:17Z",
-      "detected_at": "2026-10-21T04:45:39.077932Z",
-      "state_hints": [
-        "GA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ec430b8d9b7a02f34aa9",
-      "title": "A Massive Voter Turnout on Election Day Could Deter Any Violence Being Planned by Feds - OB Rag",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQRTRObzdMOWlmdkgtZXJwUHNmZ3B4TmVvYWh3ZFRhTmtBa2tFT05nOVl0U2dYdXFHbDFhQUpSTHpYRkZ0RTE2bXkyaW1IdEYxVUlONkx2NG5lSDJlNXVWMVltQnp3N1BDSnVQZWp5TUx1bl9VRFdQOHVwZU5KdGl0R09VNjF0bGhReVJLbXduenR6amp0aFRLcDE2T2Z0T1VVZFEwRGZzVlZ4bl91a1M1NTkxVQ?oc=5",
-      "publisher": "OB Rag",
-      "published_at": "2026-10-20T20:18:20Z",
-      "detected_at": "2026-10-21T01:47:30.294329Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "primary_source_checked",
-      "primary_sources": [
-        {
-          "publisher": "KSAT on-record statement from Bexar County Elections Administrator",
-          "url": "https://www.ksat.com/news/local/2026/10/20/voters-election-officials-report-scanner-issues-at-early-voting-site-in-leon-valley/"
-        }
-      ],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": "tx-bexar-leon-valley-scanner-jam-20261020",
-      "review_notes": "Primary on-record event or court action corroborated; allegation/administrative report does not establish eligible ballots lost. See curated linked case for exact scope and status.",
-      "reviewed_as_of": "2026-10-22"
     }
   ]
 }
