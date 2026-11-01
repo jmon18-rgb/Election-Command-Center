@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-01T10:51:24.672028Z",
+  "updated_at": "2026-11-01T11:46:53.894500Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -259,6 +259,23 @@
     }
   ],
   "items": [
+    {
+      "id": "c01889f81a3f5c39508c",
+      "title": "Supreme Court allows Trump to implement parts of his mail-in voting executive order - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLUpWVmxZNkVNNGxlamhNRjkteVhjUVJNMXhDQ3Vyc3V3UkdTVEcyeUM0ZnEzTUlJQXRYMUZsNkZ5LTN5Q0VzWDFrVmVFSVlpOFBSaEpwa19qd0Q4SExzankxMEpIQjMxT2k5R0Z3emE0cDFCNng3V3lwVjBQUDg1NNIBhgFBVV95cUxOWGtmd1BpZ1U2QlJOeTZIcXhKMTVTOVFEZDJKcDJPS1NzX2NsOG1RT2w2TkpUMDkwTWY1QzlZcGt4LVlmNV9NZlFVUG04S0Y1U2hUSUdFSk5sUlFId1VsZzlnd1JvOGlWQnY2LThiN1J6cjZDSjdSWHd3elNWS3FpYWJqMXFnUQ?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-01T09:26:06Z",
+      "detected_at": "2026-11-01T11:46:53.894500Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "0ec4ca3d430d5c57718e",
       "title": "Over 40% of names on DOJ list of alleged noncitizens are not on Calif. voter rolls, analysis finds - NanaimoNewsNOW",
@@ -5210,23 +5227,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "de86ce095dbc8ff2cc13",
-      "title": "Calls to beef up security for Victorian election in wake of Haines attack - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNOG5BRl9ZTUJxQ2tnU3dvc3FOUk9vWjBoVllPVFV2c1hUVmcxU1Q2ekhILW1PcFhMN1RneHN5RHZ2T1JuX213YlBHSHN6cmNyM2hKNlpRbklRd25YcWdSRmdfTGlvUXd5LW1EYlpueDZjTFQ5T0tXY1Y5eGZRN2ttU180eDB4dEEtNjFzaWg3enJaelJweXVRczItV2dwUF9E?oc=5",
-      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-      "published_at": "2026-10-20T18:06:45Z",
-      "detected_at": "2026-10-20T19:46:15.263027Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
