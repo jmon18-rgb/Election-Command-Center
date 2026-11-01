@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-10-31T23:45:06.026498Z",
+  "updated_at": "2026-11-01T01:22:02.473422Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 72
+    "advisory_related_headline_buckets": 27,
+    "advisory_related_headlines": 76
   },
   "advisory_related_headlines": [
     {
@@ -259,6 +259,42 @@
     }
   ],
   "items": [
+    {
+      "id": "0ec4ca3d430d5c57718e",
+      "title": "Over 40% of names on DOJ list of alleged noncitizens are not on Calif. voter rolls, analysis finds - NanaimoNewsNOW",
+      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNSjY3RGtlWWt2c2xPVU5Tb0RWWHlUdW41MEtEZnJJeDVZdE5ZSTNoSmhVaEZnTWxrcmtNLWNlLUZzc2poRF9uWlF2eGdQVGxydWkwTkFhOGlwQURTTHM2ajBBaGVUWEpROVNaZ2tXRVc1Y1A2RmVROXY4aHJZX2Mxc1g4WjU2cGRtd09NY0N2OVJmV2RlYVA0a2YtdzhoYlRPTlJTTG4zOXBSMW1qbHpjSm15SUx5UVpZOVk0LUktQmhJOWZuYW9IbTlRWWJCWlNJ?oc=5",
+      "publisher": "NanaimoNewsNOW",
+      "published_at": "2026-11-01T00:40:41Z",
+      "detected_at": "2026-11-01T01:22:02.473422Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [
+        "40"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3720bdac96a510846754",
+      "title": "Tracking the DOJ\u2019s effort to get U.S. voter registration data - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPeTJpLXRiM0o5ci12VHV5MnlPYzVzWUF1MkZiOUktMnZMZzZscmNiNVA3UW1UY3piYUk4MlM1dV9MNVZlSjZ5eVo1SDM4TjZvS1JBOXVsaEh3X2hkak5CZVB4bmhPc3NnaW14X21Nd2IzLTQwTFlrM0ZvaW1rQ2ZIa0J4cWE2U0VySGFlSWRzYVFmNl9KU1VScl9TeG1KOFRJRlkwZjRraE1HTEZMcjNLTVR4eG0?oc=5",
+      "publisher": "NBC News",
+      "published_at": "2026-10-31T23:09:36Z",
+      "detected_at": "2026-11-01T01:22:02.473422Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "4604a09b1c24f2d6e1e1",
       "title": "Analysis: More than 40% of names on DOJ list of alleged noncitizens not on California's voter rolls - PBS",
@@ -5194,44 +5230,6 @@
       "headline_numbers_unverified": [
         "10 ",
         "6 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f6559e19ee9671938400",
-      "title": "Are non-citizens legally permitted to vote in Kansas elections? - KLC Journal",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPWDlsYkh4eWRHekt3aHRZVE1WTWdUQXYzZzNpYU1iNDViU2wtQzNFUkZLYzF5WWM4Q09tbmJjdU4xSXhvdTdsenNMeWlXMUJEWHk5RVdVd1d5eGFvQ0ViSlp3QnA0VkRtSUhDMWQzU0p3V1pDdU5ocjVidlZnUVdhNG1Xa19fWWczWnRwZlBJSQ?oc=5",
-      "publisher": "KLC Journal",
-      "published_at": "2026-10-20T16:46:39Z",
-      "detected_at": "2026-10-20T18:53:05.288966Z",
-      "state_hints": [
-        "KS"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "59f13e02a04f01f36ecc",
-      "title": "Why the 26 secretary of state races this November matter more than they did before Trump\u2019s drive to assert federal authority over elections - Cobb Courier",
-      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPamZ2aGs3eHVQZ2UyQk5HQWVyVXBHYnZfeG1JMGFpblprTGpXNUtOS00td0tiRkMwQUowRmNwaTdGckwyLUR2bFdaT2QxQlVacHdTUm5ZOVJhWnpiN3pvN2JWR1paeFgtOFhJWVI1dTdEYnlNa3JYZVE3RkpyWXBMb2dkc0lSajZBZEJqTXlLSm95UXd5aUtHVDI4RHJDXzJHaWljeTNyYW5ldzVFbmV2ZkxCanNXclpReW1Tc1g5aXFfSVNYX0ZQRHFjM3IwXzlEdjhXYlZZVzZSNndZY2hGS3JnOGc5SHlPOTFLSHVYZExhTXFWRFl1TEtpWlJhcGxrVDBvREF0eUY?oc=5",
-      "publisher": "Cobb Courier",
-      "published_at": "2026-10-20T15:09:56Z",
-      "detected_at": "2026-10-20T18:53:05.288966Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "26 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
