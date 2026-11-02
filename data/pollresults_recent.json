@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-02T16:12:35.320722+00:00",
+  "updated_at": "2026-11-02T17:14:38.980301+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 915,
+      "available_in_source": 917,
       "records_examined": 300
     },
     "house": {
@@ -13,31 +13,119 @@
       "records_examined": 300
     },
     "governor": {
-      "available_in_source": 1021,
+      "available_in_source": 1022,
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 398,
-  "newly_injected_into_model": 4,
+  "matched_primary_observations": 402,
+  "newly_injected_into_model": 2,
   "injected_poll_ids": [
     {
-      "race_code": "AZ-GOV",
-      "poll_id": "4efa4881-6324-42fc-98a1-2f67c462f5d1"
-    },
-    {
       "race_code": "CO-GOV",
-      "poll_id": "b805e995-fdc6-4384-a5e9-7c8ca121cebc"
+      "poll_id": "3ee13e5a-1bb0-40a5-acf3-81088c10f4a5"
     },
     {
       "race_code": "CO-SEN",
-      "poll_id": "b805e995-fdc6-4384-a5e9-7c8ca121cebc"
-    },
-    {
-      "race_code": "NH-GOV",
-      "poll_id": "e03c576a-cd8f-42bf-b7af-64de93b2e78c"
+      "poll_id": "3ee13e5a-1bb0-40a5-acf3-81088c10f4a5"
     }
   ],
   "observations": [
+    {
+      "race_code": "AK-SEN",
+      "race_type": "senate",
+      "state": "AK",
+      "poll_id": "dd778e11-d751-4a94-9ece-1dd896021d10",
+      "question_id": "6bf32a1f-909e-48dd-af32-a37f820f6ebd",
+      "pollster": "InsiderAdvantage",
+      "dem_name": "Mary Peltola",
+      "rep_name": "Dan Sullivan",
+      "dem": 48.3,
+      "rep": 48.1,
+      "margin": 0.2,
+      "field_end": "2026-11-01",
+      "field_start": "2026-10-31",
+      "posted_date": "2026-11-02",
+      "posted_source_datetime": "2026-11-02T11:39:00",
+      "posted_source_time": "11/2/26 11:39",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://insideradvantage.com/insideradvantage-final-alaska-survey-race-tied-in-first-round-48-peltola-48-sullivan-tied-in-ranked-choice-round/",
+      "sample_population": "lv",
+      "sample_size": 1200,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "AK-SEN",
+      "race_type": "senate",
+      "state": "AK",
+      "poll_id": "dd778e11-d751-4a94-9ece-1dd896021d10",
+      "question_id": "f0e2c2b6-a0bf-4373-8593-72f4920bb5d3",
+      "pollster": "InsiderAdvantage",
+      "dem_name": "Mary Peltola",
+      "rep_name": "Dan Sullivan",
+      "dem": 50.1,
+      "rep": 49.9,
+      "margin": 0.2,
+      "field_end": "2026-11-01",
+      "field_start": "2026-10-31",
+      "posted_date": "2026-11-02",
+      "posted_source_datetime": "2026-11-02T11:39:00",
+      "posted_source_time": "11/2/26 11:39",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://insideradvantage.com/insideradvantage-final-alaska-survey-race-tied-in-first-round-48-peltola-48-sullivan-tied-in-ranked-choice-round/",
+      "sample_population": "lv",
+      "sample_size": 1200,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "CO-SEN",
+      "race_type": "senate",
+      "state": "CO",
+      "poll_id": "3ee13e5a-1bb0-40a5-acf3-81088c10f4a5",
+      "question_id": "85d34933-489d-4040-9927-842c33cf9b03",
+      "pollster": "YouGov",
+      "dem_name": "John Hickenlooper",
+      "rep_name": "Mark Baisley",
+      "dem": 57.0,
+      "rep": 39.0,
+      "margin": 18.0,
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-09",
+      "posted_date": "2026-11-02",
+      "posted_source_datetime": "2026-11-02T11:09:00",
+      "posted_source_time": "11/2/26 11:09",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.colorado.edu/lab/aprl/media/84",
+      "sample_population": "lv",
+      "sample_size": 710,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
+    {
+      "race_code": "CO-GOV",
+      "race_type": "governor",
+      "state": "CO",
+      "poll_id": "3ee13e5a-1bb0-40a5-acf3-81088c10f4a5",
+      "question_id": "363460b8-1843-4e04-9bdc-a3af533c708d",
+      "pollster": "YouGov",
+      "dem_name": "Phil Weiser",
+      "rep_name": "Victor Marx",
+      "dem": 57.0,
+      "rep": 37.0,
+      "margin": 20.0,
+      "field_end": "2026-10-20",
+      "field_start": "2026-10-09",
+      "posted_date": "2026-11-02",
+      "posted_source_datetime": "2026-11-02T11:09:00",
+      "posted_source_time": "11/2/26 11:09",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.colorado.edu/lab/aprl/media/84",
+      "sample_population": "lv",
+      "sample_size": 710,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "AZ-GOV",
       "race_type": "governor",
