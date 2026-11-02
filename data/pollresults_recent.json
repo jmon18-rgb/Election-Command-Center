@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-11-02T10:18:40.170822+00:00",
+  "updated_at": "2026-11-02T12:03:15.422208+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 911,
+      "available_in_source": 912,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1301,
+      "available_in_source": 1302,
       "records_examined": 300
     },
     "governor": {
@@ -18,9 +18,38 @@
     }
   },
   "matched_primary_observations": 398,
-  "newly_injected_into_model": 0,
-  "injected_poll_ids": [],
+  "newly_injected_into_model": 1,
+  "injected_poll_ids": [
+    {
+      "race_code": "IA-SEN",
+      "poll_id": "00eec46b-20c2-48d9-abfd-65e700524acb"
+    }
+  ],
   "observations": [
+    {
+      "race_code": "IA-SEN",
+      "race_type": "senate",
+      "state": "IA",
+      "poll_id": "00eec46b-20c2-48d9-abfd-65e700524acb",
+      "question_id": "e8c46c76-a6f6-41a1-a794-17d445b74485",
+      "pollster": "GrayHouse",
+      "dem_name": "Josh Turek",
+      "rep_name": "Ashley Hinson",
+      "dem": 46.0,
+      "rep": 48.0,
+      "margin": -2.0,
+      "field_end": "2026-10-31",
+      "field_start": "2026-10-28",
+      "posted_date": "2026-11-02",
+      "posted_source_datetime": "2026-11-02T06:57:00",
+      "posted_source_time": "11/2/26 06:57",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.grayhouse.com/post/grayhouse-poll-hinson-leads-in-iowa-by-2",
+      "sample_population": "lv",
+      "sample_size": 601,
+      "partisan_lean": "",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "CT-GOV",
       "race_type": "governor",

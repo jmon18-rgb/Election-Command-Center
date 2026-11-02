@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-02T10:18:39.542817Z",
+  "updated_at": "2026-11-02T12:03:14.732154Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
@@ -257,6 +257,44 @@
     }
   ],
   "items": [
+    {
+      "id": "cc63a248c21a66726e4d",
+      "title": "ICE Raids In California Central Valley Spark Accusations Of Voter Intimidation: how 6 outlets framed it - NewsCord",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQWHBLVS1rdEtwbldYRWxnVVRPcmx6RmNHWVhUZ05LTHhFb0x2b3RuTG1yV3lJUTRWMjFqTS1uQldaeXZqZS1sbWRsMkhsZGYzSGp2Q1ZxQkpFLW5md1VRamlfcWMwbG50eEJMQkZhNzVPTDRta3U4cTRIZmZZMV9jckhGQkF1ZW5TR3RqTjNrRlg5emxhOHRVOFlKLTQ1dzVhSFVaQVVERGZGV202TU1fR2hvckx4ZTlldUN1QW1yUmt3bXpVX1dVOVdSUkY3NEJwVjhtWXZnZHpNbFE3WUlyUmNPWDBlanc?oc=5",
+      "publisher": "NewsCord",
+      "published_at": "2026-11-02T11:19:47Z",
+      "detected_at": "2026-11-02T12:03:14.732154Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "6 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2c004ef6dc4185536922",
+      "title": "Warnings About ICE at the Polls Risk Their Own Kind of Voter Suppression - The Intercept",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQdmNwLW1KeUdrRVY3S1B5MVI1R1QyMGtUR3dnMmtJS25tYTM1TFRSczY3NFNjN05Va09jOWxROU1nZVNIUGJpbjkxdjhudk1ucDZaQmR5NkRMQjlxSDlMRFZRYm1Ddlk3b1c2emRNYkpSTkF2dU5EeWpfaGJuek5fdFdYdw?oc=5",
+      "publisher": "The Intercept",
+      "published_at": "2026-11-02T10:51:00Z",
+      "detected_at": "2026-11-02T12:03:14.732154Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "0beef2f59f57bd4e9a5c",
       "title": "Nevada voters: Know your rights at the polls on Election Day - Las Vegas Sun",
@@ -5156,42 +5194,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "0d1264b7ab663f8487ab",
-      "title": "Judge curbs Trump administration's noncitizen voting probes - Axios",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOb0htbV9aYUVTZFJFc1lQT3JSTDhNTUFld3JHQ2hvWndyMmJwMWlnYUVGRENkUHg5bGlJeW11LVRSd01lcnRxY2NjZDJKRkJ6c0xyblg4bGNFVTU0Z2hKOWZHTVQ0ck1TT3lON3U0ZFluMWNiR1AxZGVsNmhIZTIyYm41UkJRenFYVjhHTjBveWk?oc=5",
-      "publisher": "Axios",
-      "published_at": "2026-10-22T19:51:38Z",
-      "detected_at": "2026-10-23T05:45:22.957554Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6344575d71330af87f17",
-      "title": "The midterm effect: What the 2026 election could mean for public policy - Brookings",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPbGxuc1JOXzBTaW84TG1MaU9GQ3FJTUtjU1c1WThHWFlERlZHWGJ1MzJtOFlLaWRaWk5DVTZQZjk2bEQ1bUxLUVJzZmVkYWNodldsQUVCdmoyc3kwRkpTNHB0RTVoT3NjVmI5azZ2cG1hWU45TTVaVlFHNjhLVkc2QVZseGVtaEk1TlZvYjhILTVpTHo3TDRFUERCOWNDcjhPNUNFaU1xc3Z6Zw?oc=5",
-      "publisher": "Brookings",
-      "published_at": "2026-10-22T19:50:04Z",
-      "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
