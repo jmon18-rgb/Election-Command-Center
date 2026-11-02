@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T15:05:23.423676Z",
+  "updated_at": "2026-11-02T16:12:34.548164Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -257,6 +257,23 @@
   ],
   "items": [
     {
+      "id": "906aeb69b265c4a3602a",
+      "title": "Policy Backgrounder: Top Issues in the Midterms - The Conference Board",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxObWdOVV9LY2VmZHZQYkJZMXFWeFRQMEpvQWQ0ejFKOEppZTZOQmp6ckVFcmtrblpxaFBqNTA4OHVDOV90X3RYanhWc3hHam9QeExkMHhCcnlUZG4yc1pXeGtNT3k5cFlIdUFBdS12eUNHXzVUOTBRVE5icm5Ea1QzUERnZ0xfWWZMTVg0aldybzBwQVk?oc=5",
+      "publisher": "The Conference Board",
+      "published_at": "2026-11-02T14:16:06Z",
+      "detected_at": "2026-11-02T16:12:34.548164Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "6830fd94fab4034b2e92",
       "title": "2026 U.S. Elections: State Governments Have Already Prepared Dozens of Lawsuits to Disrupt the Voting Process - UA.NEWS",
       "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPZEIyb2VLemJ4NWtfLWJQT2RRVXJDRlVFc2NWbXE0Z0dKSmNWRzNfNUxuYUozT0R6YTV3Ty0tSDlDcV9IdDRVd01LU2ZoaEFEeGJfMmc1Y0tmSFEwOE5UTERJeHpKdjVPOFNKRkF1cWFOdWxDNExfMV8xLUZ6cnJOY3VkZFV6STNDWW1YaXhBZDQ3MFJ2TkRWbFJKWGJDNFRTcTR0WW1EUlZZeHduU1Q5T1o5RQ?oc=5",
@@ -309,6 +326,26 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a260005b90cdd2561a56",
+      "title": "US Election Officials Brace for Disruptions From Donald Trump and Federal Interference: who 6 outlets blamed - NewsCord",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPZG93bjlXWHZrVHI2NVZmUHBRY29ILXZIeGhMbzZiQ3o5ZnRFS1dNTjZzTmRKOXpFazZIUmhpZjdmNU9mSHNHamE2M0g0dW1iaGxKN1BjWEhTcDVldHdyd3FEMFF5dWc4NTdMYlNjUWtTUU4xTVlqLXZSTmhYajFBVzhnM1pTLWVoejk3VkltR0hEMG53cmh6MEt1akE0SnBjNDhCTG5YYkIwZDg1UV9rS29xLWdoZjdFUUNqMDFPN0pJdG5Oc2h2Ynd4bzFNMmRrYXhHRDAzTWJLNWNHSzI3M1BGejJsVmVNdGc?oc=5",
+      "publisher": "NewsCord",
+      "published_at": "2026-11-02T11:26:51Z",
+      "detected_at": "2026-11-02T16:12:34.548164Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "6 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5155,44 +5192,6 @@
         "security"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c5cd04a931accbe02ce4",
-      "title": "Harris County Judge candidates face off in debate over ICE, Flock cameras, and the future of the Astrodome - Houston Public Media",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNUnBBRWV3VnRQNm5qNHlBY0RHemo3dUwzSEZKWWY4Ym9zNE5SZjNjVGtTVUdHR0xJMUExS2d3a0ZmRkVROUg2STBwSy1GWlRJN0locDNnb05Tcmcwb25KZ2hUOG9RdDNUVTAtRVdXYWJMX3RiMGhLbXlnbF9WNy1nejNqZmVfSUJQZ2xIZFFROWczT3o0V2haT3FqSzl2NDdoLURBWEFDQjRYNlQzYVNoZE5qcUZ1bWZnMWpjY29qXzRkMW1DdzU2VWlmdE1JR09ma2l3ZNIB3AFBVV95cUxNTEN5Z2Q4RlBkTTh0RmFfSDd2TC00QXI0d3I2LVpYRDVhZGNhWnVIUV95Y0JRN2tva1Bra3p2Q3ZzajFscWVSbHBuLUJvUDJwVlRabDhzXzhqRzZyR05lSUtiQmFITXpiQk51c3B2Zlk1MURJRVNYRE52X3c5a185YkwxSkZRdVgzMWQ4RTVXR1RIQmlOUGJFWDVhZDl0RUNMa2pjbFVPdWRsSTctRGp3em5ncUlVNWMzcFl5d1pJLUhmT016QzFWWUJZR05hWnFtbWxNLUNGblFKMEdJ?oc=5",
-      "publisher": "Houston Public Media",
-      "published_at": "2026-10-23T02:51:54Z",
-      "detected_at": "2026-10-23T11:46:53.349356Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "aa38e4e452516fd5af20",
-      "title": "Will ICE agents play a role in the 2026 US midterm elections? - Al Jazeera",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPUktCc2d1N1k1MFZYTW85TjVHejhTT2JlRUlZaUlZWEp4UGFJalFfYk5ld3k3SFI1Y1NyaUx2R3N2WUxWZDNQemZmVk82REY2TUhyTUJIU1lRUGk0X0MwX0RyUXFFR0dnOXRCaUJkR001c0kzRDNZZDFDTUpRSTVSbFpyN1ljRHA0RDBrUTBSZGx1TlEta0k4d3NzSnhDVC1Bb21SStIBqgFBVV95cUxOYk00Wm5vd0dUVlFFRjJsNVZGQWxtaXNucUw5SzdrcXRhbXhEQUJaRE44Wjl4dXU4TE1FUU1TSHJDdmc3ZmlVbUhaNVl1VnMtZWF6dDRILUU4bUYweDRJYjVqRUZkSzFESG1kU0hKMHRJb0dBdE9xc0xjNV9rLXhQMTRvWEtDbnBQdVc0aTdsRUQ3ZkR2MHBCMmQwanlZeEpYTlZHXzNoYlRndw?oc=5",
-      "publisher": "Al Jazeera",
-      "published_at": "2026-10-23T01:50:32Z",
-      "detected_at": "2026-10-23T03:47:03.225669Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
