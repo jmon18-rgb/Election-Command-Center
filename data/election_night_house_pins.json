@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-11-02T05:00:31.068498+00:00",
+  "generated_at": "2026-11-02T06:02:59.500677+00:00",
   "races": [
     {
       "checked_window_utc": "2026-10-30T06:00:00+00:00",
@@ -703,11 +703,6 @@
       "race_id": 87305
     },
     {
-      "checked_window_utc": "2026-10-30T04:00:00+00:00",
-      "district": "NY-04",
-      "race_id": 87306
-    },
-    {
       "checked_window_utc": "2026-10-31T12:00:00+00:00",
       "district": "NY-05",
       "race_id": 87307
@@ -768,19 +763,9 @@
       "race_id": 87318
     },
     {
-      "checked_window_utc": "2026-10-30T04:00:00+00:00",
-      "district": "NY-17",
-      "race_id": 87319
-    },
-    {
       "checked_window_utc": "2026-10-31T14:00:00+00:00",
       "district": "NY-18",
       "race_id": 87320
-    },
-    {
-      "checked_window_utc": "2026-10-30T05:00:00+00:00",
-      "district": "NY-19",
-      "race_id": 87321
     },
     {
       "checked_window_utc": "2026-10-31T14:00:00+00:00",
@@ -791,11 +776,6 @@
       "checked_window_utc": "2026-10-31T14:00:00+00:00",
       "district": "NY-21",
       "race_id": 87323
-    },
-    {
-      "checked_window_utc": "2026-10-30T05:00:00+00:00",
-      "district": "NY-22",
-      "race_id": 87324
     },
     {
       "checked_window_utc": "2026-10-31T14:00:00+00:00",
@@ -893,11 +873,6 @@
       "race_id": 87371
     },
     {
-      "checked_window_utc": "2026-10-30T05:00:00+00:00",
-      "district": "OR-05",
-      "race_id": 87372
-    },
-    {
       "checked_window_utc": "2026-11-01T15:00:00+00:00",
       "district": "OR-06",
       "race_id": 87373
@@ -943,19 +918,9 @@
       "race_id": 87456
     },
     {
-      "checked_window_utc": "2026-10-30T05:00:00+00:00",
-      "district": "WI-01",
-      "race_id": 87483
-    },
-    {
       "checked_window_utc": "2026-11-01T16:00:00+00:00",
       "district": "WI-02",
       "race_id": 87484
-    },
-    {
-      "checked_window_utc": "2026-10-30T05:00:00+00:00",
-      "district": "WI-03",
-      "race_id": 87485
     },
     {
       "checked_window_utc": "2026-11-01T16:00:00+00:00",
@@ -971,11 +936,6 @@
       "checked_window_utc": "2026-11-02T00:00:00+00:00",
       "district": "WI-06",
       "race_id": 87488
-    },
-    {
-      "checked_window_utc": "2026-10-30T05:00:00+00:00",
-      "district": "WI-07",
-      "race_id": 87489
     }
   ],
   "schema_version": "1.0",

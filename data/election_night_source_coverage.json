@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-11-02T05:00:31.068498+00:00",
+  "generated_at": "2026-11-02T06:02:59.500677+00:00",
   "methodology": {
     "calls": "No licensed professional call provider or verified control attribution in this ledger",
     "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
@@ -4090,11 +4090,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -4113,11 +4113,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -5134,11 +5134,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -5617,11 +5617,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -5640,11 +5640,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -5723,27 +5723,27 @@
       "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|NY-04",
       "key": "NY-04",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T04:00:00+00:00",
-        "race_id": 87306,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-02T06:00:00+00:00",
+        "race_id": null,
+        "reason": "DETAIL_CONTRACT_REJECTED",
+        "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "INVALID_DETAIL",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "NY",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -6022,27 +6022,27 @@
       "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|NY-17",
       "key": "NY-17",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T04:00:00+00:00",
-        "race_id": 87319,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-02T06:00:00+00:00",
+        "race_id": null,
+        "reason": "DETAIL_CONTRACT_REJECTED",
+        "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "INVALID_DETAIL",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "NY",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -6068,27 +6068,27 @@
       "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|NY-19",
       "key": "NY-19",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T05:00:00+00:00",
-        "race_id": 87321,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-02T06:00:00+00:00",
+        "race_id": null,
+        "reason": "DETAIL_CONTRACT_REJECTED",
+        "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "INVALID_DETAIL",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "NY",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -6137,27 +6137,27 @@
       "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|NY-22",
       "key": "NY-22",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T05:00:00+00:00",
-        "race_id": 87324,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-02T06:00:00+00:00",
+        "race_id": null,
+        "reason": "DETAIL_CONTRACT_REJECTED",
+        "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "INVALID_DETAIL",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "NY",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -6583,11 +6583,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -6606,11 +6606,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -6629,11 +6629,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "success",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -6804,27 +6804,27 @@
       "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|OR-05",
       "key": "OR-05",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T05:00:00+00:00",
-        "race_id": 87372,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-02T06:00:00+00:00",
+        "race_id": null,
+        "reason": "DETAIL_CONTRACT_REJECTED",
+        "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "INVALID_DETAIL",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "OR",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -8700,27 +8700,27 @@
       "verified_identity_hint_usable": false
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|WI-01",
       "key": "WI-01",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T05:00:00+00:00",
-        "race_id": 87483,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-02T06:00:00+00:00",
+        "race_id": null,
+        "reason": "DETAIL_CONTRACT_REJECTED",
+        "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "INVALID_DETAIL",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "WI",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -8746,27 +8746,27 @@
       "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|WI-03",
       "key": "WI-03",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T05:00:00+00:00",
-        "race_id": 87485,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-02T06:00:00+00:00",
+        "race_id": null,
+        "reason": "DETAIL_CONTRACT_REJECTED",
+        "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "INVALID_DETAIL",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "WI",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -8838,27 +8838,27 @@
       "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|WI-07",
       "key": "WI-07",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T05:00:00+00:00",
-        "race_id": 87489,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-02T06:00:00+00:00",
+        "race_id": null,
+        "reason": "DETAIL_CONTRACT_REJECTED",
+        "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "success",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "INVALID_DETAIL",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "WI",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "UNRESOLVED_SOURCE_GAP",
@@ -10269,13 +10269,13 @@
       "unresolved_breakdown": {
         "checked_not_indexed": 8,
         "expired_exact_identity": 0,
-        "invalid_or_ambiguous": 16,
+        "invalid_or_ambiguous": 24,
         "never_checked": 0,
         "skipped_due_to_upstream_pause": 0,
         "temporary_upstream_failure": 0
       },
-      "unresolved_source_gaps": 24,
-      "verified_usable_id_hints": 195
+      "unresolved_source_gaps": 32,
+      "verified_usable_id_hints": 187
     },
     "senate": {
       "pinned_secondary": 18,
