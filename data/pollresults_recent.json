@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T19:08:59.233833+00:00",
+  "updated_at": "2026-11-02T19:59:55.884804+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,30 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 408,
-  "newly_injected_into_model": 5,
-  "injected_poll_ids": [
-    {
-      "race_code": "FL-GOV",
-      "poll_id": "ac95d9d0-6076-4d28-9e91-be2b3a5f22e0"
-    },
-    {
-      "race_code": "FL-SEN",
-      "poll_id": "ac95d9d0-6076-4d28-9e91-be2b3a5f22e0"
-    },
-    {
-      "race_code": "MI-SEN",
-      "poll_id": "8de7ab3e-bd02-4cec-be08-c93b64288f26"
-    },
-    {
-      "race_code": "SC-GOV",
-      "poll_id": "efae558e-7c8c-48ab-b133-84962aaa054f"
-    },
-    {
-      "race_code": "SC-SEN",
-      "poll_id": "efae558e-7c8c-48ab-b133-84962aaa054f"
-    }
-  ],
+  "matched_primary_observations": 413,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "FL-SEN",

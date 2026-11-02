@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-02T19:08:58.649679Z",
+  "updated_at": "2026-11-02T19:59:55.245894Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
@@ -256,6 +256,29 @@
     }
   ],
   "items": [
+    {
+      "id": "f4e49f658cac3e6b4160",
+      "title": "Trump administration asks Supreme Court to set aside 20,000 California ballots for now - The Washington Post",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNbnI1MW1IejNwVy02SWpZOGszV25CNzRkdmViZkhrRWRKODBYdkVyODZSVHhpRnRLRlg5Nm84QkNYbEZGT2h1WWN6QXlHSV9TemRpYy1tQ09nTnJ6U09kNWlYRk10ZXZzU0FvbnBZY2wtNVYxc3h6N2Q1VVM4TkM2dUpZdVZsOTdDdnBUX3FRTFNzbW5XcU1UazNHa2lSOVdUTFgwZ0dfXy00amlSWDFQWThfX1VDeVpJM2Y5djF0dklPcnNyWHNKektB?oc=5",
+      "publisher": "The Washington Post",
+      "published_at": "2026-11-02T19:50:40Z",
+      "detected_at": "2026-11-02T19:59:55.245894Z",
+      "state_hints": [
+        "CA",
+        "WA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "351160ef9c6a696706b7",
       "title": "Will ICE Show Up at Churches on Election Day? - Word&Way",
@@ -5173,26 +5196,6 @@
       "state_hints": [],
       "topic_hints": [
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8e8344dab3578e62667b",
-      "title": "The DOJ will send election monitors to seven Michigan cities to observe polling places during the upcoming election. See link below \u2b07\ufe0f \ud83d\udcf8 Niraj Warikoo, Detroit Free Press - Facebook",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxONDRSSWQ3RjQwWWdHVy1jMUczOG1ST21jeEd6UXZPRkVjbnhIUE1oMW5PdXBaZG96eC0xaWhoMF9DSFhIV0NXdVZXN01DWU1CRmd3YkpHRVFnTDhSZlJlWS1CWDFQLUlPSGF2ZFhmeUN4N0czRTlMLTRFWktrTkM3aTdMQ3A1RXgxNEl3S2w3eWd5ZnJ2TUVzU2RZbnY2VU5SSkNLUC13b0Z6OFMyU3FEVWt3S045NmZ4alFFVy1MYzUzQmtJV2IzVEMwbFZPeEFkVXRQMzJFVUN4TE5EWjRJ?oc=5",
-      "publisher": "Facebook",
-      "published_at": "2026-10-23T13:40:03Z",
-      "detected_at": "2026-10-23T13:52:42.114129Z",
-      "state_hints": [
-        "MI"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
