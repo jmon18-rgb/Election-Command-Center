@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02T12:03:14.732154Z",
+  "updated_at": "2026-11-02T13:22:58.434315Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
     "primary_source_checked": 7,
-    "advisory_related_headline_buckets": 28,
-    "advisory_related_headlines": 79
+    "advisory_related_headline_buckets": 29,
+    "advisory_related_headlines": 81
   },
   "advisory_related_headlines": [
     {
@@ -257,6 +257,23 @@
     }
   ],
   "items": [
+    {
+      "id": "151a3cef83defb7260ae",
+      "title": "How officials are preparing for Election Day disruptions \u2014 including from Trump - Scripps News",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNSkxfQWNUd0ZZLUZmMXNEUkFuZGRydDdYYTMweGZLVW0ybWVzVjBvbnI5WnZBR2JBZWNDX2JnZGlLb0dTa0x4dkI0ejEyc3A3YXBONVlJRnhuWEotOUZaZ0NZUFlJZ2tRempvOC1Bb3BhOWlINTYxS3Z5Q0FFVmp6b0hFRXhSVVhwOUptaUxNVm1jVUgtLVlZamxYTVVQajA4WDNoamJfWDdKcWw2d0Fod0RfMHAxM21ESmZRU3Bvam5LcFFqbWtV?oc=5",
+      "publisher": "Scripps News",
+      "published_at": "2026-11-02T12:59:26Z",
+      "detected_at": "2026-11-02T13:22:58.434315Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "cc63a248c21a66726e4d",
       "title": "ICE Raids In California Central Valley Spark Accusations Of Voter Intimidation: how 6 outlets framed it - NewsCord",
@@ -5168,25 +5185,6 @@
       "publisher": "Cronkite News",
       "published_at": "2026-10-22T22:23:05Z",
       "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [
-        "AZ"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ef5dbddf5386c1b112d0",
-      "title": "As Election Day looms, Arizona officials and advocates address Latino voter concerns - Cronkite News",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNV0tzMnd1QnBwN2p5MkV3MnRyQXhiSVlHQXN3cEMzM2laVzRwaV9PMmswUXc2NlBzeTluSlpfVjRYdE85OTc2V0lmV19ndnlPWVBKYUNrN1I1TjRGeXk1UlcxU0F2a25jOW9oSU1qVVJmT0hSRHdiQjhKc00wT2xYRXFyVmVOV2J2STBPak5zSQ?oc=5",
-      "publisher": "Cronkite News",
-      "published_at": "2026-10-22T22:23:05Z",
-      "detected_at": "2026-10-23T08:49:03.577914Z",
       "state_hints": [
         "AZ"
       ],
