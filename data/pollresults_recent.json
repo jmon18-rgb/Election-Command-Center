@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T20:54:55.564125+00:00",
+  "updated_at": "2026-11-02T21:53:16.451257+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,50 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 413,
-  "newly_injected_into_model": 10,
-  "injected_poll_ids": [
-    {
-      "race_code": "GA-GOV",
-      "poll_id": "196de13e-1481-439d-9176-e5079f25b5cf"
-    },
-    {
-      "race_code": "GA-SEN",
-      "poll_id": "196de13e-1481-439d-9176-e5079f25b5cf"
-    },
-    {
-      "race_code": "KS-GOV",
-      "poll_id": "e5e20345-3b79-49b1-bd66-d5e7bfda599d"
-    },
-    {
-      "race_code": "KS-SEN",
-      "poll_id": "e5e20345-3b79-49b1-bd66-d5e7bfda599d"
-    },
-    {
-      "race_code": "ME-GOV",
-      "poll_id": "1d977920-6c4e-4f40-9b3d-b5aa4c912583"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "1d977920-6c4e-4f40-9b3d-b5aa4c912583"
-    },
-    {
-      "race_code": "MN-GOV",
-      "poll_id": "24da89e7-102c-4aa4-89a1-451e5301fd0d"
-    },
-    {
-      "race_code": "MN-SEN",
-      "poll_id": "24da89e7-102c-4aa4-89a1-451e5301fd0d"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "f554f677-d120-41a4-b4e9-afc7946e6da3"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "f554f677-d120-41a4-b4e9-afc7946e6da3"
-    }
-  ],
+  "matched_primary_observations": 420,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "MN-SEN",
@@ -455,16 +414,16 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "Jon Ossoff",
       "rep_name": "Mike Collins",
-      "dem": 53.0,
+      "dem": 52.7,
       "rep": 46.0,
-      "margin": 7.0,
+      "margin": 6.7,
       "field_end": "2026-11-02",
       "field_start": "2026-10-31",
       "posted_date": "2026-11-02",
       "posted_source_datetime": "2026-11-02T15:09:00",
       "posted_source_time": "11/2/26 15:09",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://insideradvantage.com/it-figures-in-matt-towery-and-insideradvantages-final-public-poll-at-the-end-of-a-26-year-career-georgias-governors-race-has-a-3-separation-insideradvantages-final-georgia-governors-su/",
+      "source_url": "https://jamesmagazinega.com/2026/11/02/48131/",
       "sample_population": "lv",
       "sample_size": 2500,
       "partisan_lean": "",
@@ -479,16 +438,16 @@
       "pollster": "InsiderAdvantage",
       "dem_name": "Keisha Lance Bottoms",
       "rep_name": "Rick Jackson",
-      "dem": 49.0,
+      "dem": 49.3,
       "rep": 49.0,
-      "margin": 0.0,
+      "margin": 0.3,
       "field_end": "2026-11-02",
       "field_start": "2026-10-31",
       "posted_date": "2026-11-02",
       "posted_source_datetime": "2026-11-02T15:09:00",
       "posted_source_time": "11/2/26 15:09",
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
-      "source_url": "https://insideradvantage.com/it-figures-in-matt-towery-and-insideradvantages-final-public-poll-at-the-end-of-a-26-year-career-georgias-governors-race-has-a-3-separation-insideradvantages-final-georgia-governors-su/",
+      "source_url": "https://jamesmagazinega.com/2026/11/02/48131/",
       "sample_population": "lv",
       "sample_size": 2500,
       "partisan_lean": "",
