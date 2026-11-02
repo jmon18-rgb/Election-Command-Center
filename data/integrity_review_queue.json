@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02T03:00:10.299988Z",
+  "updated_at": "2026-11-02T04:08:39.266239Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 242,
     "primary_source_checked": 8,
-    "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 76
+    "advisory_related_headline_buckets": 28,
+    "advisory_related_headlines": 78
   },
   "advisory_related_headlines": [
     {
@@ -427,6 +427,23 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "a657b4cf957ab17fda6b",
+      "title": "Trump could try to overturn midterm election results, security chiefs warn - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVmhNamZHNVVCTGNGVjQ4Zl9aY3p4bnBHam1adEM2amtST05nSl9Wa1RVUFAxbUNkSDV4YWtBeGFPdEhlT3FuUEdXTzY4MTQzX1FydXlhakdzRndDbXg3LVVSREVhYjBONUJHXzBlRG5mRTdGVUV2VmZEenlDWllRdGFzMk5xQUFyUnNnZ0NlWUdiVk9mR0NvUm5BNFV3UEtEbGNyX05Kd251MDJBSnhDcE9aVQ?oc=5",
+      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "published_at": "2026-11-01T18:34:05Z",
+      "detected_at": "2026-11-02T04:08:39.266239Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "24fc8f4d08459d7e51f0",
       "title": "Judge dismisses Alaska Senate election lawsuit; DOJ vows appeal - CNBC",
       "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPT0oyNEhUWVdvWGt5dFFSNGpPMENlTjJXTjBwVlpEV1pVZWt3eDBxLTN1blEtQ2xaeVQ5d0s4NmtIamd0LXAyR3pfMzZxaWxqSUoyYmRZd2JJSnNkS2oxVTN1NVpHNXJnaHlGYUlIYlBGdXUxR25hUGFLX1kxWGNyaWw1Nk1GODlfT0QtODl0ei1fVXfSAZgBQVVfeXFMTmlxWUoySmdvc1dlU1huZl9YYzYwejRhZ1JROUpLbWtPam83aXRKY3ZkSnVQcmNKcEFFM3V5Y251YWpTbHBMSktINU1DeG9mTm1MTV9GNEQ4NmVTczViOVhGcVpHak1ENFpZbVZySFV0RDIxNW9JLTdSTEU3bnFXQTFrUC1GUGVLYlFyZ3ZBdGdXdzk2UWJMTEE?oc=5",
@@ -532,6 +549,26 @@
         "210,000 ",
         "29 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ddc13aea8c06df5006e3",
+      "title": "Election officials brace for foreign threats \u2014 and an unpredictable Washington - CNN",
+      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOU0UzclNmaEV4eUMzQ3ZBM0hPVlNiRGJDRnhYWjVYeFZZMURTaTd5OGdHcnVDaDJDMmlQeE1yLW1ueGxpeHRGZE1EUV9QTFBHb09fMnJiSzhmRWMyZW9xR2puXzg2RHZjTUlJVnpiUUNCRlI1UjJvMWJObGJjYklkUXdnVQ?oc=5",
+      "publisher": "CNN",
+      "published_at": "2026-11-01T10:00:15Z",
+      "detected_at": "2026-11-02T04:08:39.266239Z",
+      "state_hints": [
+        "WA"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5166,43 +5203,6 @@
       "topic_hints": [
         "registration",
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4fa9b9a4af95f0679669",
-      "title": "Federal judge blocks voter investigation tactics in Missouri, eight other states ahead of midterms - Newstalk KZRG",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQLU94SjIyOWZjcVpucnB1Z3d6SGNjWURESHpta25WdUl4d1JyQlhjSkN6SDJkWHpMRkd6ZTE5RDRFTS1GU1JUdWM1T0dfbGIxd3pnWXVhX3UwTV85aThVVkIwSzNYOFpmbGdJd0lFd3ZBZFBmSk1FaDFtS0h4VXQweW5udDc0SjN0bEU4YVlBWHpJNlhXYWhTc1AtSGJWak1xcF9QOHpaME1BOTZTbWJKcGdhM3JkYVNkR2gzNU9qQzV6a2FfdXVQMWNkdWNKMmNFZVp2Sw?oc=5",
-      "publisher": "Newstalk KZRG",
-      "published_at": "2026-10-22T18:13:51Z",
-      "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [
-        "MO"
-      ],
-      "topic_hints": [
-        "litigation",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7930d1a56c7c2621d166",
-      "title": "NC elections board faces complaint over duplicate voter records - Carolina Journal",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNREpYbFh2YTh1aXV5S24zQnl2dnNSSllrM1BVWFJ2eExad19vQkhZUE0tTno2UGdMRmZ0bHh2a3pCa2xHbTh2U2FGRnNPajRSY3FucEQ4ZjlzdUJuclJhWTdKRFpEMC0wcFdOSWVKanp0UE5GOFRfU19laWZLZ09lcjJBYjZIbndweTQzNm1FVDVtMVdYd09jMFVTNUQ?oc=5",
-      "publisher": "Carolina Journal",
-      "published_at": "2026-10-22T17:50:44Z",
-      "detected_at": "2026-10-23T01:00:00.986227Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
