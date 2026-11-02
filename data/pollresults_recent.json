@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T13:22:59.355861+00:00",
+  "updated_at": "2026-11-02T15:05:23.990873+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,7 +17,7 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 399,
+  "matched_primary_observations": 398,
   "newly_injected_into_model": 0,
   "injected_poll_ids": [],
   "observations": [
@@ -486,9 +486,9 @@
       "pollster": "AtlasIntel",
       "dem_name": "James Talarico",
       "rep_name": "Ken Paxton",
-      "dem": 52.2,
-      "rep": 46.2,
-      "margin": 6.0,
+      "dem": 51.3,
+      "rep": 45.4,
+      "margin": 5.9,
       "field_end": "2026-11-01",
       "field_start": "2026-10-28",
       "posted_date": "2026-11-01",
@@ -1337,7 +1337,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_oh_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2090,
+      "sample_size": 2084,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1361,7 +1361,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_oh_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2090,
+      "sample_size": 2082,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1385,7 +1385,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2020,
+      "sample_size": 2016,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1409,7 +1409,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ia_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2020,
+      "sample_size": 2019,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1433,7 +1433,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_tx_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2141,
+      "sample_size": 2138,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1457,7 +1457,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_tx_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2141,
+      "sample_size": 2139,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1481,7 +1481,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_nc_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2130,
+      "sample_size": 2123,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1505,7 +1505,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_mi_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2093,
+      "sample_size": 2088,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1529,7 +1529,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_mi_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2093,
+      "sample_size": 2086,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1553,7 +1553,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ks_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2092,
+      "sample_size": 2086,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1577,7 +1577,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ks_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 2092,
+      "sample_size": 2085,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1601,7 +1601,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_ne_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 1979,
+      "sample_size": 1974,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1625,7 +1625,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_me_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 1503,
+      "sample_size": 1501,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },
@@ -1649,7 +1649,7 @@
       "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
       "source_url": "https://d3nkl3psvxxpe9.cloudfront.net/documents/ttw_me_20261026_lv.pdf",
       "sample_population": "lv",
-      "sample_size": 1503,
+      "sample_size": 1500,
       "partisan_lean": "",
       "source": "PollResults.org / NYT CC BY 4.0"
     },

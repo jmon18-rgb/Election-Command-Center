@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02T13:22:58.434315Z",
+  "updated_at": "2026-11-02T15:05:23.423676Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
     "primary_source_checked": 7,
-    "advisory_related_headline_buckets": 29,
-    "advisory_related_headlines": 81
+    "advisory_related_headline_buckets": 28,
+    "advisory_related_headlines": 79
   },
   "advisory_related_headlines": [
     {
@@ -134,18 +134,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "aa38e4e452516fd5af20",
-      "headline": "Will ICE agents play a role in the 2026 US midterm elections? - Al Jazeera",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin",
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "87d9d6f0bd668571bc6b",
       "headline": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
       "possibly_related_articles": 2,
@@ -254,9 +242,61 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "2196fa5b9fd51fa18bf6",
+      "headline": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "6830fd94fab4034b2e92",
+      "title": "2026 U.S. Elections: State Governments Have Already Prepared Dozens of Lawsuits to Disrupt the Voting Process - UA.NEWS",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPZEIyb2VLemJ4NWtfLWJQT2RRVXJDRlVFc2NWbXE0Z0dKSmNWRzNfNUxuYUozT0R6YTV3Ty0tSDlDcV9IdDRVd01LU2ZoaEFEeGJfMmc1Y0tmSFEwOE5UTERJeHpKdjVPOFNKRkF1cWFOdWxDNExfMV8xLUZ6cnJOY3VkZFV6STNDWW1YaXhBZDQ3MFJ2TkRWbFJKWGJDNFRTcTR0WW1EUlZZeHduU1Q5T1o5RQ?oc=5",
+      "publisher": "UA.NEWS",
+      "published_at": "2026-11-02T13:49:28Z",
+      "detected_at": "2026-11-02T15:05:23.423676Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "39ac0a7aacc7058d8e44",
+      "title": "2026 U.S. Elections: Polling Places Wary of Armed Federal Police \u2014 CNN - UA.NEWS",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQclpHemhrRnA1aVpFbXhtZks4RkQ4bkl0elVSTWF5MkI5NDVWaHI3SkdoRDM4N0Voa3V6cEU1RGJkQldVTlV1T0VRTEdoWDRIeVRTSTJYbWpic3ZTX2k2WmFOUVpCMG1WTW53YU9VOENUdW0waks4Qmw1YlJhdUs5LVNYMUFIUTVuNjRoYk1TYi1DV1MtZmduODRXQmZIbDR0SVZxM2pVRVBBQU1wZmc?oc=5",
+      "publisher": "UA.NEWS",
+      "published_at": "2026-11-02T13:29:03Z",
+      "detected_at": "2026-11-02T15:05:23.423676Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "151a3cef83defb7260ae",
       "title": "How officials are preparing for Election Day disruptions \u2014 including from Trump - Scripps News",
@@ -5153,45 +5193,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f4f611d5e6bea1425004",
-      "title": "Will ICE agents play a role in the 2026 US midterm elections? - Al Jazeera",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOYk00Wm5vd0dUVlFFRjJsNVZGQWxtaXNucUw5SzdrcXRhbXhEQUJaRE44Wjl4dXU4TE1FUU1TSHJDdmc3ZmlVbUhaNVl1VnMtZWF6dDRILUU4bUYweDRJYjVqRUZkSzFESG1kU0hKMHRJb0dBdE9xc0xjNV9rLXhQMTRvWEtDbnBQdVc0aTdsRUQ3ZkR2MHBCMmQwanlZeEpYTlZHXzNoYlRnd9IBqgFBVV95cUxOYk00Wm5vd0dUVlFFRjJsNVZGQWxtaXNucUw5SzdrcXRhbXhEQUJaRE44Wjl4dXU4TE1FUU1TSHJDdmc3ZmlVbUhaNVl1VnMtZWF6dDRILUU4bUYweDRJYjVqRUZkSzFESG1kU0hKMHRJb0dBdE9xc0xjNV9rLXhQMTRvWEtDbnBQdVc0aTdsRUQ3ZkR2MHBCMmQwanlZeEpYTlZHXzNoYlRndw?oc=5",
-      "publisher": "Al Jazeera",
-      "published_at": "2026-10-23T01:48:08Z",
-      "detected_at": "2026-10-23T02:46:24.277099Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "65f6c51ac13d0eecc7fa",
-      "title": "Arizona Latino voters express concerns ahead of Election Day - Cronkite News",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxNV0tzMnd1QnBwN2p5MkV3MnRyQXhiSVlHQXN3cEMzM2laVzRwaV9PMmswUXc2NlBzeTluSlpfVjRYdE85OTc2V0lmV19ndnlPWVBKYUNrN1I1TjRGeXk1UlcxU0F2a25jOW9oSU1qVVJmT0hSRHdiQjhKc00wT2xYRXFyVmVOV2J2STBPak5zSQ?oc=5",
-      "publisher": "Cronkite News",
-      "published_at": "2026-10-22T22:23:05Z",
-      "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [
-        "AZ"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
