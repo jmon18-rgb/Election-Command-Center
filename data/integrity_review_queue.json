@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-01T23:44:20.381742Z",
+  "updated_at": "2026-11-02T01:20:50.487920Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 242,
@@ -347,6 +347,26 @@
       "topic_hints": [
         "registration",
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "12485f371593776f9509",
+      "title": "Judge tosses DOJ lawsuit seeking to delay certification of Alaska Senate race - CBS News",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNbGZVRGY1b0VRUXRrUE9qWDJMR1czc1pyYWlQVkNMWUR2azItMFcyWEE5NWN4YWhjZkYtWkM3U3EtN0JsUWxuZ3VpU3JqTTdNUW9MR0M5VmYwTFJjSUhRSUJMVXdQN0ZwV211bHJId09mR1BZT1BkNzFuNVhGTS1ReVRtMTgxZw?oc=5",
+      "publisher": "CBS News",
+      "published_at": "2026-11-01T18:39:00Z",
+      "detected_at": "2026-11-02T01:20:50.487920Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5183,24 +5203,6 @@
       "headline_numbers_unverified": [
         "30 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "81d62f6b6bf0ec19d23d",
-      "title": "Monitoring the monitors: US states prepare for surge of Justice Dept election watchers - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNMFZ3WWlOR2pqMnVMOGNNRkxxaTByN2dOcWRkcWw0d2FkbXJoRC1JR2ZKTVNGejdaT2l1dDhkQ1NBcjk3VGpteDc2WUhyWWRyeGE2RTdrLThVQkQtc0VoRHpfTG1QU0tHZ0NVMjNfZWYwY2dGM2t1cS1RQmNxNnl3VGdWQlU4UDZIVmV3Y1preE9CUXNMem1RMDZtWjRDZDNJdXJSM0VkZWE0Skg5LTRHUVlLV29abThYa1I5UVRLaUU2OV9DcVE?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-10-21T10:34:09Z",
-      "detected_at": "2026-10-21T12:57:35.719763Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
