@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-02T04:08:39.266239Z",
+  "updated_at": "2026-11-02T05:14:17.877461Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 242,
@@ -257,6 +257,24 @@
     }
   ],
   "items": [
+    {
+      "id": "5a677ede193eac213f1d",
+      "title": "US midterms: Why Trump's hunt for noncitizen voters has landed him in court - Firstpost",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPZXNIS3VKNWhTQjJFSDBqS1BzNWRuUmZkNUJEOFhuaDNGYVlTYnlDd25yb1drNWJIbVZmZEl4LWFoOUtSbmZsVlc5N056N1NaVE9OZG02dFBFdTB6X3lFV3pvRjIwbHhFcU5WR0lWU1hQdEJHdmdXNk43bE40TkVZZzBpamJXU185MzU5NzVrNjcyUWxQWTlRZWNjVEQ2RnRrUFh4WUx6MmV0Z0J0b1NwX3NUT3B6cjhDR3JlMGM5UmkyWXlEdGxibk5LZnVYR1N5SVdz0gHTAUFVX3lxTE9lc0hLdUo1aFNCMkVIMGpLUHM1ZG5SZmQ1QkQ4WG5oM0ZhWVNieUN3bnJvV2s1YkhtVmZkSXgtYWg5S1JuZmxWVzk3Tno3U1pUT05kbTZ0UEV1MHpfeUVXem9GMjBseEVxTlZHSVZTWFB0Qkd2Z1c2TjdsTjRORVlnMGlqYldTXzkzNTk3NWs2NzJRbFBZOVFlY2NURDZGdGtQWHhZTHoyZXRnQnRvU3Bfc1RPcHpyOENHcmUwYzlSaTJZeUR0bGJuTktmdVhHU3lJV3M?oc=5",
+      "publisher": "Firstpost",
+      "published_at": "2026-11-02T02:47:01Z",
+      "detected_at": "2026-11-02T05:14:17.877461Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c236927f70e2ffae34fc",
       "title": "Justice Department urges sanctions for database analysis critical of its noncitizen voting claims - PBS",
@@ -5184,27 +5202,6 @@
         "2 ",
         "920,000 ballots"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8ff03d9b00ba66c352e9",
-      "title": "Supreme Court amicus: Arizona SAVE database verification violates National Voter Registration Act - Citizens for Responsibility and Ethics in Washington",
-      "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNWlF2QUVsWDJmRThVcGpZalNqaWlwVWozMUw1TmJFNnNYa2NzRG9wQ1g4LWFZaTNvd3BHM1FhdjhwcU01OWdGd05lNHZ6YWRVQ2JYaG9XYmdrOVlJODN2RnFyUEoxejJNaS1OS0U3NFZNc2dvWDhfeUxhcXh6clM4UUg1MEVlOEhvZzN3X1UyVENJcDZxNTFKOG13VzlkbXZDdkc2d1pGSGREaV9YRWlFNmR5RE02VDVIaTd3T0hiZnRXOXJ1S193c2VqdmNKUDlSVUhrVFl6N3FoaUZsb1R6cUsyQW41cVNH?oc=5",
-      "publisher": "Citizens for Responsibility and Ethics in Washington",
-      "published_at": "2026-10-22T18:47:26Z",
-      "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [
-        "AZ",
-        "WA"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
