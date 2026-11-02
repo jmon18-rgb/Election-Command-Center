@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-02T05:14:18.683364+00:00",
+  "updated_at": "2026-11-02T06:17:26.172269+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,82 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 380,
-  "newly_injected_into_model": 18,
-  "injected_poll_ids": [
-    {
-      "race_code": "CT-GOV",
-      "poll_id": "7a62f5ef-4fba-4910-97bd-4bde1f0238c5"
-    },
-    {
-      "race_code": "MA-GOV",
-      "poll_id": "7fca87a7-c9a7-443c-9b3a-f5826088f152"
-    },
-    {
-      "race_code": "MA-SEN",
-      "poll_id": "7fca87a7-c9a7-443c-9b3a-f5826088f152"
-    },
-    {
-      "race_code": "ME-01",
-      "poll_id": "874e66b5-2a4c-4aca-98bf-0a195be794af"
-    },
-    {
-      "race_code": "ME-02",
-      "poll_id": "874e66b5-2a4c-4aca-98bf-0a195be794af"
-    },
-    {
-      "race_code": "ME-GOV",
-      "poll_id": "874e66b5-2a4c-4aca-98bf-0a195be794af"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "874e66b5-2a4c-4aca-98bf-0a195be794af"
-    },
-    {
-      "race_code": "MI-GOV",
-      "poll_id": "79c1089e-6893-4079-913e-e6f151d017c2"
-    },
-    {
-      "race_code": "MI-SEN",
-      "poll_id": "79c1089e-6893-4079-913e-e6f151d017c2"
-    },
-    {
-      "race_code": "MN-GOV",
-      "poll_id": "f96cc69b-cd5a-4526-930b-9707abdb8e97"
-    },
-    {
-      "race_code": "MN-SEN",
-      "poll_id": "f96cc69b-cd5a-4526-930b-9707abdb8e97"
-    },
-    {
-      "race_code": "NY-GOV",
-      "poll_id": "bf002799-d10f-4af0-9ef2-3326c367929e"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "2483fb30-fb88-456c-b51f-b03bad5ba693"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "2483fb30-fb88-456c-b51f-b03bad5ba693"
-    },
-    {
-      "race_code": "PA-GOV",
-      "poll_id": "a448c730-dde2-40df-abbb-d1beed19f1d6"
-    },
-    {
-      "race_code": "RI-GOV",
-      "poll_id": "c7bbd60b-db55-4439-ab8c-93e152ad0c30"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "ec104f8a-5101-41e8-a3a9-ad0d516a8693"
-    },
-    {
-      "race_code": "WI-GOV",
-      "poll_id": "abd93dd2-6de8-4c92-9bd1-f99c927b4629"
-    }
-  ],
+  "matched_primary_observations": 398,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "CT-GOV",
