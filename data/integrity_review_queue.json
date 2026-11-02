@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02T01:20:50.487920Z",
+  "updated_at": "2026-11-02T03:00:10.299988Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 242,
     "primary_source_checked": 8,
-    "advisory_related_headline_buckets": 28,
-    "advisory_related_headlines": 78
+    "advisory_related_headline_buckets": 27,
+    "advisory_related_headlines": 76
   },
   "advisory_related_headlines": [
     {
@@ -149,19 +149,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "21c2a841eca952910de2",
-      "headline": "Decision 2026: Federal judge orders Trump Administration to halt noncitizen voter investigation in New York - WHEC.com",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "NY"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "37bd4b2611f95b360ade",
       "headline": "LA Hearing Set Tuesday in Government Push for Court Order in Voting Case - MyNewsLA.com",
       "possibly_related_articles": 2,
@@ -256,6 +243,17 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "2196fa5b9fd51fa18bf6",
+      "headline": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -269,6 +267,26 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7c5d9ddfaaab45d58522",
+      "title": "US judge dismisses Trump election lawsuit in Alaska - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPck1iY1RiSVI0MWpxbGhyZzlYWm9PeGh6WXJnYTVIX0VqTS1UbGpTQUh0WkFxbUpFdlNsbmJCUzg0bENnWmtEUjcxUWxTbmIzMzlKUGdXNGFidFl0Nk10a29rYVlVUkdLRVM2TUtBU0NRcTlXUS0xSjhmOTRZNWVjUW1yMVVIOHh4QnFLTEFiQWZyRWNsSVE?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-11-01T21:22:38Z",
+      "detected_at": "2026-11-02T03:00:10.299988Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -383,6 +401,43 @@
       "detected_at": "2026-11-01T18:56:00.636642Z",
       "state_hints": [],
       "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "666c9e5cd54b472e34d3",
+      "title": "Trump could try to overturn midterm election results, warn security chiefs - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVmhNamZHNVVCTGNGVjQ4Zl9aY3p4bnBHam1adEM2amtST05nSl9Wa1RVUFAxbUNkSDV4YWtBeGFPdEhlT3FuUEdXTzY4MTQzX1FydXlhakdzRndDbXg3LVVSREVhYjBONUJHXzBlRG5mRTdGVUV2VmZEenlDWllRdGFzMk5xQUFyUnNnZ0NlWUdiVk9mR0NvUm5BNFV3UEtEbGNyX05Kd251MDJBSnhDcE9aVQ?oc=5",
+      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "published_at": "2026-11-01T18:34:05Z",
+      "detected_at": "2026-11-02T03:00:10.299988Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "24fc8f4d08459d7e51f0",
+      "title": "Judge dismisses Alaska Senate election lawsuit; DOJ vows appeal - CNBC",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPT0oyNEhUWVdvWGt5dFFSNGpPMENlTjJXTjBwVlpEV1pVZWt3eDBxLTN1blEtQ2xaeVQ5d0s4NmtIamd0LXAyR3pfMzZxaWxqSUoyYmRZd2JJSnNkS2oxVTN1NVpHNXJnaHlGYUlIYlBGdXUxR25hUGFLX1kxWGNyaWw1Nk1GODlfT0QtODl0ei1fVXfSAZgBQVVfeXFMTmlxWUoySmdvc1dlU1huZl9YYzYwejRhZ1JROUpLbWtPam83aXRKY3ZkSnVQcmNKcEFFM3V5Y251YWpTbHBMSktINU1DeG9mTm1MTV9GNEQ4NmVTczViOVhGcVpHak1ENFpZbVZySFV0RDIxNW9JLTdSTEU3bnFXQTFrUC1GUGVLYlFyZ3ZBdGdXdzk2UWJMTEE?oc=5",
+      "publisher": "CNBC",
+      "published_at": "2026-11-01T18:27:17Z",
+      "detected_at": "2026-11-02T03:00:10.299988Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -5150,59 +5205,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a4642bfbc2e2e0804864",
-      "title": "US judge orders Trump administration to halt noncitizen voting investigation - The Guardian",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOcGlYYnJ2UzNYcC1RXzduUFR4Q0NSR21YRWh6b1k3NGtUdWZvdXlXUUpQZk96RFlBWjVmV01TY2FQbFJDUXEzV250dDltREt6MmoyNUF4TE1WS3Z1RjRwRlBjdHN6MXpnaEs5dXBCc1ZLMmczNFZOeXBwLUZHcHpjRENZbk1MU2JyV21EZk5OU2R4VjJ3ekMxSkM1c2ZYZkVIUWpXZWlsMUxRWlU?oc=5",
-      "publisher": "The Guardian",
-      "published_at": "2026-10-22T17:47:00Z",
-      "detected_at": "2026-10-23T10:44:43.757041Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4412f4ae0d4f80986e05",
-      "title": "Arlington Co. suing to keep federal agents away from polling places - WUSA9",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOTjRSaDZVSjA3b2dsa29PSVBFX1hOd3AyWXR0M2NrazN5MUExZE5VU3lzQWxPekQ5U0wwZWE4YnhrOE1WdUlKNWR2elZpVXRHZlVDSmR6VGw3LWJuT2F2TUNWRzBseGl1SWFsZVYya1JxR2JOempUSVhfNWdyMV8yY05mWXBzN3htSXNtTENTcXQwZmVWN0JzMkM5WUxOLUlPZGFrTVQ3cVM4VEpVaDl2TnRnX2g4UWVLT08ySG8yd0JJd1NRMGtDUkNfTlA3NGNVRDJiNzdGSzI?oc=5",
-      "publisher": "WUSA9",
-      "published_at": "2026-10-22T13:54:00Z",
-      "detected_at": "2026-10-23T07:53:54.843386Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "86325d0168bd8bf797bc",
-      "title": "Oakland's $30 Minimum Wage Initiative Qualifies for Future Ballot - East Bay Insiders Newsletter",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBGXzdPR0VTeG1tZjJQN3E0OEh0OWlRM2hOOUNkWllPd25vcW1WWmkyZkJhRjY5ZGRxN3BYZkpmMVRHWmV3Z0VhYklvZE9NUWNmRlo4MGdNMHlFbEJfM1RERFZjcS0xT0ptZEtPeTFUdHFvYU5ldDU1dmZQMnZJMUU?oc=5",
-      "publisher": "East Bay Insiders Newsletter",
-      "published_at": "2026-10-22T13:01:24Z",
-      "detected_at": "2026-10-23T07:53:54.843386Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "30 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
