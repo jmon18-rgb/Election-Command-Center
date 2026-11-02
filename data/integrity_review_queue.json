@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-02T08:30:47.932769Z",
+  "updated_at": "2026-11-02T10:18:39.542817Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
-    "awaiting_primary_source": 242,
-    "primary_source_checked": 8,
+    "awaiting_primary_source": 243,
+    "primary_source_checked": 7,
     "advisory_related_headline_buckets": 28,
     "advisory_related_headlines": 79
   },
@@ -257,6 +257,62 @@
     }
   ],
   "items": [
+    {
+      "id": "0beef2f59f57bd4e9a5c",
+      "title": "Nevada voters: Know your rights at the polls on Election Day - Las Vegas Sun",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQS1RDSHVGcVEwZ1VqVnBrQXBUeVdyQVBTNzBmY2dfTy1oa0ZJOVJGa055SjRDcW9xekpyemdsLU5SblowZ0kzZUxmOHQ0YXZyNjB3amtlVS1jcTdHRFFYZXRKYXJ4VzVGWHhIcEswSVhLaGo1cWM2ZFQ4MlNzVG1ZdGVzSk9TT1oyRWtUbXpmYkFxb041X2w4?oc=5",
+      "publisher": "Las Vegas Sun",
+      "published_at": "2026-11-02T10:00:00Z",
+      "detected_at": "2026-11-02T10:18:39.542817Z",
+      "state_hints": [
+        "NV"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "91a0252abb36bb5eb5a6",
+      "title": "How officials are preparing for Election Day disruptions \u2014 including from Trump - CNN",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNdk0yaGZHMWs1czZhSVpoX1hZM1Jyd1BTOE94RURxci03XzdPcjdYR3BxUXd6MFVLM0V3a0trUDlZcmQ2ZlFZS2lqQ1Z0UG1IUXk2azNKTEV5bmQ0TEJUbm8tRWVkXzl4ZW9MUk43Z2NVREhSTFRLWDY5enJlRUNIY1F5UjliamJzT1E?oc=5",
+      "publisher": "CNN",
+      "published_at": "2026-11-02T09:00:15Z",
+      "detected_at": "2026-11-02T10:18:39.542817Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7dce7a300cdf712159a0",
+      "title": "Judge tosses DOJ\u2019s attempt to delay Alaska\u2019s Senate results if Republican loses - The Washington Post",
+      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQb01VY1hzaERwaUN0dGt1enZaNTROVmE5N3ZYMmNjeTgycGhTOFN2NFZHR2NHMkdwTGswMEtGNWxjMlFrNEVMajNWVDBuV1pYWW5mV09DVW5FeHJ5akZXdXFFRlVRWG5kTVNYMGtLZDhwWDNkQkRBdk9zaDR1QW1Relh3ejMzRWtjQncyczAwbVFlN0kyNlpPejAwS1RfczVoclg3X3ZJcmF1T0NVUFNja0otcC1KOEh4NDg5Ul96TXRMMHM?oc=5",
+      "publisher": "The Washington Post",
+      "published_at": "2026-11-02T04:22:05Z",
+      "detected_at": "2026-11-02T10:18:39.542817Z",
+      "state_hints": [
+        "AK",
+        "WA"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "5a677ede193eac213f1d",
       "title": "US midterms: Why Trump's hunt for noncitizen voters has landed him in court - Firstpost",
@@ -5136,68 +5192,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "14ab1f5f029f3840076d",
-      "title": "Nevada ready to resist federal election pressure | Aguilar - Reno Gazette Journal",
-      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOb3FNVEs1Q0JTU3dGRGliSExraGthbG42YUZOeU13SGFrTGlNRHAzRnBWdkdta0hhYUhDVi1lSGdUMW03WHZRTF9fV2hMUmR6VE4xdU5tbGx0TmN3NXhCVXVLRVNQY2U3Y3p6UF8tejlfTkdlVmVCRmlYN2h2eHg0QUdYWWlza1hBMTZGTnZCZkU3VnphRTBDTkVCUC1tVFBxcHBmOFdFTzNaN0c0alZXQXgwanU?oc=5",
-      "publisher": "Reno Gazette Journal",
-      "published_at": "2026-10-22T19:30:00Z",
-      "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [
-        "NV"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b42b72d21f635f8a0ed7",
-      "title": "Federal judge orders Trump administration to halt noncitizen voting investigation in 9 states - WTOP News",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNQjNpQV9ycFVCRGdLS3QwajUwUjFJSkVvOVpnTW9XdEcxQnJTOUs2ellDUTIyaFlfdmtpRlJDb2xmbUtlTzE0WjNOYWs4WjBvOEd1aWZ6Rmc3cE1DVU5XT3E5cVU5M1FSWGxtd3VwUnUzLXN6REVFak5ucW1TaThNdHRrQTZqVUlLd0dtTWNUdnFfRUFJYTV1cVpyaEJBYzZheUozT3dmaFZzOHVyODI2RHVDcEpacGZELUI3TS0zbVJQVVlaNmYw?oc=5",
-      "publisher": "WTOP News",
-      "published_at": "2026-10-22T19:16:51Z",
-      "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "9 "
-      ],
-      "review_status": "primary_source_checked",
-      "primary_sources": [
-        {
-          "publisher": "US District Court, N.D. California, docket 87 Oct 21",
-          "url": "https://storage.courtlistener.com/recap/gov.uscourts.cand.479338/gov.uscourts.cand.479338.87.0.pdf"
-        }
-      ],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": "dhs-unlawful-voter-initiative-injunction-20261021-ca",
-      "review_notes": "Primary on-record event or court action corroborated; allegation/administrative report does not establish eligible ballots lost. See curated linked case for exact scope and status.",
-      "reviewed_as_of": "2026-10-22"
-    },
-    {
-      "id": "1a80bdfd106547cf2702",
-      "title": "Federal judge restricts DHS field operations looking for noncitizen voters - NPR",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNQXN0am5OcXFwRmh4Qkh5NUs4Rlc2TVNzeDJXXzZ2a0JVcDRaeEpBM1ZqNG1iaGV5OFJzcFFFMWpCUzZ6X1h3YXRpMndyeHFGR0J0a1RkWmhBUW1GejF4Y3FoVzhueUJqMW1GX1JLZVVrc1VHVkxhb3hfQkxfV0gxWnptV3RZMDl3WHJ3?oc=5",
-      "publisher": "NPR",
-      "published_at": "2026-10-22T19:16:20Z",
-      "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
