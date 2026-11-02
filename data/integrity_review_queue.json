@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02T06:17:25.530705Z",
+  "updated_at": "2026-11-02T08:30:47.932769Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 242,
     "primary_source_checked": 8,
     "advisory_related_headline_buckets": 28,
-    "advisory_related_headlines": 78
+    "advisory_related_headlines": 79
   },
   "advisory_related_headlines": [
     {
@@ -116,6 +116,17 @@
       "headline": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - Modern Ghana",
       "possibly_related_articles": 3,
       "distinct_publishers": 3,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "88a69257c61c8ee8b245",
+      "headline": "Trump could try to overturn midterm election results, former security chiefs warn - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 1,
       "state_hints": [],
       "topic_hints": [
         "election_admin"
@@ -241,17 +252,6 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "2196fa5b9fd51fa18bf6",
-      "headline": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     }
@@ -402,6 +402,23 @@
       ],
       "topic_hints": [
         "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "88a69257c61c8ee8b245",
+      "title": "Trump could try to overturn midterm election results, former security chiefs warn - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVmhNamZHNVVCTGNGVjQ4Zl9aY3p4bnBHam1adEM2amtST05nSl9Wa1RVUFAxbUNkSDV4YWtBeGFPdEhlT3FuUEdXTzY4MTQzX1FydXlhakdzRndDbXg3LVVSREVhYjBONUJHXzBlRG5mRTdGVUV2VmZEenlDWllRdGFzMk5xQUFyUnNnZ0NlWUdiVk9mR0NvUm5BNFV3UEtEbGNyX05Kd251MDJBSnhDcE9aVQ?oc=5",
+      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "published_at": "2026-11-01T18:37:06Z",
+      "detected_at": "2026-11-02T08:30:47.932769Z",
+      "state_hints": [],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -5181,27 +5198,6 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f06c787f385d1846b964",
-      "title": "Less than 2 weeks until Election Day: 920,000 ballots cast as clerks emphasize security - MLive.com",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPcU4tVVM0VFo5ZWlfTkZybHl6WG11NlJ5MHNqOE1FZGRHei14SldKRy1TVWpub0dDTmRBNklpNWJhOXdrZFdZbVJBbTNYcENIV0d5dFRkdWhxOWFDUnJiY2NxM0RhNEZoLUFIb1hPczQ0VVdfX2tQaWtnOTdrTEhRdlN4a3JxQ1VNQTY5YURzNXBMTmNHLVlzLWtfTG5XU1JWVktLSTdKbHdhVFZmYW5WLUszRDhLeGdLakhLeGZJOVZIM3VmTHVuUQ?oc=5",
-      "publisher": "MLive.com",
-      "published_at": "2026-10-22T18:54:00Z",
-      "detected_at": "2026-10-23T00:57:49.936382Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2 ",
-        "920,000 ballots"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
