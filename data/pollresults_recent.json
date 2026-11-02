@@ -1,15 +1,15 @@
 {
-  "updated_at": "2026-11-02T17:14:38.980301+00:00",
+  "updated_at": "2026-11-02T18:07:39.277105+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
   "source_totals": {
     "senate": {
-      "available_in_source": 917,
+      "available_in_source": 918,
       "records_examined": 300
     },
     "house": {
-      "available_in_source": 1302,
+      "available_in_source": 1303,
       "records_examined": 300
     },
     "governor": {
@@ -17,19 +17,34 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 402,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "CO-GOV",
-      "poll_id": "3ee13e5a-1bb0-40a5-acf3-81088c10f4a5"
-    },
-    {
-      "race_code": "CO-SEN",
-      "poll_id": "3ee13e5a-1bb0-40a5-acf3-81088c10f4a5"
-    }
-  ],
+  "matched_primary_observations": 408,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
+    {
+      "race_code": "OH-SEN",
+      "race_type": "senate",
+      "state": "OH",
+      "poll_id": "b2df3f8d-e5f5-404e-878e-e17ffb9c30f7",
+      "question_id": "d5cbc358-f8a4-4d0b-bff7-29e655e7779f",
+      "pollster": "Trafalgar Group",
+      "dem_name": "Sherrod Brown",
+      "rep_name": "Jon Husted",
+      "dem": 46.6,
+      "rep": 45.1,
+      "margin": 1.5,
+      "field_end": "2026-11-01",
+      "field_start": "2026-10-31",
+      "posted_date": "2026-11-02",
+      "posted_source_datetime": "2026-11-02T12:19:00",
+      "posted_source_time": "11/2/26 12:19",
+      "posted_date_provenance": "Date PollResults added the poll, NOT independently verified public release date",
+      "source_url": "https://www.thetrafalgargroup.org/news/oh-senate-gen-1102/",
+      "sample_population": "lv",
+      "sample_size": 1092,
+      "partisan_lean": "R",
+      "source": "PollResults.org / NYT CC BY 4.0"
+    },
     {
       "race_code": "AK-SEN",
       "race_type": "senate",

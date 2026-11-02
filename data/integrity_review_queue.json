@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-02T17:14:38.456736Z",
+  "updated_at": "2026-11-02T18:07:38.130073Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
@@ -256,6 +256,44 @@
     }
   ],
   "items": [
+    {
+      "id": "5a5c7ca1eb881299a7b1",
+      "title": "Will ICE Show Up at Churches on Election Day? - A Public Witness",
+      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNMEJraXM0SU5LV1FXT0w3NjhERTRuR0d3MmdvQVhTSmVsekx5Ymd6Z21KbDQyT2Q5NDBRV0Rjd29FcEFGc0JJb1dhR0FqNllMaW5lbzN3a0F0OHFTU0tLeUp0V2hURjhYcTNVMFBYdGdaWTJ2OGV3MUgwRTZ1elFqRFVPRzFuQQ?oc=5",
+      "publisher": "A Public Witness",
+      "published_at": "2026-11-02T17:52:23Z",
+      "detected_at": "2026-11-02T18:07:38.130073Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5a719617bc7f595db06f",
+      "title": "DOJ asks for Supreme Court to intervene on California ballot demands - NPR",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOOS13ODJLdHVpQ3M4aWN1eUtEbHItLTdDbjhKRVRjN2JfNENpc3M5UDB2SnlJc3h6QnE1b1ljWHlYUmZDNnhSX2c5Zm5ZVV9iRGtkWEI4NWRaOVQzaDFVWmQ1M0c4TXM0YVFGRW44NkE3Qlp0Ynp5cThfaWRsUDdYNnJqblA0OVJoSjduNjBlZFp1dm1Y?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-11-02T17:47:49Z",
+      "detected_at": "2026-11-02T18:07:38.130073Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "906aeb69b265c4a3602a",
       "title": "Policy Backgrounder: Top Issues in the Midterms - The Conference Board",
@@ -5156,42 +5194,6 @@
       "headline_numbers_unverified": [
         "2026"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1161cf338be69225d781",
-      "title": "Our complete North Jersey voters' guide to the 2026 midterm election - Bergen Record",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQOVpUTy01dHpHSXBUQ1F6NXhPNlVVZHFRZ3ZoWmU3Z2tuWlhCd1hsNERsNEJRY0w1YUgyaGEycXh1Nk5jdGp0UWI4dHplSm9VQ1pISmZqeVN5QXpPaHBiYndmMkFDZEd0X01yQ2JOOHlNbkV0YlBJR2EzR0JhMHI5ak5KWXRBeW5TeU1waG1zSTltVk04OFhMVnFrS1paVXFGVGxLU3NMNFc3SXNZSXBRb0JLRmItOC1wWmxxdW0zaXlWZw?oc=5",
-      "publisher": "Bergen Record",
-      "published_at": "2026-10-23T09:47:00Z",
-      "detected_at": "2026-10-23T11:46:53.349356Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3a442205fd8e315006f1",
-      "title": "Why Ice Agents At The Polls Is Mostly Political Theater - \u0418\u0424\u0417 \u0420\u0410\u041d",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5wQnRzbVNpd2kxazBnM1pDSGRNN1VnMGRCczV1QXdZOG56Z25UNVZ5eWNCZngtNDBfVXRaMmg1V2hVSmE3M1dhYXRVSWgxcjZoT0Q3VFJsZ3NDTWpIcnNQUWQzZUJTOVhnOFRuSGVEN3dPazVq?oc=5",
-      "publisher": "\u0418\u0424\u0417 \u0420\u0410\u041d",
-      "published_at": "2026-10-23T05:19:48Z",
-      "detected_at": "2026-10-23T08:49:03.577914Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
