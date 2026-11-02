@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-02T21:53:15.715279Z",
+  "updated_at": "2026-11-02T22:53:39.916755Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 4,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
@@ -423,6 +423,26 @@
       "headline_numbers_unverified": [
         "20,000 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "0658adc4034089d9e1b7",
+      "title": "DOJ asks Supreme Court to block California counting disputed mail-in ballots - CNBC",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPUERhRXRKM3dyYkhqV0Y2S2hGYVc0X2J1NDlnUjZDT04wbTNrZDJYWHc3LWkzbTMyX0dsWVREcWtyRkY3cllRVEpkNU1sZ2g2aWc1YUw2a0VRV1B2aTNyVXktVzNkb2MwNExvNzVwdjRtRzBoRjk5NE5vNTlabDhGeV9zTWJKNXZUVzZB0gGQAUFVX3lxTE1NTGV4OTJKRU1nV0VsQk40X1phWk1YVnlkbkFlNzVBTUlrTHlKbWNIUlJRZGN3QjJ6bENyT3lnLXZrN1FVZWhZQmZSYlV5NWhNZ0taTGh1Z0dSajNwbzRhbFhYX1Z1Z2tOa0FYZUF6TE9LLV8xRXdmMWU0SVhvZG5FLU9DS0l5OVhVbC1tZ2hzMw?oc=5",
+      "publisher": "CNBC",
+      "published_at": "2026-11-02T16:34:43Z",
+      "detected_at": "2026-11-02T22:53:39.916755Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5173,26 +5193,6 @@
         "AK"
       ],
       "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f70ad360f69ead445ef4",
-      "title": "Supreme Court allows New Hampshire to restrict student IDs for midterm voting - The American Bazaar",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOa0FsOExlZkIwZHBfLVIxTEZYQUdsXy1uN0RrQXgyRENROG50U2R3OFZqU3lGWWVpcHJhcWh4NjdSSVg3bnFCUk1kVWJKMTctQlRnMy01aDRVN3VraGt5bDBLcWp4aDc0a1dGQVZnNGt4aTFScEtQUnlDcUNxXzU2QnJfLWRjbi0xaU1JT1FwcDVvSGtXdDJtMDlQQnM1aVprejhvdUNLc3h6MTRzOFJXWmJMYm9IMUh0cUE?oc=5",
-      "publisher": "The American Bazaar",
-      "published_at": "2026-10-23T16:19:55Z",
-      "detected_at": "2026-10-23T18:53:40.169198Z",
-      "state_hints": [
-        "NH"
-      ],
-      "topic_hints": [
-        "litigation",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
