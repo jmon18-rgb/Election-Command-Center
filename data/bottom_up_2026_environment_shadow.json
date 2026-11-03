@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-11-02T23:47:44.550526Z",
+  "polling_generated_at": "2026-11-03T13:17:32.042050Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
-  "generic_ballot_2026_d_minus_r_points": 8.73,
-  "generic_implied_vs_2024_presidential_swing_points": 10.435,
-  "independent_polling_estimated_presidential_to_race_swing_points": 10.739,
-  "bottom_up_implied_national_margin_points": 9.034,
-  "bottom_up_minus_generic_environment_points": 0.304,
+  "generic_ballot_2026_d_minus_r_points": 8.38,
+  "generic_implied_vs_2024_presidential_swing_points": 10.085,
+  "independent_polling_estimated_presidential_to_race_swing_points": 10.478,
+  "bottom_up_implied_national_margin_points": 8.772,
+  "bottom_up_minus_generic_environment_points": 0.392,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 22,
@@ -17,7 +17,7 @@
   "qualifying_house_races": 6,
   "qualifying_senate_races": 16,
   "excluded": {
-    "inadequate_polling": 82,
+    "inadequate_polling": 83,
     "stale": 1,
     "not_competitive": 3,
     "missing_geography": 0
@@ -26,17 +26,17 @@
     {
       "state": "ME",
       "number_qualifying_races": 1,
-      "swing_points": -3.059
+      "swing_points": -3.119
     },
     {
       "state": "AK",
       "number_qualifying_races": 2,
-      "swing_points": 0.243
+      "swing_points": 0.368
     },
     {
       "state": "MN",
       "number_qualifying_races": 1,
-      "swing_points": 2.637
+      "swing_points": 1.907
     },
     {
       "state": "CA",
@@ -46,12 +46,12 @@
     {
       "state": "NH",
       "number_qualifying_races": 1,
-      "swing_points": 5.629
+      "swing_points": 5.559
     },
     {
       "state": "MI",
       "number_qualifying_races": 1,
-      "swing_points": 6.399
+      "swing_points": 6.569
     },
     {
       "state": "FL",
@@ -66,12 +66,12 @@
     {
       "state": "CO",
       "number_qualifying_races": 1,
-      "swing_points": 9.377
+      "swing_points": 8.397
     },
     {
       "state": "GA",
       "number_qualifying_races": 1,
-      "swing_points": 11.539
+      "swing_points": 11.459
     },
     {
       "state": "NM",
@@ -81,7 +81,12 @@
     {
       "state": "IA",
       "number_qualifying_races": 1,
-      "swing_points": 13.746
+      "swing_points": 14.196
+    },
+    {
+      "state": "OH",
+      "number_qualifying_races": 1,
+      "swing_points": 14.623
     },
     {
       "state": "NC",
@@ -89,14 +94,9 @@
       "swing_points": 14.708
     },
     {
-      "state": "OH",
-      "number_qualifying_races": 1,
-      "swing_points": 15.213
-    },
-    {
       "state": "TX",
       "number_qualifying_races": 2,
-      "swing_points": 16.096
+      "swing_points": 16.073
     },
     {
       "state": "SC",
@@ -104,19 +104,19 @@
       "swing_points": 17.103
     },
     {
+      "state": "MT",
+      "number_qualifying_races": 1,
+      "swing_points": 17.294
+    },
+    {
       "state": "NE",
       "number_qualifying_races": 1,
       "swing_points": 18.811
     },
     {
-      "state": "MT",
-      "number_qualifying_races": 1,
-      "swing_points": 20.014
-    },
-    {
       "state": "KS",
       "number_qualifying_races": 1,
-      "swing_points": 20.581
+      "swing_points": 20.991
     }
   ],
   "examples": [
@@ -129,35 +129,35 @@
       "raw_swing_points": 6.478,
       "capped_swing_points": 6.478,
       "capped_local_outlier": false,
-      "weight": 0.3966666666666666,
+      "weight": 0.385,
       "independent_firms": 3,
-      "latest_age_days": 11
+      "latest_age_days": 12
     },
     {
       "office": "senate",
       "race_code": "MN-SEN",
       "state": "MN",
       "presidential_2024_margin": 4.343,
-      "poll_margin": 6.98,
-      "raw_swing_points": 2.637,
-      "capped_swing_points": 2.637,
+      "poll_margin": 6.25,
+      "raw_swing_points": 1.907,
+      "capped_swing_points": 1.907,
       "capped_local_outlier": false,
-      "weight": 0.9777777777777777,
-      "independent_firms": 6,
-      "latest_age_days": 1
+      "weight": 0.9555555555555556,
+      "independent_firms": 7,
+      "latest_age_days": 2
     },
     {
       "office": "senate",
       "race_code": "TX-SEN",
       "state": "TX",
       "presidential_2024_margin": -13.878,
-      "poll_margin": 3.4,
-      "raw_swing_points": 17.278,
-      "capped_swing_points": 17.278,
+      "poll_margin": 3.36,
+      "raw_swing_points": 17.238,
+      "capped_swing_points": 17.238,
       "capped_local_outlier": false,
-      "weight": 1,
+      "weight": 0.9777777777777777,
       "independent_firms": 19,
-      "latest_age_days": 0
+      "latest_age_days": 1
     }
   ],
   "notes": [

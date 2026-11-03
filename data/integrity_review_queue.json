@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02T23:47:40.322163Z",
+  "updated_at": "2026-11-03T13:17:27.995011Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
     "primary_source_checked": 7,
-    "advisory_related_headline_buckets": 29,
-    "advisory_related_headlines": 81
+    "advisory_related_headline_buckets": 28,
+    "advisory_related_headlines": 80
   },
   "advisory_related_headlines": [
     {
@@ -134,28 +134,17 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "87d9d6f0bd668571bc6b",
-      "headline": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
+      "lead_id": "4f3bcf958659bdae399e",
+      "headline": "DOJ asks for Supreme Court to intervene on California ballot demands - Little Rock Public Radio",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
       "state_hints": [
-        "AK"
+        "CA",
+        "OR"
       ],
       "topic_hints": [
-        "election_admin",
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "9b2aa16305e598a043b3",
-      "headline": "Join our election livestream; Jersey\u2019s on guard for Trump voting interference | Mikie\u2019s World - NJ.com",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin",
-        "security"
+        "ballot_access",
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -255,9 +244,369 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "4c49b458937dbc039eb5",
+      "headline": "Peter Schweizer: Inside Homeland Security\u2019s Push to Clean Up Voter Rolls Before Election Day - Breitbart News",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "bfa97c6bb640dfd8104e",
+      "title": "ICE Is Inspiring Latinos to Vote in Historic Numbers - WIRED",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPMnVlQ3pXWEdLaUJDRG80VzFsZWczSmR2WHpmT0htc3lrRDNwZ29XRFgzMXpDRkxjMDVyMTcwaHZha1NPUGFOMmpYT3lZTEtQdWY0UnRpNXFIWWMzY0VRTlMtY00xYzZhR2F6VWNacEFkYjItR1dMQnZ4cGgtTjktdkpoWE1RMTIw?oc=5",
+      "publisher": "WIRED",
+      "published_at": "2026-11-03T11:30:00Z",
+      "detected_at": "2026-11-03T13:17:27.995011Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "14b2b9cc394799d3c8fd",
+      "title": "Get out and vote; Election Day polls close at 9 p.m. - The Suffolk Times",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQdTZqQ2d3VVRYQnJiVGszOEhIS2swU05aV2szSlBTdkRzS1JVb3psM2ZpTHRIeHhkUzBQQWJyMVpDZVozdkVqOHU0ZW1Pd3JiRnZ5NEpadkRhMFNNWXgya19VR3JKOGw0OGtyaC1PSTNvbnBlNkNFWWZqRUZ0dzVvVlpLeEJLNmptT0JhOGlPZWlKWjhxX28yc01Gdmk?oc=5",
+      "publisher": "The Suffolk Times",
+      "published_at": "2026-11-03T11:06:59Z",
+      "detected_at": "2026-11-03T13:17:27.995011Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "9 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "c1cb6abb9b51d765f2bc",
+      "title": "East Brunswick Election Day 2026: Polling Places, Hours and Sample Ballots - TAPinto",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPd2drQ0o0SG44WldXU0J3SVNNODZsQmJWbFh3ZUJxdXQ5Skw2dElIR0k3cXlhczhsU2NSV0tPQ0t1cTNXZ2U4bDFSUUh5U1JIb3Utalp0VlRKcVpRQlRRa0pkX0pOQU9TZ0dYSFNRLUxXNEt6M1FkS3lVeFhGUTJIMEYzU3VzZlZhTEoyazljR1JuVDkxTjBqRHUwWmg1eDJyM0VaZ05TRl9uNlFucy1HT2ZtWDJoVUt0ZnZXaEJSaFZOUjU1Z0VBMlR2eEtXbUxUa293Z2VDdm1GdG55R2c?oc=5",
+      "publisher": "TAPinto",
+      "published_at": "2026-11-03T11:00:00Z",
+      "detected_at": "2026-11-03T11:57:35.023932Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "39a002a8dd2839c1de42",
+      "title": "CNN: How officials prepared for Election Day disruptions \u2014 including those from Trump - Gazeta Express",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNODdLa1lrVjN5OXBhdGtLSEk4QWxxYXJ5MU9Sd0hNM2t6R3VkbldRUE9LUkpMel9LelNuUHNkZGpZOWQ5NDE0OEpkaWlfODRxVXJxc2RFbUJhOWI2ZWdnaTRxV0VQNGRuREVmbU90V0dTbHE2dklyNEtpMzJqQlg1OV9lLUk2Yi1CZlgyaWRUQ2Y2azItWUROaDg2eEJiYk9XQVk0Q3V1MmVkX05PV1M1a1k5TjczQQ?oc=5",
+      "publisher": "Gazeta Express",
+      "published_at": "2026-11-03T10:39:00Z",
+      "detected_at": "2026-11-03T11:57:35.023932Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e478668073ea918ea5fc",
+      "title": "Midterm elections 2026: what time do the polls close today? - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPQlpGendXNHN3ZHhHTU81eWRXeHZ2aW5ORXVkTlByQ0sxWS1yeGFZMEhEVDJ2UmFWOHZZQWg0VFFNbG80VFBLQkpSc2Z1T2F5VGswTU1VcjZMVDVsaXdEa2wyb0YyM0VJWndwYVhuSUE1aXNtSE1HdmJ6MmRDT25WcXk4Y0JYa0swdkxncDBpaFk?oc=5",
+      "publisher": "The Guardian",
+      "published_at": "2026-11-03T10:00:00Z",
+      "detected_at": "2026-11-03T13:17:27.995011Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "23c5c3d19342b5597fdc",
+      "title": "2026 Midterms: Election Integrity Litigation Tracker - Just Security",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQeGN0eVdQeDhtWnY1RldaQXl3NHgwQldOcDlQZmMwVUE1XzBmN2g2dlBzQmlydVVLbkxGeTgtZmo4R1hDaVBKUUdPM1BSUzgyWHdVNmlfQ2J6a1djRjhYbVRTSkFCbldDTXFfeF82dzZBV3dVUkoyUlVaaThmUkVueDBidVg1cWdtZmhtc1g0VTZEUQ?oc=5",
+      "publisher": "Just Security",
+      "published_at": "2026-11-03T06:08:20Z",
+      "detected_at": "2026-11-03T09:02:20.283968Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "29b3ea762cf2ac69335e",
+      "title": "What to Watch as the Trump Administration Presses States on Elections - The Dispatch",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQYTAzQ0tQMWRBQmswUTJ1UUhKZ0t5YTFQQVFieHFPS3pTU3Bza0pFNVRRN1I1UHpuUHRiMjNWcEgtUkQ2ZF81eEpjdUhrVzQxd2t0bU5Lb29PNTFlSFV4VV9faFhmRDZuTno4VGpHQTVxb2xaTGMtV2EzcGhxVFREN00xQ1F1QXhGdVA2MlEzdFdJdw?oc=5",
+      "publisher": "The Dispatch",
+      "published_at": "2026-11-03T06:03:06Z",
+      "detected_at": "2026-11-03T09:02:20.283968Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a750ddbf70530836b2f5",
+      "title": "Erie County Election Board Takes Steps For Security and Integrity of the Balloting Process - WGRZ",
+      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxQdHpqNmlNWWNMZDdSWk5PZUV2TTQ1Tnl4N3pLTU0xeklMLVUwRFFtOFZoQVJhMzVmQWZYajRZaWpMTlJUbXZaUTJRb3VYSmJBRGdnWjJUazJDRURBSjBzVExIalAwalpYV1Y2NGdVRS1JOGRMdnVEZlAwREdVTk40YjlXZmdBRXo4X2pDZjU0RHRtME05enJiajlEdHlsYkJ6NG9mQ0N5VzlNMzNJcEZHRUF2Vzl0SFpQSS1LZVhfSjktNVg4T1N6T21zVUdFOXIyRVVSWkhhSUd6NS1CdnFUYTZ5cWJ0T0hUbVJGOXJNanFZNzA4bG52M1FoUjhNZWw0cjFEWTQtR3RILUVJTmF0V0Rn?oc=5",
+      "publisher": "WGRZ",
+      "published_at": "2026-11-03T02:06:00Z",
+      "detected_at": "2026-11-03T05:06:11.209944Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "056c847c05546ef82672",
+      "title": "Law School Professor on Free and Fair Elections - American Civil Liberties Union",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVmlGcDFFaE05Tnk4ejhWcWh5UEtSZ3RSTnJlWTkxMHNIa1VyUUpfenFpdUcydmlQcG16TjFfRTRRbnc2QmtmLWhnVUxudFU4aEt6SUF6MUxNaW1qS3g2a0dTNmhVNER4ajFFZF9iNE5nVXMycXRBWW81aFROYVFWV3d1aVF0Q1EtXzM5MlVzR2dYS2NsWnk4RFd4U09mSHdFTElkc2htTkdYblV1SFcwaS03dVJEbmlCeGFuRg?oc=5",
+      "publisher": "American Civil Liberties Union",
+      "published_at": "2026-11-03T01:52:30Z",
+      "detected_at": "2026-11-03T03:00:32.893077Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d0b77fd87be6451c7c09",
+      "title": "Supreme Court declines to hear Trump\u2019s California 20,000 ballot case. Here\u2019s what to know - CalMatters",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQWk9DcjU4VHFXOElZWXJrS0t5bC1zODZNOEZIdWszU3laN1g0RTZ4Z20zbUt5SlJiUnI3dEZ3ZDVEbmd0emF4VG1pdXNLYmVvcGI3aUZMZDNySUhHRThIcE5HdGJpTmE3WGpBVU1IQUtLUEFtdl9FOUtaY2k5WVBaUVl3SmM5S1U?oc=5",
+      "publisher": "CalMatters",
+      "published_at": "2026-11-03T00:15:03Z",
+      "detected_at": "2026-11-03T06:04:08.450898Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "433f638b7dc5a8362397",
+      "title": "Supreme Court Rejects Trump Administration Request to Intervene in California Ballot Case - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPU3dhcGtsWC1YU2dGcG83cm05WWs1aU9mXzlIZFZoWjYxbGJwN2VGdENKU1JLLUNaMTVwRFZqZEhIYXFxQy1ZNE9RSkVvaF84WmxtLU1xNnRYTDZvSTRkbktueEd4bG9YQnotMF9uQnB0WERoaHRaa3NpaElQYUxzMHZHaXY5LUxxQjluQzVJSi14eGsw?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-11-03T00:14:14Z",
+      "detected_at": "2026-11-03T03:00:32.893077Z",
+      "state_hints": [
+        "CA",
+        "NY"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1b126849ec04d4fcd15d",
+      "title": "Inactive voter surge raises Experian concerns for 2026 midterms - Mississippi Today",
+      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNSnphbll6MVVteTR1Ymw1NEoxTUQ3QTRkT0lPcGI5VmJ4aWhhbEVmandoRDBZX18zS1RhVkJrRVVmZFBFaTJnc3ZaajU5S0xhSjliY1VzY3R3ZEJaOXR2M1R0VkwxblVfWHhBdFlJWXo1NjkzYkRwZy1panh0TElLRFVXSWdzZ3ZXMW9Pd21WRHBtX2wyRkFnWEhlQ040UDhMQ183RG0yUUIzY2Y1b2NPNExJUW8tdE9vSjk0azFmSGlGcVZpbFJUdU1kQ2lXeTI2ZEZMNDJYYlFNM1pEUWVXN05yQXdwOGJpUFRIRW1yb0o0V1dGdHRkY01B?oc=5",
+      "publisher": "Mississippi Today",
+      "published_at": "2026-11-03T00:07:10Z",
+      "detected_at": "2026-11-03T03:00:32.893077Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "31a23608efe8b2537ece",
+      "title": "Supreme Court rejects Trump administration\u2019s bid to set aside 20,000 California ballots - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPS2RqdnF0UHFJRk9GQ0tGVjBVUU5tSEgxVG1qbGlRWDNYRjZudWJZQjBtZGc5QjlNZC1SNHdseHhVdGlrc2gyd09XWDlza01CeG1hRXNHclpoQ1NyOFlWbW1GNG9RYnA3YWtnWjJNWXlEWGZiMDRYNG1jaXczeXRFOFU3cVZuaVZKbFpOWVAzR00xYkc3cklQeHViNUk1cXhBaVE1MF9FWTFHMDI2Uy1zSGR0bEphYXUweWltdw?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-11-02T23:26:00Z",
+      "detected_at": "2026-11-03T01:18:50.588079Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1bdddb3ac5cff1632037",
+      "title": "Supreme Court declines Trump administration's request to intervene in California ballot dispute - SCOTUSblog",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPRVlDYjh6aDQ0OWpqekRtY0Rkd2tJRW5JbWJqbEVSRDI1dWQyN3VPbkUxN0h6MTVySVFEcGZaRHdxdmpiXzhCQnlRbnZZT3dmOFNUaWdvb0REQUs4UWtYaWsxS2o4OFRQcUtJbE92QU1qNkoyWlRQUmpuejN0TFZjekhHXzFEX2gyUVlNV1BxcDVqcFV3eTUzN2M3d3NwbTJVVm5neFNoNFdETzN5ZGlvcFVzN2hub1RBbVE?oc=5",
+      "publisher": "SCOTUSblog",
+      "published_at": "2026-11-02T23:16:06Z",
+      "detected_at": "2026-11-03T09:02:20.283968Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "fbcf873a213bc8caeb66",
+      "title": "Supreme Court rejects Trump's effort to force California to separate mail ballots from alleged noncitizens - CBS News",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOOEZ4V2FNLUJreFpsdUdwMUhRRWR4aDNYNVVocGI5MHlLYzZzaW9jVFBvYTk4Tk9ndWx0dVJ3WC1xVGtQc0M4aUMzZDROQzhlbDYyZjRhNUhSRlJqREFWSlVoVmJEM2dpcHotYzd4M2pZVGJLTXhteE9UNm1Fa3NLVnlHSmxEeEdISWxabC1pWVVBbmt5QnBLRTcyMWVIcldOb0Mw?oc=5",
+      "publisher": "CBS News",
+      "published_at": "2026-11-02T23:01:00Z",
+      "detected_at": "2026-11-03T01:18:50.588079Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "248eee0096cded31e3e7",
+      "title": "How National Guard units are being deployed around the midterm elections - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNUTlfckdTeTNKYTFjYU05c09BWTRKVkdNZk1fQkN4ejFvZm5rQ3VxcFgzNUNmM283ckMzNVYxR3ZncTRJRTVqbXVhZzdIdEZTYzBEX29LWGVwamNNa0dKY2diVkU4TFY0REo3ZjNZeWEtallYNFFBeXVDLU5zRmNuS2N1UGrSAYoBQVVfeXFMUDYzdXUwU1hJejI4N0pmb0RaenB6UDJYR2RJUUFzYmhEVmF5Nmd2d3JDVlJBQzZ4WlA2R3NRMERNRDM1MXkxMXZ2MDR1aWZBOVE2RTluajhSbEE3UWVtQm9HRW15R3hHY3E4NlUySlF0akFYNGtPX0pJeTlVaDEtNzBUQ1dtM2VtMjJn?oc=5",
+      "publisher": "The Hill",
+      "published_at": "2026-11-02T22:56:00Z",
+      "detected_at": "2026-11-03T06:04:08.450898Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4f3bcf958659bdae399e",
+      "title": "DOJ asks for Supreme Court to intervene on California ballot demands - Little Rock Public Radio",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNTmkwakpQUmlGVFZhQ3B6R25wOEtKbGIwTHU5ekwzTnl5bWZ5TDlqd21LRkVQa0hJazBjcnBJZTVnUkVJLXhPZzVJdzkzdFVCZUxzZHZSRFZkT3NLeXFlMVQ0anBfZGVvSnFwcV81WWRuUGRWM1BCajZiMVZ5YkVfUEQ5WXNGakxYMC01c2hpZFprWnVGQk5VaTc5bWRxVkVzUUI1cE1vY3FuMXlQQlpIWVI0dm9tSWhmbno3Yw?oc=5",
+      "publisher": "Little Rock Public Radio",
+      "published_at": "2026-11-02T22:30:00Z",
+      "detected_at": "2026-11-03T01:18:50.588079Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ffd3408db43cf22e15c6",
+      "title": "What Voters Should Know About Election Security for the 2026 Midterms - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNWkpmLWp0T3VDZGdhN2JGcHh1ai1famY2aW9JcWFEX2ZfY2twNGxPNnV5dGFDSlVDZEtDNTZHa1dDaWtkTUtfZEhzdnQzUmVYeWFGMVQwM0xxRVNLRnVhblMzOG9CYWNlamdJRTR3RUFjMncxdzRnLW9LUlVwTWtwYmxIVmZRTGRZXzUyUg?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-11-02T22:20:41Z",
+      "detected_at": "2026-11-03T01:18:50.588079Z",
+      "state_hints": [
+        "NY"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "cf2dc39b6c080fb9484a",
       "title": "DOJ Election Monitors Hit the Polls With a Warning to States: Keep Ballots or Risk Prison - Wisconsin Right Now",
@@ -271,6 +620,27 @@
       "topic_hints": [
         "ballot_access",
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "dc0ad0a281f41c22ecd3",
+      "title": "DOJ asks for Supreme Court to intervene on California ballot demands - Oregon Public Broadcasting - OPB",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQVHpSN2JYbXdyYlZYLVZJTEJvSjBFLUtscTduVTV3bkI1VzRzd0FQR2psSEYwckV6VXRIRk43TTdpaFVTQVlxcDlvaExnLTA0cjJjdWx6cXdHLTgzMllLVTBhSWFTa21VSU9JcUVnaEhRUjZ2QkZhcURuOTl0RzFCQ1kyVkMtMVlzNGRPdUE0eE9fdEpmYkhRWkhXd292UGQxZWFDcWZ3?oc=5",
+      "publisher": "Oregon Public Broadcasting - OPB",
+      "published_at": "2026-11-02T21:11:22Z",
+      "detected_at": "2026-11-03T03:00:32.893077Z",
+      "state_hints": [
+        "CA",
+        "OR"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4838,367 +5208,6 @@
       "topic_hints": [
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1a48f7168c41e11cfeaa",
-      "title": "Join our election livestream; Jersey Dems on guard for Trump voting \u2018interference\u2019 | Mikie\u2019s World - NJ.com",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOYTV6NkZURmZQRUZxV29rVXNiTVJlNzJucHctbnBxcXlieGgwZzBzN2tyajk4Ykd1TjQtT2o0bWRGZTgwNldBb0hTS3RoVHJDSGtFZ2hkWHhfWHNmRVB4R09jOVN1S2J4UndMdHAwb1UtSU5ZNzhBR2NhaXBkanI1d2V0eEg0Ni1GQmVVNWpCdWs1bEp5MHFGek5VY1ZBWGNRSVlobXd3S1RRa3E3b1NFMm1NcXp0X0xERm1jLXE2LW1VbGo0aWpJUA?oc=5",
-      "publisher": "NJ.com",
-      "published_at": "2026-10-24T14:30:00Z",
-      "detected_at": "2026-10-24T19:13:58.781216Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d874765ba175d2d28f62",
-      "title": "Congress seeks impartial probe into voter lists after errors appear in UP MLC polls; halt to SIR - The New Indian Express",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQYzFWYVB5ZjV4UnZPMWVKczFlZ1RCdjNrS2JjZTdzVmZZUll5REZZUlJhWUFUSFdHRzJnSldKYTZXUFlVa3k0NXZ1M3k3UDd6NDUxLTBSTV9Cd0FnX0VCTGFoMlBFUnd5VXlGT3U1eFNmNm9vMUhsXzZoUmhSdmZYbE43ZVBtOEFpSDdZcWlpMkNXYjZmQVdoazhPLVdDY1JmWDRicUwzNUw1ZlZsNERRZjZZQ1ZQM3FhZldFN282Y2hGdGJaWHRPcmpWdlY3YnUyckpjX1RWRmszaU1ZWGFr0gHsAUFVX3lxTFBWZlZPSm16RGF6bjZHWTZPUGR4M0ZTSDdpN21sVUdYQmdPQkk2OGVtLTBMUkpSdE5sUVFvcDdaalVoZWl5NVFMbjF2X3NuVDhHR3UzZkJqZ1lQV0sxTU9ObDdSdjB5U2tSOHY5S2lDUENBVzIxQzNFTjNxbDBaMF9KaHBaXy1wSUZHcS01M01KZndKV0R6aVpTcTduWm1IbVh1S21NRlBLSER6Y0Q5MTYwUWo3NEQ2MEhuUnp1ZUZUYWFMQWxXVHo2RmJHdTRObnNDOEg3MVVVRmtxQ3JTSW9KNF9EY2tmelYyQkx3?oc=5",
-      "publisher": "The New Indian Express",
-      "published_at": "2026-10-24T11:16:36Z",
-      "detected_at": "2026-10-24T13:42:20.702979Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f16da404d2f225b21f53",
-      "title": "Trump is trying to overturn an election that hasn\u2019t happened yet - Vox",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPa3NxcEd5SGVRY0FPcEhDdXRfYkc0OGlIOE5OR1psMEFYUjRxYkd6OGVsU3dMQmpIclpOVHZEZld2ZnkwcjB4d3lhdGRTYnZzU0dMUWNyUFk3SHh3T1NabXF4VzFsUFFNZFRkTXpZMUVoMTc0Z3FqekVNeVFjMjF1NlBB?oc=5",
-      "publisher": "Vox",
-      "published_at": "2026-10-24T10:00:00Z",
-      "detected_at": "2026-10-24T14:08:10.169369Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "46950c3c9c5a190a5efb",
-      "title": "Undelivered mail ballots found in dumpster as Election Day nears - KMVT",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNaTNuazRZTTNEMjZrREtlaFc1YlNoaFV0VExUYVA4X1lQZEhxOGVtYzBheG03enVETDFqX3ZHQk96b09jcTg2TnR0b3lpZ2lVUUczMlFPMUY1WjFEcUFKbjhrUDU4UUd1OXgwb2o1eE5wLXRLVHl2Vl94SHhZQk1UcWw1TFdUbmlIS002dUtIU3RTZ1JiOFYwNVZOaG5LdzJCdjhxSXVXRDkzQdIBqgFBVV95cUxNaTNuazRZTTNEMjZrREtlaFc1YlNoaFV0VExUYVA4X1lQZEhxOGVtYzBheG03enVETDFqX3ZHQk96b09jcTg2TnR0b3lpZ2lVUUczMlFPMUY1WjFEcUFKbjhrUDU4UUd1OXgwb2o1eE5wLXRLVHl2Vl94SHhZQk1UcWw1TFdUbmlIS002dUtIU3RTZ1JiOFYwNVZOaG5LdzJCdjhxSXVXRDkzQQ?oc=5",
-      "publisher": "KMVT",
-      "published_at": "2026-10-24T06:23:00Z",
-      "detected_at": "2026-10-24T09:44:40.461643Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4d6e9ce7b08bad8594bf",
-      "title": "Utah\u2019s elections chief doesn\u2019t have to give full voter rolls to Trump\u2019s DOJ, judge decides - The Salt Lake Tribune",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUTNEZjR3VFpiZ3dRMDY0RklxaERvOVpubENSUW42VWZHenVYUnNlQmlmOTdNMEgybWhYSlI5dlUyX0xxVnE1bmdRN1ItM2ZtV2p2NjNYcGRvMVVfa1FVSkd1cVBkSmkwbkZtVE4zc3h6OEwzaFVFbzRlT3hhbTJuN2drcw?oc=5",
-      "publisher": "The Salt Lake Tribune",
-      "published_at": "2026-10-24T05:15:07Z",
-      "detected_at": "2026-10-24T15:36:09.649801Z",
-      "state_hints": [
-        "UT"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "98545b7f8ca2d0ec99a5",
-      "title": "Maricopa County recorder restores 25 voters wrongly flagged as noncitizens, ending lawsuit - Arizona Mirror",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSThlazJ5QlBZVjFFWkZDNng0U1FlcFJCWHV1TlhSeGNPYXh3RW5uRHFnTWpoYmpGbEVXODZwWl9pczRKbHpKeXRtckh5bzhxdzNkQXVFN2xwdVVLYUctd3J5dVUwM3VsbGZmVy1NZVZQd01WdjdtNWVDTVQtckxjQk9UcTh5NWVKS1M3VXo5bmVBV0lVZnBCOGp3TUlValJwRTlZeEFRdDZ5OEJhOFNWbVdDRmpQc2M5ZjlTSmFCZw?oc=5",
-      "publisher": "Arizona Mirror",
-      "published_at": "2026-10-24T03:29:37Z",
-      "detected_at": "2026-10-24T10:44:08.532526Z",
-      "state_hints": [
-        "AZ"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "25 voters"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c4ada8484aeeaac4acf2",
-      "title": "The Trump Administration\u2019s Attempts to Get Sensitive Voter Data Threaten the Rule of Law - Campaign Legal Center",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQbWlwcWNQTXVidzFJS1NUcm9QZHRibTNZeDBXTURaT2JOMllQdEUtN2hpS1hYREQ3Umdubms2TUVxbkhVNGNYeTl6S0Q1RmJOdzJyRnFyVnFvdFY1UXViMkRSMzAtZGs3aW1nUG5QblJ2ZVh6SVFvSno2ZDlZYjM2dXdNTDN5ZnF4cVUwQUdIdGd3MFItRjlJclRRTTBKN3lWZzNMQTl6NjlaUQ?oc=5",
-      "publisher": "Campaign Legal Center",
-      "published_at": "2026-10-24T01:09:34Z",
-      "detected_at": "2026-10-24T03:12:23.987437Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "afea9ba37cf8c10df447",
-      "title": "Early Voting Begins Saturday in Union Ahead of Nov. 3 Election - TAPinto",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNV1ctbWZjS2NVLTVNbjQzcFBDNmJvZm1BY0FKcXo0clltY3IxV0ViUTVuWmF2V1hzRUJHNG5nbUlRR0Z3aU9EWGJ6ajlPWUtiRWhLUXhIeEFyTnJuX2ZrMTZtcTZyUkRaWF9wVzA2SXd3a0RsOGRoV1BSZjlTZUUtVVk1azZ3bXF3WnlLNjlkaHk1NG5PclVUamdSR193MVRIVTQ4QWNrVUl6RjJjZDZYcmNXVnBmNms3eXBrZnNhMzBleUk?oc=5",
-      "publisher": "TAPinto",
-      "published_at": "2026-10-24T00:10:45Z",
-      "detected_at": "2026-10-24T04:44:36.812712Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "3 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "37bd4b2611f95b360ade",
-      "title": "LA Hearing Set Tuesday in Government Push for Court Order in Voting Case - MyNewsLA.com",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeGdYaEVvM1ZNY2d4ajNES21ocmdNSF9KN2dPMDUzWkRMU3F4ZGRaTnM0cFBkSmxMSi10ZlhnYU9HV3E3d0dFWWpYd29jLXpWbmZYVkRhOWgtRFlZZWhuNFNtZ3NCOUFwQ3RvU3Y3cnpib0RMZkpZUTlXemRpLThBUk1teHhzeEVSR0NPN1MwRnBPQ1ViSEpwUXFWcUNjazF6YmtPTGZOMzFOUnFBNzJJaG1CNGpCZVJ2eXc?oc=5",
-      "publisher": "MyNewsLA.com",
-      "published_at": "2026-10-23T23:42:07Z",
-      "detected_at": "2026-10-23T23:59:12.072648Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6cd1003eafad98854168",
-      "title": "Why Legal Experts See the Justice Dept.\u2019s Alaska Election Challenge as Dubious - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE01dG94MVA5d1JiLWZnZC1oTTQ1a1pCZ2xJeEdId2FNb05wNE0yVXltelJraERqb1hlaDhQRXZtYVg4WTdualpxYzRhV2xTVmJtRzVHLUhrZ1Q2NVF3WGpEYk9KbnFpdzFKN3Y5dWpaWkZ1OWt6MTN5T2l4MlppWTQ?oc=5",
-      "publisher": "The New York Times",
-      "published_at": "2026-10-23T23:22:41Z",
-      "detected_at": "2026-10-24T01:50:44.214183Z",
-      "state_hints": [
-        "AK",
-        "NY"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "21c2a841eca952910de2",
-      "title": "Decision 2026: Federal judge orders Trump Administration to halt noncitizen voter investigation in New York - WHEC.com",
-      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxONXJSSzFwcGR2WGVkMEgwbVhyTXNVdlNiMmRTQ1B4ODlIZEtJS3ppNXZYQjFqem9FRThVLTdqU29TRnlSNnkyQjBIMFFyNEpjdXVQQnU2RVp0RVAwNTZvc2JHdjNWajNFdTZVZW41VTdmTDdFNUpNek83TXE3WWJzbllzSW1lOFNkZDFLS0ZKZDJ3S0c4dW42Q2tnaUwwMGNTSGFBSjV2WmlacWdZdlR1Y0lZbEo2UEt0QXpqUFBuNU5Gd2ZCQ0FYVTY2eG1hYmZ5bGFz?oc=5",
-      "publisher": "WHEC.com",
-      "published_at": "2026-10-23T22:01:57Z",
-      "detected_at": "2026-10-23T23:59:12.072648Z",
-      "state_hints": [
-        "NY"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "87d9d6f0bd668571bc6b",
-      "title": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPUGhTTXEwWVJXUmhNS1l0WEY0NE51Rm5aOGJTUHAyemc2blY2ZzRmRlNTeEZXQUVnaS16elM2UzBVY0JjeVBlNG5EVlhTaG9uX1dsVGJld01CUDVJSU91NDRORmdQdGFSUVIyeEFnYWNNTUR1bFFuaDFuZEVUTjY5MjVXRDAweEhjNjVKS0xRYlFETWVqNEtiR0pMX3JKNUxwbGphczRlRHpxaGxIc1hiMEtKWEhObmMySEw2SQ?oc=5",
-      "publisher": "The Well News",
-      "published_at": "2026-10-23T21:27:05Z",
-      "detected_at": "2026-10-23T22:23:16.026023Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "be7e5758541da6de2527",
-      "title": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB5SnYtQTU2SHVuTmV0NzIyV0NsZVVtYUU2R2g2UkJXYVJ0LVdYeS1rR0ZlckVyWnllWGUzUU8xZWkzMVI2Q194aEtGbS1qOFdNZEFKRFdwa0dfemx3WE9NdlV3?oc=5",
-      "publisher": "The Well News",
-      "published_at": "2026-10-23T21:27:05Z",
-      "detected_at": "2026-10-23T23:04:31.197874Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "29d11da975d4d0cf50e3",
-      "title": "Trump administration sues to block Alaska\u2019s US Senate election result if Peltola wins - Alaska Beacon",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQdk9GRExLZ2ZYOXAtcUxsekd5eWU4MS1BVG01Y2FNTEQxSXdMRGZGODRScFJSV25EeFNWMUNRS2dqNjhJaldSNVZQbG5mNjdNOTZwTF9YdWw2eGFXeEp3QVNyeThDTFBSU2xJZFFGVjE1SzlybnZ2Q3B4Qk12VmRFZ2hTRmlaQ0duajBkUl9GQXJxU1JpNXRmaDdLRFc0dGpQUzNZcFhObVBvSGdBOGc2NXNlYWMwV1FwSXJhUzBn?oc=5",
-      "publisher": "Alaska Beacon",
-      "published_at": "2026-10-23T20:31:19Z",
-      "detected_at": "2026-10-23T23:04:31.197874Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "db81a37188799a148b5d",
-      "title": "DOJ has monitored elections for decades. Here's why some state officials are concerned this year - PBS",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNbmRNdmtJb19aZ1JzZkRrcXBSR2lYUUZhV0RCTHNYTFU5MHBoTXQ0TC1Gc2ExcWJJOGEweTN5eEdOUTR6MHFHMy1EOS1sQUt2NnpaQmxORmlsWE1XZ0VWMFBqd2d5b1dZU19qSWlpZHc5YUpzOGlDYndsLXZTYmNVSVJmQmtOX1RMV1VaZU1SZ2VoNlZrWFVCY2E1M3dkWng4WkUyUFc5VlI5MjA0QU9CQ2ZYeUpuWU8wQVdhdW1uREFacm14Z2V1X0llVm_SAdIBQVVfeXFMT21aZ1lnR3VITjdZVDNIdlh5LTAtb2lfamV0UHlHVDJ0REc3N3hTY1JJcnZVQmt4aFVfdGRCZGxJSEhlRGhjWEZkNEdTWjU3cjRBSmxXRktzNFVjcS12cFB1ZWpkOURzc3F4Z25YT0QyZ0JCOUdhT2lGV1VwTlRZYkdJaXBQaUR6RDM5Q2hLM1ZDaTdqYkZ0OTZOMU92Y3lkVno2c0w3d2JwS1hfYXBQTFY0TkRUbXdpanhMTnVBUGgzdW1YM3AyX1paOFJBbW5wQWVn?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-23T20:16:57Z",
-      "detected_at": "2026-10-24T02:14:06.600099Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c950646e46a9baa5688a",
-      "title": "State Elections Board issues letters to potential noncitizens on voter rolls - The North State Journal",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNVmQwTV9OZXpxNDhTNWJ5ZllJTlRxT1Rnd2pNaWtSRE5hSzd5TWZLWGJRbm9XZ2xLQmpBUmRhTGRXellWNFkyWFdOWVA5SExZZXRMQ2NucXU1NXpSMlRGZktOdDV1cElHY0JSS3VYV0gxbVBNS2YwcTBYclJQX2w1Z1AtN3l1a3FEWXUtaA?oc=5",
-      "publisher": "The North State Journal",
-      "published_at": "2026-10-23T19:25:00Z",
-      "detected_at": "2026-10-23T19:44:04.089219Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3ec3c02c227fd302dd6a",
-      "title": "\u2018Massive concession\u2019 or standard practice? How California checks citizenship - Sacramento Bee",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNaTIzTGdDYUh1YXp3bW82TkRfYXl3UDhsWUdRcC1hcDNBZEVLWkFwdkdldjFsUFREbWl2clJaOTRrMGYxMU93Y3pvT3ByTUR0VFZuWXREa3RWVEZ3OFl6VkR5bVZmQWVMV2sxTFNmSG9LS2RxdnpJaWtxck1VUGFIMXZhRHQ2Y2hITjFv?oc=5",
-      "publisher": "Sacramento Bee",
-      "published_at": "2026-10-23T19:07:13Z",
-      "detected_at": "2026-10-23T19:44:04.089219Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bc43073dabc557f58698",
-      "title": "US Justice Dept sues to block possible Alaska election of Democrat to Senate - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOdmhoNXZfaEZSVXU4cVh3dW9tMm54alE4THRoUWNBSzc4QTFvNHl6eE9mOElIeXE1S0pkQlV4Yld6U0t5RjZnbEpjSzVyMkMzQ01MM1hSclViSHVmRDZGTndKTm9GZHZaRUFIZnAxVnM2V0hDMGhUOHVKemxQcFdxc0hmLTJDTTFQWTFTRFhRalM1Y1I3Y0dRTEF6UldFdHg3OVVxd0hkdUFyNTdUN0dDZVRwbTFqbVVyT2FtSw?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-10-23T19:04:23Z",
-      "detected_at": "2026-10-23T19:44:04.089219Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "af7c45f716ae76a539a5",
-      "title": "WATCH: Trump says he ordered DOJ lawsuit over Alaska Senate race - PBS",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQWVBnX0tZTndtd0lNVUpSaDJGT28yWG5LUVhyd1FkVHhZcVl1djVJOVBoSG01OER1bDJRdkY3OUlZR29SaFdjdlJIU2FnZ09CRExkUkktN2E4M3JpbUhuSHNzN1Nzb25Gck5iTHU5LXpydVNwYUFTUlM1UjJUN21PMnBHSlVYa0lhRjRYVUtQVG0yNHRCUlZpRjJrd2xUQy1xNW9wMktJTGs1ZzBUTlFJakJkcjNZbE5OWHZ2V0syWHBPaDVYUVHSAcsBQVVfeXFMT1hEZXAxZ0w1dFVORXprWnFaaEVxNXM1SUpMeU1iQS1mUEVZbG96djN3NlFwdzBQeGN2aGg3bjdGRVc3WFU3a1pUd1VtREMxRmtkc1NqclRmYTdOVDJIWUkzWXIxWkh1OVp4RllwRWlqczFCY2FPYWhPOHBhTkFzWVo0WDgyVklXLWRsZUF0M3B1X25QRzJySUVDQjNIWFJ0WnlEOGhTX3BhSkJYTWlyb1AyQmlRa2Z4TVhNV2liTTF6MnhtU0FnU094cjA?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-23T18:27:00Z",
-      "detected_at": "2026-10-23T19:44:04.089219Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
