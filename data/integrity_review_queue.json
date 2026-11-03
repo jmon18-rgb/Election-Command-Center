@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-03T11:04:39.638274Z",
+  "updated_at": "2026-11-03T11:57:35.023932Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
@@ -259,6 +259,43 @@
     }
   ],
   "items": [
+    {
+      "id": "c1cb6abb9b51d765f2bc",
+      "title": "East Brunswick Election Day 2026: Polling Places, Hours and Sample Ballots - TAPinto",
+      "url": "https://news.google.com/rss/articles/CBMi3gFBVV95cUxPd2drQ0o0SG44WldXU0J3SVNNODZsQmJWbFh3ZUJxdXQ5Skw2dElIR0k3cXlhczhsU2NSV0tPQ0t1cTNXZ2U4bDFSUUh5U1JIb3Utalp0VlRKcVpRQlRRa0pkX0pOQU9TZ0dYSFNRLUxXNEt6M1FkS3lVeFhGUTJIMEYzU3VzZlZhTEoyazljR1JuVDkxTjBqRHUwWmg1eDJyM0VaZ05TRl9uNlFucy1HT2ZtWDJoVUt0ZnZXaEJSaFZOUjU1Z0VBMlR2eEtXbUxUa293Z2VDdm1GdG55R2c?oc=5",
+      "publisher": "TAPinto",
+      "published_at": "2026-11-03T11:00:00Z",
+      "detected_at": "2026-11-03T11:57:35.023932Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "39a002a8dd2839c1de42",
+      "title": "CNN: How officials prepared for Election Day disruptions \u2014 including those from Trump - Gazeta Express",
+      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNODdLa1lrVjN5OXBhdGtLSEk4QWxxYXJ5MU9Sd0hNM2t6R3VkbldRUE9LUkpMel9LelNuUHNkZGpZOWQ5NDE0OEpkaWlfODRxVXJxc2RFbUJhOWI2ZWdnaTRxV0VQNGRuREVmbU90V0dTbHE2dklyNEtpMzJqQlg1OV9lLUk2Yi1CZlgyaWRUQ2Y2azItWUROaDg2eEJiYk9XQVk0Q3V1MmVkX05PV1M1a1k5TjczQQ?oc=5",
+      "publisher": "Gazeta Express",
+      "published_at": "2026-11-03T10:39:00Z",
+      "detected_at": "2026-11-03T11:57:35.023932Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "23c5c3d19342b5597fdc",
       "title": "2026 Midterms: Election Integrity Litigation Tracker - Just Security",
@@ -5167,45 +5204,6 @@
       "detected_at": "2026-10-24T14:08:10.169369Z",
       "state_hints": [],
       "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "46950c3c9c5a190a5efb",
-      "title": "Undelivered mail ballots found in dumpster as Election Day nears - KMVT",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNaTNuazRZTTNEMjZrREtlaFc1YlNoaFV0VExUYVA4X1lQZEhxOGVtYzBheG03enVETDFqX3ZHQk96b09jcTg2TnR0b3lpZ2lVUUczMlFPMUY1WjFEcUFKbjhrUDU4UUd1OXgwb2o1eE5wLXRLVHl2Vl94SHhZQk1UcWw1TFdUbmlIS002dUtIU3RTZ1JiOFYwNVZOaG5LdzJCdjhxSXVXRDkzQdIBqgFBVV95cUxNaTNuazRZTTNEMjZrREtlaFc1YlNoaFV0VExUYVA4X1lQZEhxOGVtYzBheG03enVETDFqX3ZHQk96b09jcTg2TnR0b3lpZ2lVUUczMlFPMUY1WjFEcUFKbjhrUDU4UUd1OXgwb2o1eE5wLXRLVHl2Vl94SHhZQk1UcWw1TFdUbmlIS002dUtIU3RTZ1JiOFYwNVZOaG5LdzJCdjhxSXVXRDkzQQ?oc=5",
-      "publisher": "KMVT",
-      "published_at": "2026-10-24T06:23:00Z",
-      "detected_at": "2026-10-24T09:44:40.461643Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4d6e9ce7b08bad8594bf",
-      "title": "Utah\u2019s elections chief doesn\u2019t have to give full voter rolls to Trump\u2019s DOJ, judge decides - The Salt Lake Tribune",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNUTNEZjR3VFpiZ3dRMDY0RklxaERvOVpubENSUW42VWZHenVYUnNlQmlmOTdNMEgybWhYSlI5dlUyX0xxVnE1bmdRN1ItM2ZtV2p2NjNYcGRvMVVfa1FVSkd1cVBkSmkwbkZtVE4zc3h6OEwzaFVFbzRlT3hhbTJuN2drcw?oc=5",
-      "publisher": "The Salt Lake Tribune",
-      "published_at": "2026-10-24T05:15:07Z",
-      "detected_at": "2026-10-24T15:36:09.649801Z",
-      "state_hints": [
-        "UT"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
