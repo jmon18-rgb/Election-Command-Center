@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-03T05:06:11.209944Z",
+  "updated_at": "2026-11-03T06:04:08.450898Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
@@ -295,6 +295,28 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "d0b77fd87be6451c7c09",
+      "title": "Supreme Court declines to hear Trump\u2019s California 20,000 ballot case. Here\u2019s what to know - CalMatters",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQWk9DcjU4VHFXOElZWXJrS0t5bC1zODZNOEZIdWszU3laN1g0RTZ4Z20zbUt5SlJiUnI3dEZ3ZDVEbmd0emF4VG1pdXNLYmVvcGI3aUZMZDNySUhHRThIcE5HdGJpTmE3WGpBVU1IQUtLUEFtdl9FOUtaY2k5WVBaUVl3SmM5S1U?oc=5",
+      "publisher": "CalMatters",
+      "published_at": "2026-11-03T00:15:03Z",
+      "detected_at": "2026-11-03T06:04:08.450898Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "433f638b7dc5a8362397",
       "title": "Supreme Court Rejects Trump Administration Request to Intervene in California Ballot Case - The New York Times",
       "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPU3dhcGtsWC1YU2dGcG83cm05WWs1aU9mXzlIZFZoWjYxbGJwN2VGdENKU1JLLUNaMTVwRFZqZEhIYXFxQy1ZNE9RSkVvaF84WmxtLU1xNnRYTDZvSTRkbktueEd4bG9YQnotMF9uQnB0WERoaHRaa3NpaElQYUxzMHZHaXY5LUxxQjluQzVJSi14eGsw?oc=5",
@@ -371,6 +393,23 @@
       "topic_hints": [
         "ballot_access",
         "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "248eee0096cded31e3e7",
+      "title": "How National Guard units are being deployed around the midterm elections - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNUTlfckdTeTNKYTFjYU05c09BWTRKVkdNZk1fQkN4ejFvZm5rQ3VxcFgzNUNmM283ckMzNVYxR3ZncTRJRTVqbXVhZzdIdEZTYzBEX29LWGVwamNNa0dKY2diVkU4TFY0REo3ZjNZeWEtallYNFFBeXVDLU5zRmNuS2N1UGrSAYoBQVVfeXFMUDYzdXUwU1hJejI4N0pmb0RaenB6UDJYR2RJUUFzYmhEVmF5Nmd2d3JDVlJBQzZ4WlA2R3NRMERNRDM1MXkxMXZ2MDR1aWZBOVE2RTluajhSbEE3UWVtQm9HRW15R3hHY3E4NlUySlF0akFYNGtPX0pJeTlVaDEtNzBUQ1dtM2VtMjJn?oc=5",
+      "publisher": "The Hill",
+      "published_at": "2026-11-02T22:56:00Z",
+      "detected_at": "2026-11-03T06:04:08.450898Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5171,44 +5210,6 @@
       "headline_numbers_unverified": [
         "3 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "37bd4b2611f95b360ade",
-      "title": "LA Hearing Set Tuesday in Government Push for Court Order in Voting Case - MyNewsLA.com",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPeGdYaEVvM1ZNY2d4ajNES21ocmdNSF9KN2dPMDUzWkRMU3F4ZGRaTnM0cFBkSmxMSi10ZlhnYU9HV3E3d0dFWWpYd29jLXpWbmZYVkRhOWgtRFlZZWhuNFNtZ3NCOUFwQ3RvU3Y3cnpib0RMZkpZUTlXemRpLThBUk1teHhzeEVSR0NPN1MwRnBPQ1ViSEpwUXFWcUNjazF6YmtPTGZOMzFOUnFBNzJJaG1CNGpCZVJ2eXc?oc=5",
-      "publisher": "MyNewsLA.com",
-      "published_at": "2026-10-23T23:42:07Z",
-      "detected_at": "2026-10-23T23:59:12.072648Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6cd1003eafad98854168",
-      "title": "Why Legal Experts See the Justice Dept.\u2019s Alaska Election Challenge as Dubious - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE01dG94MVA5d1JiLWZnZC1oTTQ1a1pCZ2xJeEdId2FNb05wNE0yVXltelJraERqb1hlaDhQRXZtYVg4WTdualpxYzRhV2xTVmJtRzVHLUhrZ1Q2NVF3WGpEYk9KbnFpdzFKN3Y5dWpaWkZ1OWt6MTN5T2l4MlppWTQ?oc=5",
-      "publisher": "The New York Times",
-      "published_at": "2026-10-23T23:22:41Z",
-      "detected_at": "2026-10-24T01:50:44.214183Z",
-      "state_hints": [
-        "AK",
-        "NY"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
