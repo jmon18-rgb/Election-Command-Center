@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-03T19:07:00.671808Z",
+  "updated_at": "2026-11-03T20:02:04.520347Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -448,6 +448,23 @@
       "state_hints": [],
       "topic_hints": [
         "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d13ff27a1eed0115be18",
+      "title": "Election Protection: NAACP Warns of Voter Suppression & Deployment of Federal Agents to the Polls - NationofChange",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQYVRBNjFBNEdib1NKbUk0Z2E3QjlhcFU3T1RPRUNyeVpJYWZSakhndjZtM25ZRGFyTy1GRV9YbWpLSUJvYW9laENfVDRVc0FVSEdHc1hKYUpndS1uVVlPMlNvMi1MRDNQOFRObFZMV0RQV0o3MHNMbEZFa0FGV0lkS2x3cktrVkJMNVlhbkF6cG93eGNqUmxDSWlIZlkza2JfbTRIR0pVeFgyVk4zRmI5cF85MnUyUVF1U3ZpRHJuOC1vX1JmS3JCN1ZYWHEwQTRNcXpZ?oc=5",
+      "publisher": "NationofChange",
+      "published_at": "2026-11-03T11:31:59Z",
+      "detected_at": "2026-11-03T20:02:04.520347Z",
+      "state_hints": [],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -5118,26 +5135,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b0681272106aa9eb73ad",
-      "title": "U.S. appeals court appears skeptical of Trump DOJ\u2019s lawsuit over California voter rolls - NBC News",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNLUtWclJCTVJSa0xjel83TTFSNVFxai1hQTlET0labDhZUnRzSWx0VUVsQlFIdFM5cVQ1QkVXUGJaeXFpdEtxY3hWS0VNajRGNHIyTkpESUpGcVF3UHV1OUlpQnNXb1lJZ2lVWGpKWmJHTzlmSjRxOExhelpQdXlHbC1pUGltSTcwWkJLQm0wWFFIMzVFNEkxZXFLVGlfRTZ0WW0zOXh2WDNSenU2T3V4NlJWZnRxUUdhTDlLOGZWLVpmQzFORVo0?oc=5",
-      "publisher": "NBC News",
-      "published_at": "2026-10-26T01:09:00Z",
-      "detected_at": "2026-10-26T12:06:28.054554Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
