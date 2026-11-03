@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-03T20:58:24.355454Z",
+  "updated_at": "2026-11-03T21:57:15.342361Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 28,
-    "advisory_related_headlines": 80
+    "advisory_related_headline_buckets": 29,
+    "advisory_related_headlines": 82
   },
   "advisory_related_headlines": [
     {
@@ -273,6 +273,24 @@
       "headline_numbers_unverified": [
         "2026"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1fc851f3ccb2127a81bc",
+      "title": "'If you vote illegally, we will find you' | ICE shares Election Day warning - KATU",
+      "url": "https://news.google.com/rss/articles/CBMi_AJBVV95cUxQTEZlQk50cGNkYVJSTzNvVGN2SzUtMmlNU1dpRXNSNFlhZ0NRT2U1X3BzclhObWpCSlRkOGNtWGNDekR0RmlON3Z0Z3Q2Qm92VHE4WjdPU2M2NWtpT1pxR0VCOTF6TFJMc05qak05Y0FmLW8wZjE1blpibWEzckJoZlJwYTB5NXFYT3N0eEN5NlUtNmpmeXlKUTY0UThmMG9JVmFPRjFmZkdiREZLRTRoeVdIX3lUWXVLcnpZRHU2dmZUZS1YbUtDUU1tMjhaSmF1RFVvd3JpdVdIdWtRa2UwOUp5LVA2alVKTzJ3NlN3M1lGZm85RmtiUWtXUlE0dGF2X3ktbi1zMTBPcXRJNE9YVEd6TW1NUjY0QlhJa1V6WDctbEttdlo5QV9GdjZ1YzNiWFBnV2RxV0VoTl9uZGljVTRGd24xSkpVeUIxc1B6T3YySzJjVjAybVc4bVk1S1B2OUwzUDJ4czBiZk5laUdXRng5U21TYnF4Z1pKdA?oc=5",
+      "publisher": "KATU",
+      "published_at": "2026-11-03T20:46:26Z",
+      "detected_at": "2026-11-03T21:57:15.342361Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5123,23 +5141,6 @@
         "ballot_access",
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8bc5c9afdc6615cf48b6",
-      "title": "DHS Used AI and Consumer Data To Target Voters, Court Documents Show, Raising Concerns Over Mistaken Profiles - www.techtimes.co.uk",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQN3hIWUpCRjlKLVVLSUVDWE1VQlJ2NmRFNTZVUDB3eWpNeS1nbk81MFZOMjVhaTJvUm52MXpsTUY4MGV3Vko2RVhRSy1LSkFKaTVxNzJsNUF5UzExYWRZZ05SbWVUeGF5ejVSeksxOGh3eFNnRWJ6dFktSzhiLWdaeV8yWFNmd1E5dEFaNU04ZEZZQkdWM2c?oc=5",
-      "publisher": "www.techtimes.co.uk",
-      "published_at": "2026-10-26T09:49:24Z",
-      "detected_at": "2026-10-26T14:58:29.082164Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
