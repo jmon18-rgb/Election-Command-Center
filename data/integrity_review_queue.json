@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-03T07:26:38.726850Z",
+  "updated_at": "2026-11-03T09:02:20.283968Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
@@ -260,6 +260,43 @@
   ],
   "items": [
     {
+      "id": "23c5c3d19342b5597fdc",
+      "title": "2026 Midterms: Election Integrity Litigation Tracker - Just Security",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQeGN0eVdQeDhtWnY1RldaQXl3NHgwQldOcDlQZmMwVUE1XzBmN2g2dlBzQmlydVVLbkxGeTgtZmo4R1hDaVBKUUdPM1BSUzgyWHdVNmlfQ2J6a1djRjhYbVRTSkFCbldDTXFfeF82dzZBV3dVUkoyUlVaaThmUkVueDBidVg1cWdtZmhtc1g0VTZEUQ?oc=5",
+      "publisher": "Just Security",
+      "published_at": "2026-11-03T06:08:20Z",
+      "detected_at": "2026-11-03T09:02:20.283968Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "29b3ea762cf2ac69335e",
+      "title": "What to Watch as the Trump Administration Presses States on Elections - The Dispatch",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQYTAzQ0tQMWRBQmswUTJ1UUhKZ0t5YTFQQVFieHFPS3pTU3Bza0pFNVRRN1I1UHpuUHRiMjNWcEgtUkQ2ZF81eEpjdUhrVzQxd2t0bU5Lb29PNTFlSFV4VV9faFhmRDZuTno4VGpHQTVxb2xaTGMtV2EzcGhxVFREN00xQ1F1QXhGdVA2MlEzdFdJdw?oc=5",
+      "publisher": "The Dispatch",
+      "published_at": "2026-11-03T06:03:06Z",
+      "detected_at": "2026-11-03T09:02:20.283968Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "a750ddbf70530836b2f5",
       "title": "Erie County Election Board Takes Steps For Security and Integrity of the Balloting Process - WGRZ",
       "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxQdHpqNmlNWWNMZDdSWk5PZUV2TTQ1Tnl4N3pLTU0xeklMLVUwRFFtOFZoQVJhMzVmQWZYajRZaWpMTlJUbXZaUTJRb3VYSmJBRGdnWjJUazJDRURBSjBzVExIalAwalpYV1Y2NGdVRS1JOGRMdnVEZlAwREdVTk40YjlXZmdBRXo4X2pDZjU0RHRtME05enJiajlEdHlsYkJ6NG9mQ0N5VzlNMzNJcEZHRUF2Vzl0SFpQSS1LZVhfSjktNVg4T1N6T21zVUdFOXIyRVVSWkhhSUd6NS1CdnFUYTZ5cWJ0T0hUbVJGOXJNanFZNzA4bG52M1FoUjhNZWw0cjFEWTQtR3RILUVJTmF0V0Rn?oc=5",
@@ -375,6 +412,26 @@
       "headline_numbers_unverified": [
         "20,000 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1bdddb3ac5cff1632037",
+      "title": "Supreme Court declines Trump administration's request to intervene in California ballot dispute - SCOTUSblog",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPRVlDYjh6aDQ0OWpqekRtY0Rkd2tJRW5JbWJqbEVSRDI1dWQyN3VPbkUxN0h6MTVySVFEcGZaRHdxdmpiXzhCQnlRbnZZT3dmOFNUaWdvb0REQUs4UWtYaWsxS2o4OFRQcUtJbE92QU1qNkoyWlRQUmpuejN0TFZjekhHXzFEX2gyUVlNV1BxcDVqcFV3eTUzN2M3d3NwbTJVVm5neFNoNFdETzN5ZGlvcFVzN2hub1RBbVE?oc=5",
+      "publisher": "SCOTUSblog",
+      "published_at": "2026-11-02T23:16:06Z",
+      "detected_at": "2026-11-03T09:02:20.283968Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5152,64 +5209,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "98545b7f8ca2d0ec99a5",
-      "title": "Maricopa County recorder restores 25 voters wrongly flagged as noncitizens, ending lawsuit - Arizona Mirror",
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNSThlazJ5QlBZVjFFWkZDNng0U1FlcFJCWHV1TlhSeGNPYXh3RW5uRHFnTWpoYmpGbEVXODZwWl9pczRKbHpKeXRtckh5bzhxdzNkQXVFN2xwdVVLYUctd3J5dVUwM3VsbGZmVy1NZVZQd01WdjdtNWVDTVQtckxjQk9UcTh5NWVKS1M3VXo5bmVBV0lVZnBCOGp3TUlValJwRTlZeEFRdDZ5OEJhOFNWbVdDRmpQc2M5ZjlTSmFCZw?oc=5",
-      "publisher": "Arizona Mirror",
-      "published_at": "2026-10-24T03:29:37Z",
-      "detected_at": "2026-10-24T10:44:08.532526Z",
-      "state_hints": [
-        "AZ"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "25 voters"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c4ada8484aeeaac4acf2",
-      "title": "The Trump Administration\u2019s Attempts to Get Sensitive Voter Data Threaten the Rule of Law - Campaign Legal Center",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQbWlwcWNQTXVidzFJS1NUcm9QZHRibTNZeDBXTURaT2JOMllQdEUtN2hpS1hYREQ3Umdubms2TUVxbkhVNGNYeTl6S0Q1RmJOdzJyRnFyVnFvdFY1UXViMkRSMzAtZGs3aW1nUG5QblJ2ZVh6SVFvSno2ZDlZYjM2dXdNTDN5ZnF4cVUwQUdIdGd3MFItRjlJclRRTTBKN3lWZzNMQTl6NjlaUQ?oc=5",
-      "publisher": "Campaign Legal Center",
-      "published_at": "2026-10-24T01:09:34Z",
-      "detected_at": "2026-10-24T03:12:23.987437Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "afea9ba37cf8c10df447",
-      "title": "Early Voting Begins Saturday in Union Ahead of Nov. 3 Election - TAPinto",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNV1ctbWZjS2NVLTVNbjQzcFBDNmJvZm1BY0FKcXo0clltY3IxV0ViUTVuWmF2V1hzRUJHNG5nbUlRR0Z3aU9EWGJ6ajlPWUtiRWhLUXhIeEFyTnJuX2ZrMTZtcTZyUkRaWF9wVzA2SXd3a0RsOGRoV1BSZjlTZUUtVVk1azZ3bXF3WnlLNjlkaHk1NG5PclVUamdSR193MVRIVTQ4QWNrVUl6RjJjZDZYcmNXVnBmNms3eXBrZnNhMzBleUk?oc=5",
-      "publisher": "TAPinto",
-      "published_at": "2026-10-24T00:10:45Z",
-      "detected_at": "2026-10-24T04:44:36.812712Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "3 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
