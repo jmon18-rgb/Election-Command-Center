@@ -1,28 +1,16 @@
 {
-  "updated_at": "2026-11-03T21:57:15.342361Z",
+  "updated_at": "2026-11-03T22:57:05.232653Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 29,
-    "advisory_related_headlines": 82
+    "advisory_related_headlines": 80
   },
   "advisory_related_headlines": [
-    {
-      "lead_id": "8eac970c233573625d18",
-      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
-      "possibly_related_articles": 7,
-      "distinct_publishers": 7,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
     {
       "lead_id": "6de0d7f925d150890de9",
       "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
@@ -45,6 +33,18 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "8eac970c233573625d18",
+      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
+      "possibly_related_articles": 5,
+      "distinct_publishers": 5,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -256,6 +256,59 @@
     }
   ],
   "items": [
+    {
+      "id": "0145600ca14311504b36",
+      "title": "Advocates rally midterm voters after dozens of polling sites shut down in 'swing' Texas county - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQN1MzNG41b0IxTU95REJWMEx3dkFNYUd1eUc2UTViaXBFR1JlcHdwbXJpckg0WkpneFBXREVoNTU3aGczNVRlMjlVaGJEajdtc3FJeFFuV25wZEJQelB0ZkwwWEZfMWR5eS1rbHVuaEJOTGxmbE1zTGhkbDJHbk95WVhaZjRzdU9FUXVYbFlEc3V4dHBMUFhUd2lSZ1BLcUd3SEV3c0dSMm0?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-03T22:38:00Z",
+      "detected_at": "2026-11-03T22:57:05.232653Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "221b4223e6b3f61f7584",
+      "title": "Live updates: What's getting Western Pennsylvanians out to the polls for a pivotal midterm election? - Pittsburgh Post-Gazette",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPUlBLd0RHbWp0bl9lZDNLYmlhVFNCYjFhZkFkUFUzcGhqcHlEY0dqcHpZejZfdXVJTHV3cHFYR2pWZjR3cGlVXzdoUlBCLUVnbjdYeDNhNURtNmN3bzdzU3ZFTU8zZzJ2NDRmQWdoWUY0Q2xZZllwM0JrVHpVTFZ0cllQVnNmVkJBRmZGMUVKdXdjVE90SlJXQVNLUUpZcXR1aTdNNE9JaGtZdVJlWDYycXpwSEhmRzA4Q0dwLXg5NG1oZw?oc=5",
+      "publisher": "Pittsburgh Post-Gazette",
+      "published_at": "2026-11-03T22:31:50Z",
+      "detected_at": "2026-11-03T22:57:05.232653Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "323e0f1bcf3ab062ae58",
+      "title": "Voters Head to Polls in Midterms That Will Shape Rest of Trump's Presidency - Time Magazine",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZFE2MnhLMmZSZVptb3p4TlhDQzBUMEpZWERVaHN2dG1YbTJZWGRKZWZvM1laTzRubG5WLXdkMW93bW80VEhOcjhFRm92TTdJNlQtSGF5bWFkZWZDak54ZVdCYmdrS3dEQ2hvT0dpaGtJQ0tVbnNENFNtRHpDQWhfN3dFZlpaY2NucHBaSFN1NU4xWGpLdXBhMkxBU0tMSDluQ3NET0FQcDdabExT?oc=5",
+      "publisher": "Time Magazine",
+      "published_at": "2026-11-03T21:38:23Z",
+      "detected_at": "2026-11-03T22:57:05.232653Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "30cef2082abcac5f862f",
       "title": "Election 2026: Live updates from Pa., Philly, New Jersey, Delaware - WHYY",
@@ -5083,63 +5136,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "75b34bff28f9a56bb3d7",
-      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - WSLS",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxOcEtRWGlrOFpNeXlfNWxVOFNNMzR6aDFjVTRmSGNQZVBva0p3azhraDZDWko1QnBkR2FVaVNEUlJPLXRQZWxuT2ZyZXh1ckZQc2xhSVRGcUUzeHRSTXNCYkZMQXk5TThWUG12V3FEN2RiSDR0bVlKeFU3WTZHTVVzR3p5dUF4eGlMN0haVERBNEpWYnJ4N1VxSVNwVVRESzI0N0pLV1R2cU14bTEzYzBFNERmY0ZuNDQyMmkwOUVCWThtbURVNzJkT0JLdTF3dHBjdU5JMzVvSzJDMlBuOV95Nw?oc=5",
-      "publisher": "WSLS",
-      "published_at": "2026-10-26T11:08:38Z",
-      "detected_at": "2026-10-26T12:06:28.054554Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "cde3526c19f30354d9dc",
-      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - News4JAX",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPWkw3NkJ2V2VGN0hqdGMybVNCUUpDSFpHRE85QXJ3c1VWYlJWSHJtTXZXN0p3LThfVzFOZ09fQUFqOU8wa1ZtUjFRTFNlRFlIVDFkN1NBbGs0QTRhMi1mRFAwenkyTGRwRUFpc3NHcXRSWWlTVzF2X3pvWmF0QVBfbEtnREZBTG1za3ZlczRad3pOb0o4clB2c0VjRzlIM2dZa0FPZVFQVzhUTXBVTzRCTkhzNW1HeWE3S2dldFFQN3pJMDZ3MTlnX2lEdG9vaUtHZUU4aGtiMC03dUcyZzB6akk3ZzZIZw?oc=5",
-      "publisher": "News4JAX",
-      "published_at": "2026-10-26T11:08:38Z",
-      "detected_at": "2026-10-26T13:57:15.684737Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "48de42af4a19c7c06a19",
-      "title": "Election officials say ICE is unlikely to visit Colorado polling places but they\u2019re preparing nonetheless - The Colorado Sun",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQc29ocURySG1LMEU4QU5taWhvNi1ESHg5dXlwZGZ4UEdwX0s0c1pyUGJiZWQydnl1VmYtNTVLbWVRUmZiNGNBdkVHV21lVUlEREZrd2JweFlkR1pvM3ppWWhXZmFhbWpqelRwS0xqMlFZMXJ1SW4wNXkyNmhCREo2U1hCb0l1dw?oc=5",
-      "publisher": "The Colorado Sun",
-      "published_at": "2026-10-26T10:00:00Z",
-      "detected_at": "2026-10-26T10:44:14.347950Z",
-      "state_hints": [
-        "CO"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "security",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
