@@ -86,8 +86,15 @@
       "verified_at": "2026-10-25",
       "source_reference": "https://www.sos.alabama.gov/alabama-votes/voter/election-information/2026",
       "race_ids": [
-        "House|AL-07"
-      ]
+        "House|AL-07",
+        "House|AL-02",
+        "House|AL-03",
+        "House|AL-04",
+        "House|AL-05",
+        "House|AL-06"
+      ],
+      "directory_mapping_reviewed_at": "2026-11-03",
+      "scope_note": "Existing official statewide results-directory identity reused offline for Alabama House 02-07 jurisdiction routing. No new retrieval, current district result, reporting clock, winner call, county reconciliation or reuse right verified."
     },
     {
       "state": "DE",
@@ -408,10 +415,13 @@
       "url": "https://sos.ks.gov/elections/election-results.html",
       "mode": "november_2026_results_not_yet_published",
       "verified_at": "2026-10-27",
-      "scope_note": "Existing original historical baseline source_index reused from kansas_senate_county_facts_official.json. No new Kansas blocked-site retry; current November2026 availability/timing unverified. Human reference only, not a live feed.",
+      "scope_note": "Existing original historical baseline source_index reused from kansas_senate_county_facts_official.json. No new Kansas blocked-site retry; current November2026 availability/timing unverified. Human reference only, not a live feed. Existing saved statewide gateway reused offline for House 03/04 jurisdiction routing only; security-validation source stops remain, with no new request or current district results verified.",
       "race_ids": [
-        "House|KS-02"
-      ]
+        "House|KS-02",
+        "House|KS-03",
+        "House|KS-04"
+      ],
+      "directory_mapping_reviewed_at": "2026-11-03"
     },
     {
       "state": "MT",
@@ -435,6 +445,41 @@
       "race_ids": [
         "House|MO-01"
       ]
+    },
+    {
+      "state": "KY",
+      "name": "Kentucky official 2026-labeled export gateway metadata",
+      "url": "https://vrsws.sos.ky.gov/liveresults/Data",
+      "mode": "results_landing_timing_unconfirmed",
+      "verified_at": "2026-11-03",
+      "source_reference": "https://vrsws.sos.ky.gov/liveresults/Data",
+      "scope_note": "Retained official reader shows a 2026 General Election / November 03, 2026 export index and linked v6 documentation, with an isolated 2022 label also present. Human-check gateway metadata only: native candidate metadata and results remain unread/stopped; no current vote body, winner call, district reconciliation, rights or reporting clock verified. Review date records the earlier gateway identity inspection, not fresh results availability.",
+      "race_ids": [
+        "House|KY-01",
+        "House|KY-02",
+        "House|KY-03",
+        "House|KY-04",
+        "House|KY-05"
+      ],
+      "general_2026_results_verified": false,
+      "primary_results_used_as_general_votes": false,
+      "reference_role": "official_reference_results_unverified"
+    },
+    {
+      "state": "NV",
+      "name": "Nevada official 2026 election-information reference",
+      "url": "https://www.nvsos.gov/sos/elections/election-information/2026-election-information",
+      "mode": "results_landing_timing_unconfirmed",
+      "verified_at": "2026-11-03",
+      "source_reference": "https://www.nvsos.gov/sos/elections/election-information/2026-election-information",
+      "scope_note": "Official search index identifies this 2026 General Election administration page and describes November 3 post-close results guidance. First reader resolves this official URL but exposes only an iframe, so native administrative text and results timing were not independently read. Human-check reference identity/search lead only; no current district result, winner call, vote feed, district-total reconciliation or reuse right verified. No iframe or alternate-host/tool follow-up was made.",
+      "race_ids": [
+        "House|NV-03",
+        "House|NV-04"
+      ],
+      "general_2026_results_verified": false,
+      "primary_results_used_as_general_votes": false,
+      "reference_role": "official_reference_results_unverified"
     }
   ],
   "limitations": "Links are human-check references, not verified live feeds, reported votes, or professional race calls. Massachusetts expressly does not publish unofficial statewide election-night results. Mississippi's Secretary of State stated in its 2024 election-day guidance that its office only announces and posts certified results; do not rely on that office as an unofficial live feed without a newly verified 2026 source. Alabama's current unofficial election-night results landing page does not yet show a 2026 general-election result, and the DDHQ AL-07 results view had 0 votes before Nov 3. A browser page is not an automated source.",
@@ -1278,6 +1323,253 @@
         "url": "https://votes.decisiondeskhq.com/races/2026-11-03/missouri-us-house-1-general-election",
         "verified_at": "2026-10-30",
         "verification": "Exact November3,2026 Missouri U.S.House District1 metadata reviewed on the public base race page. Its default view is FORECAST, not a result or call; no actual result or winner call verified. A Results tab is declared, but its separate reader request returned Cache miss and its body was not reviewed. Human manual check only; no automated vote/call ingestion, machine identity or rights admission."
+      },
+      {
+        "id": "House|AL-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-2-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Alabama US House 2 General Election Results | DDHQ",
+        "search_reference": "turn537search1",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-2-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
+      },
+      {
+        "id": "House|AL-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-3-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Alabama US House 3 General Election Results | DDHQ",
+        "search_reference": "turn538search1",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-3-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
+      },
+      {
+        "id": "House|AL-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-4-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Alabama US House 4 General Election Results | DDHQ",
+        "search_reference": "turn537search11",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-4-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
+      },
+      {
+        "id": "House|AL-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-5-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Alabama US House 5 General Election Results | DDHQ",
+        "search_reference": "turn538search2",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-5-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
+      },
+      {
+        "id": "House|AL-06",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-6-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Alabama US House 6 General Election Results | DDHQ",
+        "search_reference": "turn537search10",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/alabama-us-house-6-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
+      },
+      {
+        "id": "House|KS-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/kansas-us-house-3-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Previously saved original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/kansas",
+        "scope_note": "Previously saved publisher-directory identity only; no fresh page access, live results, winner call or automated vote feed verified."
+      },
+      {
+        "id": "House|KS-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/kansas-us-house-4-general-election",
+        "verified_at": "2026-10-27",
+        "verification": "Previously saved original publisher directory declares this exact general-election race link; human-check reference only; no actual result or winner call verified. Forecast labels are not calls.",
+        "source_directory": "https://votes.decisiondeskhq.com/elections/2026-11-03/kansas",
+        "scope_note": "Previously saved publisher-directory identity only; no fresh page access, live results, winner call or automated vote feed verified."
+      },
+      {
+        "id": "House|KY-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-1-general-election/forecast",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Kentucky US House 1 General Election Forecast | DDHQ",
+        "search_reference": "turn532search4",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-1-general-election/forecast",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED",
+        "link_role": "forecast_preview_not_results"
+      },
+      {
+        "id": "House|KY-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-2-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Kentucky US House 2 General Election Results | DDHQ",
+        "search_reference": "turn535search7",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-2-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
+      },
+      {
+        "id": "House|KY-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-3-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Kentucky US House 3 General Election Results | DDHQ",
+        "search_reference": "turn538search0",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-3-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
+      },
+      {
+        "id": "House|KY-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-4-general-election/forecast",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Kentucky US House 4 General Election Forecast | DDHQ",
+        "search_reference": "turn539search2",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-4-general-election/forecast",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED",
+        "link_role": "forecast_preview_not_results"
+      },
+      {
+        "id": "House|KY-05",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-5-general-election/forecast",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Kentucky US House 5 General Election Forecast | DDHQ",
+        "search_reference": "turn539search1",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-5-general-election/forecast",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED",
+        "link_role": "forecast_preview_not_results"
+      },
+      {
+        "id": "House|ME-01",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/maine-us-house-1-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Maine US House 1 General Election Results | DDHQ",
+        "search_reference": "turn537search0",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/maine-us-house-1-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
+      },
+      {
+        "id": "House|ME-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/maine-us-house-2-general-election/forecast",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Maine US House 2 General Election Forecast | DDHQ",
+        "search_reference": "turn542search3",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/maine-us-house-2-general-election/forecast",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED",
+        "link_role": "forecast_preview_not_results"
+      },
+      {
+        "id": "House|NE-02",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/nebraska-us-house-2-general-election/forecast",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Nebraska US House 2 General Election Forecast | DDHQ",
+        "search_reference": "turn543search6",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/nebraska-us-house-2-general-election/forecast",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED",
+        "link_role": "forecast_preview_not_results"
+      },
+      {
+        "id": "House|NV-03",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/nevada-us-house-3-general-election/forecast",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Nevada US House 3 General Election Forecast | DDHQ",
+        "search_reference": "turn538search4",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/nevada-us-house-3-general-election/forecast",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED",
+        "link_role": "forecast_preview_not_results"
+      },
+      {
+        "id": "House|NV-04",
+        "url": "https://votes.decisiondeskhq.com/races/2026-11-03/nevada-us-house-4-general-election",
+        "verified_at": "2026-11-03",
+        "verification": "Exact race-specific URL and title observed in the search index only; no native page body or Results link authenticated; no actual result or winner call verified. Forecast labels are not calls.",
+        "verification_scope": "search_index_identity_only",
+        "scope_note": "Results link not verified; current page access not verified; search-index identity only; no live results or calls verified; not a vote feed.",
+        "search_title": "2026 Nevada US House 4 General Election Results | DDHQ",
+        "search_reference": "turn540search0",
+        "search_observed_at": "2026-11-03T01:58:56.369Z",
+        "source_reference": "https://votes.decisiondeskhq.com/races/2026-11-03/nevada-us-house-4-general-election",
+        "results_link_verified": false,
+        "current_access_verified": false,
+        "current_access_status": "UNKNOWN_NOT_VERIFIED"
       }
     ]
   }

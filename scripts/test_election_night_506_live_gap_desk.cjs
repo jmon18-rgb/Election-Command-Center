@@ -266,18 +266,23 @@ assert.equal(api.render(editorialHost,policy,{createElement:node},
 const allEls=x=>[x,...x.children.flatMap(allEls)];
 const anchored=allEls(editorialHost).filter(x=>x.tag==='a');
 const ddhq=anchored.filter(x=>x.textContent.includes('DDHQ free race results / call'));
+const previews=anchored.filter(x=>x.textContent.includes('DDHQ preview (results unverified)'));
 assert.equal(ddhq.length,editorial.race_pages.filter(x=>
+ policy.gapAttention.races.some(r=>r.id===x.id)&&!x.link_role).length,
+ 'Each base/result reference retains the original exact newsroom-page behavior');
+assert.equal(ddhq.length+previews.length,editorial.race_pages.filter(x=>
  policy.gapAttention.races.some(r=>r.id===x.id)).length,
- 'Each unresolved race needs its exact verified newsroom page');
+ 'Each unresolved race needs a manual reference; previews remain visibly distinct from Results routes');
 const targets=new Map(editorial.race_pages.map(x=>[x.id,x.url]));
 assert.equal(targets.size,editorial.race_pages.length);
-assert.deepEqual(new Set(ddhq.map(a=>a.href)),new Set(
+assert.deepEqual(new Set([...ddhq,...previews].map(a=>a.href)),new Set(
  editorial.race_pages.filter(x=>policy.gapAttention.races.some(r=>r.id===x.id))
   .map(x=>x.url)));
 if(actualGapIds.includes('House|AL-07'))assert(ddhq.some(a=>a.href.endsWith('/alabama-us-house-7-general-election/results')),
  'AL-07 detail-invalid gap needs an exact read-only source fallback');
 assert(ddhq.every(a=>a.href.startsWith('https://votes.decisiondeskhq.com/races/2026-11-03/')));
 assert(ddhq.every(a=>a.target==='_blank'&&a.rel==='noopener noreferrer'));
+assert(previews.every(a=>a.target==='_blank'&&a.rel==='noopener noreferrer'));
 assert.match(flatten(editorialHost),/DDHQ public X race-call feed/);
 assert.match(flatten(editorialHost),/media calls are unofficial/);
 assert.equal(policy.professional_calls_verified,0,
@@ -480,3 +485,57 @@ for(const [mode,warning] of [
  assert.equal(scopePulse.professional_calls_verified,0);
 }
 console.log('Official reference scope warnings remain visible in recovery and priority rows PASS');
+
+const qualifiedPreviews=editorial.race_pages.filter(row=>row.link_role==='forecast_preview_not_results');
+assert.deepEqual(qualifiedPreviews.map(row=>row.id).sort(),
+ ['House|KY-01','House|KY-04','House|KY-05','House|ME-02','House|NE-02','House|NV-03']);
+for(const row of qualifiedPreviews){
+ const scopePulse={...policy,
+  gapAttention:{...policy.gapAttention,races:[{id:row.id,mode:'ACTIVE_LIVE_SOURCE'}]},
+  operationalAttention:{...operational.operationalAttention,
+   races:[{id:row.id,mode:'ACTIVE_LIVE_SOURCE',sourceStatus:'SECONDARY_FAILED'}]}};
+ const renderOne=entry=>{const host=node('div');api.render(host,scopePulse,{createElement:node},official.links,
+  {...editorial,race_pages:[entry]});return allEls(host).filter(el=>el.tag==='a'&&
+   el.textContent.includes('DDHQ preview (results unverified)'));};
+ const anchors=renderOne(row);
+ assert.equal(anchors.length,2,'Both recovery and priority paths expose the qualified preview: '+row.id);
+ for(const anchor of anchors){assert.equal(anchor.href,row.url);assert.equal(anchor.title,row.scope_note);
+  assert.equal(anchor.target,'_blank');assert.equal(anchor.rel,'noopener noreferrer');}
+ for(const changes of [{id:'House|AK-00'},{url:row.url+'?results=1'},
+  {url:row.url.replace(/\/forecast$/,'')},{link_role:undefined},{link_role:'results'},
+  {verification_scope:'native_results'},{source_reference:'https://votes.decisiondeskhq.com/'},
+  {results_link_verified:true},{current_access_verified:true},
+  {current_access_status:'AVAILABLE'},{scope_note:'Forecast'}]){
+  assert.equal(renderOne({...row,...changes}).length,0,'Reject unqualified preview mutation '+row.id+JSON.stringify(changes));
+ }
+ assert.equal(scopePulse.professional_calls_verified,0);
+ assert.equal(scopePulse.totals.House.reported,policy.totals.House.reported);
+}
+// Exercise the actual official-anchor loop without a fetch, app/model start,
+// or a replacement production function. Only the exact qualified KY/NV rows
+// may use the administrative-reference label and source-limit tooltip.
+const officialLoopStart=html.indexOf('   for(const link of listing.links){');
+const officialLoopEnd=html.indexOf('   const unresolved=',officialLoopStart);
+assert(officialLoopStart>0&&officialLoopEnd>officialLoopStart);
+const officialLoop=html.slice(officialLoopStart,officialLoopEnd);
+const renderOfficial=links=>{
+ const backstops=node('div'),requested=new Set(links.flatMap(row=>row.race_ids||[]));
+ backstops.append=(...children)=>backstops.children.push(...children);
+ const make=(tag,cls,text)=>{const value=node(tag);value.textContent=text||'';
+  value.append=(...children)=>value.children.push(...children);return value;};
+ vm.runInNewContext(officialLoop,{listing:{links},backstops,requested,matched:new Set(),elt:make});
+ return allEls(backstops).filter(el=>el.tag==='a');
+};
+for(const state of ['KY','NV']){
+ const row=official.links.find(link=>link.state===state);
+ const anchors=renderOfficial([row]);assert.equal(anchors.length,1);
+ assert(anchors[0].textContent.includes('official reference (results unverified)'));
+ assert.equal(anchors[0].href,row.url);assert.equal(anchors[0].title,row.scope_note);
+ for(const changes of [{reference_role:'official_results'},{reference_role:false},
+  {general_2026_results_verified:true},{primary_results_used_as_general_votes:true},
+  {source_reference:'https://example.invalid/'},{url:row.url+'?results=1'},{scope_note:'Official results'}])
+  assert.equal(renderOfficial([{...row,...changes}]).length,0,'Reject unsupported official-reference qualification');
+}
+const originalOfficial=official.links.find(row=>row.state==='AL');
+assert(renderOfficial([originalOfficial])[0].textContent.includes('official results'));
+console.log('Finite six search-only preview captions, qualification refusals and exact administrative-reference labels PASS');

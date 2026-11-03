@@ -6,10 +6,46 @@ import unittest
 from urllib.parse import urlparse
 
 ROOT=Path(__file__).resolve().parents[1]
+PREVIEW_URLS={
+ "House|KY-01":"https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-1-general-election/forecast",
+ "House|KY-04":"https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-4-general-election/forecast",
+ "House|KY-05":"https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-5-general-election/forecast",
+ "House|ME-02":"https://votes.decisiondeskhq.com/races/2026-11-03/maine-us-house-2-general-election/forecast",
+ "House|NE-02":"https://votes.decisiondeskhq.com/races/2026-11-03/nebraska-us-house-2-general-election/forecast",
+ "House|NV-03":"https://votes.decisiondeskhq.com/races/2026-11-03/nevada-us-house-3-general-election/forecast",
+}
+
+def _qualified_manual_preview(item):
+    note=item.get("scope_note", "")
+    return (item.get("link_role")=="forecast_preview_not_results"
+            and item.get("id") in PREVIEW_URLS
+            and PREVIEW_URLS.get(item.get("id"))==item.get("url")
+            and item.get("verification_scope")=="search_index_identity_only"
+            and item.get("source_reference")==item.get("url")
+            and item.get("results_link_verified") is False
+            and item.get("current_access_verified") is False
+            and item.get("current_access_status")=="UNKNOWN_NOT_VERIFIED"
+            and isinstance(note,str) and all(text in note for text in (
+                "Results link not verified", "current page access not verified",
+                "no live results or calls verified", "not a vote feed")))
 
 def _official_manual_reference_host_allowed(item):
     """Human-reference catalog test only; never a provider or ingestion allowlist."""
     parsed=urlparse(item["url"])
+    if "reference_role" in item or item.get("state") in ("KY","NV"):
+        expected={
+            "KY":("https://vrsws.sos.ky.gov/liveresults/Data",
+                  {f"House|KY-{n:02d}" for n in range(1,6)}),
+            "NV":("https://www.nvsos.gov/sos/elections/election-information/2026-election-information",
+                  {"House|NV-03","House|NV-04"}),
+        }.get(item.get("state"))
+        return bool(expected and item.get("reference_role")=="official_reference_results_unverified"
+                    and item["url"]==expected[0] and item.get("source_reference")==item["url"]
+                    and set(item.get("race_ids",[]))==expected[1]
+                    and item.get("mode")=="results_landing_timing_unconfirmed"
+                    and item.get("general_2026_results_verified") is False
+                    and item.get("primary_results_used_as_general_votes") is False
+                    and isinstance(item.get("scope_note"),str) and "no current" in item["scope_note"])
     if item.get("race_ids")==["House|NY-13"] or parsed.hostname=="vote.nyc":
         note=item.get("scope_note","")
         return (item["url"]=="https://vote.nyc/page/election-results-summary"
@@ -69,19 +105,63 @@ class OfficialBackstopsTests(unittest.TestCase):
         ids=[r["id"] for r in pages]
         self.assertEqual(len(ids),len(set(ids)), "No duplicate manual pages")
         self.assertTrue(expected.issubset(set(ids)),
-                        "Every active gap has an exact reviewed manual race page")
+                        "Every active gap has a qualified manual race reference; previews are not Results routes")
         for row in pages:
             p=urlparse(row["url"])
             self.assertEqual(p.scheme,"https")
             self.assertEqual(p.hostname,"votes.decisiondeskhq.com")
             self.assertTrue(p.path.startswith("/races/2026-11-03/"))
-            self.assertTrue(p.path.endswith(("-general-election", "-general-election/results")),
-                            "Exact public DDHQ result routes are allowed; forecast-only routes are not")
+            if "link_role" in row:
+                self.assertTrue(_qualified_manual_preview(row),
+                                "Only the six exact qualified previews are allowed, not Results routes")
+            else:
+                self.assertTrue(p.path.endswith(("-general-election", "-general-election/results")),
+                                "Exact public DDHQ result routes are allowed; unqualified forecasts are not")
             self.assertFalse(p.query or p.fragment or p.username or p.password)
             self.assertFalse(any(k in row for k in (
              "winner","winner_call","reported_votes","result","forecast_probability")))
         self.assertIn("FORECASTS",newsroom["information"])
         self.assertIn("not",newsroom["information"].lower())
+
+    def test_six_search_only_previews_are_finite_and_never_result_routes(self):
+        pages={row["id"]:row for row in self.links["public_editorial_calls"]["race_pages"]}
+        previews={key:row for key,row in pages.items() if "link_role" in row}
+        self.assertEqual(set(previews),set(PREVIEW_URLS))
+        evidence=json.loads((ROOT/"data/current_gap_manual_reference_directory_evidence.json").read_text())
+        observations={row["race_id"]:row for row in evidence["search_observations"]}
+        self.assertEqual(len(observations),15)
+        for ident,row in observations.items():
+            page=pages[ident]
+            self.assertEqual(page["url"],row["url"])
+            self.assertEqual(page["search_title"],row["title"])
+            self.assertEqual(page["search_reference"],row["search_reference"])
+            self.assertEqual(page["search_observed_at"],row["observed_at"])
+            self.assertEqual(page["verification_scope"],"search_index_identity_only")
+            self.assertFalse(row["native_body_owned"])
+            self.assertFalse(row["source_HTTP_status_known"])
+            self.assertFalse(row["results_link_verified"])
+            self.assertIn("no actual result or winner call verified",page["verification"])
+        for ident,row in previews.items():
+            self.assertTrue(_qualified_manual_preview(row))
+            self.assertEqual(row["url"],PREVIEW_URLS[ident])
+            self.assertEqual(observations[ident]["link_role"],"forecast_preview_not_results")
+            for changes in ({"id":"House|AK-00"},{"url":row["url"]+"?results=true"},
+                            {"url":row["url"].removesuffix("/forecast")},
+                            {"link_role":"results"},{"verification_scope":"native_results"},
+                            {"source_reference":"https://votes.decisiondeskhq.com/"},
+                            {"results_link_verified":True},{"current_access_verified":True},
+                            {"current_access_status":"AVAILABLE"},{"scope_note":"Forecast"}):
+                with self.subTest(ident=ident,changes=changes):
+                    self.assertFalse(_qualified_manual_preview({**row,**changes}))
+        for state in ("KY","NV"):
+            row=next(x for x in self.links["links"] if x["state"]==state)
+            self.assertTrue(_official_manual_reference_host_allowed(row))
+            for changes in ({"reference_role":"official_results"},{"url":row["url"]+"?results=1"},
+                            {"general_2026_results_verified":True},
+                            {"primary_results_used_as_general_votes":True},
+                            {"source_reference":"https://example.invalid/"},{"scope_note":"Official results"}):
+                with self.subTest(state=state,changes=changes):
+                    self.assertFalse(_official_manual_reference_host_allowed({**row,**changes}))
 
     def test_current_gap_repair_uses_observed_directory_links_without_live_claims(self):
         evidence=json.loads((ROOT/"data/current_gap_manual_reference_directory_evidence.json").read_text())
@@ -98,6 +178,11 @@ class OfficialBackstopsTests(unittest.TestCase):
             self.assertIn(row["url"],observed,ident)
             self.assertIn("no actual result or winner call verified",row["verification"])
             self.assertFalse(any(k in row for k in ("reported_votes","winner","winner_call","forecast_probability")))
+        kansas=next(row for row in evidence["directories"] if row["state"]=="KS")
+        for ident in ("House|KS-03","House|KS-04"):
+            self.assertIn(pages[ident]["url"],kansas["declared_race_links"])
+            self.assertEqual(pages[ident]["source_directory"],kansas["source"])
+            self.assertIn("no actual result or winner call verified",pages[ident]["verification"])
         wi=next(r for r in self.links["links"] if r["state"]=="WI")
         self.assertEqual(wi["mode"],"county_results_directory_only")
         self.assertIn("no central statewide unofficial",wi["scope_note"])

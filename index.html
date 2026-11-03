@@ -1795,7 +1795,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/election_night_poop_meter.js?v=e97eea7deb51"></script>
 <script src="./scripts/personal_election_focus.js?v=85b00c5d917b"></script>
 <script src="./scripts/election_night_reconciliation.js?v=395ee89c6934"></script>
-<script src="./scripts/election_night_506_live_gap_desk.js?v=b3d6fc8c94e4"></script>
+<script src="./scripts/election_night_506_live_gap_desk.js?v=2dfd174eebd7"></script>
 <script src="./scripts/election_night_rehearsal.js?v=01a3a08855d0"></script>
 <script src="./scripts/competitive_source_cadence.js?v=10199a39b629"></script>
 <script src="./scripts/wisconsin_house_county_source.js?v=6c3ef7b151b8"></script>
@@ -4143,9 +4143,16 @@ async function enRefreshSourceReadiness(){
     if(!/^https:\/\//.test(link.url)||!Array.isArray(link.race_ids))continue;
     const relevant=link.race_ids.filter(id=>requested.has(id));
     if(!relevant.length)continue;
+    const referenceOnly=link.reference_role==='official_reference_results_unverified'&&
+     ((link.state==='KY'&&link.url==='https://vrsws.sos.ky.gov/liveresults/Data')||
+      (link.state==='NV'&&link.url==='https://www.nvsos.gov/sos/elections/election-information/2026-election-information'))&&
+     link.source_reference===link.url&&link.general_2026_results_verified===false&&
+     link.primary_results_used_as_general_votes===false&&typeof link.scope_note==='string'&&link.scope_note.includes('no current');
+    if(Object.hasOwn(link,'reference_role')&&!referenceOnly)continue;
     const row=elt('p','en-coverage-line');
-    const anchor=elt('a','',link.name+' official results ↗');
+    const anchor=elt('a','',link.name+(referenceOnly?' official reference (results unverified) ↗':' official results ↗'));
     anchor.href=link.url;anchor.target='_blank';anchor.rel='noopener noreferrer';
+    if(referenceOnly)anchor.title=link.scope_note;
     let qualifier=' · official human-check alternative · NOT an automated feed';
     if(link.mode==='certified_only_not_election_night')
      qualifier=' · certification/results may come AFTER Election Night';
