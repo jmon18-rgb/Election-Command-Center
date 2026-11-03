@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-03T17:09:01.827234Z",
+  "updated_at": "2026-11-03T17:59:25.110925Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 28,
-    "advisory_related_headlines": 80
+    "advisory_related_headline_buckets": 29,
+    "advisory_related_headlines": 82
   },
   "advisory_related_headlines": [
     {
@@ -277,6 +277,23 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "9e9b7fe2a2e5894e3461",
+      "title": "Midterm Countdown, Zero Days to Go. - James Fallows | Substack",
+      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9yNC1tTHlmdVBJV3V6bUdrNnE3VzJjTTFpdXZLRXVvWGRTZE5US0tVX0RJUkhsaThOM3JGVk5MRHlWNkVQVlg5ejZFLVE3ekE1SHRNNk14Ym5Fem5ERXlYalZkUGVzeUJDUUhSeGZHTW50QQ?oc=5",
+      "publisher": "James Fallows | Substack",
+      "published_at": "2026-11-03T17:01:15Z",
+      "detected_at": "2026-11-03T17:59:25.110925Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "2ee9fe5262cafe409b4d",
       "title": "ICE agents warned a Syracuse poll worker about her speech. She\u2019s not backing down. - Syracuse.com",
       "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQV0NXNENlWHZZaDJmNWlMR24ydHF1T2ZiWTRmaFk4QmFhQ3hLUXBkaTMxN3h5V21DejNlX0s0RDlUc3A0d0h4R3VDaWVWNDMzWDZjTlVubDdsd2l2RWRfblEzX0hRR3J6WEhOTk9wUFhLSkZvWGJwdm02S2lPN3U3OUFpV3hMdWx2eHIxODlvQ1k2Q21PYXB2TzdlNkNKck1pc25aYmNyUGdudEYzS2p0OVRMelZaWlVaS05uT3RNYjdlQkRsXzdtejU4eGtMM0lfNHc?oc=5",
@@ -286,6 +303,25 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f609731135db2c17d657",
+      "title": "Election Day is underway across Connecticut. Here\u2019s what\u2019s happening - CT Insider",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPZTQtZFFNNkFhUXNMa1lHR1c4RUFlczRhclJndmVvbmRUVTNlRlZZbEwwYlVXUFhsQmRyZmlFQ2w1V3dHUERMSTZ4ZWZQRUFSU0ZxSHZJekhpQ09KSktxdlpPZzlXR1JpY21RbUt5b01JaXBrSHhYUDAwS1NVTTI5MDYtOUJ1ZWhKZGRtS1VlNWdyOHBONlNjbHFOUzE?oc=5",
+      "publisher": "CT Insider",
+      "published_at": "2026-11-03T16:09:58Z",
+      "detected_at": "2026-11-03T17:59:25.110925Z",
+      "state_hints": [
+        "CT"
+      ],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -344,6 +380,24 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7620a7077767353cc8fc",
+      "title": "Trump midterm election lawsuits, state pushback come to a head Tuesday - CNBC",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNZTB1LUxxWkJFZE5VTDNGbnZaWHNNUkc2WFBhN05WZF8xU1MyVG56ZUkwd2JxMUk2a0JZMl9VNENVd2w3STJXOTNZbmxESElTSGxHaUJwdVhsclVsQnNkT2ljbzVqWklnMHdpTG1aWXZEZlkxbUFVT05EMGpLME1OZGliZENTelNqS1F0LV9hVELSAZYBQVVfeXFMTjJyLXNUV0VVWlF3MVJqRi1TTFdOQUhFa1Z6dDVERU5pdU55THJDRmt1ak1Yb1RxanFjc29GNG5Jbkd3U013b0tiRElNTXJTeFprdkZYVk95aThlc0d0Qmoxams0WG5PZ19QLTJnYVlhT3VPM3lWbkJWTlRoNC1MR1ByX1M4TUlLZXNOd3dVSlBzQVpZTG9B?oc=5",
+      "publisher": "CNBC",
+      "published_at": "2026-11-03T13:18:39Z",
+      "detected_at": "2026-11-03T17:59:25.110925Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5091,60 +5145,6 @@
       ],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7f7c0df03372fe0557b2",
-      "title": "Voting groups urge high turnout amid fears of interference - The Tennessean",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPbHJISmZ3UDA5SllzVVpXc25zUXQxcEFqOTRsZU5mS2pIXzByZUFON0hHSFVUbV9HR0ZtdmQ1eVdhQVFGOGZkeG1kNXVFYWRib183dV9kV1huaDA0c1JhLWFrRFpBQlAxWUZ3N1dHT3UybVZ6NldFcHkyZHd5ZEZ2UnlEV1hjUjJ2dHlyNVZZTlBuU2VCNUl6NVdwNW9Ma1U1UzVYLVl4eDJfTS0wMXFOYXFYX2dFblA2bnBQcEU1QV9kaURHdW1nNmxkaC1WRWtnX1o5NHNycF9DemZlc1d4OTJja1lGQQ?oc=5",
-      "publisher": "The Tennessean",
-      "published_at": "2026-10-25T10:03:18Z",
-      "detected_at": "2026-10-25T10:43:50.027096Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a0c3d8adb526a2bf163a",
-      "title": "The State Officials Defending the Midterms from the President - The New Yorker",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPbWFKOS1yS2tIa1JCdHJKMTk3M2lJSktFQld3MExFVF9LaWY0TFhibGlUazV5OWpaNlc2RVpmbWJDM0djTzk2Z0t5QTNPWmlvOU9pR2tTaFg5SnpPaThNRGtIWlZOOWFRVGl0SEJyVkU2cHFNdWllWjkzeHhNVF8zTmo5NndZUXFiQTcwZlVuemZGdUVpZldXZU9xQUFQQmpQZHBUaXJwWGdjWXc?oc=5",
-      "publisher": "The New Yorker",
-      "published_at": "2026-10-25T10:00:00Z",
-      "detected_at": "2026-10-25T16:07:16.283903Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "867f1754291cdd2d7138",
-      "title": "Obama\u2019s Ohio, Michigan speeches: Key takeaways on Trump, Iran war, midterms - Al Jazeera",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQNmpMTzVMV0M5WU04b2s2LW1QeWlLWVVSdnRJQ2xQeW9WeVdXVjZYVkVwVFgzWTd5U25HZHJ4VFFIb0xfZDBrOVNJYzVsWndCcmhfdEkycExMaVoxelNzcWtuTWhxdjFKWVZxeVhGemVZdi0wNjBaX1pwdWE0aTBOS1gtUlNUcjRwRXNzcXNkdnF6ZDlrTFBJejVCQ1kwUGRjQWQ2MTNHai10OUlhQ29TdFNn0gG3AUFVX3lxTE9zVTVQVDdCLWlial92eERzejVzYnlMSnRwdTRiOFd5WTZCcFE2VnVabkJYOFNwV0NQRl90a0R1ZllSc2NDUDdPLVd3bXBUV0dLcU01a0MzbVhNVUlHczgzUTlYOW95YkZFVVdFOW8zVmROUUN0alc1aTZzRnNuTUxZcHg1a1VTQktVYkNhSTBNMzZiampRSUFtbjBFaDBSZURlVDBiYnh4MjBBRDNuYlVNTnpPcVdJaw?oc=5",
-      "publisher": "Al Jazeera",
-      "published_at": "2026-10-25T08:51:07Z",
-      "detected_at": "2026-10-25T15:20:41.072672Z",
-      "state_hints": [
-        "MI",
-        "OH"
-      ],
-      "topic_hints": [
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
