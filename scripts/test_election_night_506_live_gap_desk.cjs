@@ -267,15 +267,16 @@ const allEls=x=>[x,...x.children.flatMap(allEls)];
 const anchored=allEls(editorialHost).filter(x=>x.tag==='a');
 const ddhq=anchored.filter(x=>x.textContent.includes('DDHQ free race results / call'));
 const previews=anchored.filter(x=>x.textContent.includes('DDHQ preview (results unverified)'));
+const candidateGuides=anchored.filter(x=>x.textContent.includes('WBUR candidate guide (results unverified)'));
 assert.equal(ddhq.length,editorial.race_pages.filter(x=>
  policy.gapAttention.races.some(r=>r.id===x.id)&&!x.link_role).length,
  'Each base/result reference retains the original exact newsroom-page behavior');
-assert.equal(ddhq.length+previews.length,editorial.race_pages.filter(x=>
+assert.equal(ddhq.length+previews.length+candidateGuides.length,editorial.race_pages.filter(x=>
  policy.gapAttention.races.some(r=>r.id===x.id)).length,
  'Each unresolved race needs a manual reference; previews remain visibly distinct from Results routes');
 const targets=new Map(editorial.race_pages.map(x=>[x.id,x.url]));
 assert.equal(targets.size,editorial.race_pages.length);
-assert.deepEqual(new Set([...ddhq,...previews].map(a=>a.href)),new Set(
+assert.deepEqual(new Set([...ddhq,...previews,...candidateGuides].map(a=>a.href)),new Set(
  editorial.race_pages.filter(x=>policy.gapAttention.races.some(r=>r.id===x.id))
   .map(x=>x.url)));
 if(actualGapIds.includes('House|AL-07'))assert(ddhq.some(a=>a.href.endsWith('/alabama-us-house-7-general-election/results')),
@@ -539,3 +540,49 @@ for(const state of ['KY','NV']){
 const originalOfficial=official.links.find(row=>row.state==='AL');
 assert(renderOfficial([originalOfficial])[0].textContent.includes('official results'));
 console.log('Finite six search-only preview captions, qualification refusals and exact administrative-reference labels PASS');
+
+// A scheduled hint withdrawal changes input coverage, never vote/call authority.
+const ma04Official=official.links.find(row=>row.race_ids?.length===1&&row.race_ids[0]==='House|MA-04');
+const ma04Guide=editorial.race_pages.find(row=>row.id==='House|MA-04');
+assert(ma04Official&&ma04Guide);
+const ma04AfterLedger=structuredClone(ledger),ma04After=ma04AfterLedger.races.find(row=>row.id==='House|MA-04');
+assert(ma04After);ma04After.source_identity_status='NO_CURATED_PROVIDER_ID';
+ma04After.gap_status='UNRESOLVED_SOURCE_GAP';ma04After.verified_identity_hint_usable=false;
+const ma04BeforeLedger=structuredClone(ma04AfterLedger),ma04Before=ma04BeforeLedger.races.find(row=>row.id==='House|MA-04');
+ma04Before.gap_status='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED';ma04Before.verified_identity_hint_usable=true;
+const ma04BeforePulse=api.build(ma04BeforeLedger,res,state,now,{},modelForAttention);
+const ma04AfterPulse=api.build(ma04AfterLedger,res,state,now,{},modelForAttention);
+assert(!ma04BeforePulse.unverifiedMachineIds.some(row=>row.id==='House|MA-04'));
+assert(ma04AfterPulse.unverifiedMachineIds.some(row=>row.id==='House|MA-04'));
+assert.equal(ma04AfterPulse.unverifiedMachineIds.length,ma04BeforePulse.unverifiedMachineIds.length+1);
+assert.equal(ma04AfterPulse.totals.House.reported,ma04BeforePulse.totals.House.reported);
+assert.equal(ma04AfterPulse.professional_calls_verified,0);
+const ma04Scope={...ma04AfterPulse,
+ gapAttention:{...ma04AfterPulse.gapAttention,races:[ma04AfterPulse.gapAttention.races.find(row=>row.id==='House|MA-04')]},
+ operationalAttention:{...ma04AfterPulse.operationalAttention,races:[{id:'House|MA-04',mode:'ODDS_UNVERIFIED',sourceStatus:'SECONDARY_FAILED'}]}};
+const ma04Render=(entry,links=official.links)=>{const host=node('div');api.render(host,ma04Scope,{createElement:node},links,{...editorial,race_pages:entry?[entry]:[]});return host;};
+const ma04Old=ma04Render(null,official.links.filter(row=>row!==ma04Official));
+assert.equal(allEls(ma04Old).filter(row=>row.tag==='a'&&[ma04Official.url,ma04Guide.url].includes(row.href)).length,0,'Old catalog has no exact MA04 pair after hint loss');
+const ma04New=ma04Render(ma04Guide),ma04Guides=allEls(ma04New).filter(row=>row.tag==='a'&&row.textContent.includes('WBUR candidate guide (results unverified)'));
+assert.equal(ma04Guides.length,2,'Priority and recovery both show the qualified identity guide');
+const ma04AllOfficial=allEls(ma04New).filter(row=>row.tag==='a'&&row.href===ma04Official.url);
+assert.equal(ma04AllOfficial.length,3,'Existing all-state directory plus exact recovery and priority official links');
+assert.deepEqual(ma04AllOfficial.filter(row=>/Manual official (?:page|reference)/.test(row.textContent)).map(row=>row.textContent).sort(),
+ [' · Manual official page ↗',' · Manual official reference ↗'].sort(),'Recovery and priority keep their exact official identity links');
+for(const anchor of ma04Guides){assert.equal(anchor.href,ma04Guide.url);assert.equal(anchor.title,ma04Guide.scope_note);assert.equal(anchor.target,'_blank');assert.equal(anchor.rel,'noopener noreferrer');}
+assert.match(flatten(ma04New),/candidate identities ONLY; NOT results or calls/);
+for(const changes of [{id:'House|MA-03'},{url:ma04Guide.url+'?results=1'},
+ {url:ma04Guide.url+'/'},{link_role:'results'},{source_reference:'https://www.wbur.org/'},
+ {results_link_verified:true},{current_access_verified:true},{current_access_status:'AVAILABLE'},
+ {verification_scope:'native_results'},{scope_note:'Results'}]){
+ assert.equal(allEls(ma04Render({...ma04Guide,...changes})).filter(row=>row.tag==='a'&&row.textContent.includes('WBUR candidate guide')).length,0,'Reject unsupported MA04 guide '+JSON.stringify(changes));
+}
+const ma04OfficialAnchors=renderOfficial([ma04Official]);assert.equal(ma04OfficialAnchors.length,1);
+assert(ma04OfficialAnchors[0].textContent.includes('official reference (results unverified)'));
+assert.equal(ma04OfficialAnchors[0].href,ma04Official.url);
+for(const changes of [{race_ids:['House|MA-03']},{race_ids:['House|MA-04','Senate|MA']},
+ {url:ma04Official.url+'?results=1'},{reference_role:'official_results'},
+ {source_reference:'https://www.sec.state.ma.us/'},{general_2026_results_verified:true},{scope_note:'Official results'}]){
+ assert.equal(renderOfficial([{...ma04Official,...changes}]).length,0,'Reject unsupported MA04 official reference '+JSON.stringify(changes));
+}
+console.log('MA04 changing hint loss, exact candidate-guide pair, visible limits and negative identity guards PASS');
