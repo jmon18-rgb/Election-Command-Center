@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-03T13:17:27.995011Z",
+  "updated_at": "2026-11-03T15:00:43.533216Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -259,6 +259,23 @@
     }
   ],
   "items": [
+    {
+      "id": "cd68df4c04f353918b1b",
+      "title": "How to Steal an Election - Lawfare",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9xUHZtOVdheEpQMUEyXzdqeVZqS0l1di15aWtVU25oWG5GRmc2UUZhcDBmT2RWMHJZS2RoUm8xQjV5V0xhV0VyNHhhRmZTRnBQN3BkaVYzNUJpVEtmSUd3aVVLei11bXFYbFNpcXNn?oc=5",
+      "publisher": "Lawfare",
+      "published_at": "2026-11-03T14:35:41Z",
+      "detected_at": "2026-11-03T15:00:43.533216Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "bfa97c6bb640dfd8104e",
       "title": "ICE Is Inspiring Latinos to Vote in Historic Numbers - WIRED",
@@ -5132,26 +5149,6 @@
       ],
       "topic_hints": [
         "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bea78f36d536a8dd3fb2",
-      "title": "Virginia election officials take steps to address interference concerns - Daily Press",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOSnZBMU5KR21tTThaQW0tbjNGTlhmU185RXdrcVgyN3hOdHM0MkFLcldjLUpmSVNfMklXcjdqZlpfb240eTlSR0h3YVotNVo5QmJLc0Z1Q2pscGpydDAtYzY4aGJBZm1yNkZrcUhFa3AwMndvLUZ2QWhvRlNxMWF2WFpXX00?oc=5",
-      "publisher": "Daily Press",
-      "published_at": "2026-10-24T17:50:48Z",
-      "detected_at": "2026-10-24T19:38:39.633303Z",
-      "state_hints": [
-        "VA"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
