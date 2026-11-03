@@ -8,6 +8,7 @@ import {createRequire} from 'node:module';
 import {execFileSync} from 'node:child_process';
 const require=createRequire(import.meta.url);
 const {races,inWindow,summarize,nationalProof}=require('./competitive_live_source_report.cjs');
+const {observationKey}=require('./competitive_source_observation_keys.cjs');
 const out=resolve('artifacts/readiness/competitive-live');mkdirSync(out,{recursive:true});
 let target='https://jmon18-rgb.github.io/Election-Command-Center/',candidateServer=null;
 const candidate=process.argv.includes('--candidate');
@@ -39,13 +40,13 @@ if(!inWindow(Date.now())){
   const canonical=url=>{const u=new URL(url);return u.origin+u.pathname;};
   const approved=new Set(races.map(r=>r.transport_url||r.url)),siteOrigin=new URL(target).origin;
   page.on('pageerror',e=>pageErrors.push(e.message));
-  page.on('requestfailed',request=>{if(approved.has(canonical(request.url())))requestErrors.set(canonical(request.url()),request.failure()?.errorText||'Request failed');});
+  page.on('requestfailed',request=>{if(approved.has(canonical(request.url())))requestErrors.set(observationKey(request.url()),request.failure()?.errorText||'Request failed');});
   const requestStarts=new WeakMap();
   page.on('request',request=>{if(approved.has(canonical(request.url())))requestStarts.set(request,new Date().toISOString());});
   page.on('response',response=>{
    if(approved.has(canonical(response.url()))){
     const body=response.body().then(bytes=>({bytes,raw:JSON.parse(bytes.toString('utf8')),received_at:new Date().toISOString()})).catch(error=>({error:error.message}));
-    observed.set(canonical(response.url()),{url:response.url(),http:response.status(),request_started_at:requestStarts.get(response.request())||null,body,response_cache:{age:response.headers()['age']??null,cache_control:response.headers()['cache-control']??null,date:response.headers()['date']??null,etag:response.headers()['etag']??null},headers_received_at:new Date().toISOString()});
+    observed.set(observationKey(response.url()),{url:response.url(),http:response.status(),request_started_at:requestStarts.get(response.request())||null,body,response_cache:{age:response.headers()['age']??null,cache_control:response.headers()['cache-control']??null,date:response.headers()['date']??null,etag:response.headers()['etag']??null},headers_received_at:new Date().toISOString()});
    }
   });
   await page.route('**/*',route=>{
@@ -66,7 +67,7 @@ if(!inWindow(Date.now())){
   const admitted=await page.evaluate(()=>jointLastResult?.county_results_update?.used||[]);
   const rows=[],rawBodies=new Map();
   for(const race of races){
-   const network=observed.get(race.transport_url||race.url),body=network?await bounded(network.body).catch(e=>({error:e.message})):null;
+   const network=observed.get(observationKey(race.transport_url||race.url)),body=network?await bounded(network.body).catch(e=>({error:e.message})):null;
    const raw=body?.raw;
    const ui=await page.evaluate(async({race,raw,nationalBefore})=>{
     const controller=window[race.controller],state=controller.status();let parsed=null,parse_error=null;
@@ -104,7 +105,7 @@ if(!inWindow(Date.now())){
     upstream_http_status:race.transport_url?raw?.http_status??null:null,upstream_cache_control:race.transport_url?raw?.cache_control??null:null,
     raw_positive_candidate_counts_present:race.transport_url?(raw?.payload?.ballotItemWithBreakdown?.summaryResults?.ballotOptions?.some(c=>Number.isSafeInteger(c.voteCount)&&c.voteCount>0)??raw?.observed_positive_candidate_counts??null):raw?.test_data===false&&Array.isArray(raw?.candidates)?raw.candidates.some(c=>Number.isSafeInteger(c?.votes)&&c.votes>0):null,
     upstream_observation_via_collector:!!race.transport_url,
-    transport_error:requestErrors.get(race.transport_url||race.url)||body?.error||(!network?'No provider response':null),...ui});
+    transport_error:requestErrors.get(observationKey(race.transport_url||race.url))||body?.error||(!network?'No provider response':null),...ui});
    if(body?.bytes)rawBodies.set(race.code,body.bytes);
   }
   const proof=nationalProof(rows,admitted);

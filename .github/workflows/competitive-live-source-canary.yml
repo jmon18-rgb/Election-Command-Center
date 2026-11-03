@@ -7,6 +7,8 @@ on:
       - 'scripts/probe_competitive_live_sources.mjs'
       - 'scripts/competitive_live_source_report.cjs'
       - 'scripts/test_competitive_live_source_report.cjs'
+      - 'scripts/competitive_source_observation_keys.cjs'
+      - 'scripts/test_competitive_source_observation_keys.cjs'
       - '.github/workflows/competitive-live-source-canary.yml'
   schedule:
     - cron: '17 * 26-31 10 *'
@@ -28,6 +30,8 @@ jobs:
           node-version: '22'
       - name: Test classification without claiming actual source delivery
         run: node scripts/test_competitive_live_source_report.cjs
+      - name: Keep full county and light summary observations separate offline
+        run: node scripts/test_competitive_source_observation_keys.cjs
       - name: Bound actual requests to the 2026 election window
         id: window
         run: |
