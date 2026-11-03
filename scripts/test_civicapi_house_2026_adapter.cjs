@@ -278,3 +278,58 @@ assert.equal(api.match({office:'House',key:'KY-06'},
  'Alternate title expansion is restricted to seven source gaps');
 
 console.log('2026 supplemental House district source identity, arithmetic, CORS-safe query and failure cases PASS');
+
+// A captured KY-06 native light response omitted its duplicate body ID.
+// These remain fictional source records; the unchanged owned original is
+// reviewed separately offline and does not become a tracked live-data fixture.
+assert.equal(api.setManifest(kyManifest,manifestNow),true);
+const kyWithoutBodyId={...kyDetail};
+delete kyWithoutBodyId.id;
+assert.equal(Object.hasOwn(kyWithoutBodyId,'id'),false);
+assert.deepEqual(api.validatePinned(kyItem,87173,kyWithoutBodyId,now),
+ api.validatePinned(kyItem,87173,kyDetail,now),
+ 'The verified manifest and exact URL ID may supply only an absent duplicate body ID');
+for(const id of [87174,'87173',null,undefined,true,NaN,Infinity,0,-1,{},[]]){
+ assert.equal(api.validatePinned(kyItem,87173,{...kyWithoutBodyId,id},now),null,
+  'Every present malformed or conflicting duplicate ID remains rejected');
+}
+const inheritedWrongId=Object.assign(Object.create({id:87174}),kyWithoutBodyId);
+assert.equal(api.validatePinned(kyItem,87173,inheritedWrongId,now),null,
+ 'An inherited conflicting ID cannot masquerade as an omitted native field');
+for(const malformed of [undefined,null,false,true,0,1,'KY-06',Symbol('not a source'),()=>{},[],[kyWithoutBodyId]]){
+ assert.equal(api.validatePinned(kyItem,87173,malformed,now),null,
+  'Malformed primitive/array detail is rejected without throwing');
+}
+for(const changes of [
+ {country:'CA'},{province:'IN'},{district:'KY-05'},{municipality:'Lexington'},
+ {election_type:'US Senate'},{election_name:'Kentucky US House 5'},
+ {election_date:'2024-11-05T05:00:00Z'},{election_date:'2026-11-03junk'},
+ {test_data:true},{is_test:true},{test:true},{mock:true},{is_mock:true},{active:false},{live:false},
+ {percent_reporting:101},{candidates:[]},
+ {candidates:kyWithoutBodyId.candidates.map(c=>({...c,votes:-1}))},
+ {candidates:kyWithoutBodyId.candidates.map((c,i)=>({...c,percent:i?99:1}))}
+]){
+ assert.equal(api.validatePinned(kyItem,87173,{...kyWithoutBodyId,...changes},now),null,
+  'Omitting only duplicate ID cannot relax exact ballot, source, or arithmetic checks');
+}
+const kyClose=pollCloses.floorFor(kyItem.key);
+assert.equal(api.validatePinned(kyItem,87173,{
+ ...kyWithoutBodyId,last_updated:new Date(kyClose-1000).toISOString()
+},kyClose+1000),null,'Absent ID cannot admit positive votes stamped before local close');
+assert.equal(api.validatePinned(kyItem,87173,{
+ ...kyWithoutBodyId,last_updated:new Date(kyClose).toISOString()
+},kyClose-1000),null,'Absent ID cannot admit positive votes while district polls remain open');
+assert.equal(api.validatePinned(kyItem,88001,kyWithoutBodyId,now),null,
+ 'A current manifest must still match the requested ID');
+const kyStandbyWithoutId={...kyWithoutBodyId,candidates:pre.candidates,
+ percent_reporting:0,last_updated:'2026-11-02T19:02:20.749Z'};
+const kyStandby=api.validatePinned(kyItem,87173,kyStandbyWithoutId,
+ Date.parse('2026-11-03T17:35:42.539Z'));
+assert.equal(kyStandby?.total,0,'Zero-vote standby metadata can validate without becoming live votes');
+assert.equal(kyStandby?.called,null);
+assert.equal(kyStandby?.last_updated,kyStandbyWithoutId.last_updated,
+ 'An old native source clock must remain old for the separate UI freshness gate');
+assert.equal(api.setManifest({...kyManifest,races:[]},manifestNow),true);
+assert.equal(api.validatePinned(kyItem,87173,kyWithoutBodyId,now),null,
+ 'Revoking the manifest still revokes an absent-ID shortcut');
+console.log('Pinned House absent-body-ID regression PASS: all present IDs, exact ballot, arithmetic, pre-close, mock, malformed and revocation guards retained');
