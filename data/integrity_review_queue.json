@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-03T01:18:50.588079Z",
+  "updated_at": "2026-11-03T03:00:32.893077Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 4,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 243,
     "primary_source_checked": 7,
-    "advisory_related_headline_buckets": 30,
-    "advisory_related_headlines": 83
+    "advisory_related_headline_buckets": 29,
+    "advisory_related_headlines": 82
   },
   "advisory_related_headlines": [
     {
@@ -134,16 +134,17 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "87d9d6f0bd668571bc6b",
-      "headline": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
+      "lead_id": "4f3bcf958659bdae399e",
+      "headline": "DOJ asks for Supreme Court to intervene on California ballot demands - Little Rock Public Radio",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
       "state_hints": [
-        "AK"
+        "CA",
+        "OR"
       ],
       "topic_hints": [
-        "election_admin",
-        "security"
+        "ballot_access",
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -259,6 +260,65 @@
   ],
   "items": [
     {
+      "id": "056c847c05546ef82672",
+      "title": "Law School Professor on Free and Fair Elections - American Civil Liberties Union",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNVmlGcDFFaE05Tnk4ejhWcWh5UEtSZ3RSTnJlWTkxMHNIa1VyUUpfenFpdUcydmlQcG16TjFfRTRRbnc2QmtmLWhnVUxudFU4aEt6SUF6MUxNaW1qS3g2a0dTNmhVNER4ajFFZF9iNE5nVXMycXRBWW81aFROYVFWV3d1aVF0Q1EtXzM5MlVzR2dYS2NsWnk4RFd4U09mSHdFTElkc2htTkdYblV1SFcwaS03dVJEbmlCeGFuRg?oc=5",
+      "publisher": "American Civil Liberties Union",
+      "published_at": "2026-11-03T01:52:30Z",
+      "detected_at": "2026-11-03T03:00:32.893077Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "433f638b7dc5a8362397",
+      "title": "Supreme Court Rejects Trump Administration Request to Intervene in California Ballot Case - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPU3dhcGtsWC1YU2dGcG83cm05WWs1aU9mXzlIZFZoWjYxbGJwN2VGdENKU1JLLUNaMTVwRFZqZEhIYXFxQy1ZNE9RSkVvaF84WmxtLU1xNnRYTDZvSTRkbktueEd4bG9YQnotMF9uQnB0WERoaHRaa3NpaElQYUxzMHZHaXY5LUxxQjluQzVJSi14eGsw?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-11-03T00:14:14Z",
+      "detected_at": "2026-11-03T03:00:32.893077Z",
+      "state_hints": [
+        "CA",
+        "NY"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1b126849ec04d4fcd15d",
+      "title": "Inactive voter surge raises Experian concerns for 2026 midterms - Mississippi Today",
+      "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxNSnphbll6MVVteTR1Ymw1NEoxTUQ3QTRkT0lPcGI5VmJ4aWhhbEVmandoRDBZX18zS1RhVkJrRVVmZFBFaTJnc3ZaajU5S0xhSjliY1VzY3R3ZEJaOXR2M1R0VkwxblVfWHhBdFlJWXo1NjkzYkRwZy1panh0TElLRFVXSWdzZ3ZXMW9Pd21WRHBtX2wyRkFnWEhlQ040UDhMQ183RG0yUUIzY2Y1b2NPNExJUW8tdE9vSjk0azFmSGlGcVZpbFJUdU1kQ2lXeTI2ZEZMNDJYYlFNM1pEUWVXN05yQXdwOGJpUFRIRW1yb0o0V1dGdHRkY01B?oc=5",
+      "publisher": "Mississippi Today",
+      "published_at": "2026-11-03T00:07:10Z",
+      "detected_at": "2026-11-03T03:00:32.893077Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "31a23608efe8b2537ece",
       "title": "Supreme Court rejects Trump administration\u2019s bid to set aside 20,000 California ballots - Los Angeles Times",
       "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPS2RqdnF0UHFJRk9GQ0tGVjBVUU5tSEgxVG1qbGlRWDNYRjZudWJZQjBtZGc5QjlNZC1SNHdseHhVdGlrc2gyd09XWDlza01CeG1hRXNHclpoQ1NyOFlWbW1GNG9RYnA3YWtnWjJNWXlEWGZiMDRYNG1jaXczeXRFOFU3cVZuaVZKbFpOWVAzR00xYkc3cklQeHViNUk1cXhBaVE1MF9FWTFHMDI2Uy1zSGR0bEphYXUweWltdw?oc=5",
@@ -354,6 +414,27 @@
       "topic_hints": [
         "ballot_access",
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "dc0ad0a281f41c22ecd3",
+      "title": "DOJ asks for Supreme Court to intervene on California ballot demands - Oregon Public Broadcasting - OPB",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQVHpSN2JYbXdyYlZYLVZJTEJvSjBFLUtscTduVTV3bkI1VzRzd0FQR2psSEYwckV6VXRIRk43TTdpaFVTQVlxcDlvaExnLTA0cjJjdWx6cXdHLTgzMllLVTBhSWFTa21VSU9JcUVnaEhRUjZ2QkZhcURuOTl0RzFCQ1kyVkMtMVlzNGRPdUE0eE9fdEpmYkhRWkhXd292UGQxZWFDcWZ3?oc=5",
+      "publisher": "Oregon Public Broadcasting - OPB",
+      "published_at": "2026-11-02T21:11:22Z",
+      "detected_at": "2026-11-03T03:00:32.893077Z",
+      "state_hints": [
+        "CA",
+        "OR"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5131,82 +5212,6 @@
       "headline_numbers_unverified": [
         "2026"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "87d9d6f0bd668571bc6b",
-      "title": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPUGhTTXEwWVJXUmhNS1l0WEY0NE51Rm5aOGJTUHAyemc2blY2ZzRmRlNTeEZXQUVnaS16elM2UzBVY0JjeVBlNG5EVlhTaG9uX1dsVGJld01CUDVJSU91NDRORmdQdGFSUVIyeEFnYWNNTUR1bFFuaDFuZEVUTjY5MjVXRDAweEhjNjVKS0xRYlFETWVqNEtiR0pMX3JKNUxwbGphczRlRHpxaGxIc1hiMEtKWEhObmMySEw2SQ?oc=5",
-      "publisher": "The Well News",
-      "published_at": "2026-10-23T21:27:05Z",
-      "detected_at": "2026-10-23T22:23:16.026023Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "be7e5758541da6de2527",
-      "title": "Justice Department Sues Alaska Over Certification of Senate Election Results - The Well News",
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTFB5SnYtQTU2SHVuTmV0NzIyV0NsZVVtYUU2R2g2UkJXYVJ0LVdYeS1rR0ZlckVyWnllWGUzUU8xZWkzMVI2Q194aEtGbS1qOFdNZEFKRFdwa0dfemx3WE9NdlV3?oc=5",
-      "publisher": "The Well News",
-      "published_at": "2026-10-23T21:27:05Z",
-      "detected_at": "2026-10-23T23:04:31.197874Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "29d11da975d4d0cf50e3",
-      "title": "Trump administration sues to block Alaska\u2019s US Senate election result if Peltola wins - Alaska Beacon",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQdk9GRExLZ2ZYOXAtcUxsekd5eWU4MS1BVG01Y2FNTEQxSXdMRGZGODRScFJSV25EeFNWMUNRS2dqNjhJaldSNVZQbG5mNjdNOTZwTF9YdWw2eGFXeEp3QVNyeThDTFBSU2xJZFFGVjE1SzlybnZ2Q3B4Qk12VmRFZ2hTRmlaQ0duajBkUl9GQXJxU1JpNXRmaDdLRFc0dGpQUzNZcFhObVBvSGdBOGc2NXNlYWMwV1FwSXJhUzBn?oc=5",
-      "publisher": "Alaska Beacon",
-      "published_at": "2026-10-23T20:31:19Z",
-      "detected_at": "2026-10-23T23:04:31.197874Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "db81a37188799a148b5d",
-      "title": "DOJ has monitored elections for decades. Here's why some state officials are concerned this year - PBS",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNbmRNdmtJb19aZ1JzZkRrcXBSR2lYUUZhV0RCTHNYTFU5MHBoTXQ0TC1Gc2ExcWJJOGEweTN5eEdOUTR6MHFHMy1EOS1sQUt2NnpaQmxORmlsWE1XZ0VWMFBqd2d5b1dZU19qSWlpZHc5YUpzOGlDYndsLXZTYmNVSVJmQmtOX1RMV1VaZU1SZ2VoNlZrWFVCY2E1M3dkWng4WkUyUFc5VlI5MjA0QU9CQ2ZYeUpuWU8wQVdhdW1uREFacm14Z2V1X0llVm_SAdIBQVVfeXFMT21aZ1lnR3VITjdZVDNIdlh5LTAtb2lfamV0UHlHVDJ0REc3N3hTY1JJcnZVQmt4aFVfdGRCZGxJSEhlRGhjWEZkNEdTWjU3cjRBSmxXRktzNFVjcS12cFB1ZWpkOURzc3F4Z25YT0QyZ0JCOUdhT2lGV1VwTlRZYkdJaXBQaUR6RDM5Q2hLM1ZDaTdqYkZ0OTZOMU92Y3lkVno2c0w3d2JwS1hfYXBQTFY0TkRUbXdpanhMTnVBUGgzdW1YM3AyX1paOFJBbW5wQWVn?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-23T20:16:57Z",
-      "detected_at": "2026-10-24T02:14:06.600099Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
