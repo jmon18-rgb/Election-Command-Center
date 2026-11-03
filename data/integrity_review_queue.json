@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-03T04:02:35.805271Z",
+  "updated_at": "2026-11-03T05:06:11.209944Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
@@ -259,6 +259,24 @@
     }
   ],
   "items": [
+    {
+      "id": "a750ddbf70530836b2f5",
+      "title": "Erie County Election Board Takes Steps For Security and Integrity of the Balloting Process - WGRZ",
+      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxQdHpqNmlNWWNMZDdSWk5PZUV2TTQ1Tnl4N3pLTU0xeklMLVUwRFFtOFZoQVJhMzVmQWZYajRZaWpMTlJUbXZaUTJRb3VYSmJBRGdnWjJUazJDRURBSjBzVExIalAwalpYV1Y2NGdVRS1JOGRMdnVEZlAwREdVTk40YjlXZmdBRXo4X2pDZjU0RHRtME05enJiajlEdHlsYkJ6NG9mQ0N5VzlNMzNJcEZHRUF2Vzl0SFpQSS1LZVhfSjktNVg4T1N6T21zVUdFOXIyRVVSWkhhSUd6NS1CdnFUYTZ5cWJ0T0hUbVJGOXJNanFZNzA4bG52M1FoUjhNZWw0cjFEWTQtR3RILUVJTmF0V0Rn?oc=5",
+      "publisher": "WGRZ",
+      "published_at": "2026-11-03T02:06:00Z",
+      "detected_at": "2026-11-03T05:06:11.209944Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "056c847c05546ef82672",
       "title": "Law School Professor on Free and Fair Elections - American Civil Liberties Union",
@@ -5191,27 +5209,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "21c2a841eca952910de2",
-      "title": "Decision 2026: Federal judge orders Trump Administration to halt noncitizen voter investigation in New York - WHEC.com",
-      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxONXJSSzFwcGR2WGVkMEgwbVhyTXNVdlNiMmRTQ1B4ODlIZEtJS3ppNXZYQjFqem9FRThVLTdqU29TRnlSNnkyQjBIMFFyNEpjdXVQQnU2RVp0RVAwNTZvc2JHdjNWajNFdTZVZW41VTdmTDdFNUpNek83TXE3WWJzbllzSW1lOFNkZDFLS0ZKZDJ3S0c4dW42Q2tnaUwwMGNTSGFBSjV2WmlacWdZdlR1Y0lZbEo2UEt0QXpqUFBuNU5Gd2ZCQ0FYVTY2eG1hYmZ5bGFz?oc=5",
-      "publisher": "WHEC.com",
-      "published_at": "2026-10-23T22:01:57Z",
-      "detected_at": "2026-10-23T23:59:12.072648Z",
-      "state_hints": [
-        "NY"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,

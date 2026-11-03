@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-03T04:02:36.438563+00:00",
+  "updated_at": "2026-11-03T05:06:11.891449+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,58 +17,9 @@
       "records_examined": 400
     }
   },
-  "matched_primary_observations": 441,
-  "newly_injected_into_model": 12,
-  "injected_poll_ids": [
-    {
-      "race_code": "ME-GOV",
-      "poll_id": "dde77adc-e56c-41eb-84ae-188896f36496"
-    },
-    {
-      "race_code": "ME-SEN",
-      "poll_id": "dde77adc-e56c-41eb-84ae-188896f36496"
-    },
-    {
-      "race_code": "MI-GOV",
-      "poll_id": "29c14fdc-68af-4eb3-95ca-942bf46ca65b"
-    },
-    {
-      "race_code": "MI-SEN",
-      "poll_id": "29c14fdc-68af-4eb3-95ca-942bf46ca65b"
-    },
-    {
-      "race_code": "MO-02",
-      "poll_id": "f401ff8a-e171-40fd-965d-609713aa35c5"
-    },
-    {
-      "race_code": "MT-01",
-      "poll_id": "9e0f87da-c6ab-408d-bae8-5e87561286d6"
-    },
-    {
-      "race_code": "OH-GOV",
-      "poll_id": "b511d518-7c80-408f-8eb2-667b9c308aac"
-    },
-    {
-      "race_code": "OH-SEN",
-      "poll_id": "b511d518-7c80-408f-8eb2-667b9c308aac"
-    },
-    {
-      "race_code": "TN-GOV",
-      "poll_id": "002d090f-ed00-4351-ae62-3e25da1fcd33"
-    },
-    {
-      "race_code": "TN-SEN",
-      "poll_id": "002d090f-ed00-4351-ae62-3e25da1fcd33"
-    },
-    {
-      "race_code": "TX-GOV",
-      "poll_id": "ad45957d-ad76-4dd4-8ade-9fe70e9df712"
-    },
-    {
-      "race_code": "TX-SEN",
-      "poll_id": "ad45957d-ad76-4dd4-8ade-9fe70e9df712"
-    }
-  ],
+  "matched_primary_observations": 453,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "TN-SEN",

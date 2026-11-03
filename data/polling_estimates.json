@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-03T04:02:40.875502Z",
-  "source_snapshot": "2026-11-03T04:02:36.030658Z",
+  "generated_at": "2026-11-03T05:06:15.342239Z",
+  "source_snapshot": "2026-11-03T05:06:11.447410Z",
   "type": "descriptive_polling_estimates",
   "is_election_forecast": false,
   "method_version": "poll-mean-1.5",
@@ -8039,7 +8039,7 @@
         }
       ],
       "method": "Latest wave per firm; same-day tie prefers LV then larger sample; equal-priority conflicting questions quarantined. 21d recency, capped sample-size factor, 538 historical pollster quality and 0.5 sponsored-poll factor.",
-      "poll_source_url": "https://pollresults.org/"
+      "poll_source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
       "race_code": "TX-SEN",
