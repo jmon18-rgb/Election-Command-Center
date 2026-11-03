@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-03T16:02:48.568788Z",
+  "updated_at": "2026-11-03T17:09:01.827234Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -259,6 +259,40 @@
     }
   ],
   "items": [
+    {
+      "id": "2bbf423ab1ebc4781e37",
+      "title": "Midterm Countdown, Zero Days to Go. - James Fallows | Substack",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOUVN3UnZuXzQzd1hGS2h6Qmw2bEZSQVc1WDNaZXFXejR2bXVtdHpwUUhLTlZZRlVkbEh4SFhwZ2pxMEFDSHVIVWZQWHc3YjFFU3dIYW9LS2ZrWGp3UnNGX2g0X3NrMFByR1doTGlEcGZMTGNiMUdxQVVTR01YNXQtZkwweDljN1hxdi1ueERyV3lsTVZHMnNCcmZKZkwwVlRmaGJQNDZRUVQwUzdTZ2xlaVBVeTJHbG5zUkthQUhVSmE1TmFEVmlQWS1KUHo?oc=5",
+      "publisher": "James Fallows | Substack",
+      "published_at": "2026-11-03T17:01:15Z",
+      "detected_at": "2026-11-03T17:09:01.827234Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2ee9fe5262cafe409b4d",
+      "title": "ICE agents warned a Syracuse poll worker about her speech. She\u2019s not backing down. - Syracuse.com",
+      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQV0NXNENlWHZZaDJmNWlMR24ydHF1T2ZiWTRmaFk4QmFhQ3hLUXBkaTMxN3h5V21DejNlX0s0RDlUc3A0d0h4R3VDaWVWNDMzWDZjTlVubDdsd2l2RWRfblEzX0hRR3J6WEhOTk9wUFhLSkZvWGJwdm02S2lPN3U3OUFpV3hMdWx2eHIxODlvQ1k2Q21PYXB2TzdlNkNKck1pc25aYmNyUGdudEYzS2p0OVRMelZaWlVaS05uT3RNYjdlQkRsXzdtejU4eGtMM0lfNHc?oc=5",
+      "publisher": "Syracuse.com",
+      "published_at": "2026-11-03T16:36:00Z",
+      "detected_at": "2026-11-03T17:09:01.827234Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "0bd3ebe54aad1e90a952",
       "title": "Will Trump or others interfere with voting? What to know about election security. - The Washington Post",
@@ -5113,47 +5147,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6afda8243b2aa5e2a0b7",
-      "title": "8 things to know ahead of Ottawa\u2019s municipal election on Monday - CTV News",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOcXM1VWVZclltal96Ukx5Nll0aERDN3dydDNiekJ0WnRmUlVlamE1RlBRaEJGR0hhN1QzMV9VU0RuQTVFemdfamZLZE9nckkwUk1mS3liYWJZbVdKQnlRMFBEbk1nVnJTamFBSFVxdVdjdk8wYWJKSGN5MVUwMk9fWGFia3E2cndhTWprRG1nWVNnUDRXM0pDenlHQ2t3TkpQdzBN?oc=5",
-      "publisher": "CTV News",
-      "published_at": "2026-10-25T08:00:00Z",
-      "detected_at": "2026-10-25T14:31:54.098997Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "8 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "826ea8f460980a8f831d",
-      "title": "Indiana midterm elections 2026: When early voting ends, Election Day and how to find your polling place - The Economic Times",
-      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQbGREV2FybTRDendYUm1rSmdLeEQ2OXpzamlad1cwcnZoME1UYkN1eHkzOUg3bE4ybE9xRkdORFB6XzhYZktZTkdkaW4xbWpMY0M1OXY3bEF5Z2tJcFVHbTM5V3NzZkUwS1Vnc1JaaGJBVDVWcEhRX3Nid2xuajBkWXNaQmFTdExLUE9QU1ppVWFydzdBVW5KVU9FMDhScVd4dmJ6cjgwTG9BbFQwTnZiZmtDT0t0UHdtRE1mbnd2bXFzb1lrYjRJTUJKZDF2bUp2U3dwQ1Q1LU1Uc2VaeFVBVFExUllKcDZiamVSYzdWMC05aDJ3ZUFV0gH8AUFVX3lxTFB2b1hOeHZGMTByWkVtcm83M3dBREM2OU9Lb29YbVVtdU9WTTlVeUNBUm8zYkJsalZIcWU1aGhlUElQb1FLNGJPbFdEWDhpZUEtZUhqRXJTaDBqWUVaZGVYMEpncERJZkZqN24tWS02WkNQWk9LbHEweGQyVUJNVzVEVmJfbHIxZ25FTTVBWEE3a2xVbHV5Zk5SdFNmSHd2bGtLdkczV2lsNGNTN0lMcEoxcmdfdlJUdkR3d0d5cU5zV1ctdE9kdFlIeFoyMl9aa3kwYXlBcU9SSF9fNHNmXzUyVHpQUGtsblpPQXN4TjFacDVGaDFMWHV1bzRvYg?oc=5",
-      "publisher": "The Economic Times",
-      "published_at": "2026-10-25T05:16:34Z",
-      "detected_at": "2026-10-25T05:43:23.748527Z",
-      "state_hints": [
-        "IN"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
