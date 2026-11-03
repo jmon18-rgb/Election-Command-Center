@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-11-03T11:28:51.798288+00:00",
+  "generated_at": "2026-11-03T12:28:16.235794+00:00",
   "methodology": {
     "calls": "No licensed professional call provider or verified control attribution in this ledger",
     "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
@@ -905,11 +905,11 @@
         "reason": "TimeoutError",
         "status": "TEMPORARY_UPSTREAM_FAILURE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "TEMPORARY_UPSTREAM_FAILURE",
@@ -942,14 +942,14 @@
       "verified_identity_hint_usable": true
     },
     {
-      "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
+      "gap_status": "UNRESOLVED_SOURCE_GAP",
       "id": "House|CA-23",
       "key": "CA-23",
       "last_probe": {
-        "checked_window_utc": "2026-10-30T16:00:00+00:00",
-        "race_id": 86972,
-        "reason": null,
-        "status": "INDEXED_EXACT_RACE"
+        "checked_window_utc": "2026-11-03T12:00:00+00:00",
+        "race_id": null,
+        "reason": "TimeoutError",
+        "status": "TEMPORARY_UPSTREAM_FAILURE"
       },
       "latest_preflight_outcome": "failure",
       "live_votes_verified_by_audit": false,
@@ -958,11 +958,11 @@
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "TEMPORARY_UPSTREAM_FAILURE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "CA",
-      "verified_identity_hint_usable": true
+      "verified_identity_hint_usable": false
     },
     {
       "gap_status": "RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED",
@@ -4090,11 +4090,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "failure",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "INVALID_DETAIL",
@@ -9195,7 +9195,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": null,
-        "checked_window_utc": "2026-11-03T11:28:15.091629+00:00",
+        "checked_window_utc": "2026-11-03T12:27:23.380308+00:00",
         "race_id": null,
         "status": "NOT_INDEXED"
       },
@@ -9274,7 +9274,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": 3,
-        "checked_window_utc": "2026-11-03T11:28:15.091629+00:00",
+        "checked_window_utc": "2026-11-03T12:27:23.380308+00:00",
         "race_id": 81004,
         "status": "INDEXED_EXACT_RACE_IDENTITY_ONLY"
       },
@@ -9767,7 +9767,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": 2,
-        "checked_window_utc": "2026-11-03T11:28:15.091629+00:00",
+        "checked_window_utc": "2026-11-03T12:27:23.380308+00:00",
         "race_id": 87100,
         "status": "INDEXED_EXACT_RACE_IDENTITY_ONLY"
       },
@@ -10062,7 +10062,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": 5,
-        "checked_window_utc": "2026-11-03T11:28:15.091629+00:00",
+        "checked_window_utc": "2026-11-03T12:27:23.380308+00:00",
         "race_id": 87582,
         "status": "INDEXED_EXACT_RACE_IDENTITY_ONLY"
       },
@@ -10272,10 +10272,10 @@
         "invalid_or_ambiguous": 32,
         "never_checked": 0,
         "skipped_due_to_upstream_pause": 0,
-        "temporary_upstream_failure": 7
+        "temporary_upstream_failure": 8
       },
-      "unresolved_source_gaps": 47,
-      "verified_usable_id_hints": 172
+      "unresolved_source_gaps": 48,
+      "verified_usable_id_hints": 171
     },
     "senate": {
       "pinned_secondary": 18,
