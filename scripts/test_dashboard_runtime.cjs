@@ -224,7 +224,10 @@ function __testSeedStaleOhioSenate(){
 // Test-only access to lexical source state, never exposed by production.
 function __testOpenAmericaPending(){return enOpenAmericaReader.pending()}
 function __testWatchedOfficePending(){return enWatchRefreshPending.size}
-function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
+function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}
+function __testElectionMode(){return enModeYear}
+function __testReconnectState(){return [enLastLiveHeartbeat,enLastReconnect]}
+function __testRestoreReconnectState(state){enLastLiveHeartbeat=state[0];enLastReconnect=state[1]}`));
  assertOwnedLookupIdsUnique(w,'primary initial');
  assert.equal(w.ElectionNightTransport.createPool(4,64).status().concurrency_limit,4);
  assert.match(w.eval('enCivicFetchJson.toString()'),/enCivicRequestPool\.run/,
@@ -234,6 +237,21 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  assert(registeredIntervals.some(x=>x.ms===300000),
   'Still-open tab must register reporting/security refresh every five minutes');
  await settle();
+ // Preserve the actual date-dependent startup contract, then deliberately
+ // enter the archive for the historical-mode cases below. Election Day now
+ // correctly starts in 2026; it must not make an archive fixture date-dependent.
+ const initialModeAt=w.Date.now(),initialYear=initialModeAt<Date.parse('2026-11-03T05:00:00Z')?2024:2026;
+ assert.equal(w.eval('__testElectionMode()'),initialYear,'Natural startup year follows the actual Election Day boundary');
+ assert.equal(get('#enMode'+initialYear).getAttribute('aria-pressed'),'true','Natural startup mode is selected on the actual UI');
+ assert.equal(get('#smartNightDesk').hidden,initialYear!==2026,'Natural 2026 startup shows the live watchboard; pre-election startup keeps it hidden');
+ get('#enMode2024').click();
+ await w.eval('jointWhenIdle()');
+ await settle();
+ // This fixture records intervals without running them. Refresh the existing
+ // feed badge explicitly after the mode change, as later mode cases do.
+ w.eval('updateFeedGlance()');
+ assert.equal(w.eval('__testElectionMode()'),2024,'Archive cases explicitly select 2024 through the real mode control');
+ assert.equal(get('#enMode2024').getAttribute('aria-pressed'),'true');
  // Browser-side supplemental transport must reject foreign/redirected JSON
  // BEFORE any civicAPI race records are eligible for source attribution.
  const beforeOriginFetch=w.fetch;
@@ -423,10 +441,10 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
   assert.match(node.getAttribute('href'),/^#(wire|model|brief|integrity|electionNight)$/,
    'Source status must link to relevant desk: '+id);
  }
- // The default pre-election results tab opens 2024 archive for rehearsal.
- // This is historical, never incorrectly described as a live 2026 feed.
+ // The explicitly selected archive remains historical on any execution date.
+ // Natural pre-election/Election Day defaults were verified before selection.
  assert.match(get('#feedResults').textContent,/2024 archive/,
-  'Before election day, default historical mode must not pretend to be live 2026 results');
+  'Selected historical mode must not pretend to be live 2026 results');
  assert.equal(get('#feedResults').dataset.status,'scheduled');
  assert.equal(get('#enMilestoneDesk').hidden,true,'2024 mode has no current milestones');
  assert.match(get('#feedModel').textContent,/^Model · /);
@@ -505,7 +523,17 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  assert.equal(w.eval('enReconnectGap(1000,121000)'),true,'A paused browser detects a two-minute gap');
  assert.equal(w.eval('enReconnectGap(1000,120999)'),false,'Normal minute checks do not overlap');
  assert.equal(w.eval('enReconnectGap(121000,1000)'),false,'Backwards clocks do not reconnect');
- assert.equal(w.eval('enReconnectAfterInterruption(true)'),false,'Before Election Day resume cannot manufacture/request live votes');
+ const beforeReconnectClock=w.Date.now;
+ const beforeReconnectState=w.eval('__testReconnectState()');
+ try{
+  // Scope only this existing negative control to its declared pre-election
+  // instant; retain the natural wall clock for startup and all other cases.
+  w.Date.now=()=>Date.parse('2026-11-02T15:00:00Z');
+  assert.equal(w.eval('enReconnectAfterInterruption(true)'),false,'Before Election Day resume cannot manufacture/request live votes');
+ }finally{
+  w.Date.now=beforeReconnectClock;
+  w.eval('__testRestoreReconnectState('+JSON.stringify(beforeReconnectState)+')');
+ }
  assert.equal(get('#enEarlySignalsDetails').open,false,'Shortcut remains collapsed on entry');
  get('#enEarlySignalsDetails').open=true;assert.equal(get('#enEarlySignalsDetails').open,true);get('#enEarlySignalsDetails').open=false;
  // Pin/unpin keeps the existing shared watchlist action and semantic control.
@@ -523,8 +551,8 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  // early vote-leader swing, or pre-election data with a verified race call.
  // Owner removed the old public news-preview action. The retained bulletin
  // lifecycle below uses its exact former synthetic payload as a test fixture.
- assert.equal(get('#enFishPreview'),null,'Old news-preview action must be absent');
- assert.equal(get('#electionNight .en-quick-actions #enFishPreview'),null,
+ assert.equal(w.document.querySelector('#enFishPreview'),null,'Old news-preview action must be absent');
+ assert.equal(w.document.querySelector('#electionNight .en-quick-actions #enFishPreview'),null,
   'Quick actions must not retain the removed news preview');
  assert.doesNotMatch(html,/\$\('#enFishPreview'\)\.addEventListener/,
   'No orphan listener may target the removed preview control');
@@ -1439,16 +1467,22 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  const calls=[];
  w.fetch=async(url,options)=>{calls.push({url,options});
   return {ok:true,json:async()=>empty2026};};
- get('#enMode2026').click();
- w.eval('updateFeedGlance()');
- assert.match(get('#feedResults').textContent,/Nov 3/,
-  'Switching to 2026 before counting must show scheduled source status');
- assert.equal(get('#feedResults').dataset.status,'scheduled');
- assert.equal(get('#enArchiveOutcome').hidden,true,
-  'Returning to 2026 must restore active probability forecast and hide history');
- assert(!get('#jointNightPanel').classList.contains('en-archive-mode'));
- assert.equal(get('#enAdvancedLab').hidden,false,
-  '2026 forecast research should be restored when switching from archive');
+ const beforeScheduledModeClock=w.Date.now;
+ try{
+  // Preserve this declared pre-counting mode/status case on Election Day,
+  // then restore the actual clock before the source-load assertions below.
+  w.Date.now=()=>Date.parse('2026-11-02T15:00:00Z');
+  get('#enMode2026').click();
+  w.eval('updateFeedGlance()');
+  assert.match(get('#feedResults').textContent,/Nov 3/,
+   'Switching to 2026 before counting must show scheduled source status');
+  assert.equal(get('#feedResults').dataset.status,'scheduled');
+  assert.equal(get('#enArchiveOutcome').hidden,true,
+   'Returning to 2026 must restore active probability forecast and hide history');
+  assert(!get('#jointNightPanel').classList.contains('en-archive-mode'));
+  assert.equal(get('#enAdvancedLab').hidden,false,
+   '2026 forecast research should be restored when switching from archive');
+ }finally{w.Date.now=beforeScheduledModeClock;}
  await w.eval('enLoad(true)');
  const requests=calls.filter(c=>String(c.url).startsWith('https://openamerica.io/elections/results.json'));
  assert(requests.length>=1,'2026 mode must fetch the live state-derived source');
