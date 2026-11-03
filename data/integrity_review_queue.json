@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-03T18:19:37.694505Z",
+  "updated_at": "2026-11-03T20:02:04.520347Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 29,
-    "advisory_related_headlines": 82
+    "advisory_related_headline_buckets": 28,
+    "advisory_related_headlines": 80
   },
   "advisory_related_headlines": [
     {
@@ -149,20 +149,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "b0681272106aa9eb73ad",
-      "headline": "U.S. appeals court appears skeptical of Trump DOJ\u2019s lawsuit over California voter rolls - NBC News",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "litigation",
-        "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "e41cd87f2b577228601d",
       "headline": "Thousands of observers expected to monitor polling sites nationwide on Election Day - WNEP",
       "possibly_related_articles": 2,
@@ -256,9 +242,38 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "c8dff0ab88daece56461",
+      "headline": "Who will win the 2026 midterm elections? Polls and predictions - The Times",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "cf4f75d23f3a73684bda",
+      "title": "\u201cThere will be no escape\u201d: ICE threatens to track down and arrest illegal voters as midterm elections get underway - Clarin.com",
+      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQNFVjWmpzMGFfVVNMN0JkdDk2aXkwdXo3VWluRGNwU3NDTjczXzNzUUVHeEktYVpPYVp3NUJUNmNWaUZfSy1JUWhxT0l5TEg4cWlfN0l0YzItNDJIc1lXNkRsYThCNi1uS284Q0p5em12bTFrbVloZ242dGtoNHprX3pJMHJSMF9HdnFldHhNSUdtS2kwWDJ3MElRSVBfdE9iWkpPeDVWQ0ZJVlJ6RV9va0l1X0o2MTVpbGdoS0ZJMkdPOU9iOHZfNmRrcDRnRW5qb0VGU2lKV2NydmNZbENZUEwyOUc1VTl1d0RWSGlR0gHzAUFVX3lxTE5yV1NWYU5pdVlObTl2ck5XcHJRbGdwWWFPOGhnNmdnUEV1MGFDUU5CVDJnSE9feWZweWNFaUdIaG16WmxVSWdXNEIzNEhTRmJyMjk0OWZEOW5yU3h4U1BmU2tQNm5xVktsanBmWkpLNzFWSTlRSEQ4ZDV0T2NoMEhpNzNZcHpMejA5R0p1MXJZeXNyUEl1TWc4VVFBWXU2R2FGTmloSkljOGVCVzZNbkZ1TjgxMXNWbHVMbHo0c2tYcnZjN21aREhQN1dFM04wellaOXNTTDJVb1ZOcW9hV1REdkFLS280UU9RU0M0eDJQU2hCZw?oc=5",
+      "publisher": "Clarin.com",
+      "published_at": "2026-11-03T18:12:04Z",
+      "detected_at": "2026-11-03T19:07:00.671808Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "2f988d42ddf8f14ba8c6",
       "title": "Election 2026: Race for Pa. governor and balance of power in Harrisburg and Washington take shape in crucial midterm - Pittsburgh Post-Gazette",
@@ -275,6 +290,23 @@
       "headline_numbers_unverified": [
         "2026"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f1cce0abe129f890ca0b",
+      "title": "Election Denial to the Absurd - DCReport.org",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQeXZQdGFvWDdPejllOUdpWllwZzhBWmRZVC1hUThoLXFHMUNiYkRzZktiOVJHcUtyOXZ0aWN4TU9Md3pMN2d2dlhtbUFQZ2ZSdFU3a3NoR2NGVXFtVmFWOHRyQzdSLXVtYU1oTVRUMUJKaExXZFZ0NGk0NGVHN3U3M0w3SHcyZUNm?oc=5",
+      "publisher": "DCReport.org",
+      "published_at": "2026-11-03T17:30:04Z",
+      "detected_at": "2026-11-03T19:07:00.671808Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -416,6 +448,23 @@
       "state_hints": [],
       "topic_hints": [
         "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d13ff27a1eed0115be18",
+      "title": "Election Protection: NAACP Warns of Voter Suppression & Deployment of Federal Agents to the Polls - NationofChange",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQYVRBNjFBNEdib1NKbUk0Z2E3QjlhcFU3T1RPRUNyeVpJYWZSakhndjZtM25ZRGFyTy1GRV9YbWpLSUJvYW9laENfVDRVc0FVSEdHc1hKYUpndS1uVVlPMlNvMi1MRDNQOFRObFZMV0RQV0o3MHNMbEZFa0FGV0lkS2x3cktrVkJMNVlhbkF6cG93eGNqUmxDSWlIZlkza2JfbTRIR0pVeFgyVk4zRmI5cF85MnUyUVF1U3ZpRHJuOC1vX1JmS3JCN1ZYWHEwQTRNcXpZ?oc=5",
+      "publisher": "NationofChange",
+      "published_at": "2026-11-03T11:31:59Z",
+      "detected_at": "2026-11-03T20:02:04.520347Z",
+      "state_hints": [],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -5086,67 +5135,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b0681272106aa9eb73ad",
-      "title": "U.S. appeals court appears skeptical of Trump DOJ\u2019s lawsuit over California voter rolls - NBC News",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNLUtWclJCTVJSa0xjel83TTFSNVFxai1hQTlET0labDhZUnRzSWx0VUVsQlFIdFM5cVQ1QkVXUGJaeXFpdEtxY3hWS0VNajRGNHIyTkpESUpGcVF3UHV1OUlpQnNXb1lJZ2lVWGpKWmJHTzlmSjRxOExhelpQdXlHbC1pUGltSTcwWkJLQm0wWFFIMzVFNEkxZXFLVGlfRTZ0WW0zOXh2WDNSenU2T3V4NlJWZnRxUUdhTDlLOGZWLVpmQzFORVo0?oc=5",
-      "publisher": "NBC News",
-      "published_at": "2026-10-26T01:09:00Z",
-      "detected_at": "2026-10-26T12:06:28.054554Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bb433647d5ba3c9c7ed1",
-      "title": "9th Circuit panel questions basis for feds\u2019 request to block 20,000 California ballots - Los Angeles Times",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQZ1NhQkx6YjU1Z0Z6WTZWU1pYeERybThxZHJJelU2dWs5bGJfdHRIem1wQlhLeDlZbmtBNGVrdFRYVHFzWDdPWUwyS1djWXNEWGlOdzNReGY3QWNnSmk1Z0o2MDlCMnNnZ1hkRjJwWmVwaGI0UEdncklFTjdFWGRqb1ZPZDVtcHZmU1RnanlWYzBzeHY0eUZ2azJlMnFaSkVIOU5rTWZsWWNNTkZuWHc?oc=5",
-      "publisher": "Los Angeles Times",
-      "published_at": "2026-10-25T22:54:04Z",
-      "detected_at": "2026-10-26T07:03:11.120284Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "17e44cbc4f80df55a463",
-      "title": "US appeals court appears skeptical of Trump DOJ's lawsuit over California voter rolls - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxPU25wRVhKZUxxMGJKMjRLWVptYXNHRVZ1UjYtM1VDUGFDOFRlSkY4eERuQm90RUV4a1R6NE1ia1FHZzItRTRVSHJOS3dvMXc4VURHTmxuMzBMWUZDOFI1SGhrVjdQMkJXM1ByRFRsNEVDUFkzX1huMWl1SEZqaWhYUERUNWxPWGlaMThLU2RjaUxUSTc4V3hRWWtyaVN3aENiSnZOMGRrZUlsQ3AtMHQ5WFVURTBrN1BW?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-10-25T22:28:34Z",
-      "detected_at": "2026-10-25T23:11:33.687234Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
