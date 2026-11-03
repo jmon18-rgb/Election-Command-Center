@@ -175,9 +175,10 @@ jobs:
         run: python3 scripts/build_race_probabilities.py
       - name: Verify browser-compatible live official-state election API
         run: python3 scripts/test_live_results_source.py
-      - name: Nonpublishing secondary civicAPI 2026 coverage and CORS probe
-        continue-on-error: true
-        run: python3 scripts/probe_civicapi.py
+      - name: Test bounded advisory source-check scheduling without provider requests
+        run: python3 scripts/test_run_ci_source_canaries.py
+      - name: Run seven existing advisory civicAPI checks with at most four active requests
+        run: python3 scripts/run_ci_source_canaries.py
       - name: Test isolated New Hampshire Senate civicAPI adapter
         run: |
           node --check scripts/civicapi_nh_adapter.js
@@ -213,40 +214,22 @@ jobs:
           node --check scripts/civicapi_state_batch.js
           node --check scripts/test_civicapi_oh_wi_ne_ks.cjs
           node scripts/test_civicapi_oh_wi_ne_ks.cjs
-      - name: Probe four new states for indexed 2026 civicAPI contests
-        continue-on-error: true
-        run: python3 scripts/probe_civicapi_oh_wi_ne_ks.py
       - name: Validate seven additional five-state civicAPI race identities
         run: |
           node --check scripts/civicapi_state_batch.js
           node --check scripts/test_civicapi_il_ky_nj_ny_or.cjs
           node scripts/test_civicapi_il_ky_nj_ny_or.cjs
-      - name: Discover five additional 2026 civicAPI state race sources
-        continue-on-error: true
-        run: python3 scripts/probe_civicapi_il_ky_nj_ny_or.py
-      - name: Advisory four-state civicAPI source indexing health
-        continue-on-error: true
-        run: python3 scripts/probe_civicapi_batch.py
       # Third-party 503 is a health warning; source contracts are tested offline.
-      - name: Advisory civicAPI live-provider health and CORS
-        continue-on-error: true
-        run: python3 scripts/test_civicapi_live_source.py
       - name: Test eight additional Senate and governor civicAPI adapters
         run: |
           node --check scripts/civicapi_state_batch.js
           node --check scripts/test_civicapi_al_mt_nm_ok_tn.cjs
           node scripts/test_civicapi_al_mt_nm_ok_tn.cjs
-      - name: Discover five more uncovered 2026 states in real civicAPI
-        continue-on-error: true
-        run: python3 scripts/probe_civicapi_al_mt_nm_ok_tn.py
       - name: Test seven strict CA DE MD SD WY civicAPI race adapters
         run: |
           node --check scripts/civicapi_state_batch.js
           node --check scripts/test_civicapi_ca_de_sd_wy.cjs
           node scripts/test_civicapi_ca_de_sd_wy.cjs
-      - name: Probe civicAPI statewide 2026 source IDs in CA DE MS SD WY
-        continue-on-error: true
-        run: python3 scripts/probe_civicapi_ca_de_ms_sd_wy.py
       - name: Validate experimental live-informed race probabilities
         run: |
           node --check scripts/election_night_nowcast.js

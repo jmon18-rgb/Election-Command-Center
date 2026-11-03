@@ -17,6 +17,21 @@
  // Never apply this mapping to multi-district states such as New Hampshire.
  const AT_LARGE=new Set(['AK','DE','ND','SD','VT','WY']);
  const MIN_CONFIDENCE_FOR_LIGHT_CHECK=90;
+ const PREVIEW_URLS=Object.freeze({
+  'House|KY-01':'https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-1-general-election/forecast',
+  'House|KY-04':'https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-4-general-election/forecast',
+  'House|KY-05':'https://votes.decisiondeskhq.com/races/2026-11-03/kentucky-us-house-5-general-election/forecast',
+  'House|ME-02':'https://votes.decisiondeskhq.com/races/2026-11-03/maine-us-house-2-general-election/forecast',
+  'House|NE-02':'https://votes.decisiondeskhq.com/races/2026-11-03/nebraska-us-house-2-general-election/forecast',
+  'House|NV-03':'https://votes.decisiondeskhq.com/races/2026-11-03/nevada-us-house-3-general-election/forecast'
+ });
+ function qualifiedPreview(row){
+  return row?.link_role==='forecast_preview_not_results'&&Object.hasOwn(PREVIEW_URLS,row.id)&&PREVIEW_URLS[row.id]===row.url&&
+   row.verification_scope==='search_index_identity_only'&&row.source_reference===row.url&&
+   row.results_link_verified===false&&row.current_access_verified===false&&row.current_access_status==='UNKNOWN_NOT_VERIFIED'&&
+   typeof row.scope_note==='string'&&['Results link not verified','current page access not verified',
+    'no live results or calls verified','not a vote feed'].every(text=>row.scope_note.includes(text));
+ }
  function supplementalState(race,{error=false,providerBlocked=false,
    cached=false,usable=false,pending=false,attempted=false}={}){
   const known=race?.source_identity_status==='PINNED_PREVIOUSLY_VERIFIED_ID'||
@@ -323,10 +338,10 @@
      'PUBLIC_MANUAL_NEWSROOM_CHECKS_NOT_VOTE_FEEDS_OR_AUTOMATED_CALLS'?
      editorialChecks.race_pages:null;
    if(!Array.isArray(pages))return null;
-   const matches=pages.filter(x=>x?.id===id&&
-    typeof x.url==='string'&&
-    /^https:\/\/votes\.decisiondeskhq\.com\/races\/2026-11-03\/[a-z0-9-]+-general-election(?:\/results)?$/.test(x.url));
-   return matches.length===1?matches[0].url:null;
+   const matches=pages.filter(x=>x?.id===id&&typeof x.url==='string'&&
+    (qualifiedPreview(x)||!Object.hasOwn(x,'link_role')&&
+     /^https:\/\/votes\.decisiondeskhq\.com\/races\/2026-11-03\/[a-z0-9-]+-general-election(?:\/results)?$/.test(x.url)));
+   return matches.length===1?matches[0]:null;
   };
   const recovery=pulse.operationalAttention;
   if(recovery?.races?.length){
@@ -353,8 +368,9 @@
     }else elt('span',' · no curated official fallback for this race',line);
     const newsroom=callLink(race.id);
     if(newsroom){
-     const a=elt('a',' · Manual DDHQ race page ↗',line);
-     a.href=newsroom;a.target='_blank';a.rel='noopener noreferrer';
+     const a=elt('a',qualifiedPreview(newsroom)?' · DDHQ preview (results unverified) ↗':' · Manual DDHQ race page ↗',line);
+     a.href=newsroom.url;a.target='_blank';a.rel='noopener noreferrer';
+     if(newsroom.scope_note)a.title=newsroom.scope_note;
      elt('span',' · editorial reference only; verify an explicit race call, not a forecast',line);
     }
    };
@@ -393,8 +409,9 @@
     }
     const newsroom=callLink(race.id);
     if(newsroom){
-     const a=elt('a',' · DDHQ free race results / call ↗',line);
-     a.href=newsroom;a.target='_blank';a.rel='noopener noreferrer';
+     const a=elt('a',qualifiedPreview(newsroom)?' · DDHQ preview (results unverified) ↗':' · DDHQ free race results / call ↗',line);
+     a.href=newsroom.url;a.target='_blank';a.rel='noopener noreferrer';
+     if(newsroom.scope_note)a.title=newsroom.scope_note;
     }
     if(manual.has(race.mode))
      elt('span',' · forecast only; no verified votes or race call',line);
