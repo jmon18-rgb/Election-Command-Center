@@ -607,3 +607,20 @@ Record before/after screenshots, exact revision, viewports, actual task outcomes
 and any remaining usability defects. Do not call the review complete on the basis
 of a screenshot alone. Required failures block final engineering acceptance;
 optional decorative upgrades can be explicitly deferred.
+
+
+## PR549 verified publication proof - 2026-11-03
+
+PR549-VERIFIED-GUIDE35-PROOF-CHECKPOINT-20261103
+
+Native evidence reuses the completed first1366 desktop report and adds only the390 recovery. The mobile countdown DOM says Election Day while the unchanged compact-date CSS hides it; no visible-phone-countdown claim is made. All49 manual rows and six qualified preview captions were checked at both widths.
+
+Published/tested: 38a13041340dd4c611fc54dc3ca5eb81733fa56c / 224837af4c83da06d65ebe94ad4e5502831d4afa; Pages41670156078, allthree actual jobs SUCCESS/attempt1. Exact proof: artifacts/readiness/non-email-closeout-20261102/release/pr549-published-outcome.json (SHA256 8727d4487e323726134a3bf43941382109efded864e6662623e1d1e800fc6b98). Canonical factual PASS and the actual ONE guide34-to35 receipt precede this local checkpoint.
+
+Public bodies:54 unique effective paths =35 new first reads +6 carried prior successes +1 already-owned current-body match from the preserved prior failed expectation +12 exact unchanged156 proof rows; counts are nonadditive. Source closure189, ordered runtime refs93, fixed Worker imports6. Fresh local coherence:13 checks/109 dependencies/3000 draws/seed20261103/no_credit. The original HTTP mismatch and first390 visibility timeout remain failures; neither was retrospectively passed or retried.
+
+Native scope: completed first1366 desktop visible Election Day report carried exactly, then390-only responsive-hidden countdown DOM recovery;49 manual references and six visible qualified preview captions per width,0 Workers. No visible-phone-countdown, full current numerical-browser, physical-device, hearing, assistive or human-acceptance claim. All34 earlier guide components and all11 NOT_RUN/null human scopes remain unchanged; only ONE component was added.
+
+Remaining:18 county routes/7of11 owner Senate; MI/MN/MS/AK county packages and KY06/IN05/FL-SEN matched packages, authentic frozen whole-election evaluation inputs, actual positive2026/human acceptance and archive capacity/zero-paid proof remain open. Heldouts0; error/coverage/Brier/logloss/pairedskill/nationaltransfer NULL/NOT_ESTIMABLE. ArchiveOFF. Manual references supply no native package/vote/call/rights admission; five approved emails remain unsent.
+
+Checkpoint handling: append-only local seven-document proof, carry with the next genuine source change; never push documentation solely to run CI. Prior raw document bytes and canonical Git content remain recoverable and unchanged as prefixes.

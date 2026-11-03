@@ -187,7 +187,10 @@
  // 2026 House district identity and satisfy normal arithmetic/time gates.
  function validatePinned(item,raceId,detail,now=Date.now()){
   if(!supports(item)||!Number.isSafeInteger(raceId)||raceId<=0||
-     pinnedId(item)!==raceId||!detail||detail.id!==raceId||
+     pinnedId(item)!==raceId||!detail||typeof detail!=='object'||Array.isArray(detail)||
+     // Native light detail may omit the URL's duplicate ID. A present ID,
+     // including inherited/malformed values, must still match exactly.
+     ('id' in detail&&detail.id!==raceId)||
      detail.election_type!=='House of Representatives'||
      detail.municipality!=null||detail.district!==item.key||
      detail.country!=='US'||detail.province!==item.key.slice(0,2)||
