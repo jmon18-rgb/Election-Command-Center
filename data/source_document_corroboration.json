@@ -1,0 +1,185 @@
+{
+  "schema": "source-document-corroboration-v1",
+  "as_of": "2026-11-03",
+  "scope": "Narrow publisher-document and accounting checks. These summaries are not replacement election feeds, raw original datasets or model admissions.",
+  "native_originals_owned": false,
+  "new_runtime_county_routes": 0,
+  "matched_2026_packages_completed": 0,
+  "reuse_grants_verified": false,
+  "independent_chronological_whole_election_holdouts": 0,
+  "records": [
+    {
+      "id": "MS-2020-Hinds-Senate",
+      "scope": "Three named candidate totals independently corroborated against a county-authored summary",
+      "sources": [
+        "https://www.co.hinds.ms.us/pgs/elections/20201103_Summary_Report.pdf"
+      ],
+      "findings": {
+        "named_candidate_values_checked": 3,
+        "named_candidate_votes": 100038,
+        "separate_write_ins": 45,
+        "named_plus_write_ins": 100083,
+        "all_office_ballots_not_a_contest_denominator": 100944,
+        "contest_under_or_overvotes_not_inferred": true
+      },
+      "limitations": "One county. No native original, statewide signed certification, reuse grant, chronological information set or current2026 return package."
+    },
+    {
+      "id": "MS-2020-Rankin-Senate",
+      "scope": "County-canvass reader accounting and named-candidate corroboration",
+      "sources": [
+        "https://www.rankincounty.org/egov/documents/1605308496_92029.pdf"
+      ],
+      "findings": {
+        "precinct_rows_checked": 48,
+        "named_candidate_totals_checked": 3,
+        "named_candidate_votes": 70481,
+        "undervotes": 523,
+        "overvotes": 40,
+        "write_ins": 68,
+        "printed_ballots": 71112,
+        "every_precinct_candidate_and_ballot_identity_checked": true,
+        "printed_method_label": "Election Day Voting",
+        "all_vote_method_scope_independently_verified": false
+      },
+      "limitations": "The literal printed method label does not establish absence of absentee votes or a current reporting-method contract. No statewide certification or reuse grant."
+    },
+    {
+      "id": "MS-2020-Pike-Senate",
+      "scope": "Named-candidate county totals and distinct write-in accounting",
+      "sources": [
+        "https://www.pikecountyelectionresults.org/2020_general.php",
+        "https://www.pikecountyelectionresults.org/2020_general/results-District.htm"
+      ],
+      "findings": {
+        "named_candidate_values_checked": 3,
+        "named_candidate_votes": 17349,
+        "separate_write_ins": 14,
+        "printed_total": 17363,
+        "precincts_reported": "25/25"
+      },
+      "limitations": "County-authored historical summary only. No signed statewide certification, reuse grant or current2026 candidate IDs, clock or county package."
+    },
+    {
+      "id": "MN-2020-Senate-counties",
+      "scope": "Separate statistical publication from the same publisher corroborates already-retained county exports",
+      "sources": [
+        "https://www.sos.mn.gov/media/4608/minnesota-votes-2021.pdf"
+      ],
+      "findings": {
+        "county_rows_checked": 87,
+        "candidate_values_checked": 435,
+        "candidate_vote_sum": 3214256,
+        "mismatches": 0,
+        "name_matching": "Case-only equality; McLeod/Mcleod is not a fuzzy alias",
+        "cross_publisher_independence": false
+      },
+      "limitations": "Reader-document corroboration of a separate SOS publication, not signed certification, permission for automated collection/redistribution, chronology or current2026 admission. Existing certification flags stay false."
+    },
+    {
+      "id": "MI-Washtenaw-county-identity",
+      "scope": "County identity only",
+      "sources": [
+        "https://www.census.gov/quickfacts/fact/table/washtenawcountymichigan/BZA010223"
+      ],
+      "findings": {
+        "county": "Washtenaw County, Michigan",
+        "county_FIPS": "26161"
+      },
+      "limitations": "No precinct crosswalk, historical vote certification, current2026 boundary bridge or turnout denominator is inferred."
+    },
+    {
+      "id": "FL-2022-Hillsborough-Senate-methods",
+      "scope": "One county aggregate, six candidate rows and four printed voting methods",
+      "sources": [
+        "https://www.votehillsborough.gov/183/Election-Results",
+        "https://enr.electionsfl.org/HIL/Summary/3311/"
+      ],
+      "findings": {
+        "candidate_rows_checked": 6,
+        "voting_methods_checked": 4,
+        "candidate_votes": 482587,
+        "overvotes": 96,
+        "undervotes": 2233,
+        "ballots": 484916,
+        "all_candidate_and_method_accounting_checked": true,
+        "precincts_reported": "448/448",
+        "suppressed_dashes_are_not_zero": true,
+        "full_PDF_candidate_grid_owned": false,
+        "original_PDF_owned": false
+      },
+      "limitations": "Complete selected ENR aggregate rows are reader-checked; the saved PDF reader does not contain the full candidate grid. No individual-precinct dataset, whole67county Florida package, 2026 bridge, reuse permission or chronological holdout."
+    },
+    {
+      "id": "FL-2026-Senate-named-ballot",
+      "scope": "Named candidates on the county-published all-races General sample ballot",
+      "sources": [
+        "https://www.votehillsborough.gov/291/2026-General-Election",
+        "https://www.votehillsborough.gov/DocumentCenter/View/2615/"
+      ],
+      "findings": {
+        "election_date": "2026-11-03",
+        "office": "United States Senator",
+        "named_candidates": [
+          {
+            "name": "Ashley Moody",
+            "party": "REP"
+          },
+          {
+            "name": "Angie Nixon",
+            "party": "DEM"
+          },
+          {
+            "name": "Neil J. Gillespie",
+            "party": "NPA"
+          }
+        ],
+        "write_in_eligibility_verified": false
+      },
+      "limitations": "Named ballot identities only. No provider candidate-ID join, current counts, write-in determination, rights or matched county package."
+    },
+    {
+      "id": "IN-KY-FL-early-priority-county-identities",
+      "scope": "County identifiers only; no native voting-unit or boundary mapping",
+      "sources": [
+        "https://www.census.gov/quickfacts/fact/table/hamiltoncountyindiana/RHI325223",
+        "https://www.census.gov/quickfacts/fact/table/fayettecountykentucky/POP645223",
+        "https://www.census.gov/quickfacts/fact/table/hillsboroughcountyflorida/EDU635223"
+      ],
+      "findings": {
+        "county_FIPS": {"Hamilton_IN": "18057", "Fayette_KY": "21067", "Hillsborough_FL": "12057"},
+        "native_reporting_unit_ID_join_verified": false,
+        "precinct_or_2026_boundary_bridge_verified": false
+      },
+      "limitations": "Named county identity does not establish congressional membership, same-name precinct continuity, vote transfer, method counts or ballots outstanding. No population or demographic denominator is imported."
+    },
+    {
+      "id": "FL-SEN-Ashley-Moody-office-facts",
+      "scope": "Two independently documented candidate-context fields",
+      "sources": [
+        "https://www.moody.senate.gov/about/",
+        "https://www.senate.gov/states/FL/senators.shtml"
+      ],
+      "findings": {
+        "candidate": "Ashley Moody",
+        "elected_vs_appointed": "appointed",
+        "state_office_experience": "former_florida_attorney_general_2019_2025",
+        "Senate_term_began": "2025-01-21",
+        "Senate_class": "III",
+        "same_person_historical_overperformance_verified": false,
+        "elected_personal_incumbency_eligible": false
+      },
+      "applied_to": {
+        "path": "data/candidate_fundamentals_staging.json",
+        "race_code": "FL-SEN",
+        "side": "rep",
+        "source_candidate_id": "C-0012",
+        "fields": [
+          "elected_vs_appointed",
+          "state_office_experience"
+        ]
+      },
+      "limitations": "Biography and chamber seat succession do not transfer Rubio votes, create an elected-incumbency benefit, fill historical residuals or certify current returns."
+    }
+  ]
+}

@@ -1,0 +1,1416 @@
+{
+  "schema": "poll-publisher-document-provenance-v1",
+  "as_of": "2026-11-03",
+  "scope": "Additional exact-question and publisher-declared day provenance for a fixed public input snapshot; no automatic replacement of polling inputs.",
+  "input_snapshot": {
+    "path": "data/polls.json",
+    "sha256": "4a1ed50d62c470a0df854c276a629ee49a7028473bd77391571703b353624b7f"
+  },
+  "selected_question_corroborations": 24,
+  "declared_study_date_only": 4,
+  "earliest_public_availability_verified": false,
+  "may_change_model_inputs": false,
+  "records": [
+    {
+      "race_code": "MI-SEN",
+      "poll_id": "79c1089e-6893-4079-913e-e6f151d017c2",
+      "question_id": "fe0ea3f7-6dd3-4e33-890f-b055088243e8",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "5ee1bfcbb1cd180fe8ea00dc5bc0e584860055c09e0a078f0687f6850a5a77f2",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 0
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 48,
+        "rep": 46,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 48,
+          "rep": 46
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 426,
+          "dem": 51,
+          "rep": 48
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "OH-SEN",
+      "poll_id": "2483fb30-fb88-456c-b51f-b03bad5ba693",
+      "question_id": "11580672-bf47-4a2c-bfef-ea7a8ed07857",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "4ff3c68a24ab4455b3ba5cf1188827c98d3fa8c076def6819615b7d1683a413f",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 3
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 45,
+        "rep": 44,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 45,
+          "rep": 44
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 408,
+          "dem": 49,
+          "rep": 48
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "MI-GOV",
+      "poll_id": "79c1089e-6893-4079-913e-e6f151d017c2",
+      "question_id": "adc98d9d-f9f8-4a5c-86ae-30010dab1594",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "bb956bac338aeab284b0818919e741787e090e6b10b5cf0a316d377888c84228",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 0
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 53,
+        "rep": 41,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 53,
+          "rep": 41
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 427,
+          "dem": 56,
+          "rep": 43
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "OH-GOV",
+      "poll_id": "2483fb30-fb88-456c-b51f-b03bad5ba693",
+      "question_id": "69f65b0b-e698-45d2-9523-7dec9e28a186",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "defe04c351a102e2ccc0e6b6e470b0335e97b4f0299acd73805c9d84f7db47ec",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 3
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 48,
+        "rep": 42,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 48,
+          "rep": 42
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 410,
+          "dem": 53,
+          "rep": 46
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "MN-SEN",
+      "poll_id": "f96cc69b-cd5a-4526-930b-9707abdb8e97",
+      "question_id": "2dbe44bb-c593-424c-9b7c-085d437e295b",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "4080ee64fa4c08de9b4109719bbe7f8dfaf2e1fa575f3db0ff4c0c415687b0c6",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 1
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 48,
+        "rep": 43,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 48,
+          "rep": 43
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 419,
+          "dem": 52,
+          "rep": 47
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "MN-GOV",
+      "poll_id": "f96cc69b-cd5a-4526-930b-9707abdb8e97",
+      "question_id": "dec8d741-852a-4cb8-a567-5f3fd1fff429",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "c2765eb2c131a3208252e69f753679668bbcbbbeda3498780b3548112ff5fb3e",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 1
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 53,
+        "rep": 40,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 53,
+          "rep": 40
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 424,
+          "dem": 56,
+          "rep": 43
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "NY-GOV",
+      "poll_id": "bf002799-d10f-4af0-9ef2-3326c367929e",
+      "question_id": "b0c0dc25-1604-4f2a-8d9a-3805544a1008",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "47f563c3c48d00c812f9ef90f4e635e64ad5abf459beab911cb941eb879b5c18",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 2
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 52,
+        "rep": 43,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 52,
+          "rep": 43
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 426,
+          "dem": 55,
+          "rep": 45
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "PA-GOV",
+      "poll_id": "a448c730-dde2-40df-abbb-d1beed19f1d6",
+      "question_id": "a702d103-4a7f-4cc9-8f4a-b31c0ab935f4",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "930a99de6201621e9d14d6852f560c5fe7fb29c22d2eed4702b0762f55f99cda",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 4
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 59,
+        "rep": 34,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 59,
+          "rep": 34
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 423,
+          "dem": 63,
+          "rep": 36
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "WI-GOV",
+      "poll_id": "abd93dd2-6de8-4c92-9bd1-f99c927b4629",
+      "question_id": "e659bd07-3208-4c37-b07b-a160af60c88a",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-01",
+      "current_input_snapshot_sha256": "d9069f78fb4141b6547a6f38e9f4b53974ed19da31af18bde28f3ae4237ae843",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/01/midterms-2026-one/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_01Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 5
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 50,
+        "rep": 45,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 50,
+          "rep": 45
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 427,
+          "dem": 53,
+          "rep": 47
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-30",
+      "article_visible_date_labels": [
+        "2026-11-01",
+        "2026-11-02"
+      ],
+      "article_date_label_roles_verified": false
+    },
+    {
+      "race_code": "TX-SEN",
+      "poll_id": "b112cbf3-ab0d-490b-b374-6f83fd7f9545",
+      "question_id": "1dad712d-090f-46bb-b637-ce5f5c19a8d7",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "b23b3a4fb7699069e0b575254403c11ed9245db39166f3df721ae04863984048",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 5
+        }
+      ],
+      "selected_question": {
+        "basis": "decided_likely_voter_subset",
+        "dem": 51,
+        "rep": 48,
+        "publisher_question_base_n": 433,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 49,
+          "rep": 46
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 433,
+          "dem": 51,
+          "rep": 48
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "TX-GOV",
+      "poll_id": "b112cbf3-ab0d-490b-b374-6f83fd7f9545",
+      "question_id": "9cfe90cc-f4c5-437a-81c8-1d45d72def68",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "304610a884a3cb300beec02fc6fbb6ea7caaaf98331abe4607ef7eaf27d35365",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 5
+        }
+      ],
+      "selected_question": {
+        "basis": "decided_likely_voter_subset",
+        "dem": 48,
+        "rep": 50,
+        "publisher_question_base_n": 414,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 44,
+          "rep": 46
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 414,
+          "dem": 48,
+          "rep": 50
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "FL-GOV",
+      "poll_id": "cd6d6c9c-946e-406c-8a1b-1d54c5da3ae3",
+      "question_id": "5784c069-603b-4995-8ca3-1a3b3af8baf2",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "ffa46bc87e7cde806555f22ca2e31233cef10f9af798e21c47b48780844b3369",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 1
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 44,
+        "rep": 48,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 44,
+          "rep": 48
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 423,
+          "dem": 47,
+          "rep": 51
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "FL-SEN",
+      "poll_id": "cd6d6c9c-946e-406c-8a1b-1d54c5da3ae3",
+      "question_id": "61be82d8-bb37-4de2-8dcd-1d1a57bcf7ac",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "3b205b680ea21963afbdb0c02f4e8464c0d7e9d78c7ff12c7cd3f85eb9631fec",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 1
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 44,
+        "rep": 51,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 44,
+          "rep": 51
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 431,
+          "dem": 46,
+          "rep": 53
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "GA-SEN",
+      "poll_id": "e324d57b-4426-403d-9ca8-23cf08f2c082",
+      "question_id": "77bff359-9256-450d-a38b-a13a40d81fc7",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "42b01283a4d2b36f70ab769c207eb0c964c890762091888833753ac275a3f99b",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 2
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 52,
+        "rep": 42,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 52,
+          "rep": 42
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 423,
+          "dem": 55,
+          "rep": 45
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "GA-GOV",
+      "poll_id": "e324d57b-4426-403d-9ca8-23cf08f2c082",
+      "question_id": "e6033a01-f717-4356-ae00-807beda55b10",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "d8b90f2de2cfb35717476ff46aee85f04e2c94f5e186358de8614ec87bfbf785",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 2
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 46,
+        "rep": 45,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 46,
+          "rep": 45
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 409,
+          "dem": 51,
+          "rep": 49
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "CO-GOV",
+      "poll_id": "d936e903-4367-4a56-b855-942ae35fce12",
+      "question_id": "a29827f3-5a46-4ee8-8ff9-e87fad7eadae",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "f7214cb468f051ac9fe549552eea70397744058a8ab4fffbea54658f76b6724d",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 0
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 53,
+        "rep": 38,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 53,
+          "rep": 38
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 419,
+          "dem": 57,
+          "rep": 41
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "CO-SEN",
+      "poll_id": "d936e903-4367-4a56-b855-942ae35fce12",
+      "question_id": "5a8dc49b-961c-433d-a80d-0b53b826534a",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "0b9fad5f8cf6ede635189d97bc8185243c75bcae77b78b7d168f6bde8e0a8a36",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 0
+        }
+      ],
+      "selected_question": {
+        "basis": "full_likely_voter_base",
+        "dem": 57,
+        "rep": 35,
+        "publisher_question_base_n": 450,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 57,
+          "rep": 35
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 422,
+          "dem": 61,
+          "rep": 37
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "NM-GOV",
+      "poll_id": "9d7b82a6-e65d-460b-a09f-ac6d2fa865c8",
+      "question_id": "de6f445a-7d37-40b4-945b-4c8b5e4c4c54",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "f3dd75ae2c78c1b354cae4165f9ef25128a88bacebed311afcef6b5cc7622740",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 4
+        }
+      ],
+      "selected_question": {
+        "basis": "decided_likely_voter_subset",
+        "dem": 54,
+        "rep": 46,
+        "publisher_question_base_n": 427,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 51,
+          "rep": 44
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 427,
+          "dem": 54,
+          "rep": 46
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "NM-SEN",
+      "poll_id": "9d7b82a6-e65d-460b-a09f-ac6d2fa865c8",
+      "question_id": "dca9ba8b-08fb-4649-9f51-30d1de8ddeb7",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "00873bcc0fd821fbd61e1ea6bd55c7df1f9681203c843a16cc26ced1cec5273c",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 4
+        }
+      ],
+      "selected_question": {
+        "basis": "decided_likely_voter_subset",
+        "dem": 60,
+        "rep": 40,
+        "publisher_question_base_n": 419,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 56,
+          "rep": 37
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 419,
+          "dem": 60,
+          "rep": 40
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "IL-GOV",
+      "poll_id": "5b734364-d6c9-4d6d-9585-4deac2cc6890",
+      "question_id": "a00d2d13-0eaa-476d-b2c2-f64fa8dad938",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "c33744592bc205f9bac91ec982c71af4e3eea8f9074d8c6d2d0d1123fc8498cb",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 3
+        }
+      ],
+      "selected_question": {
+        "basis": "decided_likely_voter_subset",
+        "dem": 60,
+        "rep": 38,
+        "publisher_question_base_n": 424,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 57,
+          "rep": 36
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 424,
+          "dem": 60,
+          "rep": 38
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "IL-SEN",
+      "poll_id": "5b734364-d6c9-4d6d-9585-4deac2cc6890",
+      "question_id": "683f2b95-c5c1-40e8-ae1b-5b6c3cd1404f",
+      "pollster": "Research Co.",
+      "sample_population": "lv",
+      "field_end": "2026-11-02",
+      "current_input_snapshot_sha256": "82a020ee00b69a6b895c66c3ca9e1cee2908ad1c90073011fd6a30d43d490c78",
+      "publisher_declared_date": "2026-11-02",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://researchco.ca/2026/11/02/midterms-2026-two/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://researchco.ca/wp-content/uploads/2026/11/Tables_MidTerms_USA_02Nov2026.pdf",
+          "role": "publisher_table",
+          "page_zero_based": 3
+        }
+      ],
+      "selected_question": {
+        "basis": "decided_likely_voter_subset",
+        "dem": 56,
+        "rep": 43,
+        "publisher_question_base_n": 444,
+        "publisher_full_study_n": 450,
+        "recorded_sample_size": 450,
+        "sample_size_semantics": "Recorded n is the full state study; the selected decided-voter question may have a smaller base. Neither the recorded sample nor model weight is replaced.",
+        "alternative_full_question": {
+          "population": "likely_voters",
+          "n": 450,
+          "dem": 53,
+          "rep": 41
+        },
+        "alternative_decided_question": {
+          "population": "decided_likely_voters",
+          "n": 444,
+          "dem": 56,
+          "rep": 43
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-31"
+    },
+    {
+      "race_code": "WI-GOV",
+      "poll_id": "cab98ee4-565d-4c17-8d25-b996592f3ee2",
+      "question_id": "ae78fc43-5f3b-4f1b-ab79-4d782e934476",
+      "pollster": "Marquette University Law School",
+      "sample_population": "lv",
+      "field_end": "2026-10-22",
+      "current_input_snapshot_sha256": "6dfaa22033ed3d47556a18ce107ab07212dc9ab63b5ee890728080d11c200356",
+      "publisher_declared_date": "2026-10-28",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://law.marquette.edu/poll/2026/10/28/mlsp92-press-release/",
+          "role": "publisher_release_and_methodology"
+        },
+        {
+          "url": "https://law.marquette.edu/assets/community/poll/MLSP92/MLSP92ToplinesLV.html",
+          "role": "publisher_selected_question"
+        }
+      ],
+      "selected_question": {
+        "basis": "leaner_inclusive_likely_voter_question",
+        "publisher_question_label": "Gov contest w/leaners",
+        "dem": 53,
+        "rep": 46,
+        "undecided": 1,
+        "recorded_sample_size": 668,
+        "weighted_frequency_sum_is_not_raw_sample_n": true,
+        "alternative_initial_choice": {
+          "dem": 51,
+          "rep": 44,
+          "undecided": 4
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-14"
+    },
+    {
+      "race_code": "ME-SEN",
+      "poll_id": "0102d73f-4f7c-473f-9e04-309aa37c777b",
+      "question_id": "affd988a-3dbb-42da-8b36-6409a6910f4e",
+      "pollster": "Marist University",
+      "sample_population": "lv",
+      "field_end": "2026-10-25",
+      "current_input_snapshot_sha256": "76f7b2257a6cf47a3a811dd5ac48e123a22be13bd7dbbecff2b5eb6bdb36e786",
+      "publisher_declared_date": "2026-10-27",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://maristpoll.marist.edu/polls/the-midterm-elections-in-maine-october-2026/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf",
+          "role": "publisher_methodology_and_selected_question"
+        }
+      ],
+      "selected_question": {
+        "basis": "likely_voter_probability_weight_applied_to_registered_voter_sample",
+        "publisher_question_label": "SNVT26R_support",
+        "dem": 49,
+        "rep": 47,
+        "recorded_sample_size": 1449,
+        "publisher_registered_sample_n": 1449,
+        "raw_likely_voter_n": null,
+        "likely_voter_n_not_inferred_from_MOE": true,
+        "sample_size_semantics": "Likely-voter probability weights were applied to the registered sample; no separate raw LV n is inferred."
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-22"
+    },
+    {
+      "race_code": "ME-GOV",
+      "poll_id": "0102d73f-4f7c-473f-9e04-309aa37c777b",
+      "question_id": "828023d7-a89e-4734-8909-e03a9fac7e0c",
+      "pollster": "Marist University",
+      "sample_population": "lv",
+      "field_end": "2026-10-25",
+      "current_input_snapshot_sha256": "1ced0452c1cf70d3b58405d62e59e8c4ab73e5af96329099f411a5b55c97bcfd",
+      "publisher_declared_date": "2026-10-27",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "SELECTED_QUESTION_AND_DECLARED_DATE",
+      "sources": [
+        {
+          "url": "https://maristpoll.marist.edu/polls/the-midterm-elections-in-maine-october-2026/",
+          "role": "publisher_article"
+        },
+        {
+          "url": "https://maristpoll.marist.edu/wp-content/uploads/2026/10/Marist-Poll_Maine-NOS-and-Tables_202610261228-3_43sjl2.pdf",
+          "role": "publisher_methodology_and_selected_question"
+        }
+      ],
+      "selected_question": {
+        "basis": "likely_voter_probability_weight_applied_to_registered_voter_sample",
+        "publisher_question_label": "GVVT26R_support",
+        "dem": 44,
+        "rep": 44,
+        "recorded_sample_size": 1449,
+        "publisher_registered_sample_n": 1449,
+        "raw_likely_voter_n": null,
+        "likely_voter_n_not_inferred_from_MOE": true,
+        "sample_size_semantics": "Likely-voter probability weights were applied to the registered sample; no separate raw LV n is inferred.",
+        "third_party_scope": {
+          "named_Rick_Bennett": 6,
+          "another_party_candidate": 1,
+          "recorded_other_bucket": 7,
+          "individual_candidate_at_7_not_corroborated": true
+        }
+      },
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation.",
+      "publisher_field_start": "2026-10-22"
+    },
+    {
+      "race_code": "NH-SEN",
+      "poll_id": "63516926-7ba4-457a-8b7c-e52aed2edb55",
+      "question_id": "e72f5efd-1b9b-45fd-af9b-3dabf5364abb",
+      "pollster": "University of New Hampshire",
+      "sample_population": "lv",
+      "field_end": "2026-10-31",
+      "current_input_snapshot_sha256": "8c960c3baba34685ce710f73f7fdb5be9006a214aff18054779b781f0e674d26",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "DECLARED_STUDY_DATE_ONLY",
+      "sources": [
+        {
+          "url": "https://scholars.unh.edu/survey_center_polls/1011/",
+          "role": "publisher_institutional_record"
+        }
+      ],
+      "selected_question": null,
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation."
+    },
+    {
+      "race_code": "NH-GOV",
+      "poll_id": "63516926-7ba4-457a-8b7c-e52aed2edb55",
+      "question_id": "add898b3-5db2-4d4c-a278-d16bb41c4834",
+      "pollster": "University of New Hampshire",
+      "sample_population": "lv",
+      "field_end": "2026-10-31",
+      "current_input_snapshot_sha256": "aa0e9c5cdf800ee957b1e24faa98f4494b976c52321a46920e2d8fc484938e7f",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "DECLARED_STUDY_DATE_ONLY",
+      "sources": [
+        {
+          "url": "https://scholars.unh.edu/survey_center_polls/1011/",
+          "role": "publisher_institutional_record"
+        }
+      ],
+      "selected_question": null,
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation."
+    },
+    {
+      "race_code": "NH-01",
+      "poll_id": "63516926-7ba4-457a-8b7c-e52aed2edb55",
+      "question_id": "19b3b0b4-78a2-41ec-935b-161da355b85b",
+      "pollster": "University of New Hampshire",
+      "sample_population": "lv",
+      "field_end": "2026-10-31",
+      "current_input_snapshot_sha256": "d9cc9b0a8203a3c8587c786b8ef48db0807ca69860e3004c575f39d0129b34c5",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "DECLARED_STUDY_DATE_ONLY",
+      "sources": [
+        {
+          "url": "https://scholars.unh.edu/survey_center_polls/1011/",
+          "role": "publisher_institutional_record"
+        }
+      ],
+      "selected_question": null,
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation."
+    },
+    {
+      "race_code": "NH-02",
+      "poll_id": "63516926-7ba4-457a-8b7c-e52aed2edb55",
+      "question_id": "4d97e2a6-2f00-4c5e-b06e-b8e670e22af7",
+      "pollster": "University of New Hampshire",
+      "sample_population": "lv",
+      "field_end": "2026-10-31",
+      "current_input_snapshot_sha256": "b41b5b41445cd5f15b866ac3ff348c74411e862af112c8e6d3f4612c962991c8",
+      "publisher_declared_date": "2026-11-01",
+      "publication_precision": "day",
+      "publication_timezone": null,
+      "earliest_public_availability_verified": false,
+      "revision_semantics_verified": false,
+      "evidence_channel": "publisher_document_reader",
+      "native_original_bytes_owned": false,
+      "corroboration": "DECLARED_STUDY_DATE_ONLY",
+      "sources": [
+        {
+          "url": "https://scholars.unh.edu/survey_center_polls/1011/",
+          "role": "publisher_institutional_record"
+        }
+      ],
+      "selected_question": null,
+      "may_change_model_inputs": false,
+      "may_authenticate_historical_asof": false,
+      "source_scope": "Exact publisher document and selected question only; not live returns, a professional call, measured turnout or calibrated predictive validation."
+    }
+  ]
+}
