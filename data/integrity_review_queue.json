@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-03T11:57:35.023932Z",
+  "updated_at": "2026-11-03T13:17:27.995011Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
     "primary_source_checked": 7,
-    "advisory_related_headline_buckets": 29,
-    "advisory_related_headlines": 82
+    "advisory_related_headline_buckets": 28,
+    "advisory_related_headlines": 80
   },
   "advisory_related_headlines": [
     {
@@ -149,18 +149,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "9b2aa16305e598a043b3",
-      "headline": "Join our election livestream; Jersey\u2019s on guard for Trump voting interference | Mikie\u2019s World - NJ.com",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin",
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "b0681272106aa9eb73ad",
       "headline": "U.S. appeals court appears skeptical of Trump DOJ\u2019s lawsuit over California voter rolls - NBC News",
       "possibly_related_articles": 2,
@@ -256,9 +244,57 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "4c49b458937dbc039eb5",
+      "headline": "Peter Schweizer: Inside Homeland Security\u2019s Push to Clean Up Voter Rolls Before Election Day - Breitbart News",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "bfa97c6bb640dfd8104e",
+      "title": "ICE Is Inspiring Latinos to Vote in Historic Numbers - WIRED",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPMnVlQ3pXWEdLaUJDRG80VzFsZWczSmR2WHpmT0htc3lrRDNwZ29XRFgzMXpDRkxjMDVyMTcwaHZha1NPUGFOMmpYT3lZTEtQdWY0UnRpNXFIWWMzY0VRTlMtY00xYzZhR2F6VWNacEFkYjItR1dMQnZ4cGgtTjktdkpoWE1RMTIw?oc=5",
+      "publisher": "WIRED",
+      "published_at": "2026-11-03T11:30:00Z",
+      "detected_at": "2026-11-03T13:17:27.995011Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "14b2b9cc394799d3c8fd",
+      "title": "Get out and vote; Election Day polls close at 9 p.m. - The Suffolk Times",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQdTZqQ2d3VVRYQnJiVGszOEhIS2swU05aV2szSlBTdkRzS1JVb3psM2ZpTHRIeHhkUzBQQWJyMVpDZVozdkVqOHU0ZW1Pd3JiRnZ5NEpadkRhMFNNWXgya19VR3JKOGw0OGtyaC1PSTNvbnBlNkNFWWZqRUZ0dzVvVlpLeEJLNmptT0JhOGlPZWlKWjhxX28yc01Gdmk?oc=5",
+      "publisher": "The Suffolk Times",
+      "published_at": "2026-11-03T11:06:59Z",
+      "detected_at": "2026-11-03T13:17:27.995011Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "9 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c1cb6abb9b51d765f2bc",
       "title": "East Brunswick Election Day 2026: Polling Places, Hours and Sample Ballots - TAPinto",
@@ -291,6 +327,25 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e478668073ea918ea5fc",
+      "title": "Midterm elections 2026: what time do the polls close today? - The Guardian",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPQlpGendXNHN3ZHhHTU81eWRXeHZ2aW5ORXVkTlByQ0sxWS1yeGFZMEhEVDJ2UmFWOHZZQWg0VFFNbG80VFBLQkpSc2Z1T2F5VGswTU1VcjZMVDVsaXdEa2wyb0YyM0VJWndwYVhuSUE1aXNtSE1HdmJ6MmRDT25WcXk4Y0JYa0swdkxncDBpaFk?oc=5",
+      "publisher": "The Guardian",
+      "published_at": "2026-11-03T10:00:00Z",
+      "detected_at": "2026-11-03T13:17:27.995011Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5152,58 +5207,6 @@
       "state_hints": [],
       "topic_hints": [
         "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1a48f7168c41e11cfeaa",
-      "title": "Join our election livestream; Jersey Dems on guard for Trump voting \u2018interference\u2019 | Mikie\u2019s World - NJ.com",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOYTV6NkZURmZQRUZxV29rVXNiTVJlNzJucHctbnBxcXlieGgwZzBzN2tyajk4Ykd1TjQtT2o0bWRGZTgwNldBb0hTS3RoVHJDSGtFZ2hkWHhfWHNmRVB4R09jOVN1S2J4UndMdHAwb1UtSU5ZNzhBR2NhaXBkanI1d2V0eEg0Ni1GQmVVNWpCdWs1bEp5MHFGek5VY1ZBWGNRSVlobXd3S1RRa3E3b1NFMm1NcXp0X0xERm1jLXE2LW1VbGo0aWpJUA?oc=5",
-      "publisher": "NJ.com",
-      "published_at": "2026-10-24T14:30:00Z",
-      "detected_at": "2026-10-24T19:13:58.781216Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d874765ba175d2d28f62",
-      "title": "Congress seeks impartial probe into voter lists after errors appear in UP MLC polls; halt to SIR - The New Indian Express",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQYzFWYVB5ZjV4UnZPMWVKczFlZ1RCdjNrS2JjZTdzVmZZUll5REZZUlJhWUFUSFdHRzJnSldKYTZXUFlVa3k0NXZ1M3k3UDd6NDUxLTBSTV9Cd0FnX0VCTGFoMlBFUnd5VXlGT3U1eFNmNm9vMUhsXzZoUmhSdmZYbE43ZVBtOEFpSDdZcWlpMkNXYjZmQVdoazhPLVdDY1JmWDRicUwzNUw1ZlZsNERRZjZZQ1ZQM3FhZldFN282Y2hGdGJaWHRPcmpWdlY3YnUyckpjX1RWRmszaU1ZWGFr0gHsAUFVX3lxTFBWZlZPSm16RGF6bjZHWTZPUGR4M0ZTSDdpN21sVUdYQmdPQkk2OGVtLTBMUkpSdE5sUVFvcDdaalVoZWl5NVFMbjF2X3NuVDhHR3UzZkJqZ1lQV0sxTU9ObDdSdjB5U2tSOHY5S2lDUENBVzIxQzNFTjNxbDBaMF9KaHBaXy1wSUZHcS01M01KZndKV0R6aVpTcTduWm1IbVh1S21NRlBLSER6Y0Q5MTYwUWo3NEQ2MEhuUnp1ZUZUYWFMQWxXVHo2RmJHdTRObnNDOEg3MVVVRmtxQ3JTSW9KNF9EY2tmelYyQkx3?oc=5",
-      "publisher": "The New Indian Express",
-      "published_at": "2026-10-24T11:16:36Z",
-      "detected_at": "2026-10-24T13:42:20.702979Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f16da404d2f225b21f53",
-      "title": "Trump is trying to overturn an election that hasn\u2019t happened yet - Vox",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPa3NxcEd5SGVRY0FPcEhDdXRfYkc0OGlIOE5OR1psMEFYUjRxYkd6OGVsU3dMQmpIclpOVHZEZld2ZnkwcjB4d3lhdGRTYnZzU0dMUWNyUFk3SHh3T1NabXF4VzFsUFFNZFRkTXpZMUVoMTc0Z3FqekVNeVFjMjF1NlBB?oc=5",
-      "publisher": "Vox",
-      "published_at": "2026-10-24T10:00:00Z",
-      "detected_at": "2026-10-24T14:08:10.169369Z",
-      "state_hints": [],
-      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
