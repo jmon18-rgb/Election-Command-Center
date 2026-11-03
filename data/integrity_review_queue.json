@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-02T23:47:40.322163Z",
+  "updated_at": "2026-11-03T01:18:50.588079Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 4,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 243,
     "primary_source_checked": 7,
-    "advisory_related_headline_buckets": 29,
-    "advisory_related_headlines": 81
+    "advisory_related_headline_buckets": 30,
+    "advisory_related_headlines": 83
   },
   "advisory_related_headlines": [
     {
@@ -258,6 +258,89 @@
     }
   ],
   "items": [
+    {
+      "id": "31a23608efe8b2537ece",
+      "title": "Supreme Court rejects Trump administration\u2019s bid to set aside 20,000 California ballots - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPS2RqdnF0UHFJRk9GQ0tGVjBVUU5tSEgxVG1qbGlRWDNYRjZudWJZQjBtZGc5QjlNZC1SNHdseHhVdGlrc2gyd09XWDlza01CeG1hRXNHclpoQ1NyOFlWbW1GNG9RYnA3YWtnWjJNWXlEWGZiMDRYNG1jaXczeXRFOFU3cVZuaVZKbFpOWVAzR00xYkc3cklQeHViNUk1cXhBaVE1MF9FWTFHMDI2Uy1zSGR0bEphYXUweWltdw?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-11-02T23:26:00Z",
+      "detected_at": "2026-11-03T01:18:50.588079Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "fbcf873a213bc8caeb66",
+      "title": "Supreme Court rejects Trump's effort to force California to separate mail ballots from alleged noncitizens - CBS News",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOOEZ4V2FNLUJreFpsdUdwMUhRRWR4aDNYNVVocGI5MHlLYzZzaW9jVFBvYTk4Tk9ndWx0dVJ3WC1xVGtQc0M4aUMzZDROQzhlbDYyZjRhNUhSRlJqREFWSlVoVmJEM2dpcHotYzd4M2pZVGJLTXhteE9UNm1Fa3NLVnlHSmxEeEdISWxabC1pWVVBbmt5QnBLRTcyMWVIcldOb0Mw?oc=5",
+      "publisher": "CBS News",
+      "published_at": "2026-11-02T23:01:00Z",
+      "detected_at": "2026-11-03T01:18:50.588079Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4f3bcf958659bdae399e",
+      "title": "DOJ asks for Supreme Court to intervene on California ballot demands - Little Rock Public Radio",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNTmkwakpQUmlGVFZhQ3B6R25wOEtKbGIwTHU5ekwzTnl5bWZ5TDlqd21LRkVQa0hJazBjcnBJZTVnUkVJLXhPZzVJdzkzdFVCZUxzZHZSRFZkT3NLeXFlMVQ0anBfZGVvSnFwcV81WWRuUGRWM1BCajZiMVZ5YkVfUEQ5WXNGakxYMC01c2hpZFprWnVGQk5VaTc5bWRxVkVzUUI1cE1vY3FuMXlQQlpIWVI0dm9tSWhmbno3Yw?oc=5",
+      "publisher": "Little Rock Public Radio",
+      "published_at": "2026-11-02T22:30:00Z",
+      "detected_at": "2026-11-03T01:18:50.588079Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ffd3408db43cf22e15c6",
+      "title": "What Voters Should Know About Election Security for the 2026 Midterms - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNWkpmLWp0T3VDZGdhN2JGcHh1ai1famY2aW9JcWFEX2ZfY2twNGxPNnV5dGFDSlVDZEtDNTZHa1dDaWtkTUtfZEhzdnQzUmVYeWFGMVQwM0xxRVNLRnVhblMzOG9CYWNlamdJRTR3RUFjMncxdzRnLW9LUlVwTWtwYmxIVmZRTGRZXzUyUg?oc=5",
+      "publisher": "The New York Times",
+      "published_at": "2026-11-02T22:20:41Z",
+      "detected_at": "2026-11-03T01:18:50.588079Z",
+      "state_hints": [
+        "NY"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "cf2dc39b6c080fb9484a",
       "title": "DOJ Election Monitors Hit the Polls With a Warning to States: Keep Ballots or Risk Prison - Wisconsin Right Now",
@@ -5122,83 +5205,6 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c950646e46a9baa5688a",
-      "title": "State Elections Board issues letters to potential noncitizens on voter rolls - The North State Journal",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNVmQwTV9OZXpxNDhTNWJ5ZllJTlRxT1Rnd2pNaWtSRE5hSzd5TWZLWGJRbm9XZ2xLQmpBUmRhTGRXellWNFkyWFdOWVA5SExZZXRMQ2NucXU1NXpSMlRGZktOdDV1cElHY0JSS3VYV0gxbVBNS2YwcTBYclJQX2w1Z1AtN3l1a3FEWXUtaA?oc=5",
-      "publisher": "The North State Journal",
-      "published_at": "2026-10-23T19:25:00Z",
-      "detected_at": "2026-10-23T19:44:04.089219Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3ec3c02c227fd302dd6a",
-      "title": "\u2018Massive concession\u2019 or standard practice? How California checks citizenship - Sacramento Bee",
-      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNaTIzTGdDYUh1YXp3bW82TkRfYXl3UDhsWUdRcC1hcDNBZEVLWkFwdkdldjFsUFREbWl2clJaOTRrMGYxMU93Y3pvT3ByTUR0VFZuWXREa3RWVEZ3OFl6VkR5bVZmQWVMV2sxTFNmSG9LS2RxdnpJaWtxck1VUGFIMXZhRHQ2Y2hITjFv?oc=5",
-      "publisher": "Sacramento Bee",
-      "published_at": "2026-10-23T19:07:13Z",
-      "detected_at": "2026-10-23T19:44:04.089219Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bc43073dabc557f58698",
-      "title": "US Justice Dept sues to block possible Alaska election of Democrat to Senate - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOdmhoNXZfaEZSVXU4cVh3dW9tMm54alE4THRoUWNBSzc4QTFvNHl6eE9mOElIeXE1S0pkQlV4Yld6U0t5RjZnbEpjSzVyMkMzQ01MM1hSclViSHVmRDZGTndKTm9GZHZaRUFIZnAxVnM2V0hDMGhUOHVKemxQcFdxc0hmLTJDTTFQWTFTRFhRalM1Y1I3Y0dRTEF6UldFdHg3OVVxd0hkdUFyNTdUN0dDZVRwbTFqbVVyT2FtSw?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-10-23T19:04:23Z",
-      "detected_at": "2026-10-23T19:44:04.089219Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "af7c45f716ae76a539a5",
-      "title": "WATCH: Trump says he ordered DOJ lawsuit over Alaska Senate race - PBS",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQWVBnX0tZTndtd0lNVUpSaDJGT28yWG5LUVhyd1FkVHhZcVl1djVJOVBoSG01OER1bDJRdkY3OUlZR29SaFdjdlJIU2FnZ09CRExkUkktN2E4M3JpbUhuSHNzN1Nzb25Gck5iTHU5LXpydVNwYUFTUlM1UjJUN21PMnBHSlVYa0lhRjRYVUtQVG0yNHRCUlZpRjJrd2xUQy1xNW9wMktJTGs1ZzBUTlFJakJkcjNZbE5OWHZ2V0syWHBPaDVYUVHSAcsBQVVfeXFMT1hEZXAxZ0w1dFVORXprWnFaaEVxNXM1SUpMeU1iQS1mUEVZbG96djN3NlFwdzBQeGN2aGg3bjdGRVc3WFU3a1pUd1VtREMxRmtkc1NqclRmYTdOVDJIWUkzWXIxWkh1OVp4RllwRWlqczFCY2FPYWhPOHBhTkFzWVo0WDgyVklXLWRsZUF0M3B1X25QRzJySUVDQjNIWFJ0WnlEOGhTX3BhSkJYTWlyb1AyQmlRa2Z4TVhNV2liTTF6MnhtU0FnU094cjA?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-23T18:27:00Z",
-      "detected_at": "2026-10-23T19:44:04.089219Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
