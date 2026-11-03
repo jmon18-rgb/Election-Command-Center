@@ -521,14 +521,13 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  if(originalEarlyPersonal)w.PersonalElectionFocus=originalEarlyPersonal;else delete w.PersonalElectionFocus;
  // The Fish Head interruptor must not confuse a pretend preview, an
  // early vote-leader swing, or pre-election data with a verified race call.
- // A user arriving at Election Night must find the rehearsal immediately,
- // before the big forecast/workspace, rather than below twelve more sections.
- assert(get('#enFishPreview'),'Fish preview action must be present');
- assert(get('#electionNight .en-quick-actions #enFishPreview'),
-  'Rehearsal belongs in top-of-page quick actions');
- assert(get('#enFishPreview').compareDocumentPosition(get('#jointNightPanel'))&
-  w.Node.DOCUMENT_POSITION_FOLLOWING,
-  'Fish Head rehearsal action must precede the main panel');
+ // Owner removed the old public news-preview action. The retained bulletin
+ // lifecycle below uses its exact former synthetic payload as a test fixture.
+ assert.equal(get('#enFishPreview'),null,'Old news-preview action must be absent');
+ assert.equal(get('#electionNight .en-quick-actions #enFishPreview'),null,
+  'Quick actions must not retain the removed news preview');
+ assert.doesNotMatch(html,/\$\('#enFishPreview'\)\.addEventListener/,
+  'No orphan listener may target the removed preview control');
  assert.equal(w.document.querySelector('#electionNight .en-fish-controls'),null,
   'Do not retain the old redundant full-width Fish Head control panel');
  const fish=get('#enFishToast');
@@ -558,7 +557,7 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
   'The prior YouTube video embed must be removed');
  assert(fish.hidden,'Breaking news panel must start dismissed');
  assert.match(get('#enFishVoice').textContent,/Sound: on/);
- get('#enFishPreview').click();
+ assert.equal(w.eval('enFishShow('+JSON.stringify({kind:'demo',source:'synthetic',title:'Bikini Bottom election desk demonstration',details:'Reporting feeds remain unchanged. This is not a real election-night event.'})+',true)'),true,'Explicit test-only bulletin fixture remains available without a public preview control');
  assert.equal(fish.hidden,false);
  assert.equal(get('#enFishTalking').hidden,false,'The announcement fish frame is visible');
  assert.match(get('#enFishMode').textContent,/REHEARSAL/);

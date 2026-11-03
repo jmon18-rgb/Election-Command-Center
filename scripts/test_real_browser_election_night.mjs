@@ -54,9 +54,10 @@ try{
   await page.goto('http://127.0.0.1:'+port+'/',{waitUntil:'domcontentloaded',timeout:45000});
   await page.locator('[data-page="electionNight"]').click({timeout:45000});
   await page.locator('#electionNight.page.active').waitFor({timeout:15000});
-  // Actual desktop and mobile Chromium exercise the Fish Head rehearsal,
-  // rather than merely checking that the CSS rules exist as static text.
-  await page.locator('#enFishPreview').click();
+  // Owner removed the public preview control. Exercise the unchanged bulletin
+  // function with the exact former synthetic payload in this isolated fixture.
+  assert.equal(await page.locator('#enFishPreview').count(),0,'Removed news-preview action stays absent');
+  assert.equal(await page.evaluate(()=>enFishShow({kind:'demo',source:'synthetic',title:'Bikini Bottom election desk demonstration',details:'Reporting feeds remain unchanged. This is not a real election-night event.'},true)),true);
   await page.locator('#enFishToast').waitFor({state:'visible',timeout:10000});
   assert.match(await page.locator('#enFishMode').innerText(),/REHEARSAL/,
     name+': Mock Fish interruption must never masquerade as live results');

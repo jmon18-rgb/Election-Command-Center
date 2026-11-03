@@ -93,6 +93,31 @@ def triage(items):
 def read(path,default):
     try:return json.loads(path.read_text(encoding="utf-8"))
     except (OSError,ValueError):return default
+
+def has_review_decision(item):
+    """Retain human work without changing its status or admitting any claim."""
+    return (item.get("review_status")!="needs_primary_source"
+        or "review_notes" in item or "reviewed_as_of" in item
+        or bool(item.get("primary_sources"))
+        or item.get("impact_counts_verified") is True
+        or item.get("promoted_to_incident_id") is not None)
+
+def select_queue_items(items):
+    """Reserve the 250-row window for reviewed leads, then newest pending."""
+    ordered=sorted(items,key=lambda x:x.get("published_at") or "",reverse=True)
+    reviewed=sum(has_review_decision(item) for item in ordered)
+    if reviewed>250:
+        raise ValueError("Review queue has more than 250 reviewed leads; preserve the queue and resolve capacity before writing")
+    pending_slots=250-reviewed
+    selected=[]
+    for item in ordered:
+        if has_review_decision(item):
+            selected.append(item)
+        elif pending_slots:
+            selected.append(item)
+            pending_slots-=1
+    return selected
+
 def main():
     briefing=read(BRIEF,{})
     prior=read(QUEUE,{"items":[]})
@@ -119,7 +144,7 @@ def main():
             "review_status":"needs_primary_source","primary_sources":[],
             "impact_counts_verified":False,"promoted_to_incident_id":None}
         discovered+=1
-    items=sorted(old.values(),key=lambda x:x.get("published_at") or "",reverse=True)[:250]
+    items=select_queue_items(old.values())
     review_metrics,related=triage(items)
     out={"updated_at":now,"status":"leads_only_not_verified_incidents",
         "policy":"Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
