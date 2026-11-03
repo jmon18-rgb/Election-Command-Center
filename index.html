@@ -1889,7 +1889,19 @@ document.querySelectorAll('.chip[data-race]').forEach(t=>t.addEventListener('cli
 document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const destination=b.dataset.jump==='races'?'model':b.dataset.jump;
  const tab=document.querySelector('.tab[data-page="'+destination+'"]');
  if(tab){tab.click();if(b.dataset.jump==='races')$('#raceWorkbench').open=true;
- window.scrollTo({top:0,behavior:'smooth'})}}));function countdown(){const d=new Date();const today=new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);const m=today.match(/(\d{4})-(\d{2})-(\d{2})/);if(!m)return;const days=Math.round((Date.UTC(2026,10,3)-Date.UTC(+m[1],+m[2]-1,+m[3]))/86400000);$('#countdown').textContent=days>0?days+' days':days===0?'Election Day':'Election complete'}countdown();
+ window.scrollTo({top:0,behavior:'smooth'})}}));
+function countdown(now=Date.now()){
+ const date=new Date(now);if(!Number.isFinite(date.getTime()))return;
+ const parts=Object.fromEntries(new Intl.DateTimeFormat('en-US',{
+  timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'
+ }).formatToParts(date).map(part=>[part.type,part.value]));
+ // Compare calendar dates, so the repeated daylight-saving hour cannot
+ // change the day count. This label does not describe reporting completion.
+ const days=Math.round((Date.UTC(2026,10,3)-Date.UTC(+parts.year,+parts.month-1,+parts.day))/86400000);
+ const text=days>0?days+(days===1?' day':' days'):days===0?'Election Day':'Election Day has passed';
+ const node=$('#countdown');if(node&&node.textContent!==text)node.textContent=text;
+}
+countdown();
 function renderItems(id,items){const node=$('#'+id);node.replaceChildren();if(!Array.isArray(items)||!items.length){node.append(elt('div','empty','No recent articles in the source feed; this is not proof there are no election developments.'));return;}for(const x of items){if(!x||typeof x.title!=='string')continue;const div=document.createElement('div');div.className='item';const title=document.createElement('strong');title.textContent=x.title;div.append(title);if(x.source||x.published_at){const meta=document.createElement('small');const date=x.published_at?new Date(x.published_at).toLocaleDateString('en-US',{month:'short',day:'numeric'}):'';meta.textContent=[x.source,date].filter(Boolean).join(' · ');div.append(meta)}if(typeof x.url==='string'&&x.url.startsWith('https://')){const link=document.createElement('a');link.href=x.url;link.target='_blank';link.rel='noopener';link.textContent='Read source ↗';const sm=document.createElement('small');sm.append(link);div.append(sm)}node.append(div)}}
 
 
@@ -9179,6 +9191,7 @@ function enPreservePresentationReader(action,force=false){
  return true;
 }
 function enUpdateNightPresentation(now=Date.now(),force=false){
+ countdown(now);
  // The label and Auto control can wrap the phone header. Render them inside
  // the same reader-preserving transaction as a layout change.
  const applyControls=(panel,toggle,automatic,clockAvailable=true)=>{

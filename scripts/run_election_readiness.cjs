@@ -32,6 +32,7 @@ const checks = [
   ['Provisional weather bulletins require current breadth and withdraw safely', 'test_election_night_early_weather.cjs'],
   ['Early watch archive and pending controls remain usable and preserve preferences', 'test_indicator_control_states.cjs'],
   ['Exact Eastern presentation windows preserve manual archive rehearsal and source independence', 'test_election_night_presentation_clock.cjs'],
+  ['Eastern countdown grammar, daylight-saving boundaries and open-tab calendar refresh', 'test_election_countdown.cjs'],
   ['Weather dismissal restores only a visible enabled reading control', 'test_indicator_weather_focus.cjs'],
   ['County comparison button opens existing matched evidence without inventing votes', 'test_county_comparison_affordance.cjs'],
   ['Poop Meter keeps insufficient evidence unrated and exposes its comparison context', 'test_poop_meter_display.cjs'],
