@@ -829,7 +829,14 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  get('#jointHomeCorrelationDetails').open=false;
  assert.match(get('#modelEngineTag').textContent,/2026 Senate model · poll-depth forecast v5/);
  assert.equal(w.eval('jointRaceOddsResult()').senate_prior_mode,'current_2026');
- assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),.90);
+ const mnPollSource=fixtures['race_probabilities.json'].records.find(x=>
+  x.race_code==='MN-SEN'&&x.office==='senate');
+ assert(mnPollSource&&Number.isInteger(mnPollSource.independent_firms)&&
+  mnPollSource.independent_firms>=0,'Minnesota needs validated current independent-firm evidence');
+ const mnExpectedWeight=mnPollSource.independent_firms>=8?.97:mnPollSource.independent_firms>=5?.94:
+  mnPollSource.independent_firms>=3?.90:mnPollSource.independent_firms===2?.83:.60;
+ assert.equal(w.eval("jointForecastResult().race_probabilities.find(x=>x.race_code==='MN-SEN').poll_weight"),mnExpectedWeight,
+  'The actual UI model must follow the current Minnesota independent-firm tier');
  // Browser-only CSV ingestion must really update displayed model and restore it
  // without leaking Silver source rows or feeding completed forecast probabilities.
  assert(get('#privateContextFiles').type==='file');
@@ -1246,8 +1253,21 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  const evidenceSenate=w.eval('modelEvidenceWatchItems('+JSON.stringify(model)+',"senate")');
  assert(evidenceSenate.length>=2,'Actual 2026 Senate sources should produce quality checks');
  assert(evidenceSenate.every(x=>x.scope==='senate'&&x.race_code.endsWith('-SEN')));
- assert(evidenceSenate.some(x=>x.race_code==='ID-SEN'&&x.signal==='Weighting changes the lead'),
-  'Large weighting sensitivity must surface with exact Senate office');
+ // Idaho's qualifying live polls and weighting range change as the45-day
+ // source window advances. Pin the lead-change case to explicit fictional
+ // inputs while retaining the actual-bundle quality checks around it.
+ const senateWeightingFixture={is_election_forecast:false,senate_all:[{
+  race_code:'ID-SEN',status:'multi_poll',dem_minus_rep:1,state_name:'Idaho',
+  independent_pollsters:1,partisan_pollsters:1,contributing_pollsters:2,
+  latest_poll_end:'2026-10-11',poll_diagnostics:{latest_poll_age_days:2,
+   model_sensitivity:{alternative_margin_min:-2,alternative_margin_max:3,
+    independent_only_margin:-2}}
+ }]};
+ {
+  const evidenceSenate=w.eval('modelEvidenceWatchItems('+JSON.stringify(senateWeightingFixture)+',"senate")');
+  assert(evidenceSenate.some(x=>x.race_code==='ID-SEN'&&x.signal==='Weighting changes the lead'),
+   'Large weighting sensitivity must surface with exact Senate office');
+ }
  assert(evidenceSenate.some(x=>x.signal==='No independent confirmation'),
   'No independently sourced current Senate poll must be clearly signaled');
  assert(evidenceSenate.every(x=>Math.abs(x.margin)<=12));
@@ -1295,12 +1315,13 @@ function __testOwnedLookupIds(){return Array.from(appUniqueLookupIds)}`));
  assert.match(get('#modelEvidenceList').textContent,/Maine · ME-SEN/);
  assert.match(get('#modelEvidenceList').textContent,/Texas · TX-SEN/);
  assert.match(get('#modelEvidenceNote').textContent,/NOT a ranking of win probability/);
- // Click a real 2026 office-specific evidence item; race selector, model
- // detail and location hash must follow rather than showing a different Texas office.
+ // Click the explicit fictional Senate evidence item; race selector, model
+ // detail and location hash must retain the exact Idaho Senate identity.
  get('[data-model-scope="senate"]').click();
+ w.eval('renderModelEvidenceWatch('+JSON.stringify(senateWeightingFixture)+')');
  const idEntry=[...get('#modelEvidenceList').querySelectorAll('button')].find(x=>
    x.textContent.includes('ID-SEN'));
- assert(idEntry,'The evidence list must offer the real published ID-SEN result');
+ assert(idEntry,'The evidence list must offer the exact ID-SEN fixture result');
  idEntry.click();
  assert.equal(get('#modelDetailEyebrow').textContent,'IDAHO · SENATE');
  assert.match(w.location.hash,/model\/senate\/ID-SEN/);

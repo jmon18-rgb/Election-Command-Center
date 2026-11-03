@@ -48,7 +48,12 @@ assert.notEqual(legacyWithDifferentOldCandidate.senate.find(x=>x.code==='MN-SEN'
 const mn=current.senate.find(x=>x.code==='MN-SEN'),old=legacy.senate.find(x=>x.code==='MN-SEN');
 const input=source.odds.records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate');
 assert(input);
-assert.equal(mn.poll_weight,.90);
+assert(Number.isInteger(input.independent_firms)&&input.independent_firms>=0,
+ 'Minnesota needs validated current independent-firm evidence');
+const mnExpectedWeight=input.independent_firms>=8?.97:input.independent_firms>=5?.94:
+ input.independent_firms>=3?.90:input.independent_firms===2?.83:.60;
+assert.equal(mn.poll_weight,mnExpectedWeight,
+ 'Minnesota poll weight must follow its current independent-firm tier');
 assert.equal(current.senate_current_context.model_revision,'late_2026_depth_aware_special_v5');
 assert.equal(current.senate_current_context.poll_weight_firms_3_plus,.90);
 assert.equal(current.senate_current_context.poll_weight_firms_5_plus,.94);
@@ -80,7 +85,21 @@ assert(mn.candidate_specific_2026_poll_residual_points<0,
 assert(Math.abs(mn.candidate_specific_2026_poll_residual_points-
  (input.dem_minus_rep-mn.candidate_neutral_2026_environment_margin_points))<1e-9);
 assert(mn.mean>input.dem_minus_rep&&mn.mean<mn.candidate_neutral_2026_environment_margin_points);
-assert(old.mean<mn.mean);
+assert(Math.abs(mn.mean-(mnExpectedWeight*input.dem_minus_rep+
+ (1-mnExpectedWeight)*mn.candidate_neutral_2026_environment_margin_points))<1e-9,
+ 'Current Minnesota mean must use its exact poll/geography blend');
+// Hold poll depth equal to isolate the original candidate-prior repair. Live
+// source depth may change the current-mode weight relative to the legacy mode.
+const sameTierOdds=JSON.parse(JSON.stringify(source.odds));
+sameTierOdds.records.find(x=>x.race_code==='MN-SEN'&&x.office==='senate').independent_firms=3;
+const sameTierSource={...source,odds:sameTierOdds};
+const sameTierOld=engine.prepare(sameTierSource).senate.find(x=>x.code==='MN-SEN');
+const sameTierCurrent=engine.prepare(sameTierSource,{senatePriorMode:'current_2026'})
+ .senate.find(x=>x.code==='MN-SEN');
+assert.equal(sameTierOld.poll_weight,.90);
+assert.equal(sameTierCurrent.poll_weight,.90);
+assert(sameTierOld.mean<sameTierCurrent.mean,
+ 'The same-tier fixture preserves the original current-candidate prior repair');
 const shared=current.assumptions,sharedSigma=Math.hypot(shared.common_national_sigma,
  shared.senate_chamber_sigma,shared.state_senate_sigma);
 assert.equal(current.senate_current_context.polled_race_total_sigma_floor,6.5);
