@@ -128,4 +128,13 @@ assert(wrongName.candidate_scenario.skipped.some(x=>x.race_code==='MN-SEN'&&
  x.reason==='unverified_poll_matchup'));
 assert.deepEqual(model.prepare({...sources,candidateContext:stage}),model.prepare(sources),
  'Staging candidate metadata must never silently alter headline odds');
+// Independently documented appointment remains context, never an elected benefit.
+const moody=features.explain(map.get('FL-SEN')).candidates.find(x=>x.party==='REP');
+assert.equal(moody.elected_vs_appointed,'appointed');
+assert.equal(moody.public_office_experience,'former_florida_attorney_general_2019_2025');
+assert.equal(moody.personal_incumbency_eligible,false);
+assert.equal(moody.last_race_overperformance_points,null);
+assert.equal(moody.first_term,'unknown');
+assert.equal(features.sensitivity(map.get('FL-SEN'),{same_office_incumbent_points:2})
+ .raw_prior_margin_adjustment_points,0);
 console.log('Candidate fundamentals: 506 races; Minnesota office switch/administration guard, source integrity, explicit uncalibrated coefficients, historical overlap and appointment checks PASS');

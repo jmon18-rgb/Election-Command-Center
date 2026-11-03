@@ -15,6 +15,8 @@ on:
       - 'scripts/test_election_night_source_coverage.py'
       - 'scripts/check_house_pins_pages_publication.py'
       - 'scripts/test_check_house_pins_pages_publication.py'
+      - 'scripts/resolve_election_source_preflight.py'
+      - 'scripts/test_resolve_election_source_preflight.py'
       - 'scripts/civicapi_house_2026_adapter.js'
       - 'scripts/test_civicapi_house_2026_adapter.cjs'
       - 'scripts/test_election_night_source_coverage.py'
@@ -24,7 +26,8 @@ on:
   schedule:
     # Hourly discovery plus a second bounded scan during Election Night only.
     # 41-minute scheduled runs OUTSIDE the counting window are skipped.
-    - cron: '11,41 * * 10,11 *'
+    - cron: '11 * * 10,11 *'
+    - cron: '41 * * 10,11 *'
 permissions:
   contents: write
   pages: write
@@ -39,44 +42,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Resolve election-year preflight window
         id: window
-        run: |
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(date -u +'%Y%m%d')" -gt "20261104" ]; then
-            echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "Automated 2026 preflight ended after November 4; manual checks remain available."
-          else
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          fi
-          # The extra :41 slot is a seven-gap fast recheck ONLY while
-          # states are reporting (Nov 3 23:00Z to Nov 4 12:00Z).
-          # Before/after that, skip instead of doubling provider API traffic.
-          stamp="$(date -u +'%Y%m%d')"
-          hour="$((10#$(date -u +'%H')))"
-          minute="$((10#$(date -u +'%M')))"
-          extra=false
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$minute" -ge 30 ]; then
-            extra=true
-            if { [ "$stamp" = "20261103" ] && [ "$hour" -ge 23 ]; } || \
-               { [ "$stamp" = "20261104" ] && [ "$hour" -lt 12 ]; }; then
-              echo 'Election Night additional 30-minute identity-only House gap check'
-            else
-              echo "run=false" >> "$GITHUB_OUTPUT"
-              echo 'Skipping extra half-hour source check outside active counting'
-            fi
-          fi
-          # Full primary/secondary CORS and office checks every fourth hour;
-          # the :41 supplemental scans never rerun the expensive contracts.
-          # on other hours this job is only the bounded House discovery desk.
-          # Election Day + following canvass morning: run all three
-          # 2026 provider contract checks EVERY hour, not every fourth hour.
-          # Outside that window retain the economical four-hour baseline.
-          stamp="$(date -u +'%Y%m%d')"
-          if [ "$extra" = true ] || { [ "${{ github.event_name }}" = "schedule" ] && \
-             [ "$stamp" != "20261103" ] && [ "$stamp" != "20261104" ] && \
-             [ "$((hour % 4))" -ne 0 ]; }; then
-            echo "baseline=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "baseline=true" >> "$GITHUB_OUTPUT"
-          fi
+        env:
+          SOURCE_PREFLIGHT_EVENT: ${{ github.event_name }}
+          SOURCE_PREFLIGHT_SCHEDULE: ${{ github.event.schedule }}
+        # Queue delays can cross a half-hour or hour boundary. The matched
+        # cron identifies the slot; the actual UTC clock still gates counting.
+        run: python3 scripts/resolve_election_source_preflight.py
       - name: Verify Open America source CORS, year, office and 2026 race schema
         id: primary
         if: steps.window.outputs.run == 'true' && steps.window.outputs.baseline == 'true'
