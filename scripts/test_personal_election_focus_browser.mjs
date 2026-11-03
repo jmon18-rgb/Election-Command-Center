@@ -1,5 +1,7 @@
 // Isolated synthetic/fixture UI checks, never an actual-results or calibration claim.
 import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 import {createServer} from 'node:http';
 import {readFileSync,existsSync,statSync,mkdirSync,writeFileSync} from 'node:fs';
 import {resolve,extname,sep} from 'node:path';
@@ -30,8 +32,34 @@ async function recordFocus(page,phase){
  const state=await page.evaluate(()=>{const host=document.querySelector('#enPersonalFocus'),active=document.activeElement;return {pending:jointModelPending,as_of:Boolean(jointAsOfSnapshot),request_active:Boolean(jointActiveKey),refresh_queued:jointRefreshTimer!==null,frame_present:Boolean(jointCompletedFrame),frame_cache_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.key===jointCacheKey),frame_inputs_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.key===jointFrameKey(jointValidatedFrameInputs())),frame_revision_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.modelRevision===jointModelCodeRevision()),result_samples:jointLastResult?.samples||null,baseline_samples:jointPulseBaseline?.samples||null,aria_busy:host?.getAttribute('aria-busy')||null,focus_tag:active?.tagName||null,focus_id:active?.id||null,focus_race:active?.closest('.personal-focus-card')?.dataset.race||null,focus_disclosure:active?.closest('details')?.dataset.disclosure||null,focus_heading:active?.tagName==='H4'&&Boolean(active?.closest('.personal-focus-card')),summary_inert:Boolean(host?.querySelector('[data-race="IA-SEN"] [data-disclosure="margin"] > summary')?.closest('[inert]'))};});
  focusDiagnostics.push({width:currentWidth,phase,...state});if(focusDiagnostics.length>12)focusDiagnostics.shift();return state;
 }
-const server=createServer((req,res)=>{const file=resolve(root,'.'+(new URL(req.url,'http://localhost').pathname==='/'?'/index.html':decodeURIComponent(new URL(req.url,'http://localhost').pathname)));
- if(!file.startsWith(root+sep)||!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}res.writeHead(200,{'content-type':types[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));});
+// Keep the original already-public repository defaults without ever reading a
+// private/manual working-copy CSV. Only these exact committed public Git blobs
+// may be served; every other CSV and uncommitted path is denied before stat/read.
+const committedPaths=new Set(execFileSync('git',['ls-tree','-r','--name-only','HEAD'],{cwd:root,encoding:'utf8'}).trim().split('\n'));
+const fixtureHead=execFileSync('git',['rev-parse','HEAD'],{cwd:root,encoding:'utf8'}).trim(),publicCsvPaths=new Set(['ZqBdM (1).csv','f3ome (1).csv']),publicCsvBodies=new Map();
+assert([...publicCsvPaths].every(file=>committedPaths.has(file)),'Canonical public CSV paths must be committed');
+const transportDiagnostics={private_csv_denied:0,uncommitted_denied:0,invalid_denied:0,public_csv_git_reads:0,public_csv_responses:0,public_csv_git_pins:{},public_repository_active_widths:[]};
+const server=createServer((req,res)=>{
+ if(req.method!=='GET'){transportDiagnostics.invalid_denied++;res.writeHead(405).end();return;}
+ let requestPath;try{requestPath=decodeURIComponent(new URL(req.url,'http://localhost').pathname);}catch{transportDiagnostics.invalid_denied++;res.writeHead(400).end();return;}
+ if(/\.csv$/i.test(requestPath)&&!publicCsvPaths.has(requestPath.slice(1))){transportDiagnostics.private_csv_denied++;res.writeHead(403).end();return;}
+ const file=resolve(root,'.'+(requestPath==='/'?'/index.html':requestPath));
+ if(!file.startsWith(root+sep)){transportDiagnostics.invalid_denied++;res.writeHead(403).end();return;}
+ const relative=file.slice(root.length+1).split(sep).join('/');
+ if(/\.csv$/i.test(relative)){
+  if(!publicCsvPaths.has(relative)){transportDiagnostics.private_csv_denied++;res.writeHead(403).end();return;}
+  if(!publicCsvBodies.has(relative)){
+   const body=execFileSync('git',['show',fixtureHead+':'+relative],{cwd:root,maxBuffer:4*1024*1024});
+   const gitBlob=execFileSync('git',['rev-parse',fixtureHead+':'+relative],{cwd:root,encoding:'utf8'}).trim();
+   publicCsvBodies.set(relative,body);transportDiagnostics.public_csv_git_reads++;
+   transportDiagnostics.public_csv_git_pins[relative]={revision:fixtureHead,git_blob:gitBlob,sha256:createHash('sha256').update(body).digest('hex'),bytes:body.length};
+  }
+  transportDiagnostics.public_csv_responses++;res.writeHead(200,{'content-type':'text/csv'});res.end(publicCsvBodies.get(relative));return;
+ }
+ if(!committedPaths.has(relative)){transportDiagnostics.uncommitted_denied++;res.writeHead(403).end();return;}
+ if(!existsSync(file)||!statSync(file).isFile()){res.writeHead(404).end();return;}
+ res.writeHead(200,{'content-type':types[extname(file)]||'application/octet-stream'});res.end(readFileSync(file));
+});
 await new Promise(ok=>server.listen(0,'127.0.0.1',ok));let browser;
 try{
  browser=await chromium.launch({headless:true,...(process.env.BROWSER_CHANNEL?{channel:process.env.BROWSER_CHANNEL}:{})});
@@ -44,6 +72,8 @@ try{
   await page.locator('[data-page="electionNight"]').click();await page.locator('#enMode2026').click();
   await page.waitForFunction(()=>document.querySelectorAll('#enPersonalFocus article svg').length===18);
   await waitForPersonalCurrent(page);
+  const repositoryActive=await page.evaluate(()=>jointPrivateSource==='repository'&&document.querySelector('#privateContextStatus')?.textContent.startsWith('Repository fundamentals ACTIVE'));
+  assert.equal(repositoryActive,true,'Original default already-public repository fundamentals case remains ACTIVE');transportDiagnostics.public_repository_active_widths.push(width);
   assert.equal(await page.locator('#enPersonalFocus article').count(),19);
   assert.match(await page.locator('#enPersonalFocus [data-race="AK-SEN"]').innerText(),/Needle pending/);
   assert.match(await page.locator('#enPersonalFocus [data-race="NE-SEN"]').innerText(),/Osborn.*model chance vs Ricketts.*Independent; no assumed Democratic caucus/s);
@@ -125,10 +155,22 @@ try{
   assert.match(await distribution.innerText(),/not a calibrated final-vote interval/);
   await page.evaluate(()=>renderPersonalElectionFocus());
   await waitForPersonalCurrent(page);await recordFocus(page,'RANGE_POST_REDRAW_CURRENT');
-  assert.equal(await help.evaluate(e=>e===document.activeElement),true,'Range explanation keeps keyboard focus after redraw');
+  const rangeFocus=await help.evaluate(e=>{
+   const active=document.activeElement,describe=node=>{if(!node)return null;const rect=node.getBoundingClientRect(),style=getComputedStyle(node);return {tag:node.tagName,id:node.id||null,race:node.closest('.personal-focus-card')?.dataset.race||null,disclosure:node.closest('details')?.dataset.disclosure||null,host:node.closest('#enPersonalFocus,#enPersonalFocusPreview')?.id||null,connected:node.isConnected,hidden_ancestor:Boolean(node.closest('[hidden],[inert]')),visibility:style.visibility,display:style.display,rect:{x:rect.x,y:rect.y,width:rect.width,height:rect.height}};};
+   return {same:e===active,summary:describe(e),active:describe(active),summary_open:e.parentElement.open,matching_summaries:document.querySelectorAll('#enPersonalFocus [data-race="IA-SEN"] [data-disclosure="margin"] > summary').length,
+    viewport:{width:innerWidth,height:innerHeight,scroll_x:scrollX,scroll_y:scrollY},document_hidden:document.hidden,document_has_focus:document.hasFocus(),
+    current:{pending:jointModelPending,as_of:Boolean(jointAsOfSnapshot),request_active:Boolean(jointActiveKey),refresh_queued:jointRefreshTimer!==null,result_samples:jointLastResult?.samples||null,baseline_samples:jointPulseBaseline?.samples||null,frame_cache_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.key===jointCacheKey),frame_inputs_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.key===jointFrameKey(jointValidatedFrameInputs())),frame_revision_equal:Boolean(jointCompletedFrame&&jointCompletedFrame.modelRevision===jointModelCodeRevision())}};
+  });
+  assert.equal(rangeFocus.same,true,'Range explanation keeps keyboard focus after redraw: '+JSON.stringify(rangeFocus));
   assert.equal(await distribution.locator('details').evaluate(e=>e.open),true);
   await page.keyboard.press('Space');assert.equal(await distribution.locator('details').evaluate(e=>e.open),false);
-  const geometry=await distribution.locator('.personal-focus-margin-strip').evaluate(e=>{const r=e.getBoundingClientRect();return {width:r.width,children:[...e.children].map(c=>{const b=c.getBoundingClientRect();return {left:b.left-r.left,right:b.right-r.left,height:b.height};})};});
+  // Bind the capture after the keyboard toggle to a completed, visible frame.
+  // This strengthens capture readiness; it does not identify the prior CI cause.
+  await waitForPersonalCurrent(page);await recordFocus(page,'RANGE_POST_TOGGLE_CURRENT');
+  await distribution.locator('.personal-focus-margin-strip').scrollIntoViewIfNeeded();
+  await page.waitForFunction(currentPredicate);
+  const geometry=await distribution.locator('.personal-focus-margin-strip').evaluate(e=>{const r=e.getBoundingClientRect(),style=getComputedStyle(e),hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);return {width:r.width,visible:!document.hidden&&style.display!=='none'&&style.visibility==='visible'&&r.width>0&&r.height>0,in_viewport:r.left>=0&&r.top>=0&&r.right<=innerWidth&&r.bottom<=innerHeight,center_unoccluded:hit===e||Boolean(hit&&e.contains(hit)),children:[...e.children].map(c=>{const b=c.getBoundingClientRect();return {left:b.left-r.left,right:b.right-r.left,height:b.height};})};});
+  assert.equal(geometry.visible,true,'Margin geometry belongs to a visible completed frame');assert.equal(geometry.in_viewport,true,'Margin strip is inside the actual capture viewport');assert.equal(geometry.center_unoccluded,true,'Margin strip is not covered at capture');
   assert(geometry.width>150);assert(geometry.children.every(r=>r.left>=-3&&r.right<=geometry.width+3&&r.height>0),'Margin marks render within their explicitly labelled scale');
   await ia.screenshot({path:resolve(out,'margin-range-'+width+'.png')});
   await help.click();
@@ -194,4 +236,4 @@ try{
  }
  writeFileSync(resolve(out,'personal-current-focus-diagnostics.json'),JSON.stringify({status:'PASS',completed_widths:completedWidths,focus_diagnostics:focusDiagnostics,scope:'Bounded public semantic focus/current-frame diagnostics only; no input values, hashes or frame bodies.'},null,2)+'\n');
 }catch(error){writeFileSync(resolve(out,'personal-current-focus-failure.json'),JSON.stringify({status:'FAIL',width:currentWidth,phase:currentPhase,completed_widths:completedWidths,focus_diagnostics:focusDiagnostics,error:error.message,stack:error.stack},null,2)+'\n');throw error;}
-finally{await browser?.close();await new Promise(ok=>server.close(ok));}
+finally{await browser?.close();await new Promise(ok=>server.close(ok));writeFileSync(resolve(out,'personal-focus-transport-isolation.json'),JSON.stringify({private_or_working_copy_csv_reads_allowed:false,public_csv_allowlist:[...publicCsvPaths],committed_paths_only:true,...transportDiagnostics},null,2)+'\n');}

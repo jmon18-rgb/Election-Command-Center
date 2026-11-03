@@ -90,9 +90,9 @@ class CoverageLedgerTests(unittest.TestCase):
         rows = self.rows(report)
         primary = ("PA-07", "VA-02", "NC-01")
         supplemental = ("ME-02", "NE-02", "NY-17", "WI-03", "CA-13")
-        pins = {r["district"]: r["race_id"] for r in house_pins(
-            json.loads((ROOT / "data/election_night_source_coverage.json").read_text())
-        )["races"]}
+        saved = json.loads((ROOT / "data/election_night_source_coverage.json").read_text())
+        saved_rows = self.rows(saved)
+        pins = {r["district"]: r["race_id"] for r in house_pins(saved)["races"]}
         for code in primary:
             row = rows["House|" + code]
             self.assertEqual(row["source_identity_status"], "PRIMARY_PROVIDER_STATE_SCOPE")
@@ -103,11 +103,47 @@ class CoverageLedgerTests(unittest.TestCase):
             row = rows["House|" + code]
             self.assertEqual(row["provider_scope"], "outside primary")
             self.assertFalse(row["live_votes_verified_by_audit"])
-            self.assertIn(code, pins, "High-information House pin missing: " + code)
-            self.assertIsInstance(pins[code], int)
-            self.assertGreater(pins[code], 0)
+            self.assertFalse(row["professional_winner_call_verified_by_audit"])
+            observed = saved_rows["House|" + code]
+            self.assertEqual(observed["source_identity_status"], "NO_CURATED_PROVIDER_ID")
+            self.assertFalse(observed["live_votes_verified_by_audit"])
+            self.assertFalse(observed["professional_winner_call_verified_by_audit"])
+            last = observed["last_probe"]
+            checked = (timestamp(last["checked_window_utc"])
+                       if last and last["status"] == "INDEXED_EXACT_RACE" else None)
+            generated = timestamp(saved["generated_at"])
+            usable = checked is not None and generated - timedelta(days=10) <= checked <= generated
+            self.assertEqual(code in pins, usable,
+                             "Important-race hint must follow current exact evidence: " + code)
+            self.assertEqual(observed["verified_identity_hint_usable"], usable)
+            if usable:
+                self.assertEqual(pins[code], last["race_id"])
+                self.assertIsInstance(pins[code], int)
+                self.assertGreater(pins[code], 0)
+            else:
+                self.assertNotIn(code, pins)
+                self.assertEqual(observed["gap_status"], "UNRESOLVED_SOURCE_GAP")
         self.assertEqual(len(pins), len(set(pins.values())),
                          "One provider race ID must not map to multiple districts")
+        # Preserve every important-district positive-pin case on explicit
+        # synthetic exact evidence. Current scheduled observations can reject
+        # a formerly useful hint; this fixture never replaces the saved pair.
+        probe = {"status": "ROTATING_HOUSE_SOURCE_DISCOVERY_NOT_NATIONAL_AVAILABILITY",
+                 "window_utc": self.now.isoformat(), "planned_districts": len(supplemental),
+                 "results": [{"district": code, "status": "INDEXED_EXACT_RACE",
+                              "race_id": 900001 + index}
+                             for index, code in enumerate(supplemental)]}
+        fixture = self.ledger(probe=probe)
+        fixture_rows = self.rows(fixture)
+        fixture_pins = {r["district"]: r["race_id"] for r in house_pins(fixture)["races"]}
+        for index, code in enumerate(supplemental):
+            self.assertIn(code, fixture_pins, "High-information House pin missing: " + code)
+            self.assertIsInstance(fixture_pins[code], int)
+            self.assertGreater(fixture_pins[code], 0)
+            self.assertEqual(fixture_pins[code], 900001 + index)
+            self.assertFalse(fixture_rows["House|" + code]["live_votes_verified_by_audit"])
+            self.assertFalse(fixture_rows["House|" + code]["professional_winner_call_verified_by_audit"])
+        self.assertEqual(len(fixture_pins), len(set(fixture_pins.values())))
 
     def test_seven_unpinned_house_gaps_remain_unverified(self):
         """Unknown results sources must not inherit neighboring district pins."""
