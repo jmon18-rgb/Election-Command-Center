@@ -4714,3 +4714,14 @@ Native scope: completed first1366 desktop visible Election Day report carried ex
 Remaining:18 county routes/7of11 owner Senate; MI/MN/MS/AK county packages and KY06/IN05/FL-SEN matched packages, authentic frozen whole-election evaluation inputs, actual positive2026/human acceptance and archive capacity/zero-paid proof remain open. Heldouts0; error/coverage/Brier/logloss/pairedskill/nationaltransfer NULL/NOT_ESTIMABLE. ArchiveOFF. Manual references supply no native package/vote/call/rights admission; five approved emails remain unsent.
 
 Checkpoint handling: append-only local seven-document proof, carry with the next genuine source change; never push documentation solely to run CI. Prior raw document bytes and canonical Git content remain recoverable and unchanged as prefixes.
+
+
+## Verified PR550 poll-close follow-through (2026-11-03)
+
+Verified PR550 publication: tested 59353442182039f74159c419c8147e7c47d64906; protected merge 5f9645927184b7b264d9cfc48d23b6491647a356, actual parents a8b285ede13b7897b8755b107ece9e738d13105e plus tested head. Observed API base 196 is historical, not an atomic-base claim. Final verified main 8ada421b6792d800fbb141733bf78ae1be1fa555 follows ordinary-data child 39 and its exact reviewed metadata-pair update.
+
+Actual source-derived requirements were 36 PR plus one push workflow identity across 36 paths; 65 latest jobs/checks matched: 61 SUCCESS and four source-declared PR exclusions, all attempt 1 and stable, with no external statuses. Original 832/f7 and the initial unknown fourth-skip failure are preserved; the finite exact593 source profile retains every actual SKIP and waives no failure.
+
+Pages 41693465422 build/deploy/report succeeded. Publication proof is 28 fresh changed bodies plus 31 exact prior bodies = 59 unique, source graph 194, 93 refs and six Worker imports. Current coherence passed all original 13 checks on 109 Git inputs with one 3000-draw run. One actual isolated Chrome campaign pinned two published scripts; its pre-launch CJS-entry failure and reviewed ESM recovery remain separate. Current metadata has 170 optional hints and 50 manual-reference-backed machine gaps, with no live vote/call/package admission.
+
+Canonical outcome SHA 3b5931b29caea65d0b616df8f94d4b947100140906021830097c5dd4904f1a2d; independent factual review eb99aebfb897bb229666b047c694aae753d6e16d08fc8b747b105cb37ea6f89b. Exactly one 35-to-36 guide append occurred at 18:56:15.879Z; ledger SHA 1b13e4983fb072dbe55f4ef0269caa2a30e2d8fe22331978f3fadff9a06b12e0. All prior guide fields/components and eleven human NOT_RUN/null results remain unchanged.

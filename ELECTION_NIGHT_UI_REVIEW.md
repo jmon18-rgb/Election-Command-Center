@@ -624,3 +624,10 @@ Native scope: completed first1366 desktop visible Election Day report carried ex
 Remaining:18 county routes/7of11 owner Senate; MI/MN/MS/AK county packages and KY06/IN05/FL-SEN matched packages, authentic frozen whole-election evaluation inputs, actual positive2026/human acceptance and archive capacity/zero-paid proof remain open. Heldouts0; error/coverage/Brier/logloss/pairedskill/nationaltransfer NULL/NOT_ESTIMABLE. ArchiveOFF. Manual references supply no native package/vote/call/rights admission; five approved emails remain unsent.
 
 Checkpoint handling: append-only local seven-document proof, carry with the next genuine source change; never push documentation solely to run CI. Prior raw document bytes and canonical Git content remain recoverable and unchanged as prefixes.
+
+
+## Verified PR550 poll-close follow-through (2026-11-03)
+
+PR550 updates only the House adapter stamp in index.html; the other 92 ordered references and six Worker imports are unchanged. The published adapter was exercised in an isolated Chrome document with two native script-body pins and the unchanged owned KY-06 metadata. There was no application-page/cache update, full UI test, current numerical UI equality or physical-device claim. The first runtime-entry test failed before launch and remains preserved; the unchanged helper passed with the declared ESM entry.
+
+The PR549 Eastern countdown, old Preview news removal and qualified manual-reference behavior remain delivered. Prior 38 desktop and responsive-hidden phone evidence remains historical at its actual scope. Canonical PR550 evidence and guide component 36 are recorded under artifacts/readiness/poll-close-owner-followthrough-20261103/.

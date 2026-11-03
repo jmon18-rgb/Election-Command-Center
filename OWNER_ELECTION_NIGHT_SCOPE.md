@@ -353,3 +353,10 @@ Native scope: completed first1366 desktop visible Election Day report carried ex
 Remaining:18 county routes/7of11 owner Senate; MI/MN/MS/AK county packages and KY06/IN05/FL-SEN matched packages, authentic frozen whole-election evaluation inputs, actual positive2026/human acceptance and archive capacity/zero-paid proof remain open. Heldouts0; error/coverage/Brier/logloss/pairedskill/nationaltransfer NULL/NOT_ESTIMABLE. ArchiveOFF. Manual references supply no native package/vote/call/rights admission; five approved emails remain unsent.
 
 Checkpoint handling: append-only local seven-document proof, carry with the next genuine source change; never push documentation solely to run CI. Prior raw document bytes and canonical Git content remain recoverable and unchanged as prefixes.
+
+
+## Verified PR550 poll-close follow-through (2026-11-03)
+
+The PR550 House direct-lookup and monitoring fixes are published and guide component 36 is complete. At 12:35 p.m. Eastern the installed KY-06 endpoint returned the correct 2026 identity and 6 p.m. close, but zero votes with a timestamp from yesterday. The direct path now permits an omitted duplicate ID while preserving every existing identity, arithmetic, test-data and timing gate. Timely positive delivery tonight is not established.
+
+All ten supplied songs remain website-bundled for Chrome laptops, without imports. Internet access and a playback gesture may be needed. Missing MI/MN/MS/AK county packages, KY06/IN05/FL-SEN matched packages, authentic retrospective validation and eleven human acceptance tasks remain open; archive stays off. The fixed target is November 3 at 6 p.m. Eastern, with existing 5:00 and 5:30 provider checks and first fresh post-close admission still to confirm.
