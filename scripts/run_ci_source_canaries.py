@@ -54,7 +54,7 @@ def _stop_children(processes):
             except ProcessLookupError:pass
         process.wait()
 
-def run_canaries(canaries=CANARIES,*,root=ROOT,max_workers=MAX_WORKERS,cancel_event=None,spawn=subprocess.Popen):
+def run_canaries(canaries=CANARIES,*,root=ROOT,max_workers=MAX_WORKERS,cancel_event=None,spawn=subprocess.Popen,log_dir=None,checkpoint=None):
     """FIFO launches with at most four synchronous source scripts active."""
     if type(max_workers) is not int or not 1<=max_workers<=MAX_WORKERS:
         raise ValueError("Source canary concurrency must be between one and four")
@@ -64,16 +64,23 @@ def run_canaries(canaries=CANARIES,*,root=ROOT,max_workers=MAX_WORKERS,cancel_ev
         raise ValueError("Only the existing advisory source checks belong here")
     cancel_event=cancel_event if cancel_event is not None else threading.Event()
     root=Path(root)
+    log_dir=Path(log_dir) if log_dir is not None else None
+    if log_dir is not None and not log_dir.is_dir():
+        raise ValueError("Durable source log directory must already exist")
+    if checkpoint is not None and not callable(checkpoint):
+        raise ValueError("Source checkpoint must be callable")
     outcomes=[{"name":item.name,"command":"python3 "+item.script,
         "continue_on_error":item.continue_on_error,"status":"NOT_STARTED",
         "return_code":None,"pid":None,"log":b""} for item in canaries]
     active={};started=[];logs={};next_index=0;peak=0
+    if checkpoint is not None:checkpoint(outcomes)
     try:
         while next_index<len(canaries) or active:
             if cancel_event.is_set():break
             while next_index<len(canaries) and len(active)<max_workers and not cancel_event.is_set():
                 index=next_index;item=canaries[index]
-                log=tempfile.TemporaryFile();logs[index]=log
+                log=tempfile.TemporaryFile() if log_dir is None else (log_dir/(str(index).zfill(2)+".log")).open("x+b")
+                logs[index]=log
                 options={"cwd":root,"stdout":log,"stderr":subprocess.STDOUT}
                 if os.name=="nt":options["creationflags"]=subprocess.CREATE_NEW_PROCESS_GROUP
                 else:options["start_new_session"]=True
@@ -81,6 +88,7 @@ def run_canaries(canaries=CANARIES,*,root=ROOT,max_workers=MAX_WORKERS,cancel_ev
                 active[index]=process;started.append(process);next_index+=1
                 outcomes[index].update(status="RUNNING",pid=process.pid,started_monotonic=time.monotonic())
                 peak=max(peak,len(active))
+                if checkpoint is not None:checkpoint(outcomes)
             finished=False
             for index,process in list(active.items()):
                 code=process.poll()
@@ -89,6 +97,7 @@ def run_canaries(canaries=CANARIES,*,root=ROOT,max_workers=MAX_WORKERS,cancel_ev
                 outcomes[index].update(status="PASS" if code==0 else "ADVISORY_FAILURE",
                     return_code=code,finished_monotonic=time.monotonic())
                 del active[index];finished=True
+                if checkpoint is not None:checkpoint(outcomes)
             if not finished and active:cancel_event.wait(.02)
     finally:
         _stop_children(started)
@@ -96,6 +105,7 @@ def run_canaries(canaries=CANARIES,*,root=ROOT,max_workers=MAX_WORKERS,cancel_ev
             outcomes[index].update(status="CANCELLED",return_code=process.returncode,finished_monotonic=time.monotonic())
         for index,log in logs.items():
             log.seek(0);outcomes[index]["log"]=log.read();log.close()
+        if checkpoint is not None:checkpoint(outcomes)
     cancelled=cancel_event.is_set()
     if not cancelled and (next_index!=len(canaries) or any(row["return_code"] is None for row in outcomes)):
         raise RuntimeError("Every advisory child must produce an outcome")

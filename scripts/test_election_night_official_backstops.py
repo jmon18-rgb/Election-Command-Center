@@ -43,8 +43,23 @@ def _qualified_ma04_candidate_guide(item):
                 "no live results or calls verified", "not a vote feed")))
 
 
+def _qualified_ma_house_candidate_guide(item, expected_id):
+    note=item.get("scope_note","")
+    return (expected_id in ["House|MA-01","House|MA-02","House|MA-03","House|MA-04","House|MA-05","House|MA-06","House|MA-07","House|MA-08","House|MA-09"] and item.get("id")==expected_id
+            and item.get("url")=="https://www.wbur.org/news/2026/10/14/massachusetts-how-to-vote-deadlines-mail-in-early"
+            and item.get("link_role")=="candidate_guide_not_results"
+            and item.get("verification_scope")=="publisher_reader_candidate_identity_only"
+            and item.get("source_reference")==item.get("url")
+            and item.get("results_link_verified") is False
+            and item.get("current_access_verified") is False
+            and item.get("current_access_status")=="UNKNOWN_NOT_VERIFIED"
+            and isinstance(note,str) and all(text in note for text in (
+                "Candidate identities only","results not verified","current native page access not verified",
+                "no live results or calls verified","not a vote feed")))
+
+
 def _qualified_ma04_official_candidate_reference(item):
-    return (item.get("state")=="MA" and item.get("race_ids")==["House|MA-04"]
+    return (item.get("state")=="MA" and item.get("race_ids")==["House|MA-01","House|MA-02","House|MA-03","House|MA-04","House|MA-05","House|MA-06","House|MA-07","House|MA-08","House|MA-09"]
             and item.get("url")=="https://www.sec.state.ma.us/divisions/elections/research-and-statistics/2026-state-election-candidates.htm" and item.get("source_reference")==item.get("url")
             and item.get("reference_role")=="official_candidate_identity_results_unverified"
             and item.get("mode")=="candidate_identity_reference_results_unverified"
@@ -133,7 +148,7 @@ class OfficialBackstopsTests(unittest.TestCase):
         self.assertTrue(expected.issubset(set(ids)),
                         "Every active gap has a qualified manual race reference; previews are not Results routes")
         for row in pages:
-            if _qualified_ma04_candidate_guide(row):
+            if _qualified_ma04_candidate_guide(row) or _qualified_ma_house_candidate_guide(row,row.get("id")):
                 self.assertFalse(any(k in row for k in (
                  "winner","winner_call","reported_votes","result","forecast_probability")))
                 continue
@@ -272,7 +287,7 @@ class OfficialBackstopsTests(unittest.TestCase):
                              "provider_race_id","source_registry")))
 
     def test_ma04_has_exact_candidate_identity_references_not_results(self):
-        official=next(x for x in self.links["links"] if x.get("race_ids")==["House|MA-04"])
+        official=next(x for x in self.links["links"] if x.get("race_ids")==["House|MA-01","House|MA-02","House|MA-03","House|MA-04","House|MA-05","House|MA-06","House|MA-07","House|MA-08","House|MA-09"])
         guide=next(x for x in self.links["public_editorial_calls"]["race_pages"] if x["id"]=="House|MA-04")
         self.assertTrue(_qualified_ma04_official_candidate_reference(official))
         self.assertTrue(_qualified_ma04_candidate_guide(guide))
@@ -295,6 +310,28 @@ class OfficialBackstopsTests(unittest.TestCase):
                         {"source_reference":"https://www.sec.state.ma.us/"},
                         {"general_2026_results_verified":True},{"scope_note":"Official results"}):
             self.assertFalse(_qualified_ma04_official_candidate_reference({**official,**changes}))
+
+    def test_ma_house_candidate_family_is_finite_and_context_bound(self):
+        ids=["House|MA-01","House|MA-02","House|MA-03","House|MA-04","House|MA-05","House|MA-06","House|MA-07","House|MA-08","House|MA-09"]
+        evidence=json.loads((ROOT/"data/massachusetts_house_manual_reference_evidence.json").read_text())
+        self.assertEqual([row["id"] for row in evidence["races"]],ids)
+        self.assertIsNone(evidence["races"][0]["official_names_parties"][0]["party"])
+        official=next(row for row in self.links["links"] if row.get("race_ids")==ids)
+        self.assertTrue(_qualified_ma04_official_candidate_reference(official))
+        for i,race_id in enumerate(ids):
+            guide=next(row for row in self.links["public_editorial_calls"]["race_pages"] if row["id"]==race_id)
+            self.assertTrue(_qualified_ma_house_candidate_guide(guide,race_id))
+            wrong_id=ids[(i+1)%len(ids)]
+            self.assertFalse(_qualified_ma_house_candidate_guide(guide,wrong_id))
+            self.assertFalse(_qualified_ma_house_candidate_guide({**guide,"id":wrong_id},race_id))
+            for changes in ({"url":guide["url"]+"?results=1"},{"link_role":"results"},
+                            {"current_access_verified":True},{"results_link_verified":True},
+                            {"verification_scope":"native_results"},{"scope_note":"Results"}):
+                self.assertFalse(_qualified_ma_house_candidate_guide({**guide,**changes},race_id))
+        self.assertFalse(_qualified_ma_house_candidate_guide({**guide,"id":"House|MA-10"},"House|MA-10"))
+        self.assertFalse(_qualified_ma_house_candidate_guide(guide,None))
+        for bad_ids in (list(reversed(ids)),ids+["Senate|MA"],ids[:-1],[ids[0]]*9):
+            self.assertFalse(_qualified_ma04_official_candidate_reference({**official,"race_ids":bad_ids}))
 
     def test_links_cannot_masquerade_as_live_results(self):
         for item in self.links["links"]:
