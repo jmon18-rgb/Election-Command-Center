@@ -1,7 +1,7 @@
 {
   "schema": "official-wa03-collection-v1",
   "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a",
-  "fetched_at": "2026-11-04T05:37:03.261Z",
+  "fetched_at": "2026-11-04T06:34:07.450Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -19,8 +19,8 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-04T05:15:26.4179914Z",
-      "publishDate": "2026-11-04T05:20:26.9176002Z"
+      "asOf": "2026-11-04T05:53:00.2002061Z",
+      "publishDate": "2026-11-04T05:53:00.5482331Z"
     },
     "ballotItems": [
       {
@@ -46,7 +46,7 @@
         "reportingStatus": {
           "reportingUnits": 6,
           "totalUnits": 7,
-          "asOf": "2026-11-04T05:15:26.4179914Z",
+          "asOf": "2026-11-04T05:53:00.2002061Z",
           "reportingStatusDetails": null
         },
         "voteTotal": 260925,
@@ -174,7 +174,7 @@
       "reportingStatus": {
         "reportingUnits": 6,
         "totalUnits": 7,
-        "asOf": "2026-11-04T05:15:26.4179914Z",
+        "asOf": "2026-11-04T05:53:00.2002061Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
@@ -293,7 +293,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 0,
             "totalUnits": 375,
-            "asOf": "2026-11-04T05:15:26.4179946Z",
+            "asOf": "2026-11-04T05:53:00.2002091Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -439,7 +439,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 91,
             "totalUnits": 92,
-            "asOf": "2026-11-04T05:15:26.4179946Z",
+            "asOf": "2026-11-04T05:53:00.2002091Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -585,7 +585,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 106,
             "totalUnits": 106,
-            "asOf": "2026-11-04T05:15:26.4179946Z",
+            "asOf": "2026-11-04T05:53:00.2002091Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -731,7 +731,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 41,
             "totalUnits": 42,
-            "asOf": "2026-11-04T05:15:26.4179946Z",
+            "asOf": "2026-11-04T05:53:00.2002091Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -877,7 +877,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 23,
             "totalUnits": 23,
-            "asOf": "2026-11-04T05:15:26.4179946Z",
+            "asOf": "2026-11-04T05:53:00.2002091Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -1034,7 +1034,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 35,
             "totalUnits": 35,
-            "asOf": "2026-11-04T05:15:26.4179946Z",
+            "asOf": "2026-11-04T05:53:00.2002091Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -1180,7 +1180,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 11,
             "totalUnits": 11,
-            "asOf": "2026-11-04T05:15:26.4179946Z",
+            "asOf": "2026-11-04T05:53:00.2002091Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -1310,31 +1310,28 @@
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
   "cache_control": "public, max-age=60",
-  "request_to_body_ms": 131,
-  "original_response_sha256": "e712c5039d9a9fda5a0b6e8aa4033b553cd1c3310a6d5154f910588610fac131",
-  "observed_source_stamp": "2026-11-04T05:15:26.4179914Z",
+  "request_to_body_ms": 252,
+  "original_response_sha256": "b25fc6500e77685ffd9daef890756b67c314ca0ab3760189660bdca773b1ea0b",
+  "observed_source_stamp": "2026-11-04T05:53:00.2002061Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-04T05:15:26.4179914Z",
-  "source_published_at": "2026-11-04T05:20:26.9176002Z",
-  "selected_payload_sha256": "70c01dfda5c9c9b65cd9a7a1e9d2f3bec89387e3041edb723eb39feb95616d75",
+  "snapshot_updated_at": "2026-11-04T05:53:00.2002061Z",
+  "source_published_at": "2026-11-04T05:53:00.5482331Z",
+  "selected_payload_sha256": "91b46d06817d1da98d4315f98c95841677e1d7ee361bd05d5524d603dfb12099",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "official_remaining": {
     "schema": "official-wa-remaining-collection-v1",
     "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/stats",
     "fetched_at": "2026-11-04T05:38:05.149Z",
+    "rejected_at": "2026-11-04T06:34:07.723Z",
+    "receipt_kind": "PUBLISHER_VALIDATION_REJECTION",
     "status": "SOURCE_UNAVAILABLE",
     "payload": null,
-    "timing_scope": "Request-to-body only; not publication availability or comparative lag",
-    "http_status": 200,
-    "cache_control": "public, max-age=60",
-    "request_to_body_ms": 37,
-    "original_response_sha256": "0af7137b46dddfa3516cc7fb00feb6cebff65de07683d735ed1623235fe12a26",
-    "error": "Remaining county matrix/value drift"
+    "error": "Stale/future remaining collection"
   },
   "revision_watermark": {
-    "as_of": "2026-11-04T05:15:26.4179914Z",
-    "published_at": "2026-11-04T05:20:26.9176002Z"
+    "as_of": "2026-11-04T05:53:00.2002061Z",
+    "published_at": "2026-11-04T05:53:00.5482331Z"
   },
   "remaining_revision_watermark": {}
 }
