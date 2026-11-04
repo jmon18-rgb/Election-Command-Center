@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-04T06:11:00.856921Z",
+  "updated_at": "2026-11-04T07:29:51.225936Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 73
+    "advisory_related_headlines": 74
   },
   "advisory_related_headlines": [
     {
@@ -137,6 +137,18 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
+      "lead_id": "46a5fdfe356bd2f0c5a1",
+      "headline": "Voting continues in Richmond after threats reported at 3 polling places - WJLA",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
       "lead_id": "8bbb654bbd9b1dfd5c44",
       "headline": "The Phantom Voter Intimidation Threat - National Review",
       "possibly_related_articles": 2,
@@ -241,19 +253,6 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "0ec4ca3d430d5c57718e",
-      "headline": "Over 40% of names on DOJ list of alleged noncitizens are not on Calif. voter rolls, analysis finds - NanaimoNewsNOW",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -267,6 +266,23 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "777d156e0e4db964fa61",
+      "title": "Civil rights groups sue Trump over executive order requiring citizenship proof in registering to vote - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOdEVkVXpKUV9GYTgyVElDRkVmamlMLVgwMlo0TEprZENFanlaaUFmdV9LQzRWY0VscE1zd2NsWHVPaWVBYkJCZE5oTzkzQlh3aHVkeXhEV3ZoSFlmMEsxM0g1NWhRV3pTRzBJYXBBcWpkeG15UktDWWRvN2hONnV4Q0JPcG82cGlVWDZvcTltNnhmWUZfVlFKdEVNVnNPZ9IBowFBVV95cUxQT2JJNEw0TXRCSnItU3A0djdVVWN1dHVRVXBuNDBReG1fanBsV1dCNmZvekczV0c1SEhJYU9BS3E1SW5pVmxYSzZpSTdIVEtUNkFZR0ZzMlhPbVRFWVQwTHNIZWNNeGdEcWN0d3B0dWowaG5rbkczOUk4VWYyWG1wTHEta0QzbFNpbURzT3VNSHhzdVFtQ1BPaTRiRWdwOURkaC00?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-04T02:49:42Z",
+      "detected_at": "2026-11-04T07:29:51.225936Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -401,6 +417,26 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "717e4055bd07ea943c5f",
+      "title": "Voting continues in Richmond after threats reported at 3 polling places - WJLA",
+      "url": "https://news.google.com/rss/articles/CBMinwJBVV95cUxPT1AtdTh4elozN2w0ZDg3RDJ2aXRJcjhacVpjZmIySEFlTVBFYXNTTy1oZHA2X0xUUFBmVm5RM2JYVzlUbVBVT29pNm0zaW1QQXRSb3BYQTNUWVlPQ296a1dpRVh5MDhxSXVjYjVTQWdYWjY3NmxrRUxmaXJJY3k5Sm05UmR5SGI0UmhqQzRZbm91b0dMdUpDTDg1a0p5Q3M5Q083SzhIQkx2d25SdkhOTGxLbnFRWWVPZm1KV2JPRmh3TGxKUVlIa1BIdVY2eS0tdl9CMktkazNhODFjSWhmSGxrTkM3LS1tdHp6ejZ1WHJJT3lxS3JCREV3eVllZjZqRGJlZDVjUUZmSzZ4TFAyUnZZTnQtSmcyQUhqbUJwSQ?oc=5",
+      "publisher": "WJLA",
+      "published_at": "2026-11-04T00:11:30Z",
+      "detected_at": "2026-11-04T07:29:51.225936Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5107,43 +5143,6 @@
         "ballot_access"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "baa075c26cb40f0ae67e",
-      "title": "Bob Ferguson Trashed ICE All Year. Now He Wants Troops at Drop Boxes. - Seattle Red",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxONDBSMnVNZm93RHdHSGhfQmtwdnNvT0JMZlNKNTV0SjBMMWp2MFNTU3lrb0dPb0V3TUlBVUZfOUd2WkltTGpPaTZBQ0ZUS3FUcG56czY0ZE9BNW40S0dScktzaU01ZjR4S1FuTkl2QjJtb0I5V28tcHh3TmpqV0NhSUdaU3lvcW16cV9ZNG5sZl9yZzUtYXZVNDhZcE80X1ZSVTBubXZUci1PNjBvdEtDbzVyLW11WVhiaTUwZFJySGFrdkdFZkI2bjVsNVlndw?oc=5",
-      "publisher": "Seattle Red",
-      "published_at": "2026-10-26T16:35:00Z",
-      "detected_at": "2026-10-26T17:47:40.963885Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "871d9f2e0372c847b00d",
-      "title": "Trump admin asks WA to set aside 400 ballots from suspected noncitizens - FOX 13 Seattle",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE54aUFRTWNDVUJhUDBnR2xtZHIzVHNodV8xVXFNMGh4VnlpcUtCWUF1VnlNdGVvUU5vdHdiM3FUVnB5c1dnV0I3ekVwV0xRNHc1QmtuTHlZNFBxaEJDNWR5N3QtQnQ5T0toc3NGUDVhYXNlVjF1a21qVVUyU01HU3PSAYQBQVVfeXFMUHY2TVM1TVJGWEZDck1yYnY1SFExakdvVWpHOXBVMTk1ZF9WQUFTVmNlX19vZ0J2Q09oMEtRM2d0S0Vxb2c0YjRiakJRMHVzaTFOXzByX3ROU1RqeHJDZXIxcjljVHFuaTJpQ0pJVFptbURSWmZnTERuX0pqcEp4OXZleXUz?oc=5",
-      "publisher": "FOX 13 Seattle",
-      "published_at": "2026-10-26T15:52:11Z",
-      "detected_at": "2026-10-27T02:53:36.865653Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [
-        "400 ballots",
-        "13 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
