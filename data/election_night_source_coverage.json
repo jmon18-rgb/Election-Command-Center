@@ -1,6 +1,6 @@
 {
   "election": "2026-11-03",
-  "generated_at": "2026-11-04T01:53:50.979063+00:00",
+  "generated_at": "2026-11-04T02:00:33.570858+00:00",
   "methodology": {
     "calls": "No licensed professional call provider or verified control attribution in this ledger",
     "house_probe": "Rotating sampled exact 2026 district discovery; 24-hour 'recent' does not guarantee Election Night data",
@@ -537,11 +537,11 @@
         "reason": "DETAIL_CONTRACT_REJECTED",
         "status": "INVALID_DETAIL"
       },
-      "latest_preflight_outcome": "not_checked",
+      "latest_preflight_outcome": "failure",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "not_checked",
+      "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "NOT_RECENTLY_CHECKED",
@@ -7327,11 +7327,11 @@
         "reason": "TimeoutError",
         "status": "TEMPORARY_UPSTREAM_FAILURE"
       },
-      "latest_preflight_outcome": "failure",
+      "latest_preflight_outcome": "not_checked",
       "live_votes_verified_by_audit": false,
       "office": "House",
       "pinned_civicapi_id": null,
-      "preflight_scope": "sampled_house_probe",
+      "preflight_scope": "not_checked",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
       "recent_probe_status": "TEMPORARY_UPSTREAM_FAILURE",
@@ -8924,10 +8924,10 @@
       "id": "House|WY-00",
       "key": "WY-00",
       "last_probe": {
-        "checked_window_utc": "2026-11-01T18:00:00+00:00",
+        "checked_window_utc": "2026-11-04T01:30:00+00:00",
         "race_id": null,
-        "reason": null,
-        "status": "NOT_INDEXED"
+        "reason": "HTTP_502",
+        "status": "TEMPORARY_UPSTREAM_FAILURE"
       },
       "latest_preflight_outcome": "failure",
       "live_votes_verified_by_audit": false,
@@ -8936,7 +8936,7 @@
       "preflight_scope": "sampled_house_probe",
       "professional_winner_call_verified_by_audit": false,
       "provider_scope": "outside primary",
-      "recent_probe_status": "NOT_RECENTLY_CHECKED",
+      "recent_probe_status": "TEMPORARY_UPSTREAM_FAILURE",
       "source_identity_status": "NO_CURATED_PROVIDER_ID",
       "source_registry": null,
       "state": "WY",
@@ -9195,7 +9195,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": null,
-        "checked_window_utc": "2026-11-04T01:52:32.029752+00:00",
+        "checked_window_utc": "2026-11-04T01:59:49.724614+00:00",
         "race_id": null,
         "status": "PROVIDER_UNAVAILABLE"
       },
@@ -9274,7 +9274,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": null,
-        "checked_window_utc": "2026-11-04T01:52:32.029752+00:00",
+        "checked_window_utc": "2026-11-04T01:59:49.724614+00:00",
         "race_id": null,
         "status": "PROVIDER_UNAVAILABLE"
       },
@@ -9767,7 +9767,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": null,
-        "checked_window_utc": "2026-11-04T01:52:32.029752+00:00",
+        "checked_window_utc": "2026-11-04T01:59:49.724614+00:00",
         "race_id": null,
         "status": "PROVIDER_UNAVAILABLE"
       },
@@ -10062,7 +10062,7 @@
       "statewide_probe_advisory": {
         "advisory_only_not_approved": true,
         "candidate_count": null,
-        "checked_window_utc": "2026-11-04T01:52:32.029752+00:00",
+        "checked_window_utc": "2026-11-04T01:59:49.724614+00:00",
         "race_id": null,
         "status": "PROVIDER_UNAVAILABLE"
       },
@@ -10267,12 +10267,12 @@
       "scoped_secondary": 0,
       "total": 435,
       "unresolved_breakdown": {
-        "checked_not_indexed": 2,
+        "checked_not_indexed": 1,
         "expired_exact_identity": 0,
         "invalid_or_ambiguous": 32,
         "never_checked": 0,
         "skipped_due_to_upstream_pause": 0,
-        "temporary_upstream_failure": 17
+        "temporary_upstream_failure": 18
       },
       "unresolved_source_gaps": 51,
       "verified_usable_id_hints": 168
