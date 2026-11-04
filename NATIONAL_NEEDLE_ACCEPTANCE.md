@@ -592,3 +592,8 @@ Checkpoint handling: append-only local seven-document proof, carry with the next
 PR550 leaves the three numerical sources, production 3000 draws, hard ESS threshold, 30-second limit, RNG and state budgets unchanged. One fresh original 13-check coherence run used 109 inputs pinned to current 8ada Git, one prepare/simulate and fixed seed 20261103 with no_credit. This is current local coherence, not calibration or current browser numerical equality.
 
 KY-06, IN-05 and Florida Senate still lack matched county packages. Valid fresh totals remain raw returns and cannot supply county overperformance or national transfer. Authentic independent chronological whole-election heldouts remain zero; accuracy, coverage, Brier, log-loss, paired skill and national transfer remain NULL/NOT_ESTIMABLE. See the canonical PR550 outcome; no model or source-admission scope was expanded.
+
+
+### Verified PR551 checkpoint — November 3, 2026
+
+PR551 adds 28 poll provenance records (24 question-level and four declared-date-only), nine qualified source summaries and two candidate metadata facts. No new complete county, matched or evaluation package was admitted. The frozen poll snapshot is exact CRLF serialization of Git311/489 LF data; current selected-row proof has 19 exact rows and nine bounded first_seen collection-clock differences, without whole-input/model equality. Current paired metadata has 169 optional hints and 51 identity gaps; 50 have manual pairs and MA-04 remains open. MI/MN/MS/AK county and KY06/IN05/FL-SEN matched packages remain missing. Heldouts are zero and validation metrics remain NULL/NOT_ESTIMABLE; production 3,000 draws, hard ESS, 30-second budget, RNG and numerical sources are unchanged.

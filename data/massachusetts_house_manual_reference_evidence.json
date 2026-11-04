@@ -1,0 +1,249 @@
+{
+  "schema": "ma-house-finite-nine-candidate-identity-reference-evidence-v1",
+  "election_date": "2026-11-03",
+  "observed_UTC_date": "2026-11-03",
+  "scope": "Finite nine Massachusetts House candidate-identity references only; not results, a vote feed, winner calls, native machine IDs or rights. Reader renderings do not authenticate native body/current access/earliest availability. Candidate addresses deliberately omitted. Name variants are manual context only, never a machine vote/candidate join.",
+  "official": {
+    "url": "https://www.sec.state.ma.us/divisions/elections/research-and-statistics/2026-state-election-candidates.htm",
+    "reader": "turn659view1",
+    "title_coordinates": "L111 2026 title;L211 Representative in Congress",
+    "native_HTTP_status": null,
+    "native_original_body_owned": false,
+    "results_verified": false
+  },
+  "newsroom": {
+    "url": "https://www.wbur.org/news/2026/10/14/massachusetts-how-to-vote-deadlines-mail-in-early",
+    "reader": "turn661view0",
+    "title_coordinates": "L68 2026 general guide;L82 Nov3;L144–153 federal section",
+    "native_HTTP_status": null,
+    "native_original_body_owned": false,
+    "results_verified": false,
+    "discovery_chain": [
+      "https://apps.npr.org/2026-election-results/",
+      "https://apps.npr.org/2026-election-results/massachusetts.html"
+    ]
+  },
+  "races": [
+    {
+      "id": "House|MA-01",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L213–217",
+      "official_names_parties": [
+        {
+          "name": "Richard E. Neal",
+          "party": null
+        },
+        {
+          "name": "Nadia Donya Milleron",
+          "party": "Independent/Unenrolled"
+        }
+      ],
+      "official_party_null_meaning": "Not stated on returned candidate line",
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L147",
+      "newsroom_candidate_names": [
+        "Richard Neal",
+        "Nadia Milleron"
+      ],
+      "guide_describes_uncontested": false,
+      "uncontested_is_not_a_winner_call": true
+    },
+    {
+      "id": "House|MA-02",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L219–221",
+      "official_names_parties": [
+        {
+          "name": "James P. McGovern",
+          "party": "Democratic"
+        }
+      ],
+      "official_party_null_meaning": null,
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L153",
+      "newsroom_candidate_names": [
+        "Jim McGovern"
+      ],
+      "guide_describes_uncontested": true,
+      "uncontested_is_not_a_winner_call": true
+    },
+    {
+      "id": "House|MA-03",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L222–228",
+      "official_names_parties": [
+        {
+          "name": "Lori Loureiro Trahan",
+          "party": "Democratic"
+        },
+        {
+          "name": "Gary J. Grossi",
+          "party": "Republican"
+        },
+        {
+          "name": "Dennis R. Conlon",
+          "party": "Unenrolled"
+        }
+      ],
+      "official_party_null_meaning": null,
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L148",
+      "newsroom_candidate_names": [
+        "Lori Trahan",
+        "Gary Grossi",
+        "Dennis Conlon"
+      ],
+      "guide_describes_uncontested": false,
+      "uncontested_is_not_a_winner_call": true
+    },
+    {
+      "id": "House|MA-04",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L230–234",
+      "official_names_parties": [
+        {
+          "name": "Jake Auchincloss",
+          "party": "Democratic"
+        },
+        {
+          "name": "Thomas Stalcup",
+          "party": "Republican"
+        }
+      ],
+      "official_party_null_meaning": null,
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L149",
+      "newsroom_candidate_names": [
+        "Jake Auchincloss",
+        "Thomas Stalcup"
+      ],
+      "guide_describes_uncontested": false,
+      "uncontested_is_not_a_winner_call": true
+    },
+    {
+      "id": "House|MA-05",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L236–238",
+      "official_names_parties": [
+        {
+          "name": "Katherine M. Clark",
+          "party": "Democratic"
+        }
+      ],
+      "official_party_null_meaning": null,
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L153",
+      "newsroom_candidate_names": [
+        "Katherine Clark"
+      ],
+      "guide_describes_uncontested": true,
+      "uncontested_is_not_a_winner_call": true
+    },
+    {
+      "id": "House|MA-06",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L239–243",
+      "official_names_parties": [
+        {
+          "name": "Micah Quinney Jones",
+          "party": "Republican"
+        },
+        {
+          "name": "Dan Koh",
+          "party": "Democratic"
+        }
+      ],
+      "official_party_null_meaning": null,
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L150",
+      "newsroom_candidate_names": [
+        "Micah Jones",
+        "Dan Koh"
+      ],
+      "guide_describes_uncontested": false,
+      "uncontested_is_not_a_winner_call": true
+    },
+    {
+      "id": "House|MA-07",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L245–247",
+      "official_names_parties": [
+        {
+          "name": "Ayanna S. Pressley",
+          "party": "Democratic"
+        }
+      ],
+      "official_party_null_meaning": null,
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L153",
+      "newsroom_candidate_names": [
+        "Ayanna Pressley"
+      ],
+      "guide_describes_uncontested": true,
+      "uncontested_is_not_a_winner_call": true
+    },
+    {
+      "id": "House|MA-08",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L249–255",
+      "official_names_parties": [
+        {
+          "name": "Stephen F. Lynch",
+          "party": "Democratic"
+        },
+        {
+          "name": "Robert G. Burke",
+          "party": "Republican"
+        },
+        {
+          "name": "Rasheed Nicholas Walters",
+          "party": "Independent"
+        }
+      ],
+      "official_party_null_meaning": null,
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L151",
+      "newsroom_candidate_names": [
+        "Stephen Lynch",
+        "Robert Burke",
+        "Rasheed Walters"
+      ],
+      "guide_describes_uncontested": false,
+      "uncontested_is_not_a_winner_call": true
+    },
+    {
+      "id": "House|MA-09",
+      "official_reader": "turn659view1",
+      "official_coordinates": "L256–260",
+      "official_names_parties": [
+        {
+          "name": "Bill Keating",
+          "party": "Democratic"
+        },
+        {
+          "name": "R. Tyler Macallister",
+          "party": "Republican"
+        }
+      ],
+      "official_party_null_meaning": null,
+      "newsroom_reader": "turn661view0",
+      "newsroom_coordinates": "L152",
+      "newsroom_candidate_names": [
+        "Bill Keating",
+        "R. Tyler Macallister"
+      ],
+      "guide_describes_uncontested": false,
+      "uncontested_is_not_a_winner_call": true
+    }
+  ],
+  "existing_29_original_official_rows_preserved": true,
+  "existing_146_newsroom_rows_including_MA04_preserved": true,
+  "existing_MA_Senate_certification_row_preserved": true,
+  "MA04_single_race_evidence_retained_as_historical_reader_scope": true,
+  "automatic_vote_ingestion_authorized": false,
+  "automated_call_authorized": false,
+  "native_results_machine_identifier_verified": false,
+  "rights_or_license_grant_claimed": false,
+  "county_results_complete_or_matched_claimed": false,
+  "new_provider_or_source_requests": 0
+}

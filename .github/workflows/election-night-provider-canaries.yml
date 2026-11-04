@@ -5,6 +5,9 @@ on:
     paths:
       - 'scripts/preflight_election_night_providers.py'
       - 'scripts/test_preflight_election_night_providers.py'
+      - 'scripts/openamerica_primary_identity.py'
+      - 'scripts/test_openamerica_primary_identity.py'
+      - 'scripts/fixtures/openamerica_2026_senate_identity.synthetic.json'
       - 'scripts/national_results_coverage_pulse.py'
       - 'scripts/test_national_results_coverage_pulse.py'
       - '.github/workflows/election-night-provider-canaries.yml'
@@ -30,6 +33,7 @@ jobs:
           python3 -m py_compile scripts/preflight_election_night_providers.py
           python3 scripts/test_preflight_election_night_providers.py
           python3 scripts/test_national_results_coverage_pulse.py
+          python3 scripts/test_openamerica_primary_identity.py
   public-endpoint-probes:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: offline-contract

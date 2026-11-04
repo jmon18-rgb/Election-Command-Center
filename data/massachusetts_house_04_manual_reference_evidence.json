@@ -1,0 +1,57 @@
+{
+  "schema": "ma04-manual-candidate-identity-reference-evidence-v1",
+  "id": "House|MA-04",
+  "election_date": "2026-11-03",
+  "observed_UTC_date": "2026-11-03",
+  "scope": "Two human candidate-identity references only, not results or a source-feed replacement. Reader rendering success does not authenticate native HTTP bodies, current native page access, earliest publication or reuse rights.",
+  "official": {
+    "url": "https://www.sec.state.ma.us/divisions/elections/research-and-statistics/2026-state-election-candidates.htm",
+    "reader": "turn659view1",
+    "coordinates": "L111 current2026title;L211 Representative in Congress;L230–234 Fourth District/candidates",
+    "names_parties": [
+      {
+        "name": "Jake Auchincloss",
+        "party": "Democratic"
+      },
+      {
+        "name": "Thomas Stalcup",
+        "party": "Republican"
+      }
+    ],
+    "source_URL_discovery": "Actual primary official search result turn657search0; first reader turn658view0; cached same-document section turn659view1",
+    "results_verified": false,
+    "native_HTTP_status": null,
+    "native_original_body_owned": false
+  },
+  "newsroom": {
+    "url": "https://www.wbur.org/news/2026/10/14/massachusetts-how-to-vote-deadlines-mail-in-early",
+    "reader": "turn661view0",
+    "coordinates": "L68 guide2026general title;L82 November3;L144–149 federal House and FourthDistrict matchup",
+    "discovery_chain": [
+      {
+        "url": "https://apps.npr.org/2026-election-results/",
+        "reader": "turn659view0",
+        "link": 23,
+        "label": "Massachusetts"
+      },
+      {
+        "url": "https://apps.npr.org/2026-election-results/massachusetts.html",
+        "reader": "turn660view0",
+        "link": 59,
+        "label": "Greater Boston/Massachusetts voter guide from WBUR"
+      }
+    ],
+    "candidate_guide_identity_only": true,
+    "results_verified": false,
+    "native_HTTP_status": null,
+    "native_original_body_owned": false
+  },
+  "existing_MA_Senate_certification_row_preserved": true,
+  "old_145_newsroom_rows_preserved": true,
+  "automatic_vote_ingestion_authorized": false,
+  "automated_call_authorized": false,
+  "native_results_machine_identifier_verified": false,
+  "rights_or_license_grant_claimed": false,
+  "county_results_complete_or_matched_claimed": false,
+  "no_DDHQ_civicAPI_provider_or_stopped_target_requests": true
+}

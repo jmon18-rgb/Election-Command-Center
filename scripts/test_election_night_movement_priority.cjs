@@ -32,7 +32,9 @@ function extract(s,a,b){const i=s.indexOf('\n'+a),j=s.indexOf('\n'+b,i+1);assert
 const movement=extract(html,'// Display-only movement order.','function enCurrentRaces('),legacy=extract(base,'function enRenderMovement(','function enCurrentRaces(');
 const producer=extract(html,'function enCompareSnapshots(','/* Browser-local interruption recovery:');
 const rawCSV=extract(html,'function enBuildActivityCsv(','function enRenderExportControls(');
-for(const [a,b]of [['function enCompareSnapshots(','/* Browser-local interruption recovery:'],['function enResumeMovementValid(','function enSnapshotCompatible('],['function enBuildActivityCsv(','function enRenderExportControls(']])assert.equal(extract(html,a,b),extract(base,a,b));
+const primaryIdentityResumeHook="  for(const office of ['House','Senate','Governor'])if(Object.hasOwn(doc.snapshots,office))\n   doc.snapshots[office]=window.ElectionNightOpenAmericaTransport.normalizePrimarySource(doc.snapshots[office],enFetchUrl(2026,office));\n";
+assert.equal(html.split(primaryIdentityResumeHook).length-1,1,'Only the finite primary identity resume migration hook may differ from the retained block');
+for(const [a,b]of [['function enCompareSnapshots(','/* Browser-local interruption recovery:'],['function enResumeMovementValid(','function enSnapshotCompatible('],['function enBuildActivityCsv(','function enRenderExportControls(']])assert.equal(extract(html,a,b).replace(primaryIdentityResumeHook,''),extract(base,a,b));
 const shared=[
  extract(html,'function enHouseSourceItem(','function enLiveRaceItem('),
  extract(html,'function enWatchId(','function enWatchLoad('),

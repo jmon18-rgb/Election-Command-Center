@@ -32,6 +32,26 @@
    typeof row.scope_note==='string'&&['Results link not verified','current page access not verified',
     'no live results or calls verified','not a vote feed'].every(text=>row.scope_note.includes(text));
  }
+ function qualifiedMA04Guide(row){
+  return row?.id==='House|MA-04'&&row.url==='https://www.wbur.org/news/2026/10/14/massachusetts-how-to-vote-deadlines-mail-in-early'&&
+   row.link_role==='candidate_guide_not_results'&&
+   row.verification_scope==='publisher_reader_candidate_identity_only'&&
+   row.source_reference===row.url&&row.results_link_verified===false&&
+   row.current_access_verified===false&&row.current_access_status==='UNKNOWN_NOT_VERIFIED'&&
+   typeof row.scope_note==='string'&&['Candidate identities only','results not verified',
+    'current native page access not verified','no live results or calls verified','not a vote feed']
+    .every(text=>row.scope_note.includes(text));
+ }
+ function qualifiedMAHouseGuide(row,expectedId){
+  return ['House|MA-01','House|MA-02','House|MA-03','House|MA-04','House|MA-05','House|MA-06','House|MA-07','House|MA-08','House|MA-09'].includes(expectedId)&&row?.id===expectedId&&
+   row.url==='https://www.wbur.org/news/2026/10/14/massachusetts-how-to-vote-deadlines-mail-in-early'&&row.link_role==='candidate_guide_not_results'&&
+   row.verification_scope==='publisher_reader_candidate_identity_only'&&
+   row.source_reference===row.url&&row.results_link_verified===false&&
+   row.current_access_verified===false&&row.current_access_status==='UNKNOWN_NOT_VERIFIED'&&
+   typeof row.scope_note==='string'&&['Candidate identities only','results not verified',
+    'current native page access not verified','no live results or calls verified','not a vote feed']
+    .every(text=>row.scope_note.includes(text));
+ }
  function supplementalState(race,{error=false,providerBlocked=false,
    cached=false,usable=false,pending=false,attempted=false}={}){
   const known=race?.source_identity_status==='PINNED_PREVIOUSLY_VERIFIED_ID'||
@@ -327,6 +347,7 @@
    november_2026_results_not_yet_published:' · 2026 returns NOT YET published',
    county_results_directory_only:' · county links ONLY; NO statewide Election Night results',
    post_election_results_landing:' · may publish only after reporting',
+   candidate_identity_reference_results_unverified:' · candidate identities ONLY; NOT results or calls',
    results_landing_timing_unconfirmed:' · Election Night timing unconfirmed'
   };
   const attention=pulse.gapAttention;
@@ -339,7 +360,7 @@
      editorialChecks.race_pages:null;
    if(!Array.isArray(pages))return null;
    const matches=pages.filter(x=>x?.id===id&&typeof x.url==='string'&&
-    (qualifiedPreview(x)||!Object.hasOwn(x,'link_role')&&
+    (qualifiedMA04Guide(x)||qualifiedMAHouseGuide(x,id)||qualifiedPreview(x)||!Object.hasOwn(x,'link_role')&&
      /^https:\/\/votes\.decisiondeskhq\.com\/races\/2026-11-03\/[a-z0-9-]+-general-election(?:\/results)?$/.test(x.url)));
    return matches.length===1?matches[0]:null;
   };
@@ -368,7 +389,7 @@
     }else elt('span',' · no curated official fallback for this race',line);
     const newsroom=callLink(race.id);
     if(newsroom){
-     const a=elt('a',qualifiedPreview(newsroom)?' · DDHQ preview (results unverified) ↗':' · Manual DDHQ race page ↗',line);
+     const a=elt('a',(qualifiedMA04Guide(newsroom)||qualifiedMAHouseGuide(newsroom,race.id))?' · WBUR candidate guide (results unverified) ↗':qualifiedPreview(newsroom)?' · DDHQ preview (results unverified) ↗':' · Manual DDHQ race page ↗',line);
      a.href=newsroom.url;a.target='_blank';a.rel='noopener noreferrer';
      if(newsroom.scope_note)a.title=newsroom.scope_note;
      elt('span',' · editorial reference only; verify an explicit race call, not a forecast',line);
@@ -409,7 +430,7 @@
     }
     const newsroom=callLink(race.id);
     if(newsroom){
-     const a=elt('a',qualifiedPreview(newsroom)?' · DDHQ preview (results unverified) ↗':' · DDHQ free race results / call ↗',line);
+     const a=elt('a',(qualifiedMA04Guide(newsroom)||qualifiedMAHouseGuide(newsroom,race.id))?' · WBUR candidate guide (results unverified) ↗':qualifiedPreview(newsroom)?' · DDHQ preview (results unverified) ↗':' · DDHQ free race results / call ↗',line);
      a.href=newsroom.url;a.target='_blank';a.rel='noopener noreferrer';
      if(newsroom.scope_note)a.title=newsroom.scope_note;
     }

@@ -16,6 +16,7 @@ from monitor_election_night_upstream_soak import approved_primary_contests
 import urllib.error
 import urllib.request
 from election_night_source_origin_guard import require_exact_response_url
+from openamerica_primary_identity import normalize_primary_source
 
 PRIMARY = "https://openamerica.io/elections/results.json?year=2026&office={office}"
 # Supplemental source URLs must come from the verified 506-race registry,
@@ -111,7 +112,7 @@ def fetch_json(url):
         body=response.read(2_000_001)
         if len(body)>2_000_000:
             raise ValueError("Source JSON exceeds bounded fetch budget")
-        return json.loads(body.decode("utf-8"))
+        return normalize_primary_source(json.loads(body.decode("utf-8")),url)
 
 
 def run_probes(now, coverage_ledger=None):

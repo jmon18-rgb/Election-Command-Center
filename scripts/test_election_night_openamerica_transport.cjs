@@ -1,7 +1,99 @@
 const assert=require('node:assert/strict');
-const {create}=require('./election_night_openamerica_transport');
+const {create,normalizePrimarySource}=require('./election_night_openamerica_transport');
 const H='https://openamerica.io/elections/results.json?year=2026&office=House';
 const S='https://openamerica.io/elections/results.json?year=2026&office=Senate';
+async function normalizationCases(){
+ const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+ const fixture=require('./fixtures/openamerica_2026_senate_identity.synthetic.json');
+ assert.match(fixture.label,/FICTIONAL/);
+ const raw=structuredClone(fixture.document),original=JSON.stringify(raw),normalized=normalizePrimarySource(raw,S);
+ assert.equal(JSON.stringify(raw),original,'Do not mutate even the wire-key input');
+ assert.deepEqual(Object.keys(normalized),Object.keys(raw),'All top-level keys and order retained');
+ assert.deepEqual(Object.keys(normalized.races),fixture.normalized_order,'Replace key in its original property position');
+ assert.strictEqual(normalized.races['FL-special'],raw.races.FL,'Preserve exact race object');
+ assert.strictEqual(normalized.counts,raw.counts);
+ assert.strictEqual(normalized.races.AR,raw.races.AR);
+ assert.strictEqual(normalized.races.VA,raw.races.VA);
+ const expected={...raw,races:Object.fromEntries(Object.entries(raw.races).map(([k,r])=>[k==='FL'?'FL-special':k,r]))};
+ assert.deepEqual(normalized,expected,'No field/value removal, conversion or invention');
+ assert.strictEqual(normalizePrimarySource(normalized,S),normalized,'Canonical input is idempotent no-op');
+ for(const url of [H,S+'&extra=1',S.replace('https:','http:'),S.replace('openamerica.io','example.org'),S.replace('2026','2024')])
+  assert.strictEqual(normalizePrimarySource(raw,url),raw,'Unknown URL cannot authorize alias');
+ for(const changes of [{api:2},{api:true},{year:2024},{year:'2026'},{office:'House'},{source:''},{source:'unknown'}]){
+  const wrong={...raw,...changes};assert.strictEqual(normalizePrimarySource(wrong,S),wrong,'Wrong scope cannot authorize alias');
+ }
+ for(const flags of [{is_test:true},{test:true},{mock:true},{is_mock:true},{active:false},{live:false},{stale:true},{counting:false},{final:true}]){
+  const marked={...raw,...flags},mapped=normalizePrimarySource(marked,S);
+  for(const [key,value]of Object.entries(flags))assert.strictEqual(mapped[key],value,'Never sanitize admission flag '+key);
+ }
+ for(const mutate of [
+  x=>x.races.FL.cands.pop(),
+  x=>x.races.FL.cands.push({...x.races.FL.cands[0]}),
+  x=>x.races.FL.cands[0].n='Unknown candidate',
+  x=>x.races.FL.cands[0].p='R',
+  x=>x.races.FL.cands[1]={...x.races.FL.cands[0]},
+  x=>x.races.FL.cands[0].n=' '+x.races.FL.cands[0].n
+ ]){
+  const bad=structuredClone(raw);mutate(bad);const bytes=JSON.stringify(bad);
+  assert.throws(()=>normalizePrimarySource(bad,S),/wire candidate roster/);assert.equal(JSON.stringify(bad),bytes);
+ }
+ const collision=structuredClone(raw);collision.races['FL-special']=structuredClone(collision.races.FL);
+ assert.throws(()=>normalizePrimarySource(collision,S),/Ambiguous/,'Even identical dual keys are ambiguous');
+ const reversed=structuredClone(raw);reversed.races.FL.cands.reverse();
+ assert.deepEqual(normalizePrimarySource(reversed,S).races['FL-special'].cands,reversed.races.FL.cands,'Roster set is order-independent; candidate order is not sorted');
+ let gets=0;
+ const reader=create(async url=>{gets++;return{ok:true,status:200,url,redirected:false,json:async()=>raw};});
+ const a=reader.load(S),b=reader.load(S);assert.strictEqual(a,b);
+ assert.deepEqual(await a,expected);assert.equal(gets,1,'Normalize shared response once without extra requests');
+ const unqualified=create(async url=>({ok:true,status:200,url,redirected:false,json:async()=>collision}));
+ await assert.rejects(unqualified.load(S),/Ambiguous/);assert.equal(unqualified.pending(),0);
+ // Fictional migration only, through the actual unchanged source/rollback guards.
+ const html=fs.readFileSync(path.join(__dirname,'../index.html'),'utf8');
+ const cut=(a,b)=>{const start=html.indexOf(a),end=html.indexOf(b,start+1);assert(start>=0&&end>start);return html.slice(start,end);};
+ const closes=require('./election_night_poll_closings_2026.js');
+ class FixtureDate extends Date{static now(){return Date.parse(fixture.observer_now);}}
+ const movements=Array.from({length:70},(_,i)=>({office:'Senate',key:'FL',prior:i,current:i+1,delta:1,at:fixture.document.as_of,fingerprint:'FICTIONAL-'+i}));
+ const positive=structuredClone(raw);positive.races.FL.total=120;positive.races.FL.cands[1].v=70;positive.races.FL.cands[2].v=50;
+ const envelope={schema_version:1,election:'2026-11-03',saved_at:fixture.observer_now,snapshots:{Senate:positive},movements};
+ let stored=JSON.stringify(envelope);const storedBefore=stored;
+ const initial={sentinel:'unchanged'};
+ const ctx={Date:FixtureDate,Set,Map,Object,JSON,Number,Array,Boolean,Math,
+  window:{ElectionNightPollClosings2026:closes,ElectionNightOpenAmericaTransport:{normalizePrimarySource}},
+  enRemoteBase:'https://openamerica.io/elections/results.json',
+  enSupportedStates:new Set('AR AZ CO CT FL GA IA ID IN LA MI MN NC PA RI SC TX UT VA VT WA WV'.split(' ')),
+  enResumeKey:'FICTIONAL_RESUME',enResumeWindowMs:72*60*60*1000,
+  localStorage:{getItem:()=>stored,setItem:()=>{throw Error('Restore must not write storage');}},
+  enOfficeSnapshots:initial,enMovements:[],enRestoredAt:null,enResumePendingOffices:new Set(),
+  enModeYear:2026,enOffice:'Senate',enData:null};
+ vm.createContext(ctx);
+ vm.runInContext(cut('function enElectionVotesAllowed(','function enCompareSnapshots(')+
+  cut('function enResumeMovementValid(','function enResumeSave(')+
+  cut('function enResumeRestore(','function enSnapshotCompatible(')+
+  cut('function enSnapshotCompatible(','function enAcceptSource(')+
+  cut('function enFetchUrl(','const enWatchRefreshPending='),ctx);
+ assert.equal(ctx.enResumeRestore(),true,'Old raw FL positive resume is normalized in local parsed copy before validation');
+ assert.equal(stored,storedBefore,'Raw browser-local saved envelope is not rewritten');
+ assert.deepEqual(Object.keys(ctx.enOfficeSnapshots.Senate.races),fixture.normalized_order);
+ assert.equal(JSON.stringify(ctx.enMovements),JSON.stringify(movements),'All70 historical movement keys/bytes/order retained');
+ assert.equal(ctx.enMovements[0].key,'FL','Historical raw wire movement remains historical');
+ assert.equal(ctx.enResumePendingOffices.has('Senate'),true,'Restored data remains pending fresh check');
+ const old=ctx.enOfficeSnapshots.Senate,nextRaw=structuredClone(positive);nextRaw.as_of='2026-11-04T01:10:00Z';nextRaw.races.FL.total=130;nextRaw.races.FL.cands[1].v=75;nextRaw.races.FL.cands[2].v=55;
+ const next=normalizePrimarySource(nextRaw,S);
+ assert.equal(ctx.enSnapshotCompatible(positive,next),false,'Unmigrated counted wire key cannot silently disappear');
+ assert.equal(ctx.enSnapshotCompatible(old,next),true,'Canonical migration preserves monotonic source continuity');
+ for(const mutate of [
+  x=>{x.races['FL-special'].total=119;},
+  x=>{x.races['FL-special'].cands[1].v=69;},
+  x=>{x.as_of=old.as_of;x.races.AR.total=1;x.races.AR.cands=[{n:'FICTIONAL ADDED',p:'D',v:1,pct:null}];}
+ ]){
+  const bad=structuredClone(next);mutate(bad);assert.equal(ctx.enSnapshotCompatible(old,bad),false,'Existing decrease/same-clock addition guard retained');
+ }
+ const badEnvelope=structuredClone(envelope);badEnvelope.snapshots.Senate.races.FL.cands[0].n='Unverified';
+ stored=JSON.stringify(badEnvelope);ctx.enOfficeSnapshots=initial;ctx.enMovements=movements;ctx.enResumePendingOffices=new Set();
+ assert.equal(ctx.enResumeRestore(),false,'Unqualified raw wire resume is refused atomically');
+ assert.strictEqual(ctx.enOfficeSnapshots,initial);assert.strictEqual(ctx.enMovements,movements);assert.equal(ctx.enResumePendingOffices.size,0);
+ console.log('Finite Florida Senate alias, unchanged flags/rows/order, no-mutation/collision and atomic pending-resume migration tests passed');
+}
 async function main(){
  const calls=[];
  let complete;
@@ -85,6 +177,7 @@ async function main(){
  assert.equal((await recovering.load(S)).office,'Senate');
  assert.equal(recovering.pending(),0);
  assert.throws(()=>create(fetch,{timeoutMs:0}),/Bounded/);
+ await normalizationCases();
  console.log('Open America conditional-cache, coalescing, timeout recovery and independent-office tests passed');
 }
 main().catch(e=>{console.error(e);process.exitCode=1});

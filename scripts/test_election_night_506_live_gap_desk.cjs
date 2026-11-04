@@ -267,15 +267,16 @@ const allEls=x=>[x,...x.children.flatMap(allEls)];
 const anchored=allEls(editorialHost).filter(x=>x.tag==='a');
 const ddhq=anchored.filter(x=>x.textContent.includes('DDHQ free race results / call'));
 const previews=anchored.filter(x=>x.textContent.includes('DDHQ preview (results unverified)'));
+const candidateGuides=anchored.filter(x=>x.textContent.includes('WBUR candidate guide (results unverified)'));
 assert.equal(ddhq.length,editorial.race_pages.filter(x=>
  policy.gapAttention.races.some(r=>r.id===x.id)&&!x.link_role).length,
  'Each base/result reference retains the original exact newsroom-page behavior');
-assert.equal(ddhq.length+previews.length,editorial.race_pages.filter(x=>
+assert.equal(ddhq.length+previews.length+candidateGuides.length,editorial.race_pages.filter(x=>
  policy.gapAttention.races.some(r=>r.id===x.id)).length,
  'Each unresolved race needs a manual reference; previews remain visibly distinct from Results routes');
 const targets=new Map(editorial.race_pages.map(x=>[x.id,x.url]));
 assert.equal(targets.size,editorial.race_pages.length);
-assert.deepEqual(new Set([...ddhq,...previews].map(a=>a.href)),new Set(
+assert.deepEqual(new Set([...ddhq,...previews,...candidateGuides].map(a=>a.href)),new Set(
  editorial.race_pages.filter(x=>policy.gapAttention.races.some(r=>r.id===x.id))
   .map(x=>x.url)));
 if(actualGapIds.includes('House|AL-07'))assert(ddhq.some(a=>a.href.endsWith('/alabama-us-house-7-general-election/results')),
@@ -539,3 +540,120 @@ for(const state of ['KY','NV']){
 const originalOfficial=official.links.find(row=>row.state==='AL');
 assert(renderOfficial([originalOfficial])[0].textContent.includes('official results'));
 console.log('Finite six search-only preview captions, qualification refusals and exact administrative-reference labels PASS');
+
+// A scheduled hint withdrawal changes input coverage, never vote/call authority.
+const ma04Official=official.links.find(row=>row.race_ids?.join('|')==='House|MA-01|House|MA-02|House|MA-03|House|MA-04|House|MA-05|House|MA-06|House|MA-07|House|MA-08|House|MA-09');
+const ma04Guide=editorial.race_pages.find(row=>row.id==='House|MA-04');
+assert(ma04Official&&ma04Guide);
+const ma04AfterLedger=structuredClone(ledger),ma04After=ma04AfterLedger.races.find(row=>row.id==='House|MA-04');
+assert(ma04After);ma04After.source_identity_status='NO_CURATED_PROVIDER_ID';
+ma04After.gap_status='UNRESOLVED_SOURCE_GAP';ma04After.verified_identity_hint_usable=false;
+const ma04BeforeLedger=structuredClone(ma04AfterLedger),ma04Before=ma04BeforeLedger.races.find(row=>row.id==='House|MA-04');
+ma04Before.gap_status='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED';ma04Before.verified_identity_hint_usable=true;
+const ma04BeforePulse=api.build(ma04BeforeLedger,res,state,now,{},modelForAttention);
+const ma04AfterPulse=api.build(ma04AfterLedger,res,state,now,{},modelForAttention);
+assert(!ma04BeforePulse.unverifiedMachineIds.some(row=>row.id==='House|MA-04'));
+assert(ma04AfterPulse.unverifiedMachineIds.some(row=>row.id==='House|MA-04'));
+assert.equal(ma04AfterPulse.unverifiedMachineIds.length,ma04BeforePulse.unverifiedMachineIds.length+1);
+assert.equal(ma04AfterPulse.totals.House.reported,ma04BeforePulse.totals.House.reported);
+assert.equal(ma04AfterPulse.professional_calls_verified,0);
+const ma04Scope={...ma04AfterPulse,
+ gapAttention:{...ma04AfterPulse.gapAttention,races:[ma04AfterPulse.gapAttention.races.find(row=>row.id==='House|MA-04')]},
+ operationalAttention:{...ma04AfterPulse.operationalAttention,races:[{id:'House|MA-04',mode:'ODDS_UNVERIFIED',sourceStatus:'SECONDARY_FAILED'}]}};
+const ma04Render=(entry,links=official.links)=>{const host=node('div');api.render(host,ma04Scope,{createElement:node},links,{...editorial,race_pages:entry?[entry]:[]});return host;};
+const ma04Old=ma04Render(null,official.links.filter(row=>row!==ma04Official));
+assert.equal(allEls(ma04Old).filter(row=>row.tag==='a'&&[ma04Official.url,ma04Guide.url].includes(row.href)).length,0,'Old catalog has no exact MA04 pair after hint loss');
+const ma04New=ma04Render(ma04Guide),ma04Guides=allEls(ma04New).filter(row=>row.tag==='a'&&row.textContent.includes('WBUR candidate guide (results unverified)'));
+assert.equal(ma04Guides.length,2,'Priority and recovery both show the qualified identity guide');
+const ma04AllOfficial=allEls(ma04New).filter(row=>row.tag==='a'&&row.href===ma04Official.url);
+assert.equal(ma04AllOfficial.length,2+ma04Scope.unverifiedMachineIds.filter(race=>race.office==='House'&&ma04Official.race_ids.includes(race.id)).length,'Exact priority/recovery links plus one directory link per current missing family ID');
+assert.deepEqual(ma04AllOfficial.filter(row=>/Manual official (?:page|reference)/.test(row.textContent)).map(row=>row.textContent).sort(),
+ [' · Manual official page ↗',' · Manual official reference ↗'].sort(),'Recovery and priority keep their exact official identity links');
+for(const anchor of ma04Guides){assert.equal(anchor.href,ma04Guide.url);assert.equal(anchor.title,ma04Guide.scope_note);assert.equal(anchor.target,'_blank');assert.equal(anchor.rel,'noopener noreferrer');}
+assert.match(flatten(ma04New),/candidate identities ONLY; NOT results or calls/);
+for(const changes of [{id:'House|MA-03'},{url:ma04Guide.url+'?results=1'},
+ {url:ma04Guide.url+'/'},{link_role:'results'},{source_reference:'https://www.wbur.org/'},
+ {results_link_verified:true},{current_access_verified:true},{current_access_status:'AVAILABLE'},
+ {verification_scope:'native_results'},{scope_note:'Results'}]){
+ assert.equal(allEls(ma04Render({...ma04Guide,...changes})).filter(row=>row.tag==='a'&&row.textContent.includes('WBUR candidate guide')).length,0,'Reject unsupported MA04 guide '+JSON.stringify(changes));
+}
+const ma04OfficialAnchors=renderOfficial([ma04Official]);assert.equal(ma04OfficialAnchors.length,1);
+assert(ma04OfficialAnchors[0].textContent.includes('official reference (results unverified)'));
+assert.equal(ma04OfficialAnchors[0].href,ma04Official.url);
+for(const changes of [{race_ids:['House|MA-03']},{race_ids:['House|MA-04','Senate|MA']},
+ {url:ma04Official.url+'?results=1'},{reference_role:'official_results'},
+ {source_reference:'https://www.sec.state.ma.us/'},{general_2026_results_verified:true},{scope_note:'Official results'}]){
+ assert.equal(renderOfficial([{...ma04Official,...changes}]).length,0,'Reject unsupported MA04 official reference '+JSON.stringify(changes));
+}
+console.log('MA04 changing hint loss, exact candidate-guide pair, visible limits and negative identity guards PASS');
+
+// Distinct MA05 hint loss is tested while retaining the entire original MA04 regression.
+// A scheduled hint withdrawal changes input coverage, never vote/call authority.
+const ma05Official=official.links.find(row=>row.race_ids?.join('|')==='House|MA-01|House|MA-02|House|MA-03|House|MA-04|House|MA-05|House|MA-06|House|MA-07|House|MA-08|House|MA-09');
+const ma05Guide=editorial.race_pages.find(row=>row.id==='House|MA-05');
+assert(ma05Official&&ma05Guide);
+const ma05AfterLedger=structuredClone(ledger),ma05After=ma05AfterLedger.races.find(row=>row.id==='House|MA-05');
+assert(ma05After);ma05After.source_identity_status='NO_CURATED_PROVIDER_ID';
+ma05After.gap_status='UNRESOLVED_SOURCE_GAP';ma05After.verified_identity_hint_usable=false;
+const ma05BeforeLedger=structuredClone(ma05AfterLedger),ma05Before=ma05BeforeLedger.races.find(row=>row.id==='House|MA-05');
+ma05Before.gap_status='RECENT_EXACT_PROBE_NOT_LIVE_VERIFIED';ma05Before.verified_identity_hint_usable=true;
+const ma05BeforePulse=api.build(ma05BeforeLedger,res,state,now,{},modelForAttention);
+const ma05AfterPulse=api.build(ma05AfterLedger,res,state,now,{},modelForAttention);
+assert(!ma05BeforePulse.unverifiedMachineIds.some(row=>row.id==='House|MA-05'));
+assert(ma05AfterPulse.unverifiedMachineIds.some(row=>row.id==='House|MA-05'));
+assert.equal(ma05AfterPulse.unverifiedMachineIds.length,ma05BeforePulse.unverifiedMachineIds.length+1);
+assert.equal(ma05AfterPulse.totals.House.reported,ma05BeforePulse.totals.House.reported);
+assert.equal(ma05AfterPulse.professional_calls_verified,0);
+const ma05Scope={...ma05AfterPulse,
+ gapAttention:{...ma05AfterPulse.gapAttention,races:[ma05AfterPulse.gapAttention.races.find(row=>row.id==='House|MA-05')]},
+ operationalAttention:{...ma05AfterPulse.operationalAttention,races:[{id:'House|MA-05',mode:'ODDS_UNVERIFIED',sourceStatus:'SECONDARY_FAILED'}]}};
+const ma05Render=(entry,links=official.links)=>{const host=node('div');api.render(host,ma05Scope,{createElement:node},links,{...editorial,race_pages:entry?[entry]:[]});return host;};
+const ma05Old=ma05Render(null,official.links.filter(row=>row!==ma05Official));
+assert.equal(allEls(ma05Old).filter(row=>row.tag==='a'&&[ma05Official.url,ma05Guide.url].includes(row.href)).length,0,'Old catalog has no exact MA05 pair after hint loss');
+const ma05New=ma05Render(ma05Guide),ma05Guides=allEls(ma05New).filter(row=>row.tag==='a'&&row.textContent.includes('WBUR candidate guide (results unverified)'));
+assert.equal(ma05Guides.length,2,'Priority and recovery both show the qualified identity guide');
+const ma05AllOfficial=allEls(ma05New).filter(row=>row.tag==='a'&&row.href===ma05Official.url);
+assert.equal(ma05AllOfficial.length,2+ma05Scope.unverifiedMachineIds.filter(race=>race.office==='House'&&ma05Official.race_ids.includes(race.id)).length,'Exact priority/recovery links plus one directory link per current missing family ID');
+assert.deepEqual(ma05AllOfficial.filter(row=>/Manual official (?:page|reference)/.test(row.textContent)).map(row=>row.textContent).sort(),
+ [' · Manual official page ↗',' · Manual official reference ↗'].sort(),'Recovery and priority keep their exact official identity links');
+for(const anchor of ma05Guides){assert.equal(anchor.href,ma05Guide.url);assert.equal(anchor.title,ma05Guide.scope_note);assert.equal(anchor.target,'_blank');assert.equal(anchor.rel,'noopener noreferrer');}
+assert.match(flatten(ma05New),/candidate identities ONLY; NOT results or calls/);
+for(const changes of [{id:'House|MA-03'},{url:ma05Guide.url+'?results=1'},
+ {url:ma05Guide.url+'/'},{link_role:'results'},{source_reference:'https://www.wbur.org/'},
+ {results_link_verified:true},{current_access_verified:true},{current_access_status:'AVAILABLE'},
+ {verification_scope:'native_results'},{scope_note:'Results'}]){
+ assert.equal(allEls(ma05Render({...ma05Guide,...changes})).filter(row=>row.tag==='a'&&row.textContent.includes('WBUR candidate guide')).length,0,'Reject unsupported MA05 guide '+JSON.stringify(changes));
+}
+const ma05OfficialAnchors=renderOfficial([ma05Official]);assert.equal(ma05OfficialAnchors.length,1);
+assert(ma05OfficialAnchors[0].textContent.includes('official reference (results unverified)'));
+assert.equal(ma05OfficialAnchors[0].href,ma05Official.url);
+for(const changes of [{race_ids:['House|MA-03']},{race_ids:['House|MA-05','Senate|MA']},
+ {url:ma05Official.url+'?results=1'},{reference_role:'official_results'},
+ {source_reference:'https://www.sec.state.ma.us/'},{general_2026_results_verified:true},{scope_note:'Official results'}]){
+ assert.equal(renderOfficial([{...ma05Official,...changes}]).length,0,'Reject unsupported MA05 official reference '+JSON.stringify(changes));
+}
+console.log('MA05 changing hint loss, exact candidate-guide pair, visible limits and negative identity guards PASS');
+
+// Every supported family member needs its own exact identity row; another family member is not a match.
+const maFamilyIds=['House|MA-01','House|MA-02','House|MA-03','House|MA-04','House|MA-05','House|MA-06','House|MA-07','House|MA-08','House|MA-09'];
+for(const [i,id] of maFamilyIds.entries()){
+ const guide=editorial.race_pages.find(row=>row.id===id);assert(guide,'Grounded candidate guide '+id);
+ const scope={...ma05Scope,
+  gapAttention:{...ma05Scope.gapAttention,races:[{...ma05Scope.gapAttention.races[0],id}]},
+  operationalAttention:{...ma05Scope.operationalAttention,races:[{...ma05Scope.operationalAttention.races[0],id}]}};
+ const renderEntry=entry=>{const host=node('div');api.render(host,scope,{createElement:node},official.links,{...editorial,race_pages:[entry]});return host;};
+ const good=allEls(renderEntry(guide)).filter(a=>a.tag==='a'&&a.textContent.includes('WBUR candidate guide (results unverified)'));
+ assert.equal(good.length,2,'Priority/recovery exact family guide '+id);
+ assert(good.every(a=>a.href===guide.url&&a.title===guide.scope_note&&a.target==='_blank'&&a.rel==='noopener noreferrer'));
+ const wrongId=maFamilyIds[(i+1)%maFamilyIds.length];
+ for(const invalid of [{...guide,id:wrongId},{...guide,url:guide.url+'?results=1'},
+  {...guide,link_role:'results'},{...guide,current_access_verified:true}]){
+  assert.equal(allEls(renderEntry(invalid)).filter(a=>a.tag==='a'&&a.textContent.includes('WBUR candidate guide')).length,0,'Reject wrong context/qualification '+id);
+ }
+}
+const unsupportedFamily={...ma05Guide,id:'House|MA-10'};
+assert.equal(allEls(ma05Render(unsupportedFamily)).filter(a=>a.tag==='a'&&a.textContent.includes('WBUR candidate guide')).length,0);
+for(const invalidIds of [[...maFamilyIds].reverse(),[...maFamilyIds,'Senate|MA'],maFamilyIds.slice(0,-1),Array(9).fill('House|MA-01')]){
+ assert.equal(renderOfficial([{...ma05Official,race_ids:invalidIds}]).length,0,'Reject malformed finite official family');
+}
+console.log('Finite nine MA House candidate identities, per-race context and negative family guards PASS');

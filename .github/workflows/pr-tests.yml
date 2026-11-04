@@ -178,7 +178,9 @@ jobs:
       - name: Test bounded advisory source-check scheduling without provider requests
         run: python3 scripts/test_run_ci_source_canaries.py
       - name: Run seven existing advisory civicAPI checks with at most four active requests
-        run: python3 scripts/run_ci_source_canaries.py
+        run: python3 scripts/ci_source_canary_overlap.py start --state-dir "$RUNNER_TEMP/ecc-source-canaries"
+      - name: Test cross-step advisory source lifecycle with fabricated local children
+        run: python3 scripts/test_ci_source_canary_overlap.py
       - name: Test isolated New Hampshire Senate civicAPI adapter
         run: |
           node --check scripts/civicapi_nh_adapter.js
@@ -392,6 +394,9 @@ jobs:
           node --check scripts/senate_calibration_audit.js
           node scripts/test_senate_calibration_audit.cjs
           node scripts/test_chamber_control_model.cjs
+      - name: Join advisory source checks and retain all statuses and logs
+        if: ${{ always() }}
+        run: python3 scripts/ci_source_canary_overlap.py join --state-dir "$RUNNER_TEMP/ecc-source-canaries" --job-status "${{ job.status }}"
   browser:
     runs-on: ubuntu-latest
     # Full Senate + broad House DOM checks now exercise a larger live roster.

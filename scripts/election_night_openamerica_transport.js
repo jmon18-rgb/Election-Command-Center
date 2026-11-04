@@ -13,6 +13,37 @@
 })(typeof window!=='undefined'?window:null,function(){
  'use strict';
  const MATCH=/^https:\/\/openamerica\.io\/elections\/results\.json\?year=(?:2024|2026)&office=(?:House|Senate|Governor)$/;
+ // One independently identified 2026 special ballot has a shorter provider
+ // wire key. Translate ONLY its identity; downstream raw vote/call/clock/test
+ // guards still validate the unmodified source fields.
+ const SENATE_2026_URL='https://openamerica.io/elections/results.json?year=2026&office=Senate';
+ const FLORIDA_2026_ROSTER=new Set([
+  JSON.stringify(['Neil J. Gillespie','I']),
+  JSON.stringify(['Ashley Moody','R']),
+  JSON.stringify(['Angie Nixon','D'])
+ ]);
+ function normalizePrimarySource(doc,requestURL){
+  if(requestURL!==SENATE_2026_URL||!doc||typeof doc!=='object'||Array.isArray(doc)||
+     doc.api!==1||doc.year!==2026||doc.office!=='Senate'||doc.source!=='state'||
+     !doc.races||typeof doc.races!=='object'||Array.isArray(doc.races)||
+     !Object.hasOwn(doc.races,'FL'))return doc;
+  if(Object.hasOwn(doc.races,'FL-special'))
+   throw Error('Ambiguous 2026 Florida Senate wire and canonical keys');
+  const row=doc.races.FL,candidates=row&&typeof row==='object'&&!Array.isArray(row)?row.cands:null;
+  if(!Array.isArray(candidates)||candidates.length!==3)
+   throw Error('Unverified 2026 Florida Senate wire candidate roster');
+  const seen=new Set();
+  for(const candidate of candidates){
+   if(!candidate||typeof candidate.n!=='string'||typeof candidate.p!=='string')
+    throw Error('Unverified 2026 Florida Senate wire candidate roster');
+   const pair=JSON.stringify([candidate.n,candidate.p]);
+   if(!FLORIDA_2026_ROSTER.has(pair)||seen.has(pair))
+    throw Error('Unverified 2026 Florida Senate wire candidate roster');
+   seen.add(pair);
+  }
+  return {...doc,races:Object.fromEntries(Object.entries(doc.races).map(
+   ([key,record])=>[key==='FL'?'FL-special':key,record]))};
+ }
  function create(fetchJson,{timeoutMs=12000}={}){
   if(typeof fetchJson!=='function')throw Error('fetch implementation required');
   if(!Number.isSafeInteger(timeoutMs)||timeoutMs<1||timeoutMs>30000)
@@ -50,7 +81,7 @@
     const doc=await response.json();
     if(!doc||typeof doc!=='object'||Array.isArray(doc))
      throw Error('Open America results not a JSON object');
-    return doc;
+    return normalizePrimarySource(doc,url);
    });
    const deadline=new Promise((_,reject)=>{
     timeout=setTimeout(()=>{
@@ -68,5 +99,5 @@
   }
   return Object.freeze({load,pending:()=>inFlight.size});
  }
- return Object.freeze({create});
+ return Object.freeze({create,normalizePrimarySource});
 });

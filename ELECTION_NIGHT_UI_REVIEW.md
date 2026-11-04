@@ -631,3 +631,8 @@ Checkpoint handling: append-only local seven-document proof, carry with the next
 PR550 updates only the House adapter stamp in index.html; the other 92 ordered references and six Worker imports are unchanged. The published adapter was exercised in an isolated Chrome document with two native script-body pins and the unchanged owned KY-06 metadata. There was no application-page/cache update, full UI test, current numerical UI equality or physical-device claim. The first runtime-entry test failed before launch and remains preserved; the unchanged helper passed with the declared ESM entry.
 
 The PR549 Eastern countdown, old Preview news removal and qualified manual-reference behavior remain delivered. Prior 38 desktop and responsive-hidden phone evidence remains historical at its actual scope. Canonical PR550 evidence and guide component 36 are recorded under artifacts/readiness/poll-close-owner-followthrough-20261103/.
+
+
+### Verified PR551 checkpoint — November 3, 2026
+
+PR551 publication is verified at FD. Its new installed-Chrome test used a fresh about:blank diagnostic, two exact published resources and all 506 staging records, confirming Moody appointment/former-AG metadata and false elected-only personal incumbency eligibility. It is not an application UI, index integration, numeric equality, full-browser or human acceptance proof. The app index and 93 runtime stamps/six Worker imports were unchanged. Historical 887, ordinary59, media7c70 and narrow38 UI scopes retain their actual revisions. MA-04 manual candidate-reference UI work is prepared but not applied by this checkpoint.
