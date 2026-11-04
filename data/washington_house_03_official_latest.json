@@ -1,7 +1,7 @@
 {
   "schema": "official-wa03-collection-v1",
   "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a",
-  "fetched_at": "2026-11-04T06:34:07.450Z",
+  "fetched_at": "2026-11-04T07:50:59.255Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -1310,7 +1310,7 @@
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
   "cache_control": "public, max-age=60",
-  "request_to_body_ms": 252,
+  "request_to_body_ms": 160,
   "original_response_sha256": "b25fc6500e77685ffd9daef890756b67c314ca0ab3760189660bdca773b1ea0b",
   "observed_source_stamp": "2026-11-04T05:53:00.2002061Z",
   "source_test_data": false,
@@ -1323,14 +1323,11 @@
     "schema": "official-wa-remaining-collection-v1",
     "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/stats",
     "fetched_at": "2026-11-04T06:35:09.377Z",
+    "rejected_at": "2026-11-04T07:50:59.421Z",
+    "receipt_kind": "PUBLISHER_VALIDATION_REJECTION",
     "status": "SOURCE_UNAVAILABLE",
     "payload": null,
-    "timing_scope": "Request-to-body only; not publication availability or comparative lag",
-    "http_status": 200,
-    "cache_control": "public, max-age=60",
-    "request_to_body_ms": 61,
-    "original_response_sha256": "0af7137b46dddfa3516cc7fb00feb6cebff65de07683d735ed1623235fe12a26",
-    "error": "Remaining county matrix/value drift"
+    "error": "Stale/future remaining collection"
   },
   "revision_watermark": {
     "as_of": "2026-11-04T05:53:00.2002061Z",
