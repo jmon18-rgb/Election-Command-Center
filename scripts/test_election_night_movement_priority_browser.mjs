@@ -27,7 +27,16 @@ const protectedSpans=[
  ['function enBuildActivityCsv(','function enRenderExportControls(','3c29a8d1ffa171f30ea3cd5294d806c3f7d3dafbf4bd80b72de636143c000fa5'],
  ['function smartModelMap(','function smartEligible(','3d3beab14afbf004e41268d89ef698c08ed08effdf846adc76865123b4077105']
 ];
-for(const[a,b,expected]of protectedSpans)assert.equal(hash(Buffer.from(span(html,a,b))),expected,'Unchanged actual producer/resume/CSV/current-rank source');
+const primaryIdentityResumeHook="  for(const office of ['House','Senate','Governor'])if(Object.hasOwn(doc.snapshots,office))\n   doc.snapshots[office]=window.ElectionNightOpenAmericaTransport.normalizePrimarySource(doc.snapshots[office],enFetchUrl(2026,office));\n";
+const protectedResumeSpan=span(html,'function enResumeMovementValid(','function enSnapshotCompatible(');
+assert.equal(html.split(primaryIdentityResumeHook).length,2,'Exactly one finite primary identity resume hook in the actual index');
+assert.equal(protectedResumeSpan.split(primaryIdentityResumeHook).length,2,'Exactly one finite hook inside the protected resume span');
+assert.equal(span(html,'function enResumeRestore(','function enSnapshotCompatible(').split(primaryIdentityResumeHook).length,2,'The finite hook must remain inside enResumeRestore');
+assert.equal(hash(Buffer.from(protectedResumeSpan)),'4bbf7931211fc9ab239867442e6b56f7d758a03b90c9ea286254fcd91a5f8a8d','Exact current primary identity resume migration span');
+for(const[a,b,expected]of protectedSpans){
+ const actual=span(html,a,b),retained=a==='function enResumeMovementValid('?actual.replace(primaryIdentityResumeHook,''):actual;
+ assert.equal(hash(Buffer.from(retained)),expected,'Unchanged actual producer/resume/CSV/current-rank source');
+}
 const runtimeReferences=[...html.matchAll(/<script[^>]+src="([^"]+)"[^>]*>/g)].map(x=>x[1]);assert.equal(runtimeReferences.length,93);
 const importLiteral=pinned['scripts/joint_model_worker.js'].toString().match(/const IMPORTS=Object\.freeze\(\((\[[^\n]+\])\)\.map\(Object\.freeze\)\)/);assert(importLiteral);
 const workerImports=JSON.parse(importLiteral[1]);assert.equal(workerImports.length,6);for(const a of workerImports){assert(files.includes('scripts/'+a.name+'.js'));assert(runtimeReferences.includes('./scripts/'+a.name+'.js?v='+a.stamp));}
