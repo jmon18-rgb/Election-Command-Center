@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-03T23:50:18.095025Z",
+  "updated_at": "2026-11-04T01:18:57.576032Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 29,
-    "advisory_related_headlines": 79
+    "advisory_related_headline_buckets": 28,
+    "advisory_related_headlines": 75
   },
   "advisory_related_headlines": [
     {
@@ -33,18 +33,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "8eac970c233573625d18",
-      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
-      "possibly_related_articles": 4,
-      "distinct_publishers": 4,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -149,21 +137,22 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "e41cd87f2b577228601d",
-      "headline": "Thousands of observers expected to monitor polling sites nationwide on Election Day - WNEP",
+      "lead_id": "7853e44c87a2b51cded5",
+      "headline": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
       "possibly_related_articles": 2,
-      "distinct_publishers": 2,
+      "distinct_publishers": 1,
       "state_hints": [],
       "topic_hints": [
+        "ballot_access",
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "7853e44c87a2b51cded5",
-      "headline": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
+      "lead_id": "8eac970c233573625d18",
+      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
       "possibly_related_articles": 2,
-      "distinct_publishers": 1,
+      "distinct_publishers": 2,
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -253,9 +242,58 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "3f71b2ec9cd501fce792",
+      "headline": "US election officials brace for violence and intimidation at polling booths - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "c8ee0d17bdca57f22f8e",
+      "title": "Voting continues in Richmond after threats reported at 3 polling places - WJLA",
+      "url": "https://news.google.com/rss/articles/CBMitAJBVV95cUxPamZxZ2lKdkp3YndGQmE3UWt4MGNHb1h5RlZuU3ZGM0FXdkMza1JidnZMZ2g1MjhlcDZvOXR6aTQ0end3UE9zX3hpQmMwZElFb3JlUXkzMGlKUDZ0UGgyNmlrc3BWYmhqVWpyb0tnZks2M2k5N2xhcWpJVnZPZHZ0R2ZVaDFDTnNGZXNlR0ZEZC1XME84dUJnN0M1bFNJaG91Tlhwcnc1ME1nUlZlb3ptTlRpMzJjRzVoT3VDbExYX2FOMjI5bVZvQ3ZWVW4tWGZ4WTBWby1WaVVOWmNnNHJ3dktybWMycUhIUTRaRkxIV3ROLTVrQWtKRUthTllVYUgyU0hyZGJUbXR2RDFHcktqNnk2eVhhUjVOSk1MZDV5THVKbFZoX2JkWl9udjNoNC1sanVJSQ?oc=5",
+      "publisher": "WJLA",
+      "published_at": "2026-11-04T00:31:32Z",
+      "detected_at": "2026-11-04T01:18:57.576032Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "799c49ab52c0d41a76ff",
+      "title": "Polls Begin to Close in Midterms That Will Shape Rest of Trump's Presidency - Time Magazine",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZFE2MnhLMmZSZVptb3p4TlhDQzBUMEpZWERVaHN2dG1YbTJZWGRKZWZvM1laTzRubG5WLXdkMW93bW80VEhOcjhFRm92TTdJNlQtSGF5bWFkZWZDak54ZVdCYmdrS3dEQ2hvT0dpaGtJQ0tVbnNENFNtRHpDQWhfN3dFZlpaY2NucHBaSFN1NU4xWGpLdXBhMkxBU0tMSDluQ3NET0FQcDdabExT?oc=5",
+      "publisher": "Time Magazine",
+      "published_at": "2026-11-03T23:52:52Z",
+      "detected_at": "2026-11-04T01:18:57.576032Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "68865d96f3976a727764",
       "title": "Mullin slams Hillary Clinton for poll intimidation warning - The Hill",
@@ -301,6 +339,24 @@
       "detected_at": "2026-11-03T22:57:05.232653Z",
       "state_hints": [],
       "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "deb46220c85f8f80ed41",
+      "title": "Election security center reports limited threats as voting glitches fuel fraud claims - Nextgov/FCW",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPTElFYWpqQ21xQ0paNVZJQTFUcDhEb2U1Sk1JTFlYOUh3NEUwbEtEMDVENmE1ZGQ1YXpqOWliZTF1ck9LclZCTHd2Q0Fya0ZIcFppeEhMYTI2Ni1aeHlHR2t2N3dnemtXUzEzUmkydXBNblNiUnYtTE5iZVVnNm00ejRFYU1jOTdGbWpuZzNqUmR2amxJUlBtcGd1QUZ0cWhaNVAyUTktTDh4SWFFSlFpSVNfX3pMZnVEcFM3SVdpMEM5YUtKVXZzTW1OeGVVS0ZvR1B2UGRlN1NsZkxaTmRYdnhicUNpdFJCQ0JGZ0dZcFc?oc=5",
+      "publisher": "Nextgov/FCW",
+      "published_at": "2026-11-03T22:17:00Z",
+      "detected_at": "2026-11-04T01:18:57.576032Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -5082,59 +5138,6 @@
       "detected_at": "2026-10-26T14:58:29.082164Z",
       "state_hints": [],
       "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "51df45d861cdda4c0e0c",
-      "title": "Thousands of observers expected to monitor polling sites nationwide on Election Day - wtsp.com",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQV2szR01lM29KQjF1QWVMOXBCdVlxbjZSdzdPc3F6SGZHd3FFSElORkR1SWVDakJGR2JwNUFndHkwVnJkUlBKbmZGc1J1OXdnSHpyZW1LZjBjdzN0M2NsWi02b3RtR2NWYzZ2ZVB1ZUtoMU11NHU0ZHJVdVo2NzJrNGJIZXZRYkZTalhyNUt0X2p2Q0FheUdVUzRaTWxDc2tYNEZuUjZyb0IwcE9RM054azZEWmNOZkN1THhfV1FvY1NTWmZHeW1vM040RlFldUtsOE5zMA?oc=5",
-      "publisher": "wtsp.com",
-      "published_at": "2026-10-26T13:56:00Z",
-      "detected_at": "2026-10-26T15:42:46.757892Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5a1cb929b77a6f79a635",
-      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Chicago Tribune",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPa3dNb1BMTlpTUGowbTZGX3BWRG1zNzhEekE4UDFzbUUxTzdjMk1rNkIwQnVXNHpHY3JNSnFwWVBGdmNKcDFLemhaak1HdDFybXpXdXFmRmszQTh3RXBaM2lQWkkzLU9RY0kxNnBSWEhHRVYzOGZFXy1zMEdiMTBGUkk5TF9UQzQ?oc=5",
-      "publisher": "Chicago Tribune",
-      "published_at": "2026-10-26T12:18:50Z",
-      "detected_at": "2026-10-26T17:49:16.100750Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6dbf45936645e0181be8",
-      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQN0I2djZmWW9IazRodWZRZi1DRUpMV1VZanA4bEhkRG1NSlVsUEFGZG5MU3VRd2Y0Q1FfdFM2M292ZU5GMXllS2ZIMkdtMW1ydENad2JiYVZQeWJiQ2tOR3NLcmJuYTh2dVdoRUNHeGR0R0lrd01PYnk4Y2psbVEycjllNWVXUmRJanJLQjh1c1U1OHJuNHZETkRneW43STZsQnBQMTltTGZHYlXSAbABQVVfeXFMTy1SV0tILVBBbFY5TmJZUnp2MVN5UTVLTFFlM3lZS0dVUFYxVmFkRGM3TEhoSFZSVU5xVkZuRDBaaUd3M1l0cHRVTl9RUG1TVmE2elBMLVpKWi00aXhzVjVZSWFUSUtZa25UcHh3MU9WNVdzU0pfZEN2SXcxR3VXVUFDbnhvcGVaSjlvX3FWcEtVWVUxX0hBaTVfWGxBalRrWFhmMFdYWF9fNkNVWFZoWGE?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-26T12:15:18Z",
-      "detected_at": "2026-10-26T13:31:25.671572Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
