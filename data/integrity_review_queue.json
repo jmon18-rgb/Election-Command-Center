@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-04T04:06:13.102436Z",
+  "updated_at": "2026-11-04T05:10:26.180325Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -257,6 +257,23 @@
     }
   ],
   "items": [
+    {
+      "id": "688dd213b8804846af62",
+      "title": "Results Come in for Midterms That Will Shape Rest of Trump\u2019s Presidency - Time Magazine",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZFE2MnhLMmZSZVptb3p4TlhDQzBUMEpZWERVaHN2dG1YbTJZWGRKZWZvM1laTzRubG5WLXdkMW93bW80VEhOcjhFRm92TTdJNlQtSGF5bWFkZWZDak54ZVdCYmdrS3dEQ2hvT0dpaGtJQ0tVbnNENFNtRHpDQWhfN3dFZlpaY2NucHBaSFN1NU4xWGpLdXBhMkxBU0tMSDluQ3NET0FQcDdabExT?oc=5",
+      "publisher": "Time Magazine",
+      "published_at": "2026-11-04T04:32:42Z",
+      "detected_at": "2026-11-04T05:10:26.180325Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "51f8a93d335723146368",
       "title": "Voting machine snafus, polling place floods. Was there election interference? - USA Today",
@@ -5127,23 +5144,6 @@
         "400 ballots",
         "13 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2fbfe31f82d3f9794026",
-      "title": "Thousands of Ineligible Voters Flagged\u2014Why So Few Prosecutions? - AMAC \u2014 The Association of Mature American Citizens",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOVERQbTBoQXdqelMtLTYtcEFGM29fRzNrTTFHZWhqNHpkZG9KRHVHaUtlRjFBTjlBeGs0QTFpcDhjNXkwMVBTMEU0S3UzN0FWemlELUIxbXRjQnBEQldyTnpzUWFCaGZabXFxakpjM1lkNTNIU1BpcVdSRWJCZUQtamhSd2c0bHY4cERTa2t4N0VQUy1QQTE3OXo4WU5xZDIzUkJBMGhn?oc=5",
-      "publisher": "AMAC \u2014 The Association of Mature American Citizens",
-      "published_at": "2026-10-26T15:25:04Z",
-      "detected_at": "2026-10-26T19:00:46.378327Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
