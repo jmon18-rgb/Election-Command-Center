@@ -1322,12 +1322,15 @@
   "official_remaining": {
     "schema": "official-wa-remaining-collection-v1",
     "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/stats",
-    "fetched_at": "2026-11-04T07:52:02.108Z",
-    "rejected_at": "2026-11-04T08:42:04.619Z",
-    "receipt_kind": "PUBLISHER_VALIDATION_REJECTION",
+    "fetched_at": "2026-11-04T08:43:06.679Z",
     "status": "SOURCE_UNAVAILABLE",
     "payload": null,
-    "error": "Stale/future remaining collection"
+    "timing_scope": "Request-to-body only; not publication availability or comparative lag",
+    "http_status": 200,
+    "cache_control": "public, max-age=60",
+    "request_to_body_ms": 88,
+    "original_response_sha256": "0af7137b46dddfa3516cc7fb00feb6cebff65de07683d735ed1623235fe12a26",
+    "error": "Remaining county matrix/value drift"
   },
   "revision_watermark": {
     "as_of": "2026-11-04T05:53:00.2002061Z",
