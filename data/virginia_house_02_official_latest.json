@@ -1,7 +1,7 @@
 {
   "schema": "official-va02-collection-v1",
   "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
-  "fetched_at": "2026-11-04T07:45:14.595Z",
+  "fetched_at": "2026-11-04T08:40:35.075Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -32,9 +32,9 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-04T07:25:17.6307797Z",
-      "lastUpdated": "2026-11-04T07:25:02.8712091Z",
-      "publishDate": "2026-11-04T07:25:18.1078991Z"
+      "asOf": "2026-11-04T08:17:01.238137Z",
+      "lastUpdated": "2026-11-04T08:12:39.6050131Z",
+      "publishDate": "2026-11-04T08:17:01.7082005Z"
     },
     "ballotItems": [
       {
@@ -84,7 +84,7 @@
         "reportingStatus": {
           "reportingUnits": 8,
           "totalUnits": 8,
-          "asOf": "2026-11-04T07:25:17.6307797Z",
+          "asOf": "2026-11-04T08:17:01.238137Z",
           "reportingStatusDetails": null
         },
         "voteTotal": 336799,
@@ -958,7 +958,7 @@
       "reportingStatus": {
         "reportingUnits": 8,
         "totalUnits": 8,
-        "asOf": "2026-11-04T07:25:17.6307797Z",
+        "asOf": "2026-11-04T08:17:01.238137Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
@@ -1810,7 +1810,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 16,
             "totalUnits": 16,
-            "asOf": "2026-11-04T07:25:17.6307817Z",
+            "asOf": "2026-11-04T08:17:01.2381383Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -1909,70 +1909,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 665
+                  "voteCount": 3299
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -1997,26 +1953,70 @@
                   "voteCount": 2679
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 3299
+                  "voteCount": 665
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -2073,70 +2073,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 282
+                  "voteCount": 1996
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -2161,26 +2117,70 @@
                   "voteCount": 4799
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 1996
+                  "voteCount": 282
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -2548,45 +2548,45 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Election Day"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Día de Elección"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거일"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Ngày bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 12
+                  "voteCount": 1
                 },
                 {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Mailed Absentee"
+                      "text": "Post-Election"
                     },
                     {
                       "languageId": "1",
-                      "text": "Ausente enviado por correo"
+                      "text": "Después de las elecciones"
                     },
                     {
                       "languageId": "2",
-                      "text": "우편 부재자"
+                      "text": "선거 이후"
                     },
                     {
                       "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
+                      "text": "Sau bầu cử"
                     }
                   ],
                   "voteCount": 0
@@ -2614,48 +2614,48 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Election Day"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Día de Elección"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "선거일"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Ngày bầu cử"
                     }
                   ],
-                  "voteCount": 1
+                  "voteCount": 12
                 }
               ],
               "isWriteIn": true,
@@ -2700,7 +2700,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 33,
             "totalUnits": 33,
-            "asOf": "2026-11-04T07:25:17.6307817Z",
+            "asOf": "2026-11-04T08:17:01.2381383Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -2799,70 +2799,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 3884
+                  "voteCount": 13175
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -2887,26 +2843,70 @@
                   "voteCount": 11110
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 13175
+                  "voteCount": 3884
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -3291,6 +3291,28 @@
               },
               "groupResults": [
                 {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 180
+                },
+                {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
                   "groupName": [
                     {
@@ -3377,28 +3399,6 @@
                     }
                   ],
                   "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Early Voting"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "votación anticipada"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "조기 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
-                    }
-                  ],
-                  "voteCount": 180
                 }
               ],
               "isWriteIn": false,
@@ -3438,70 +3438,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Post-Election"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Después de las elecciones"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "선거 이후"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 14
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Election Day"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Día de Elección"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "선거일"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Ngày bầu cử"
-                    }
-                  ],
-                  "voteCount": 67
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 2
+                  "voteCount": 0
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -3526,26 +3482,70 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 2
+                },
+                {
+                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Election Day"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Día de Elección"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거일"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Ngày bầu cử"
+                    }
+                  ],
+                  "voteCount": 67
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 14
                 }
               ],
               "isWriteIn": true,
@@ -3590,7 +3590,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 6,
             "totalUnits": 6,
-            "asOf": "2026-11-04T07:25:17.6307817Z",
+            "asOf": "2026-11-04T08:17:01.2381383Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -3689,70 +3689,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 207
+                  "voteCount": 826
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -3777,26 +3733,70 @@
                   "voteCount": 1048
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 826
+                  "voteCount": 207
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -3853,28 +3853,6 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Post-Election"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Después de las elecciones"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "선거 이후"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Sau bầu cử"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
                   "groupName": [
                     {
@@ -3897,26 +3875,48 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Mailed Absentee"
+                      "text": "Post-Election"
                     },
                     {
                       "languageId": "1",
-                      "text": "Ausente enviado por correo"
+                      "text": "Después de las elecciones"
                     },
                     {
                       "languageId": "2",
-                      "text": "우편 부재자"
+                      "text": "선거 이후"
                     },
                     {
                       "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
+                      "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 43
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 468
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -3941,26 +3941,26 @@
                   "voteCount": 614
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 468
+                  "voteCount": 43
                 }
               ],
               "isWriteIn": false,
@@ -4328,67 +4328,23 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Post-Election"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Después de las elecciones"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "선거 이후"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
-                    }
-                  ],
-                  "voteCount": 2
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Election Day"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Día de Elección"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "선거일"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Ngày bầu cử"
-                    }
-                  ],
-                  "voteCount": 2
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
+                      "text": "Sau bầu cử"
                     }
                   ],
                   "voteCount": 0
@@ -4416,26 +4372,70 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
                   "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Election Day"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Día de Elección"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거일"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Ngày bầu cử"
+                    }
+                  ],
+                  "voteCount": 2
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 2
                 }
               ],
               "isWriteIn": true,
@@ -4480,7 +4480,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 17,
             "totalUnits": 17,
-            "asOf": "2026-11-04T07:25:17.6307817Z",
+            "asOf": "2026-11-04T08:17:01.2381383Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -4623,26 +4623,26 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Mailed Absentee"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Ausente enviado por correo"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "우편 부재자"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 1043
+                  "voteCount": 3500
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -4667,26 +4667,26 @@
                   "voteCount": 4223
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 3500
+                  "voteCount": 1043
                 }
               ],
               "isWriteIn": false,
@@ -4743,70 +4743,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 505
+                  "voteCount": 3598
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -4831,26 +4787,70 @@
                   "voteCount": 7379
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 3598
+                  "voteCount": 505
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -4907,70 +4907,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Post-Election"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Después de las elecciones"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "선거 이후"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 29
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Election Day"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Día de Elección"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "선거일"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Ngày bầu cử"
-                    }
-                  ],
-                  "voteCount": 101
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 11
+                  "voteCount": 0
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -4995,26 +4951,70 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 11
+                },
+                {
+                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Election Day"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Día de Elección"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거일"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Ngày bầu cử"
+                    }
+                  ],
+                  "voteCount": 101
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 29
                 }
               ],
               "isWriteIn": false,
@@ -5218,28 +5218,6 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Early Voting"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "votación anticipada"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "조기 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
-                    }
-                  ],
-                  "voteCount": 5
-                },
-                {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
                   "groupName": [
                     {
@@ -5260,6 +5238,28 @@
                     }
                   ],
                   "voteCount": 19
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 5
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -5370,7 +5370,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 5,
             "totalUnits": 5,
-            "asOf": "2026-11-04T07:25:17.6307817Z",
+            "asOf": "2026-11-04T08:17:01.2381383Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -5469,70 +5469,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 431
+                  "voteCount": 1597
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -5557,26 +5513,70 @@
                   "voteCount": 1303
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 1597
+                  "voteCount": 431
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -5961,70 +5961,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 8
+                  "voteCount": 19
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -6049,26 +6005,70 @@
                   "voteCount": 40
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 19
+                  "voteCount": 8
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -6108,70 +6108,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Post-Election"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Después de las elecciones"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "선거 이후"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 4
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Election Day"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Día de Elección"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "선거일"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Ngày bầu cử"
-                    }
-                  ],
-                  "voteCount": 4
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 1
+                  "voteCount": 0
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -6196,26 +6152,70 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 1
+                },
+                {
+                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Election Day"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Día de Elección"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거일"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Ngày bầu cử"
+                    }
+                  ],
+                  "voteCount": 4
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 4
                 }
               ],
               "isWriteIn": true,
@@ -6260,7 +6260,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 7,
             "totalUnits": 7,
-            "asOf": "2026-11-04T07:25:17.6307817Z",
+            "asOf": "2026-11-04T08:17:01.2381383Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -6359,70 +6359,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 195
+                  "voteCount": 664
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -6447,26 +6403,70 @@
                   "voteCount": 865
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 664
+                  "voteCount": 195
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -6523,70 +6523,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 82
+                  "voteCount": 1024
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -6611,26 +6567,70 @@
                   "voteCount": 1881
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 1024
+                  "voteCount": 82
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -6998,67 +6998,23 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Post-Election"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Después de las elecciones"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "선거 이후"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
-                    }
-                  ],
-                  "voteCount": 1
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Election Day"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Día de Elección"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "선거일"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Ngày bầu cử"
-                    }
-                  ],
-                  "voteCount": 3
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
+                      "text": "Sau bầu cử"
                     }
                   ],
                   "voteCount": 0
@@ -7086,26 +7042,70 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
                   "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Election Day"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Día de Elección"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거일"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Ngày bầu cử"
+                    }
+                  ],
+                  "voteCount": 3
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 1
                 }
               ],
               "isWriteIn": true,
@@ -7150,7 +7150,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 30,
             "totalUnits": 30,
-            "asOf": "2026-11-04T07:25:17.6307817Z",
+            "asOf": "2026-11-04T08:17:01.2381383Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7249,70 +7249,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 3096
+                  "voteCount": 10333
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -7337,26 +7293,70 @@
                   "voteCount": 13892
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 10333
+                  "voteCount": 3096
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -7413,70 +7413,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 938
+                  "voteCount": 4744
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -7501,26 +7457,70 @@
                   "voteCount": 10709
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 4744
+                  "voteCount": 938
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -7807,28 +7807,6 @@
                   "voteCount": 68
                 },
                 {
-                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Election Day"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Día de Elección"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "선거일"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Ngày bầu cử"
-                    }
-                  ],
-                  "voteCount": 294
-                },
-                {
                   "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
@@ -7849,6 +7827,28 @@
                     }
                   ],
                   "voteCount": 100
+                },
+                {
+                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Election Day"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Día de Elección"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거일"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Ngày bầu cử"
+                    }
+                  ],
+                  "voteCount": 294
                 }
               ],
               "isWriteIn": false,
@@ -8040,7 +8040,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 108,
             "totalUnits": 108,
-            "asOf": "2026-11-04T07:25:17.6307817Z",
+            "asOf": "2026-11-04T08:17:01.2381383Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8139,70 +8139,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 15962
+                  "voteCount": 35715
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -8227,26 +8183,70 @@
                   "voteCount": 48984
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 35715
+                  "voteCount": 15962
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -8303,70 +8303,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Early Voting"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "votación anticipada"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "조기 투표"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Bỏ phiếu sớm"
                     }
                   ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Provisional"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "임시 투표"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Tạm thời"
-                    }
-                  ],
-                  "voteCount": 0
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 6147
+                  "voteCount": 25369
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
@@ -8391,26 +8347,70 @@
                   "voteCount": 48018
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 25369
+                  "voteCount": 6147
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Provisional"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "임시 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Tạm thời"
+                    }
+                  ],
+                  "voteCount": 0
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Post-Election"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Después de las elecciones"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거 이후"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Sau bầu cử"
+                    }
+                  ],
+                  "voteCount": 0
                 }
               ],
               "isWriteIn": false,
@@ -8778,70 +8778,26 @@
               },
               "groupResults": [
                 {
-                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Early Voting"
+                      "text": "Post-Election"
                     },
                     {
                       "languageId": "1",
-                      "text": "votación anticipada"
+                      "text": "Después de las elecciones"
                     },
                     {
                       "languageId": "2",
-                      "text": "조기 투표"
+                      "text": "선거 이후"
                     },
                     {
                       "languageId": "5",
-                      "text": "Bỏ phiếu sớm"
+                      "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 32
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Election Day"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Día de Elección"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "선거일"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Ngày bầu cử"
-                    }
-                  ],
-                  "voteCount": 147
-                },
-                {
-                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
-                  "groupName": [
-                    {
-                      "languageId": "en",
-                      "text": "Mailed Absentee"
-                    },
-                    {
-                      "languageId": "1",
-                      "text": "Ausente enviado por correo"
-                    },
-                    {
-                      "languageId": "2",
-                      "text": "우편 부재자"
-                    },
-                    {
-                      "languageId": "5",
-                      "text": "Phiếu vắng mặt được gửi qua thư"
-                    }
-                  ],
-                  "voteCount": 25
+                  "voteCount": 0
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -8866,26 +8822,70 @@
                   "voteCount": 0
                 },
                 {
-                  "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
+                  "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
                   "groupName": [
                     {
                       "languageId": "en",
-                      "text": "Post-Election"
+                      "text": "Mailed Absentee"
                     },
                     {
                       "languageId": "1",
-                      "text": "Después de las elecciones"
+                      "text": "Ausente enviado por correo"
                     },
                     {
                       "languageId": "2",
-                      "text": "선거 이후"
+                      "text": "우편 부재자"
                     },
                     {
                       "languageId": "5",
-                      "text": "Sau bầu cử"
+                      "text": "Phiếu vắng mặt được gửi qua thư"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 25
+                },
+                {
+                  "groupId": "01000000-ebdd-00dc-4756-08df1ff2fa9f",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Election Day"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "Día de Elección"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "선거일"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Ngày bầu cử"
+                    }
+                  ],
+                  "voteCount": 147
+                },
+                {
+                  "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
+                  "groupName": [
+                    {
+                      "languageId": "en",
+                      "text": "Early Voting"
+                    },
+                    {
+                      "languageId": "1",
+                      "text": "votación anticipada"
+                    },
+                    {
+                      "languageId": "2",
+                      "text": "조기 투표"
+                    },
+                    {
+                      "languageId": "5",
+                      "text": "Bỏ phiếu sớm"
+                    }
+                  ],
+                  "voteCount": 32
                 }
               ],
               "isWriteIn": true,
@@ -8901,18 +8901,18 @@
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
-  "cache_control": "public, max-age=30",
-  "request_to_body_ms": 303,
-  "original_response_sha256": "9aa4df6097fb9219fb749318fe8d94e806e9dfc50d5081f4e824c1eb100eabbb",
-  "observed_source_stamp": "2026-11-04T07:25:17.6307797Z",
+  "cache_control": "public, max-age=8",
+  "request_to_body_ms": 323,
+  "original_response_sha256": "4ff154b294046e830f7d7ec119e88ed9991191f84c359ec5d44bb8f20ba32ef2",
+  "observed_source_stamp": "2026-11-04T08:17:01.238137Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-04T07:25:17.6307797Z",
-  "source_published_at": "2026-11-04T07:25:18.1078991Z",
-  "selected_payload_sha256": "7cde7feb2659bfccbf2c977d08a6cde1e0341c4a8df35d317acd941b359c3c67",
+  "snapshot_updated_at": "2026-11-04T08:17:01.238137Z",
+  "source_published_at": "2026-11-04T08:17:01.7082005Z",
+  "selected_payload_sha256": "fb4bcb39c4996a225cfdb4ff64517059701c0d0c7fd52250e42cfa3fcc11fc13",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "revision_watermark": {
-    "as_of": "2026-11-04T07:25:17.6307797Z",
-    "published_at": "2026-11-04T07:25:18.1078991Z"
+    "as_of": "2026-11-04T08:17:01.238137Z",
+    "published_at": "2026-11-04T08:17:01.7082005Z"
   }
 }
