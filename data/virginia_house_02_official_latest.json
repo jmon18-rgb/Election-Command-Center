@@ -1,7 +1,7 @@
 {
   "schema": "official-va02-collection-v1",
   "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
-  "fetched_at": "2026-11-04T06:25:10.941Z",
+  "fetched_at": "2026-11-04T07:45:14.595Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -32,9 +32,9 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-04T06:17:55.8500532Z",
-      "lastUpdated": "2026-11-04T06:16:29.0779735Z",
-      "publishDate": "2026-11-04T06:17:56.2994665Z"
+      "asOf": "2026-11-04T07:25:17.6307797Z",
+      "lastUpdated": "2026-11-04T07:25:02.8712091Z",
+      "publishDate": "2026-11-04T07:25:18.1078991Z"
     },
     "ballotItems": [
       {
@@ -84,7 +84,7 @@
         "reportingStatus": {
           "reportingUnits": 8,
           "totalUnits": 8,
-          "asOf": "2026-11-04T06:17:55.8500532Z",
+          "asOf": "2026-11-04T07:25:17.6307797Z",
           "reportingStatusDetails": null
         },
         "voteTotal": 336799,
@@ -902,14 +902,14 @@
         "rankedChoiceSummaryResults": null,
         "hasBreakdownResults": true,
         "crossCounties": [
-          "ACCOMACK COUNTY",
           "SOUTHAMPTON COUNTY",
-          "VIRGINIA BEACH CITY",
-          "NORTHAMPTON COUNTY",
-          "ISLE OF WIGHT COUNTY",
-          "CHESAPEAKE CITY",
+          "ACCOMACK COUNTY",
+          "FRANKLIN CITY",
           "SUFFOLK CITY",
-          "FRANKLIN CITY"
+          "CHESAPEAKE CITY",
+          "ISLE OF WIGHT COUNTY",
+          "NORTHAMPTON COUNTY",
+          "VIRGINIA BEACH CITY"
         ],
         "isCloseRace": false,
         "partyName": null
@@ -958,7 +958,7 @@
       "reportingStatus": {
         "reportingUnits": 8,
         "totalUnits": 8,
-        "asOf": "2026-11-04T06:17:55.8500532Z",
+        "asOf": "2026-11-04T07:25:17.6307797Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
@@ -1810,7 +1810,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 16,
             "totalUnits": 16,
-            "asOf": "2026-11-04T06:17:55.8500551Z",
+            "asOf": "2026-11-04T07:25:17.6307817Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -2700,7 +2700,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 33,
             "totalUnits": 33,
-            "asOf": "2026-11-04T06:17:55.8500551Z",
+            "asOf": "2026-11-04T07:25:17.6307817Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -3590,7 +3590,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 6,
             "totalUnits": 6,
-            "asOf": "2026-11-04T06:17:55.8500551Z",
+            "asOf": "2026-11-04T07:25:17.6307817Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -4480,7 +4480,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 17,
             "totalUnits": 17,
-            "asOf": "2026-11-04T06:17:55.8500551Z",
+            "asOf": "2026-11-04T07:25:17.6307817Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -5370,7 +5370,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 5,
             "totalUnits": 5,
-            "asOf": "2026-11-04T06:17:55.8500551Z",
+            "asOf": "2026-11-04T07:25:17.6307817Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -6260,7 +6260,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 7,
             "totalUnits": 7,
-            "asOf": "2026-11-04T06:17:55.8500551Z",
+            "asOf": "2026-11-04T07:25:17.6307817Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7150,7 +7150,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 30,
             "totalUnits": 30,
-            "asOf": "2026-11-04T06:17:55.8500551Z",
+            "asOf": "2026-11-04T07:25:17.6307817Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8040,7 +8040,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 108,
             "totalUnits": 108,
-            "asOf": "2026-11-04T06:17:55.8500551Z",
+            "asOf": "2026-11-04T07:25:17.6307817Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8901,18 +8901,18 @@
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
-  "cache_control": "public, max-age=8",
-  "request_to_body_ms": 321,
-  "original_response_sha256": "689fdb96f67ab70626e3802c3bf1f94fe1c2b432c49f09c535a0c9e3ddd802f1",
-  "observed_source_stamp": "2026-11-04T06:17:55.8500532Z",
+  "cache_control": "public, max-age=30",
+  "request_to_body_ms": 303,
+  "original_response_sha256": "9aa4df6097fb9219fb749318fe8d94e806e9dfc50d5081f4e824c1eb100eabbb",
+  "observed_source_stamp": "2026-11-04T07:25:17.6307797Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-04T06:17:55.8500532Z",
-  "source_published_at": "2026-11-04T06:17:56.2994665Z",
-  "selected_payload_sha256": "ac3957bf1b87da6e0c60cfad6e4ef6ed3094ea2f144c122ada854e076fe7e9d5",
+  "snapshot_updated_at": "2026-11-04T07:25:17.6307797Z",
+  "source_published_at": "2026-11-04T07:25:18.1078991Z",
+  "selected_payload_sha256": "7cde7feb2659bfccbf2c977d08a6cde1e0341c4a8df35d317acd941b359c3c67",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "revision_watermark": {
-    "as_of": "2026-11-04T06:17:55.8500532Z",
-    "published_at": "2026-11-04T06:17:56.2994665Z"
+    "as_of": "2026-11-04T07:25:17.6307797Z",
+    "published_at": "2026-11-04T07:25:18.1078991Z"
   }
 }
