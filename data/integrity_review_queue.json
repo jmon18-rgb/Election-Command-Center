@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-04T03:00:25.809925Z",
+  "updated_at": "2026-11-04T04:06:13.102436Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -258,6 +258,25 @@
   ],
   "items": [
     {
+      "id": "51f8a93d335723146368",
+      "title": "Voting machine snafus, polling place floods. Was there election interference? - USA Today",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPaFFjWHhCVzJ1Z0ZmMXd0dWY2enFvZTNPal9iS3dnMjlodlptVmpOcnNWbHFxNFZ4Wi03Rnl2NlFKb1ZvR1hKQUMtcWZQM1ZEal9rWFJGVkNfSl90OU1kQVdkNWtXUGRzVGQybUtGU1NFSkJqMkZ1aWoxYVpvQS1mUTVuenVWQUxLNmVYLWs5UXlEbG5EMzRYNmliVURBWlNBNWt2QUFmZ3FWejZxV1o2ZE1ybHVVUzJ6VFA1am1EcURZYXJzVGM4WGVwazNzeUFzbFVYRmVxQzZqZkt5eHh6dg?oc=5",
+      "publisher": "USA Today",
+      "published_at": "2026-11-04T02:01:00Z",
+      "detected_at": "2026-11-04T04:06:13.102436Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "c83ac75e9f2b12e2449d",
       "title": "Jon Ossoff wins reelection in Georgia, holding onto to key Senate seat for Democrats - WJLA",
       "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNeXNSank2UkdDWkhVZnk2MWVYUXByd0ZpampQU09hOXhXcWNXSTdmQllSSjNnX0g2RXNyMTNFd0xQb1lqaXZjMlJMaEJBdjNpVXNleFdaU29pZV93SUc5U1dOb0Z4QnROa3E3bWJQajJFbFU5VUxQNWtxLWlXRUVhSm4yclltb1hmeVpWekQ3ZWRxeGd0Yi1pT1V0R2l2X2x0Y3N3bTM4NENRYi1RYjJtOHV4NUtoSUZYWEozNkpfU0lrTi0wU1hjUzI2S25Ick93VkN1N0tZZWpWMHcwOEdteFFJV3pXQ1l5ZnIzZA?oc=5",
@@ -419,6 +438,23 @@
       "headline_numbers_unverified": [
         "33,190 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "03158716db385c359df8",
+      "title": "Here\u2019s who watched you vote \u2014 and why \u2014 on Election Day - The Press-Enterprise",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQRWpFNHpTN01CcGhsd2VPbXBqdFIwM043OGswSC1BZFlWTG52djVKZ1hhUnNYTUJzNmZxNHg1MFJKbEJtY0tlZGVodnRXdWFvQ3hTVVFIck9qREY4OWw0YVVxRVgzWWNPRTU3NGZMdzNKLThnZGdnNkNHSTBiejJtRTE1M3FKWGZNNm8zMHJMUm5GRlphYmtobXp3?oc=5",
+      "publisher": "The Press-Enterprise",
+      "published_at": "2026-11-03T23:03:26Z",
+      "detected_at": "2026-11-04T04:06:13.102436Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5106,45 +5142,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7d30a85da1d8e4ea4057",
-      "title": "California election controversy explained: Why the Department of Justice and state are squaring off over voter rolls - Livemint",
-      "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxNN0hZTzdGZGhzekJMaTBVZXVGNVFDNmF1THBaSXNOeU1oRUtnQ01NSzZaVGFZMFZiSzBob1kwNVctenNjVkJRcmk5d0NjeGxITmpnQzVCYTl2VjZaTEZSazVmb0ZWUV9OSE1tdHhvQXdnNndmLVZZOXJRd0h4bFNWcVNsN2dwOWoySktwQllscnBhUThseHIzNzhvRGxEc2JQZE1YMV9jM1RGdi1nX3RaNzdRRm5GZFJyMnpHY2RsMVpqS1pUX0kySkMySmVYZXgySzVyU0NmYkY1aTg5M0VleEVkbXVHeGJfR2g1NWE4TnRsSHEtQTlPZlctQUhLVE41TGVF0gGIAkFVX3lxTE5MQUVvWjZEbmtxS0Q3QkNxUXptOXc5UmlVZnF2b3I4N1FXUFVfT3ZPQXRpYll0b3A4aW84SXBWblRIOW9tU2x5Y0JYSms2NHpQeG5XSXBPNHA2cl9mSXpPamNNVlVsTXdFSFZrRWhYc3djTXhBX3ljRTk0WmdoT0JrY2FOM21jbnpYX0xmckJQN280WV9DWUcyekZoZEJVVnUwc28xVTQ5bWE5RDVrWHY0eEdyb05lX016WEh4aXMycE10aWgteXV0RUctVExaUGQ1dml5SkEwRnFLT19oQXY5VGNHc2VoRFVZTHVWOV9qRDl5UFIwaVVBWVZrcVFIbXQ4bTYyaXIyYQ?oc=5",
-      "publisher": "Livemint",
-      "published_at": "2026-10-26T14:59:12Z",
-      "detected_at": "2026-10-26T15:36:20.039605Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8eac970c233573625d18",
-      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
-      "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQaFQ1UElORFQxclVKZW5ZZ3c2TUVTYjhBZ1MzSTN1MlVsZzg5dER0WnJ5akpVM2tNWF9qSjBNVE5WdGFVX2k4QlBXSUN2Yl9sTlgzakdBWXNJOUd6SHBPQWQ4SW9kbmhaNU9XNkJCWGNKWVIyMDk1YmtOYmxyTkNoblc0QkQ0eFZKc2JpYjZjaG0tWU50dFVfb2JGRzlTR1k3SGVGd1NTdW9kQWJDd3BnZHRGRk9vSUQxTGtLQ0E3cnhUUHgxcjI2OUlyWnpIVTZ2MzZ4MmdSSHBFbFN1ODdwLXpPU2E?oc=5",
-      "publisher": "Los Angeles Times",
-      "published_at": "2026-10-26T14:40:51Z",
-      "detected_at": "2026-10-26T16:26:45.593324Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
