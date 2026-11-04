@@ -1,0 +1,57 @@
+{
+  "schema": "openamerica-primary-identity-fictional-fixture-v1",
+  "label": "FICTIONAL METADATA AND COUNTERS FOR OFFLINE TESTS; NOT ACTUAL ELECTION RESULTS",
+  "request_url": "https://openamerica.io/elections/results.json?year=2026&office=Senate",
+  "observer_now": "2026-11-04T01:10:00Z",
+  "raw_order": ["AR", "FL", "VA"],
+  "normalized_order": ["AR", "FL-special", "VA"],
+  "document": {
+    "api": 1,
+    "year": 2026,
+    "office": "Senate",
+    "source": "state",
+    "live": true,
+    "stale": false,
+    "counting": true,
+    "final": false,
+    "as_of": "2026-11-04T01:09:00Z",
+    "counts": {"called": {}, "races": 3, "not_called": 3, "reporting": 0, "with_precincts": 3},
+    "unchanged_extra_metadata": {"fixture_only": true, "nested": [false, null, "kept"]},
+    "races": {
+      "AR": {
+        "leader": "",
+        "called": false,
+        "winner": "",
+        "pct_in": 0,
+        "total": 0,
+        "uncontested": false,
+        "cands": []
+      },
+      "FL": {
+        "leader": "",
+        "called": false,
+        "winner": "",
+        "pct_in": 0,
+        "total": 0,
+        "uncontested": false,
+        "cands": [
+          {"n": "Neil J. Gillespie", "p": "I", "v": 0, "pct": null, "inc": false, "w": false, "b": ""},
+          {"n": "Ashley Moody", "p": "R", "v": 0, "pct": null, "inc": false, "w": false, "b": ""},
+          {"n": "Angie Nixon", "p": "D", "v": 0, "pct": null, "inc": false, "w": false, "b": ""}
+        ]
+      },
+      "VA": {
+        "leader": "",
+        "called": false,
+        "winner": "",
+        "pct_in": 0,
+        "total": 0,
+        "uncontested": false,
+        "cands": [
+          {"n": "Fictional candidate one", "p": "D", "v": 0, "pct": null},
+          {"n": "Fictional candidate two", "p": "R", "v": 0, "pct": null}
+        ]
+      }
+    }
+  }
+}

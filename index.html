@@ -1779,7 +1779,7 @@ body[data-active-page="electionNight"] .hero-waves{display:none}body[data-active
 <script src="./scripts/ohio_official_candidate_votes.js?v=ed88660a3b59"></script>
 <script src="./scripts/ohio_official_county_startup.js?v=d545da9c5eef"></script>
 <script src="./scripts/nc_county_results_desk_startup.js?v=e34a7f75a72d"></script>
-<script src="./scripts/election_night_openamerica_transport.js?v=17218440f2e8"></script>
+<script src="./scripts/election_night_openamerica_transport.js?v=af9e38a5f5b7"></script>
 <script src="./scripts/election_night_transport.js?v=e69db06083bc"></script>
 <script src="./scripts/election_night_fast_lane.js?v=f2a0d35d0a8a"></script>
 <script src="./scripts/election_night_nowcast.js?v=b8cd63572ea1"></script>
@@ -8497,6 +8497,8 @@ function enResumeRestore(){
     !doc.snapshots||Array.isArray(doc.snapshots)||
     typeof doc.snapshots!=='object'||
     !Array.isArray(doc.movements)||doc.movements.length>70)return false;
+  for(const office of ['House','Senate','Governor'])if(Object.hasOwn(doc.snapshots,office))
+   doc.snapshots[office]=window.ElectionNightOpenAmericaTransport.normalizePrimarySource(doc.snapshots[office],enFetchUrl(2026,office));
   const offices=Object.keys(doc.snapshots);
   if(!offices.length||offices.length>3||
     !offices.every(office=>['House','Senate','Governor'].includes(office)&&

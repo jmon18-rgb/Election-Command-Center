@@ -8,6 +8,7 @@ No collection, repackaging, or proxying of this third-party feed is performed.
 import json
 import urllib.request
 from election_night_source_origin_guard import require_exact_response_url
+from openamerica_primary_identity import normalize_primary_source
 
 SOURCE="https://openamerica.io/elections/results.json"
 ORIGIN="https://jmon18-rgb.github.io"
@@ -51,7 +52,7 @@ def fetch(year,office,opener=urllib.request.urlopen):
         if r.get("winner"):
             raise AssertionError("Unexpected called winner from state-derived provider: "+seat)
     print(f"CORS-enabled, contract verified: {year} {office}, {len(result['races'])} source races")
-    return result
+    return normalize_primary_source(result,url)
 
 def main():
     archived=fetch(2024,"House")
