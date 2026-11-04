@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-04T01:51:41.337287Z",
+  "updated_at": "2026-11-04T03:00:25.809925Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 4,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 28,
-    "advisory_related_headlines": 75
+    "advisory_related_headline_buckets": 27,
+    "advisory_related_headlines": 73
   },
   "advisory_related_headlines": [
     {
@@ -137,18 +137,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "7853e44c87a2b51cded5",
-      "headline": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "8bbb654bbd9b1dfd5c44",
       "headline": "The Phantom Voter Intimidation Threat - National Review",
       "possibly_related_articles": 2,
@@ -253,6 +241,19 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "0ec4ca3d430d5c57718e",
+      "headline": "Over 40% of names on DOJ list of alleged noncitizens are not on Calif. voter rolls, analysis finds - NanaimoNewsNOW",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -333,6 +334,25 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "f3759a1b4886b69409fa",
+      "title": "Election Day 2026: few problems, dirty tricks or federal interventions - USA Today",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPaFFjWHhCVzJ1Z0ZmMXd0dWY2enFvZTNPal9iS3dnMjlodlptVmpOcnNWbHFxNFZ4Wi03Rnl2NlFKb1ZvR1hKQUMtcWZQM1ZEal9rWFJGVkNfSl90OU1kQVdkNWtXUGRzVGQybUtGU1NFSkJqMkZ1aWoxYVpvQS1mUTVuenVWQUxLNmVYLWs5UXlEbG5EMzRYNmliVURBWlNBNWt2QUFmZ3FWejZxV1o2ZE1ybHVVUzJ6VFA1am1EcURZYXJzVGM4WGVwazNzeUFzbFVYRmVxQzZqZkt5eHh6dg?oc=5",
+      "publisher": "USA Today",
+      "published_at": "2026-11-04T00:30:00Z",
+      "detected_at": "2026-11-04T03:00:25.809925Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "d51692fb43ae917d262a",
       "title": "\u2018ICE Out!\u2019: Phoenix advocacy groups hang Election Day banners across Valley - CaloNews.com",
       "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOTzVFU1plUzJvLUJ6eWNZY1FTbndLTm1QX05wd3lFeDlSQzZJQjUyNXNzblVqV3NkMkpZRF9tNHRnX0pmZnJPSmRrZU1QM05nMUN6VlJpWG44Ym9uOElfYTZIOXNLdEtTaHNZVWNUb005V0dGRlUxVHQxV3VGaWVmUER2d0NUOGhaSlpRaVpzUjVpbmxrcWtqYkhyRWxIOS11VVRJNUExZG5LTlJ3T2FGclVZOXRVNVhLWEFpYklHSDBJYVZ2S3VkQThCcWwtRVZXZ0ZMVHQ0UWliSlhZYkV0bjFaSXR2NG4tTXc?oc=5",
@@ -379,6 +399,26 @@
         "security"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1d77f3c8509b644fb11b",
+      "title": "33,190 duplicate NC voter registrations flagged before election - Carolina Coast Online",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxPdGhLdng2LXliRlF2dXRxUUM0MDhDbVZLeGNnYVMtdHY0a1JGSDNVNTBBVjI3dVdoa3JiTmdRdlRDRlA5U0N2em5BZU5EQmJHTDhDVlB0NkowYjYxZ0JPQVZXWXNpcHlyR1BLbmM5bEJQODJHaUdpUjFUYmtBSXoyRk5aNng2ek9yM2lOOG9sZWZ3UE9nVld3RTVn?oc=5",
+      "publisher": "Carolina Coast Online",
+      "published_at": "2026-11-03T23:15:00Z",
+      "detected_at": "2026-11-04T03:00:25.809925Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "33,190 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5101,42 +5141,6 @@
       "publisher": "Los Angeles Times",
       "published_at": "2026-10-26T14:40:51Z",
       "detected_at": "2026-10-26T16:26:45.593324Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7853e44c87a2b51cded5",
-      "title": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQZEs1R1ZLenRaM21UX21NWmlBX3l3Rkc2QnV5ZmZpUVFZby1PbGtyTG00eTdvMGZWeUtYOXVZeUVTZ3M0VEFfOHVkNFk4Vkl1czdteVI1YnFGazY2Q0hxNTMyWkhKOURBYWNtWS1vc2pMaFlKYXNPV201RlZnOXRsS01xbjJsQlVOZ3gyUlFNTUZsMVo4UExUdWdlcTNJMlpyYjh2bDdYcVF1U1JWcTlJam5JWmNKeXU1cnNPQTBXUHM2QkRDZmhTTDlYejBobmNwMW5kdXFuWUYxSnQyRGUxWHVINmhKQQ?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-26T14:29:25Z",
-      "detected_at": "2026-10-26T17:47:40.963885Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1198d3cae288882d330a",
-      "title": "Thousands of observers from the right and left will descend on polling places to monitor the vote on Election Day - PBS",
-      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQZEs1R1ZLenRaM21UX21NWmlBX3l3Rkc2QnV5ZmZpUVFZby1PbGtyTG00eTdvMGZWeUtYOXVZeUVTZ3M0VEFfOHVkNFk4Vkl1czdteVI1YnFGazY2Q0hxNTMyWkhKOURBYWNtWS1vc2pMaFlKYXNPV201RlZnOXRsS01xbjJsQlVOZ3gyUlFNTUZsMVo4UExUdWdlcTNJMlpyYjh2bDdYcVF1U1JWcTlJam5JWmNKeXU1cnNPQTBXUHM2QkRDZmhTTDlYejBobmNwMW5kdXFuWUYxSnQyRGUxWHVINmhKQdIB6wFBVV95cUxNd1dhWHFURjJfd25ITHZIcUlhTTdoOFpmTW1yMnBtc3NRMWFBN0Fqc0Zjbm0zZDduOXRWckUyYWVGNjdHWXRUbFBrdW9VSnNaZ0NzZ3lONTh6V1hvU002R3d2bC1QU0xxMUFQMl8yeU5lZWpXdWtkVWxtdTluc1NsdTRqeHFCei1FNzNHMlNwM256OXpFSHlZeFBLamZhREsyTmdTY1pub252eE9rbGtHLU12WWJjcGdlZEFHSGhmR2FxVVJnYk9FeTJSOTc1b1kzM3MwSHJ0ak94WjFBR1dGM0R5M2liS1dHdWpJ?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-26T14:29:25Z",
-      "detected_at": "2026-10-27T00:39:51.491263Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
