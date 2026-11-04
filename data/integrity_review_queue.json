@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-04T01:18:57.576032Z",
+  "updated_at": "2026-11-04T01:51:41.337287Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 4,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -149,18 +149,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "8eac970c233573625d18",
-      "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "8bbb654bbd9b1dfd5c44",
       "headline": "The Phantom Voter Intimidation Threat - National Review",
       "possibly_related_articles": 2,
@@ -254,9 +242,76 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "3720bdac96a510846754",
+      "headline": "Tracking the DOJ\u2019s effort to get U.S. voter registration data - NBC News",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "c83ac75e9f2b12e2449d",
+      "title": "Jon Ossoff wins reelection in Georgia, holding onto to key Senate seat for Democrats - WJLA",
+      "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNeXNSank2UkdDWkhVZnk2MWVYUXByd0ZpampQU09hOXhXcWNXSTdmQllSSjNnX0g2RXNyMTNFd0xQb1lqaXZjMlJMaEJBdjNpVXNleFdaU29pZV93SUc5U1dOb0Z4QnROa3E3bWJQajJFbFU5VUxQNWtxLWlXRUVhSm4yclltb1hmeVpWekQ3ZWRxeGd0Yi1pT1V0R2l2X2x0Y3N3bTM4NENRYi1RYjJtOHV4NUtoSUZYWEozNkpfU0lrTi0wU1hjUzI2S25Ick93VkN1N0tZZWpWMHcwOEdteFFJV3pXQ1l5ZnIzZA?oc=5",
+      "publisher": "WJLA",
+      "published_at": "2026-11-04T01:21:05Z",
+      "detected_at": "2026-11-04T01:51:41.337287Z",
+      "state_hints": [
+        "GA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "46a5fdfe356bd2f0c5a1",
+      "title": "Voting continues in Richmond after threats reported at 3 polling places - WJLA",
+      "url": "https://news.google.com/rss/articles/CBMisAJBVV95cUxNRzRtOFpCUXE1NmpHTWtiSzJGbW8ycHY0UkJGVjd2a0Z5NXVvSll0TFBLREJDcTlINFVvSWJER3ZManUwQ2hoYXdOMEp6aDhLcE9HRS1RbUxGeDBVVUJxbTJuVDZFalhWd2NJWVRnQTQ1eTJVWmV5Q0F6NUZBWFVqUkVpQ1hvRF9kWXJnLUVjb1pCNkJlSy1VYWNhWmRxZnRlWWs5b3B1UHRZS1dYZWZObnlTTVpkT0N2LWV5QkRqRExFUjlZOXdrNWtYX2tBTGEyM3U3cklQSGdnVmJ1VmJKUWJyNGF0amlwcUJrSmRudjZOTzBVSngyYUd1NVRKa3FaeGVqR3h2R1p1bjU5RWQyYktqRHZoNWZKLTlITXBnSnI4TUlOdS02ZGVWOHNyc19E?oc=5",
+      "publisher": "WJLA",
+      "published_at": "2026-11-04T01:05:41Z",
+      "detected_at": "2026-11-04T01:51:41.337287Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "327d110f005f6f0addc0",
+      "title": "'Eating good' | White House says Election Night spread includes Cheesecake Factory takeout - WJLA",
+      "url": "https://news.google.com/rss/articles/CBMi6AJBVV95cUxNRFRqejZJTnM5V3I0UFBaRXZLTXh1QUhybFU4ck01eWdkMFdZQmZFeF9kWnFJdHBvcmx1UjFfYnFrOFZLd1AzNG9BdmVhMXIwdWNyVk1BcGpsdDZ4MGk3OTY3OGVWNnVoRl9LOTlqTFNpREZRMDYtbFBMTzgtQ0V3YjFhSWJXdU12bENyQkZUU1dKU0MxLW1KRFpDOHNNQnZoRUdBSVdfeGxOWTRRdXBGYjhUb2NJOXVDNl9YckZHUjR0MTJBdEczTlVHdGtKeGpXSVktbF81Zlc2T1dsZzdteG8tblluZU5aWHd4YjBTV09ORGY0d1FLYnNoRVViNFdBYkE2WXZBQUlvY1dfVG0xLTU3QWJMVzY2bXRaVHhkRWVoUXkxZUNkTzRFcWtGV1lmbTZUQndLNVNIVjVvbEJocVBZTlNpZ2VjU251c212YkU2cmlWLWRkVkRacEJwNVZPSE5hNndaT0g?oc=5",
+      "publisher": "WJLA",
+      "published_at": "2026-11-04T00:36:04Z",
+      "detected_at": "2026-11-04T01:51:41.337287Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c8ee0d17bdca57f22f8e",
       "title": "Voting continues in Richmond after threats reported at 3 polling places - WJLA",
@@ -272,6 +327,24 @@
       "headline_numbers_unverified": [
         "3 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d51692fb43ae917d262a",
+      "title": "\u2018ICE Out!\u2019: Phoenix advocacy groups hang Election Day banners across Valley - CaloNews.com",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOTzVFU1plUzJvLUJ6eWNZY1FTbndLTm1QX05wd3lFeDlSQzZJQjUyNXNzblVqV3NkMkpZRF9tNHRnX0pmZnJPSmRrZU1QM05nMUN6VlJpWG44Ym9uOElfYTZIOXNLdEtTaHNZVWNUb005V0dGRlUxVHQxV3VGaWVmUER2d0NUOGhaSlpRaVpzUjVpbmxrcWtqYkhyRWxIOS11VVRJNUExZG5LTlJ3T2FGclVZOXRVNVhLWEFpYklHSDBJYVZ2S3VkQThCcWwtRVZXZ0ZMVHQ0UWliSlhZYkV0bjFaSXR2NG4tTXc?oc=5",
+      "publisher": "CaloNews.com",
+      "published_at": "2026-11-04T00:29:00Z",
+      "detected_at": "2026-11-04T01:51:41.337287Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5067,77 +5140,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c4e770e7adc8976ebc84",
-      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - NBC News",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOb0w1YnZwUkd2Q1JTa3A2NTFFaktxaXhxZW1ZQlEybnRoQ2RqTVFOclU3eFAtN1I4UXRUSzhRV3YzN0VsWk56QldfT2N3SGd0ZHRJSlRORE4tRDQ1MzRwa0NlbWpkVG5nXzlqUlQ2eXRQWUtNd1NoNjFFV0lQSFdNemRWdWZaY29lRnQ3S1hYMV9PNmhMRlRvaWpESmc1ZHJEV2F6b0dSZWRSVWIyc2lNOW1UYzFtNUdCbFE2NUd5Nmt4LTZHWDFN?oc=5",
-      "publisher": "NBC News",
-      "published_at": "2026-10-26T14:16:25Z",
-      "detected_at": "2026-10-26T19:00:46.378327Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a1f06cf6efcfd409e7d2",
-      "title": "Native vote observers mobilize to protect S.D. ballot access - Northern Plains News",
-      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQZ3Bock9kWXgyb3phUnhfZ01IS0JBUjkzTDd4YmpZajJNOWM5TFpHMzZSb3hTdjBpcW5fT2xYQjR4bmxnWndndEczM3hxd3k3VEQ1eVV4cXJWZDFxQ0tzUnYyc2I1MWdnR09hNVdjeDAzb0dwengzX3ZRZTRzQ1lScw?oc=5",
-      "publisher": "Northern Plains News",
-      "published_at": "2026-10-26T14:06:58Z",
-      "detected_at": "2026-10-26T14:58:29.082164Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6b50051065e586dcec9b",
-      "title": "The Trump administration has filed 31 lawsuits seeking states' voter data. Here's where they stand. - CBS News",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNN2xZSGY5OFhRT3JfWEdtTGZJZldMTlE1a05pTExhbEI3TlFxUVlFT1VibFIwRkd6cDFndHR5WF9KRUhqMlB5Vy1nR0ZDcEt0RnZydWw4WmJFX1JyMm5TcFRHZzhEb2pTUkxzR3ZiVGhOeGd5OU1xcVN6dXB6Tm9OZC1YRXZ3YU9u?oc=5",
-      "publisher": "CBS News",
-      "published_at": "2026-10-26T13:57:23Z",
-      "detected_at": "2026-10-26T19:26:45.175971Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "31 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e41cd87f2b577228601d",
-      "title": "Thousands of observers expected to monitor polling sites nationwide on Election Day - WNEP",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQSUN6Zkt1UlVTVmJtTm1wUWlFUFNxUDRKRW43REhWVVdoSW1DYTF0LUhJMGdXR2VZd05NUkEzSDd6OXR4VEZZc1VQUHZrZ1ZxeFZYbkFhTXA5MnBSU0xwbXl0QkJJU0ZERlcyenJpOGswaDBCaUl2MG1OVDBNMkw4bVlFcWQ0MlpJMmxRUEhQUm5KMk5pNVJnaTUtWlBrQ0w3OXluUXFsdU1DdVZqRVc0RGFucllCWDFxQUdjRWd6c1lOdmFoYV9MV0h4QWhFRDRjdWNSUA?oc=5",
-      "publisher": "WNEP",
-      "published_at": "2026-10-26T13:56:00Z",
-      "detected_at": "2026-10-26T14:58:29.082164Z",
-      "state_hints": [],
-      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
