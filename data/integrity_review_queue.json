@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-04T07:29:51.225936Z",
+  "updated_at": "2026-11-04T09:08:32.857188Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 27,
-    "advisory_related_headlines": 74
+    "advisory_related_headline_buckets": 26,
+    "advisory_related_headlines": 72
   },
   "advisory_related_headlines": [
     {
@@ -221,17 +221,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "c8dff0ab88daece56461",
-      "headline": "Who will win the 2026 midterm elections? Polls and predictions - The Times",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "3f71b2ec9cd501fce792",
       "headline": "US election officials brace for violence and intimidation at polling booths - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
       "possibly_related_articles": 2,
@@ -253,9 +242,63 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "0ec4ca3d430d5c57718e",
+      "headline": "Over 40% of names on DOJ list of alleged noncitizens are not on Calif. voter rolls, analysis finds - NanaimoNewsNOW",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "c432cfcf2d4e62aec919",
+      "title": "2026 November midterm election results for Northeast Ohio - Ideastream",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNYzN1RXJaM0lYLXRBQUdwVDdWVUExYjZteDN6M3Azak1VWDlteF9EcDBxMFpsSk9UNkhVemlpU0VwUFhJS2pkS1JwQWY2MTBoZ3RjczNEbFZqejU5VVNpMjhCckZ6WnY5S0NGUGRoUGFlTEI5dUduMG0xNkpMYno0bzVMbGZxTzdDbHhET2t2U3FKT3Z6TVhWaGxVTVpmbXl1dmZIaGZzQlU1Y1Vhb2pTZFB1RnZxbGNVenY1YWVMME5JVGVtV093?oc=5",
+      "publisher": "Ideastream",
+      "published_at": "2026-11-04T05:52:00Z",
+      "detected_at": "2026-11-04T09:08:32.857188Z",
+      "state_hints": [
+        "OH"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "90430770734d3a020f63",
+      "title": "Florida Election recap: Dems win locally but GOP keeps state offices - Orlando Sentinel",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOcjZLSU8zUWx4dEtKelpBalJRS0thTEQ1Z3QzRzJRbW9tdV83YzBRd0RZMkwzSFNlWjdWdkpyV28tUnNYMEF4VnVnRmFfSFlEN1JHVVdsb2NDakRmV2ZXanFiM25jWExxeHp4UEJmNmdxa2JSN0NsMnJuYXpoR0UtYnVpX1pSR2dzNFZybVpTMThEaDRtUXZR?oc=5",
+      "publisher": "Orlando Sentinel",
+      "published_at": "2026-11-04T04:56:58Z",
+      "detected_at": "2026-11-04T09:08:32.857188Z",
+      "state_hints": [
+        "FL"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "688dd213b8804846af62",
       "title": "Results Come in for Midterms That Will Shape Rest of Trump\u2019s Presidency - Time Magazine",
@@ -5105,42 +5148,6 @@
       ],
       "topic_hints": [
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "58970fe8e83f393111e0",
-      "title": "Who will win the 2026 midterm elections? Polls and predictions - The Times",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNUnpCV1NDNnk4SXdjQkEzNjhGZUIwTWJhVDlQZS1NZGRnNzdDamRHR0Q3M0w4djlsT1BvZWIxaWpVakVYbk5rUHJfZkJlQ18wNlBjZmM3cEp2ekhPNG1jd09CWFJUQWVORVhxRjh2UjBuQVkydGxLd05UR3JCVEYzVXltcEpSRWVXQlVoZEdsNmJaVFM1ZTZFcERta19lVWtZZGs0dlhEMlUybGItRGwtN0xXVQ?oc=5",
-      "publisher": "The Times",
-      "published_at": "2026-10-26T17:09:11Z",
-      "detected_at": "2026-10-26T19:00:46.378327Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "af1a5f88e593002150f0",
-      "title": "Amid mail-in voting anxiety, more Mecklenburg voters are casting their ballots in person - WFAE",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQZ1ZLVi1tYU1Qd0gxb3J3Mzlpc0pYT3hyZlA1TUF6OXVkSnQ2UVJCMDRON2xILWpLdVNnYjBDSTRSek1ZUWlzUkU4OUd4MzQ3MDEwdkNDTVUyYVhIM08ycGZCX25mLUdLYmNCNEU0MHdYdU9zWEZUWnAzaVAxZGRMaEdNbmpOSUwyOUZZQ3F2STNNaHJMMmxTc284OElmOHFUQjFPSzYxNTl1Tk9MTWJIN3ZMZWhUaUpueVNfSmotYkpNMklGZVd2amxORloybE1qbmVjaw?oc=5",
-      "publisher": "WFAE",
-      "published_at": "2026-10-26T16:59:00Z",
-      "detected_at": "2026-10-26T19:00:46.378327Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
