@@ -1,18 +1,1327 @@
 {
   "schema": "official-wa03-collection-v1",
   "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a",
-  "fetched_at": "2026-10-26T20:52:33.900Z",
-  "status": "SOURCE_UNAVAILABLE",
-  "payload": null,
+  "fetched_at": "2026-11-04T04:41:52.578Z",
+  "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
+  "payload": {
+    "jurisdiction": {
+      "shortName": "washington"
+    },
+    "election": {
+      "id": "01000000-a578-3971-654b-08defdf81b1d",
+      "name": [
+        {
+          "languageId": "en",
+          "text": "2026 General"
+        }
+      ],
+      "electionDate": "2026-11-03",
+      "isPrimary": false,
+      "isProduction": true,
+      "isOfficialResults": false,
+      "asOf": "2026-11-04T04:40:08.6375389Z",
+      "publishDate": "2026-11-04T04:41:02.1774513Z"
+    },
+    "ballotItems": [
+      {
+        "id": "54c40000-9064-bbec-4779-08df15c0a82a",
+        "parentId": null,
+        "parentJurisdictionName": "",
+        "publishPublicElectionId": "20261103",
+        "relatedIds": null,
+        "name": [
+          {
+            "languageId": "en",
+            "text": "Congressional District 3 - U.S. Representative"
+          }
+        ],
+        "voteFor": [
+          {
+            "languageId": "en",
+            "text": "Congressional"
+          }
+        ],
+        "referendum": [],
+        "turnout": null,
+        "reportingStatus": {
+          "reportingUnits": 5,
+          "totalUnits": 7,
+          "asOf": "2026-11-04T04:40:08.6375389Z",
+          "reportingStatusDetails": null
+        },
+        "voteTotal": 258544,
+        "underVoteCount": null,
+        "overVoteCount": null,
+        "contestGroupId": "01000000-c099-693d-b5ea-08df1b3c1049",
+        "contestType": "Candidate",
+        "summaryResults": {
+          "ballotOptions": [
+            {
+              "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+              "nativeId": "1601893",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "John Braun"
+                }
+              ],
+              "voteCount": 114028,
+              "party": {
+                "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Republican Party)"
+                  }
+                ],
+                "abbreviation": "REP",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+              "nativeId": "1601892",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Marie Gluesenkamp Perez"
+                }
+              ],
+              "voteCount": 142298,
+              "party": {
+                "id": "54c40000-9064-bbec-4647-08df15c0a808",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Democratic Party)"
+                  }
+                ],
+                "abbreviation": "DEM",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+              "nativeId": "9910",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Write-in"
+                }
+              ],
+              "voteCount": 2218,
+              "party": {
+                "id": null,
+                "name": null,
+                "abbreviation": null,
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": null,
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": true,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            }
+          ]
+        },
+        "rankedChoiceSummaryResults": null,
+        "hasBreakdownResults": true,
+        "crossCounties": [
+          "Clark County",
+          "Wahkiakum County",
+          "Thurston County",
+          "Skamania County",
+          "Pacific County",
+          "Lewis County",
+          "Cowlitz County"
+        ],
+        "isCloseRace": null,
+        "partyName": null
+      }
+    ],
+    "ballotItemWithBreakdown": {
+      "id": "54c40000-9064-bbec-4779-08df15c0a82a",
+      "name": [
+        {
+          "languageId": "en",
+          "text": "Congressional District 3 - U.S. Representative"
+        }
+      ],
+      "voteFor": [
+        {
+          "languageId": "en",
+          "text": "Congressional"
+        }
+      ],
+      "referendum": [],
+      "turnout": null,
+      "reportingStatus": {
+        "reportingUnits": 5,
+        "totalUnits": 7,
+        "asOf": "2026-11-04T04:40:08.6375389Z",
+        "reportingStatusDetails": null
+      },
+      "contestType": "Candidate",
+      "voteTotal": 258544,
+      "underVoteCount": null,
+      "overVoteCount": null,
+      "summaryResults": {
+        "ballotOptions": [
+          {
+            "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+            "nativeId": "1601893",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "John Braun"
+              }
+            ],
+            "voteCount": 114028,
+            "party": {
+              "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "(Prefers Republican Party)"
+                }
+              ],
+              "abbreviation": "REP",
+              "standardName": null,
+              "color": "#2D6657",
+              "textColor": "#ffffff",
+              "showInPublicResultsFilters": null
+            },
+            "groupResults": null,
+            "isWriteIn": false,
+            "isQualifiedWriteIn": false,
+            "isWinner": null
+          },
+          {
+            "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+            "nativeId": "1601892",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Marie Gluesenkamp Perez"
+              }
+            ],
+            "voteCount": 142298,
+            "party": {
+              "id": "54c40000-9064-bbec-4647-08df15c0a808",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "(Prefers Democratic Party)"
+                }
+              ],
+              "abbreviation": "DEM",
+              "standardName": null,
+              "color": "#2D6657",
+              "textColor": "#ffffff",
+              "showInPublicResultsFilters": null
+            },
+            "groupResults": null,
+            "isWriteIn": false,
+            "isQualifiedWriteIn": false,
+            "isWinner": null
+          },
+          {
+            "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+            "nativeId": "9910",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Write-in"
+              }
+            ],
+            "voteCount": 2218,
+            "party": {
+              "id": null,
+              "name": null,
+              "abbreviation": null,
+              "standardName": null,
+              "color": "#2D6657",
+              "textColor": null,
+              "showInPublicResultsFilters": null
+            },
+            "groupResults": null,
+            "isWriteIn": true,
+            "isQualifiedWriteIn": false,
+            "isWinner": null
+          }
+        ]
+      },
+      "rankedChoiceSummaryResults": null,
+      "breakdownResults": [
+        {
+          "parentBallotItemId": "01000000-1b8e-c128-9f67-08df08491fc5",
+          "locality": {
+            "id": "01000000-f977-1a83-56b4-08ddd6a09cab",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Clark County"
+              }
+            ],
+            "shortName": "clark-county-wa",
+            "turnoutPercent": null,
+            "percentReporting": null,
+            "precinctsReporting": null,
+            "hasCountGroupStatus": false,
+            "hasPrecinctStatus": false,
+            "mapFeatureId": "CLARK"
+          },
+          "voteTotal": 166863,
+          "underVoteCount": null,
+          "overVoteCount": null,
+          "precinctReportingStatus": {
+            "reportingUnits": 0,
+            "totalUnits": 375,
+            "asOf": "2026-11-04T04:40:08.6375468Z",
+            "reportingStatusDetails": [
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Fully Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-fully-reported",
+                "order": 1,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Partially Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-partially-reported",
+                "order": 3,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Not Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-not-reported",
+                "order": 4,
+                "value": 375
+              }
+            ]
+          },
+          "ballotOptions": [
+            {
+              "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+              "nativeId": "1601893",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "John Braun"
+                }
+              ],
+              "voteCount": 63383,
+              "party": {
+                "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Republican Party)"
+                  }
+                ],
+                "abbreviation": "REP",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+              "nativeId": "1601892",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Marie Gluesenkamp Perez"
+                }
+              ],
+              "voteCount": 101982,
+              "party": {
+                "id": "54c40000-9064-bbec-4647-08df15c0a808",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Democratic Party)"
+                  }
+                ],
+                "abbreviation": "DEM",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+              "nativeId": "9910",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Write-in"
+                }
+              ],
+              "voteCount": 1498,
+              "party": {
+                "id": null,
+                "name": null,
+                "abbreviation": null,
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": null,
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": true,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            }
+          ]
+        },
+        {
+          "parentBallotItemId": "01000000-4921-08d5-f199-08df144167d8",
+          "locality": {
+            "id": "01000000-f977-1a83-ac95-08ddd6a09cac",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Cowlitz County"
+              }
+            ],
+            "shortName": "cowlitz-county-wa",
+            "turnoutPercent": null,
+            "percentReporting": null,
+            "precinctsReporting": null,
+            "hasCountGroupStatus": false,
+            "hasPrecinctStatus": false,
+            "mapFeatureId": "COWLITZ"
+          },
+          "voteTotal": 35681,
+          "underVoteCount": null,
+          "overVoteCount": null,
+          "precinctReportingStatus": {
+            "reportingUnits": 91,
+            "totalUnits": 92,
+            "asOf": "2026-11-04T04:40:08.6375468Z",
+            "reportingStatusDetails": [
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Fully Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-fully-reported",
+                "order": 1,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Partially Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-partially-reported",
+                "order": 3,
+                "value": 91
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Not Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-not-reported",
+                "order": 4,
+                "value": 1
+              }
+            ]
+          },
+          "ballotOptions": [
+            {
+              "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+              "nativeId": "1601893",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "John Braun"
+                }
+              ],
+              "voteCount": 18389,
+              "party": {
+                "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Republican Party)"
+                  }
+                ],
+                "abbreviation": "REP",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+              "nativeId": "1601892",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Marie Gluesenkamp Perez"
+                }
+              ],
+              "voteCount": 16978,
+              "party": {
+                "id": "54c40000-9064-bbec-4647-08df15c0a808",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Democratic Party)"
+                  }
+                ],
+                "abbreviation": "DEM",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+              "nativeId": "9910",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Write-in"
+                }
+              ],
+              "voteCount": 314,
+              "party": {
+                "id": null,
+                "name": null,
+                "abbreviation": null,
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": null,
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": true,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            }
+          ]
+        },
+        {
+          "parentBallotItemId": "01000000-c23f-516e-f273-08df0ac5a6c3",
+          "locality": {
+            "id": "01000000-f977-1a83-a581-08ddd6a09cb5",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Lewis County"
+              }
+            ],
+            "shortName": "lewis-county-wa",
+            "turnoutPercent": null,
+            "percentReporting": null,
+            "precinctsReporting": null,
+            "hasCountGroupStatus": false,
+            "hasPrecinctStatus": false,
+            "mapFeatureId": "LEWIS"
+          },
+          "voteTotal": 32732,
+          "underVoteCount": null,
+          "overVoteCount": null,
+          "precinctReportingStatus": {
+            "reportingUnits": 106,
+            "totalUnits": 106,
+            "asOf": "2026-11-04T04:40:08.6375468Z",
+            "reportingStatusDetails": [
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Fully Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-fully-reported",
+                "order": 1,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Partially Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-partially-reported",
+                "order": 3,
+                "value": 106
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Not Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-not-reported",
+                "order": 4,
+                "value": 0
+              }
+            ]
+          },
+          "ballotOptions": [
+            {
+              "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+              "nativeId": "1601893",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "John Braun"
+                }
+              ],
+              "voteCount": 20604,
+              "party": {
+                "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Republican Party)"
+                  }
+                ],
+                "abbreviation": "REP",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+              "nativeId": "1601892",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Marie Gluesenkamp Perez"
+                }
+              ],
+              "voteCount": 11891,
+              "party": {
+                "id": "54c40000-9064-bbec-4647-08df15c0a808",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Democratic Party)"
+                  }
+                ],
+                "abbreviation": "DEM",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+              "nativeId": "9910",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Write-in"
+                }
+              ],
+              "voteCount": 237,
+              "party": {
+                "id": null,
+                "name": null,
+                "abbreviation": null,
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": null,
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": true,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            }
+          ]
+        },
+        {
+          "parentBallotItemId": "01000000-0bac-9173-aeeb-08df14e9c1be",
+          "locality": {
+            "id": "01000000-f977-1a83-37cd-08ddd6a09cb9",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Pacific County"
+              }
+            ],
+            "shortName": "pacific-county-wa",
+            "turnoutPercent": null,
+            "percentReporting": null,
+            "precinctsReporting": null,
+            "hasCountGroupStatus": false,
+            "hasPrecinctStatus": false,
+            "mapFeatureId": "PACIFIC"
+          },
+          "voteTotal": 9695,
+          "underVoteCount": null,
+          "overVoteCount": null,
+          "precinctReportingStatus": {
+            "reportingUnits": 41,
+            "totalUnits": 42,
+            "asOf": "2026-11-04T04:40:08.6375468Z",
+            "reportingStatusDetails": [
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Fully Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-fully-reported",
+                "order": 1,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Partially Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-partially-reported",
+                "order": 3,
+                "value": 41
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Not Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-not-reported",
+                "order": 4,
+                "value": 1
+              }
+            ]
+          },
+          "ballotOptions": [
+            {
+              "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+              "nativeId": "1601893",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "John Braun"
+                }
+              ],
+              "voteCount": 4289,
+              "party": {
+                "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Republican Party)"
+                  }
+                ],
+                "abbreviation": "REP",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+              "nativeId": "1601892",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Marie Gluesenkamp Perez"
+                }
+              ],
+              "voteCount": 5326,
+              "party": {
+                "id": "54c40000-9064-bbec-4647-08df15c0a808",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Democratic Party)"
+                  }
+                ],
+                "abbreviation": "DEM",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+              "nativeId": "9910",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Write-in"
+                }
+              ],
+              "voteCount": 80,
+              "party": {
+                "id": null,
+                "name": null,
+                "abbreviation": null,
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": null,
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": true,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            }
+          ]
+        },
+        {
+          "parentBallotItemId": "01000000-7c77-d3cb-2529-08df1f45b415",
+          "locality": {
+            "id": "01000000-f977-1a83-6920-08ddd6a09cbd",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Skamania County"
+              }
+            ],
+            "shortName": "skamania-county-wa",
+            "turnoutPercent": null,
+            "percentReporting": null,
+            "precinctsReporting": null,
+            "hasCountGroupStatus": false,
+            "hasPrecinctStatus": false,
+            "mapFeatureId": "SKAMANIA"
+          },
+          "voteTotal": 5257,
+          "underVoteCount": null,
+          "overVoteCount": null,
+          "precinctReportingStatus": {
+            "reportingUnits": 23,
+            "totalUnits": 23,
+            "asOf": "2026-11-04T04:40:08.6375468Z",
+            "reportingStatusDetails": [
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Fully Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-fully-reported",
+                "order": 1,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Election Night Complete"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-election-night-complete",
+                "order": 2,
+                "value": 23
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Partially Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-partially-reported",
+                "order": 3,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Not Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-not-reported",
+                "order": 4,
+                "value": 0
+              }
+            ]
+          },
+          "ballotOptions": [
+            {
+              "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+              "nativeId": "1601893",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "John Braun"
+                }
+              ],
+              "voteCount": 2503,
+              "party": {
+                "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Republican Party)"
+                  }
+                ],
+                "abbreviation": "REP",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+              "nativeId": "1601892",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Marie Gluesenkamp Perez"
+                }
+              ],
+              "voteCount": 2722,
+              "party": {
+                "id": "54c40000-9064-bbec-4647-08df15c0a808",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Democratic Party)"
+                  }
+                ],
+                "abbreviation": "DEM",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+              "nativeId": "9910",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Write-in"
+                }
+              ],
+              "voteCount": 32,
+              "party": {
+                "id": null,
+                "name": null,
+                "abbreviation": null,
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": null,
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": true,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            }
+          ]
+        },
+        {
+          "parentBallotItemId": "01000000-2afe-f1a0-c12b-08df09124097",
+          "locality": {
+            "id": "01000000-f977-1a83-605b-08ddd6a09cc0",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Thurston County"
+              }
+            ],
+            "shortName": "thurston-county-wa",
+            "turnoutPercent": null,
+            "percentReporting": null,
+            "precinctsReporting": null,
+            "hasCountGroupStatus": false,
+            "hasPrecinctStatus": false,
+            "mapFeatureId": "THURSTON"
+          },
+          "voteTotal": 8316,
+          "underVoteCount": null,
+          "overVoteCount": null,
+          "precinctReportingStatus": {
+            "reportingUnits": 35,
+            "totalUnits": 35,
+            "asOf": "2026-11-04T04:40:08.6375468Z",
+            "reportingStatusDetails": [
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Fully Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-fully-reported",
+                "order": 1,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Partially Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-partially-reported",
+                "order": 3,
+                "value": 35
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Not Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-not-reported",
+                "order": 4,
+                "value": 0
+              }
+            ]
+          },
+          "ballotOptions": [
+            {
+              "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+              "nativeId": "1601893",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "John Braun"
+                }
+              ],
+              "voteCount": 4860,
+              "party": {
+                "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Republican Party)"
+                  }
+                ],
+                "abbreviation": "REP",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+              "nativeId": "1601892",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Marie Gluesenkamp Perez"
+                }
+              ],
+              "voteCount": 3399,
+              "party": {
+                "id": "54c40000-9064-bbec-4647-08df15c0a808",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Democratic Party)"
+                  }
+                ],
+                "abbreviation": "DEM",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+              "nativeId": "9910",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Write-in"
+                }
+              ],
+              "voteCount": 57,
+              "party": {
+                "id": null,
+                "name": null,
+                "abbreviation": null,
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": null,
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": true,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            }
+          ]
+        },
+        {
+          "parentBallotItemId": "01000000-d5f6-060b-6238-08df12779436",
+          "locality": {
+            "id": "01000000-f977-1a83-0cbd-08ddd6a09cc1",
+            "name": [
+              {
+                "languageId": "en",
+                "text": "Wahkiakum County"
+              }
+            ],
+            "shortName": "wahkiakum-county-wa",
+            "turnoutPercent": null,
+            "percentReporting": null,
+            "precinctsReporting": null,
+            "hasCountGroupStatus": false,
+            "hasPrecinctStatus": false,
+            "mapFeatureId": "WAHKIAKUM"
+          },
+          "voteTotal": 0,
+          "underVoteCount": null,
+          "overVoteCount": null,
+          "precinctReportingStatus": {
+            "reportingUnits": 0,
+            "totalUnits": 11,
+            "asOf": "2026-11-04T04:40:08.6375468Z",
+            "reportingStatusDetails": [
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Fully Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-fully-reported",
+                "order": 1,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Partially Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-partially-reported",
+                "order": 3,
+                "value": 0
+              },
+              {
+                "groupName": [
+                  {
+                    "languageId": null,
+                    "text": "Not Reported"
+                  }
+                ],
+                "reportingStatusClientTextKey": "reporting-status-not-reported",
+                "order": 4,
+                "value": 11
+              }
+            ]
+          },
+          "ballotOptions": [
+            {
+              "id": "54c40000-9064-bbec-56e1-08df15c0a82a",
+              "nativeId": "1601893",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "John Braun"
+                }
+              ],
+              "voteCount": 0,
+              "party": {
+                "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Republican Party)"
+                  }
+                ],
+                "abbreviation": "REP",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-51e8-08df15c0a82a",
+              "nativeId": "1601892",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Marie Gluesenkamp Perez"
+                }
+              ],
+              "voteCount": 0,
+              "party": {
+                "id": "54c40000-9064-bbec-4647-08df15c0a808",
+                "name": [
+                  {
+                    "languageId": "en",
+                    "text": "(Prefers Democratic Party)"
+                  }
+                ],
+                "abbreviation": "DEM",
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": "#ffffff",
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": false,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            },
+            {
+              "id": "54c40000-9064-bbec-4cec-08df15c0a82a",
+              "nativeId": "9910",
+              "name": [
+                {
+                  "languageId": "en",
+                  "text": "Write-in"
+                }
+              ],
+              "voteCount": 0,
+              "party": {
+                "id": null,
+                "name": null,
+                "abbreviation": null,
+                "standardName": null,
+                "color": "#2D6657",
+                "textColor": null,
+                "showInPublicResultsFilters": null
+              },
+              "groupResults": null,
+              "isWriteIn": true,
+              "isQualifiedWriteIn": false,
+              "isWinner": null
+            }
+          ]
+        }
+      ],
+      "breakdownResultCount": 7
+    }
+  },
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
   "cache_control": "public, max-age=60",
-  "request_to_body_ms": 640,
-  "original_response_sha256": "e0b44622bde8b57a870b81440f7527d0fb6685075d8ef07514e4b4d1011da2c5",
-  "observed_source_stamp": "2026-10-22T15:55:34.6947355Z",
+  "request_to_body_ms": 400,
+  "original_response_sha256": "01a003ebe9edd651c0470499fb5d1670a69d6fd2c332d1e6b79aec196e720b24",
+  "observed_source_stamp": "2026-11-04T04:40:08.6375389Z",
   "source_test_data": false,
-  "observed_positive_candidate_counts": false,
-  "error": "Pre-election transport health check; no votes admitted",
-  "revision_watermark": null
+  "observed_positive_candidate_counts": true,
+  "snapshot_updated_at": "2026-11-04T04:40:08.6375389Z",
+  "source_published_at": "2026-11-04T04:41:02.1774513Z",
+  "selected_payload_sha256": "eb2db3e962f7029764dc7560b1f6e9d1a3c6837d052b280695d6d5b6ed10a07e",
+  "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
+  "revision_watermark": {
+    "as_of": "2026-11-04T04:40:08.6375389Z",
+    "published_at": "2026-11-04T04:41:02.1774513Z"
+  },
+  "remaining_revision_watermark": {}
 }
