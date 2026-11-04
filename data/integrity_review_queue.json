@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-04T12:00:23.288128Z",
+  "updated_at": "2026-11-04T13:19:09.188228Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -280,6 +280,27 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "e30ca3a3325e4a4c67c0",
+      "title": "Live 2026 midterm election coverage in Washington - Washington State Standard",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQRHJ6Z1VKbE5ES2ZLaGlQTWI5VFJZZ0xEaDQybm1zS2QxODlsLS1aRXg0Rmh1M3JoeE9VZjAyNHBocmFWNzY2aEZlcFF6RjNSZG1ISU1YQkNEVHRjN3VGWnV3NVZQMFdXdi1UbVZCMzFMVkZ5UXF4RWhzVkYwOUVHVENUYnZxY0MtQ1NaX0txM0VxVTBnNk1iMW15NE9wUQ?oc=5",
+      "publisher": "Washington State Standard",
+      "published_at": "2026-11-04T05:31:29Z",
+      "detected_at": "2026-11-04T13:19:09.188228Z",
+      "state_hints": [
+        "WA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "90430770734d3a020f63",
       "title": "Florida Election recap: Dems win locally but GOP keeps state offices - Orlando Sentinel",
       "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOcjZLSU8zUWx4dEtKelpBalJRS0thTEQ1Z3QzRzJRbW9tdV83YzBRd0RZMkwzSFNlWjdWdkpyV28tUnNYMEF4VnVnRmFfSFlEN1JHVVdsb2NDakRmV2ZXanFiM25jWExxeHp4UEJmNmdxa2JSN0NsMnJuYXpoR0UtYnVpX1pSR2dzNFZybVpTMThEaDRtUXZR?oc=5",
@@ -344,6 +365,23 @@
       "topic_hints": [
         "ballot_access",
         "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f6ace28266cb04f65047",
+      "title": "VOTE: Will you trust the results of the midterm elections? - WJLA",
+      "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxNNElXWXptaDYtLVo0U3dSamZWclF1WGtFOUtwZWlHVDdxSEQ0aFEzSWE1cTJTZThCRHRGdHI2bG5FSlBhNi12QVFtQk05NUwtRUNMNGFYLWR1TmpwU2N5czRuNE5idWxtekNNN1ZNMDZmQ3otMUc4Mi1aY0VGc19lNmd3Z0VjcTJ5VHpueFNwMnljeFB4Tno5MmRRM3g2Q1dhYzlNQklWbHVjZGEzTllGd3AzQmJPZ2hETkFwOENhWmdVQkg0MlhOMVdXR2JfVERCLWdTSS12R3lnTHE2X2NwaEU1TUl2SXZFMjl0UF9uV0NLdw?oc=5",
+      "publisher": "WJLA",
+      "published_at": "2026-11-04T01:54:54Z",
+      "detected_at": "2026-11-04T13:19:09.188228Z",
+      "state_hints": [],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -5104,46 +5142,6 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9ff18b3af72e771bc25f",
-      "title": "Court blocks bid by Trump DoJ to stop California from counting mail-in ballots - The Guardian",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9JdUF1WVZlekR2cHVvYmxlNFVqMG56WS02bHd1VVdYQk0zbTdMZ0pPbUpIVTBIRjg4TEZhcHYyX3JjTFljQy1vaDJiLWRxUG5IVzdDM3k2NVFCZHhmbllWYVFLek1NWER3dG55cUFCb2FnV0VJeVNJS2FoZkk?oc=5",
-      "publisher": "The Guardian",
-      "published_at": "2026-10-26T22:44:00Z",
-      "detected_at": "2026-10-27T02:00:32.711215Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5c6441e8542b5a6ebe51",
-      "title": "Appeals court dismisses DOJ's request to force California to set aside ballots - CBS News",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOeWN1MmpKQlpFR3Rnd29YRHRydHMzSFRhN0RMQ1ZnMncwZXlMSml2UGJYRmplVmxVM0NsVFFkTzZfNUhWcnJwZEE3MkdxdUpoNmY1c1hwVUJpWW83ME1sb0h0R1lsUEtVWjdhaGFZUF9ESGU5aVE0ZlZJY2xHTUMtWHJmV3R6dTF4MUE?oc=5",
-      "publisher": "CBS News",
-      "published_at": "2026-10-26T22:44:00Z",
-      "detected_at": "2026-10-27T02:00:32.711215Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
