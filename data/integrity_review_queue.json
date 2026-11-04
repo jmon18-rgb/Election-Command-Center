@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-03T22:57:05.232653Z",
+  "updated_at": "2026-11-03T23:50:18.095025Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 29,
-    "advisory_related_headlines": 80
+    "advisory_related_headlines": 79
   },
   "advisory_related_headlines": [
     {
@@ -39,8 +39,8 @@
     {
       "lead_id": "8eac970c233573625d18",
       "headline": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Los Angeles Times",
-      "possibly_related_articles": 5,
-      "distinct_publishers": 5,
+      "possibly_related_articles": 4,
+      "distinct_publishers": 4,
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
@@ -256,6 +256,23 @@
     }
   ],
   "items": [
+    {
+      "id": "68865d96f3976a727764",
+      "title": "Mullin slams Hillary Clinton for poll intimidation warning - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxObFF4TnYtbUh4T2U5SmJlQkhrMFNHbkd0RU1aYy1FMU1rMkx1QlNIN0RpZm4xYkllLVBWblE0U2FsOVB2d0tQaUR3VXo2dHU0MTJ1VUV5MktDdzAyZ0p0anRxaTJLc1hSb0JUZ01YN1lIcUJJMmFJWmxBbHlsRnhEZjRIVkd0YnZFUHowTmZTOHd2Sk1DTXhwbEFfZzNMd9IBowFBVV95cUxPWUZ0a2UyeVhsTEpubzJUWnVGMVJrMmltZ0h1c2hoYV9zakV5aXY2Ukc2NVBqNHRadHloVlRrb081Z21EbnRDdmJId2dDNF9Wc25Dc0xnZnZpbDVFWV90RXlHRUlOV2RJRTVRNmZDdmN0VWdneTlHZld0SzNuOFltc3N0QmNrd1VpaDdzdXdhazVUU3FSV2VvOEdHWkVleE9Femdn?oc=5",
+      "publisher": "The Hill",
+      "published_at": "2026-11-03T23:40:00Z",
+      "detected_at": "2026-11-03T23:50:18.095025Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "0145600ca14311504b36",
       "title": "Advocates rally midterm voters after dozens of polling sites shut down in 'swing' Texas county - ABC News - Breaking News, Latest News and Videos",
@@ -5115,24 +5132,6 @@
       "publisher": "ABC News - Breaking News, Latest News and Videos",
       "published_at": "2026-10-26T12:15:18Z",
       "detected_at": "2026-10-26T13:31:25.671572Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "660246149afb58ef1bb2",
-      "title": "Thousands of observers are expected to descend on polling places to monitor the vote on Election Day - Bozeman Daily Chronicle",
-      "url": "https://news.google.com/rss/articles/CBMimAJBVV95cUxNcWlOVEt6UXEzejVOMDQzYXB2WGdjeTktLUlhWlVWdkUwLXFrX2NZMU9Td3kzRzg3dEZ3YmpJbmxZTkxnTWdUVGpIeklKNnBWZlkyYmw5Q043WHFPRm56eHZsVktOTHlUdXZWa3JDaXd5N3pGRno4UXVWZ1JTUFI5QnZLUWY0YmVMTk5yaUJJdTZyQmowMmd5a3pxRTliem1sLVF3UGZaSmxGR2pWemtwU0JaZEFxNTdvSkYxTG9zWXlvbmF5YXVnbDNTekJjN1lzcVRvd3BhM2k0RHhseTRjZGozNXdwYlRiQWlCN2ljRktUZ3B1RmZIT2QxYlNhVTZxLWNSako2Ulp1ejhGOHdkb3NNVE1WUjhv?oc=5",
-      "publisher": "Bozeman Daily Chronicle",
-      "published_at": "2026-10-26T11:08:39Z",
-      "detected_at": "2026-10-26T13:13:52.472224Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
