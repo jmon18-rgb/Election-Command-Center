@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-05T13:26:44.603631Z",
+  "updated_at": "2026-11-05T15:10:10.342008Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -258,6 +258,24 @@
     }
   ],
   "items": [
+    {
+      "id": "b7dc06ce36355cb3dd12",
+      "title": "Sowing Doubt, Cutting Safeguards: The Administration\u2019s Campaign Against Election Confidence, and the Courts That Pushed Back - Daily Kos",
+      "url": "https://news.google.com/rss/articles/CBMikgJBVV95cUxPWTZQTFJONXZ2VHBHYzBCcWh2R25iTlV4eUFWNl9NeFFWWUdndy1DVHNnQ1Z6UVpyUXlpY0pYYkktMjBQVTBMQlVuU2IwRzlhbF9uZkhneEtseG90VzE0ajFhNDFYQW9hbU9MVmk5UTVBdWdlbzlCOHNTWElXZjhKUzE4dGFKRkx0TG1qM1pUYnBkamhycnJxa01NbU40dE1FOWNkM2pneUFIellGTWdYcUk3SUZjYTJ2eVlJUHludGFUQWNLNDZGdDk2ZWVRcTd5cXE3RE5PZVBZMWF2VU10UEJKYXFNMHZoZDlyUHRCNFRqS3F5NTVuYXQ5dWZlTjRYSVI3OWRMclJGbi0zLURQTkJR?oc=5",
+      "publisher": "Daily Kos",
+      "published_at": "2026-11-05T14:00:07Z",
+      "detected_at": "2026-11-05T15:10:10.342008Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "269e82a6ecdda60f2c0c",
       "title": "Trump threatened ICE agents at the polls. There was historic turnout instead - The Independent",
@@ -5124,23 +5142,6 @@
       "topic_hints": [
         "registration",
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a2eae36a45304ad44f0a",
-      "title": "The Latest: Israelis vote in a tense election seen as a referendum on Netanyahu - KSAT",
-      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOdy1KbDJCNDJWeThwMFYwZ2kxZnVqOXNXYlNaTWZITDJicHowcGV2YkJlNEQySTkyTEs5REI3YzRFbjVPajFlbFMyeE1VZ2pWS05XSnpmb1FLLVNyWm50VURMRmg2Zll2MHV2MzBVekdlWlZKMi1wQnVxRlVCbTNHOGxuNUkxN3hleGVwUmdhM096ZDdTV1BnWUMzVXNxdDNCcUxzcGpxUmpsLWV2dHRjamtEWFp4MUU2WVVzaEVXbmhHVGdEbUhwU3ZqYw?oc=5",
-      "publisher": "KSAT",
-      "published_at": "2026-10-27T05:04:31Z",
-      "detected_at": "2026-10-27T10:50:52.929050Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
