@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-05T15:10:10.342008Z",
+  "updated_at": "2026-11-05T16:16:57.199082Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -258,6 +258,23 @@
     }
   ],
   "items": [
+    {
+      "id": "89da30e0c580e63f53c2",
+      "title": "Voter Registration Rules and Citizenship Proofs Face Senate Action - Legis1",
+      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE43dzU1LTNkbmpTcUE0WFdCU1ZIMEFVZlRpY3k0VzAzekxwSElSZXJzci1rWDd1bzB5dEFzQWw3dV8zNFdsaXItR1R4cHNuY3RwaHA5aWhidXAwQnRHdFZhNE5JOWRjenU3QVozUHkxYjF1V2lYYV9sVmtBVEJnUQ?oc=5",
+      "publisher": "Legis1",
+      "published_at": "2026-11-05T15:20:03Z",
+      "detected_at": "2026-11-05T16:16:57.199082Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "b7dc06ce36355cb3dd12",
       "title": "Sowing Doubt, Cutting Safeguards: The Administration\u2019s Campaign Against Election Confidence, and the Courts That Pushed Back - Daily Kos",
@@ -5122,26 +5139,6 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7c995b36913c532a0097",
-      "title": "Court Rejects Trump Bid to Challenge California Voter Rolls - JDJournal.com",
-      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNZlRUME1VS1BoRC1TcmhKa2hkVW1qQmgtcURzU2xQWmI5QzBOYjQ2U09IcVBwdDV4WlltZWNwQjlCSm1UM3h6aE5oNHBvQm1BcFhlTElqN0RPRUxnOUZad2N2VUlxbVBVWTNEVFJMYVBrRkQ5cVo5U3M1a2FXZEtfRw?oc=5",
-      "publisher": "JDJournal.com",
-      "published_at": "2026-10-27T05:34:53Z",
-      "detected_at": "2026-10-27T05:46:09.309379Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
