@@ -1,7 +1,7 @@
 {
   "schema": "official-va02-collection-v1",
   "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
-  "fetched_at": "2026-11-05T13:41:56.347Z",
+  "fetched_at": "2026-11-05T14:41:11.854Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -32,9 +32,9 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-05T13:40:49.8120828Z",
-      "lastUpdated": "2026-11-05T13:40:32.5503597Z",
-      "publishDate": "2026-11-05T13:40:50.8624346Z"
+      "asOf": "2026-11-05T14:40:00.4533102Z",
+      "lastUpdated": "2026-11-05T14:39:50.6198636Z",
+      "publishDate": "2026-11-05T14:40:00.8836848Z"
     },
     "ballotItems": [
       {
@@ -84,7 +84,7 @@
         "reportingStatus": {
           "reportingUnits": 8,
           "totalUnits": 8,
-          "asOf": "2026-11-05T13:40:49.8120828Z",
+          "asOf": "2026-11-05T14:40:00.4533102Z",
           "reportingStatusDetails": null
         },
         "voteTotal": 336856,
@@ -958,7 +958,7 @@
       "reportingStatus": {
         "reportingUnits": 8,
         "totalUnits": 8,
-        "asOf": "2026-11-05T13:40:49.8120828Z",
+        "asOf": "2026-11-05T14:40:00.4533102Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
@@ -1810,7 +1810,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 16,
             "totalUnits": 16,
-            "asOf": "2026-11-05T13:40:49.8121295Z",
+            "asOf": "2026-11-05T14:40:00.4533179Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -2700,7 +2700,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 33,
             "totalUnits": 33,
-            "asOf": "2026-11-05T13:40:49.8121295Z",
+            "asOf": "2026-11-05T14:40:00.4533179Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -3590,7 +3590,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 6,
             "totalUnits": 6,
-            "asOf": "2026-11-05T13:40:49.8121295Z",
+            "asOf": "2026-11-05T14:40:00.4533179Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -4480,7 +4480,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 17,
             "totalUnits": 17,
-            "asOf": "2026-11-05T13:40:49.8121295Z",
+            "asOf": "2026-11-05T14:40:00.4533179Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -5370,7 +5370,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 5,
             "totalUnits": 5,
-            "asOf": "2026-11-05T13:40:49.8121295Z",
+            "asOf": "2026-11-05T14:40:00.4533179Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -6260,7 +6260,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 7,
             "totalUnits": 7,
-            "asOf": "2026-11-05T13:40:49.8121295Z",
+            "asOf": "2026-11-05T14:40:00.4533179Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7150,7 +7150,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 30,
             "totalUnits": 30,
-            "asOf": "2026-11-05T13:40:49.8121295Z",
+            "asOf": "2026-11-05T14:40:00.4533179Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8040,7 +8040,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 108,
             "totalUnits": 108,
-            "asOf": "2026-11-05T13:40:49.8121295Z",
+            "asOf": "2026-11-05T14:40:00.4533179Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8901,18 +8901,18 @@
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
-  "cache_control": "public, max-age=57",
-  "request_to_body_ms": 661,
-  "original_response_sha256": "f6cd283df7a59cb6bca498a4a07d3537a5b3ceade24cc944ff2aaf9a01d8dc11",
-  "observed_source_stamp": "2026-11-05T13:40:49.8120828Z",
+  "cache_control": "public, max-age=60",
+  "request_to_body_ms": 366,
+  "original_response_sha256": "fe491695ee9edb75db741b1fff3761ae29a3923e1afa6d023a930d93501c0576",
+  "observed_source_stamp": "2026-11-05T14:40:00.4533102Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-05T13:40:49.8120828Z",
-  "source_published_at": "2026-11-05T13:40:50.8624346Z",
-  "selected_payload_sha256": "8e885b1989821a22ebcecfec7f6bc525a9338cdbbd016f6d88adc905d825a128",
+  "snapshot_updated_at": "2026-11-05T14:40:00.4533102Z",
+  "source_published_at": "2026-11-05T14:40:00.8836848Z",
+  "selected_payload_sha256": "7ed763abcd4e7573173fa9fcf9af3192f41ef8865b2ee2ed9545d2dc09529007",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "revision_watermark": {
-    "as_of": "2026-11-05T13:40:49.8120828Z",
-    "published_at": "2026-11-05T13:40:50.8624346Z"
+    "as_of": "2026-11-05T14:40:00.4533102Z",
+    "published_at": "2026-11-05T14:40:00.8836848Z"
   }
 }
