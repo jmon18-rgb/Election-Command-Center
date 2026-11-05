@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-05T19:09:57.782561Z",
+  "updated_at": "2026-11-05T20:02:46.712177Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -437,6 +437,25 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "370736363505750c7c59",
+      "title": "Mirror Indy\u2019s live blog: Read what Marion County voters had to say on midterm Election Day 2026 - Mirror Indy",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQSGRuRVBINWFGZzB5WlgtMXdBNk5yMG5HUDMwamFxSTVROGxteVFXdkFjb05jbDVWdkxLMHNoamxaZFdJblRhRkQxZjlONGpWZ2FSYWVMa2d3OV9KWlE1RE1sZk1YOWp3NnZ0RUFSaGZtMFUzOE16T21lakJtWkFnMVBYeDYzZjByNmc?oc=5",
+      "publisher": "Mirror Indy",
+      "published_at": "2026-11-04T03:49:53Z",
+      "detected_at": "2026-11-05T20:02:46.712177Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5116,26 +5135,6 @@
       "state_hints": [],
       "topic_hints": [
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5a5dc1440fb251b0382b",
-      "title": "The New Worst-Case Scenario for Election Officials: Federal Interference - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPYldXcDdqQ2JqeWI4UklEeDh3elVuTzBYOFFVU3FVNzVTOW1JcktPSXdiNmU3S1Jsa09kLTVmYU8zLUQyczE1WXlSb1MxcHNrQ3dISHFMYmU1ckdDOWhCN1U3bjVGcGJNbDg1a2FXWGJRMjNTUURETGlVcFAzR3UwcEd3X1ZTZw?oc=5",
-      "publisher": "The New York Times",
-      "published_at": "2026-10-27T09:03:57Z",
-      "detected_at": "2026-10-27T14:59:45.294416Z",
-      "state_hints": [
-        "NY"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
