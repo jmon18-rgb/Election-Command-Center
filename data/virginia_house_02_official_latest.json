@@ -1,7 +1,7 @@
 {
   "schema": "official-va02-collection-v1",
   "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
-  "fetched_at": "2026-11-05T14:41:11.854Z",
+  "fetched_at": "2026-11-05T15:40:47.232Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -32,9 +32,9 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-05T14:40:00.4533102Z",
-      "lastUpdated": "2026-11-05T14:39:50.6198636Z",
-      "publishDate": "2026-11-05T14:40:00.8836848Z"
+      "asOf": "2026-11-05T15:39:29.6978225Z",
+      "lastUpdated": "2026-11-05T15:39:17.2922715Z",
+      "publishDate": "2026-11-05T15:39:37.5737156Z"
     },
     "ballotItems": [
       {
@@ -84,10 +84,10 @@
         "reportingStatus": {
           "reportingUnits": 8,
           "totalUnits": 8,
-          "asOf": "2026-11-05T14:40:00.4533102Z",
+          "asOf": "2026-11-05T15:39:29.6978225Z",
           "reportingStatusDetails": null
         },
-        "voteTotal": 336856,
+        "voteTotal": 336891,
         "underVoteCount": null,
         "overVoteCount": null,
         "contestGroupId": null,
@@ -607,7 +607,7 @@
                   "text": "J. Matt Baker"
                 }
               ],
-              "voteCount": 4576,
+              "voteCount": 4610,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -677,7 +677,7 @@
                       "text": "Ngày bầu cử"
                     }
                   ],
-                  "voteCount": 3090
+                  "voteCount": 3124
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -771,7 +771,7 @@
                   "text": "Viết ra"
                 }
               ],
-              "voteCount": 440,
+              "voteCount": 441,
               "party": {
                 "id": null,
                 "name": null,
@@ -824,7 +824,7 @@
                       "text": "Ngày bầu cử"
                     }
                   ],
-                  "voteCount": 342
+                  "voteCount": 343
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -902,14 +902,14 @@
         "rankedChoiceSummaryResults": null,
         "hasBreakdownResults": true,
         "crossCounties": [
-          "ACCOMACK COUNTY",
           "SOUTHAMPTON COUNTY",
-          "VIRGINIA BEACH CITY",
-          "NORTHAMPTON COUNTY",
-          "ISLE OF WIGHT COUNTY",
-          "CHESAPEAKE CITY",
+          "ACCOMACK COUNTY",
+          "FRANKLIN CITY",
           "SUFFOLK CITY",
-          "FRANKLIN CITY"
+          "CHESAPEAKE CITY",
+          "ISLE OF WIGHT COUNTY",
+          "NORTHAMPTON COUNTY",
+          "VIRGINIA BEACH CITY"
         ],
         "isCloseRace": false,
         "partyName": null
@@ -958,11 +958,11 @@
       "reportingStatus": {
         "reportingUnits": 8,
         "totalUnits": 8,
-        "asOf": "2026-11-05T14:40:00.4533102Z",
+        "asOf": "2026-11-05T15:39:29.6978225Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
-      "voteTotal": 336856,
+      "voteTotal": 336891,
       "underVoteCount": null,
       "overVoteCount": null,
       "summaryResults": {
@@ -1480,7 +1480,7 @@
                 "text": "J. Matt Baker"
               }
             ],
-            "voteCount": 4576,
+            "voteCount": 4610,
             "party": {
               "id": "01000000-f030-c43d-ca0f-08df1fee529a",
               "name": [
@@ -1550,7 +1550,7 @@
                     "text": "Ngày bầu cử"
                   }
                 ],
-                "voteCount": 3090
+                "voteCount": 3124
               },
               {
                 "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -1644,7 +1644,7 @@
                 "text": "Viết ra"
               }
             ],
-            "voteCount": 440,
+            "voteCount": 441,
             "party": {
               "id": null,
               "name": null,
@@ -1697,7 +1697,7 @@
                     "text": "Ngày bầu cử"
                   }
                 ],
-                "voteCount": 342
+                "voteCount": 343
               },
               {
                 "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -1810,7 +1810,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 16,
             "totalUnits": 16,
-            "asOf": "2026-11-05T14:40:00.4533179Z",
+            "asOf": "2026-11-05T15:39:29.6978279Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -2700,7 +2700,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 33,
             "totalUnits": 33,
-            "asOf": "2026-11-05T14:40:00.4533179Z",
+            "asOf": "2026-11-05T15:39:29.6978279Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -3590,7 +3590,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 6,
             "totalUnits": 6,
-            "asOf": "2026-11-05T14:40:00.4533179Z",
+            "asOf": "2026-11-05T15:39:29.6978279Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -4480,7 +4480,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 17,
             "totalUnits": 17,
-            "asOf": "2026-11-05T14:40:00.4533179Z",
+            "asOf": "2026-11-05T15:39:29.6978279Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -5370,7 +5370,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 5,
             "totalUnits": 5,
-            "asOf": "2026-11-05T14:40:00.4533179Z",
+            "asOf": "2026-11-05T15:39:29.6978279Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -6260,7 +6260,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 7,
             "totalUnits": 7,
-            "asOf": "2026-11-05T14:40:00.4533179Z",
+            "asOf": "2026-11-05T15:39:29.6978279Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7144,13 +7144,13 @@
             "hasPrecinctStatus": false,
             "mapFeatureId": "800"
           },
-          "voteTotal": 45356,
+          "voteTotal": 45391,
           "underVoteCount": null,
           "overVoteCount": null,
           "precinctReportingStatus": {
             "reportingUnits": 30,
             "totalUnits": 30,
-            "asOf": "2026-11-05T14:40:00.4533179Z",
+            "asOf": "2026-11-05T15:39:29.6978279Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7161,7 +7161,7 @@
                 ],
                 "reportingStatusClientTextKey": "reporting-status-fully-reported",
                 "order": 1,
-                "value": 0
+                "value": 1
               },
               {
                 "groupName": [
@@ -7172,7 +7172,7 @@
                 ],
                 "reportingStatusClientTextKey": "reporting-status-election-night-complete",
                 "order": 2,
-                "value": 30
+                "value": 29
               },
               {
                 "groupName": [
@@ -7712,7 +7712,7 @@
                   "text": "J. Matt Baker"
                 }
               ],
-              "voteCount": 462,
+              "voteCount": 496,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -7826,7 +7826,7 @@
                       "text": "Ngày bầu cử"
                     }
                   ],
-                  "voteCount": 294
+                  "voteCount": 328
                 },
                 {
                   "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
@@ -7876,7 +7876,7 @@
                   "text": "Write-In"
                 }
               ],
-              "voteCount": 104,
+              "voteCount": 105,
               "party": {
                 "id": null,
                 "name": null,
@@ -7973,7 +7973,7 @@
                       "text": "Ngày bầu cử"
                     }
                   ],
-                  "voteCount": 93
+                  "voteCount": 94
                 },
                 {
                   "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
@@ -8040,7 +8040,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 108,
             "totalUnits": 108,
-            "asOf": "2026-11-05T14:40:00.4533179Z",
+            "asOf": "2026-11-05T15:39:29.6978279Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8901,18 +8901,18 @@
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
-  "cache_control": "public, max-age=60",
-  "request_to_body_ms": 366,
-  "original_response_sha256": "fe491695ee9edb75db741b1fff3761ae29a3923e1afa6d023a930d93501c0576",
-  "observed_source_stamp": "2026-11-05T14:40:00.4533102Z",
+  "cache_control": "public, max-age=42",
+  "request_to_body_ms": 185,
+  "original_response_sha256": "c488f5127c9f135d56defd1fbcea1d90bc80f7b916b4dbe7b6ab8caccdb8e17f",
+  "observed_source_stamp": "2026-11-05T15:39:29.6978225Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-05T14:40:00.4533102Z",
-  "source_published_at": "2026-11-05T14:40:00.8836848Z",
-  "selected_payload_sha256": "7ed763abcd4e7573173fa9fcf9af3192f41ef8865b2ee2ed9545d2dc09529007",
+  "snapshot_updated_at": "2026-11-05T15:39:29.6978225Z",
+  "source_published_at": "2026-11-05T15:39:37.5737156Z",
+  "selected_payload_sha256": "98303560a54241884480bb9c13a7ac04515615a92e951d7f89716605457a99b2",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "revision_watermark": {
-    "as_of": "2026-11-05T14:40:00.4533102Z",
-    "published_at": "2026-11-05T14:40:00.8836848Z"
+    "as_of": "2026-11-05T15:39:29.6978225Z",
+    "published_at": "2026-11-05T15:39:37.5737156Z"
   }
 }
