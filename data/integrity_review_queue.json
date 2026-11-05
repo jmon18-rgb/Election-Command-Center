@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-05T17:28:43.870129Z",
+  "updated_at": "2026-11-05T19:09:57.782561Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -311,6 +311,23 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "701c8416fc8cf8c788cc",
+      "title": "Here\u2019s Where Voters Are Rejecting Data Centers At The Ballot (Full List) - Forbes",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQWWRsN2ZIektnZXl3dTRGQ01yX1FkQlBTSkl4QWlZZGp6QWNwSUlIODBMWkdBWDZDcWFfZ2FhckhtTi1NQ2h2eXZJSWtlOUhQMWtwMXpwcERwX1JfNHdOU2poZEdldzRfcG5RN3ViSzJkUzdpSjBaamhwM1hJS1NKbDhEVG15NjZIVFg4OWZYV3ZyWGEtbHA3TVJ5dmNDbGwwQWVaMmVvTUZXX0pEamN6WVRiRjA1UHZrVWhabl9EUQ?oc=5",
+      "publisher": "Forbes",
+      "published_at": "2026-11-04T17:17:00Z",
+      "detected_at": "2026-11-05T19:09:57.782561Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "b81e8977c3226e881376",
       "title": "How ICE Quietly Escaped the Midterms Heat - Newsweek",
       "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxNNDJaTXI5Si1RcHQ3Q1h4Yl9neVUtRHdLRWs1UkVIZjVFR044bHBQbXpsR0ZpRWVZbE13VEgzU1NfUzRNeURTWUp6NTF2QmtoMU15RmpkUTdESDMyNTFKd0wzLTJFMEh5eDcwb3JCRFpqMDdNU3R2OWoyUlJyNU90Vg?oc=5",
@@ -380,6 +397,24 @@
       "state_hints": [
         "FL"
       ],
+      "topic_hints": [
+        "security",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "aa2ca51d581630badc70",
+      "title": "Election office reports failed attempts to hack its online services - Nextgov/FCW",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPTWpTMl94Z2JaRWlnMURfYUhXbUZlRWI0RktqWmNjcS1FY292MENreVhydkRjUXBLMXNNLW1nQUdBSHltVWU3NllrWjgxUE9tNnViOUJyVG5tbzhoY2lKRTNDQXBLYldwLUNUUXRsby0zSFY3UGpYOTBqTVdNcXJiZnBORmhjdUdyMWo2UHpmZUdMQWNzVTI1ZEdCQ2lRNlZjYnJ6U2pzT180TVdXQ0w1SmN5NEN1ZzBQMkE?oc=5",
+      "publisher": "Nextgov/FCW",
+      "published_at": "2026-11-04T04:44:57Z",
+      "detected_at": "2026-11-05T19:09:57.782561Z",
+      "state_hints": [],
       "topic_hints": [
         "security",
         "election_admin"
@@ -5100,44 +5135,6 @@
       ],
       "topic_hints": [
         "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "3688896fa9e80a30da64",
-      "title": "In 3-way secretary of state race, one candidate wants to take over elections - Wisconsin Examiner",
-      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOelhoQVBTZUFVSmJVeGpkb3ctVDdpMXBMcFBXVXBaMjJsckI1akJEeUsyYzhvcWw0azMwUXVLZWFfUVZrSnozcC1IWTk3S0RtUVEzdk5yVlhTZnZpdmdUUjBlSnlnc0tfSlRYUkpuVF9KUWhDbHBKd1hvX2h3LVc2YmtEdTBIT1M5UVlXOG85LW5UM2M5ci1zcl9TZzJQaWxWUzRELVhXUTJ5U0pFMmN1d290RlVlUmFm?oc=5",
-      "publisher": "Wisconsin Examiner",
-      "published_at": "2026-10-27T08:38:31Z",
-      "detected_at": "2026-10-27T08:54:40.825647Z",
-      "state_hints": [
-        "WI"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "3"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b92bcd84ca4e587e3237",
-      "title": "Environmentalists celebrate Lula's reelection in Brazil: 'The Amazon can breathe a sigh of relief' - KSAT",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOV0wtQmRzOVNzbk5HVEN1aGxIcUVVYlUtX19WcXFNVG5uX1BEc25VR1BoV1lwUmR6clhyWm1XVWZld1VTUGJvQ1F6WnJhdzJZc2V0NkJpWVpPWF9QaGJaMXppdWxjTS1scXByY0l2cDZwcEJESzFyS1M0Q2xpZVdhQ0JnUGhiNlB0OEk0TGRxdENINk1tR0VGeUZ0dVg1d0NKVUdJUGdjNFZzamFmbnd4dUxKaFFvdDlUOGRNVnlPNk5kVjM0MUdmQjNublgyV2FyT2VvNg?oc=5",
-      "publisher": "KSAT",
-      "published_at": "2026-10-27T06:54:49Z",
-      "detected_at": "2026-10-27T09:38:00.531396Z",
-      "state_hints": [],
-      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
