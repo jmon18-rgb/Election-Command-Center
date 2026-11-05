@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-05T20:59:50.497814Z",
+  "updated_at": "2026-11-05T21:57:10.760997Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -259,6 +259,23 @@
   ],
   "items": [
     {
+      "id": "ebf65ad38e43ac5fc8fa",
+      "title": "Five states approve voting citizenship measures, bolstering GOP push - Mezha.net",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQU0ZyLUtJNHA5ZGJ6TnRSWmZFbGJWNlMzSVFBVUVQUXlDSFJ1ZXZHNnEwa0pFSEdfVFZFR1AwVkxSZjRhejExQWxfRlRfY3BpbmNia19sT2RRQ1JyODY1cHRlMWRlQWFhSzFJT3N4dTVlUGpGcFg5R3JXc2FzdEtqNnVpYUQ?oc=5",
+      "publisher": "Mezha.net",
+      "published_at": "2026-11-05T21:00:43Z",
+      "detected_at": "2026-11-05T21:57:10.760997Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "89da30e0c580e63f53c2",
       "title": "Voter Registration Rules and Citizenship Proofs Face Senate Action - Legis1",
       "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE43dzU1LTNkbmpTcUE0WFdCU1ZIMEFVZlRpY3k0VzAzekxwSElSZXJzci1rWDd1bzB5dEFzQWw3dV8zNFdsaXItR1R4cHNuY3RwaHA5aWhidXAwQnRHdFZhNE5JOWRjenU3QVozUHkxYjF1V2lYYV9sVmtBVEJnUQ?oc=5",
@@ -286,6 +303,24 @@
       "topic_hints": [
         "litigation",
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "bbcb7d90d73a86096853",
+      "title": "After months of training for possibility of ICE at polling places, LUCHA says their work paid off - KJZZ",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNRGxQalBWejVyaEJXaFBmNzdmUmRlSmU2dGYtUjZzWTdGOE9rWDE1QkhWS0hsRjJpMjdjS0Ffcm9OV2dwblVmU2hLMUJod1Q0OGRwUFNCYWtXdjRUck15QkZhSk42WDl6RWxReThfU0xPNDN2S3YtRkxxSl9VSG5seGlqdEVkd3JHX3Y4UHlrU2U2ZjNlejNoWGpieDRuaWtlbGJEZ0JGUkUyeXJWV3Y3dU9lVkJHQklCZkFtQkd6ZmNWWlRLbWFSb3BKaGgtNGlLVkF0NHNIMEgtUjA?oc=5",
+      "publisher": "KJZZ",
+      "published_at": "2026-11-05T00:01:00Z",
+      "detected_at": "2026-11-05T21:57:10.760997Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5101,40 +5136,6 @@
         "litigation",
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f631fb2e68b0e98836a5",
-      "title": "What is the Trump-backed SAVE America Act requiring voter ID, proof of citizenship to register? - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPakp6cUZqckpHYXRSRmZ3S1NIVHE3TnR5ek9qN1M2YmVKUV96bjJaUWhGNFZyTFFFSVRoZnNFODZjNWRYT3E5R2lKUDIxTm9UQzlmTVllRS16cmZ1d1hqQ3pYNzNvUnRrR29aUUQyQ043NjhJSXFjV0g2TnY5TmJUYzNOMi1tQnJnUDRWVHl5ZGhGcUI3QkIxWHl5UzhfVm1qYUJ30gGoAUFVX3lxTE1vdmwzR2RvYmZoVzRZNFpoNmxyRE82czE3UlVtWHNqRkFyY2JEWXFjQmZtaUtqQVFpaWZWOGFDdUhMYXctejlGZDV2dWNtanUyVktUakJTZmtTWlFqYzJoU2FEODZjOWJUMmpGNTVya184d1d5SDU1eGcxdzJXc2Vqc1VaUWpjazBRRlRQTVZJVG82enZCTmY0THE1eVo2Rk9mb3I0RFdLRg?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-10-27T13:06:49Z",
-      "detected_at": "2026-10-27T16:57:40.504144Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4092dae5076113ac40af",
-      "title": "ICE Does Not Belong at the Polls - Time Magazine",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5qYjM1RGt1S2dwZ2VoY0hJRFl3WlZGVWhLWlJXdU1PdDI0VWpmSk5nbDcwdl9oWjNWNmZMU3hENUhVcFBUMnQ5WXFyRU9vUG1fR3FnWmtoak5ZUWlyX1p3dU5kYmxzdGI2RlNLdFAtdHo0ZVNnYnd3RA?oc=5",
-      "publisher": "Time Magazine",
-      "published_at": "2026-10-27T10:30:02Z",
-      "detected_at": "2026-10-27T10:50:52.929050Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
