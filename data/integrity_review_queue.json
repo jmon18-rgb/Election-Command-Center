@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-06T19:58:54.602827Z",
+  "updated_at": "2026-11-06T20:56:39.468585Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -262,6 +262,25 @@
   ],
   "items": [
     {
+      "id": "e47249b2c8424e70e9d4",
+      "title": "Colom's razor-thin Senate race puts Mississippi's voter rolls in the spotlight - Axios",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPeGVGRnpEV0otS0FrUmN4amRlZVFZVjVMZmFkNmN3ZHdpa0o2Ql9mRHp5czZibEgwT01zeHFkaGZERExwQlNMc1Y5M2ZnTWJJRng0QXFvVkl3S09pT2Z0R1RLdC1meXRpRUZ0dFJzcnhxTjUxVWF0Z01aRnM2X2tVZFNUTk9OVXc2WThCeUZGd3FMUE9a?oc=5",
+      "publisher": "Axios",
+      "published_at": "2026-11-06T20:27:50Z",
+      "detected_at": "2026-11-06T20:56:39.468585Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "d66c4d3248bde10cbd8b",
       "title": "Sacramento man swept up in federal voting probe to appear in court - Sacramento Bee",
       "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNQU9xYlphZ0p4NUVKRVdGN2d4aWExRkQzRnVvRDFBU2VJOGYxemVnT044RHpHYks2ZFUxaFpfNER3Z0xXMS1naHpuXzRUZ0RnenVuMmpGT3VrXzdseTdvWlJCVldtbHZFbWx5a0RCS2EtWDB0VEZPQ3FEcjFVVnFWUnZxV0xmOTNvY01v0gGLAUFVX3lxTE5heVJSc21iR3Q5TUFkc3FlRThocmo1RTBCUURweTh3QURfdVZ4R2wxSjhkOGdJZFJxaHFGR29FN3JOYk9senFycnBpeHNFUmI0cVpRd1puem5ydjlIWDhwMlZtUnpRUTVTbE9KeWdaY2MwQVhDNmNEU3dSSlVuZF95OEM4OFJyaEFHcFE?oc=5",
@@ -293,6 +312,23 @@
         "30 ",
         "000 voters"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "c535a2c13749bf29f513",
+      "title": "New polling shows how immigration issues influenced the midterm elections - KJZZ",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOT2JPNXZISkZIZHNhdXdrdUktcm5JcGRhOTVRTkgtRUE0UE80S3REdmhQVW41akNrT3Z0WElVMU1mcDR0U3dCX1l4bl9lTzd2bzdRUlRpSmF6eVZvMXA2UlRFbnA0ZXB0WDZlUDdBSkdGeS03UmFsVW8xb1ZXZ1BSWUJvTjFhNV9ZdnNzdEZHOGpsRTN3S1lpQ2t1VWdIZ3Q2WFZmWGtzaGdidjZTdDFRbUlwSjM?oc=5",
+      "publisher": "KJZZ",
+      "published_at": "2026-11-06T12:32:00Z",
+      "detected_at": "2026-11-06T20:56:39.468585Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5098,44 +5134,6 @@
       "topic_hints": [
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "96d2dfa3bad205f6fa5a",
-      "title": "Behind the ballot box, New Mexico election workers prepare for threats - New Mexico In Depth",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxOWGloSHpaWVFTQlBtUzhUeDR3dHZUM2tHRlVuSFBVenVuQjdrcEZOQlZFN0dZQjlrWWxsUlBiR1lyUXRORmF6WGZ0X0RsUHVOYTVSdDJVOTZYWFdLRlFtemcyRWt5ZzUwNkxGS1ZkOFNIWUtBTlkxSGJXQUdRbDVPZXctYmJLZjB5ZTNrNEl0Zi00aGkzTmpYS2E5VEpwZw?oc=5",
-      "publisher": "New Mexico In Depth",
-      "published_at": "2026-10-27T14:19:39Z",
-      "detected_at": "2026-10-27T21:42:04.922028Z",
-      "state_hints": [
-        "NM"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8bbb654bbd9b1dfd5c44",
-      "title": "The Phantom Voter Intimidation Threat - National Review",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQLWF6QjJJR3RYblFzYWswQ090UG0yQWpSVTR1S1c3MjRWRkpZdEszenF0ZThUazR1SWxtaTJMeGRQTjA3U256TlpISnVNOVJHbHBzSGpMa244NWF3cFQ2TGhvb2hXaUttV0ZtYnBaRzIzc1ZxNzhMVFM0Z3dwYUdvaFYzUDhwak82Vm83RzIyONIBlAFBVV95cUxNQVotQmpqZDUzUlpWN2NvSWNpNkl0TGJ5SGltVUhJb0JVWWl1WTZBYXlRUm5SWnU0cWtkRmdaeVNCeldiTVlBNVJWblU0R290QjRsdXdOeXpoaUQyS1FSMHRSWlgwbFhRYVZJVEhvWE1BN25pbGZoeGx0bmFMQzdJR2h5VXUwUmNNOWlQa3FCdkhicHY5?oc=5",
-      "publisher": "National Review",
-      "published_at": "2026-10-27T14:15:03Z",
-      "detected_at": "2026-10-27T14:59:45.294416Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
