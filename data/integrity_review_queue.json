@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-06T15:59:10.230977Z",
+  "updated_at": "2026-11-06T17:03:25.790583Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -258,6 +258,26 @@
     }
   ],
   "items": [
+    {
+      "id": "7c9674a62045d460290d",
+      "title": "ANC and MKP to take IEC to electoral court over more than 30 000 voters\u2019 roll irregularities - Johannesburg Sunday World",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxObWFNbVJYV0FYcEpRc21rQXJDZ1hCNEZESXFDWXBZUFo5enIxUGtqd3hjcjBOZnRKSHRveWlvSWhVZURYdGhXbm9sSm5LXy1CZ1RVTzU0RWtubWh1WGNnWmxvNFhEQTBXZmRFZlVBNEJNeHFrY0l0QWNINUZ1RWVyWkw0TXM3OXdrcjRFd2ZIRU84c21VMGdpdEtBQi1zRU1zMWg2VWNabF9VM3NPQV83X1pPdzV0aTVTeFU2OHEyeTRJODF3VGxERDB5bDI?oc=5",
+      "publisher": "Johannesburg Sunday World",
+      "published_at": "2026-11-06T16:24:03Z",
+      "detected_at": "2026-11-06T17:03:25.790583Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "30 ",
+        "000 voters"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "6b185c2bccb7592bc1b4",
       "title": "Who is being left out of voter rolls? What Aadhaar reveals about SIR - The Indian Express",
@@ -5119,23 +5139,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "db00f1d28f1971ea1e07",
-      "title": "The Trump administration\u2019s attempt to prevent noncitizen voting and the role of the Supreme Court - SCOTUSblog",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPdHRVamhHanVIOGItdDFreVExei1kSWhXWE9zeDF2YVFRSWJEZk03dzJqMndoTndoSWthTHpqYUR0OUpqQVlic2k5UlF3S3F6OG9rendNck8ySnhCUjJ0VE9nSHZDYUFFbXRaNlVPMVFZMno4Z0JhOHlUNGNBbzc2R2t5eGY4aUx2aGNsVGJpSDkzc3A4QTZqRmo0LTFEUlAwbDdQVlJKbG5BNTZSOWZQd0RDeS1OcTF4MFNaNjZhWlNyWUNHUExF?oc=5",
-      "publisher": "SCOTUSblog",
-      "published_at": "2026-10-27T14:02:05Z",
-      "detected_at": "2026-10-27T19:51:09.814411Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
