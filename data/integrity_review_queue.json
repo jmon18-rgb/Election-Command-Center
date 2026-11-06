@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-06T17:56:40.167029Z",
+  "updated_at": "2026-11-06T19:05:38.578908Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -339,6 +339,23 @@
       "state_hints": [],
       "topic_hints": [
         "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ace2a08a6f0cb4289c50",
+      "title": "Election Workers Braced for Chaos. They Got a Smooth Election Day. - Governing",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNNXQzQTFhQTQtRUpHcFBIVTQ3cThZOGlpSWFVOFFNd080cFRhTUR5WGoxTDVYVzJLOTkyMm0wMDUwejlDZVJDT3pfVXRXRmlzdkd5OTltYnV6bUJBcHdteU5SN29XeC1SS0dOQmxydkdHTW5MdzlPZ0pKM1lhZjNHRjlNNjlva3V5dGF6SHhNS3R6bmp0QVNTVEhEYmxoZEZ4?oc=5",
+      "publisher": "Governing",
+      "published_at": "2026-11-05T00:01:54Z",
+      "detected_at": "2026-11-06T19:05:38.578908Z",
+      "state_hints": [],
+      "topic_hints": [
         "election_admin"
       ],
       "headline_numbers_unverified": [],
@@ -5118,27 +5135,6 @@
         "security"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5e220652dbe0765618d2",
-      "title": "U.S. House Representative | Voter Guide: 2026 General Election - Alaska Beacon",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5ndEFNbUYxVV9GUWROSEpzR210aTlUZXYzekduQ2VCeHRGcXl2TFJQalFLVjJ6RlhOMkUzNzI2LU04MXdyaEhickVHMVdHallXaWRlTnItM0hqSnJON0xYcmFGNFVLSk82WU9uUDk5Zw?oc=5",
-      "publisher": "Alaska Beacon",
-      "published_at": "2026-10-27T14:14:27Z",
-      "detected_at": "2026-10-27T16:57:40.504144Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
