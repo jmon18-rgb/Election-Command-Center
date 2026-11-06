@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-05T23:53:19.563030Z",
+  "updated_at": "2026-11-06T01:24:42.383009Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -258,6 +258,23 @@
     }
   ],
   "items": [
+    {
+      "id": "6b185c2bccb7592bc1b4",
+      "title": "Who is being left out of voter rolls? What Aadhaar reveals about SIR - The Indian Express",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxPUjZPRl91UzU0SV92N2duanhoa1JrbFBNSzdLdU14Ymg3TmhaT1pYMXkzejNveFhTUDNORkRXNG9yb2ltSGZTcFNsOHJvNlJnNXFwcWxOY0JDNXdiUVZhQkdhc1hVTkRSVlN0S0FTeVFDTEwxRWN5SWtRVDVKQTlsY2VVWEh0ckpvZFZyTWVnakhVTE9fLTJCX2NzQXV6OTRsN2ducXdxUWtNTDdzaHFDUWd4VDZOZy1DZVBZc1ZKR0VZbG1FVGdLYmhnQVNqSml4ZnBjVll2TUQtbkM1Y3ZIWm1EbUpSUdIB7AFBVV95cUxPSjlfUzFpVm9UdmY3Z0JnSzRVbzlteV9zd04xMEZselM1RWw5dFJHbnhLNFNqYWF0X1pvM0pCU09vcWY0aGI2djNmUVQwM3QwdW5udi1FZ0ljeXVXM3lBRDIyVjR3RzVoMVpJNUlTakc2VXZBQW5TQUtiUzEtZGs5a19iWUhJTWw1dy1SU1RTWExtWDE4SlVmUWZ1cDAyYmV5Vkc4ZGJNM2ppMUt4ZTlwWldJMEhtTFk0YmZTUS1ESFNEdFdqcGs5ZGduSGdZZkhWOEdVLU9ZQ0RpbWo5LUExNWVFVzJfZGl1c2RSbQ?oc=5",
+      "publisher": "The Indian Express",
+      "published_at": "2026-11-06T00:50:19Z",
+      "detected_at": "2026-11-06T01:24:42.383009Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ebf65ad38e43ac5fc8fa",
       "title": "Five states approve voting citizenship measures, bolstering GOP push - Mezha.net",
@@ -5117,25 +5134,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ff64e7eefe0f11c08ff5",
-      "title": "Judge Orders Trump to Clarify ICE Plans at Polls Ahead of Elections - MundoNOW",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQS2g4Sk9RUGprU3VTR3N1Ym9fT281WWc1MlRxMGdjWTVycE80OEdxT2F1dGFQTWU0R05JNkRhVVZNSENoRU02TUN2RjU3T2xzbUx4bUt5cjBLMFJrZUdLUl92Vy1mN3pRZWt2RXNBRjFJXzhoNHZnUkVxUEdnQmxCY1lMVGU3bG1zV3J4SUJ0QWN0Q0UwVzZybA?oc=5",
-      "publisher": "MundoNOW",
-      "published_at": "2026-10-27T13:23:57Z",
-      "detected_at": "2026-10-27T14:01:23.756319Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation",
-        "security",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
