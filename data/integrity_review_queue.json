@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-06T19:05:38.578908Z",
+  "updated_at": "2026-11-06T19:58:54.602827Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 72
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 70
   },
   "advisory_related_headlines": [
     {
@@ -149,17 +149,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "8bbb654bbd9b1dfd5c44",
-      "headline": "The Phantom Voter Intimidation Threat - National Review",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "e16a78441dc2d4ee17f8",
       "headline": "Minnesota is preparing for all possibilities this election \u2014 including potential federal interference - The Globe | Worthington, Minnesota",
       "possibly_related_articles": 2,
@@ -255,9 +244,40 @@
         "registration"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "285230692654f9561ac6",
+      "headline": "Judge tosses Trump's attempt to block Alaska Senate results if GOP incumbent loses - Oregon Public Broadcasting - OPB",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "AK",
+        "OR"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "d66c4d3248bde10cbd8b",
+      "title": "Sacramento man swept up in federal voting probe to appear in court - Sacramento Bee",
+      "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNQU9xYlphZ0p4NUVKRVdGN2d4aWExRkQzRnVvRDFBU2VJOGYxemVnT044RHpHYks2ZFUxaFpfNER3Z0xXMS1naHpuXzRUZ0RnenVuMmpGT3VrXzdseTdvWlJCVldtbHZFbWx5a0RCS2EtWDB0VEZPQ3FEcjFVVnFWUnZxV0xmOTNvY01v0gGLAUFVX3lxTE5heVJSc21iR3Q5TUFkc3FlRThocmo1RTBCUURweTh3QURfdVZ4R2wxSjhkOGdJZFJxaHFGR29FN3JOYk9senFycnBpeHNFUmI0cVpRd1puem5ydjlIWDhwMlZtUnpRUTVTbE9KeWdaY2MwQVhDNmNEU3dSSlVuZF95OEM4OFJyaEFHcFE?oc=5",
+      "publisher": "Sacramento Bee",
+      "published_at": "2026-11-06T19:00:00Z",
+      "detected_at": "2026-11-06T19:58:54.602827Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "7c9674a62045d460290d",
       "title": "ANC and MKP to take IEC to electoral court over more than 30 000 voters\u2019 roll irregularities - Johannesburg Sunday World",
@@ -5113,23 +5133,6 @@
       "publisher": "National Review",
       "published_at": "2026-10-27T14:15:03Z",
       "detected_at": "2026-10-27T14:59:45.294416Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "10204fa6c21e048433b5",
-      "title": "The Phantom Voter-Intimidation Threat - National Review",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQLWF6QjJJR3RYblFzYWswQ090UG0yQWpSVTR1S1c3MjRWRkpZdEszenF0ZThUazR1SWxtaTJMeGRQTjA3U256TlpISnVNOVJHbHBzSGpMa244NWF3cFQ2TGhvb2hXaUttV0ZtYnBaRzIzc1ZxNzhMVFM0Z3dwYUdvaFYzUDhwak82Vm83RzIyONIBlAFBVV95cUxNQVotQmpqZDUzUlpWN2NvSWNpNkl0TGJ5SGltVUhJb0JVWWl1WTZBYXlRUm5SWnU0cWtkRmdaeVNCeldiTVlBNVJWblU0R290QjRsdXdOeXpoaUQyS1FSMHRSWlgwbFhRYVZJVEhvWE1BN25pbGZoeGx0bmFMQzdJR2h5VXUwUmNNOWlQa3FCdkhicHY5?oc=5",
-      "publisher": "National Review",
-      "published_at": "2026-10-27T14:15:03Z",
-      "detected_at": "2026-10-27T21:42:04.922028Z",
       "state_hints": [],
       "topic_hints": [
         "security"
