@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-06T21:52:17.619781Z",
+  "updated_at": "2026-11-06T22:53:28.083626Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -361,6 +361,23 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "dab97a389733ff08543c",
+      "title": "A midterm election defeat too overwhelming for Trump to challenge? - USA Today",
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNQS1NUng4bFFFV3I2UmJSYy1CLURyYWI2UzFxaEMzUTF1d3lFVFBDdzgwMW1DTFByN21RVVd3Rko4TmdDRjVaMktTbkJQWm5TeVRKMFRsd0FJYjl2RnQ3U0ZfT1phVmZxd3llc0VTMG1PZTFrd2xhUHY2VnRuWW9qMWd6V1UxeHJ3VThfOE1yOTNINnJpZ0dxa2lFdG1RQXNDeWFfRG93Q2t2NmlzbExwaTV5Z2RXVW96R1ZwSldORXZJZw?oc=5",
+      "publisher": "USA Today",
+      "published_at": "2026-11-05T15:21:00Z",
+      "detected_at": "2026-11-06T22:53:28.083626Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5110,26 +5127,6 @@
       "detected_at": "2026-10-27T20:13:23.859003Z",
       "state_hints": [
         "MN"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ebf82f01f1b57ceafa3c",
-      "title": "Election Officials Fear Trump Administration\u2019s Interference in Midterms Voting - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxPYldXcDdqQ2JqeWI4UklEeDh3elVuTzBYOFFVU3FVNzVTOW1JcktPSXdiNmU3S1Jsa09kLTVmYU8zLUQyczE1WXlSb1MxcHNrQ3dISHFMYmU1ckdDOWhCN1U3bjVGcGJNbDg1a2FXWGJRMjNTUURETGlVcFAzR3UwcEd3X1ZTZw?oc=5",
-      "publisher": "The New York Times",
-      "published_at": "2026-10-27T14:38:02Z",
-      "detected_at": "2026-10-27T15:56:51.229021Z",
-      "state_hints": [
-        "NY"
       ],
       "topic_hints": [
         "security",
