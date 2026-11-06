@@ -1,7 +1,7 @@
 {
   "schema": "official-va02-collection-v1",
   "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
-  "fetched_at": "2026-11-06T03:33:47.332Z",
+  "fetched_at": "2026-11-06T04:35:46.783Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -32,9 +32,9 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-06T03:24:09.6499904Z",
-      "lastUpdated": "2026-11-06T03:23:56.9693241Z",
-      "publishDate": "2026-11-06T03:24:10.4046309Z"
+      "asOf": "2026-11-06T04:34:58.8558664Z",
+      "lastUpdated": "2026-11-06T04:34:50.213837Z",
+      "publishDate": "2026-11-06T04:34:59.4312197Z"
     },
     "ballotItems": [
       {
@@ -84,10 +84,10 @@
         "reportingStatus": {
           "reportingUnits": 8,
           "totalUnits": 8,
-          "asOf": "2026-11-06T03:24:09.6499904Z",
+          "asOf": "2026-11-06T04:34:58.8558664Z",
           "reportingStatusDetails": null
         },
-        "voteTotal": 337001,
+        "voteTotal": 337201,
         "underVoteCount": null,
         "overVoteCount": null,
         "contestGroupId": null,
@@ -279,7 +279,7 @@
                   "text": "Jen A. Kiggans"
                 }
               ],
-              "voteCount": 150099,
+              "voteCount": 150299,
               "party": {
                 "id": "01000000-f030-c43d-c8f4-08df1fee529a",
                 "name": [
@@ -349,7 +349,7 @@
                       "text": "Ngày bầu cử"
                     }
                   ],
-                  "voteCount": 90566
+                  "voteCount": 90766
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -958,11 +958,11 @@
       "reportingStatus": {
         "reportingUnits": 8,
         "totalUnits": 8,
-        "asOf": "2026-11-06T03:24:09.6499904Z",
+        "asOf": "2026-11-06T04:34:58.8558664Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
-      "voteTotal": 337001,
+      "voteTotal": 337201,
       "underVoteCount": null,
       "overVoteCount": null,
       "summaryResults": {
@@ -1152,7 +1152,7 @@
                 "text": "Jen A. Kiggans"
               }
             ],
-            "voteCount": 150099,
+            "voteCount": 150299,
             "party": {
               "id": "01000000-f030-c43d-c8f4-08df1fee529a",
               "name": [
@@ -1222,7 +1222,7 @@
                     "text": "Ngày bầu cử"
                   }
                 ],
-                "voteCount": 90566
+                "voteCount": 90766
               },
               {
                 "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -1804,13 +1804,13 @@
             "hasPrecinctStatus": false,
             "mapFeatureId": "001"
           },
-          "voteTotal": 13909,
+          "voteTotal": 14109,
           "underVoteCount": null,
           "overVoteCount": null,
           "precinctReportingStatus": {
             "reportingUnits": 16,
             "totalUnits": 16,
-            "asOf": "2026-11-06T03:24:09.6499975Z",
+            "asOf": "2026-11-06T04:34:58.8558719Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -2044,7 +2044,7 @@
                   "text": "Jen A. Kiggans"
                 }
               ],
-              "voteCount": 7081,
+              "voteCount": 7281,
               "party": {
                 "id": "01000000-f030-c43d-c8f4-08df1fee529a",
                 "name": [
@@ -2158,7 +2158,7 @@
                       "text": "Ngày bầu cử"
                     }
                   ],
-                  "voteCount": 4803
+                  "voteCount": 5003
                 },
                 {
                   "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
@@ -2700,7 +2700,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 33,
             "totalUnits": 33,
-            "asOf": "2026-11-06T03:24:09.6499975Z",
+            "asOf": "2026-11-06T04:34:58.8558719Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -3590,7 +3590,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 6,
             "totalUnits": 6,
-            "asOf": "2026-11-06T03:24:09.6499975Z",
+            "asOf": "2026-11-06T04:34:58.8558719Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -4480,7 +4480,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 17,
             "totalUnits": 17,
-            "asOf": "2026-11-06T03:24:09.6499975Z",
+            "asOf": "2026-11-06T04:34:58.8558719Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -5370,7 +5370,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 5,
             "totalUnits": 5,
-            "asOf": "2026-11-06T03:24:09.6499975Z",
+            "asOf": "2026-11-06T04:34:58.8558719Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -6260,7 +6260,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 7,
             "totalUnits": 7,
-            "asOf": "2026-11-06T03:24:09.6499975Z",
+            "asOf": "2026-11-06T04:34:58.8558719Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7139,7 +7139,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 30,
             "totalUnits": 30,
-            "asOf": "2026-11-06T03:24:09.6499975Z",
+            "asOf": "2026-11-06T04:34:58.8558719Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8018,7 +8018,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 108,
             "totalUnits": 108,
-            "asOf": "2026-11-06T03:24:09.6499975Z",
+            "asOf": "2026-11-06T04:34:58.8558719Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8879,18 +8879,18 @@
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
-  "cache_control": "public, max-age=57",
-  "request_to_body_ms": 234,
-  "original_response_sha256": "0063383428658e0ca430c3529c33a79afe0c8deda8be39a35fe9acf15beb2825",
-  "observed_source_stamp": "2026-11-06T03:24:09.6499904Z",
+  "cache_control": "public, max-age=59",
+  "request_to_body_ms": 275,
+  "original_response_sha256": "62d84c8033ce3ae75419ef1a48ebebfe6674779e8edc93f6a2521aa08313e8b8",
+  "observed_source_stamp": "2026-11-06T04:34:58.8558664Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-06T03:24:09.6499904Z",
-  "source_published_at": "2026-11-06T03:24:10.4046309Z",
-  "selected_payload_sha256": "fd1fa0fbe367423f8cf80c76b3b0e38cacb706de4d5396f77225837d4ee715ad",
+  "snapshot_updated_at": "2026-11-06T04:34:58.8558664Z",
+  "source_published_at": "2026-11-06T04:34:59.4312197Z",
+  "selected_payload_sha256": "2e53f51e21fe38b0d1e81d48c5f96fb5433003f898f0fd6287b523e211b8e4f6",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "revision_watermark": {
-    "as_of": "2026-11-06T03:24:09.6499904Z",
-    "published_at": "2026-11-06T03:24:10.4046309Z"
+    "as_of": "2026-11-06T04:34:58.8558664Z",
+    "published_at": "2026-11-06T04:34:59.4312197Z"
   }
 }
