@@ -1,7 +1,7 @@
 {
   "schema": "official-wa03-collection-v1",
   "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/data/ballot-item/54c40000-9064-bbec-4779-08df15c0a82a",
-  "fetched_at": "2026-11-06T23:55:35.480Z",
+  "fetched_at": "2026-11-07T00:53:38.192Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -19,8 +19,8 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-06T23:52:59.5617196Z",
-      "publishDate": "2026-11-06T23:53:22.3354262Z"
+      "asOf": "2026-11-07T00:34:57.8377675Z",
+      "publishDate": "2026-11-07T00:35:13.3189859Z"
     },
     "ballotItems": [
       {
@@ -46,10 +46,10 @@
         "reportingStatus": {
           "reportingUnits": 7,
           "totalUnits": 7,
-          "asOf": "2026-11-06T23:52:59.5617196Z",
+          "asOf": "2026-11-07T00:34:57.8377675Z",
           "reportingStatusDetails": null
         },
-        "voteTotal": 329769,
+        "voteTotal": 344468,
         "underVoteCount": null,
         "overVoteCount": null,
         "contestGroupId": "01000000-c099-693d-b5ea-08df1b3c1049",
@@ -65,7 +65,7 @@
                   "text": "John Braun"
                 }
               ],
-              "voteCount": 150022,
+              "voteCount": 156112,
               "party": {
                 "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
                 "name": [
@@ -94,7 +94,7 @@
                   "text": "Marie Gluesenkamp Perez"
                 }
               ],
-              "voteCount": 176796,
+              "voteCount": 185178,
               "party": {
                 "id": "54c40000-9064-bbec-4647-08df15c0a808",
                 "name": [
@@ -123,7 +123,7 @@
                   "text": "Write-in"
                 }
               ],
-              "voteCount": 2951,
+              "voteCount": 3178,
               "party": {
                 "id": null,
                 "name": null,
@@ -174,11 +174,11 @@
       "reportingStatus": {
         "reportingUnits": 7,
         "totalUnits": 7,
-        "asOf": "2026-11-06T23:52:59.5617196Z",
+        "asOf": "2026-11-07T00:34:57.8377675Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
-      "voteTotal": 329769,
+      "voteTotal": 344468,
       "underVoteCount": null,
       "overVoteCount": null,
       "summaryResults": {
@@ -192,7 +192,7 @@
                 "text": "John Braun"
               }
             ],
-            "voteCount": 150022,
+            "voteCount": 156112,
             "party": {
               "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
               "name": [
@@ -221,7 +221,7 @@
                 "text": "Marie Gluesenkamp Perez"
               }
             ],
-            "voteCount": 176796,
+            "voteCount": 185178,
             "party": {
               "id": "54c40000-9064-bbec-4647-08df15c0a808",
               "name": [
@@ -250,7 +250,7 @@
                 "text": "Write-in"
               }
             ],
-            "voteCount": 2951,
+            "voteCount": 3178,
             "party": {
               "id": null,
               "name": null,
@@ -287,13 +287,13 @@
             "hasPrecinctStatus": false,
             "mapFeatureId": "CLARK"
           },
-          "voteTotal": 214755,
+          "voteTotal": 229454,
           "underVoteCount": null,
           "overVoteCount": null,
           "precinctReportingStatus": {
             "reportingUnits": 375,
             "totalUnits": 375,
-            "asOf": "2026-11-06T23:52:59.5617354Z",
+            "asOf": "2026-11-07T00:34:57.8377898Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -351,7 +351,7 @@
                   "text": "John Braun"
                 }
               ],
-              "voteCount": 85431,
+              "voteCount": 91521,
               "party": {
                 "id": "54c40000-9064-bbec-2e1b-08df15c0a7f5",
                 "name": [
@@ -380,7 +380,7 @@
                   "text": "Marie Gluesenkamp Perez"
                 }
               ],
-              "voteCount": 127271,
+              "voteCount": 135653,
               "party": {
                 "id": "54c40000-9064-bbec-4647-08df15c0a808",
                 "name": [
@@ -409,7 +409,7 @@
                   "text": "Write-in"
                 }
               ],
-              "voteCount": 2053,
+              "voteCount": 2280,
               "party": {
                 "id": null,
                 "name": null,
@@ -450,7 +450,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 91,
             "totalUnits": 92,
-            "asOf": "2026-11-06T23:52:59.5617354Z",
+            "asOf": "2026-11-07T00:34:57.8377898Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -596,7 +596,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 106,
             "totalUnits": 106,
-            "asOf": "2026-11-06T23:52:59.5617354Z",
+            "asOf": "2026-11-07T00:34:57.8377898Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -742,7 +742,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 41,
             "totalUnits": 42,
-            "asOf": "2026-11-06T23:52:59.5617354Z",
+            "asOf": "2026-11-07T00:34:57.8377898Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -888,7 +888,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 23,
             "totalUnits": 23,
-            "asOf": "2026-11-06T23:52:59.5617354Z",
+            "asOf": "2026-11-07T00:34:57.8377898Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -1045,7 +1045,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 35,
             "totalUnits": 35,
-            "asOf": "2026-11-06T23:52:59.5617354Z",
+            "asOf": "2026-11-07T00:34:57.8377898Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -1191,7 +1191,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 11,
             "totalUnits": 11,
-            "asOf": "2026-11-06T23:52:59.5617354Z",
+            "asOf": "2026-11-07T00:34:57.8377898Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -1321,28 +1321,28 @@
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
   "cache_control": "public, max-age=60",
-  "request_to_body_ms": 267,
-  "original_response_sha256": "d375fb2b2aca44aeb85b8ade5c2be5b40ca05b8ea381e7ad35faaec90759ea5f",
-  "observed_source_stamp": "2026-11-06T23:52:59.5617196Z",
+  "request_to_body_ms": 819,
+  "original_response_sha256": "9cbb87cfff2756e996a0255bcbce0047280eae9df6d6502bc96dcc1f220a8fc0",
+  "observed_source_stamp": "2026-11-07T00:34:57.8377675Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-06T23:52:59.5617196Z",
-  "source_published_at": "2026-11-06T23:53:22.3354262Z",
-  "selected_payload_sha256": "e4aba8a4d3926f2170f89835b34b18f19bab6efcd3d2e04116ac474228f330a1",
+  "snapshot_updated_at": "2026-11-07T00:34:57.8377675Z",
+  "source_published_at": "2026-11-07T00:35:13.3189859Z",
+  "selected_payload_sha256": "541f0efb15a8d2ab06ecd1d6ffc1b96f121a1d38b207925763fa3c281672b5c8",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "official_remaining": {
     "schema": "official-wa-remaining-collection-v1",
     "source_url": "https://results.votewa.gov/results/public/api/elections/washington/20261103/stats",
     "fetched_at": "2026-11-04T16:15:12.987Z",
-    "rejected_at": "2026-11-06T23:55:35.755Z",
+    "rejected_at": "2026-11-07T00:53:39.020Z",
     "receipt_kind": "PUBLISHER_VALIDATION_REJECTION",
     "status": "SOURCE_UNAVAILABLE",
     "payload": null,
     "error": "Stale/future remaining collection"
   },
   "revision_watermark": {
-    "as_of": "2026-11-06T23:52:59.5617196Z",
-    "published_at": "2026-11-06T23:53:22.3354262Z"
+    "as_of": "2026-11-07T00:34:57.8377675Z",
+    "published_at": "2026-11-07T00:35:13.3189859Z"
   },
   "remaining_revision_watermark": {}
 }
