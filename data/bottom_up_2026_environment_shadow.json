@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-11-06T23:49:33.502102Z",
+  "polling_generated_at": "2026-11-07T01:15:09.114043Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
-  "generic_ballot_2026_d_minus_r_points": 8.79,
-  "generic_implied_vs_2024_presidential_swing_points": 10.495,
-  "independent_polling_estimated_presidential_to_race_swing_points": 10.672,
-  "bottom_up_implied_national_margin_points": 8.967,
-  "bottom_up_minus_generic_environment_points": 0.177,
+  "generic_ballot_2026_d_minus_r_points": 8.85,
+  "generic_implied_vs_2024_presidential_swing_points": 10.555,
+  "independent_polling_estimated_presidential_to_race_swing_points": 10.687,
+  "bottom_up_implied_national_margin_points": 8.982,
+  "bottom_up_minus_generic_environment_points": 0.132,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 20,
@@ -17,7 +17,7 @@
   "qualifying_house_races": 4,
   "qualifying_senate_races": 16,
   "excluded": {
-    "inadequate_polling": 84,
+    "inadequate_polling": 83,
     "stale": 0,
     "not_competitive": 3,
     "missing_geography": 0
@@ -26,7 +26,7 @@
     {
       "state": "ME",
       "number_qualifying_races": 1,
-      "swing_points": -3.119
+      "swing_points": -3.099
     },
     {
       "state": "AK",
@@ -46,12 +46,12 @@
     {
       "state": "NH",
       "number_qualifying_races": 1,
-      "swing_points": 5.559
+      "swing_points": 5.769
     },
     {
       "state": "MI",
       "number_qualifying_races": 1,
-      "swing_points": 6.579
+      "swing_points": 6.589
     },
     {
       "state": "FL",
@@ -91,7 +91,7 @@
     {
       "state": "TX",
       "number_qualifying_races": 2,
-      "swing_points": 16.106
+      "swing_points": 16.118
     },
     {
       "state": "SC",
@@ -124,9 +124,9 @@
       "raw_swing_points": 1.907,
       "capped_swing_points": 1.907,
       "capped_local_outlier": false,
-      "weight": 0.8888888888888888,
+      "weight": 0.8666666666666667,
       "independent_firms": 7,
-      "latest_age_days": 5
+      "latest_age_days": 6
     },
     {
       "office": "senate",
@@ -137,9 +137,9 @@
       "raw_swing_points": 17.238,
       "capped_swing_points": 17.238,
       "capped_local_outlier": false,
-      "weight": 0.9111111111111111,
+      "weight": 0.8888888888888888,
       "independent_firms": 19,
-      "latest_age_days": 4
+      "latest_age_days": 5
     }
   ],
   "notes": [
