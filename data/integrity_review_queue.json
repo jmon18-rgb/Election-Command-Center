@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-07T01:15:04.685862Z",
+  "updated_at": "2026-11-07T02:09:54.168276Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -258,6 +258,25 @@
     }
   ],
   "items": [
+    {
+      "id": "923bc2004e00766180a3",
+      "title": "Secretary of state ignored Experian warnings days before midterm - Mississippi Today",
+      "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxQanEwSWxZMm1JZFE2MDRlekl4ODZfMGtQaEFEZ0VWMW1wS3VLSURTVkJpbkFzNDBPZVU3dU1PNnUxYkprRmxkNVBOY0dLTEtjN0VDZVZyRVNreHhBSS1wTF9DT2dPVFZqczBCUlNCUXFOcU5McHBLRlRVVlo0WnI3c3g3YmU2NHlTZUFaTkJQWVY0ei0xNEN2OF8zMkRIVDd6ZkVGMjdGNnRkU3V6WDNER0szTE5hQjl5MndVT2kxZkRka0Z1bE5CTVRKSnZUYTczejBNcVBRam5sWUdtbnNIWm1mWWVUT1ZTdUdEcUtrNTZsRkdEajMzS3VPX1ZDUmpqM2M3MmVZTi12cFJuU3oyMzFhb1lXSVFOc05J?oc=5",
+      "publisher": "Mississippi Today",
+      "published_at": "2026-11-07T01:16:16Z",
+      "detected_at": "2026-11-07T02:09:54.168276Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "2014104ef8732515f411",
       "title": "Colom and Hyde-Smith's razor-thin Senate race spotlights Mississippi's voter rolls - Axios",
@@ -5108,23 +5127,6 @@
       "topic_hints": [
         "litigation",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "fd499619b1ddc2c0bab5",
-      "title": "States Flag Thousands Of Ineligible Voters, But Only A Few Cases Are Prosecuted - tippinsights",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQRVBPWGhLOVpfZkoyN1JPVms1SF81em5zUE0xVGgtOTU1VjdPTWhJb2p5cm1DdkdJTkUzckdiMzlkM0xyTWNQS05UM2w1MGwzSGhfY3UwcUQtdFdsYmJiVlNoUUhDT2xEMlU2aVNGWW5LSUNJQ0N1dHVEVXJMd3B5U2dFd2c3U3ZkSVFkWVUwTWdnZDlWdGY1Z2dMaW53UTlxR2kxRkd3QQ?oc=5",
-      "publisher": "tippinsights",
-      "published_at": "2026-10-27T18:38:37Z",
-      "detected_at": "2026-10-28T02:57:05.644316Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
