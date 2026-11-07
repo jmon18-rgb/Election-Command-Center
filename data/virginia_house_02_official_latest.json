@@ -1,7 +1,7 @@
 {
   "schema": "official-va02-collection-v1",
   "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
-  "fetched_at": "2026-11-07T19:50:46.254Z",
+  "fetched_at": "2026-11-07T20:24:11.413Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -8868,9 +8868,9 @@
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
-  "cache_control": "public, max-age=26",
-  "request_to_body_ms": 403,
-  "original_response_sha256": "403408bdb4135104c2ee7470787e813c173d94fe0dc6ac56b6d49cb2a6e8da1b",
+  "cache_control": "public, max-age=60",
+  "request_to_body_ms": 765,
+  "original_response_sha256": "49b43dbea666932121a39ab9553af9bf1cc52d77d867fc993d3ebb85090dcdbe",
   "observed_source_stamp": "2026-11-07T19:49:44.6386289Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
