@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-07T09:02:17.226499Z",
+  "updated_at": "2026-11-07T09:57:02.726954Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 68
+    "advisory_related_headlines": 67
   },
   "advisory_related_headlines": [
     {
@@ -25,8 +25,8 @@
     {
       "lead_id": "6de0d7f925d150890de9",
       "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
-      "possibly_related_articles": 5,
-      "distinct_publishers": 4,
+      "possibly_related_articles": 4,
+      "distinct_publishers": 3,
       "state_hints": [
         "CA"
       ],
@@ -403,6 +403,27 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "195930fe127af8f6f228",
+      "title": "FBI seizes 2020 ballots in Georgia in apparently unprecedented action, alarming local officials - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNVE1NWTlMSlBNNkU3NzBTUmV6UEtIYV9EdUtfdFJ1dWdyendCdUk2Rk94ZW81Zkw0QWFEMml6aGdwcFg4TWZOMV9xelBCU1VJMXhpcHZlTHcyQlZjX3V0dUR2NWNtRGJvZVdNeW9Lbk1aM2hHVy1zNFotWG1HSFVGeksxWkoxOHVDQ1hTTUxFN0d1S2ZzbUZjVWpRMXB1S1VNRjQ0dHpMOWFWX0U?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-06T06:39:45Z",
+      "detected_at": "2026-11-07T09:57:02.726954Z",
+      "state_hints": [
+        "GA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [
+        "2020 ballots"
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5098,28 +5119,6 @@
       "headline_numbers_unverified": [
         "15 ",
         "3"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4449128350f822d98760",
-      "title": "Judge to consider whether California should count 20,000 ballots disputed by Trump administration - KXAN Austin",
-      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNOGNVZzBmTTU5ZWxtVTl3QkxOTHhTQ2swaXRiSG5pSlhxMkRpenlvNlFGYU9wSVAyVlp1cW5GeldSVmJYR2w2aEtrRjVCVl9mYWpJX2NONzdGeno0dVV1cU1hbThOTXVsUEIwaXRuVmV4Ni1jRzYyWTZoejFwclQ5b2tvRm4yaGk4WkhsWk9va3VqeVhHRTlWUlZ0TkhUdlBIcGJuVDliY1hvS3F1dnh4U3lvQUZaZnV0MVVSY0VJSHdiNGdLLXBUbVNVQTZPemFiTzBmVlh5NNIB3AFBVV95cUxQXzN1RUFmNFJFSWdXREkyQUR6U1BxSzhiQ1AtUkJOY0tULW9mdXd5dXRkcENHZHJSXzMzcFpSUDNwcXVqMjFLTGs5bWFjVGEzdjZXNlNxV2hhRWRHM1FlZEVfeXFXY1hBN19hbXpZdngtWWJOQTUyNGc4enprb0lMTHlra1ZCaVJ2bzEzcmV4R25ZVE9ETFdGOHVybC1jWl92X2ZMaUpzalNNRV9Gd3BhX3JnSTcweUZYTVoyS29WWDhiZ1hNcFRyYnhzUzdLYU1UbEJxZGRlQllFTnd2?oc=5",
-      "publisher": "KXAN Austin",
-      "published_at": "2026-10-27T19:37:46Z",
-      "detected_at": "2026-10-27T19:51:09.814411Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 ballots"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
