@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-08T01:20:03.512209Z",
+  "updated_at": "2026-11-08T03:00:34.939335Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -312,6 +312,23 @@
       "headline_numbers_unverified": [
         "2 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "8dbf8f5c00398193bdd7",
+      "title": "Democrats flip statehouses in midterm wave - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOMVY5TWFIUEUtaWdsU3loSVJObmFCOXNZdzhGYmRueS0wcUpnOEpHZlVmWXdhbXo4blFOZkwxWUljWEJjcm9aRmZIZWNhV0p4eHpxX3pMdUpXTld1a2tXaDlHQk5nR2lQYV9JOUhOeHVrcVJiM0VGbkFHNU9TUmdTSUd6SDRmQWRYeWxkVHh3MnbSAZYBQVVfeXFMT1hUckVfVHJ3RXRXVTdLbjlZVzVWNHh1QnZTM3p4VXVWWlVfd3NtMS0wanlfMUFXUmJMZkNaVk5Jd1RqNXNFQ0pTRXlfNTF4dElqMUFLZ1ZxaklGWFZubzFiWDA3OUxXWUhkTEM4cjYtZm5FSVRwZzVsaG9hbkNUZWFSejZBZjFPOU82T3g3VVpGaTNZcWNR?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-07T01:40:57Z",
+      "detected_at": "2026-11-08T03:00:34.939335Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5100,25 +5117,6 @@
       "headline_numbers_unverified": [
         "8 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b271418e9786deeaf360",
-      "title": "Despite Trump admin request, Nevada won't use voter citizenship system amid fear of errors - The Nevada Independent",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxNYTlOMm9IWTBTLU1ZOXBwejBiaW9VV0tGclRSMEVrMVA2STFUT3pVVU5OTnJMVzMyNDRtbHY0LUxtV29PajZmV3FhampzT0c2Nm5sRGVudy1MZFh0Mi1Db0VEUjBxMXhabWk5dXpKU3l6ZVo3UE1rbE51MG9KTHg2aWxvS2g5ZEhUbmhnMGxhWHJpcV9KdWY0SDRxcXhYYXlXZDdUbGdLMU5pSTR0TlViUkV2cHRPMURYZGNDUzgwbEExc0oxOFR0eA?oc=5",
-      "publisher": "The Nevada Independent",
-      "published_at": "2026-10-27T20:16:26Z",
-      "detected_at": "2026-10-27T20:48:21.090536Z",
-      "state_hints": [
-        "NV"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
