@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-08T05:02:33.898949Z",
+  "updated_at": "2026-11-08T05:58:21.636280Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -312,6 +312,25 @@
       "headline_numbers_unverified": [
         "2 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ac894139f9d84e733810",
+      "title": "Peltola campaign sues Alaska, seeking to reveal the names of rejected absentee voters - Alaska Beacon",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOa3Y0MGV5dFVNMWlrQ0RHdnFNMUVNMndTbTI5TE1QRUhzTkNrOFlGQ2NMOGtSUWFQVWN3YlpnN2stQTFlay1vVWZwQUt3SkVENndyQllEQTdyRkV4VjVORXc5UXBUd3FubWtkRlRsYUhNckFMTlpERjZZdGh3NG92azB4ajd4S1p4LWNpVHpYZG1aU0dIcWFSUnNPUFVSV1F4M1NkcDUwUlRmZ2phUDF1Z0s1X2p1VHp1VFQwSzVR?oc=5",
+      "publisher": "Alaska Beacon",
+      "published_at": "2026-11-07T01:56:31Z",
+      "detected_at": "2026-11-08T05:58:21.636280Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5096,25 +5115,6 @@
       ],
       "headline_numbers_unverified": [
         "7",
-        "8 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "eb0c7ed68f60fcf9c195",
-      "title": "Liberman's Yisrael Beytenu projected to win 8 seats in next Knesset, election polling data predict - The Jerusalem Post",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpZ19GcmpBQXpOYXBMRFhGMy1PY003SUZ1M2dqZDQweHp4WXFJODFtcVFmSEhiMUVWY0tESEVyNkMxM2wySXhuek83Z1dGYmU0VWRkbFp3YjlYSEJVSlhWb0traDNOdEdu?oc=5",
-      "publisher": "The Jerusalem Post",
-      "published_at": "2026-10-27T20:19:51Z",
-      "detected_at": "2026-10-28T05:54:34.989612Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
         "8 "
       ],
       "review_status": "needs_primary_source",
