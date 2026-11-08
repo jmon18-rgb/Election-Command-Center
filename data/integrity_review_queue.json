@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-08T18:56:51.091997Z",
+  "updated_at": "2026-11-08T19:54:05.477890Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 68
+    "advisory_related_headlines": 67
   },
   "advisory_related_headlines": [
     {
@@ -45,20 +45,6 @@
       "topic_hints": [
         "election_admin",
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "6de0d7f925d150890de9",
-      "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -145,6 +131,20 @@
       "topic_hints": [
         "ballot_access",
         "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "6de0d7f925d150890de9",
+      "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -258,6 +258,28 @@
     }
   ],
   "items": [
+    {
+      "id": "51c4a161e9c4bf66f108",
+      "title": "DOJ Drops California Voting Lawsuit before Hearing That Could Expose Flaws in Its 20,000-Voter List - Davis Vanguard",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFBnWXRhVS1PYjBEU0ZsUE9xVFZiSHdxSWczaXhTQlA1RzhPbUdfdlBrdHUwU0NFTFJIekxkMXhLcEFubnZwa2E2Vlk2cGZxbF9XMGZ2S05IWE50bU91eXNKY0tmNHdQeFVjSGhxNnBjNEhDQ2JtcDZvV2V3Yno?oc=5",
+      "publisher": "Davis Vanguard",
+      "published_at": "2026-11-08T12:15:00Z",
+      "detected_at": "2026-11-08T19:54:05.477890Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "019afcf2ab1880673cca",
       "title": "Justice Department drops bid to force California to set aside disputed ballots - PBS",
@@ -5083,28 +5105,6 @@
       "publisher": "WDIO.com",
       "published_at": "2026-10-27T21:24:25Z",
       "detected_at": "2026-10-27T23:43:07.257828Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 ballots"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c467594cf6457dac85ae",
-      "title": "Judge hears arguments whether California should count 20,000 ballots disputed by feds - KSL",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNTmxtX2kwTWVPY2FDQmdwc1BXLW9pTjJYVXVYbnFKRWtZOG9fWjgxRzJRUHJNdFhVQnBtSVVOMmhZY0gtbTZoZkhQYmwyQUxESE9NSE95T2s4VjZiWjlkXzU2VGtLWEZNSzhvYzdhOEIzbzZUXzVscDRqeUladzQ2cURJbndCNktzYm85bGEwcjh3c3F2bWZJU2E4SGVrTjlfRFVuTW83dFVDdVY4ZmNTbUhCbUNrNGpzQ0tnQXFR?oc=5",
-      "publisher": "KSL",
-      "published_at": "2026-10-27T20:53:42Z",
-      "detected_at": "2026-10-28T07:10:52.837419Z",
       "state_hints": [
         "CA"
       ],
