@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-08T15:49:15.115287Z",
+  "updated_at": "2026-11-08T16:50:34.294513Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 69
+    "advisory_related_headlines": 68
   },
   "advisory_related_headlines": [
     {
@@ -18,20 +18,6 @@
       "distinct_publishers": 6,
       "state_hints": [],
       "topic_hints": [
-        "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "6de0d7f925d150890de9",
-      "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
-      "possibly_related_articles": 4,
-      "distinct_publishers": 3,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
@@ -59,6 +45,20 @@
       "topic_hints": [
         "election_admin",
         "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "6de0d7f925d150890de9",
+      "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -271,6 +271,26 @@
       "topic_hints": [
         "ballot_access",
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5a5ee1995a19adc8a673",
+      "title": "Trump director of election security sparked Georgia office raid, affidavit says - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQWFNyVlNGblFCd3ZfSEo5RGl2Z1htZGh0eGhxRkJBeGFGU2JKUG5haW5VYlM5RDBXTEV0Y2R0WVdzQTh3MU5lcFgyXzJ4aXJjcm1xcjE2Vzh0T3NzWVl6ck96eDF2MW1lREd1TFZ5Rl9MT2JVcFdyelFwOUJhbGMwWWg3VGZzSi1OYlRrQXUzaVk1YUJWelJjXzJfVmV1dFExRm1hYzNteDFwZ9IBrwFBVV95cUxNU0ljTjFlZmY5cExkci1ETmZKU2d5bm5lZ2NFVTBNUjM2RmdGVHhlNi1EMDFQYzl2Y2FtbXpGY3JDSlZmejZYWGpfenBlaHdQSFJqNENPNWhCWFVJTk0wUW15V3FwTjlFLWpUR3BacEF6U2theFBDdHUwNDZac0NzN3JyR1pEcG9pWU5WTVh6MmxDVHpzT2JJQ0FLNlR3Q25nWjhYcHdKT05mSk5xaDEw?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-07T16:05:03Z",
+      "detected_at": "2026-11-08T16:50:34.294513Z",
+      "state_hints": [
+        "GA"
+      ],
+      "topic_hints": [
+        "security",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5085,28 +5105,6 @@
       "publisher": "KSL",
       "published_at": "2026-10-27T20:53:42Z",
       "detected_at": "2026-10-28T07:10:52.837419Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 ballots"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9dbaf2a5c4647a52c3dd",
-      "title": "Judge hears arguments whether California should count 20,000 ballots disputed by feds - KSL News",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNTmxtX2kwTWVPY2FDQmdwc1BXLW9pTjJYVXVYbnFKRWtZOG9fWjgxRzJRUHJNdFhVQnBtSVVOMmhZY0gtbTZoZkhQYmwyQUxESE9NSE95T2s4VjZiWjlkXzU2VGtLWEZNSzhvYzdhOEIzbzZUXzVscDRqeUladzQ2cURJbndCNktzYm85bGEwcjh3c3F2bWZJU2E4SGVrTjlfRFVuTW83dFVDdVY4ZmNTbUhCbUNrNGpzQ0tnQXFR?oc=5",
-      "publisher": "KSL News",
-      "published_at": "2026-10-27T20:53:42Z",
-      "detected_at": "2026-10-28T07:17:34.878720Z",
       "state_hints": [
         "CA"
       ],
