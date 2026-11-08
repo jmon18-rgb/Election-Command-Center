@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-08T22:49:03.681242Z",
+  "updated_at": "2026-11-08T23:46:37.957630Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 67
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 65
   },
   "advisory_related_headlines": [
     {
@@ -135,20 +135,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "6de0d7f925d150890de9",
-      "headline": "Judge hears arguments whether California should count 20,000 ballots disputed by US government - WDIO.com",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "7118a47a2e7e5904afed",
       "headline": "Liberman's Yisrael Beytenu projected to win seven seats in next Knesset, election data predicts - The Jerusalem Post",
       "possibly_related_articles": 2,
@@ -255,6 +241,20 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "0658adc4034089d9e1b7",
+      "headline": "DOJ asks Supreme Court to block California counting disputed mail-in ballots - CNBC",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -275,6 +275,23 @@
       "headline_numbers_unverified": [
         "20,000"
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f859a27670ed121b3409",
+      "title": "Working The Polls at Inland Empire Black Churches - Black Voice News",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNWWpEY3BkM0JSQTdpcjlYSzcyVHpUVm93RXNvUEVoNUREM0tWRjhKMDZvZnZDTGhWM0QtWVE3UTVGdVJYa1BGR2RZeEJZcWVqXzB0Z0preFJLY0h0Q0ZETUdoU05EbERPTklwb29uR3ducXlQdzY5cmY1WGtIcHpFV01IQjR4VWV0WlJSTTNmV3huamNZcU91cTRSSXhiQQ?oc=5",
+      "publisher": "Black Voice News",
+      "published_at": "2026-11-07T19:36:30Z",
+      "detected_at": "2026-11-08T23:46:37.957630Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5092,28 +5109,6 @@
       ],
       "headline_numbers_unverified": [
         "2024 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "8bbbbc6591b80f74e6e0",
-      "title": "Judge to consider whether California should count 20,000 ballots disputed by Trump administration - WDIO.com",
-      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxNeEpRR2F2eUZETTdXMm5tcUpfRUVUUlpic25KTzh6X3FWaE9iZlNFXzF4WHE1blVGajRuT01fRHRla3ViaDBwcUh5QVVFVG14M1M3dk81OHRiSlA1R2plVmRNS0tDbzJlbWg5ZHppTFIwbHFnWFhNM2x4YkVHeUV2a3BpdFc1UjVVYVlPajFFSy1BbHFQYklzX0NVU0hVd1dlakp2QmY4WWJhTW9GSEJ4WTRqODRvOEEtVkxhYlJ5RVB6b2hVTFhVMGxR?oc=5",
-      "publisher": "WDIO.com",
-      "published_at": "2026-10-27T21:24:25Z",
-      "detected_at": "2026-10-27T23:43:07.257828Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 ballots"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
