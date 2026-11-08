@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-11-07T23:46:14.809100Z",
+  "polling_generated_at": "2026-11-08T01:20:07.947471Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
-  "generic_ballot_2026_d_minus_r_points": 8.85,
-  "generic_implied_vs_2024_presidential_swing_points": 10.555,
-  "independent_polling_estimated_presidential_to_race_swing_points": 10.687,
-  "bottom_up_implied_national_margin_points": 8.982,
-  "bottom_up_minus_generic_environment_points": 0.132,
+  "generic_ballot_2026_d_minus_r_points": 8.86,
+  "generic_implied_vs_2024_presidential_swing_points": 10.565,
+  "independent_polling_estimated_presidential_to_race_swing_points": 10.696,
+  "bottom_up_implied_national_margin_points": 8.991,
+  "bottom_up_minus_generic_environment_points": 0.131,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 20,
@@ -17,7 +17,7 @@
   "qualifying_house_races": 4,
   "qualifying_senate_races": 16,
   "excluded": {
-    "inadequate_polling": 83,
+    "inadequate_polling": 81,
     "stale": 0,
     "not_competitive": 3,
     "missing_geography": 0
@@ -51,7 +51,7 @@
     {
       "state": "MI",
       "number_qualifying_races": 1,
-      "swing_points": 6.589
+      "swing_points": 6.629
     },
     {
       "state": "FL",
@@ -66,7 +66,7 @@
     {
       "state": "GA",
       "number_qualifying_races": 1,
-      "swing_points": 11.459
+      "swing_points": 11.399
     },
     {
       "state": "NM",
@@ -81,7 +81,7 @@
     {
       "state": "OH",
       "number_qualifying_races": 1,
-      "swing_points": 14.623
+      "swing_points": 14.653
     },
     {
       "state": "NC",
@@ -91,7 +91,7 @@
     {
       "state": "TX",
       "number_qualifying_races": 2,
-      "swing_points": 16.118
+      "swing_points": 16.13
     },
     {
       "state": "SC",
@@ -101,7 +101,7 @@
     {
       "state": "MT",
       "number_qualifying_races": 1,
-      "swing_points": 17.294
+      "swing_points": 17.424
     },
     {
       "state": "NE",
@@ -124,9 +124,9 @@
       "raw_swing_points": 1.907,
       "capped_swing_points": 1.907,
       "capped_local_outlier": false,
-      "weight": 0.8666666666666667,
+      "weight": 0.8444444444444444,
       "independent_firms": 7,
-      "latest_age_days": 6
+      "latest_age_days": 7
     },
     {
       "office": "senate",
@@ -137,9 +137,9 @@
       "raw_swing_points": 17.238,
       "capped_swing_points": 17.238,
       "capped_local_outlier": false,
-      "weight": 0.8888888888888888,
+      "weight": 0.8666666666666667,
       "independent_firms": 19,
-      "latest_age_days": 5
+      "latest_age_days": 6
     }
   ],
   "notes": [
