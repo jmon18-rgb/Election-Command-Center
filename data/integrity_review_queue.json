@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-08T13:04:23.167110Z",
+  "updated_at": "2026-11-08T13:58:02.349140Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 67
+    "advisory_related_headline_buckets": 26,
+    "advisory_related_headlines": 69
   },
   "advisory_related_headlines": [
     {
@@ -312,6 +312,26 @@
       "headline_numbers_unverified": [
         "2 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "8b15be38b44b981a70c3",
+      "title": "Justice Department drops bid to force California to set aside ballots from alleged noncitizens - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxOTkVYNTAtZkdnZXpvYUF4cU1oRld6VERRY2xLSWJQMjhwa1pVOTltaHJlVGxXVXo5NUdveVpIbDRSdFQzejFsSGcxOUlhSEo1Q3BaVGtCQWpLV0V4cEJGbTJPbnFfSng1S3VSazdhc2JrWWk1YUJYVjdkUnc3X3VhNEVydC1tTllQTHlTdzlZSGpyblJBVW5VZEdsN2xSaWVTUE14OXY3Z2p3U2dJZklJdlJoOXZ4b2JRcTd0NUNyeUlIOUw1?oc=5",
+      "publisher": "NBC News",
+      "published_at": "2026-11-07T02:09:00Z",
+      "detected_at": "2026-11-08T13:58:02.349140Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5096,26 +5116,6 @@
       ],
       "headline_numbers_unverified": [
         "20,000 ballots"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "98b85825bfd5830ce943",
-      "title": "Liberman's Yisrael Beytenu projected to win 7-8 seats in next Knesset, election exit polls predict - The Jerusalem Post",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpZ19GcmpBQXpOYXBMRFhGMy1PY003SUZ1M2dqZDQweHp4WXFJODFtcVFmSEhiMUVWY0tESEVyNkMxM2wySXhuek83Z1dGYmU0VWRkbFp3YjlYSEJVSlhWb0traDNOdEdu?oc=5",
-      "publisher": "The Jerusalem Post",
-      "published_at": "2026-10-27T20:19:51Z",
-      "detected_at": "2026-10-28T05:25:04.499235Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "7",
-        "8 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
