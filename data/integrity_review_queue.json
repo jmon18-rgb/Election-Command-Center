@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T21:02:23.401581Z",
+  "updated_at": "2026-11-09T21:57:31.080487Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -329,6 +329,25 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ee45fe2a8961b2e70b48",
+      "title": "Secretary of state ignored demands to reinstate voters inactivated by unverified Experian data days before midterms - Northeast Mississippi Daily Journal",
+      "url": "https://news.google.com/rss/articles/CBMipgJBVV95cUxOUEdvOFlVRGNIMGd1UEExNFZBNEZldzdmUmVYZ2xkazk3bVJrODhJTFVCQ1UxM3hpVmdDVm1zYWVSS2c5YUZiRmI0bGE5LUV6TzJmQTBtWV9aM3ExblNZTmtsWTM4N1J1RElHaEZzUU42Ykx4R3k2YzMzREVEeTdYY1NjTFVtZ2NPcllfMmEtMnNuQ0J5UXAyUzllREY0anFDR293R2l5TmxQU19jQngzSmk5VmEwaTdud0ZpQUl3V3IyQXpGUkZUU2pRV0gtTEdkcmE1aURJR05HNFZyVXBPUXhxRUdCUFhNekMtaS1IZ3VxUktaVHU0TUdseDU2TTJQTWJ4eDdMSkRjQnA1bTcyT05lb0RMUWl1U1k1bmk1QlF3V2F4QXc?oc=5",
+      "publisher": "Northeast Mississippi Daily Journal",
+      "published_at": "2026-11-09T09:30:00Z",
+      "detected_at": "2026-11-09T21:57:31.080487Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5079,28 +5098,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9a571dc4f7d0ba776e3e",
-      "title": "Judge weighs whether California can count up to 20,000 ballots disputed by US government - Sun Sentinel",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOSWNicjNKdW9pU3dFOTYyRmtlekY3RTFicU5FeE8wV2lMRzJQYnA3UmpPRDFPNmNnV0drZk54a0xyMWktT2ota1hVdlJHVjlxdmZXRkpfU2stNlBJWldVdHVpVWlxOTlLUUhOSDBuOFNVb3phVkNoekxodFdScGd4TTJGc0FGcmFVbUZUTU16SUhDdlZQcGc?oc=5",
-      "publisher": "Sun Sentinel",
-      "published_at": "2026-10-27T23:45:04Z",
-      "detected_at": "2026-10-27T23:46:50.321066Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 ballots"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
