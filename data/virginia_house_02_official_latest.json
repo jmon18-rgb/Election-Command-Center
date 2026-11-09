@@ -1,7 +1,7 @@
 {
   "schema": "official-va02-collection-v1",
   "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
-  "fetched_at": "2026-11-09T16:50:40.832Z",
+  "fetched_at": "2026-11-09T17:47:55.596Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -32,9 +32,9 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-09T16:48:52.9494179Z",
-      "lastUpdated": "2026-11-09T16:48:26.744972Z",
-      "publishDate": "2026-11-09T16:48:53.6817874Z"
+      "asOf": "2026-11-09T17:47:26.4936638Z",
+      "lastUpdated": "2026-11-09T17:47:10.4186953Z",
+      "publishDate": "2026-11-09T17:47:31.1170079Z"
     },
     "ballotItems": [
       {
@@ -84,10 +84,10 @@
         "reportingStatus": {
           "reportingUnits": 8,
           "totalUnits": 8,
-          "asOf": "2026-11-09T16:48:52.9494179Z",
+          "asOf": "2026-11-09T17:47:26.4936638Z",
           "reportingStatusDetails": null
         },
-        "voteTotal": 337779,
+        "voteTotal": 339497,
         "underVoteCount": null,
         "overVoteCount": null,
         "contestGroupId": null,
@@ -115,7 +115,7 @@
                   "text": "Elaine G. Luria"
                 }
               ],
-              "voteCount": 179126,
+              "voteCount": 180338,
               "party": {
                 "id": "01000000-f030-c43d-c502-08df1fee529a",
                 "name": [
@@ -251,7 +251,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 385
+                  "voteCount": 1597
                 }
               ],
               "isWriteIn": false,
@@ -279,7 +279,7 @@
                   "text": "Jen A. Kiggans"
                 }
               ],
-              "voteCount": 150456,
+              "voteCount": 150890,
               "party": {
                 "id": "01000000-f030-c43d-c8f4-08df1fee529a",
                 "name": [
@@ -415,7 +415,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 157
+                  "voteCount": 591
                 }
               ],
               "isWriteIn": false,
@@ -443,7 +443,7 @@
                   "text": "Geral D. \"Bishop\" Staten"
                 }
               ],
-              "voteCount": 3028,
+              "voteCount": 3054,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -579,7 +579,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 8
+                  "voteCount": 34
                 }
               ],
               "isWriteIn": false,
@@ -607,7 +607,7 @@
                   "text": "J. Matt Baker"
                 }
               ],
-              "voteCount": 4762,
+              "voteCount": 4804,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -743,7 +743,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 27
+                  "voteCount": 69
                 }
               ],
               "isWriteIn": false,
@@ -771,7 +771,7 @@
                   "text": "Viết ra"
                 }
               ],
-              "voteCount": 407,
+              "voteCount": 411,
               "party": {
                 "id": null,
                 "name": null,
@@ -890,7 +890,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 1
+                  "voteCount": 5
                 }
               ],
               "isWriteIn": true,
@@ -958,11 +958,11 @@
       "reportingStatus": {
         "reportingUnits": 8,
         "totalUnits": 8,
-        "asOf": "2026-11-09T16:48:52.9494179Z",
+        "asOf": "2026-11-09T17:47:26.4936638Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
-      "voteTotal": 337779,
+      "voteTotal": 339497,
       "underVoteCount": null,
       "overVoteCount": null,
       "summaryResults": {
@@ -988,7 +988,7 @@
                 "text": "Elaine G. Luria"
               }
             ],
-            "voteCount": 179126,
+            "voteCount": 180338,
             "party": {
               "id": "01000000-f030-c43d-c502-08df1fee529a",
               "name": [
@@ -1124,7 +1124,7 @@
                     "text": "Sau bầu cử"
                   }
                 ],
-                "voteCount": 385
+                "voteCount": 1597
               }
             ],
             "isWriteIn": false,
@@ -1152,7 +1152,7 @@
                 "text": "Jen A. Kiggans"
               }
             ],
-            "voteCount": 150456,
+            "voteCount": 150890,
             "party": {
               "id": "01000000-f030-c43d-c8f4-08df1fee529a",
               "name": [
@@ -1288,7 +1288,7 @@
                     "text": "Sau bầu cử"
                   }
                 ],
-                "voteCount": 157
+                "voteCount": 591
               }
             ],
             "isWriteIn": false,
@@ -1316,7 +1316,7 @@
                 "text": "Geral D. \"Bishop\" Staten"
               }
             ],
-            "voteCount": 3028,
+            "voteCount": 3054,
             "party": {
               "id": "01000000-f030-c43d-ca0f-08df1fee529a",
               "name": [
@@ -1452,7 +1452,7 @@
                     "text": "Sau bầu cử"
                   }
                 ],
-                "voteCount": 8
+                "voteCount": 34
               }
             ],
             "isWriteIn": false,
@@ -1480,7 +1480,7 @@
                 "text": "J. Matt Baker"
               }
             ],
-            "voteCount": 4762,
+            "voteCount": 4804,
             "party": {
               "id": "01000000-f030-c43d-ca0f-08df1fee529a",
               "name": [
@@ -1616,7 +1616,7 @@
                     "text": "Sau bầu cử"
                   }
                 ],
-                "voteCount": 27
+                "voteCount": 69
               }
             ],
             "isWriteIn": false,
@@ -1644,7 +1644,7 @@
                 "text": "Viết ra"
               }
             ],
-            "voteCount": 407,
+            "voteCount": 411,
             "party": {
               "id": null,
               "name": null,
@@ -1763,7 +1763,7 @@
                     "text": "Sau bầu cử"
                   }
                 ],
-                "voteCount": 1
+                "voteCount": 5
               }
             ],
             "isWriteIn": true,
@@ -1810,7 +1810,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 16,
             "totalUnits": 16,
-            "asOf": "2026-11-09T16:48:52.94942Z",
+            "asOf": "2026-11-09T17:47:26.493665Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -2689,7 +2689,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 33,
             "totalUnits": 33,
-            "asOf": "2026-11-09T16:48:52.94942Z",
+            "asOf": "2026-11-09T17:47:26.493665Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -3579,7 +3579,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 6,
             "totalUnits": 6,
-            "asOf": "2026-11-09T16:48:52.94942Z",
+            "asOf": "2026-11-09T17:47:26.493665Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -4463,13 +4463,13 @@
             "hasPrecinctStatus": false,
             "mapFeatureId": "093"
           },
-          "voteTotal": 20661,
+          "voteTotal": 20756,
           "underVoteCount": null,
           "overVoteCount": null,
           "precinctReportingStatus": {
             "reportingUnits": 17,
             "totalUnits": 17,
-            "asOf": "2026-11-09T16:48:52.94942Z",
+            "asOf": "2026-11-09T17:47:26.493665Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -4539,7 +4539,7 @@
                   "text": "Elaine G. Luria"
                 }
               ],
-              "voteCount": 8767,
+              "voteCount": 8828,
               "party": {
                 "id": "01000000-f030-c43d-c502-08df1fee529a",
                 "name": [
@@ -4587,7 +4587,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 61
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -4703,7 +4703,7 @@
                   "text": "Jen A. Kiggans"
                 }
               ],
-              "voteCount": 11484,
+              "voteCount": 11512,
               "party": {
                 "id": "01000000-f030-c43d-c8f4-08df1fee529a",
                 "name": [
@@ -4751,7 +4751,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 28
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -4867,7 +4867,7 @@
                   "text": "Geral D. \"Bishop\" Staten"
                 }
               ],
-              "voteCount": 141,
+              "voteCount": 144,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -4981,7 +4981,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 3
                 },
                 {
                   "groupId": "01000000-7e9f-e426-690e-08df1ff2f08c",
@@ -5031,7 +5031,7 @@
                   "text": "J. Matt Baker"
                 }
               ],
-              "voteCount": 245,
+              "voteCount": 246,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -5079,7 +5079,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 1
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -5195,7 +5195,7 @@
                   "text": "Write-In"
                 }
               ],
-              "voteCount": 24,
+              "voteCount": 26,
               "party": {
                 "id": null,
                 "name": null,
@@ -5226,7 +5226,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 2
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -5359,7 +5359,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 5,
             "totalUnits": 5,
-            "asOf": "2026-11-09T16:48:52.94942Z",
+            "asOf": "2026-11-09T17:47:26.493665Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -6249,7 +6249,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 7,
             "totalUnits": 7,
-            "asOf": "2026-11-09T16:48:52.94942Z",
+            "asOf": "2026-11-09T17:47:26.493665Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7128,7 +7128,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 30,
             "totalUnits": 30,
-            "asOf": "2026-11-09T16:48:52.94942Z",
+            "asOf": "2026-11-09T17:47:26.493665Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8001,13 +8001,13 @@
             "hasPrecinctStatus": false,
             "mapFeatureId": "810"
           },
-          "voteTotal": 184413,
+          "voteTotal": 186036,
           "underVoteCount": null,
           "overVoteCount": null,
           "precinctReportingStatus": {
             "reportingUnits": 108,
             "totalUnits": 108,
-            "asOf": "2026-11-09T16:48:52.94942Z",
+            "asOf": "2026-11-09T17:47:26.493665Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8077,7 +8077,7 @@
                   "text": "Elaine G. Luria"
                 }
               ],
-              "voteCount": 100661,
+              "voteCount": 101812,
               "party": {
                 "id": "01000000-f030-c43d-c502-08df1fee529a",
                 "name": [
@@ -8125,7 +8125,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 1151
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -8241,7 +8241,7 @@
                   "text": "Jen A. Kiggans"
                 }
               ],
-              "voteCount": 79534,
+              "voteCount": 79940,
               "party": {
                 "id": "01000000-f030-c43d-c8f4-08df1fee529a",
                 "name": [
@@ -8289,7 +8289,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 406
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -8405,7 +8405,7 @@
                   "text": "Geral D. \"Bishop\" Staten"
                 }
               ],
-              "voteCount": 1260,
+              "voteCount": 1283,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -8453,7 +8453,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 23
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -8569,7 +8569,7 @@
                   "text": "J. Matt Baker"
                 }
               ],
-              "voteCount": 2754,
+              "voteCount": 2795,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -8617,7 +8617,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 41
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -8733,7 +8733,7 @@
                   "text": "Write-In"
                 }
               ],
-              "voteCount": 204,
+              "voteCount": 206,
               "party": {
                 "id": null,
                 "name": null,
@@ -8808,7 +8808,7 @@
                       "text": "Sau bầu cử"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 2
                 },
                 {
                   "groupId": "01000000-7e9f-e426-c574-08df1ff3147a",
@@ -8868,18 +8868,18 @@
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
-  "cache_control": "public, max-age=11",
-  "request_to_body_ms": 261,
-  "original_response_sha256": "4eba220fff45816a074cf2b5dc3e465697968b8f9c40d50b4f2793d119689a9f",
-  "observed_source_stamp": "2026-11-09T16:48:52.9494179Z",
+  "cache_control": "public, max-age=60",
+  "request_to_body_ms": 482,
+  "original_response_sha256": "ecbb0e96b2384c12e888c19b7bfb862610fcb408d32a920f5eda800af60989ce",
+  "observed_source_stamp": "2026-11-09T17:47:26.4936638Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-09T16:48:52.9494179Z",
-  "source_published_at": "2026-11-09T16:48:53.6817874Z",
-  "selected_payload_sha256": "9ec9ad9eb34458397cf7620170ab1fb694b139378cf5cc465d3f27216b4f3a81",
+  "snapshot_updated_at": "2026-11-09T17:47:26.4936638Z",
+  "source_published_at": "2026-11-09T17:47:31.1170079Z",
+  "selected_payload_sha256": "147f8047dc74c5b4b9e1d19c10687c92b5cd65a6a4b18258a6acdf5f972ab17a",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "revision_watermark": {
-    "as_of": "2026-11-09T16:48:52.9494179Z",
-    "published_at": "2026-11-09T16:48:53.6817874Z"
+    "as_of": "2026-11-09T17:47:26.4936638Z",
+    "published_at": "2026-11-09T17:47:31.1170079Z"
   }
 }
