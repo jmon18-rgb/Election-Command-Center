@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-09T22:56:50.069351Z",
+  "updated_at": "2026-11-09T23:50:14.117381Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -256,6 +256,25 @@
     }
   ],
   "items": [
+    {
+      "id": "4c2328d2ccf72dcbc91c",
+      "title": "Trump administration withdraws suit over California ballots - North Penn Now",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOT0tkZjRYVGVvYS1ZeUMza2t2NXhZN1NfVlZZWjE2Zk1hS2x3ZHRPMGV2WmRkakJqajF0d0V1X2hOLXlzZ2RDcFhUUmw4Rk9PZTRkcnJOeGtxTXVYSjQ5dFAwb01OQ1NMNFQxQXByZ0ZZTWVOc0F1NVlOSm9SZURYVlNHdmVWR0pwLUM3Q1draVVTTVNqRUVndGFqRkpJTmN6?oc=5",
+      "publisher": "North Penn Now",
+      "published_at": "2026-11-09T23:10:00Z",
+      "detected_at": "2026-11-09T23:50:14.117381Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "916ce7f66824e177d94f",
       "title": "'Embarrassing and indefensible': Trump's Alaska appeal should be dismissed ASAP, voting advocates say - Democracy Docket",
@@ -5079,25 +5098,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9f97d32c207e642f1a72",
-      "title": "Judge says Trump could disenfranchise voters in purge of noncitizens from election rolls - CalMatters",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE04N2JQbW81RTlHUWhVTjFXa2RvS2hMWTBGUnFpOVB0Z1BiNGRZV1M5aXMxRXMtQmE5M1JvTkhLRUtEVkd5RHpGem9CMTJWcDB1TktGdUFMVnZtbUd4eHRDV3FfNFdTaVJvM0ZjcjdmUXdQdnQyMmItSXVR?oc=5",
-      "publisher": "CalMatters",
-      "published_at": "2026-10-28T00:21:06Z",
-      "detected_at": "2026-10-28T15:20:44.882850Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
