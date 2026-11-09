@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-09T05:19:13.081979Z",
+  "updated_at": "2026-11-09T07:40:37.040505Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -258,6 +258,24 @@
     }
   ],
   "items": [
+    {
+      "id": "674aa5f1dbf6856ea7e4",
+      "title": "How schools are chosen as polling places and the care taken by the Erie County Board of Elections - WGRZ",
+      "url": "https://news.google.com/rss/articles/CBMijwJBVV95cUxPN2ZYdjRxUzl0aG9Lb2QwSGthYUpUUV9VNUdCdUNjQVR6WmdLaXFxRzNuOU8wUURSU3ZvNXU5NEcweG03OW5SRG5fNHdtZW1sYmsyTm5WR2FqMk81TDlDSUxUUGFyR1BsZlVreXJtd3J3TzZfSGM5cWhOVlB5TC01ckpFcDIxeVdwNk5xM3dlcnhXQ0JCQnFFMFVVRVdHVG5vNGx1c18xNlRDdVFqZXppWHhsRC1DbEIxQVZRZWxjWGFDR1kwcVRsUnBwVUFiRk5oUmhVb1VTVW1rZm5VblhXbkVFb3l3NWU0clVGVmp6QzIwRkFYN09RY1c5THhLOTFXeTZxNFBMY2ZKZU9XVjcw?oc=5",
+      "publisher": "WGRZ",
+      "published_at": "2026-11-08T19:04:00Z",
+      "detected_at": "2026-11-09T07:40:37.040505Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "51c4a161e9c4bf66f108",
       "title": "DOJ Drops California Voting Lawsuit before Hearing That Could Expose Flaws in Its 20,000-Voter List - Davis Vanguard",
@@ -5088,28 +5106,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6cb0425b28329abedc85",
-      "title": "Wyoming Green Card Holder Pleads Guilty To Casting Illegal Ballot In 2024 Election - Cowboy State Daily",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxOSlNWb0o3VHhwVGZLc2Z1eW9WX1RJVW9xYkpodFVzZWJpRnJUY3pDaXpNeWZ4bmVuSXBZQzhyb09Hem85TVZVLUw1WE16MzNldHQxeVNpWW4zLU12QXhraUhUWXVtSC1FTzRKYnNMWUU0UHhpNWRqd3MwdGpRU055Z0syUDJVdVRnbmR3SFF4bVdxd3M3LU1tMGYwcXBDdUY5TUIxOWJobVJNSGJ1OG13Rm85SFRLZ0hQMzRxSzdn?oc=5",
-      "publisher": "Cowboy State Daily",
-      "published_at": "2026-10-27T21:39:00Z",
-      "detected_at": "2026-10-27T21:47:38.437897Z",
-      "state_hints": [
-        "WY"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2024 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
