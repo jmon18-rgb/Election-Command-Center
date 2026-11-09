@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-09T11:09:14.228028Z",
+  "updated_at": "2026-11-09T12:07:18.348589Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -388,6 +388,28 @@
       ],
       "headline_numbers_unverified": [
         "2 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "043cbc9c80c4083594f1",
+      "title": "Feds move to dismiss case over 20,000 California ballots after Supreme Court denied appeal - Los Angeles Times",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxNdFYwNFhOaHd0VURiV0JkRzcta0U4ck1QZmlPQy1tYUJEeVJQSnBFWTdOZ0RDNV9JTll2SnhIUG9Ja2RrOVlFTzUyUHV1M1FIeG5QcTgySERFaDNfaUtoRkFEYlpzYXJNdFZlN3hhSEZxaC1UX3hVRS1oeVgyZWFXVkFYZUJWVVg1R2p6d3IzazIyVUJISXB3dUQ2RmRacTgtaS1rNmNJdzYwQTRzeXF1cENzallUNTRkdHdjSVVxdi1WU3dfUW53UFhBV1hib1NMMG1kQWxzUQ?oc=5",
+      "publisher": "Los Angeles Times",
+      "published_at": "2026-11-07T02:50:37Z",
+      "detected_at": "2026-11-09T12:07:18.348589Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "20,000 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
@@ -5087,23 +5109,6 @@
         "registration",
         "litigation",
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ea23f6a6a92a0d4a059e",
-      "title": "Trump says US voter fraud is 'rampant' - evidence suggests it is extremely rare - BBC",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE1fZzNkajl1OG4ycW5STjlVckk2YVllejcySGlkNkxTQVdsdEE3dXJLNGN3ZzJaODJkNnRhNnBmTk52QTZ1dDREUHNZWWtnQ2g5d0lfYm5RRGV1X1pjZGc?oc=5",
-      "publisher": "BBC",
-      "published_at": "2026-10-27T21:46:43Z",
-      "detected_at": "2026-10-27T22:45:13.389371Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
