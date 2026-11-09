@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-09T12:07:18.348589Z",
+  "updated_at": "2026-11-09T13:27:32.667201Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -258,6 +258,23 @@
     }
   ],
   "items": [
+    {
+      "id": "e856fc1119f50607ca90",
+      "title": "Democrats won big on issues like immigration. But ICE still has the money - NPR",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOcG16VGZPV2ZadUJVOVRBZnNOR2dNNHViTnp0aTR5X05BU3BJNTQ4TnpubGRMTWp5dHBGdVdxZUJUTWN4dUJwNG1QeGRUZ0tpUnNHbTJvMi0xX3ZOOWJrZFd1c3AxOUc5dXI2VGlTbFROVUh0alBYUjZhYVN1c1dzSUQ3SHFiVGI4elVlaG5ZRklSUHQtTkE?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-11-09T10:00:00Z",
+      "detected_at": "2026-11-09T13:27:32.667201Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "674aa5f1dbf6856ea7e4",
       "title": "How schools are chosen as polling places and the care taken by the Erie County Board of Elections - WGRZ",
@@ -5090,27 +5107,6 @@
       "headline_numbers_unverified": [
         "20,000 ballots"
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7998eec96f6dadd688d3",
-      "title": "Judge hears Justice Dept suit claiming noncitizens on California voter rolls - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQcXE1Y3lpa2g5MTJjOG81SW14THVFR1REYVdCcFVvTU5razhsTkpnVE84d2F4eTBxYlZ1enBTdzhGMjhocEV2ejRhcWFuZFVvTFhoQUEtOVM3bzd6aHZ5MEwweTBva3NUS083cGJOUnBxNE5NOWthVF93TXBUZEFsZnV4OUt6RUI3MXlzNlpnX2tpV0dUSzM4dVJ5UnZNdmloVmx2eWNvdElqNExkSmNvZzIxYm1fMDYybEdydEctdlFXNXNYU1MwWDNURUxJdw?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-10-27T22:01:43Z",
-      "detected_at": "2026-10-27T22:45:13.389371Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
