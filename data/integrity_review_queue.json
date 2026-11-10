@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-10T09:03:34.801985Z",
+  "updated_at": "2026-11-10T10:05:37.816322Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 64
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 62
   },
   "advisory_related_headlines": [
     {
@@ -135,17 +135,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "7118a47a2e7e5904afed",
-      "headline": "Liberman's Yisrael Beytenu projected to win seven seats in next Knesset, election data predicts - The Jerusalem Post",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "2196fa5b9fd51fa18bf6",
       "headline": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
       "possibly_related_articles": 2,
@@ -255,6 +244,18 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "351160ef9c6a696706b7",
+      "headline": "Will ICE Show Up at Churches on Election Day? - Word&Way",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -270,6 +271,63 @@
         "security"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "aaf51a2c68f0258ebdfb",
+      "title": "Supreme Court Acquits Grandfather in False Birth Registration Case, Citing Lack of Criminal Intent - Daily Tribune",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPa3JPaC1WRFhwYVVHa3BrbFN6N0liVVZCR21lUDM4bFl3QnB3LVNod3I2b3Y2bnJnbVk4NTZRRWtEQTBsMlhFX3pDRjFvWm80UlpHMGRZT2Z3aXEwOE9FUVlGdnctVHdkcEtLUmFQMjhaQnlHQ3BWR1lIcFp1VUZadUJmbURwVWZaRkl4YXlGWlk5Yjg?oc=5",
+      "publisher": "Daily Tribune",
+      "published_at": "2026-11-10T06:26:39Z",
+      "detected_at": "2026-11-10T10:05:37.816322Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6bfa45b75f1584572911",
+      "title": "Post Scripts on Pre-Election Litigation Challenging State Authority to Administer Federal Elections: Part One in a Two-Part Series - Verdict | Legal Analysis and Commentary from Justia",
+      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxQanJZSGlnTW4wZzB5UTk1RjVLdTdod0x5dFJ6bVFmN3U1OEhsMXJfZDVpUC14eEVheVhON09xZ3FFZms2aWtpTVg3UzVGcHFtdU5yYlV5VzF4QjQ1MXZfUnVzejV4OGpBdVIwUXlGZ1dMeGNQREJRZmQtQzBMeTJ1ZS1aOWcxdVZ6VWcxckw4TTc0MTRTbEVCdVViSmJvbnd1eDRhQWxCTWlpVGJuRF9ra1ZkRk9YU0czcmFFUVJoa2ZLX3E4SUk2bWFVMEgxMWVpbEZj?oc=5",
+      "publisher": "Verdict | Legal Analysis and Commentary from Justia",
+      "published_at": "2026-11-10T05:03:43Z",
+      "detected_at": "2026-11-10T10:05:37.816322Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "0c2437dad3167d7e5aa2",
+      "title": "INEC expunges 1.6m records, flags 54 officials as 375 judges brace for disputes - The Guardian Nigeria News",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOZzZnVjdZQW9LSTFOU0V4a0FMTnplc2tlRTNjMWFhTHFELUptSXdYcG5tcWVfWGZyWHdOSEZQbWlIa1NPNVAxNW5mM1ZyWkNuSGF5cFRxVGNzb0R2Nl9fbk1LSzNhc2Z6RWhDNUVLSV82eWZ6ckcxcFRWYWJUQTZBcTA3eE1YcHYxYmVmRlkycU0xejAxTEEwamJ0aFRQZXZnUHlRU2ZBYw?oc=5",
+      "publisher": "The Guardian Nigeria News",
+      "published_at": "2026-11-10T04:00:00Z",
+      "detected_at": "2026-11-10T10:05:37.816322Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "1",
+        "54 ",
+        "375 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5039,63 +5097,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a599a3eb537da29d3af4",
-      "title": "Appeals court lets California keep counting ballots tied to 20,000 voters the Justice Department flagged - NationofChange",
-      "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPbW9RWGg0Wmdlc1pXQXM5NGNXWGxEVVFHSk1xV09sVElvSGtiMzU0cnhzc2Z4MnJRNDZ6eG4tNmJEMVNyajFvVGVfNFlQRkw4Mi1CWWZjYjlnZUlScDZydjdYQVpoenhBNnRYS3hVUFpDYjRHSF9SS3RkMGttRmwxcC1NajQ3eWRwS0tDOHlwMUJlZkFHMDlFOV8waTEwSzczay1mTTZKNmxyOWZldERYZ1M2akVfVnlJQVlWYUh5QmdJSEJvOFhmdkk4TWRVVElmbmF0dl9UdVk3UHpTd2xn?oc=5",
-      "publisher": "NationofChange",
-      "published_at": "2026-10-28T10:37:34Z",
-      "detected_at": "2026-10-28T18:46:52.037713Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation",
-        "security"
-      ],
-      "headline_numbers_unverified": [
-        "20,000 voters"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ac15969e32a3e5919c03",
-      "title": "Liberman's Yisrael Beytenu projected to win eight seats in next Knesset, election data predicts - The Jerusalem Post",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpZ19GcmpBQXpOYXBMRFhGMy1PY003SUZ1M2dqZDQweHp4WXFJODFtcVFmSEhiMUVWY0tESEVyNkMxM2wySXhuek83Z1dGYmU0VWRkbFp3YjlYSEJVSlhWb0traDNOdEdu?oc=5",
-      "publisher": "The Jerusalem Post",
-      "published_at": "2026-10-28T09:51:44Z",
-      "detected_at": "2026-10-28T09:59:26.302976Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2b9486cfb6a943081509",
-      "title": "Here's how Democrats in Congress are preparing for election fraud claims - NPR",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOZFlveTJaVGlyczVUbEphNkMzLUZjblI3UkZ4cnZaeHNYcFZsT0F6czBIRGJ5a0pfbC1DRFE0T1ZjZ003emNNTHZxazZCRXhPRVpLSDRpeVhqY0Q1ckNWM3Z3Mzc3RFFYaW5aaEtxYkxTdWJmS1JTcUxpVVJ1NTZ4WFY4QmgxR2c4VlE?oc=5",
-      "publisher": "NPR",
-      "published_at": "2026-10-28T09:00:00Z",
-      "detected_at": "2026-10-28T21:52:08.253412Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
