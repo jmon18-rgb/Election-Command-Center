@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T21:52:42.193652Z",
+  "updated_at": "2026-11-10T22:54:01.502209Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 57
+    "advisory_related_headline_buckets": 23,
+    "advisory_related_headlines": 59
   },
   "advisory_related_headlines": [
     {
@@ -267,6 +267,25 @@
       "publisher": "WHYY",
       "published_at": "2026-11-10T21:25:51Z",
       "detected_at": "2026-11-10T21:52:42.193652Z",
+      "state_hints": [
+        "DE"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "32d6df3fb7035c0c7f1d",
+      "title": "Delaware district judge rejects Trump\u2019s DOJ attempt to obtain the state\u2019s voting data - WHYY",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAzYzVQcGpDQ0l1ejBEcDROR1RkN096UnhyQTcybzdja3pqVElib0hhV2Rmc1F5bDhXWG90bGlyMWlKVnQxU0VIZ0VtMmxycEFwU0Q5bkdWOXFNYnFTVFg0ckppSDNHbE4wc212dzV3cG5sSl9l?oc=5",
+      "publisher": "WHYY",
+      "published_at": "2026-11-10T21:19:36Z",
+      "detected_at": "2026-11-10T22:54:01.502209Z",
       "state_hints": [
         "DE"
       ],
@@ -5085,27 +5104,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "0c68cd69623453ea50b2",
-      "title": "Could 2,900 Georgia voters miss the election? - Rolling Out",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE42a1NzTFdJMGswZW8wTEpEOFRKbkFSN1JQWXBJcHJDVXE4SGZ0LUxrUGt5RkVuNEVFT01Mb0NPbmk4U3JVVnRNS1Z2UHdnSWF4YlpscXcyXzVpcEdORVdCV0tCQnlWOTZud0pZcEkxcHBCR1E2QjRLd3lVUnpmUQ?oc=5",
-      "publisher": "Rolling Out",
-      "published_at": "2026-10-28T18:12:56Z",
-      "detected_at": "2026-10-28T18:46:52.037713Z",
-      "state_hints": [
-        "GA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2,900 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
