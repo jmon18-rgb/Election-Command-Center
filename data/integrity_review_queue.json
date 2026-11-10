@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T22:54:01.502209Z",
+  "updated_at": "2026-11-10T23:46:40.993406Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -293,6 +293,26 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "0715c00875ad6a4fc5bc",
+      "title": "Voters approve 10 election policy ballot measures on voter ID, noncitizen voting, and more - Ballotpedia News",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPTzNSWHZqN1JyT1hNSkgtOEtaU3NINkVGUmRiT0tzYmJ4MGxZamo4cGVaVUdMQi1vbzVjNVFkTUJQazFvVE5GQWxRaXM5OUxEV1RybVJYTWI3a3J2ZFJMWkRSQkZpR1dZZnBBVThLd0xCTWtadG1uTTlBUnd2cnp0WUlicFQyS01XeUd0elFGT1hPUzVaX0p5YkRHLVMxVUNHTUhLNWd0MVphV3RUeHZZaC1oQUNEcU1CTTRpd2ZfWFNuRWR1dzI2RHFSdw?oc=5",
+      "publisher": "Ballotpedia News",
+      "published_at": "2026-11-10T21:00:00Z",
+      "detected_at": "2026-11-10T23:46:40.993406Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "10 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5083,24 +5103,6 @@
       "state_hints": [],
       "topic_hints": [
         "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "007759b0bd4c4bec18bf",
-      "title": "Schweizer: Inside DHS's Push to Clean Voter Rolls Before Election Day - RealClearPolitics",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPQTduWGl1Y1l3bG9BdTFQQ0ljWFRPb1d6NGdnbFRFSHY3U05HVUZiNEVaeUN5ZC1IXzdDSlFoQzF3bFlNSFV0dEZLZTJrb0haTVhhX0M2MENCV2RZMEx4OG5qYm02SWtNejlhZHpnaXFtMVhSYnpwdTd0MG1aVUxCNFllLXRSOHhIWXZuNHVDTlhURl84VWZQOTM5T2ZkN1JlM1RVbWRlWTN0X3kzRWRjSHQ4RGE5MDczZWgwYXBtYkU?oc=5",
-      "publisher": "RealClearPolitics",
-      "published_at": "2026-10-28T19:08:43Z",
-      "detected_at": "2026-10-28T19:57:15.320489Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
