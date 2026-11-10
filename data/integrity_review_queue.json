@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-10T11:59:57.940062Z",
+  "updated_at": "2026-11-10T13:17:47.680541Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -259,6 +259,25 @@
     }
   ],
   "items": [
+    {
+      "id": "f65bb4690d621c05ef9b",
+      "title": "Utah\u2019s top election official refused a nonprofit\u2019s request to post voters\u2019 names online. Now the group is suing. - The Salt Lake Tribune",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOR2k3czgySzFXZGdRNWRWM2I1YmE4N09GUHFUN3N6U3BzRlozRDR5dElodmRaaklUMzI0YmRNN0U5QWlHdzdSemNJUTQ0RHJlS240MWlVVnRSQmdPTUZPUm5rWDNDV1RwQm1icEFfQ3d0RGhwcTVvelZEdXFaY2JLNU85QVRSZ1E?oc=5",
+      "publisher": "The Salt Lake Tribune",
+      "published_at": "2026-11-10T13:02:29Z",
+      "detected_at": "2026-11-10T13:17:47.680541Z",
+      "state_hints": [
+        "UT"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "6aaf3f81a33be9d4216c",
       "title": "Postal Service says it will not deliver ballots if states refuse to turn over voter lists under Trump proposal - ABC News - Breaking News, Latest News and Videos",
@@ -5083,23 +5102,6 @@
       "topic_hints": [
         "ballot_access",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2667834ccb39f857104f",
-      "title": "AICC Observer Umedaram Beniwal calls for protection of every eligible vote, questions Electoral Roll transparency__ - Babushahi.com",
-      "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE9VcUd2RnlaRWtjVFR1UGx1MndWS3R5RXh0aWR4X1k0OU5mOFBRcGdHUDdiaFRMLUJHbjJoT3BBelM1Rm8wblBMSW40cXRzZ3VmMEVXdnNhOHZna05jSVE?oc=5",
-      "publisher": "Babushahi.com",
-      "published_at": "2026-10-28T11:32:00Z",
-      "detected_at": "2026-10-28T11:55:18.720607Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
