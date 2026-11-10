@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-10T15:59:20.480046Z",
+  "updated_at": "2026-11-10T17:03:51.345698Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 62
+    "advisory_related_headlines": 61
   },
   "advisory_related_headlines": [
     {
@@ -31,17 +31,6 @@
       "topic_hints": [
         "election_admin",
         "security"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "943ca4486e33563f77e7",
-      "headline": "Court dismisses Emeka Ike\u2019s N10bn suit against Wike\u2019s aide - Punch Newspapers",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -131,6 +120,17 @@
       "topic_hints": [
         "election_admin",
         "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "943ca4486e33563f77e7",
+      "headline": "Court dismisses Emeka Ike\u2019s N10bn suit against Wike\u2019s aide - Punch Newspapers",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -260,6 +260,23 @@
   ],
   "items": [
     {
+      "id": "9bcf9bb9454f5ee5864e",
+      "title": "Donald Trump Can't Walk This Back: He Just Declared That He Is Questioning the Legitimacy of the Midterms - National Security Journal",
+      "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQektwUEF5RlJRUVo0RUZNLW91WUpWTGE2WFVEa0Z0RVVncTZ5cG16UDNEUGsxR2dOUDM5eTk0SEZySWw4T0s4MElJSWx1cnFybVV6NFp6VW5GNkx5eS1fZ3JkRFFQelplSU9DRUxwQ0xqRzRzMDQtZVA4SnlzNlFyc3hJTmF4WFI2X1pNVnUwYVA4Z0VBaWMwX3M3NGZPbW5YX21Db0lFUElHZVZHUGMyNTQ5V2lCbm9Ma0FqWDZZSHRCeUhPRGx4cmpwbmVoRXAtRTI3a1dyYw?oc=5",
+      "publisher": "National Security Journal",
+      "published_at": "2026-11-10T16:45:13Z",
+      "detected_at": "2026-11-10T17:03:51.345698Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "f65bb4690d621c05ef9b",
       "title": "Utah\u2019s top election official refused a nonprofit\u2019s request to post voters\u2019 names online. Now the group is suing. - The Salt Lake Tribune",
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOR2k3czgySzFXZGdRNWRWM2I1YmE4N09GUHFUN3N6U3BzRlozRDR5dElodmRaaklUMzI0YmRNN0U5QWlHdzdSemNJUTQ0RHJlS240MWlVVnRSQmdPTUZPUm5rWDNDV1RwQm1icEFfQ3d0RGhwcTVvelZEdXFaY2JLNU85QVRSZ1E?oc=5",
@@ -384,6 +401,24 @@
         "54 ",
         "375 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "f692818b7d78dfc19aca",
+      "title": "\u2018Possible activities outside the polling place\u2019: Cameron County reviews five election complaints - ValleyCentral.com",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNWEFxdFpmcVNrdXpHM3RkeFVQaFFUeXQzbURBc0U5clIxZ21iN2lZUnV6MWUwS0RweTNaY0kwdHE1ZkxpbTRnUFZ3bXFDc01zRkhhSnR6ZGFyZkxocE4wNXpoZUxZdkVwc1ozTU1lblQxZG1uelR1NFVXUWFiWE9YMzBPeVI4VmhmTGVjXzNwQjBrTW5DUzdFQ0JtZEc3NGszb085NjgzVzQyV0NKYmlLNFg5ZjkxRTlCeEFZMDhIdG43enpsOHhJU1lKamMyWVBLcUxsOFh2dy1WbGw4UlVpZdIB5gFBVV95cUxOb3didEp2WlA1MV9nUEVPeC1oWnNscDJXUEFma3poNWtJbWJ3LWJBdENRMzBPMUpaeEFkQmVhVElSZThBQnl6OHJrMkkzN2tRekRVc01zNC1XeUlnRjMyaDYwM0dUaXlZLVRZbTFJaU5qUndMMGwtcjlUM1R2cldNc21yYXl5TDNpcWgzSEFWUUJPV2JSZTdvQTlJeFhtUXh6MzFuOTRWRWl1VWZ4aWotMVJ4eWJoaktJcW00TDZKNFVOb0phTXVKNHNkR051RHBuRC1BU2EzN2V4azlPT3p6TnY2NDhfZw?oc=5",
+      "publisher": "ValleyCentral.com",
+      "published_at": "2026-11-10T00:24:53Z",
+      "detected_at": "2026-11-10T17:03:51.345698Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5065,43 +5100,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7f2534ce4828dab3090e",
-      "title": "Court dismisses Emeka Ike\u2019s N10bn suit against Wike\u2019s aide - Punch Newspapers",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQcEJkQS1nVUhqbkpPZzBzam9YRWYycUxYbUFVU2RhVXI1dGRJUWRRRHllaHFkSW1sOWozQlBSOTU3cW1odU9zV3RuOGY0eGw5U1lKNF9iRDU0cWRNdXMzVzQ2Z3BNZmNxNjc1cnRSSTZtQUZKTHlfUkFDVWZEdXF5Yks2VTBORHlu?oc=5",
-      "publisher": "Punch Newspapers",
-      "published_at": "2026-10-28T12:00:15Z",
-      "detected_at": "2026-10-28T13:09:19.886892Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ca7c3c5ace461b9c1e6f",
-      "title": "Ballots in the hallway: How California can restore lagging faith in our elections - The Hill",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPSE10NF95UTZBQjRLOURQWFhmMnlEYzhPNWZPbE85X0FLX19Pb1ZaVGdiM2l3TzBNR1YxUTJ1ZXYwVlQwamJsTDVINy15dXZwYVRkTG9xTk1nV1pZZXRESHRGNTJjR1d2RGNXLWZDZEVMcFhqVWY0R1U3MHp1VThIWjZxczZnMFNpTmJGMTEzT1o0YzFLS3Z3ZmxKb3Zjd192M0g4ejRlVkpMQm5UX2xxVjFpVGhXcTMtQ3hSYVNIM0s4UHNH0gHKAUFVX3lxTE1fQVNsVzZHYVk5dFFwM291eVlVMHU0ZDJmVEx4VHVXOTdWdkdJTjdXREc5SlItNmJoUEV6SThUSElYREJ3SU5yaXRNdWU3NEJyQkl1S2NKeXFmYjNCeWZKTUs0UWNKY0lCT1Y2VjNjOTV4d0dydWlvYVh5SWhlbUJPTUtzdzVKb2txRGszN2tJbW1rdjRfMVczRTdpaDgteXVMRGp0OE5lR1hjR3FTV1N3MjJEdjNzdDJSUmZMeUkzeVNkZ2F0ZHJsdmc?oc=5",
-      "publisher": "The Hill",
-      "published_at": "2026-10-28T11:48:42Z",
-      "detected_at": "2026-10-28T11:55:18.720607Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
