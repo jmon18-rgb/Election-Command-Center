@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-10T20:02:09.218531Z",
+  "updated_at": "2026-11-10T20:57:04.691373Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -260,6 +260,46 @@
     }
   ],
   "items": [
+    {
+      "id": "c1046be1f314e3aea020",
+      "title": "Voter roll case closed: Trump officials tried to disrupt California elections, judge says - Sacramento Bee",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBtUWQzY2NraUZLWW96LTdocG04b1E0bzJUTnBaa3o5R1Q0WU9EM2REd2JJa2ExRU9jVWZMclpuTzIzb1hHenBqV1R1bzVVclNOQ0xNSllKRmJEaS1pSmN4OHFpQXNubzDSAWdBVV95cUxQTDV0WjY5MktwYldPSTZReEhPdmlCWEMwa0ppZExZSzVHRGhXNC1WcVNFUWFqVE9tMGRtenZIQnVRUG83Z3cwSVBTMFZwd0lkMjk3VGVCMjFNRnYybU5vNVo2am5IQTZZ?oc=5",
+      "publisher": "Sacramento Bee",
+      "published_at": "2026-11-10T19:52:46Z",
+      "detected_at": "2026-11-10T20:57:04.691373Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "491163dfe6f19bae9cb8",
+      "title": "Alaska Supreme Court revives state\u2019s opioid pharmacy lawsuit against Albertsons, Kroger - Alaska Public Media",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQY21sQ3NDVVBQVFM5VWtzLWpvQXQ4d2FBWEJyUUVycFU0NktIRkFoZmlNNUtpa1BaUUd1LVh0VkpOdEtXOXFjWG9obmt1VkJxZ2x2SG5jM0xfbDZqUU1hUEJnOUFVejA0WnhWbTZ1czdMME5JNFAzcktyaVFFNUFyZFVYajlFMVJRc1V2WFN1MnI2by14UFdndFJGVjlrcmtzZUd3S0Y4SDQ0Y3VfQU85c21rYVB5YnFSMHJDY1hFdlhPU0hSc3lZWGdwd0ZtUQ?oc=5",
+      "publisher": "Alaska Public Media",
+      "published_at": "2026-11-10T19:30:00Z",
+      "detected_at": "2026-11-10T20:57:04.691373Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c4ada8484aeeaac4acf2",
       "title": "The Trump Administration\u2019s Attempts to Get Sensitive Voter Data Threaten the Rule of Law - Campaign Legal Center",
@@ -5069,42 +5109,6 @@
       "headline_numbers_unverified": [
         "3 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "30679fff002111929baf",
-      "title": "Washington Times\u2019 review of hundreds of cases shows how noncitizens end up on voter rolls - Washington Times",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOQW1PLUtYSklhQjlPM2lCRkNfUjNtMUZtblREWGVUY2FJXzlTcWpuMmV2VGNWUll6SXhWWUZGUG5BbFVzMWNvUWoyUUhpcEhBd0dDR2F6bUZLM090UC1Da1gwZmFmcFBOeVpBdlRTdU1scnNiQlYtTkVQTnFKVGl0UkVNM1Nwd3d2c0lnaWJtT1RORTJ6SzRNY1ViTk5pV1hCX0QwVUhTZ0ZrN1FmaGRZNXRqWXQ1Ykk?oc=5",
-      "publisher": "Washington Times",
-      "published_at": "2026-10-28T15:29:53Z",
-      "detected_at": "2026-10-28T19:01:40.304400Z",
-      "state_hints": [
-        "WA"
-      ],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2196fa5b9fd51fa18bf6",
-      "title": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQXzEtdnFIMVZjVXBEVmkxSzhqVjlBRm5qNzVGQlg1bEpyRi1BTVJzTlB6R19JdFQxcVVIOHZCbC1wY2FwSVVLem5VZWxCa2Z4T0pTUVBxbHZyb0R2d2xfcHdpTDJVamhaN0VGVEVjVWtoMXowLVphbXA4Qnh1NzVpTFE2UlZNd21oZUczOE84VS16cEswQmVvZkhNX1gyb0RWY014cDZFXzBlWHIzUWhZbmpFT0R1dUgxZUZpbUR2VWRmT3prcDdNRUZPLUFpaUNOc2NVd0ln0gHWAUFVX3lxTFBfMS12cUgxVmNVcERWaTFLOGpWOUFGbmo3NUZCWDVsSnJGLUFNUnNOUHpHX0l0VDFxVUg4dkJsLXBjYXBJVUt6blVlbEJrZnhPSlNRUHFsdnJvRHZ3bF9wd2lMMlVqaFo3RUZURWNVa2gxejAtWmFtcDhCeHU3NWlMUTZSVk13bWhlRzM4TzhVLXpwSzBCZW9mSE1fWDJvRFZjTXhwNkVfMGVYcjNRaFluakVPRHV1SDFlRmltRHZVZGZPemtwN01FRk8tQWlpQ05zY1V3SWc?oc=5",
-      "publisher": "The Hindu",
-      "published_at": "2026-10-28T14:19:14Z",
-      "detected_at": "2026-10-28T19:01:40.304400Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
