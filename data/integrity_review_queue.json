@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-10T07:25:15.241829Z",
+  "updated_at": "2026-11-10T09:03:34.801985Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 4,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -258,6 +258,23 @@
     }
   ],
   "items": [
+    {
+      "id": "9e76702606c2a69840fe",
+      "title": "Voting rights advocates organize volunteers to track potential intimidation at the polls - News From The States",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPX0lubjdVdWUyYlM3X0R4QWI4SHUySkZpQWtaR2gxc2d6R2Q4NDhmbjhMMmRmWWRpMks0c0FNRVA3czlwQ0w2MF9paHRWZWZNQlhpN1o1Q3NkUHF2MU1pRTgzS2FvZV9TdW9KRDVOb2U0SEZZN1J4Nzl1UnprZlVSbEJWR3I4YW5qcnRrRi1wZmw2Ulk5VW1oWG9Ja0xXcHVtb2tOYWxpbUctLXkxeUxScWVEdzlBTGtfY1F2Vw?oc=5",
+      "publisher": "News From The States",
+      "published_at": "2026-11-10T07:33:20Z",
+      "detected_at": "2026-11-10T09:03:34.801985Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "4c2328d2ccf72dcbc91c",
       "title": "Trump administration withdraws suit over California ballots - North Penn Now",
@@ -5076,23 +5093,6 @@
       "publisher": "NPR",
       "published_at": "2026-10-28T09:00:00Z",
       "detected_at": "2026-10-28T21:52:08.253412Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2f9dbb2153af42ed2e7a",
-      "title": "Trump claims 'rampant' US voter fraud, but studies find too little evidence - Saudi Gazette",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOUlFZaDVRVWNiRVI5czM3TDVqeWF5d0RsMVdsQnFkSFNCelhQREpneTFoZmhnR3N3RVA2TW4wOTdlUFhoQmVxRkQ3VDRUaEdzNTRkMHZkVC1Ud19aN2MwZzVJamtsb1hCQTZuNU54ZkZPdkRHaGtzd05fb1Z5VGdPWkNDVEhBZlFGa2VVVkdmNTctQjUzQU5nY1NXN3AxRklCR2NsQ1Jra3VxT1ByN0U0b0c1bEpYajZNU0VZ?oc=5",
-      "publisher": "Saudi Gazette",
-      "published_at": "2026-10-28T07:16:00Z",
-      "detected_at": "2026-10-28T08:09:34.303698Z",
       "state_hints": [],
       "topic_hints": [
         "election_admin"
