@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-10T20:57:04.691373Z",
+  "updated_at": "2026-11-10T21:52:42.193652Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -260,6 +260,25 @@
     }
   ],
   "items": [
+    {
+      "id": "b4b5ec82e97d5afc3a23",
+      "title": "Judge rejects feds\u2019 attempt to obtain Delaware\u2019s private voting data - WHYY",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAzYzVQcGpDQ0l1ejBEcDROR1RkN096UnhyQTcybzdja3pqVElib0hhV2Rmc1F5bDhXWG90bGlyMWlKVnQxU0VIZ0VtMmxycEFwU0Q5bkdWOXFNYnFTVFg0ckppSDNHbE4wc212dzV3cG5sSl9l?oc=5",
+      "publisher": "WHYY",
+      "published_at": "2026-11-10T21:25:51Z",
+      "detected_at": "2026-11-10T21:52:42.193652Z",
+      "state_hints": [
+        "DE"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c1046be1f314e3aea020",
       "title": "Voter roll case closed: Trump officials tried to disrupt California elections, judge says - Sacramento Bee",
@@ -5086,28 +5105,6 @@
       ],
       "headline_numbers_unverified": [
         "2,900 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6a9e475608c8f040fbdd",
-      "title": "Clerks must temporarily retain electronic pollbook after Nov. 3 election, Court of Claims rules - Michigan Advance",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxNY01MR3p3SWxiRkh4S2RIRVpXekNBaUFscnlqZU9OcWVoazNmLWlVRVJISzNTNVQ2bDBkVWJNRnZab1FUSEVLcXMwV01nRVlnNEpidHA3MzNQMHo1Rl9XTU5Ubnh4WjE4bzF3aEN2UjZvbnRKOExTQ1lnMWNOWWdydEZyNlZPdFBFbFgtSTJJeFE3VTlBWlR6M2tmT0ROSVhScHJrNHBoMHZjelNkdU9HNnM1SGU4ZHU0cVhQd0UyMnpKX1lQWlBRU2NMTW54QQ?oc=5",
-      "publisher": "Michigan Advance",
-      "published_at": "2026-10-28T17:26:43Z",
-      "detected_at": "2026-10-28T23:48:08.782047Z",
-      "state_hints": [
-        "MI"
-      ],
-      "topic_hints": [
-        "litigation",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "3 "
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
