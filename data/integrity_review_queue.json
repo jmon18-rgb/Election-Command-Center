@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-10T10:05:37.816322Z",
+  "updated_at": "2026-11-10T11:01:31.169480Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -259,6 +259,43 @@
     }
   ],
   "items": [
+    {
+      "id": "6aaf3f81a33be9d4216c",
+      "title": "Postal Service says it will not deliver ballots if states refuse to turn over voter lists under Trump proposal - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQa01oaGRXYU1kLU9uc2N5RlZHWFRQdnRLNW5hdlpQSHBBUFdzSk93U2lud09EOXlnN3BLYUlpUDBSZzZWeXRLallELXlQNmhGOWM0MUpJYmNNZVNrY2FYT0M3Q3dac1FKOVFLSG95WTVmY2hFN0lJMXpVcnZUQlhwN1h1MXJxZUVObW5kQndkay1INFNfa29EMjFzbjBDVkV0SVFQLThB0gGrAUFVX3lxTE9PMWxNRWtOUU1mX2ZmRFFxYmxJTHpjbXotbnJfeUQ5RThBR0tWNFlmWkk2Ui1HQXlVSVFaSFR3V29INUNPaGtva3FKRk0xLXRDanRVS09fa3JkUlRpWEEzRlQ1U1NULXJjVDRiSWNJTVFzcHZWdDRjRVd4bWp4QnppNHZyYnpnTzAzYnZjbmJ4SDhKLW9oRDVIT0QxQTRhUDZlMWFSQS14cXJjNA?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-10T08:05:58Z",
+      "detected_at": "2026-11-10T11:01:31.169480Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "ballot_access",
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "176fc09ad5c2e5ae37ba",
+      "title": "DHS boss Mullin warns of possible prosecution for election officials over voter roll access - News From The States",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPR1Y5MWNEcmM2dUdONkpFTU5aSEtYSXlFel9fWVBqUl9sU0MzdWRxWVkwT2RSTFJrRmdJb1BGMTR5RFBPaHFNNmUyNWdsZWpMMnIyR2h2WFZ2a3RxcmFvMmNHR3pMUjAwajRqUjRXQzloYTZSc3NaT2tSelhPd1lRZndYYldMVXQ2Vl9fOHlLQ19DNjNJWm5wY1lGM0hUSzFPQ24weDZPcmFmQjBHeGY4U1U1dnNuVDBteGtfNkpMXzUxR1pP?oc=5",
+      "publisher": "News From The States",
+      "published_at": "2026-11-10T07:36:58Z",
+      "detected_at": "2026-11-10T11:01:31.169480Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "9e76702606c2a69840fe",
       "title": "Voting rights advocates organize volunteers to track potential intimidation at the polls - News From The States",
@@ -5063,40 +5100,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7118a47a2e7e5904afed",
-      "title": "Liberman's Yisrael Beytenu projected to win seven seats in next Knesset, election data predicts - The Jerusalem Post",
-      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBpZ19GcmpBQXpOYXBMRFhGMy1PY003SUZ1M2dqZDQweHp4WXFJODFtcVFmSEhiMUVWY0tESEVyNkMxM2wySXhuek83Z1dGYmU0VWRkbFp3YjlYSEJVSlhWb0traDNOdEdu?oc=5",
-      "publisher": "The Jerusalem Post",
-      "published_at": "2026-10-28T11:07:56Z",
-      "detected_at": "2026-10-28T11:55:18.720607Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "294abe880d4def5a6c06",
-      "title": "If you see federal agents near a polling place, what are your rights? - Houston Chronicle",
-      "url": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNRHZXWEp1WC1DbzMwam4zck9Yb3R6aEN1dTVBektkTmc5dURNZWd5ZjZQM0ZvVW1RZnFYcTV5dGdVWU4yOHh0aEVQRzdtUXBtRlo2X2tvVzZwV05JSmk1V2tqQ1NTcWNteWJmVV8xTVY1OG5mWGpvaU03ZEk5VThPLVNjNkxZTGpXMHlqS3VLWk9leVFTZ3FUcUxVWE96Nm92MU1mTVNkMlZfNGc3dnUwdWdR?oc=5",
-      "publisher": "Houston Chronicle",
-      "published_at": "2026-10-28T11:04:18Z",
-      "detected_at": "2026-10-28T11:55:18.720607Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
