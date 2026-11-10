@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T19:08:53.956990Z",
+  "updated_at": "2026-11-10T20:02:09.218531Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 1,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 59
+    "advisory_related_headline_buckets": 22,
+    "advisory_related_headlines": 57
   },
   "advisory_related_headlines": [
     {
@@ -120,17 +120,6 @@
       "topic_hints": [
         "election_admin",
         "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "2196fa5b9fd51fa18bf6",
-      "headline": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -256,9 +245,38 @@
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "1fc851f3ccb2127a81bc",
+      "headline": "'If you vote illegally, we will find you' | ICE shares Election Day warning - KATU",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "security"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "c4ada8484aeeaac4acf2",
+      "title": "The Trump Administration\u2019s Attempts to Get Sensitive Voter Data Threaten the Rule of Law - Campaign Legal Center",
+      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQbWlwcWNQTXVidzFJS1NUcm9QZHRibTNZeDBXTURaT2JOMllQdEUtN2hpS1hYREQ3Umdubms2TUVxbkhVNGNYeTl6S0Q1RmJOdzJyRnFyVnFvdFY1UXViMkRSMzAtZGs3aW1nUG5QblJ2ZVh6SVFvSno2ZDlZYjM2dXdNTDN5ZnF4cVUwQUdIdGd3MFItRjlJclRRTTBKN3lWZzNMQTl6NjlaUQ?oc=5",
+      "publisher": "Campaign Legal Center",
+      "published_at": "2026-11-10T18:18:18Z",
+      "detected_at": "2026-11-10T20:02:09.218531Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "9bcf9bb9454f5ee5864e",
       "title": "Donald Trump Can't Walk This Back: He Just Declared That He Is Questioning the Legitimacy of the Midterms - National Security Journal",
@@ -5082,23 +5100,6 @@
       "publisher": "The Hindu",
       "published_at": "2026-10-28T14:19:14Z",
       "detected_at": "2026-10-28T19:01:40.304400Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bb4c8cd5d770333b1aee",
-      "title": "Congress faces defeat under both ballot and EVM systems, says Bihar CM - The Hindu",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPVmNSOGlVSXl4WXpXUm1hS2JKekRUblhmdUlBZDFTYmU4Y1lESE1uZ3VtWXRTalFZc0N4a1RRc0xERk1HWFoycXh3VlpDdDZUempESGlsMjNqUDRCUzhRaDJKMDNsRTZWT3E2WmVhcXc5RHM4TGRGZm5nWXZQSjJHMm1SZnd1YkRWSThWeFMyUUxUUkV4Zjl5MXV0SVVXVWl0am9qNFhHblNrcERjcXA0ZllwampObERzNjMzM2JjNUxlNTlMMjB1SE4tZjk0N2fSAdYBQVVfeXFMUF8xLXZxSDFWY1VwRFZpMUs4alY5QUZuajc1RkJYNWxKckYtQU1Sc05QekdfSXRUMXFVSDh2QmwtcGNhcElVS3puVWVsQmtmeE9KU1FQcWx2cm9EdndsX3B3aUwyVWpoWjdFRlRFY1VraDF6MC1aYW1wOEJ4dTc1aUxRNlJWTXdtaGVHMzhPOFUtenBLMEJlb2ZITV9YMm9EVmNNeHA2RV8wZVhyM1FoWW5qRU9EdXVIMWVGaW1EdlVkZk96a3A3TUVGTy1BaWlDTnNjVXdJZw?oc=5",
-      "publisher": "The Hindu",
-      "published_at": "2026-10-28T14:19:14Z",
-      "detected_at": "2026-10-28T20:12:30.968233Z",
       "state_hints": [],
       "topic_hints": [
         "ballot_access"
