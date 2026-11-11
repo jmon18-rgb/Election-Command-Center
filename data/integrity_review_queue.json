@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-11T03:00:39.212392Z",
+  "updated_at": "2026-11-11T04:08:33.075848Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -260,6 +260,23 @@
     }
   ],
   "items": [
+    {
+      "id": "82d3efe2f7fc9873600c",
+      "title": "Here\u2019s what to know about some of Gov. Newsom\u2019s final bills in office - Daily Bruin",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxQLTBHME5ERGNIVUJuTEI3S09Hc0stV0t3eUwtOTVQQnhJS3Q0Mzl2UVU3UDlxUXQ4WWlqXzBOM1NjYjdJSkRZZEFBUjRrdjlHNXFBeC1SU1Vfem9UVklCM3V0X3BjZ1UxN2xKNS1iYlNTQ1g2Mnc0X21kTkp3ZjlVNzEzdzcwWHQzTTRtTTVfOTZjYmdITDMwajNFbm01YzVScnc?oc=5",
+      "publisher": "Daily Bruin",
+      "published_at": "2026-11-11T03:18:00Z",
+      "detected_at": "2026-11-11T04:08:33.075848Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "b4b5ec82e97d5afc3a23",
       "title": "Judge rejects feds\u2019 attempt to obtain Delaware\u2019s private voting data - WHYY",
@@ -5085,24 +5102,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5477b319e9b9436b9e8d",
-      "title": "Judicial Watch Sues FBI for Records on Recalled Chinese Election Interference Report - Judicial Watch",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPenNLd3E1M1dBVmtib19DSXR4ZEd1NFJDSTE3REZZV3l0MnJhUHFqV2Vjempacm9xdmk3ZTA5SERWbVZTS0ttckctSnhQNDJESVFXclkxcjRGRDh1SURuWkYtdjdsaW82VThKblNlcmlzNlg2X2FoQ1o1d21SRWQybllNcmdHekVKWGdQdjdHVDctT21kVlZOUQ?oc=5",
-      "publisher": "Judicial Watch",
-      "published_at": "2026-10-28T19:15:38Z",
-      "detected_at": "2026-10-29T02:58:24.892392Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
