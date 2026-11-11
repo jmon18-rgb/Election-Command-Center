@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T20:11:46.082296+00:00",
+  "updated_at": "2026-11-11T21:45:52.075350+00:00",
   "source": "PollResults.org / NYT-derived CC BY 4.0",
   "source_url": "https://pollresults.org/",
   "date_warning": "Posted date is when this API ingested a poll; not the first public release date.",
@@ -17,18 +17,9 @@
       "records_examined": 300
     }
   },
-  "matched_primary_observations": 343,
-  "newly_injected_into_model": 2,
-  "injected_poll_ids": [
-    {
-      "race_code": "CO-GOV",
-      "poll_id": "8f4628bb-a069-4552-8eed-84044a2d8190"
-    },
-    {
-      "race_code": "CO-SEN",
-      "poll_id": "8f4628bb-a069-4552-8eed-84044a2d8190"
-    }
-  ],
+  "matched_primary_observations": 345,
+  "newly_injected_into_model": 0,
+  "injected_poll_ids": [],
   "observations": [
     {
       "race_code": "CO-SEN",

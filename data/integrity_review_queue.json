@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-11T20:11:45.454050Z",
+  "updated_at": "2026-11-11T21:45:51.273545Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -262,6 +262,42 @@
     }
   ],
   "items": [
+    {
+      "id": "92a77eb74841c88e2f45",
+      "title": "Federal law banning noncitizen voting 'unconstitutional' and violates states' rights: Judge - Law and Crime News",
+      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxPQV9fZ00xYWVRMTFTWXlQOWtQMHRHOGxnNjdsYU84NEFsUG5yX3piWUI2YTNlTy1JbUc5Q2tINXA3R3U4WWJPbnhhWWxIVy1laEx5aHFqTTNaamNHTEx1a0JkaTZsQnNBeVBSdDJvQmxTVmhWOGFrZXBJXzNwWHBoaG16RzlleDVjVkY4Ukp3dXUtU1Vha0ZIZE5NWDJIQTZPWVJONFY1enp6V0w2eXYyUHBGRGFwLThQYWJEenBkSmYwWDQzTlM3OFVLOUVWZDF3S3V1Y3BXX00wSlRhb21tUUM0d0xBT2VUV2lubjRCTzBQcXRQVmdyMFNFNlEyWmxWT201OQ?oc=5",
+      "publisher": "Law and Crime News",
+      "published_at": "2026-11-11T20:22:00Z",
+      "detected_at": "2026-11-11T21:45:51.273545Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "647d886dead111eebcef",
+      "title": "Mississippi Results Drag On Thanks to Sudden \u201cInactive Registrations\u201d - The New Republic",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE0xSkpzYkpQeC1iNDJjbDNpdlRfYTh0SjFBdjVabWNwSElpWEdkMWpGVGVZQ1BiRXBHaHI5NXFYR0tRdTRYRFRNRVVWZkRQelRXTDZ6NUo3QXl2UW04UkV3?oc=5",
+      "publisher": "The New Republic",
+      "published_at": "2026-11-11T19:41:27Z",
+      "detected_at": "2026-11-11T21:45:51.273545Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "0e54062673fc241b4ab7",
       "title": "Federal judge dismisses DOJ lawsuit seeking Delaware voter registration data - CoastTV",
@@ -5064,47 +5100,6 @@
       "topic_hints": [
         "registration",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a81a047402b78a91a5db",
-      "title": "Judge blocks Trump admin from forcing California to set aside ballots - Politico",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPT042dWQ5bjRfbHh0LUZrNGRldjk4Q3ZQMVYtSHVwQ01ZajZpdkw0NzdzSGJUMmwydmtLRXVnTEd3MmwxQ2d4STRrU3Fic3FwbVpUbjduTlNEYTNiaG5XRzE0aXBHcXNLMm83VWJiTlQ2bUhaQmhDT2pUSmR1SnFYNVIzWTRlM2otbHI1WXYyb0xTM2xIVXBmZQ?oc=5",
-      "publisher": "Politico",
-      "published_at": "2026-10-29T01:20:00Z",
-      "detected_at": "2026-10-29T04:58:13.692909Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "11cd90159865b8ea8b7f",
-      "title": "Judge denies the Justice Department's bid to stop processing California ballots - NPR",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5UcC1DM1UxS3ZmV0ZaNG9McHNXRUpQeXRBNFF1a3FxcFRMRlVnampVcldOYW0tMENNOE9WQTJzLUM1TkstRFVrZVd0SXRHSUFaUHNDaW9qZ3Mzc0NGNUFockZSYVpGdWlOZlpTYlUwOHpoV2ZMNFc4aWJiMXNyU0E?oc=5",
-      "publisher": "NPR",
-      "published_at": "2026-10-29T00:52:50Z",
-      "detected_at": "2026-10-29T02:05:42.046310Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation",
-        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
