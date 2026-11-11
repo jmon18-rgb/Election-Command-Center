@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-11T07:29:38.196111Z",
+  "updated_at": "2026-11-11T09:07:57.266126Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 59
+    "advisory_related_headline_buckets": 22,
+    "advisory_related_headlines": 57
   },
   "advisory_related_headlines": [
     {
@@ -137,18 +137,6 @@
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
     {
-      "lead_id": "4c49b458937dbc039eb5",
-      "headline": "Peter Schweizer: Inside Homeland Security\u2019s Push to Clean Up Voter Rolls Before Election Day - Breitbart News",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin",
-        "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
       "lead_id": "3f71b2ec9cd501fce792",
       "headline": "US election officials brace for violence and intimidation at polling booths - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
       "possibly_related_articles": 2,
@@ -257,9 +245,39 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "2014104ef8732515f411",
+      "headline": "Colom and Hyde-Smith's razor-thin Senate race spotlights Mississippi's voter rolls - Axios",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "f2a5412c8e6d66ee0859",
+      "title": "Fact Check: Debunking fake claims about election numbers by Reporters Collective - OpIndia",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPUkFZLXhqUzhiOF9ZSndGTFpBVkxTTTQxWkM4OGZiR2xwanZXWC1EWW9QR01VUE1YeEhEQVoxS3N3UE1EdFhlc0N4Q3dZRUZ2MTVLMlhlUXUxc3IxOUhvMTRWNEIwbUF2LUp1ZnpULVJ0aVVoWlQ2dmVVQm1YMG1qcHM1SVNMcFpwT3M3d2lETHNmUnIwa0pEcF9hQk9Odw?oc=5",
+      "publisher": "OpIndia",
+      "published_at": "2026-11-11T08:56:48Z",
+      "detected_at": "2026-11-11T09:07:57.266126Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "82d3efe2f7fc9873600c",
       "title": "Here\u2019s what to know about some of Gov. Newsom\u2019s final bills in office - Daily Bruin",
@@ -5084,24 +5102,6 @@
       "detected_at": "2026-10-29T04:58:13.692909Z",
       "state_hints": [],
       "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "9bf2839483bd10916126",
-      "title": "Peter Schweizer: Inside Homeland Security\u2019s Push to Clean Up Voter Rolls Before Election Day - Breitbart News",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxPVXc0dF9NcmI1SG9JZ2Fzb0phcXlrM3lUOXNCcGt3M3VieDk5ODFTR0Nlei1UZTkyN09oU1NvaVJsV3ozaTZLeXM1bjJKX01MM193S3VEVzNPenRYNkdIZWJDVUhyR05LVUFITENhcU1kNUxjbE04OEVJd2ZKRWx4Z1UyLUh3ZWVndERINm8tWWpFbnpiYVRzWGR0OEpZcDMyRjEyc01ZWG5EVERBX0xrQlE3a2MwU1hZQUhIWVhnbVJkLXdlX3dqRWtLdFRGOXoxQUNXMEhaM1_SAdgBQVVfeXFMT1V3NHRfTXJiNUhvSWdhc29KYXF5azN5VDlzQnBrdzN1Yng5OTgxU0dDZXotVGU5MjdPaFNTb2lSbFd6M2k2S3lzNW4ySl9NTDNfd0t1RFczT3p0WDZHSGViQ1VIckdOS1VBSExDYXFNZDVMY2xNODhFSXdmSkVseGdVMi1Id2VlZ3RESDZvLVlqRW56YmFUc1hkdDhKWXAzMkYxMnNNWVhuRFREQV9Ma0JRN2tjMFNYWUFISFlYZ21SZC13ZV93akVrS3RURjl6MUFDVzBIWjNf?oc=5",
-      "publisher": "Breitbart News",
-      "published_at": "2026-10-28T19:25:53Z",
-      "detected_at": "2026-10-28T23:48:08.782047Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
