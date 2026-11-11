@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-11T23:02:12.669166Z",
+  "updated_at": "2026-11-11T23:57:55.480216Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -291,6 +291,24 @@
       ],
       "topic_hints": [
         "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5a3579ffbd1e39e03e9a",
+      "title": "How the Blue Wave Powered Liberal Judges in Supreme Court Elections - Bolts",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9xQ1hmV1BzY0RmVlFUWjVfalhzdDRDdTBiU3ZUdDB2X1pRZjN5ODNYeUxNMXRYN09PcjJJQi01cmxzS2J6U3RwSURta0tVVGVOVVY3Nnd0Wk9NMS1nU1VKZkZrM2VzWTgy?oc=5",
+      "publisher": "Bolts",
+      "published_at": "2026-11-11T18:40:21Z",
+      "detected_at": "2026-11-11T23:57:55.480216Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5082,24 +5100,6 @@
       "state_hints": [],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4c49b458937dbc039eb5",
-      "title": "Peter Schweizer: Inside Homeland Security\u2019s Push to Clean Up Voter Rolls Before Election Day - Breitbart News",
-      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNZkxucV9PeXVRUmdTRFlLWlI2ZFotcExSTXlDS2lkMFlBVHdabGNIQ0tsbEhMMk92MUpZRkRDSXRyYXBKM0ZqVjQ2ajRpaHJ4Q0w1T29FT21sRHd2UzMtd3pOZVpYNDBUaTFtbmRxd1RuV2N0M2lXT0VEN0VHZGFBTjdNOC1QVWFfLUZqeHZIa2NMYVlNcXpDdEJMUGRjNTFiVDhTaW4yVTlaMi15eXNDYktrdFNXSkxmc0p5WldXem5yUXVrUDVKYkRrMDhKM215TUsw0gHYAUFVX3lxTE9VdzR0X01yYjVIb0lnYXNvSmFxeWszeVQ5c0Jwa3czdWJ4OTk4MVNHQ2V6LVRlOTI3T2hTU29pUmxXejNpNkt5czVuMkpfTUwzX3dLdURXM096dFg2R0hlYkNVSHJHTktVQUhMQ2FxTWQ1TGNsTTg4RUl3ZkpFbHhnVTItSHdlZWd0REg2by1ZakVuemJhVHNYZHQ4SllwMzJGMTJzTVlYbkRUREFfTGtCUTdrYzBTWFlBSEhZWGdtUmQtd2Vfd2pFa0t0VEY5ejFBQ1cwSFozXw?oc=5",
-      "publisher": "Breitbart News",
-      "published_at": "2026-10-29T02:23:59Z",
-      "detected_at": "2026-10-29T08:12:07.337858Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
