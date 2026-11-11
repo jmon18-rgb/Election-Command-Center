@@ -1,11 +1,18 @@
 {
-  "updated_at": "2026-11-11T17:09:25.033060Z",
+  "updated_at": "2026-11-11T18:04:04.563628Z",
   "updates": [
     {
       "title": "Tracking the 2026 Early Vote: Midterm Election Results - NBC News",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5CNDhGdFFLbHU0dnFMZGZ5T2Z4LVNzYk5Mb0lHNXZhQW56U09sX1RmWmRLZmlvRnQtOHNHUlZlS3NZckF2WHF0LXVZOHROTTBCMnQzbkM2X1JCYkY5RGpwamRubEc4M3lPaFE?oc=5",
       "source": "NBC News",
-      "published_at": "2026-11-11T14:30:21Z",
+      "published_at": "2026-11-11T15:30:21Z",
+      "status": "reported_not_independently_verified"
+    },
+    {
+      "title": "Latest Polls: 2026 Elections, Trump Approval and More - The New York Times",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE13dUthYmI5ZUtKY2YzQ2F6Z1RUVHhzXzRwcGdZN3ktUDdmQTNXY0xOR2FFbEZSSzhvMTRZNWNfS1Y2NGs2eV9WNmhPa0Q5UkU3WE1WQUZTendZcjNOQ0JGYlU2VHdMaTd3MXI0?oc=5",
+      "source": "The New York Times",
+      "published_at": "2026-11-11T05:43:51Z",
       "status": "reported_not_independently_verified"
     },
     {
@@ -13,13 +20,6 @@
       "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNUgwOVF5YU0weG4yWjdYcXQ2Q3gwdDRMNlBOelY4ejZiNU1VNGZBY2VrcGtsWnJSYnMwOFUzdXducVc0aGhad0hpTDRhNHVISjlUeDFwWXlONmRBVmhWY2prdDJrb2EwMzZVQzE2TXU1ODVIZXhlQlpfNGVjZmFmZTMtUURYQmZTa1h4SzhXSGlCYW5GT1lheURkeS1vX0VPN3hyUG40U2pWYmIzTVNyVkpybUE3MGVLa2Vfem92Zw?oc=5",
       "source": "Time Magazine",
       "published_at": "2026-11-11T05:00:00Z",
-      "status": "reported_not_independently_verified"
-    },
-    {
-      "title": "Latest Polls: 2026 Elections, Trump Approval and More - The New York Times",
-      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE13dUthYmI5ZUtKY2YzQ2F6Z1RUVHhzXzRwcGdZN3ktUDdmQTNXY0xOR2FFbEZSSzhvMTRZNWNfS1Y2NGs2eV9WNmhPa0Q5UkU3WE1WQUZTendZcjNOQ0JGYlU2VHdMaTd3MXI0?oc=5",
-      "source": "The New York Times",
-      "published_at": "2026-11-11T04:20:55Z",
       "status": "reported_not_independently_verified"
     },
     {
@@ -67,9 +67,9 @@
   ],
   "security": [
     {
-      "title": "Federal judge dismisses DOJ lawsuit seeking Delaware voter registration data - CoastTV",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxPNUhSdDBuZEhjekx2X0dZZjF2ZGZLZDJTVUplUlhhX2JzUzBEbUlqVl9wOWM1cVR0NnNhcl9hVF8xY3VVaWp5QWdWVHRNbzlOMmFVMGV4YXZFS1NnVnJnZmNGSEJKZl9LMkl5ZE5KT3BXTG5ablBWQ05oNGVGMHQtdHFXZHNhTGtFV1NyLTV3X2NnWkpoZUYxdHZLM1VtdEZ4X3VTNFBPYkRSY2ZOLXgzc0hEeGQ4S1loSkJxWWtPNHV5Rl91bk50STJqUUZBcENiRDFja0xjSjQ1VlAzaDI5Uw?oc=5",
-      "source": "CoastTV",
+      "title": "Federal judge dismisses DOJ lawsuit seeking Delaware voter registration data - WDEL",
+      "url": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQY3Jva3R6dC1ZSnVvaDlEVGF4aThtUFlXV2MyMmR5emZEem5EdTFaU0FuWTFKRHhEZkkxdmVaS0JmdnFtMkUzTmNoYlYwMUVxY2xzaTZqTUI3ZUVpNEpEYW9MRlFkZjg2SXdoTXBxNkFCcWozaU5FQmdzWll4VzVSZ0lsZkYtdmZOTjJ3RE80eDZ0UktPM0lRekN0LVczR0VWWFdIbzBNRFM2ODV2SnlRb1NrUGYyN2pYU0VCcHZrY2lZajAzODVUaS10WHNmbWlMdlc0TVNCUDFvOUJDRkNhVGYwSmFsVUk?oc=5",
+      "source": "WDEL",
       "published_at": "2026-11-11T16:35:00Z",
       "status": "reported_not_independently_verified"
     },
@@ -124,7 +124,7 @@
     }
   ],
   "pipeline": {
-    "last_attempt_at": "2026-11-11T17:09:25.033060Z",
+    "last_attempt_at": "2026-11-11T18:04:04.563628Z",
     "successful_queries": 6,
     "total_queries": 6,
     "kind": "automated_news_headlines_not_verified_facts",
