@@ -1,7 +1,7 @@
 {
   "schema": "official-va02-collection-v1",
   "source_url": "https://enr.elections.virginia.gov/results/public/api/elections/virginia/2026-November-General/data/ballot-item/01000000-f030-c43d-fd71-08df1fee52e7",
-  "fetched_at": "2026-11-11T02:24:22.568Z",
+  "fetched_at": "2026-11-11T03:21:57.356Z",
   "status": "VALIDATED_COUNTY_COUNTS_METHOD_MIX_UNRESOLVED",
   "payload": {
     "jurisdiction": {
@@ -32,9 +32,9 @@
       "isPrimary": false,
       "isProduction": true,
       "isOfficialResults": false,
-      "asOf": "2026-11-11T02:22:07.9491507Z",
-      "lastUpdated": "2026-11-11T02:21:53.5245219Z",
-      "publishDate": "2026-11-11T02:22:08.4683962Z"
+      "asOf": "2026-11-11T03:13:35.4599065Z",
+      "lastUpdated": "2026-11-11T03:13:20.3561268Z",
+      "publishDate": "2026-11-11T03:13:35.9680804Z"
     },
     "ballotItems": [
       {
@@ -84,10 +84,10 @@
         "reportingStatus": {
           "reportingUnits": 8,
           "totalUnits": 8,
-          "asOf": "2026-11-11T02:22:07.9491507Z",
+          "asOf": "2026-11-11T03:13:35.4599065Z",
           "reportingStatusDetails": null
         },
-        "voteTotal": 340236,
+        "voteTotal": 340635,
         "underVoteCount": null,
         "overVoteCount": null,
         "contestGroupId": null,
@@ -115,7 +115,7 @@
                   "text": "Elaine G. Luria"
                 }
               ],
-              "voteCount": 180688,
+              "voteCount": 180974,
               "party": {
                 "id": "01000000-f030-c43d-c502-08df1fee529a",
                 "name": [
@@ -229,7 +229,7 @@
                       "text": "Tạm thời"
                     }
                   ],
-                  "voteCount": 143
+                  "voteCount": 429
                 },
                 {
                   "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
@@ -279,7 +279,7 @@
                   "text": "Jen A. Kiggans"
                 }
               ],
-              "voteCount": 151247,
+              "voteCount": 151326,
               "party": {
                 "id": "01000000-f030-c43d-c8f4-08df1fee529a",
                 "name": [
@@ -393,7 +393,7 @@
                       "text": "Tạm thời"
                     }
                   ],
-                  "voteCount": 40
+                  "voteCount": 119
                 },
                 {
                   "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
@@ -443,7 +443,7 @@
                   "text": "Geral D. \"Bishop\" Staten"
                 }
               ],
-              "voteCount": 3062,
+              "voteCount": 3087,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -557,7 +557,7 @@
                       "text": "Tạm thời"
                     }
                   ],
-                  "voteCount": 5
+                  "voteCount": 30
                 },
                 {
                   "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
@@ -607,7 +607,7 @@
                   "text": "J. Matt Baker"
                 }
               ],
-              "voteCount": 4828,
+              "voteCount": 4837,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -721,7 +721,7 @@
                       "text": "Tạm thời"
                     }
                   ],
-                  "voteCount": 3
+                  "voteCount": 12
                 },
                 {
                   "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
@@ -958,11 +958,11 @@
       "reportingStatus": {
         "reportingUnits": 8,
         "totalUnits": 8,
-        "asOf": "2026-11-11T02:22:07.9491507Z",
+        "asOf": "2026-11-11T03:13:35.4599065Z",
         "reportingStatusDetails": null
       },
       "contestType": "Candidate",
-      "voteTotal": 340236,
+      "voteTotal": 340635,
       "underVoteCount": null,
       "overVoteCount": null,
       "summaryResults": {
@@ -988,7 +988,7 @@
                 "text": "Elaine G. Luria"
               }
             ],
-            "voteCount": 180688,
+            "voteCount": 180974,
             "party": {
               "id": "01000000-f030-c43d-c502-08df1fee529a",
               "name": [
@@ -1102,7 +1102,7 @@
                     "text": "Tạm thời"
                   }
                 ],
-                "voteCount": 143
+                "voteCount": 429
               },
               {
                 "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
@@ -1152,7 +1152,7 @@
                 "text": "Jen A. Kiggans"
               }
             ],
-            "voteCount": 151247,
+            "voteCount": 151326,
             "party": {
               "id": "01000000-f030-c43d-c8f4-08df1fee529a",
               "name": [
@@ -1266,7 +1266,7 @@
                     "text": "Tạm thời"
                   }
                 ],
-                "voteCount": 40
+                "voteCount": 119
               },
               {
                 "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
@@ -1316,7 +1316,7 @@
                 "text": "Geral D. \"Bishop\" Staten"
               }
             ],
-            "voteCount": 3062,
+            "voteCount": 3087,
             "party": {
               "id": "01000000-f030-c43d-ca0f-08df1fee529a",
               "name": [
@@ -1430,7 +1430,7 @@
                     "text": "Tạm thời"
                   }
                 ],
-                "voteCount": 5
+                "voteCount": 30
               },
               {
                 "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
@@ -1480,7 +1480,7 @@
                 "text": "J. Matt Baker"
               }
             ],
-            "voteCount": 4828,
+            "voteCount": 4837,
             "party": {
               "id": "01000000-f030-c43d-ca0f-08df1fee529a",
               "name": [
@@ -1594,7 +1594,7 @@
                     "text": "Tạm thời"
                   }
                 ],
-                "voteCount": 3
+                "voteCount": 12
               },
               {
                 "groupId": "01000000-7e9f-e426-e846-08df1ff31b09",
@@ -1810,7 +1810,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 16,
             "totalUnits": 16,
-            "asOf": "2026-11-11T02:22:07.9491614Z",
+            "asOf": "2026-11-11T03:13:35.459917Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -2689,7 +2689,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 33,
             "totalUnits": 33,
-            "asOf": "2026-11-11T02:22:07.9491614Z",
+            "asOf": "2026-11-11T03:13:35.459917Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -3579,7 +3579,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 6,
             "totalUnits": 6,
-            "asOf": "2026-11-11T02:22:07.9491614Z",
+            "asOf": "2026-11-11T03:13:35.459917Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -4458,7 +4458,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 17,
             "totalUnits": 17,
-            "asOf": "2026-11-11T02:22:07.9491614Z",
+            "asOf": "2026-11-11T03:13:35.459917Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -5348,7 +5348,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 5,
             "totalUnits": 5,
-            "asOf": "2026-11-11T02:22:07.9491614Z",
+            "asOf": "2026-11-11T03:13:35.459917Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -6238,7 +6238,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 7,
             "totalUnits": 7,
-            "asOf": "2026-11-11T02:22:07.9491614Z",
+            "asOf": "2026-11-11T03:13:35.459917Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7111,13 +7111,13 @@
             "hasPrecinctStatus": false,
             "mapFeatureId": "800"
           },
-          "voteTotal": 45829,
+          "voteTotal": 46228,
           "underVoteCount": null,
           "overVoteCount": null,
           "precinctReportingStatus": {
             "reportingUnits": 30,
             "totalUnits": 30,
-            "asOf": "2026-11-11T02:22:07.9491614Z",
+            "asOf": "2026-11-11T03:13:35.459917Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -7176,7 +7176,7 @@
                   "text": "Elaine G. Luria"
                 }
               ],
-              "voteCount": 27548,
+              "voteCount": 27834,
               "party": {
                 "id": "01000000-f030-c43d-c502-08df1fee529a",
                 "name": [
@@ -7246,7 +7246,7 @@
                       "text": "Tạm thời"
                     }
                   ],
-                  "voteCount": 70
+                  "voteCount": 356
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -7340,7 +7340,7 @@
                   "text": "Jen A. Kiggans"
                 }
               ],
-              "voteCount": 16480,
+              "voteCount": 16559,
               "party": {
                 "id": "01000000-f030-c43d-c8f4-08df1fee529a",
                 "name": [
@@ -7410,7 +7410,7 @@
                       "text": "Tạm thời"
                     }
                   ],
-                  "voteCount": 24
+                  "voteCount": 103
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -7504,7 +7504,7 @@
                   "text": "Geral D. \"Bishop\" Staten"
                 }
               ],
-              "voteCount": 1099,
+              "voteCount": 1124,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -7574,7 +7574,7 @@
                       "text": "Tạm thời"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 25
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -7668,7 +7668,7 @@
                   "text": "J. Matt Baker"
                 }
               ],
-              "voteCount": 630,
+              "voteCount": 639,
               "party": {
                 "id": "01000000-f030-c43d-ca0f-08df1fee529a",
                 "name": [
@@ -7738,7 +7738,7 @@
                       "text": "Tạm thời"
                     }
                   ],
-                  "voteCount": 0
+                  "voteCount": 9
                 },
                 {
                   "groupId": "01000000-ebdd-00dc-b411-08df1ff307f8",
@@ -7996,7 +7996,7 @@
           "precinctReportingStatus": {
             "reportingUnits": 108,
             "totalUnits": 108,
-            "asOf": "2026-11-11T02:22:07.9491614Z",
+            "asOf": "2026-11-11T03:13:35.459917Z",
             "reportingStatusDetails": [
               {
                 "groupName": [
@@ -8857,18 +8857,18 @@
   "may_move_national_needle": false,
   "timing_scope": "request-to-body only, not source availability or comparative publication lag",
   "http_status": 200,
-  "cache_control": "public, max-age=48",
-  "request_to_body_ms": 270,
-  "original_response_sha256": "79736aba45794b8dd2789e2a5c70aa5e451a151ea93ed19f50515d802c42ce83",
-  "observed_source_stamp": "2026-11-11T02:22:07.9491507Z",
+  "cache_control": "public, max-age=60",
+  "request_to_body_ms": 407,
+  "original_response_sha256": "3198629ae1cb04070ce1a0700e09e6cfb85e41a72fbf764dc9d82bbc5e18cc05",
+  "observed_source_stamp": "2026-11-11T03:13:35.4599065Z",
   "source_test_data": false,
   "observed_positive_candidate_counts": true,
-  "snapshot_updated_at": "2026-11-11T02:22:07.9491507Z",
-  "source_published_at": "2026-11-11T02:22:08.4683962Z",
-  "selected_payload_sha256": "3c99b9459bc4347ec8f73c736f7fcf14b54dd97e8c6966b19ee44c050a661b5d",
+  "snapshot_updated_at": "2026-11-11T03:13:35.4599065Z",
+  "source_published_at": "2026-11-11T03:13:35.9680804Z",
+  "selected_payload_sha256": "0c1a1684f603a05e13d32477e29bab4a5973bd1777d88f4edf4e473aa17d2106",
   "selection_scope": "Original official contest objects; unrelated races omitted, no vote transformation",
   "revision_watermark": {
-    "as_of": "2026-11-11T02:22:07.9491507Z",
-    "published_at": "2026-11-11T02:22:08.4683962Z"
+    "as_of": "2026-11-11T03:13:35.4599065Z",
+    "published_at": "2026-11-11T03:13:35.9680804Z"
   }
 }
