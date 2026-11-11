@@ -1,9 +1,9 @@
 {
   "schema_version": "experimental-race-odds-v1",
   "status": "experimental_poll_margin_probability_not_chamber_forecast",
-  "generated_at": "2026-11-10T23:46:45.282874+00:00",
-  "polling_source_generated_at": "2026-11-10T23:46:45.164085Z",
-  "polling_source_snapshot": "2026-11-10T23:46:41.220454Z",
+  "generated_at": "2026-11-11T01:19:36.157569+00:00",
+  "polling_source_generated_at": "2026-11-11T01:19:36.009733Z",
+  "polling_source_snapshot": "2026-11-11T01:19:32.144873Z",
   "historical_senate_elections": 3,
   "historical_senate_races": 42,
   "senate_baseline_rmse_points": 5.633,
@@ -489,16 +489,16 @@
       "office": "governor",
       "race_code": "TX-GOV",
       "label": "Texas",
-      "dem_minus_rep": -1.42,
-      "contributing_firms": 22,
+      "dem_minus_rep": -1.4,
+      "contributing_firms": 21,
       "independent_firms": 18,
       "latest_poll_end": "2026-11-02",
       "sigma_points": 7.0,
       "uncertainty_multiplier": 1.0,
-      "dem_beats_rep_pct": 41.96,
-      "rep_beats_dem_pct": 58.04,
-      "tight_error_dem_pct": 39.34,
-      "wide_error_dem_pct": 43.55
+      "dem_beats_rep_pct": 42.07,
+      "rep_beats_dem_pct": 57.93,
+      "tight_error_dem_pct": 39.49,
+      "wide_error_dem_pct": 43.64
     },
     {
       "office": "governor",
@@ -643,12 +643,12 @@
       "contributing_firms": 3,
       "independent_firms": 2,
       "latest_poll_end": "2026-10-27",
-      "sigma_points": 8.1,
-      "uncertainty_multiplier": 1.08,
-      "dem_beats_rep_pct": 81.82,
-      "rep_beats_dem_pct": 18.18,
-      "tight_error_dem_pct": 88.72,
-      "wide_error_dem_pct": 76.64
+      "sigma_points": 8.586,
+      "uncertainty_multiplier": 1.145,
+      "dem_beats_rep_pct": 80.43,
+      "rep_beats_dem_pct": 19.57,
+      "tight_error_dem_pct": 87.35,
+      "wide_error_dem_pct": 75.36
     },
     {
       "office": "house",
@@ -673,12 +673,12 @@
       "contributing_firms": 2,
       "independent_firms": 0,
       "latest_poll_end": "2026-10-20",
-      "sigma_points": 10.507,
-      "uncertainty_multiplier": 1.401,
-      "dem_beats_rep_pct": 53.83,
-      "rep_beats_dem_pct": 46.17,
-      "tight_error_dem_pct": 55.1,
-      "wide_error_dem_pct": 53.06
+      "sigma_points": 11.101,
+      "uncertainty_multiplier": 1.48,
+      "dem_beats_rep_pct": 53.62,
+      "rep_beats_dem_pct": 46.38,
+      "tight_error_dem_pct": 54.83,
+      "wide_error_dem_pct": 52.9
     },
     {
       "office": "house",
@@ -778,12 +778,12 @@
       "contributing_firms": 2,
       "independent_firms": 0,
       "latest_poll_end": "2026-10-27",
-      "sigma_points": 10.804,
-      "uncertainty_multiplier": 1.441,
-      "dem_beats_rep_pct": 51.59,
-      "rep_beats_dem_pct": 48.41,
-      "tight_error_dem_pct": 52.12,
-      "wide_error_dem_pct": 51.27
+      "sigma_points": 11.452,
+      "uncertainty_multiplier": 1.527,
+      "dem_beats_rep_pct": 51.5,
+      "rep_beats_dem_pct": 48.5,
+      "tight_error_dem_pct": 52.0,
+      "wide_error_dem_pct": 51.2
     },
     {
       "office": "house",
@@ -883,12 +883,12 @@
       "contributing_firms": 1,
       "independent_firms": 0,
       "latest_poll_end": "2026-10-20",
-      "sigma_points": 12.02,
-      "uncertainty_multiplier": 1.603,
-      "dem_beats_rep_pct": 40.15,
-      "rep_beats_dem_pct": 59.85,
-      "tight_error_dem_pct": 36.97,
-      "wide_error_dem_pct": 42.09
+      "sigma_points": 12.701,
+      "uncertainty_multiplier": 1.693,
+      "dem_beats_rep_pct": 40.66,
+      "rep_beats_dem_pct": 59.34,
+      "tight_error_dem_pct": 37.64,
+      "wide_error_dem_pct": 42.51
     },
     {
       "office": "house",
@@ -898,12 +898,12 @@
       "contributing_firms": 5,
       "independent_firms": 0,
       "latest_poll_end": "2026-10-20",
-      "sigma_points": 8.904,
-      "uncertainty_multiplier": 1.187,
-      "dem_beats_rep_pct": 76.28,
-      "rep_beats_dem_pct": 23.72,
-      "tight_error_dem_pct": 82.99,
-      "wide_error_dem_pct": 71.64
+      "sigma_points": 9.408,
+      "uncertainty_multiplier": 1.254,
+      "dem_beats_rep_pct": 75.08,
+      "rep_beats_dem_pct": 24.92,
+      "tight_error_dem_pct": 81.67,
+      "wide_error_dem_pct": 70.6
     },
     {
       "office": "house",
@@ -1063,12 +1063,12 @@
       "contributing_firms": 1,
       "independent_firms": 0,
       "latest_poll_end": "2026-10-20",
-      "sigma_points": 12.02,
-      "uncertainty_multiplier": 1.603,
-      "dem_beats_rep_pct": 36.97,
-      "rep_beats_dem_pct": 63.03,
-      "tight_error_dem_pct": 32.86,
-      "wide_error_dem_pct": 39.5
+      "sigma_points": 12.701,
+      "uncertainty_multiplier": 1.693,
+      "dem_beats_rep_pct": 37.64,
+      "rep_beats_dem_pct": 62.36,
+      "tight_error_dem_pct": 33.73,
+      "wide_error_dem_pct": 40.05
     },
     {
       "office": "house",
@@ -1093,12 +1093,12 @@
       "contributing_firms": 1,
       "independent_firms": 0,
       "latest_poll_end": "2026-10-20",
-      "sigma_points": 12.02,
-      "uncertainty_multiplier": 1.603,
-      "dem_beats_rep_pct": 46.68,
-      "rep_beats_dem_pct": 53.32,
-      "tight_error_dem_pct": 45.58,
-      "wide_error_dem_pct": 47.35
+      "sigma_points": 12.701,
+      "uncertainty_multiplier": 1.693,
+      "dem_beats_rep_pct": 46.86,
+      "rep_beats_dem_pct": 53.14,
+      "tight_error_dem_pct": 45.82,
+      "wide_error_dem_pct": 47.49
     },
     {
       "office": "house",
@@ -2034,16 +2034,16 @@
       "office": "senate",
       "race_code": "TX-SEN",
       "label": "Texas",
-      "dem_minus_rep": 3.39,
-      "contributing_firms": 26,
+      "dem_minus_rep": 3.4,
+      "contributing_firms": 25,
       "independent_firms": 19,
       "latest_poll_end": "2026-11-02",
       "sigma_points": 5.633,
       "uncertainty_multiplier": 1.0,
-      "dem_beats_rep_pct": 72.63,
-      "rep_beats_dem_pct": 27.37,
-      "tight_error_dem_pct": 78.88,
-      "wide_error_dem_pct": 68.49
+      "dem_beats_rep_pct": 72.69,
+      "rep_beats_dem_pct": 27.31,
+      "tight_error_dem_pct": 78.95,
+      "wide_error_dem_pct": 68.54
     }
   ],
   "limitations": [

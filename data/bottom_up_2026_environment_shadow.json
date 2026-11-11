@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-11-10T23:46:45.164085Z",
+  "polling_generated_at": "2026-11-11T01:19:36.009733Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
-  "generic_ballot_2026_d_minus_r_points": 9.29,
-  "generic_implied_vs_2024_presidential_swing_points": 10.995,
-  "independent_polling_estimated_presidential_to_race_swing_points": 10.795,
-  "bottom_up_implied_national_margin_points": 9.09,
-  "bottom_up_minus_generic_environment_points": -0.2,
+  "generic_ballot_2026_d_minus_r_points": 9.12,
+  "generic_implied_vs_2024_presidential_swing_points": 10.825,
+  "independent_polling_estimated_presidential_to_race_swing_points": 10.796,
+  "bottom_up_implied_national_margin_points": 9.091,
+  "bottom_up_minus_generic_environment_points": -0.029,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 19,
@@ -96,7 +96,7 @@
     {
       "state": "TX",
       "number_qualifying_races": 1,
-      "swing_points": 17.268
+      "swing_points": 17.278
     },
     {
       "state": "MT",
@@ -124,22 +124,22 @@
       "raw_swing_points": 1.907,
       "capped_swing_points": 1.907,
       "capped_local_outlier": false,
-      "weight": 0.8,
+      "weight": 0.7777777777777778,
       "independent_firms": 7,
-      "latest_age_days": 9
+      "latest_age_days": 10
     },
     {
       "office": "senate",
       "race_code": "TX-SEN",
       "state": "TX",
       "presidential_2024_margin": -13.878,
-      "poll_margin": 3.39,
-      "raw_swing_points": 17.268,
-      "capped_swing_points": 17.268,
+      "poll_margin": 3.4,
+      "raw_swing_points": 17.278,
+      "capped_swing_points": 17.278,
       "capped_local_outlier": false,
-      "weight": 0.8222222222222222,
+      "weight": 0.8,
       "independent_firms": 19,
-      "latest_age_days": 8
+      "latest_age_days": 9
     }
   ],
   "notes": [

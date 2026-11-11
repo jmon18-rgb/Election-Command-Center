@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-10T23:46:41.220454Z",
+  "updated_at": "2026-11-11T01:19:32.144873Z",
   "generic_ballot": {
     "summary": {
-      "dem": 51.9,
-      "rep": 42.7,
-      "margin": 9.3,
-      "pollsters": 10,
+      "dem": 52.2,
+      "rep": 43.2,
+      "margin": 9.0,
+      "pollsters": 9,
       "window_days": 14,
       "latest_field_end": "2026-11-02",
       "method": "Equal-weight mean of the latest nonpartisan wave per pollster within the stated field-end window; NOT a forecast or a statistical confidence interval."
@@ -845,7 +845,7 @@
         "rep_name": "Ken Paxton",
         "other": 1.0,
         "other_name": "Ted Brown",
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "1dad712d-090f-46bb-b637-ce5f5c19a8d7",
         "sample_population": "lv",
@@ -869,7 +869,7 @@
           "rep_name": "Ken Paxton",
           "other": 1.0,
           "other_name": "Ted Brown",
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "1dad712d-090f-46bb-b637-ce5f5c19a8d7",
           "sample_population": "lv",
@@ -2438,25 +2438,9 @@
           "other_name": "Lydia Christensen",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "eac7129e-98df-459f-99ca-9c818ecd162a",
-          "field_end": "2026-09-06",
-          "pollster": "CNN/SSRS",
-          "dem": 47.0,
-          "rep": 44.0,
-          "margin": 3.0,
-          "sample_size": 843,
-          "partisan_lean": "",
-          "dem_name": "Abdul El-Sayed",
-          "rep_name": "Mike Rogers",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 41,
+      "recent_poll_count": 40,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -2478,7 +2462,7 @@
         "rep_name": "Greg Abbott",
         "other": 2.0,
         "other_name": "Pat Dixon",
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "9cfe90cc-f4c5-437a-81c8-1d45d72def68",
         "sample_population": "lv",
@@ -2502,7 +2486,7 @@
           "rep_name": "Greg Abbott",
           "other": 2.0,
           "other_name": "Pat Dixon",
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "9cfe90cc-f4c5-437a-81c8-1d45d72def68",
           "sample_population": "lv",
@@ -2567,7 +2551,7 @@
           "rep_name": "Greg Abbott",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "5b7c1e5d-e892-47f7-b978-dd37dd3016f9",
           "sample_population": "lv",
@@ -3233,7 +3217,7 @@
           "rep_name": "Byron Donalds",
           "other": 3.3,
           "other_name": "Scott Jewett",
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "2f2df8d9-4220-4c18-9fe6-766b4c5093f0",
           "sample_population": "lv",
@@ -4265,7 +4249,7 @@
           "rep_name": "Mike Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "f776fb19-8dd8-43d6-8509-3d1ddaa1021b",
           "sample_population": "lv",
@@ -4326,12 +4310,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-21T10:46:52.681952+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.ajc.com/politics/2026/10/rick-jackson-has-outspent-keisha-lance-bottoms-but-democratic-enthusiasm-has-the-race-knotted/",
-          "sample_population": "lv",
-          "question_id": "f16bad60-868b-4139-890d-b89ef0bf2155",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "7e60bd8f-c327-4ae6-822f-706061debcf6",
@@ -4495,7 +4474,7 @@
           "rep_name": "Rick Jackson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "4a40e2b7-6392-4f2a-bf96-106a2b30beda",
           "sample_population": "lv",
@@ -4577,12 +4556,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.ajc.com/politics/2026/10/rick-jackson-has-outspent-keisha-lance-bottoms-but-democratic-enthusiasm-has-the-race-knotted/",
-          "sample_population": "lv",
-          "question_id": "0fdc2e33-1dc4-48b9-9bba-7e123c58e700",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "50059893-b573-4d5e-a109-1d42b580bef6",
@@ -4868,7 +4842,7 @@
         "rep_name": "Gregg Hull",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "de6f445a-7d37-40b4-945b-4c8b5e4c4c54",
         "sample_population": "lv",
@@ -4892,7 +4866,7 @@
           "rep_name": "Gregg Hull",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "de6f445a-7d37-40b4-945b-4c8b5e4c4c54",
           "sample_population": "lv",
@@ -4957,7 +4931,7 @@
         "rep_name": "Larry Marker",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "dca9ba8b-08fb-4649-9f51-30d1de8ddeb7",
         "sample_population": "lv",
@@ -4981,7 +4955,7 @@
           "rep_name": "Larry Marker",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "dca9ba8b-08fb-4649-9f51-30d1de8ddeb7",
           "sample_population": "lv",
@@ -5090,12 +5064,7 @@
           "other": 11.9,
           "other_name": "David Hatley",
           "first_seen_at": "2026-10-20T17:43:18.288907+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.spryresearch.com/post/tennessee-statewide-survey-october-2026",
-          "sample_population": "lv",
-          "question_id": "3911c448-145b-4e31-89e1-4249d96217af",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "86685846-3312-46a3-b60c-ad10e3055620",
@@ -5136,7 +5105,7 @@
         "rep_name": "Darren Bailey",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "a00d2d13-0eaa-476d-b2c2-f64fa8dad938",
         "sample_population": "lv",
@@ -5160,7 +5129,7 @@
           "rep_name": "Darren Bailey",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "a00d2d13-0eaa-476d-b2c2-f64fa8dad938",
           "sample_population": "lv",
@@ -5209,7 +5178,7 @@
         "rep_name": "Don Tracy",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "683f2b95-c5c1-40e8-ae1b-5b6c3cd1404f",
         "sample_population": "lv",
@@ -5233,7 +5202,7 @@
           "rep_name": "Don Tracy",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "683f2b95-c5c1-40e8-ae1b-5b6c3cd1404f",
           "sample_population": "lv",
@@ -5335,7 +5304,7 @@
         "rep_name": "Jon Husted",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "0dca5afc-824e-4584-baa4-2f028a5b2592",
         "sample_population": "lv",
@@ -5359,7 +5328,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "0dca5afc-824e-4584-baa4-2f028a5b2592",
           "sample_population": "lv",
@@ -5487,7 +5456,7 @@
           "rep_name": "Jon Husted",
           "other": 1.7,
           "other_name": "Bill Redpath",
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "84c90a52-46f3-46be-ba7f-deb55121fc78",
           "sample_population": "lv",
@@ -5663,7 +5632,7 @@
           "release_date": null,
           "question_id": "a101b63d-1983-4681-9db7-fa3a2dd3fc0a",
           "sample_population": "lv",
-          "upstream_posted_date": "2026-10-20",
+          "upstream_posted_date": null,
           "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-ohio-october-2026/",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
@@ -6029,7 +5998,7 @@
           "rep_name": "Susan Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "df267f5f-6020-4e76-b018-73697a24ed2d",
           "sample_population": "lv",
@@ -6466,25 +6435,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "be77c821-d548-48e3-94dc-b9a31cd171ef",
-          "field_end": "2026-09-06",
-          "pollster": "CNN/SSRS",
-          "dem": 48.0,
-          "rep": 45.0,
-          "margin": 3.0,
-          "sample_size": 880,
-          "partisan_lean": "",
-          "dem_name": "Troy Jackson",
-          "rep_name": "Susan Collins",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 29,
+      "recent_poll_count": 28,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -6740,12 +6693,7 @@
           "other": 4.0,
           "other_name": "Thomas Laehn",
           "first_seen_at": "2026-10-21T00:58:22.056047Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://backend.natpublicaffairs.com/media/Iowa_General_Election_Memo_101526.3.pdf",
-          "sample_population": "lv",
-          "question_id": "5ad40052-a663-4679-bd6e-cc97dc0407b3",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc",
@@ -7474,25 +7422,9 @@
           "other_name": "Anthony Hudson",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "eac7129e-98df-459f-99ca-9c818ecd162a",
-          "field_end": "2026-09-06",
-          "pollster": "CNN/SSRS",
-          "dem": 50.0,
-          "rep": 41.0,
-          "margin": 9.0,
-          "sample_size": 843,
-          "partisan_lean": "",
-          "dem_name": "Jocelyn Benson",
-          "rep_name": "John James",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 26,
+      "recent_poll_count": 25,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -7514,7 +7446,7 @@
         "rep_name": "Vivek Ramaswamy",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "b68b9512-ce30-4b28-b6e9-3cb3695ee944",
         "sample_population": "lv",
@@ -7538,7 +7470,7 @@
           "rep_name": "Vivek Ramaswamy",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "b68b9512-ce30-4b28-b6e9-3cb3695ee944",
           "sample_population": "lv",
@@ -7797,12 +7729,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://maristpoll.marist.edu/polls/midterm-elections-in-ohio-october-2026/",
-          "sample_population": "lv",
-          "question_id": "82144c36-7cd7-49be-96ad-30cddcba35ce",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "a89e1fc7-6157-4e45-8092-1d95f393dadf",
@@ -8079,13 +8006,11 @@
           "other_name": null,
           "first_seen_at": "2026-11-02T20:54:55.564125+00:00",
           "release_date": null,
-          "question_id": "56916ac6-ce85-4f86-a798-dbffb7297e80",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-11-02",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.survey160.com/methodological-research-blog/survey-160-pre-election-surveys-in-four-states",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "56916ac6-ce85-4f86-a798-dbffb7297e80",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "874e66b5-2a4c-4aca-98bf-0a195be794af",
@@ -8230,11 +8155,13 @@
           "other_name": "Rick Bennett",
           "first_seen_at": "2026-10-23T00:57:50.492444+00:00",
           "release_date": null,
-          "upstream_posted_date": null,
-          "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
-          "sample_population": "lv",
           "question_id": "0323398c-c289-44ef-9237-6a32d93b3b1f",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-10-22",
+          "source_poll_url": "https://www.foxnews.com/politics/fox-news-poll-nail-biter-maine-senate-race",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "b2cf5601-98ad-4a7f-acd3-1be546e39bc3",
@@ -8395,25 +8322,9 @@
           "other_name": "Rick Bennett",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "be77c821-d548-48e3-94dc-b9a31cd171ef",
-          "field_end": "2026-09-06",
-          "pollster": "CNN/SSRS",
-          "dem": 52.0,
-          "rep": 39.0,
-          "margin": 13.0,
-          "sample_size": 880,
-          "partisan_lean": "",
-          "dem_name": "Hannah Pingree",
-          "rep_name": "Bobby Charles",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 22,
+      "recent_poll_count": 21,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -8616,12 +8527,7 @@
           "other": 2.0,
           "other_name": "Shannon Bray",
           "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://eloncdn.blob.core.windows.net/eu3/sites/819/2026/10/Elon-Poll-news-release-10-20-26.pdf",
-          "sample_population": "lv",
-          "question_id": "4c9044a2-98ed-489e-9bd7-16663be9c77c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "14dfbcd7-9e7f-4427-acde-296beae6d3bd",
@@ -9019,12 +8925,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://backend.natpublicaffairs.com/media/Iowa_General_Election_Memo_101526.3.pdf",
-          "sample_population": "lv",
-          "question_id": "703c601f-0441-4a62-9912-de45d08f7b0d",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "c74bf5bc-f7c1-4c70-8c51-d954ded837fc",
@@ -9273,7 +9174,7 @@
           "rep_name": "Michele Tafoya",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "36f299e4-042c-47f7-abbb-6d8fec55cc7a",
           "sample_population": "lv",
@@ -9296,7 +9197,7 @@
           "rep_name": "Michele Tafoya",
           "other": 2.7,
           "other_name": "Rebecca Whiting",
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "5fc38d2e-96c1-4f04-a6b7-30c73006a774",
           "sample_population": "lv",
@@ -9613,7 +9514,7 @@
           "rep_name": "Roger Marshall",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "07291bee-5ea2-4d79-afff-618eeab48de9",
           "sample_population": "lv",
@@ -10306,12 +10207,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-21T00:58:22.056047Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://backend.natpublicaffairs.com/media/NH_General_Election_Memo_101526.2.pdf",
-          "sample_population": "lv",
-          "question_id": "10752c05-cdb7-45c5-ae6e-4cf7c8057336",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "7e22772a-4e0b-4e0f-abbe-0afd9e57484f",
@@ -10571,12 +10467,7 @@
           "other": 4.0,
           "other_name": "Dan J. Sullivan",
           "first_seen_at": "2026-10-20T18:53:06.124967+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/20/every-statewide-race-in-alaska-is-close-as-7-in-10-voters-worry-about-affording-gas-and-food",
-          "sample_population": "lv",
-          "question_id": "3975934c-29d0-412e-a2cd-bd931f7d3a32",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "807a27fa-a7e2-46cb-a2b0-3c8a8bb5022e",
@@ -10772,7 +10663,7 @@
           "rep_name": "Ty Masterson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "b085481d-ea9b-4c3f-a975-4c8cd8550b4b",
           "sample_population": "lv",
@@ -11642,12 +11533,7 @@
           "other": 3.0,
           "other_name": "Stephen Villee",
           "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://backend.natpublicaffairs.com/media/NH_General_Election_Memo_101526.2.pdf",
-          "sample_population": "lv",
-          "question_id": "b72078dc-3891-4935-b31c-a34358838505",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "7e22772a-4e0b-4e0f-abbe-0afd9e57484f",
@@ -11861,12 +11747,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T19:46:16.110276+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://nypost.com/2026/10/20/us-news/hochul-leads-blakeman-by-only-4-points-in-ny-governors-race-gop-internal-poll-claims/",
-          "sample_population": "lv",
-          "question_id": "18905e76-614a-4559-93f1-82bdb8157bc0",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "2b0a89de-c06d-42ec-aba2-1dafb7e80713",
@@ -12285,12 +12166,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-21T00:58:22.056047Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://x.com/The_Real_ASR/status/2112415183226429942",
-          "sample_population": "lv",
-          "question_id": "424c0eb2-c482-421c-9919-80ba2b3715f8",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "fa49898d-55a4-4393-962f-1cd6cfe135c3",
@@ -12306,12 +12182,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T18:53:06.124967+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/20/every-statewide-race-in-alaska-is-close-as-7-in-10-voters-worry-about-affording-gas-and-food",
-          "sample_population": "lv",
-          "question_id": "dbacae2b-d41b-45f5-bdfe-5255399007b5",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "e5216fed-b2a6-4670-9dae-7707e2912184",
@@ -12552,167 +12423,6 @@
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
-      "race_code": "AK-01",
-      "race_type": "house",
-      "state": "AK",
-      "district": "01",
-      "latest_field_end": "2026-11-01",
-      "latest": {
-        "poll_id": "3aa7e2be-bfad-4a59-80ba-a7c5add4aeea",
-        "field_end": "2026-11-01",
-        "pollster": "AtlasIntel",
-        "dem": 5.9,
-        "rep": 46.5,
-        "margin": -40.6,
-        "sample_size": 522,
-        "partisan_lean": "",
-        "dem_name": "Eric Hafner",
-        "rep_name": "Nick Begich",
-        "other": 46.6,
-        "other_name": "Bill Hill",
-        "first_seen_at": "2026-11-03T03:00:33.255759Z",
-        "release_date": null,
-        "upstream_posted_date": "2026-11-02",
-        "source_poll_url": "https://pollstergraph.com/poll/exclusive-atlas-us-ak-20261101-house",
-        "sample_population": "lv",
-        "question_id": "563bb6e7-21b5-4c84-b936-5af13f5727de",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
-      },
-      "polls": [
-        {
-          "poll_id": "3aa7e2be-bfad-4a59-80ba-a7c5add4aeea",
-          "field_end": "2026-11-01",
-          "pollster": "AtlasIntel",
-          "dem": 5.9,
-          "rep": 46.5,
-          "margin": -40.6,
-          "sample_size": 522,
-          "partisan_lean": "",
-          "dem_name": "Eric Hafner",
-          "rep_name": "Nick Begich",
-          "other": 46.6,
-          "other_name": "Bill Hill",
-          "first_seen_at": "2026-11-03T03:00:33.255759Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-11-02",
-          "source_poll_url": "https://pollstergraph.com/poll/exclusive-atlas-us-ak-20261101-house",
-          "sample_population": "lv",
-          "question_id": "563bb6e7-21b5-4c84-b936-5af13f5727de",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "a0d99ae7-a6c2-430d-ad8f-92e91d659b66",
-          "field_end": "2026-10-30",
-          "pollster": "The New York Times/Siena University",
-          "dem": 5.6,
-          "rep": 44.0,
-          "margin": -38.4,
-          "sample_size": 610,
-          "partisan_lean": "",
-          "dem_name": "Eric Hafner",
-          "rep_name": "Nick Begich",
-          "other": 37.2,
-          "other_name": "Bill Hill",
-          "first_seen_at": "2026-11-02T03:00:10.811961Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-11-01",
-          "source_poll_url": "https://www.nytimes.com/interactive/2026/11/01/polls/times-siena-poll-crosstabs.html",
-          "sample_population": "lv",
-          "question_id": "604ee3d1-9988-440c-ba9f-c8d91d0bf6f4",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "fa49898d-55a4-4393-962f-1cd6cfe135c3",
-          "field_end": "2026-10-16",
-          "pollster": "Data for Progress",
-          "dem": 5.0,
-          "rep": 50.0,
-          "margin": -45.0,
-          "sample_size": 668,
-          "partisan_lean": "D",
-          "dem_name": "Eric Hafner",
-          "rep_name": "Nick Begich",
-          "other": 42.0,
-          "other_name": "Bill Hill",
-          "first_seen_at": "2026-10-30T23:47:11.211915Z",
-          "release_date": null,
-          "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/20/every-statewide-race-in-alaska-is-close-as-7-in-10-voters-worry-about-affording-gas-and-food",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
-        },
-        {
-          "poll_id": "e5216fed-b2a6-4670-9dae-7707e2912184",
-          "field_end": "2026-10-03",
-          "pollster": "Alaska Survey Research",
-          "dem": 6.9,
-          "rep": 49.8,
-          "margin": -42.9,
-          "sample_size": 1512,
-          "partisan_lean": "",
-          "dem_name": "Eric Hafner",
-          "rep_name": "Nick Begich",
-          "other": 39.9,
-          "other_name": "Bill Hill",
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "c115983e-1ed7-42e1-bd8c-92692471a053",
-          "field_end": "2026-10-01",
-          "pollster": "The New York Times/Siena University",
-          "dem": 8.2,
-          "rep": 46.6,
-          "margin": -38.4,
-          "sample_size": 504,
-          "partisan_lean": "",
-          "dem_name": "Eric Hafner",
-          "rep_name": "Nick Begich",
-          "other": 35.1,
-          "other_name": "Bill Hill",
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "a1d3551f-cc1f-40ee-8d08-c7fdc1872796",
-          "field_end": "2026-09-11",
-          "pollster": "Fabrizio Ward/Impact Research",
-          "dem": 9.0,
-          "rep": 45.0,
-          "margin": -36.0,
-          "sample_size": 800,
-          "partisan_lean": "",
-          "dem_name": "Eric Hafner",
-          "rep_name": "Nick Begich",
-          "other": 31.0,
-          "other_name": "Bill Hill",
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "0382125c-8525-4d78-bfc6-44f54d037073",
-          "field_end": "2026-09-06",
-          "pollster": "The Bullfinch Group",
-          "dem": 7.4,
-          "rep": 44.2,
-          "margin": -36.8,
-          "sample_size": 820,
-          "partisan_lean": "",
-          "dem_name": "Eric Hafner",
-          "rep_name": "Nick Begich",
-          "other": 36.6,
-          "other_name": "Bill Hill",
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 7,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
       "race_code": "SC-GOV",
       "race_type": "governor",
       "state": "SC",
@@ -12874,15 +12584,155 @@
           "other": 1.0,
           "other_name": "Michael Addison",
           "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://static01.nyt.com/newsgraphics/documenttools/291f5c62393ced9c/212eec4b-full.pdf",
-          "sample_population": "lv",
-          "question_id": "8bbf36f8-8974-42ca-98e1-e420ffcfe73a",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 7,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "AK-01",
+      "race_type": "house",
+      "state": "AK",
+      "district": "01",
+      "latest_field_end": "2026-11-01",
+      "latest": {
+        "poll_id": "3aa7e2be-bfad-4a59-80ba-a7c5add4aeea",
+        "field_end": "2026-11-01",
+        "pollster": "AtlasIntel",
+        "dem": 5.9,
+        "rep": 46.5,
+        "margin": -40.6,
+        "sample_size": 522,
+        "partisan_lean": "",
+        "dem_name": "Eric Hafner",
+        "rep_name": "Nick Begich",
+        "other": 46.6,
+        "other_name": "Bill Hill",
+        "first_seen_at": "2026-11-03T03:00:33.255759Z",
+        "release_date": null,
+        "upstream_posted_date": "2026-11-02",
+        "source_poll_url": "https://pollstergraph.com/poll/exclusive-atlas-us-ak-20261101-house",
+        "sample_population": "lv",
+        "question_id": "563bb6e7-21b5-4c84-b936-5af13f5727de",
+        "date_provenance": "PollResults ingestion date, NOT public release date"
+      },
+      "polls": [
+        {
+          "poll_id": "3aa7e2be-bfad-4a59-80ba-a7c5add4aeea",
+          "field_end": "2026-11-01",
+          "pollster": "AtlasIntel",
+          "dem": 5.9,
+          "rep": 46.5,
+          "margin": -40.6,
+          "sample_size": 522,
+          "partisan_lean": "",
+          "dem_name": "Eric Hafner",
+          "rep_name": "Nick Begich",
+          "other": 46.6,
+          "other_name": "Bill Hill",
+          "first_seen_at": "2026-11-03T03:00:33.255759Z",
+          "release_date": null,
+          "upstream_posted_date": "2026-11-02",
+          "source_poll_url": "https://pollstergraph.com/poll/exclusive-atlas-us-ak-20261101-house",
+          "sample_population": "lv",
+          "question_id": "563bb6e7-21b5-4c84-b936-5af13f5727de",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "a0d99ae7-a6c2-430d-ad8f-92e91d659b66",
+          "field_end": "2026-10-30",
+          "pollster": "The New York Times/Siena University",
+          "dem": 5.6,
+          "rep": 44.0,
+          "margin": -38.4,
+          "sample_size": 610,
+          "partisan_lean": "",
+          "dem_name": "Eric Hafner",
+          "rep_name": "Nick Begich",
+          "other": 37.2,
+          "other_name": "Bill Hill",
+          "first_seen_at": "2026-11-02T03:00:10.811961Z",
+          "release_date": null,
+          "upstream_posted_date": "2026-11-01",
+          "source_poll_url": "https://www.nytimes.com/interactive/2026/11/01/polls/times-siena-poll-crosstabs.html",
+          "sample_population": "lv",
+          "question_id": "604ee3d1-9988-440c-ba9f-c8d91d0bf6f4",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "fa49898d-55a4-4393-962f-1cd6cfe135c3",
+          "field_end": "2026-10-16",
+          "pollster": "Data for Progress",
+          "dem": 5.0,
+          "rep": 50.0,
+          "margin": -45.0,
+          "sample_size": 668,
+          "partisan_lean": "D",
+          "dem_name": "Eric Hafner",
+          "rep_name": "Nick Begich",
+          "other": 42.0,
+          "other_name": "Bill Hill",
+          "first_seen_at": "2026-10-30T23:47:11.211915Z",
+          "release_date": null,
+          "question_id": "843ff988-f9ae-4553-8aa9-3b87af20e024",
+          "sample_population": "lv",
+          "upstream_posted_date": null,
+          "source_poll_url": "https://www.dataforprogress.org/blog/2026/10/20/every-statewide-race-in-alaska-is-close-as-7-in-10-voters-worry-about-affording-gas-and-food",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
+        },
+        {
+          "poll_id": "e5216fed-b2a6-4670-9dae-7707e2912184",
+          "field_end": "2026-10-03",
+          "pollster": "Alaska Survey Research",
+          "dem": 6.9,
+          "rep": 49.8,
+          "margin": -42.9,
+          "sample_size": 1512,
+          "partisan_lean": "",
+          "dem_name": "Eric Hafner",
+          "rep_name": "Nick Begich",
+          "other": 39.9,
+          "other_name": "Bill Hill",
+          "first_seen_at": null,
+          "release_date": null
+        },
+        {
+          "poll_id": "c115983e-1ed7-42e1-bd8c-92692471a053",
+          "field_end": "2026-10-01",
+          "pollster": "The New York Times/Siena University",
+          "dem": 8.2,
+          "rep": 46.6,
+          "margin": -38.4,
+          "sample_size": 504,
+          "partisan_lean": "",
+          "dem_name": "Eric Hafner",
+          "rep_name": "Nick Begich",
+          "other": 35.1,
+          "other_name": "Bill Hill",
+          "first_seen_at": null,
+          "release_date": null
+        },
+        {
+          "poll_id": "a1d3551f-cc1f-40ee-8d08-c7fdc1872796",
+          "field_end": "2026-09-11",
+          "pollster": "Fabrizio Ward/Impact Research",
+          "dem": 9.0,
+          "rep": 45.0,
+          "margin": -36.0,
+          "sample_size": 800,
+          "partisan_lean": "",
+          "dem_name": "Eric Hafner",
+          "rep_name": "Nick Begich",
+          "other": 31.0,
+          "other_name": "Bill Hill",
+          "first_seen_at": null,
+          "release_date": null
+        }
+      ],
+      "recent_poll_count": 6,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -13429,12 +13279,7 @@
           "other": 2.0,
           "other_name": "Andrea James",
           "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/massachusetts#collapse-October-20-2026-Massachusetts-Governor-and-US-Senate-Statewide-and-Bellwether-with-The-Boston-Globe",
-          "sample_population": "lv",
-          "question_id": "2078df2a-9390-4beb-8d06-1dfbdac98cba",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
@@ -13572,12 +13417,7 @@
           "other": 1.4,
           "other_name": "Joe Tache",
           "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.suffolk.edu/academics/research-at-suffolk/political-research-center/polls/massachusetts#collapse-October-20-2026-Massachusetts-Governor-and-US-Senate-Statewide-and-Bellwether-with-The-Boston-Globe",
-          "sample_population": "lv",
-          "question_id": "6dab8989-4378-4f62-a5ed-a360f0c70d84",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "c5000c5b-f88e-460a-9b37-9c068f09cd9c",
@@ -13843,12 +13683,7 @@
           "other": 28.0,
           "other_name": "Ken Block",
           "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://salve.edu/news/news-listing/pell-center-survey-foulkes-leads-governors-race-11-points-lieutenant-governor-contest-deadlocked",
-          "sample_population": "lv",
-          "question_id": "e72f5ee5-ca28-4ff2-a4b7-48f82fdc7848",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "d17445d2-fb31-4bb4-aa78-a394b2bb4a6e",
@@ -14419,7 +14254,7 @@
         "rep_name": "Jim Pillen",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "574a0713-6f56-4e79-9a38-5aef1ac1a75e",
         "sample_population": "lv",
@@ -14443,7 +14278,7 @@
           "rep_name": "Jim Pillen",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "574a0713-6f56-4e79-9a38-5aef1ac1a75e",
           "sample_population": "lv",
@@ -14595,12 +14430,7 @@
           "other": 7.0,
           "other_name": "Brett Lindstrom",
           "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
-          "sample_population": "lv",
-          "question_id": "8dd18b37-de56-46cc-aea1-20284043aeaa",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "3b9ac4c6-eb6c-4323-b9c1-aa2e503ac01a",
@@ -15125,7 +14955,7 @@
         "rep_name": "Jay Feely",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-10T23:46:41.220454Z",
+        "first_seen_at": "2026-11-11T01:19:32.144873Z",
         "release_date": null,
         "question_id": "8d9925e0-0ade-4b86-9fff-4f58f41bab9d",
         "sample_population": "lv",
@@ -15149,7 +14979,7 @@
           "rep_name": "Jay Feely",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-10T23:46:41.220454Z",
+          "first_seen_at": "2026-11-11T01:19:32.144873Z",
           "release_date": null,
           "question_id": "8d9925e0-0ade-4b86-9fff-4f58f41bab9d",
           "sample_population": "lv",
@@ -16304,12 +16134,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T20:47:47.820389+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.wbrc.com/2026/10/20/tuberville-leads-jones-51-40-percent-exclusive-gray-alabama-daily-news-poll/",
-          "sample_population": "lv",
-          "question_id": "8560a912-1249-4368-8152-4549ce520300",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06",
@@ -16325,12 +16150,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.al.com/politics/2026/10/gop-faces-election-downturn-but-theres-no-blue-wave-for-alabama-democrats-poll-shows.html",
-          "sample_population": "lv",
-          "question_id": "d1c1676e-6080-48f8-ac3f-08bb8db4929f",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "080dacda-e25f-4b72-a30a-a7a1bbd9cc52",
@@ -16415,12 +16235,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T00:57:50.234271Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.wbrc.com/2026/10/20/tuberville-leads-jones-51-40-percent-exclusive-gray-alabama-daily-news-poll/",
-          "sample_population": "lv",
-          "question_id": "911ea3d3-ea5b-4c7f-96e5-37491e20c750",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "308785d0-efaa-45ee-8e64-c6f0526eea06",
@@ -16436,12 +16251,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T10:45:52.794566+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.al.com/politics/2026/10/gop-faces-election-downturn-but-theres-no-blue-wave-for-alabama-democrats-poll-shows.html",
-          "sample_population": "lv",
-          "question_id": "d82624ce-880c-44cf-a7c7-b2173977ae10",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "080dacda-e25f-4b72-a30a-a7a1bbd9cc52",
@@ -16547,12 +16357,7 @@
           "other": 29.4,
           "other_name": "Seth Bodnar",
           "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://quantusinsights.org/f/montana-senate-alme-leads-by-16-as-bodnar-consolidates",
-          "sample_population": "lv",
-          "question_id": "3f6e523a-49b0-4e7d-b0f3-6899776bebd0",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "2cefcb18-80ff-4334-84b2-c2e374e1f0a0",
@@ -18361,12 +18166,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-20T18:53:06.124967+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://floridapolitics.com/archives/825889-dccc-poll-shows-ryan-elijah-bale-dalton-tied-in-cd-7-with-donald-trump-deep-underwater/",
-        "sample_population": "lv",
-        "question_id": "2988d1c2-756f-49fb-adff-cb0376855d7c",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -18383,12 +18183,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T18:53:06.124967+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://floridapolitics.com/archives/825889-dccc-poll-shows-ryan-elijah-bale-dalton-tied-in-cd-7-with-donald-trump-deep-underwater/",
-          "sample_population": "lv",
-          "question_id": "2988d1c2-756f-49fb-adff-cb0376855d7c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "a5cf5afe-43ef-4541-8940-8024ec60df3a",
@@ -18404,12 +18199,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-21T00:58:22.056047Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://floridapolitics.com/archives/825889-dccc-poll-shows-ryan-elijah-bale-dalton-tied-in-cd-7-with-donald-trump-deep-underwater/",
-          "sample_population": "lv",
-          "question_id": "4c57bf98-533d-4389-9378-b7755417946c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 2,
@@ -19264,12 +19054,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-20T12:57:42.359112+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://www.politico.com/news/2026/10/20/democrats-make-a-play-for-oklahoma-after-bitter-gop-gubernatorial-primary-01127523",
-        "sample_population": "lv",
-        "question_id": "01987447-b6f4-4beb-9b01-d88d9844e8c7",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -19286,12 +19071,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T12:57:42.359112+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://www.politico.com/news/2026/10/20/democrats-make-a-play-for-oklahoma-after-bitter-gop-gubernatorial-primary-01127523",
-          "sample_population": "lv",
-          "question_id": "01987447-b6f4-4beb-9b01-d88d9844e8c7",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "manual-OK-GOV-CTP-2026-10-12",
@@ -19429,12 +19209,7 @@
         "other": 4.0,
         "other_name": "Thomas McMasters",
         "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://dccc.org/dccc-polling-memo-knickerbocker-leads-turner-by-3-in-oh-10/",
-        "sample_population": "lv",
-        "question_id": "d1aa67cd-6b0b-4c4f-8c4f-334b086608a4",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -19451,12 +19226,7 @@
           "other": 4.0,
           "other_name": "Thomas McMasters",
           "first_seen_at": "2026-10-20T13:53:36.301313+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://dccc.org/dccc-polling-memo-knickerbocker-leads-turner-by-3-in-oh-10/",
-          "sample_population": "lv",
-          "question_id": "d1aa67cd-6b0b-4c4f-8c4f-334b086608a4",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -19482,12 +19252,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-20T18:53:06.124967+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://dccc.org/%f0%9f%9a%a8-breaking-new-dccc-poll-explains-why-republicans-abandoned-tano-tijerina/",
-        "sample_population": "lv",
-        "question_id": "9c1ba416-8619-4c1d-892d-cb6bb1436645",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -19504,12 +19269,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T18:53:06.124967+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://dccc.org/%f0%9f%9a%a8-breaking-new-dccc-poll-explains-why-republicans-abandoned-tano-tijerina/",
-          "sample_population": "lv",
-          "question_id": "9c1ba416-8619-4c1d-892d-cb6bb1436645",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -19653,12 +19413,7 @@
           "other": 4.0,
           "other_name": "Michael Bahry",
           "first_seen_at": "2026-10-20T09:45:27.264745+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://salve.edu/news/news-listing/pell-center-survey-foulkes-leads-governors-race-11-points-lieutenant-governor-contest-deadlocked",
-          "sample_population": "lv",
-          "question_id": "d10e6166-d130-442f-b105-2ef1ad15228a",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "f6bc7bf9-7761-4a66-8398-608a7a6dfbd1",
@@ -19733,12 +19488,7 @@
           "other": 4.0,
           "other_name": "Pedro DeSouza",
           "first_seen_at": "2026-10-20T12:57:41.465118Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://salve.edu/news/news-listing/pell-center-survey-foulkes-leads-governors-race-11-points-lieutenant-governor-contest-deadlocked",
-          "sample_population": "lv",
-          "question_id": "342b0b86-a8a2-415a-95bb-264525d25dae",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 2,
@@ -19797,12 +19547,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-20T12:57:41.465118Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://salve.edu/news/news-listing/pell-center-survey-foulkes-leads-governors-race-11-points-lieutenant-governor-contest-deadlocked",
-          "sample_population": "lv",
-          "question_id": "b4330f60-ce8b-44fc-b9af-8dfff2ceac1d",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 2,
@@ -20315,12 +20060,7 @@
         "other": 6.0,
         "other_name": "Eric Michael Foreman",
         "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-20",
-        "source_poll_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
-        "sample_population": "lv",
-        "question_id": "8db7b444-619a-4679-8802-2ecd848c8e6e",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -20337,12 +20077,7 @@
           "other": 6.0,
           "other_name": "Eric Michael Foreman",
           "first_seen_at": "2026-10-20T14:48:34.897159+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-20",
-          "source_poll_url": "https://backend.natpublicaffairs.com/media/Nebraska_General_Election_Memo_100926.pdf",
-          "sample_population": "lv",
-          "question_id": "8db7b444-619a-4679-8802-2ecd848c8e6e",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "bb94417f-3a6e-4bd8-9e2d-29ba8c451b23",
@@ -21840,7 +21575,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-11-10T23:46:41.220454Z",
+    "last_attempt_at": "2026-11-11T01:19:32.144873Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -21851,9 +21586,9 @@
   "changes": {
     "new_polls": [],
     "new_poll_count": 0,
-    "generic_margin_change": 0.0,
-    "comparison_at": "2026-11-10T23:46:41.220454Z",
-    "previous_snapshot_at": "2026-11-10T22:54:01.727362Z",
+    "generic_margin_change": -0.3,
+    "comparison_at": "2026-11-11T01:19:32.144873Z",
+    "previous_snapshot_at": "2026-11-10T23:46:41.220454Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -22052,13 +21787,20 @@
       "dem": 51.9,
       "rep": 42.7,
       "pollsters": 10
+    },
+    {
+      "date": "2026-11-11",
+      "margin": 9.0,
+      "dem": 52.2,
+      "rep": 43.2,
+      "pollsters": 9
     }
   ],
-  "newly_detected_count": 21,
+  "newly_detected_count": 20,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 377,
+    "matched_observations": 343,
     "newly_injected_into_model": 0,
     "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."
