@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-12T16:00:23.728875Z",
+  "updated_at": "2026-11-12T22:15:35.082901Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 6,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -263,6 +263,44 @@
   ],
   "items": [
     {
+      "id": "a73580240b772b1c222d",
+      "title": "Alaska Judge Denies Peltola Campaign Bid For Mid-Count Absentee Ballot Rejection Records - Tampa Free Press",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVk03QlJ4dFZ1ZDdvR3NOXzRTaDItX3JMQXVVUXNLcEJFa3VQVzNIQzA0aDVnaGFBa1JDMVg1cWQ4alhrUEg2Y3pEUHhvLUZNTkRyNHVucm42aFkxRXdOZXhWT2p6WXA5dk5ZVXM2TXNGb2NsSFV0dm5fckJZVDNiM2tOT2VwR1otbXdnYWx4U2JRZHZxQ2VrREpUbVJZT05oMks3bHJKSTJIZnNMT1BlSE0xNA?oc=5",
+      "publisher": "Tampa Free Press",
+      "published_at": "2026-11-12T20:29:20Z",
+      "detected_at": "2026-11-12T22:15:35.082901Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "5f8d10a97ef09ccd54e9",
+      "title": "Peltola Holds Narrow Lead but Loses Court Bid for Rejected Absentee Ballot Data - The Daily Signal",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQTXJMYnZvMWl4OGpwR3lVMEtUeWc1cEd0cjFCTEM5clF4VnJZOW1lY1lRREM4aEJWUkFTZW9jbEVzeVY0UUdfOXBYN0ljVDBSMzdrQWxOTGZ5X3NqLVptTUs2dVNCVGRKMzY4N09ZYXctcVNJbngwVHJLU1k3WGFTR3FwNHA3dG93Z3ZQYVFJdV9kSXR2UlBUU1JXTzhTX0M5RUdXMlEzS1pscDIzd0xoRWdnYm13aDVra2F3?oc=5",
+      "publisher": "The Daily Signal",
+      "published_at": "2026-11-12T17:21:15Z",
+      "detected_at": "2026-11-12T22:15:35.082901Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "b4febe3a86502fd84d78",
       "title": "Republicans Keep Admitting They\u2019re \u201cStupid\u201d After Election Wipeout - The New Republic",
       "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNbUhlRVYxa2Q4M0Z1WVRXVGNnMk1KOElGcTh4V2Jzakg0OHQ0S0xzbWdQX0ViLXJaSWtPTm1RREViQzBmVjZSVzR5dWRxSXBoRzhlVml4Tld6ZXJQbUNLLWEyaEwzaGpNSEJNYWNFSHdYaWp6TWpydzFsMFlJcDM3VE1OeXpKYVV5Z09NWFc3SWQycVBtaEVuV3cwVThINmNXVFhDUjJZQl9zNE9x?oc=5",
@@ -288,6 +326,25 @@
       "detected_at": "2026-11-12T16:00:23.728875Z",
       "state_hints": [
         "DE"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4416af4a7f863a455dac",
+      "title": "Texas\u2019 top courts have Democrats for first time in years. They could reshape the legal system - Houston Public Media",
+      "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxOWFd6UjBUaFZkeDh2TXphSDYxUWxaQUE4V0RraE9QamxVVnlYdlNmc19UT3NDVUl1SFRFek8zZFNrWkwtY0dNNXNneGRzcEJqVGdfd0xxRkg2M2lWTi1Xdk9zRTJVR2dXT0JJV1R4SWNoa0FOd1M1Qlh1OFZiZUFpS1ZZOW5QZVlYN2RESGY0VDFCMWp2YkdlMjVyVkhuTlJ5X2ZXazNXeDlwbGhQai1kU25ra3loajlRNmE5a2czeE40QkNfTnNXRTNzY2NId2V2UGI4TThuMndwcHZmd1VHUUIwRWV0cTFmN29ZNl9iVXZEZk5UdzBiUUhjQ3NLblFqcXpiMtIBhAJBVV95cUxOWFd6UjBUaFZkeDh2TXphSDYxUWxaQUE4V0RraE9QamxVVnlYdlNmc19UT3NDVUl1SFRFek8zZFNrWkwtY0dNNXNneGRzcEJqVGdfd0xxRkg2M2lWTi1Xdk9zRTJVR2dXT0JJV1R4SWNoa0FOd1M1Qlh1OFZiZUFpS1ZZOW5QZVlYN2RESGY0VDFCMWp2YkdlMjVyVkhuTlJ5X2ZXazNXeDlwbGhQai1kU25ra3loajlRNmE5a2czeE40QkNfTnNXRTNzY2NId2V2UGI4TThuMndwcHZmd1VHUUIwRWV0cTFmN29ZNl9iVXZEZk5UdzBiUUhjQ3NLblFqcXpiMg?oc=5",
+      "publisher": "Houston Public Media",
+      "published_at": "2026-11-12T14:20:55Z",
+      "detected_at": "2026-11-12T22:15:35.082901Z",
+      "state_hints": [
+        "TX"
       ],
       "topic_hints": [
         "litigation"
@@ -5058,65 +5115,6 @@
       "topic_hints": [
         "security",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "65e8af0c1ce15609ada2",
-      "title": "Pa. election 2026: Voter guides, key races and more - WHYY",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOb1VOUFo1MjhoZ1VHRkxaNlNEMWFuN3VzTml4UHZLWktKeTRnRXR1VGV3RnZNZmxVRkZZek9aRFJwN3JLbm01bW40emRsME9OMlNMLTk0dmxLR2tyaEFsbDlYdzJLc0JmTXA3N1Y4b1ZyR1ZhS2lkMGJwN2tzMlV3OUxkV1dweGZUQXNNT245Yw?oc=5",
-      "publisher": "WHYY",
-      "published_at": "2026-10-29T16:41:09Z",
-      "detected_at": "2026-10-29T19:21:20.614878Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "09f9c3389dda4fde85c6",
-      "title": "Lawsuit challenges Oklahoma limits on voter registration data - The Journal Record",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQT3hhbGU2M3J0MlRETVM1V0xSTDRaNEVFbUhVNjBZX19tS1JUUXlIdlg4SmdkUVNkR2toamNSa29uSk1zYXNUYzI4UnFNWWtNeEl2UzRYQWNsbnFuOUdWejQxR2htSkstZDZjM0ZjNWY4aG9YcGRhdmFGQkE5T3paeHYtQW9kbUVmNDM0OVRPNGtEWTQ4ci1BVVRuTEE?oc=5",
-      "publisher": "The Journal Record",
-      "published_at": "2026-10-29T16:02:44Z",
-      "detected_at": "2026-10-29T16:05:36.398831Z",
-      "state_hints": [
-        "OK"
-      ],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ba315eb5731b48eadfe7",
-      "title": "Judge rejects DOJ effort to remove 20K California mail-in ballots - Gephardt Daily",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOYTVOVTRscjh3djZxdDVhRkZ3NkVHdUZBaWRzLUdhTEhlaGotbTluTUVKN0JvV3dveDdqemg0Q0FHSnY0UmE3QnVkQUZwYWl5dmxZVDBBc25ocmV1VE5GRlFuamRZNkRmZ2haenpvUkctUC1vRG9sV0otLS1TT2ZIQ2gtUjlka2l4bXQ2SzRWUnlNOVQyOTRibFlnek5Jc3paZUx6empHdw?oc=5",
-      "publisher": "Gephardt Daily",
-      "published_at": "2026-10-29T13:38:29Z",
-      "detected_at": "2026-10-29T19:57:57.237033Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
