@@ -1,14 +1,14 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-11-11T23:57:59.328948Z",
+  "polling_generated_at": "2026-11-12T07:14:22.467115Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
   "generic_ballot_2026_d_minus_r_points": 9.12,
   "generic_implied_vs_2024_presidential_swing_points": 10.825,
-  "independent_polling_estimated_presidential_to_race_swing_points": 10.806,
-  "bottom_up_implied_national_margin_points": 9.101,
-  "bottom_up_minus_generic_environment_points": -0.019,
+  "independent_polling_estimated_presidential_to_race_swing_points": 10.81,
+  "bottom_up_implied_national_margin_points": 9.104,
+  "bottom_up_minus_generic_environment_points": -0.016,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
   "total_qualifying_races": 19,
@@ -46,17 +46,17 @@
     {
       "state": "NH",
       "number_qualifying_races": 1,
-      "swing_points": 5.769
+      "swing_points": 5.809
     },
     {
       "state": "MI",
       "number_qualifying_races": 1,
-      "swing_points": 6.629
+      "swing_points": 6.659
     },
     {
       "state": "FL",
       "number_qualifying_races": 1,
-      "swing_points": 7.352
+      "swing_points": 7.282
     },
     {
       "state": "CO",
@@ -96,7 +96,7 @@
     {
       "state": "TX",
       "number_qualifying_races": 1,
-      "swing_points": 17.278
+      "swing_points": 17.338
     },
     {
       "state": "MT",
@@ -124,22 +124,22 @@
       "raw_swing_points": 1.907,
       "capped_swing_points": 1.907,
       "capped_local_outlier": false,
-      "weight": 0.7777777777777778,
+      "weight": 0.7555555555555555,
       "independent_firms": 7,
-      "latest_age_days": 10
+      "latest_age_days": 11
     },
     {
       "office": "senate",
       "race_code": "TX-SEN",
       "state": "TX",
       "presidential_2024_margin": -13.878,
-      "poll_margin": 3.4,
-      "raw_swing_points": 17.278,
-      "capped_swing_points": 17.278,
+      "poll_margin": 3.46,
+      "raw_swing_points": 17.338,
+      "capped_swing_points": 17.338,
       "capped_local_outlier": false,
-      "weight": 0.8,
+      "weight": 0.7777777777777778,
       "independent_firms": 19,
-      "latest_age_days": 9
+      "latest_age_days": 10
     }
   ],
   "notes": [

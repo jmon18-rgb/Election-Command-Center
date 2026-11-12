@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-11T23:57:55.480216Z",
+  "updated_at": "2026-11-12T07:14:18.873126Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 6,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -262,6 +262,125 @@
     }
   ],
   "items": [
+    {
+      "id": "f5a4dc9b0d7bdecc906c",
+      "title": "Alaska judge rules against Democratic US \u200bSenate candidate\u2019s request for absentee ballot data - KELO-AM",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPV3hPa0hSVTdvYzNXREFMUzB6OFBHd0VIU2hEczZ2TGktMnVCUll2MUo5a2RiZDVtR0lmQnppZTR6N2puZEhKbUpJRjdvTGRJODlIRklCT0hBVWhxUEZ2SDZfVHRfQUM2YzdvcTZYaXJEWmxkVF9yTndvcTZSS3FEcVRUSExKaVkwNzl4ZG8yMFcwMk9DMnNCQ25xWTFobHVoUWNsdkt4VXBzUjVaM2g1SnRBUzh6QVF2T3VrVw?oc=5",
+      "publisher": "KELO-AM",
+      "published_at": "2026-11-12T04:50:08Z",
+      "detected_at": "2026-11-12T07:14:18.873126Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1baa491d85ff4c866a40",
+      "title": "Alaska court denies Peltola campaign request over rejected ballots \u2014 The Hill - UA.NEWS",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQMFYzejFNZWJYLXdoWnNWNl8zR1hvVFBvaTQ3c2J0dmdrQXdxMS1OYmd3RmhQZkVPXzFaY19XTEthcHNXZmQ0T0J2N29OOU5WU096UHRpODk2bGxzeXdKUjFONXhTTGtDNjIzWG1adzcxY05rWnF2RVB6TGlnY2Iwa2U0T2F1Yy05Y3dONE5HSk1walhrVlhVbE9WeUNJdGtndmFNei1LcU5yVzJGak5kNGI5S2c1Ymc?oc=5",
+      "publisher": "UA.NEWS",
+      "published_at": "2026-11-12T04:36:18Z",
+      "detected_at": "2026-11-12T07:14:18.873126Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e09a67039092c3eee3c8",
+      "title": "Judge dismisses petition by Peltola campaign seeking names of rejected absentee voters - Alaska Beacon",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQMTBfNzhKWm8xUDR4aW5UNGVURE5fOHhPZlN1QVlHcXAzMXV3dmg0LWNhdHNqWmlMQkZYM2J0SHlYLWdwakFtcVhpR3lfQW5qdFB4NDlpTjAxQ1FmMkVRRTNVdl9YUXdpc0EtNDRwS3hNMkc3ZEJaekUxRlh6YW0zV0o4MkJ2NGgxNU1IcTl4X2hjdE1kRGhNSWp4OHVkOWhQNnVtZjNta0NRbVp6bjE5elFxVVh3bzZRYXZhSUFWLVA?oc=5",
+      "publisher": "Alaska Beacon",
+      "published_at": "2026-11-12T04:26:34Z",
+      "detected_at": "2026-11-12T07:14:18.873126Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e3482615523b82051bb9",
+      "title": "State Judge Denies Peltola Campaign\u2019s Request for Ballot Data - NOTUS",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNa2xnbGtsanltUlRHazI5TmdHdG5QYUFHaHpQbE02eEkwM0NMZXZvQWV1WnJGYkNYdmNFUGlnOGVPZVVJVHVRSS1XNjRZcng3LXdQSkQyWDZvaEdOUFFsTjNjdnJnRDlmUzVDRnUzYVd1c092cFNZTy1fLTJIMy1fQlYyeTVQcVk0SzhaU0t5b19zdGNU?oc=5",
+      "publisher": "NOTUS",
+      "published_at": "2026-11-12T04:12:47Z",
+      "detected_at": "2026-11-12T07:14:18.873126Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "02f81960a84ab7d3aa89",
+      "title": "Alaska judge rules a request by Peltola campaign for ballot data in Senate race is \u2018not reasonable\u2019 - NBC News",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPNXdlYUZ6M0FrcHotOFFlQjYxSklHZnQ0c1d5U2JtVkg2bnIteDFwUUFMZ0dYUF9IMkhtSGRaaTBfN2pwMXpqOXpLdHdPOTk3TkJ2aTVEOURXcndWVmtqTV8xaEMzazdTMFAxOG5CQnBnZm0wRVBoVGdRS3hrRXdFZDQ5YXdJZkZxSVU3eFBxNUZOWDZSTlVHcWM5d3FmcUtOUlF0Y2FmLWUxaHlTWlJCYVh0OG5VSkJVdWZaQWJyOFc2UjgtVFEw?oc=5",
+      "publisher": "NBC News",
+      "published_at": "2026-11-12T03:18:00Z",
+      "detected_at": "2026-11-12T07:14:18.873126Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "129ba5391a07821ed41a",
+      "title": "DOJ charges 28 with unlawful voting, other election-related offenses in California - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNNzVWRUJJYnB5bW5JZi11SmdUbmN5bnhhWFVGd0loaGJ3RE9HemVjRXlLNE1xYlcwdGh1ellXTW1jUTJpeGN6aENwTmVZODI4bjJHNndJRWFXWTlwMDJPTXlCNVBMcWR1Tjk4eFFSa0tmNFZJMEprLUlXWk5ZQ3JZbWxKQ09pWEFtZHhLeTU0Q1hWZnotSE1vWGdFVDVzdnPSAaQBQVVfeXFMUHZVRVdKREI5UUpKYThzUWlOQS0xQ0dXOGYtMDJvT1M3MDdRR01HeFg0cTk1V3BDQjl1di1td3R6Ql9hMkxHQjFPN044Tkl2akYyVnpWYlJHSjF4eTBZalNpX1dzNzc5NVlseDVBbmFIVW5VSnNjY2xxQ3RMR0stTWtfUUUzbWVpUXNOQVlsU2ZFMjV3VjQxaU1qcDBnS3JXUTRuUHg?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-11T22:33:16Z",
+      "detected_at": "2026-11-12T07:14:18.873126Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "28 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "92a77eb74841c88e2f45",
       "title": "Federal law banning noncitizen voting 'unconstitutional' and violates states' rights: Judge - Law and Crime News",
@@ -4990,116 +5109,6 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "51fd6302a04d51706763",
-      "title": "Pa. election 2026: What to know about ICE at the polls, election monitors and more - WHYY",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxNNkUtN2JIWkxjZUhnWFQ3NFRvTXh6QllqdUpPTmdsTE9kYk9UTmZTNkdLaENJLXJLSmpCWjROWWN6RnhzRTlmN3hDSEtEekR0S2xFOUJuam1pTEZHZEVMdVc0aEFzUGhBdmplMjNzUjA3Y3l3b3locUtIeWNvTXFwck4yczlnTDA?oc=5",
-      "publisher": "WHYY",
-      "published_at": "2026-10-29T09:33:39Z",
-      "detected_at": "2026-10-29T10:01:25.419149Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "47ece9615056671f67b6",
-      "title": "Will Missouri election results face legal challenges after map mess? KCUR answers more voter Qs - KCUR",
-      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxNWXdaUmFIMEgxcDl2bU1jWkdFV3dZcTQ1Z0dBTHJDWndYcDVNSnFLbkZjeEpDSjZvdFhfc0o4TUxRTDExX05XYzRDeFpWX2M3MWpBSmZ0SS1xVGZsNEl2cmpOVC1jdkxfZ1F5d3d1NGFsWlRNMkhsRTAzbEhqTDM4UU50QXp3UFhXYl9LRGoweUtoRnVPUFU1MEExUkxfaUVyUG1zQnlaUkV3aDctdHR3ODloRVRDNU1mUld2TTJpYjZ4T1hVS3UtYktQT195UHZGaVJscXR3?oc=5",
-      "publisher": "KCUR",
-      "published_at": "2026-10-29T09:00:00Z",
-      "detected_at": "2026-10-29T10:01:25.419149Z",
-      "state_hints": [
-        "MO"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b1d0669aca001a10ed6c",
-      "title": "DOJ Says It Won\u2019t Deploy FBI, ICE Agents as Poll Monitors - Newsweek",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxOcHFkNDYyaUxfN0F3cTFkNmd2b1pWY3FwcXR4bXVfazJocnlEMWhUNERnTG5iZHhSZ2p5THV2d0FuN1E1UUZraTRzWll3aGtXTWwxX001X0VBWEhiMm5nZjBhZmRoTDAtRkc4TjRuYWpCY3R3a2FIT2ZkZGtpaFhYa0I2SG10dVZwVXdFSWFsanlOQlk?oc=5",
-      "publisher": "Newsweek",
-      "published_at": "2026-10-29T08:49:00Z",
-      "detected_at": "2026-10-29T10:58:32.974166Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a104ceee25ad47ad85f0",
-      "title": "What you need to know about voter intimidation in Pennsylvania - Spotlight PA",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQT3dXU3I1VS04eEp1MVhwVkNYUVZhQ3dhaHJOdjNTNkYxYTJvaTVLTjdNaGtLUkozaVdrOVdiNGFWcGcwdm42Vzc4RXJQQmF6VnZjVHlyTFh2TWhEZlVUeTRjQlFNSnVFYllUY3dSWVJFTGNsWFUtTVRCaDU2X3lRSEw0TkE1c2JXN1VTb2UtOWdKQnRpVDkyYWVIMDhWNjRzUWdOeVMyU3ZwQm9GeE5nV0hKRFo3Q0VoMDVvYi1rSnVlTHNoLVd5Qg?oc=5",
-      "publisher": "Spotlight PA",
-      "published_at": "2026-10-29T08:00:00Z",
-      "detected_at": "2026-10-29T13:11:05.746090Z",
-      "state_hints": [
-        "PA"
-      ],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "1eb53e88f4f27e907bcd",
-      "title": "US midterms: FBI, ICE agents will not serve as election monitors, DOJ says - The Times of India",
-      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPOGNuS2p6bmlIYzZaaDItM3pyNU8yU0VVaV9JYkFuNG1wVC1kMTBuLVJvNEVOM3ZaNlpES1FiOGZWbllrYTlISEpiVjViN0JFX3hMdXQ5TDc2eHpvdDRneEdLWDRNNDRUdGlieHhxTUIxMlMzSnNCMF9SZzVkR2loeXlIb2lNaWktcXBBSE5mZVhFaWZaYUlHbElMVVdRNmNfRDdETWRaOVNFaS0zQW5lRU81azRkZUItN00wSUpINzc4Uktodk5Yemh6RmhLWFlPamJXTjNDVHJMZ9IB3wFBVV95cUxOdTc0MHhOYjJ5X1JNSE9BdVRac0NSNWlFaF91M0NUM3NJU1YtYWh5cXBRVjAzLWpUQXV0Skw1eDRqMzczU0V2TnlfRUNkVExVZGF4NzRwR21UOEpPN3pSLXZSY0hQc3FsTkp6RVRxbjNuR3otd2sxYk5pRkNJV1RYeGhaSl9VMklPS2M2VFhmMkhtWk9EU2pHa21ETHJEY0d0WUozNG1lcDZFd2NFMzZKRExMalhEcHFmdzFvMFBpak9JclM1WUh0OVVHdzZNVV9BWnNmTkFtcS04RDZTSjFj?oc=5",
-      "publisher": "The Times of India",
-      "published_at": "2026-10-29T06:59:00Z",
-      "detected_at": "2026-10-29T07:11:24.349142Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f8330d445709a7b54a28",
-      "title": "India: Mass Voter Roll Exclusions Deeply Flawed - Human Rights Watch",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNRnNBU3JBa256ZnpFQzVCcTFiS2kycWlNVVRzSlZPTlBIMnl4Z1JBQ3U1NWY5UW1oSEF0OUQzVDJ6aGM2RjJ6VTROZ3BYM2dFTWVjRFNRSnBiMFdDN2hETE9mbWNHU1lQY1F5MlB0WWRLRDhvUDBXRkJSSTM3cmo2QVBUMXpIaW9yNmc?oc=5",
-      "publisher": "Human Rights Watch",
-      "published_at": "2026-10-29T03:30:00Z",
-      "detected_at": "2026-10-29T03:58:05.481807Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
