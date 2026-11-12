@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12T07:14:18.873126Z",
+  "updated_at": "2026-11-12T16:00:23.728875Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 6,
@@ -262,6 +262,121 @@
     }
   ],
   "items": [
+    {
+      "id": "b4febe3a86502fd84d78",
+      "title": "Republicans Keep Admitting They\u2019re \u201cStupid\u201d After Election Wipeout - The New Republic",
+      "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNbUhlRVYxa2Q4M0Z1WVRXVGNnMk1KOElGcTh4V2Jzakg0OHQ0S0xzbWdQX0ViLXJaSWtPTm1RREViQzBmVjZSVzR5dWRxSXBoRzhlVml4Tld6ZXJQbUNLLWEyaEwzaGpNSEJNYWNFSHdYaWp6TWpydzFsMFlJcDM3VE1OeXpKYVV5Z09NWFc3SWQycVBtaEVuV3cwVThINmNXVFhDUjJZQl9zNE9x?oc=5",
+      "publisher": "The New Republic",
+      "published_at": "2026-11-12T14:27:53Z",
+      "detected_at": "2026-11-12T16:00:23.728875Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3a23cb809578a8bef88a",
+      "title": "Federal Court Rejects Request for Delaware Voter Information - WGMD - The Talk of Delmarva",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPbjV6X21fZWR2UW52TVlJSjFTUERfUjgzMU44Z2xMdENxQkg1MlYyZ0FSU1BoZkF1cFI1aWI2cXpkMkNZVlBPNlRvSWxhbGN1blR4SjlBd3Y4ekstTkk3QWV0VHpaUmRVVDZScVdBek1YeXY0Z0NpQ2xrM1NyYzUxMVY4Nk5tTHV6Z3c?oc=5",
+      "publisher": "WGMD - The Talk of Delmarva",
+      "published_at": "2026-11-12T14:23:15Z",
+      "detected_at": "2026-11-12T16:00:23.728875Z",
+      "state_hints": [
+        "DE"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d38f297a7d5e6c207dff",
+      "title": "Peltola campaign loses in court on rejected absentee ballots as she maintains narrow lead - 930 WFMD Free Talk",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQSUdNOEFrSEpMSW83ZWl1M0RjdWY4S3dkOVZzLTRIcWQyWklENHgwSDdZMGN2NVFyMm11cjExM2RONWt0RmktSWMxSkFYaGVoeVZOT0t3b3dmMTVDTzhMOUVTMEQ3TzVtT3FIWjZrWlhBRkZIWm11d3YzQUFBaTVnREFma2ZSaTNKblpNY2VoaHFIU0dMR3NWNDVOMVlfVlFCbmd3dGVkYkpjUVU4MTNhY0FhMVBEYm1LNWxfUy1Ocw?oc=5",
+      "publisher": "930 WFMD Free Talk",
+      "published_at": "2026-11-12T12:43:14Z",
+      "detected_at": "2026-11-12T16:00:23.728875Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "930 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "98d08cea93ac6846390d",
+      "title": "Federal appeals court hears arguments in Trump administration's voting lawsuit against California - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQYnl0NlZncllSN1RVcWdjWGllVEV2V3d4MXdENm1RaVpyM2ZEaFVXZHVRUERhWHZ0cHJqdWstY2VORmFsOEJHbWw0TEF5cmZORlpHSlNZWnltQlZ3TjctNDdSeGFwVDhiNngwX0lSZTlWQ3BreE8zOUgwNFdtMEZMMzBUM0dISlBGZzg3Z0dzZE9qX1NiaFl5QktUYUItdE1ycjdtMzFlV2dodEVyUEtKd280a9IBuAFBVV95cUxOSFdLdWRlYTBnWWVNaG9QaWc1R21sOG5neVAxVmtvQmh5ZVdraEdYOFN6aFJHZ3F1ckI2dWZ4QVZta2xGd2hkY2ktaF9leWc0el94NlZnRXdnb3kxR2hjOE90eV9HRm5FUlllNkR2dDBHbDBpdGFDS0NhSzNPenowUFIySUd3VFB0R19vTHpVVmFHdjlxMks1VzdTWTF3eUdpNDRJN3FKQUNpajJOdjNsSjRraHBXVXJ1?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-12T11:33:18Z",
+      "detected_at": "2026-11-12T16:00:23.728875Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "493b3a239c6147f29acc",
+      "title": "Federal judge rejects lawsuit over Delaware's voter registration data - Delawareonline.com",
+      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQWkN5N2h4cnQ1UjFha0hwV3RJQ3Eyd1ZPSEs3SHVGaUd3aTNwNjhQTjdUWW5oMzRpR3FwQlpvcEx4cUF1eW52OW42MjJFLVNXQTNtZjdTR0lUMDRiaDd3WFRjLWVUN2JmdzJIMHJYOVNpbjUwUUU4S3o1V081eEVTbzF6LXhHdm80b0NxN3pFbER4QTlxN2RqbUVRQTZlUy04QUZGWnFHS3h3RDRSYnM4bTBHU2txWGZuVUlkb0RnTklPcHQ2Y0M3cjJhN2Voand1dHpWbHlDYnlhMWdWTDBVU1ZUVFdMUHRrVnNkOHY3TFZqd3I2R2c?oc=5",
+      "publisher": "Delawareonline.com",
+      "published_at": "2026-11-12T10:42:00Z",
+      "detected_at": "2026-11-12T16:00:23.728875Z",
+      "state_hints": [
+        "DE"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "d15fc103a7648b84c972",
+      "title": "Democrat Mary Peltola loses court bid for rejected ballot list as Alaska count continues - Newswav",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPZTdkMU8yemNwN3NiS1VQbUYtMzR4bl9HZUZ2a0lOTGE1VVlYY3N5Rk0yZHc2ekNUYmVFNEhvTGp3X2pUbkVHeEtYUW9udWdzYXNqaHJScXBJRU1xTG9nNUNOZWFlQ2VybC1vTVdSVVNMVExyVkFrTlVvM2xBY2k1S21RYVJkSnpua3Y0SlJyckU1dFJyaGFZVUIyMVJqVmNVUDdtTmJsbTUxY3E5VTV5dDc0dVRyV2c?oc=5",
+      "publisher": "Newswav",
+      "published_at": "2026-11-12T10:02:53Z",
+      "detected_at": "2026-11-12T16:00:23.728875Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "f5a4dc9b0d7bdecc906c",
       "title": "Alaska judge rules against Democratic US \u200bSenate candidate\u2019s request for absentee ballot data - KELO-AM",
@@ -5002,113 +5117,6 @@
       "topic_hints": [
         "ballot_access",
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f596c7eda598aed03a7d",
-      "title": "Specter of Noncitizen Voting Haunts Stormy Midterm Forecast - The Washington Stand",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNRWFLU0NRVUFSdjhRaUdFVklfeUNlUW9yMzlVUHUyN0V2Y0ZCbTAwT21yR3gwcmJfWnFEZzFfb0tpRFFVWEM1TldFZ0xiZ0xzeEZ3WVNZeGhVTy1lM29ZTjNqMG9mOEhleGI0N0VlVnAxMFV4Yk9TLUpxUXRaWUNCcGNjMFphMTdDVlVLMHM5ekp0RTZ3TWZWdFFtVQ?oc=5",
-      "publisher": "The Washington Stand",
-      "published_at": "2026-10-29T12:26:52Z",
-      "detected_at": "2026-10-29T13:11:05.746090Z",
-      "state_hints": [
-        "WA"
-      ],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a00a3a239576c16323b6",
-      "title": "Tehama Registrar and DA: removing voters could mean exposure to litigation - Red Bluff Daily News",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQOGEzOEpGcjJyWEw2QWJQQ1ZmT1l1Y1h4OUhoRWtNWUExRWZBem1jQ1RwZjJzdnNyWEhGVG10M3lOWG01NGY4VFFHbVUwQkxNdEVUaVZWbngxUVFNcW9BWVpCYzhzUmVWOGFWRW1Ia0tpWWdhUVlReVQ2OUJpckRUdzZzNkFVWnk2Z0FzbG82ZGZpOUNzbmtMT0xPdV9fZGlKQ21xWTJCYzQxWlJfb2gxNDg4WmF4T3RteFRr?oc=5",
-      "publisher": "Red Bluff Daily News",
-      "published_at": "2026-10-29T11:01:12Z",
-      "detected_at": "2026-10-29T19:03:44.483379Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "849a616efe087d01a70d",
-      "title": "NJ-11 Election 2026: Meet the Candidates - The Montclair Pod",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1tWVJ1N2FCejJJdWFqcUZTdDA1THB1V2NVb0hwR0x1VXlPMk9HQk9UUzVhWjRDLTNlcXE4ZF8zUXdpNjZaN0RfNTdMejlLbDNJcXBYSGFtRHRkRGM?oc=5",
-      "publisher": "The Montclair Pod",
-      "published_at": "2026-10-29T10:10:57Z",
-      "detected_at": "2026-10-29T14:13:58.099642Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "11 ",
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "2544a7aaed60b6522a38",
-      "title": "TPM\u2019s Comprehensive Guide To How Senate Swing States Certify Their Elections\u2014And How Bad Actors Might Screw With It - Talking Points Memo",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPQ2Uyc01uTHo4UWtnNmkyMVFSMDNsUUV0U2dTODh5Yi1BaHI4RnlXTTFXaDF0dDFweU0talNueUdmR2dFYzU2QmNBTTVRQjZuNWdxSHZDeU8yV0JhdGJYaDJMVThVTFdVZVNPR2RpWkk4cXZoSnhVcmFhNmZNTFRNd0ZBYw?oc=5",
-      "publisher": "Talking Points Memo",
-      "published_at": "2026-10-29T10:00:00Z",
-      "detected_at": "2026-10-29T10:58:32.974166Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c6017153f1a1b55ed150",
-      "title": "Could Trump interfere with Election Day in Mass.? Officials are preparing - MassLive",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNd1ZoQmktb3FvQ0hBSXhnUmZUUEVteHpmX19TTFJSZkdFTVN0a253LWViZFVlNXgtS3ozZWRIR0pyS1o3bk5VTlhuQlgydjB5TWZ4V2FvSDFubi1CUkNUc0E0WXNXUW9uemN2QlU1U3dINEQ4SFJXV3VZa0FNRmFDRjBPUG94cE9zLUYzR2lIYjJBUFpIYkZRNVY2UlVsMk1MZ3l0bEhqNGVwXzlEdW1RTzB5bUNUS3R5dm0tQUk2XzVKdndN?oc=5",
-      "publisher": "MassLive",
-      "published_at": "2026-10-29T09:50:00Z",
-      "detected_at": "2026-10-29T10:01:25.419149Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5d01e89986d88e502f24",
-      "title": "Could Trump disrupt Election Day in Mass.? Officials are readying for the unknown - MassLive",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNd1ZoQmktb3FvQ0hBSXhnUmZUUEVteHpmX19TTFJSZkdFTVN0a253LWViZFVlNXgtS3ozZWRIR0pyS1o3bk5VTlhuQlgydjB5TWZ4V2FvSDFubi1CUkNUc0E0WXNXUW9uemN2QlU1U3dINEQ4SFJXV3VZa0FNRmFDRjBPUG94cE9zLUYzR2lIYjJBUFpIYkZRNVY2UlVsMk1MZ3l0bEhqNGVwXzlEdW1RTzB5bUNUS3R5dm0tQUk2XzVKdndN?oc=5",
-      "publisher": "MassLive",
-      "published_at": "2026-10-29T09:50:00Z",
-      "detected_at": "2026-10-29T10:58:32.974166Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
