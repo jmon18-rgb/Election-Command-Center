@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-13T02:40:42.939160Z",
+  "updated_at": "2026-11-13T11:01:45.122959Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 58
+    "advisory_related_headline_buckets": 22,
+    "advisory_related_headlines": 55
   },
   "advisory_related_headlines": [
     {
@@ -19,18 +19,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "91c2df379b9632b971dd",
-      "headline": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin",
-        "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -259,9 +247,42 @@
         "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "b4b5ec82e97d5afc3a23",
+      "headline": "Judge rejects feds\u2019 attempt to obtain Delaware\u2019s private voting data - WHYY",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [
+        "DE"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "e670dc721bed95deb4ed",
+      "title": "INEC fixes Nov 28 for mock elections, unveils measures to prevent 2023 glitches - Chronicle NG",
+      "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9RaWtnaldZeTV1TnVMc09yODlpMjl1UWlQdXkwdDhlUjhQM2tJOGY4VEF5b1dIV0ZSX1RCNjd3VTNza19fNHhkb2lLY3Q0TDM2RlM1WUFwdWpiYy1XMUs0b1kwQ0xWT3Bv?oc=5",
+      "publisher": "Chronicle NG",
+      "published_at": "2026-11-13T06:06:52Z",
+      "detected_at": "2026-11-13T11:01:45.122959Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "28 ",
+        "2023 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "62f671904975aac2ae67",
       "title": "Alaska Judge Denies Peltola Campaign Bid For Mid-Count Absentee Ballot Rejection Records - AOL.com",
@@ -315,6 +336,28 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "62e1d35c2602e7700266",
+      "title": "DOJ has lost 28 straight court fights over noncitizen voter lists. Here\u2019s why - Washington Times",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxOZWFWZjBua2FBZXphU1BGbVltZVhhVVN0ZFZQaElDbmVzR1FpeEtOdlQ4UmpkRFpENGRSMGZpUi0weVg4MllCbzRwUkdYVEF5S1NRb3RXUmljQUpsQWlQUlpKQlNpYWJPVlJTMnUtVXB1SEdmSS0zOEdqYXE2LUxRNm5jU2hKeWd5RmM1MmRidVJoUlNvT1JWOUk3QmFHWVRBeHlYOG51N21NdXJQU2pQSExWZkViUHJL?oc=5",
+      "publisher": "Washington Times",
+      "published_at": "2026-11-12T14:33:58Z",
+      "detected_at": "2026-11-13T11:01:45.122959Z",
+      "state_hints": [
+        "WA"
+      ],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "28 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5077,42 +5120,6 @@
       "publisher": "Spectrum News",
       "published_at": "2026-10-29T16:51:00Z",
       "detected_at": "2026-10-29T17:04:20.528051Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b614099d3ad6cee2b1e8",
-      "title": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNMUlsUlZqN1MyN3RFWmhGd19HMzJWY0pUNUxBenR0THlheWo4aWFjVGh2V0xNekxaNjFvRUtlNlROc29feWphWWhmV2ZJLVlMNnBwMTFiTnpSRFNmS2NTZVZ5OHNnTkp5SE1vQjNmcnNaZHRkSEFsanZyVjh6RDB4VUotT2hzd05QdnBPcU9fMnB5ai10YVZ6aFNNcUx0VndKLVFFNFFvOTA?oc=5",
-      "publisher": "Spectrum News",
-      "published_at": "2026-10-29T16:51:00Z",
-      "detected_at": "2026-10-29T19:21:20.614878Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b65f09f1694d6bada9d6",
-      "title": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNbzI0akZYSlNkRU5mcHVqYWZYV0dkSkJUNUQ1M2x4eklmUXZiRG82LTZOak5vSWIyNFpXa2xSb05mdi0zZ3dNWUVHOUxrTUZvS0ZVdmJkRmFQOHd6Mm5INXNiVnNSLWhEU0lHdFFhS1RaZTZrYzhVX1YtV1lxLW84WllXdU9IT2JtSWRpZW5OLUdTNy1nd3N5YjZzMUk?oc=5",
-      "publisher": "Spectrum News",
-      "published_at": "2026-10-29T16:51:00Z",
-      "detected_at": "2026-10-29T20:56:04.258850Z",
       "state_hints": [],
       "topic_hints": [
         "security",
