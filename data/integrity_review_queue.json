@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-13T11:01:45.122959Z",
+  "updated_at": "2026-11-13T18:32:14.040581Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 55
+    "advisory_related_headline_buckets": 23,
+    "advisory_related_headlines": 57
   },
   "advisory_related_headlines": [
     {
@@ -333,6 +333,25 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7ef2cb6dc62508d43d63",
+      "title": "Federal appeals court hears arguments in Trump administration's voting lawsuit against California - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQYnl0NlZncllSN1RVcWdjWGllVEV2V3d4MXdENm1RaVpyM2ZEaFVXZHVRUERhWHZ0cHJqdWstY2VORmFsOEJHbWw0TEF5cmZORlpHSlNZWnltQlZ3TjctNDdSeGFwVDhiNngwX0lSZTlWQ3BreE8zOUgwNFdtMEZMMzBUM0dISlBGZzg3Z0dzZE9qX1NiaFl5QktUYUItdE1ycjdtMzFlV2dodEVyUEtKd280aw?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-12T16:19:40Z",
+      "detected_at": "2026-11-13T18:32:14.040581Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
         "litigation"
       ],
       "headline_numbers_unverified": [],
@@ -5106,24 +5125,6 @@
       "topic_hints": [
         "ballot_access",
         "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "91c2df379b9632b971dd",
-      "title": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPME1XbHJUbEsycFJadUpiQVNOTklXU0U3WDVRN3p3YnYxYkphUlhOYTYxVkRZTGVKTWdaYUpMYk55NUM3M040eE5KVjJhaC1CYmxDak1mS0ljQ08xMDRmbjBNYklORGFld3NJUi05TG1RcVhSMVNDcmExWVJWVDNwYlVGS1R4aE5sUS1XR1hNUHZfTzNOcFpwQw?oc=5",
-      "publisher": "Spectrum News",
-      "published_at": "2026-10-29T16:51:00Z",
-      "detected_at": "2026-10-29T17:04:20.528051Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
