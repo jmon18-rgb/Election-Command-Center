@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-12T22:15:35.082901Z",
+  "updated_at": "2026-11-13T02:40:42.939160Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 57
+    "advisory_related_headline_buckets": 23,
+    "advisory_related_headlines": 58
   },
   "advisory_related_headlines": [
     {
@@ -25,7 +25,7 @@
     {
       "lead_id": "91c2df379b9632b971dd",
       "headline": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
-      "possibly_related_articles": 4,
+      "possibly_related_articles": 3,
       "distinct_publishers": 1,
       "state_hints": [],
       "topic_hints": [
@@ -262,6 +262,26 @@
     }
   ],
   "items": [
+    {
+      "id": "62f671904975aac2ae67",
+      "title": "Alaska Judge Denies Peltola Campaign Bid For Mid-Count Absentee Ballot Rejection Records - AOL.com",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQLWpmeVBOUG1KVjhaOThTc1NMdFNPeF9ZbUVLZUU1d3hSSVdSMW9wMzIzb0h5WTZXLW1oR29Ub0FfSTl0d01Ic1AwckZXa0c4dHJ0QVhwd2lMNXpoUTRrVm1FMy04ZklVZnVKV0VqUDFoN2FKU1F6Z1ZGdUxOZHlpNnh3M1BoYnM?oc=5",
+      "publisher": "AOL.com",
+      "published_at": "2026-11-12T20:33:18Z",
+      "detected_at": "2026-11-13T02:40:42.939160Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "a73580240b772b1c222d",
       "title": "Alaska Judge Denies Peltola Campaign Bid For Mid-Count Absentee Ballot Rejection Records - Tampa Free Press",
@@ -5093,24 +5113,6 @@
       "publisher": "Spectrum News",
       "published_at": "2026-10-29T16:51:00Z",
       "detected_at": "2026-10-29T20:56:04.258850Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d2be9f03859c4fbb9157",
-      "title": "Trump administration says FBI, ICE will not monitor midterm elections - Spectrum News",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPSDhPUTNBcnVnTmJfUW54aFFZZDBOazNEdExJWVBnSGJPbVZWLTdhX2M4SDZOdUxESGowNi12MTVZdUgzZVRMX0ZwMzNLVTJ1c0RZV1ZmMlU0YUoyektVQTN0UkliNENPc3MxZXhWeUg4d0RYbS0yYVlaRkFCRzhfZ2JiVG8yVlBrYkdSMndkSllxSHl5OFg1ag?oc=5",
-      "publisher": "Spectrum News",
-      "published_at": "2026-10-29T16:51:00Z",
-      "detected_at": "2026-10-29T23:48:57.693451Z",
       "state_hints": [],
       "topic_hints": [
         "security",
