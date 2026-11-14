@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-14T00:21:11.236514Z",
+  "updated_at": "2026-11-14T07:37:26.230666Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 4,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 56
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 59
   },
   "advisory_related_headlines": [
     {
@@ -19,20 +19,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "54ad5ea762c6d948ae99",
-      "headline": "Mississippi absentee voting surges ahead of 2026 General Election - AOL.com",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "MS"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -96,6 +82,20 @@
       "topic_hints": [
         "election_admin",
         "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "54ad5ea762c6d948ae99",
+      "headline": "Mississippi absentee voting surges ahead of 2026 General Election - AOL.com",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -284,6 +284,23 @@
       "promoted_to_incident_id": null
     },
     {
+      "id": "1135407b0dfa731f6aa1",
+      "title": "County elections board certifies race results - The Wilson Times",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxONkhabTk1b3o4d0VSMVZPWmN0MWw5OXE4bUFLNS0yelI2LWxicnU1M1BHbklDZExHbnpVOWN3dXRnUVhsa0NLci0yVlJPcTNEdEFBckZrRUlmM0EyMmZDdXR2Y0JwSzNRSVRxN24wdWI3N25fZ095Y0xyNHQ4T21DQXhFUTN0a1Bk?oc=5",
+      "publisher": "The Wilson Times",
+      "published_at": "2026-11-13T19:23:04Z",
+      "detected_at": "2026-11-14T07:37:26.230666Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "3ed2c6eaf266413638f3",
       "title": "County elections board certifies race results - The Wilson Times",
       "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQSlota2otUkc4WkRZY2RzQ0lNX2F5VURkekk2NkxkQVUtUE1TMUhZSVFsZFdrN3ozajc1MXcwYjZMU1NvdFA3Wm1iNkRfazF6eGQxTVI3d1lUMDVBc0prc0JPZjBCTzY2SlFqSU9iUTZKdGlCNnhKYWpldVVsV1dpbnA4a181bW8?oc=5",
@@ -295,6 +312,26 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "fd2e5b684896d58cd92b",
+      "title": "Democratic state officials, USPS battle over Trump mail ballot rule ahead of 2028 election - Bend Bulletin",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxPMHNEUmRQVm9vNF8temh3a3hMM2hUaGJUbk04VXQ0Zm5EMlZjYjB3T19FN1BUaE5uamkwQTJKeENGSDJrUHNQUmh4WWk1V1IyUFpaTERkcUl0MkdRYVFTRVBXSzRwaVIzVmRFUHFITXhZSzEyVlFUTldTTk1fY1JQcC1VWUo1TTY4c21MbFVBU05hazNIS01TVVhsTGFYQ2txZFpMTlduZXRCWHBVNWpidTBIM0k2SjJVNXI3dWMxaTJwbjhn?oc=5",
+      "publisher": "Bend Bulletin",
+      "published_at": "2026-11-13T19:18:28Z",
+      "detected_at": "2026-11-14T07:37:26.230666Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2028 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -383,6 +420,26 @@
       "publisher": "Tampa Free Press",
       "published_at": "2026-11-12T20:29:20Z",
       "detected_at": "2026-11-12T22:15:35.082901Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "dfc7f468ed3b5ed4d0e8",
+      "title": "Alaska judge rules against Democratic US \u200bSenate candidate's request for absentee ballot data - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOQWN5S25TbURDMXBFUXJPdmpKODcxdnRfM1dXOHQ5M1VHSlJtTzROQ3RpaVV6elVteUxOZ0Z3NVBZazNSQXM1bnZvLTE2dEprVjBFZTN0eTI2alZha2RLOTdfLTBwNGE4V05OQUlMQlMyZEVKcF9rMGZaTlZNMEF4YS1MSFJqUlFYNkNqbVU5X2xzMW1DNkRmbUxjSUNVU1BzTkRiOXo2NnA5N3Z1Rjc0TU1uaGtlak1lMUpQYXkyakJDOU5IUlVJ?oc=5",
+      "publisher": "Reuters",
+      "published_at": "2026-11-12T20:10:02Z",
+      "detected_at": "2026-11-14T07:37:26.230666Z",
       "state_hints": [
         "AK"
       ],
@@ -5067,63 +5124,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "120380bf485b1f418d41",
-      "title": "How the Election Integrity Network Is Undermining Elections - American Oversight",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOQUNRWFBVTDZhWUxaanZwVlhEMEtDTFRvUkxVU3pGWGdEb0tXV2dIR3FhNTlMQk53TFktVjFnTi1xMGpwY2hFYV92LVJzTWQ2V2M4Q01mZDFmWDhTeUtnNXRKTmZnRE1mREtnZjVOa29KWHNCdUdzUThsbXhuWUhMdVhXd1JsZE5uelMwSXAxMkJSbTNn?oc=5",
-      "publisher": "American Oversight",
-      "published_at": "2026-10-29T19:58:42Z",
-      "detected_at": "2026-10-29T21:54:01.820909Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a4491509667b9416c59d",
-      "title": "Mississippi absentee voting surges ahead of 2026 General Election - WJTV",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYkZJQTNQaWNpOWU4MGxjazBDMEtvMEI3T01Td2VBc2xEc3R1VjZfSzZoN3F0Slk2NGFocXJ4ZWlhOFBEMWo3OGVTaEpVMEFTb0wzVmI2Z0I0dzdLbU14bVBxOE9lUG9jN0VaY05SdWI0a2l5Q1dqRlplY0RnUWdubXR0X2RRYW1jam5mc1JsUFU2VHRqVHlEQkM4TGFEVnlCc01SY1Q0YkbSAagBQVVfeXFMUGJGSUEzUGljaTllODBsY2swQzBLbzBCN09NU3dlQXNsRHN0dVY2X0s2aDdxdEpZNjRhaHFyeGVpYThQRDFqNzhlU2hKVTBBU29MM1ZiNmdCNHc3S21NeG1QcThPZVBvYzdFWmNOUnViNGtpeUNXakZaZWNEZ1Fnbm10dF9kUWFtY2puZnNSbFBVNlR0alR5REJDOExhRFZ5QnNNUmNUNGJG?oc=5",
-      "publisher": "WJTV",
-      "published_at": "2026-10-29T18:44:56Z",
-      "detected_at": "2026-10-30T02:09:07.509102Z",
-      "state_hints": [
-        "MS"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "60714bd50485ae865eed",
-      "title": "Election expert sounds alarm on how noncitizens are landing on voter rolls - AOL.com",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNeFlxcjJaaGVVODRLQjFCcmJtTXpxWTVHa0x1T3ByLXNxb2dFLXpWSVd5emN2RTlDSHdhcjg0b0FvTm15Tl9BSDRJUE1KU19mMTZzT2lDWHJVamhNVVBrNTZFOHVhOGhYbmk5LTRKOW16WDJaUmRqMG41RlVpQmo3ZFp0OHhaMExTTk0xZw?oc=5",
-      "publisher": "AOL.com",
-      "published_at": "2026-10-29T18:41:22Z",
-      "detected_at": "2026-10-30T10:01:36.017664Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
         "election_admin"
       ],
       "headline_numbers_unverified": [],
