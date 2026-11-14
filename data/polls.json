@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-11-13T18:32:14.397938Z",
+  "updated_at": "2026-11-14T00:21:11.597906Z",
   "generic_ballot": {
     "summary": {
-      "dem": 52.1,
-      "rep": 43.5,
-      "margin": 8.6,
-      "pollsters": 8,
+      "dem": 52.0,
+      "rep": 43.4,
+      "margin": 8.5,
+      "pollsters": 5,
       "window_days": 14,
       "latest_field_end": "2026-11-02",
       "method": "Equal-weight mean of the latest nonpartisan wave per pollster within the stated field-end window; NOT a forecast or a statistical confidence interval."
@@ -845,7 +845,7 @@
         "rep_name": "Ken Paxton",
         "other": 1.0,
         "other_name": "Ted Brown",
-        "first_seen_at": "2026-11-13T18:32:14.397938Z",
+        "first_seen_at": "2026-11-14T00:21:11.597906Z",
         "release_date": null,
         "question_id": "1dad712d-090f-46bb-b637-ce5f5c19a8d7",
         "sample_population": "lv",
@@ -869,7 +869,7 @@
           "rep_name": "Ken Paxton",
           "other": 1.0,
           "other_name": "Ted Brown",
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "1dad712d-090f-46bb-b637-ce5f5c19a8d7",
           "sample_population": "lv",
@@ -1168,12 +1168,7 @@
           "other": 1.4,
           "other_name": "Ted Brown",
           "first_seen_at": "2026-10-23T12:55:59.859181+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://cdn.votehub.com/pdfs/VoteHub_Verasight_Oct_2026_Texas_Report_D8A925D0.pdf",
-          "sample_population": "lv",
-          "question_id": "042da3eb-c5fa-435f-94ff-d68bf8fe5311",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "affba7ed-1250-40bd-a1fb-cb33b6fe0846",
@@ -1228,12 +1223,7 @@
           "other": 2.0,
           "other_name": "Ted Brown",
           "first_seen_at": "2026-10-23T13:52:42.784085+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://texaspublicopinionresearch.substack.com/p/october-poll-in-texas-general-election",
-          "sample_population": "lv",
-          "question_id": "a22cf620-b793-4f9e-b87b-d3f3622fa7eb",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
@@ -1646,25 +1636,9 @@
           "other_name": "Ted Brown",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "ecd22fdf-f847-4f56-bb4a-40e120ba4a81",
-          "field_end": "2026-09-09",
-          "pollster": "InsiderAdvantage",
-          "dem": 47.1,
-          "rep": 45.6,
-          "margin": 1.5,
-          "sample_size": 1200,
-          "partisan_lean": "R",
-          "dem_name": "James Talarico",
-          "rep_name": "Ken Paxton",
-          "other": 2.2,
-          "other_name": "Ted Brown",
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 44,
+      "recent_poll_count": 43,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -2003,12 +1977,7 @@
           "other": 1.4,
           "other_name": "Walter Kristy",
           "first_seen_at": "2026-10-25T18:39:58.116935Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://insideradvantage.com/insideradvantage-senate-surveys-mi-el-sayed-47-rogers-46-ia-hinson-47-turek-45-oh-brown-47-husted-44/",
-          "sample_population": "lv",
-          "question_id": "1313d61f-e3a8-48ca-963f-8547be24f9ba",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "d2be96f5-7278-4294-92a5-7e0e4fa03dd4",
@@ -2412,25 +2381,9 @@
           "other_name": "Timothy Long",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "9da96e59-1c19-436a-9355-2e4c6ff8b5f7",
-          "field_end": "2026-09-09",
-          "pollster": "Trafalgar Group",
-          "dem": 46.3,
-          "rep": 44.8,
-          "margin": 1.5,
-          "sample_size": 1079,
-          "partisan_lean": "R",
-          "dem_name": "Abdul El-Sayed",
-          "rep_name": "Mike Rogers",
-          "other": 0.8,
-          "other_name": "Lydia Christensen",
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 40,
+      "recent_poll_count": 39,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -2452,7 +2405,7 @@
         "rep_name": "Greg Abbott",
         "other": 2.0,
         "other_name": "Pat Dixon",
-        "first_seen_at": "2026-11-13T18:32:14.397938Z",
+        "first_seen_at": "2026-11-14T00:21:11.597906Z",
         "release_date": null,
         "question_id": "9cfe90cc-f4c5-437a-81c8-1d45d72def68",
         "sample_population": "lv",
@@ -2476,7 +2429,7 @@
           "rep_name": "Greg Abbott",
           "other": 2.0,
           "other_name": "Pat Dixon",
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "9cfe90cc-f4c5-437a-81c8-1d45d72def68",
           "sample_population": "lv",
@@ -2541,7 +2494,7 @@
           "rep_name": "Greg Abbott",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "5b7c1e5d-e892-47f7-b978-dd37dd3016f9",
           "sample_population": "lv",
@@ -2736,7 +2689,7 @@
           "release_date": null,
           "question_id": "d1c17272-a2aa-47a0-b3dc-9562ce074fff",
           "sample_population": "lv",
-          "upstream_posted_date": "2026-10-23",
+          "upstream_posted_date": null,
           "source_poll_url": "https://cdn.votehub.com/pdfs/VoteHub_Verasight_Oct_2026_Texas_Report_D8A925D0.pdf",
           "date_provenance": "PollResults ingestion date, NOT public release date",
           "model_source": "pollresults_secondary_fallback",
@@ -2795,12 +2748,7 @@
           "other": 1.0,
           "other_name": "Pat Dixon",
           "first_seen_at": "2026-10-23T13:52:42.784085+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://texaspublicopinionresearch.substack.com/p/october-poll-in-texas-general-election",
-          "sample_population": "lv",
-          "question_id": "28b65d52-194c-49da-ab5a-279a73ddd6d1",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "393edd18-28ac-4247-941b-c4cb665a1e91",
@@ -3621,25 +3569,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "9d8b464b-d0f1-4fa9-a1c2-f611d332cb71",
-          "field_end": "2026-09-09",
-          "pollster": "Change Research",
-          "dem": 47.0,
-          "rep": 44.0,
-          "margin": 3.0,
-          "sample_size": 1107,
-          "partisan_lean": "D",
-          "dem_name": "David Jolly",
-          "rep_name": "Byron Donalds",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 26,
+      "recent_poll_count": 25,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -4121,25 +4053,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "9d8b464b-d0f1-4fa9-a1c2-f611d332cb71",
-          "field_end": "2026-09-09",
-          "pollster": "Change Research",
-          "dem": 47.0,
-          "rep": 47.0,
-          "margin": 0.0,
-          "sample_size": 1107,
-          "partisan_lean": "D",
-          "dem_name": "Angie Nixon",
-          "rep_name": "Ashley Moody",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 26,
+      "recent_poll_count": 25,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -4204,7 +4120,7 @@
           "rep_name": "Mike Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "f776fb19-8dd8-43d6-8509-3d1ddaa1021b",
           "sample_population": "lv",
@@ -4429,7 +4345,7 @@
           "rep_name": "Rick Jackson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "4a40e2b7-6392-4f2a-bf96-106a2b30beda",
           "sample_population": "lv",
@@ -4841,7 +4757,7 @@
         "rep_name": "Gregg Hull",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-13T18:32:14.397938Z",
+        "first_seen_at": "2026-11-14T00:21:11.597906Z",
         "release_date": null,
         "question_id": "de6f445a-7d37-40b4-945b-4c8b5e4c4c54",
         "sample_population": "lv",
@@ -4865,7 +4781,7 @@
           "rep_name": "Gregg Hull",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "de6f445a-7d37-40b4-945b-4c8b5e4c4c54",
           "sample_population": "lv",
@@ -4930,7 +4846,7 @@
         "rep_name": "Larry Marker",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-13T18:32:14.397938Z",
+        "first_seen_at": "2026-11-14T00:21:11.597906Z",
         "release_date": null,
         "question_id": "dca9ba8b-08fb-4649-9f51-30d1de8ddeb7",
         "sample_population": "lv",
@@ -4954,7 +4870,7 @@
           "rep_name": "Larry Marker",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "dca9ba8b-08fb-4649-9f51-30d1de8ddeb7",
           "sample_population": "lv",
@@ -5104,7 +5020,7 @@
         "rep_name": "Darren Bailey",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-13T18:32:14.397938Z",
+        "first_seen_at": "2026-11-14T00:21:11.597906Z",
         "release_date": null,
         "question_id": "a00d2d13-0eaa-476d-b2c2-f64fa8dad938",
         "sample_population": "lv",
@@ -5128,7 +5044,7 @@
           "rep_name": "Darren Bailey",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "a00d2d13-0eaa-476d-b2c2-f64fa8dad938",
           "sample_population": "lv",
@@ -5177,7 +5093,7 @@
         "rep_name": "Don Tracy",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-13T18:32:14.397938Z",
+        "first_seen_at": "2026-11-14T00:21:11.597906Z",
         "release_date": null,
         "question_id": "683f2b95-c5c1-40e8-ae1b-5b6c3cd1404f",
         "sample_population": "lv",
@@ -5201,7 +5117,7 @@
           "rep_name": "Don Tracy",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "683f2b95-c5c1-40e8-ae1b-5b6c3cd1404f",
           "sample_population": "lv",
@@ -5303,7 +5219,7 @@
         "rep_name": "Jon Husted",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-13T18:32:14.397938Z",
+        "first_seen_at": "2026-11-14T00:21:11.597906Z",
         "release_date": null,
         "question_id": "0dca5afc-824e-4584-baa4-2f028a5b2592",
         "sample_population": "lv",
@@ -5327,7 +5243,7 @@
           "rep_name": "Jon Husted",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "0dca5afc-824e-4584-baa4-2f028a5b2592",
           "sample_population": "lv",
@@ -5565,12 +5481,7 @@
           "other": 1.7,
           "other_name": "Gregory Levy",
           "first_seen_at": "2026-10-25T18:39:58.116935Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://insideradvantage.com/insideradvantage-senate-surveys-mi-el-sayed-47-rogers-46-ia-hinson-47-turek-45-oh-brown-47-husted-44/",
-          "sample_population": "lv",
-          "question_id": "0286e6b4-62b2-4396-ab6e-83a01bb2b02c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "a1c11dbe-2c91-49d2-b8c6-47bc2ba09d8c",
@@ -5857,25 +5768,9 @@
           "other_name": "Gregory Levy",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "5506608a-6ab8-4d78-a80e-01a18da64633",
-          "field_end": "2026-09-09",
-          "pollster": "InsiderAdvantage",
-          "dem": 47.3,
-          "rep": 41.9,
-          "margin": 5.4,
-          "sample_size": 1200,
-          "partisan_lean": "R",
-          "dem_name": "Sherrod Brown",
-          "rep_name": "Jon Husted",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 30,
+      "recent_poll_count": 29,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -5982,7 +5877,7 @@
           "rep_name": "Susan Collins",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "df267f5f-6020-4e76-b018-73697a24ed2d",
           "sample_population": "lv",
@@ -6571,12 +6466,7 @@
           "other": 3.1,
           "other_name": "Thomas Laehn",
           "first_seen_at": "2026-10-25T18:39:58.116935Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://insideradvantage.com/insideradvantage-senate-surveys-mi-el-sayed-47-rogers-46-ia-hinson-47-turek-45-oh-brown-47-husted-44/",
-          "sample_population": "lv",
-          "question_id": "47cd4a04-bf1b-4438-9600-9d5b76f31dd8",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "714e6be6-64cd-419c-a163-9bd660f5c5f7",
@@ -7388,7 +7278,7 @@
         "rep_name": "Vivek Ramaswamy",
         "other": null,
         "other_name": null,
-        "first_seen_at": "2026-11-13T18:32:14.397938Z",
+        "first_seen_at": "2026-11-14T00:21:11.597906Z",
         "release_date": null,
         "question_id": "b68b9512-ce30-4b28-b6e9-3cb3695ee944",
         "sample_population": "lv",
@@ -7412,7 +7302,7 @@
           "rep_name": "Vivek Ramaswamy",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "b68b9512-ce30-4b28-b6e9-3cb3695ee944",
           "sample_population": "lv",
@@ -8336,13 +8226,11 @@
           "other_name": null,
           "first_seen_at": "2026-11-02T20:54:55.564125+00:00",
           "release_date": null,
-          "question_id": "56916ac6-ce85-4f86-a798-dbffb7297e80",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-11-02",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.survey160.com/methodological-research-blog/survey-160-pre-election-surveys-in-four-states",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "56916ac6-ce85-4f86-a798-dbffb7297e80",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "874e66b5-2a4c-4aca-98bf-0a195be794af",
@@ -9064,7 +8952,7 @@
           "rep_name": "Michele Tafoya",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "36f299e4-042c-47f7-abbb-6d8fec55cc7a",
           "sample_population": "lv",
@@ -9404,7 +9292,7 @@
           "rep_name": "Roger Marshall",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "07291bee-5ea2-4d79-afff-618eeab48de9",
           "sample_population": "lv",
@@ -10532,7 +10420,7 @@
           "rep_name": "Ty Masterson",
           "other": null,
           "other_name": null,
-          "first_seen_at": "2026-11-13T18:32:14.397938Z",
+          "first_seen_at": "2026-11-14T00:21:11.597906Z",
           "release_date": null,
           "question_id": "b085481d-ea9b-4c3f-a975-4c8cd8550b4b",
           "sample_population": "lv",
@@ -10661,12 +10549,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T19:44:04.777310+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://globalstrategygroup.app.box.com/s/vwojuwfb4y52lmvw4r5c5b60svfyrmqc",
-          "sample_population": "lv",
-          "question_id": "ed252ecd-d1e0-4188-891d-23a6acd4c7a4",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "d25ef4d2-1ed1-441e-9934-82e258d3931e",
@@ -10750,269 +10633,6 @@
         }
       ],
       "recent_poll_count": 13,
-      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
-    },
-    {
-      "race_code": "SC-SEN",
-      "race_type": "senate",
-      "state": "SC",
-      "district": "SEN",
-      "latest_field_end": "2026-11-01",
-      "latest": {
-        "poll_id": "efae558e-7c8c-48ab-b133-84962aaa054f",
-        "field_end": "2026-11-01",
-        "pollster": "Trafalgar Group",
-        "dem": 45.5,
-        "rep": 47.5,
-        "margin": -2.0,
-        "sample_size": 1091,
-        "partisan_lean": "R",
-        "dem_name": "Annie Andrews",
-        "rep_name": "Darline Graham",
-        "other": 1.8,
-        "other_name": "Kasie Whitener",
-        "first_seen_at": "2026-11-02T19:08:59.233833+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-11-02",
-        "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-senate-general-1102/",
-        "sample_population": "lv",
-        "question_id": "5c6fa034-87e0-491a-b307-dff416f657bb",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
-      },
-      "polls": [
-        {
-          "poll_id": "efae558e-7c8c-48ab-b133-84962aaa054f",
-          "field_end": "2026-11-01",
-          "pollster": "Trafalgar Group",
-          "dem": 45.5,
-          "rep": 47.5,
-          "margin": -2.0,
-          "sample_size": 1091,
-          "partisan_lean": "R",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": 1.8,
-          "other_name": "Kasie Whitener",
-          "first_seen_at": "2026-11-02T19:08:59.233833+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-11-02",
-          "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-senate-general-1102/",
-          "sample_population": "lv",
-          "question_id": "5c6fa034-87e0-491a-b307-dff416f657bb",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "manual-SC-Resonance-2026-10-30",
-          "field_end": "2026-10-30",
-          "pollster": "Resonance Research",
-          "dem": 46.2,
-          "rep": 44.6,
-          "margin": 1.6,
-          "sample_size": 600,
-          "partisan_lean": "R",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": "2026-11-02T22:53:40.272706Z",
-          "release_date": null
-        },
-        {
-          "poll_id": "799adc95-7605-40d1-b686-80b11548e471",
-          "field_end": "2026-10-29",
-          "pollster": "Patinkin Research Strategies",
-          "dem": 48.0,
-          "rep": 43.0,
-          "margin": 5.0,
-          "sample_size": 500,
-          "partisan_lean": "D",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": 3.0,
-          "other_name": "Kasie Whitener",
-          "first_seen_at": "2026-10-30T21:50:09.996702+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-30",
-          "source_poll_url": "https://static1.squarespace.com/static/54512d3ce4b07de69d8320c7/t/6ae4f0f24aec54388059c463/1793388786248/PRS%2BProjectVOTE.SCSW+Poll+Release.103026.pdf",
-          "sample_population": "lv",
-          "question_id": "910b183b-14f5-4e3f-93ec-553d53b4d8e9",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "f563358e-6428-4c39-b20d-84027b8795a4",
-          "field_end": "2026-10-26",
-          "pollster": "The New York Times/Siena University",
-          "dem": 47.76,
-          "rep": 48.47,
-          "margin": -0.71,
-          "sample_size": 707,
-          "partisan_lean": "",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": "2026-11-09T23:50:14.446360Z",
-          "release_date": null,
-          "question_id": "4377654d-c6b1-49d1-9540-cf833100a098",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-10-28",
-          "source_poll_url": "https://www.nytimes.com/interactive/2026/10/28/polls/times-siena-sc-poll-toplines.html",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
-        },
-        {
-          "poll_id": "57649163-682d-4897-bea8-5e8679901359",
-          "field_end": "2026-10-25",
-          "pollster": "The Citadel Poll",
-          "dem": 39.0,
-          "rep": 42.0,
-          "margin": -3.0,
-          "sample_size": 890,
-          "partisan_lean": "",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": 2.0,
-          "other_name": "Mark Hackett",
-          "first_seen_at": "2026-11-08T23:46:38.339536Z",
-          "release_date": null,
-          "question_id": "d2ef23bf-014c-470a-8640-7986e948b9e9",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-10-27",
-          "source_poll_url": "https://poll.citadel.edu/2026/10/27/sc-voters-look-to-pass-the-torch-in-the-midterms/",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
-        },
-        {
-          "poll_id": "3e68a4bb-c6e6-4e11-b1f3-108da5969af6",
-          "field_end": "2026-10-25",
-          "pollster": "Targoz Market Research",
-          "dem": 46.0,
-          "rep": 47.0,
-          "margin": -1.0,
-          "sample_size": 895,
-          "partisan_lean": "",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": 2.0,
-          "other_name": "Kasie Whitener",
-          "first_seen_at": "2026-10-27T13:00:11.946098+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-27",
-          "source_poll_url": "https://www.foxcarolina.com/2026/10/26/new-poll-shows-neck-and-neck-senate-race-double-digit-lead-governor-sc-midterms/",
-          "sample_population": "lv",
-          "question_id": "f3d4f4b1-d2ea-4ac6-9f9e-b956c489e915",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "379b9273-5e8d-461f-81ff-893c7e2cb8e6",
-          "field_end": "2026-10-24",
-          "pollster": "East Carolina University Center for Survey Research",
-          "dem": 47.3,
-          "rep": 51.2,
-          "margin": -3.9,
-          "sample_size": 955,
-          "partisan_lean": "",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": 0.7,
-          "other_name": "Mark Hackett",
-          "first_seen_at": "2026-10-29T17:58:27.289191+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-29",
-          "source_poll_url": "https://surveyresearch-ecu.reportablenews.com/pr/ecu-poll-finds-graham-leading-andrews-by-four-points",
-          "sample_population": "lv",
-          "question_id": "b07ee80b-8279-4a96-ad53-2bfd1255ac26",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "29e89f16-9a50-475b-b548-6cfb19442c96",
-          "field_end": "2026-10-21",
-          "pollster": "Impact Research",
-          "dem": 45.0,
-          "rep": 44.0,
-          "margin": 1.0,
-          "sample_size": 800,
-          "partisan_lean": "D",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": "2026-10-23T15:31:34.986001+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://freshstartpac.org/wp-content/uploads/2026/10/SC-Senate-Track-Public-Memo.pdf",
-          "sample_population": "lv",
-          "question_id": "2a996f3f-1f1b-4a29-97e3-f1545b612e9b",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
-        },
-        {
-          "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
-          "field_end": "2026-10-18",
-          "pollster": "Trafalgar Group",
-          "dem": 45.6,
-          "rep": 48.6,
-          "margin": -3.0,
-          "sample_size": 1095,
-          "partisan_lean": "R",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": 3.9,
-          "other_name": "Kasie Whitener",
-          "first_seen_at": "2026-10-19T02:45:16.975245+00:00",
-          "release_date": null
-        },
-        {
-          "poll_id": "c4cd7d22-a9be-4bb2-b532-b1f9f3bff5ae",
-          "field_end": "2026-09-29",
-          "pollster": "InsiderAdvantage",
-          "dem": 45.0,
-          "rep": 46.0,
-          "margin": -1.0,
-          "sample_size": 1200,
-          "partisan_lean": "R",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": 3.0,
-          "other_name": "Mark Hackett",
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "b3c26b29-cc2f-472a-b43e-e75efff555f4",
-          "field_end": "2026-09-25",
-          "pollster": "Trafalgar Group",
-          "dem": 42.3,
-          "rep": 43.4,
-          "margin": -1.1,
-          "sample_size": 1087,
-          "partisan_lean": "R",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        },
-        {
-          "poll_id": "294639ed-4101-4a83-934e-ebd6036794d7",
-          "field_end": "2026-09-09",
-          "pollster": "InsiderAdvantage",
-          "dem": 43.2,
-          "rep": 45.1,
-          "margin": -1.9,
-          "sample_size": 1200,
-          "partisan_lean": "R",
-          "dem_name": "Annie Andrews",
-          "rep_name": "Darline Graham",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
-        }
-      ],
-      "recent_poll_count": 12,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -11699,6 +11319,248 @@
           "partisan_lean": "",
           "dem_name": "Kathy Hochul",
           "rep_name": "Bruce Blakeman",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": null,
+          "release_date": null
+        }
+      ],
+      "recent_poll_count": 11,
+      "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
+    },
+    {
+      "race_code": "SC-SEN",
+      "race_type": "senate",
+      "state": "SC",
+      "district": "SEN",
+      "latest_field_end": "2026-11-01",
+      "latest": {
+        "poll_id": "efae558e-7c8c-48ab-b133-84962aaa054f",
+        "field_end": "2026-11-01",
+        "pollster": "Trafalgar Group",
+        "dem": 45.5,
+        "rep": 47.5,
+        "margin": -2.0,
+        "sample_size": 1091,
+        "partisan_lean": "R",
+        "dem_name": "Annie Andrews",
+        "rep_name": "Darline Graham",
+        "other": 1.8,
+        "other_name": "Kasie Whitener",
+        "first_seen_at": "2026-11-02T19:08:59.233833+00:00",
+        "release_date": null,
+        "upstream_posted_date": "2026-11-02",
+        "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-senate-general-1102/",
+        "sample_population": "lv",
+        "question_id": "5c6fa034-87e0-491a-b307-dff416f657bb",
+        "date_provenance": "PollResults ingestion date, NOT public release date"
+      },
+      "polls": [
+        {
+          "poll_id": "efae558e-7c8c-48ab-b133-84962aaa054f",
+          "field_end": "2026-11-01",
+          "pollster": "Trafalgar Group",
+          "dem": 45.5,
+          "rep": 47.5,
+          "margin": -2.0,
+          "sample_size": 1091,
+          "partisan_lean": "R",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": 1.8,
+          "other_name": "Kasie Whitener",
+          "first_seen_at": "2026-11-02T19:08:59.233833+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-11-02",
+          "source_poll_url": "https://www.thetrafalgargroup.org/news/sc-senate-general-1102/",
+          "sample_population": "lv",
+          "question_id": "5c6fa034-87e0-491a-b307-dff416f657bb",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "manual-SC-Resonance-2026-10-30",
+          "field_end": "2026-10-30",
+          "pollster": "Resonance Research",
+          "dem": 46.2,
+          "rep": 44.6,
+          "margin": 1.6,
+          "sample_size": 600,
+          "partisan_lean": "R",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-11-02T22:53:40.272706Z",
+          "release_date": null
+        },
+        {
+          "poll_id": "799adc95-7605-40d1-b686-80b11548e471",
+          "field_end": "2026-10-29",
+          "pollster": "Patinkin Research Strategies",
+          "dem": 48.0,
+          "rep": 43.0,
+          "margin": 5.0,
+          "sample_size": 500,
+          "partisan_lean": "D",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": 3.0,
+          "other_name": "Kasie Whitener",
+          "first_seen_at": "2026-10-30T21:50:09.996702+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-30",
+          "source_poll_url": "https://static1.squarespace.com/static/54512d3ce4b07de69d8320c7/t/6ae4f0f24aec54388059c463/1793388786248/PRS%2BProjectVOTE.SCSW+Poll+Release.103026.pdf",
+          "sample_population": "lv",
+          "question_id": "910b183b-14f5-4e3f-93ec-553d53b4d8e9",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "f563358e-6428-4c39-b20d-84027b8795a4",
+          "field_end": "2026-10-26",
+          "pollster": "The New York Times/Siena University",
+          "dem": 47.76,
+          "rep": 48.47,
+          "margin": -0.71,
+          "sample_size": 707,
+          "partisan_lean": "",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-11-09T23:50:14.446360Z",
+          "release_date": null,
+          "question_id": "4377654d-c6b1-49d1-9540-cf833100a098",
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-10-28",
+          "source_poll_url": "https://www.nytimes.com/interactive/2026/10/28/polls/times-siena-sc-poll-toplines.html",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
+        },
+        {
+          "poll_id": "57649163-682d-4897-bea8-5e8679901359",
+          "field_end": "2026-10-25",
+          "pollster": "The Citadel Poll",
+          "dem": 39.0,
+          "rep": 42.0,
+          "margin": -3.0,
+          "sample_size": 890,
+          "partisan_lean": "",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": 2.0,
+          "other_name": "Mark Hackett",
+          "first_seen_at": "2026-11-08T23:46:38.339536Z",
+          "release_date": null,
+          "question_id": "d2ef23bf-014c-470a-8640-7986e948b9e9",
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-10-27",
+          "source_poll_url": "https://poll.citadel.edu/2026/10/27/sc-voters-look-to-pass-the-torch-in-the-midterms/",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
+        },
+        {
+          "poll_id": "3e68a4bb-c6e6-4e11-b1f3-108da5969af6",
+          "field_end": "2026-10-25",
+          "pollster": "Targoz Market Research",
+          "dem": 46.0,
+          "rep": 47.0,
+          "margin": -1.0,
+          "sample_size": 895,
+          "partisan_lean": "",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": 2.0,
+          "other_name": "Kasie Whitener",
+          "first_seen_at": "2026-10-27T13:00:11.946098+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-27",
+          "source_poll_url": "https://www.foxcarolina.com/2026/10/26/new-poll-shows-neck-and-neck-senate-race-double-digit-lead-governor-sc-midterms/",
+          "sample_population": "lv",
+          "question_id": "f3d4f4b1-d2ea-4ac6-9f9e-b956c489e915",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "379b9273-5e8d-461f-81ff-893c7e2cb8e6",
+          "field_end": "2026-10-24",
+          "pollster": "East Carolina University Center for Survey Research",
+          "dem": 47.3,
+          "rep": 51.2,
+          "margin": -3.9,
+          "sample_size": 955,
+          "partisan_lean": "",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": 0.7,
+          "other_name": "Mark Hackett",
+          "first_seen_at": "2026-10-29T17:58:27.289191+00:00",
+          "release_date": null,
+          "upstream_posted_date": "2026-10-29",
+          "source_poll_url": "https://surveyresearch-ecu.reportablenews.com/pr/ecu-poll-finds-graham-leading-andrews-by-four-points",
+          "sample_population": "lv",
+          "question_id": "b07ee80b-8279-4a96-ad53-2bfd1255ac26",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
+        },
+        {
+          "poll_id": "29e89f16-9a50-475b-b548-6cfb19442c96",
+          "field_end": "2026-10-21",
+          "pollster": "Impact Research",
+          "dem": 45.0,
+          "rep": 44.0,
+          "margin": 1.0,
+          "sample_size": 800,
+          "partisan_lean": "D",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": null,
+          "other_name": null,
+          "first_seen_at": "2026-10-23T15:31:34.986001+00:00",
+          "release_date": null
+        },
+        {
+          "poll_id": "040d2334-8d1a-41e0-9814-6b64eff8c4d1",
+          "field_end": "2026-10-18",
+          "pollster": "Trafalgar Group",
+          "dem": 45.6,
+          "rep": 48.6,
+          "margin": -3.0,
+          "sample_size": 1095,
+          "partisan_lean": "R",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": 3.9,
+          "other_name": "Kasie Whitener",
+          "first_seen_at": "2026-10-19T02:45:16.975245+00:00",
+          "release_date": null
+        },
+        {
+          "poll_id": "c4cd7d22-a9be-4bb2-b532-b1f9f3bff5ae",
+          "field_end": "2026-09-29",
+          "pollster": "InsiderAdvantage",
+          "dem": 45.0,
+          "rep": 46.0,
+          "margin": -1.0,
+          "sample_size": 1200,
+          "partisan_lean": "R",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
+          "other": 3.0,
+          "other_name": "Mark Hackett",
+          "first_seen_at": null,
+          "release_date": null
+        },
+        {
+          "poll_id": "b3c26b29-cc2f-472a-b43e-e75efff555f4",
+          "field_end": "2026-09-25",
+          "pollster": "Trafalgar Group",
+          "dem": 42.3,
+          "rep": 43.4,
+          "margin": -1.1,
+          "sample_size": 1087,
+          "partisan_lean": "R",
+          "dem_name": "Annie Andrews",
+          "rep_name": "Darline Graham",
           "other": null,
           "other_name": null,
           "first_seen_at": null,
@@ -14136,12 +13998,7 @@
           "other": 5.0,
           "other_name": "Rick Beard",
           "first_seen_at": "2026-10-23T15:31:34.986001+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://drive.google.com/file/d/1g4TU7GCq4qgQVhD3aLRfT430gg401LYo/view",
-          "sample_population": "lv",
-          "question_id": "241fec48-f7d7-4b62-b6eb-288149ae0058",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "2ecb9952-292c-4d6d-9c7c-c5a75219c5b3",
@@ -14415,12 +14272,7 @@
           "other": 2.0,
           "other_name": "Teri Hourihan",
           "first_seen_at": "2026-10-23T13:52:42.784085+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://x.com/sambbenson/status/2113614478558572788",
-          "sample_population": "lv",
-          "question_id": "7101e53c-bd42-4212-8134-a5bfb9f6b2bf",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "c02e283f-315d-4e23-9386-eff235723233",
@@ -14896,12 +14748,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T22:31:48.721655+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://cdn.sanity.io/files/ifn0l6bs/production/378c5b63a7c295e975b77be00ddab8f97bddcf8b.pdf",
-          "sample_population": "lv",
-          "question_id": "58fcee35-5b3e-49da-ac65-5d318c65dfa8",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "44d55e23-acaa-47fa-b947-4b31cc81b86c",
@@ -15142,25 +14989,9 @@
           "other_name": null,
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "bcc17e73-d95e-4457-ab14-83e4162a8d65",
-          "field_end": "2026-09-09",
-          "pollster": "Public Policy Polling",
-          "dem": 42.0,
-          "rep": 45.0,
-          "margin": -3.0,
-          "sample_size": 629,
-          "partisan_lean": "D",
-          "dem_name": "Brian Bengs",
-          "rep_name": "Mike Rounds",
-          "other": null,
-          "other_name": null,
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 8,
+      "recent_poll_count": 7,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -15705,12 +15536,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T15:31:34.986001+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://x.com/cjwarnke/status/2113633843999605102",
-          "sample_population": "lv",
-          "question_id": "fe5bd793-1173-4f78-8825-dc45514b44bb",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "6f5b45c3-2c2f-4b63-98c1-69a481550549",
@@ -16214,12 +16040,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-23T16:49:03.360532Z",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://x.com/cjwarnke/status/2113636550357528714",
-        "sample_population": "lv",
-        "question_id": "93489833-6bd5-41fd-a138-ac7d3aa6c579",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -16236,12 +16057,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T16:49:03.360532Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://x.com/cjwarnke/status/2113636550357528714",
-          "sample_population": "lv",
-          "question_id": "93489833-6bd5-41fd-a138-ac7d3aa6c579",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "fd215a74-9c79-477b-826c-99cdf88602af",
@@ -16779,12 +16595,7 @@
         "other": 10.0,
         "other_name": "John Stegner",
         "first_seen_at": "2026-10-23T20:33:15.032734+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
-        "sample_population": "lv",
-        "question_id": "433675f5-1971-40f8-a147-588f60fa004c",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -16801,12 +16612,7 @@
           "other": 10.0,
           "other_name": "John Stegner",
           "first_seen_at": "2026-10-23T20:33:15.032734+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
-          "sample_population": "lv",
-          "question_id": "433675f5-1971-40f8-a147-588f60fa004c",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "manual-ATR-ID-2026-09-16",
@@ -16990,12 +16796,7 @@
         "other": 6.0,
         "other_name": "Brendan Gomez",
         "first_seen_at": "2026-10-24T15:36:09.957440Z",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
-        "sample_population": "lv",
-        "question_id": "0e51da21-85cc-4803-ad60-f98f5215bbb6",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17012,12 +16813,7 @@
           "other": 6.0,
           "other_name": "Brendan Gomez",
           "first_seen_at": "2026-10-24T15:36:09.957440Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
-          "sample_population": "lv",
-          "question_id": "0e51da21-85cc-4803-ad60-f98f5215bbb6",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -17043,12 +16839,7 @@
         "other": 5.0,
         "other_name": "Tripp Hutchinson",
         "first_seen_at": "2026-10-24T15:36:09.957440Z",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
-        "sample_population": "lv",
-        "question_id": "0da77fdb-b147-47af-b15a-f10a249398b0",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17065,12 +16856,7 @@
           "other": 5.0,
           "other_name": "Tripp Hutchinson",
           "first_seen_at": "2026-10-24T15:36:09.957440Z",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://drive.google.com/file/d/1ZWt7_rFQzMxjeueMCX4GoFyqIe9jRk8X/view",
-          "sample_population": "lv",
-          "question_id": "0da77fdb-b147-47af-b15a-f10a249398b0",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -17096,12 +16882,7 @@
         "other": 6.0,
         "other_name": "Ty Pinkins",
         "first_seen_at": "2026-10-23T19:44:04.777310+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://www.politico.com/newsletters/playbook-pm/2026/10/23/oil-politics-squeeze-iowa-01133929",
-        "sample_population": "lv",
-        "question_id": "2d9a619f-dba1-483a-b842-31a1f68961af",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17118,12 +16899,7 @@
           "other": 6.0,
           "other_name": "Ty Pinkins",
           "first_seen_at": "2026-10-23T19:44:04.777310+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://www.politico.com/newsletters/playbook-pm/2026/10/23/oil-politics-squeeze-iowa-01133929",
-          "sample_population": "lv",
-          "question_id": "2d9a619f-dba1-483a-b842-31a1f68961af",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -17234,12 +17010,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-23T12:55:59.859181+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://www.nwprogressive.org/weblog/2026/10/theyre-tied-again-in-wa-03-npis-autumn-civic-heartbeat-polling-finds-marie-gluesenkamp-perez-at-45-john-braun-at-44.html",
-        "sample_population": "lv",
-        "question_id": "2c55fae7-0f66-4ffd-942d-2638907d716e",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17256,12 +17027,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T12:55:59.859181+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://www.nwprogressive.org/weblog/2026/10/theyre-tied-again-in-wa-03-npis-autumn-civic-heartbeat-polling-finds-marie-gluesenkamp-perez-at-45-john-braun-at-44.html",
-          "sample_population": "lv",
-          "question_id": "2c55fae7-0f66-4ffd-942d-2638907d716e",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "ea1e0021-149a-448a-a230-4873bb8ee611",
@@ -17303,12 +17069,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-23T19:44:04.777310+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://www.cpr.org/2026/10/23/could-democrats-make-gains-3rd-congressional-district/",
-        "sample_population": "lv",
-        "question_id": "84f855ca-c10c-4d18-8787-6a594d7dc45d",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17325,12 +17086,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T19:44:04.777310+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://www.cpr.org/2026/10/23/could-democrats-make-gains-3rd-congressional-district/",
-          "sample_population": "lv",
-          "question_id": "84f855ca-c10c-4d18-8787-6a594d7dc45d",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -17516,12 +17272,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-24T01:02:54.295047+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://x.com/cjwarnke/status/2113764039218397211?s=20",
-        "sample_population": "lv",
-        "question_id": "922b79dc-0c73-4f92-ba59-5bc8e32ed2bb",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17538,12 +17289,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-24T01:02:54.295047+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://x.com/cjwarnke/status/2113764039218397211?s=20",
-          "sample_population": "lv",
-          "question_id": "922b79dc-0c73-4f92-ba59-5bc8e32ed2bb",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "99f1022c-3721-4de0-bd2b-95c577810cf4",
@@ -17601,12 +17347,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-23T20:33:15.032734+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://www.semafor.com/article/10/23/2026/dems-make-a-kansas-play-as-gop-eyes-a-california-seat",
-        "sample_population": "lv",
-        "question_id": "caad04ea-64bd-4148-900d-62031bdc3577",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17623,12 +17364,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T20:33:15.032734+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://www.semafor.com/article/10/23/2026/dems-make-a-kansas-play-as-gop-eyes-a-california-seat",
-          "sample_population": "lv",
-          "question_id": "caad04ea-64bd-4148-900d-62031bdc3577",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -17740,12 +17476,7 @@
         "other": null,
         "other_name": null,
         "first_seen_at": "2026-10-23T12:55:59.859181+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://www.washingtonpost.com/tablet/2026/10/23/oct-14-19-2026-washington-post-schar-school-poll-texass-34th-35th-congressional-districts/",
-        "sample_population": "lv",
-        "question_id": "f696dc2d-7f53-466f-bbf7-6dae421bfe89",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17762,12 +17493,7 @@
           "other": null,
           "other_name": null,
           "first_seen_at": "2026-10-23T12:55:59.859181+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://www.washingtonpost.com/tablet/2026/10/23/oct-14-19-2026-washington-post-schar-school-poll-texass-34th-35th-congressional-districts/",
-          "sample_population": "lv",
-          "question_id": "f696dc2d-7f53-466f-bbf7-6dae421bfe89",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         },
         {
           "poll_id": "88bb220e-8331-4af2-ab95-6cd0548ea332",
@@ -17884,12 +17610,7 @@
         "other": 2.0,
         "other_name": "Eddie Espinoza",
         "first_seen_at": "2026-10-23T12:55:59.859181+00:00",
-        "release_date": null,
-        "upstream_posted_date": "2026-10-23",
-        "source_poll_url": "https://www.washingtonpost.com/tablet/2026/10/23/oct-14-19-2026-washington-post-schar-school-poll-texass-34th-35th-congressional-districts/",
-        "sample_population": "lv",
-        "question_id": "6c0e944d-eff2-4cbc-a439-a6394122af6b",
-        "date_provenance": "PollResults ingestion date, NOT public release date"
+        "release_date": null
       },
       "polls": [
         {
@@ -17906,12 +17627,7 @@
           "other": 2.0,
           "other_name": "Eddie Espinoza",
           "first_seen_at": "2026-10-23T12:55:59.859181+00:00",
-          "release_date": null,
-          "upstream_posted_date": "2026-10-23",
-          "source_poll_url": "https://www.washingtonpost.com/tablet/2026/10/23/oct-14-19-2026-washington-post-schar-school-poll-texass-34th-35th-congressional-districts/",
-          "sample_population": "lv",
-          "question_id": "6c0e944d-eff2-4cbc-a439-a6394122af6b",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "release_date": null
         }
       ],
       "recent_poll_count": 1,
@@ -19688,25 +19404,9 @@
           "other_name": "Brett Smith",
           "first_seen_at": null,
           "release_date": null
-        },
-        {
-          "poll_id": "5f579953-06e8-4090-b491-d091f99ec79f",
-          "field_end": "2026-09-09",
-          "pollster": "DHM Research",
-          "dem": 43.0,
-          "rep": 45.0,
-          "margin": -2.0,
-          "sample_size": 600,
-          "partisan_lean": "",
-          "dem_name": "Tina Kotek",
-          "rep_name": "Christine Drazan",
-          "other": 4.0,
-          "other_name": "Brett Smith",
-          "first_seen_at": null,
-          "release_date": null
         }
       ],
-      "recent_poll_count": 4,
+      "recent_poll_count": 3,
       "source_url": "https://raw.githubusercontent.com/ElectIndex/26_us_forecast_data/main/race_polls.csv"
     },
     {
@@ -21084,7 +20784,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-11-13T18:32:14.397938Z",
+    "last_attempt_at": "2026-11-14T00:21:11.597906Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -21095,9 +20795,9 @@
   "changes": {
     "new_polls": [],
     "new_poll_count": 0,
-    "generic_margin_change": 0.0,
-    "comparison_at": "2026-11-13T18:32:14.397938Z",
-    "previous_snapshot_at": "2026-11-13T11:01:45.445952Z",
+    "generic_margin_change": -0.1,
+    "comparison_at": "2026-11-14T00:21:11.597906Z",
+    "previous_snapshot_at": "2026-11-13T18:32:14.397938Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [
@@ -21317,13 +21017,20 @@
       "dem": 52.1,
       "rep": 43.5,
       "pollsters": 8
+    },
+    {
+      "date": "2026-11-14",
+      "margin": 8.5,
+      "dem": 52.0,
+      "rep": 43.4,
+      "pollsters": 5
     }
   ],
-  "newly_detected_count": 18,
+  "newly_detected_count": 15,
   "secondary_source": {
     "provider": "PollResults.org",
     "url": "https://pollresults.org/",
-    "matched_observations": 281,
+    "matched_observations": 257,
     "newly_injected_into_model": 0,
     "newly_injected_by_race": {},
     "note": "Source-attributed new polls missing from ElectIndex are included in live averages after identity, date, candidate, source-link and duplicate-ID checks. Posted dates are ingestion dates, not independently verified release dates."

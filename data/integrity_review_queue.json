@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-13T18:32:14.040581Z",
+  "updated_at": "2026-11-14T00:21:11.236514Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 4,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 57
+    "advisory_related_headlines": 56
   },
   "advisory_related_headlines": [
     {
@@ -19,18 +19,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "663187b5137418d03661",
-      "headline": "N.Y. AG's warning about ICE at polling places sparks political disagreement - Spectrum News",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -260,9 +248,94 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "0e54062673fc241b4ab7",
+      "headline": "Federal judge dismisses DOJ lawsuit seeking Delaware voter registration data - CoastTV",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "DE"
+      ],
+      "topic_hints": [
+        "litigation",
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "b3e4acbcaf4727ffa72c",
+      "title": "Peltola Holds Narrow Lead But Loses Court Bid For Rejected Absentee Ballot Data - tippinsights",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxNak0wVDRJQlYxVEgxT2JHRXpHOTNwM1hKZzBCM3JYR3NrYm42UWlwRTRlV3hlckxLRHZfT01XYm9qMUc2VWUzYmxJSUNodW4zQTFxeUk5YTNVR1VpVHBERC1Uc3hnNkNDaS03am85TTlsUGZvZll0VTI1bkE3NXNmd29hWWUwem44aE1sSnJ2WTNMRVV2NkhJR0FrMUZpTzJ6enQwMDdzbE4?oc=5",
+      "publisher": "tippinsights",
+      "published_at": "2026-11-13T23:25:35Z",
+      "detected_at": "2026-11-14T00:21:11.236514Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3ed2c6eaf266413638f3",
+      "title": "County elections board certifies race results - The Wilson Times",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQSlota2otUkc4WkRZY2RzQ0lNX2F5VURkekk2NkxkQVUtUE1TMUhZSVFsZFdrN3ozajc1MXcwYjZMU1NvdFA3Wm1iNkRfazF6eGQxTVI3d1lUMDVBc0prc0JPZjBCTzY2SlFqSU9iUTZKdGlCNnhKYWpldVVsV1dpbnA4a181bW8?oc=5",
+      "publisher": "The Wilson Times",
+      "published_at": "2026-11-13T19:22:43Z",
+      "detected_at": "2026-11-14T00:21:11.236514Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ccb3492c54e7494d04bb",
+      "title": "Mississippi Secretary of State crashes out over Experian voter data after election fiasco - Democracy Docket",
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOT2ItcFl6UXZkRHFlM0dKMzJENC1wWHBhaDE2NFFoeXVoTFNrMmR3cXVrQUtHVkZqejc5N1ZxWnNJYmpVbE1iOFI0Y25ITVgwZVdfYWZ5dEowSUNDd05yNHBqakNST0hlcnhLM2VvbWVId3JkektwSGZwdkdnUUNuQUQ0OHphaW5PZi1kN1ZCVElJV2ItZE1HYmpnQjVQaERMVHk2MkxWbUw2MzB2M2RGSVpleDNIWXREcFVYVGZ4SUZ4Y2g4LWlXNE9RcnlYRXc?oc=5",
+      "publisher": "Democracy Docket",
+      "published_at": "2026-11-13T18:03:48Z",
+      "detected_at": "2026-11-14T00:21:11.236514Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "cb8f955aedca202520aa",
+      "title": "The Trump administration\u2019s voter roll crusade could continue - NPR",
+      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPWDJzajFNX1dsTzZxeXpFWi1pdWtBZktpMWxEMWlLUks0VHpWWHp6aGdKb2kyUEZNYkNaVUlkQkxBMlhvc010VTNzNWVjanVtUzB0MV84cElNYWs3YTZ6ei1WMzFNaDJpVTJ2eXI0cTZmYlY0aU5SeDVWWDNERnpaang0aG9sMjQ?oc=5",
+      "publisher": "NPR",
+      "published_at": "2026-11-13T17:00:00Z",
+      "detected_at": "2026-11-14T00:21:11.236514Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "e670dc721bed95deb4ed",
       "title": "INEC fixes Nov 28 for mock elections, unveils measures to prevent 2023 glitches - Chronicle NG",
@@ -5052,79 +5125,6 @@
       "topic_hints": [
         "registration",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "663187b5137418d03661",
-      "title": "N.Y. AG's warning about ICE at polling places sparks political disagreement - Spectrum News",
-      "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOdTBVMTBkZDlDRzktc0xfd2daTmpnSGx5Nlp2Vzc2UmhxaU56QjBzaHVFa3l1WVJKdWhXQ0NTRlVYa2oyRzQwUWNIQV9SNmQ1ZFFFVWhLYjFnSXdQd1RzYXJuOXNHMHFxNDdwZEpESl9xWVpDZnhtbmFhS1QtUDg3X05ualFXNnlHLVJONzFia1dGaHh5dTR3NGxvZ1dSNlY4d2JkcFVGcUdobE9ndmVkNFJRRXdMbUE2d2VKVkp2MV9WRU9ESnhoZkIzY1VjcVVvNG1lal80YklSOTFmbEc5NG80Nk1uQmhtdGprQTFZbXIzSlVxV2ViblAtQzh5QQ?oc=5",
-      "publisher": "Spectrum News",
-      "published_at": "2026-10-29T17:34:00Z",
-      "detected_at": "2026-10-29T19:03:44.483379Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ef491130d0f8419247bc",
-      "title": "N.Y. AG's warning about ICE at polling places sparks political disagreement - Spectrum News",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPSm5CWjNheVNGZFZBWE51cVg2a1k5NXFKNjZDbEo5alp5T09LMFV1d1lHZXFUNFlqWURGOE0yckdoNmZfeU84WXM5anpJMFl4VE40R1VkaE0yWlBmd2hVYkFyVmJNY1luVWhoNkZnU1BUZGxhbTdwM1RvRzZFTUd6dWhsZVpJXzA0Tkc3RjEyV1JVWlVkMnRrVTUxUzFjR3RHendYWjFDWGdPbzFHVTJTSnpzYmFoeDhhRFhIWkJZTnhLU3JfblVEZ0l6ZVl2a3BHRDRFUXpUWHQtUk1tci1Vd0JvdXRFZERnNWFMb3I1SG5kcFptVDh3Y3pQQ19ZMnlVY0E?oc=5",
-      "publisher": "Spectrum News",
-      "published_at": "2026-10-29T17:34:00Z",
-      "detected_at": "2026-10-29T20:56:04.258850Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "de372cf7f3a48f6cd177",
-      "title": "N.Y. attorney general\u2019s warning about ICE at polling places sparks political dis\u00adagreement ahead of Election Day - Spectrum News",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxPSm5CWjNheVNGZFZBWE51cVg2a1k5NXFKNjZDbEo5alp5T09LMFV1d1lHZXFUNFlqWURGOE0yckdoNmZfeU84WXM5anpJMFl4VE40R1VkaE0yWlBmd2hVYkFyVmJNY1luVWhoNkZnU1BUZGxhbTdwM1RvRzZFTUd6dWhsZVpJXzA0Tkc3RjEyV1JVWlVkMnRrVTUxUzFjR3RHendYWjFDWGdPbzFHVTJTSnpzYmFoeDhhRFhIWkJZTnhLU3JfblVEZ0l6ZVl2a3BHRDRFUXpUWHQtUk1tci1Vd0JvdXRFZERnNWFMb3I1SG5kcFptVDh3Y3pQQ19ZMnlVY0E?oc=5",
-      "publisher": "Spectrum News",
-      "published_at": "2026-10-29T17:34:00Z",
-      "detected_at": "2026-10-29T20:58:42.808631Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "044e9a9146a5d3c9ff0b",
-      "title": "N.Y. AG's warning about ICE at polling places sparks political disagreement - Spectrum News",
-      "url": "https://news.google.com/rss/articles/CBMiggJBVV95cUxObEY0TE1wMzliTlZ1dk5ZOUNSWk9oN2VlVmlDYll5RU1zLVp4WEg5ZEQ3U0tnSzJFUUlmVTZ1WUFNTXo1dzllQ1hnTjVMWTcxdEF1VGJsYWtnVFd0THQ2VXd1RWhnRWJhQW9MQ18tbkdDRWV1SnRiZm9uV281R1p5VUF2UHpsVUlXZm1wckJZZjVHeTg4LTc2ZzdxUkdtQjJWUzlDYWt1a3lhSVJNbGE1QmlONjlBVVF3U2Z0ZHB3d3NnTFJ0Nng2a1poSVF0ZFZpM0JCY3F2V0dxQ2tUTFBNb1czREJRZ1FpMTJCYU8yM0ZDblZhNnRxaFZKckZRa0NDeHc?oc=5",
-      "publisher": "Spectrum News",
-      "published_at": "2026-10-29T17:34:00Z",
-      "detected_at": "2026-10-29T23:48:57.693451Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
