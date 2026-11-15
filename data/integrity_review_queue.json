@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-14T23:55:54.532271Z",
+  "updated_at": "2026-11-15T06:35:57.705199Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 61
+    "advisory_related_headlines": 62
   },
   "advisory_related_headlines": [
     {
@@ -82,6 +82,18 @@
       "topic_hints": [
         "election_admin",
         "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "7e0dea475bc4a483763d",
+      "headline": "Democratic state officials, USPS battle over Trump mail ballot rule ahead of 2028 election - The Portland Tribune",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -248,20 +260,6 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "0e54062673fc241b4ab7",
-      "headline": "Federal judge dismisses DOJ lawsuit seeking Delaware voter registration data - CoastTV",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "DE"
-      ],
-      "topic_hints": [
-        "litigation",
-        "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
@@ -278,6 +276,43 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "0143d4288949da29dcd9",
+      "title": "Democrats sue Trump administration over alleged election pressure campaign - ABC News - Breaking News, Latest News and Videos",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxObkRlYnZzV09zMjhmS21XWnVkdWlsNEVvSzRXdFhfcm1iM1dhc0VYRDZVYTVldkx0dF9oeTBob3c3NGlEdmtHVk9Uc1hKRm4tdVZPTWVEOXRPbVlNWGN4aG5XakhJdUxVM0dkanN6Ni0wX2c4dlh4dVBWZEVkdUI1akFueU44UXFVX2NXSzNRT1U1VG9Dd1gySFFIX0twYXo5OXZTUzFQdFdoQmhOZXJMZG1MVHVCTFhk0gG-AUFVX3lxTFBZME9lelI0SktMbmUtWW1NLXVBVkg1OU1FSmp2UUJCYUI4T2J0Ukt4alktRUlDempBSUg3VllOVjJZc1FUQXBJM25kVTM1NW1MT1VZdzJkUGh5TkdqQWJQejNXNlROVFo1UHE5dnNnWkFLWGFMTjU0UG8zbUp5WS03clpsd3BlUE03REd2RWpiamY3R0FSQy1QUF9MSDFzRTFRdzFCTXZmZUNFUS1melFVbDRzaXhLS2dwMnpYZnc?oc=5",
+      "publisher": "ABC News - Breaking News, Latest News and Videos",
+      "published_at": "2026-11-13T23:04:50Z",
+      "detected_at": "2026-11-15T06:35:57.705199Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7e0dea475bc4a483763d",
+      "title": "Democratic state officials, USPS battle over Trump mail ballot rule ahead of 2028 election - The Portland Tribune",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPSDZtRnhyUkF4RFhCdkk2d1NHOUYzOVJsQUJySFVmdGwwRUliZTE0UFBicmhxZmdRX25hTEQxOTI5UzMtUGd5X3lKd2hVc0FwTGwyRS1Kc3lYOExkV1lFbnJROGEtSHJhRDRreWxiVGNjQ3huWVRVLUJNeXZ0ZlhxZmdCaUtCT2Y5bjlFc1JBS2IzZ3Vuc21fS29nRjJCX09leklQSUZrWUFKMTFOZlBFWDhodVlNMTdtdVdXNTFISGJ1T3J5WmdmMQ?oc=5",
+      "publisher": "The Portland Tribune",
+      "published_at": "2026-11-13T21:42:02Z",
+      "detected_at": "2026-11-15T06:35:57.705199Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2028 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5092,43 +5127,6 @@
         "litigation"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ed55b4e43955bf790376",
-      "title": "ICE presence at polls unlikely, but advocates and officials prepare - WAMC",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNeDRfZExxYTVCTGtiTjdCUEY3LVl4QnBBNHJxN1YtMVIxV3N6WnRxaTAyNE1JdzVyTERoS2RrdkNidnk2WGxqaE5jQ3pfMGJNa01zX3ZoSzUxUTAwX2xFVDVhSU56R2VwbFhsMnJpeFFYalhoZ29nLWJFaUVGT0tzMUpJXzhHak5nNjBmZg?oc=5",
-      "publisher": "WAMC",
-      "published_at": "2026-10-29T21:59:00Z",
-      "detected_at": "2026-10-29T23:48:57.693451Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "956ba347370141a936fe",
-      "title": "5 expert takeaways on 2026 midterm election security - PBS",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxQbWNPNjFyak9mY0pqSmpja3lVTG5NVTlrQzA1aUZpYm5lZlFaOU16Q3h6OHhaS1ZkbXozSmVCSE9tMW53MEp1MGFRUFpOSUQyVVR5U3JTYXQ3cjZtMUtyM09LR2ZuaXVPTVNXRTN2dWp1d2lpOGVMbUVOeTU4VFJ3ZUpRcEJoR2RfRGV2MWhOblJFZXVD0gGaAUFVX3lxTE5vd3MzU0h0aDUwOG9JakdXbFpMMkp5aUtVRDBWVlFOamRkVjl1WWMwMFNwaVJFY2sxLTlIell0NkJvWm1ac2tUZFdnTUhfbDRvSEJXWVEtMURUd21RS0hieDRHN1I0QVRENElwTk1KZnBMLTRsX3dXY0hjS2p3QnpJbzZkbnl4b3l2NU5qZUI3VUd3V0Njclc3bmc?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-10-29T21:35:11Z",
-      "detected_at": "2026-10-29T21:54:01.820909Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "5 ",
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
