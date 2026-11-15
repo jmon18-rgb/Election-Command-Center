@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-15T14:46:17.071249Z",
+  "updated_at": "2026-11-15T20:24:12.705546Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -12,10 +12,22 @@
   },
   "advisory_related_headlines": [
     {
-      "lead_id": "5f03a22536a8a26fa45b",
-      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
+      "lead_id": "7e0dea475bc4a483763d",
+      "headline": "Democratic state officials, USPS battle over Trump mail ballot rule ahead of 2028 election - The Portland Tribune",
       "possibly_related_articles": 4,
       "distinct_publishers": 4,
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "5f03a22536a8a26fa45b",
+      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
+      "possibly_related_articles": 3,
+      "distinct_publishers": 3,
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -82,18 +94,6 @@
       "topic_hints": [
         "election_admin",
         "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "7e0dea475bc4a483763d",
-      "headline": "Democratic state officials, USPS battle over Trump mail ballot rule ahead of 2028 election - The Portland Tribune",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 3,
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -383,6 +383,26 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6818111bd5346392511e",
+      "title": "Democratic state officials, USPS battle over Trump mail ballot rule ahead of 2028 election - East Oregonian",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQajhqcjlhOWRsS09CeG1NQzRUOFhyT3RHcGh2enpXU0ttMHJEUUhhQWlBZExvOXk4b1VtWUdFSG55emdrVmhWVFJjWkF4cVZCMHBBMjlfR0pJb2JLajIxbXIxUjhMU0FscUVmQXBBNWdpTlJYRy1mYy1nMEwwQ2pna3VUNTl4SUo5LUdEc1gtcGlrZW9vT2d3bzJHU0Z5djFEOTh3WjFGQUdRRFUyZVUxWkZyejJkT1p5WFBPcTk0bWJ4YlVzb3c?oc=5",
+      "publisher": "East Oregonian",
+      "published_at": "2026-11-13T19:21:24Z",
+      "detected_at": "2026-11-15T20:24:12.705546Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2028 "
+      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -5107,23 +5127,6 @@
       "publisher": "Hartford Courant",
       "published_at": "2026-10-29T22:22:55Z",
       "detected_at": "2026-10-30T10:50:11.207469Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "6d225da0a3eec93e138c",
-      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - The Press Democrat",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5HaDBiQVhfaGNPQmlOREgxQ29TaWZhcmRDX2ZnYi1GSktmMTFzc3doTFlFZU1BdmhJVldjNWFWX0EwaWszOW5lSnZLX2VsXzlCZUJDRnZlTmFIaTdEWFJnN0hQX1hMVVBaaktBZlZENmpCSWhFZ1g3Nnh5bFplTWc?oc=5",
-      "publisher": "The Press Democrat",
-      "published_at": "2026-10-29T22:22:24Z",
-      "detected_at": "2026-10-30T04:58:20.128269Z",
       "state_hints": [],
       "topic_hints": [
         "litigation"
