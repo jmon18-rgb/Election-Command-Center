@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-15T06:35:57.705199Z",
+  "updated_at": "2026-11-15T14:46:17.071249Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -8,14 +8,14 @@
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
     "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 62
+    "advisory_related_headlines": 60
   },
   "advisory_related_headlines": [
     {
       "lead_id": "5f03a22536a8a26fa45b",
       "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
-      "possibly_related_articles": 6,
-      "distinct_publishers": 6,
+      "possibly_related_articles": 4,
+      "distinct_publishers": 4,
       "state_hints": [],
       "topic_hints": [
         "litigation"
@@ -263,6 +263,42 @@
     }
   ],
   "items": [
+    {
+      "id": "c603900aa22f6eeccbc4",
+      "title": "There's a reason Trump\u2019s favorite boogeyman went missing on Election Day | Opinion - The Columbus Dispatch",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPRzl2aFpiQTlxbVluOHN1TVJTcm9rSDVOYU5rYjZwMWpJeE5EOGExUkcwemZvNkYtTHZYOWFVbU1jRy1JS0h6ZzdqWU1uM3YwWXF6eTJvcHRWOGZkZ05qQTFDYWNQZHQtYnVsYU51ZTdfbUtoUWwySmc5dy1zRFFEOWFxZHBxMTA2TUI0WXM2a1VVSWdVcHZZZENSeWpWRXZrTUZaWmh1d2xrMmg1ZnphbUpxeGM3T2RiUk9SempIM1M?oc=5",
+      "publisher": "The Columbus Dispatch",
+      "published_at": "2026-11-15T10:14:00Z",
+      "detected_at": "2026-11-15T14:46:17.071249Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4bb574db9d451b90b928",
+      "title": "2026 Election Results for the U.S. House 4th District in Napa/Sonoma - KQED",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE9IdERpeG5aVkpabGlOamxoSTBWdUloY1BtUjZyVFc5TXdJNGRISnhULXJJenc0c2ZyWHVjMl85MEY2YnowcEZhX3ZkVVdLMjB1aTJVcWcwbzVMNHd5SFBtQ0xYZjViTnVtTmFUUzYxVGpkdzNydGtNNS1HMA?oc=5",
+      "publisher": "KQED",
+      "published_at": "2026-11-14T01:25:00Z",
+      "detected_at": "2026-11-15T14:46:17.071249Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "b3e4acbcaf4727ffa72c",
       "title": "Peltola Holds Narrow Lead But Loses Court Bid For Rejected Absentee Ballot Data - tippinsights",
@@ -5088,40 +5124,6 @@
       "publisher": "The Press Democrat",
       "published_at": "2026-10-29T22:22:24Z",
       "detected_at": "2026-10-30T04:58:20.128269Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a18028a9bbfc6b2efbfd",
-      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Orlando Sentinel",
-      "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxOQjZFQm9yb0Z2Qm8wcVBaVWR0WGxkeVdZYTI3dl9XX1lWVlQwODBlTk9QM0pRS2hMY0M3eTFfMFJQNHI1MVFMT3VIT1NaR2hhU05LcnVmTFRKLVJ5NTk0VHlhdmFILXNwUmM3R3NtTWFVempnM1B0VFJZQkF4c2VyYlp3?oc=5",
-      "publisher": "Orlando Sentinel",
-      "published_at": "2026-10-29T22:22:07Z",
-      "detected_at": "2026-10-29T22:53:14.822741Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5a4c2737f22ab5f303ed",
-      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Boston Herald",
-      "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9LTmZSUS1FTEQ3U2F1ZS1CX1dZaWF5VHIxcHRhVHdIc3A1REs4LVhvb1o3aWZ3TFg1M3JOMy1ub0dFRy1pTldUU1RLVzc4R2xwaFZwT2I0WnVVbkFLdTEydTE1SDlrZjFIWkhreXJqNU1uUVFRLURubkhpbS1Odw?oc=5",
-      "publisher": "Boston Herald",
-      "published_at": "2026-10-29T22:21:47Z",
-      "detected_at": "2026-10-30T02:09:07.509102Z",
       "state_hints": [],
       "topic_hints": [
         "litigation"
