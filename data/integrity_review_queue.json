@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-16T01:03:55.297142Z",
+  "updated_at": "2026-11-16T08:00:37.780964Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 3,
@@ -266,6 +266,42 @@
   ],
   "items": [
     {
+      "id": "f3a00c8b6fb4472cb755",
+      "title": "N.Y. Dems Score Big Wins After Changing Election Laws - Newsmax",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPMkFOUUg5UEJIRDNLejdTemxoWVAwSHpLbFkyNEh1Y3NtbTRuQVhKdXZmTXRqZjRsZ3A1QmtqUHRFQnk4Y0REUTZJVkVMdVNWN2dITWRrR1FGSXFSc1dUS3pQNFVNUV8xUVVHejU5c3A5aUNySVNrclJicEtxamRsVmFDY0Q0STZiMkVsUE90aTE?oc=5",
+      "publisher": "Newsmax",
+      "published_at": "2026-11-16T00:39:48Z",
+      "detected_at": "2026-11-16T08:00:37.780964Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "7caeda52c346fd6c8d0b",
+      "title": "Secretary of State Michael Watson talks about 2026 election, use of Experian data - WLOX",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNcW41QWhkM2drNnRDY1RRYVZRZGF2RUhyMVBUODRmRi1DTUhfd3poSy1zUG0xbFgtZ0h1NzhGV2JKRzYzOFJKdkNBTVllVm9HbngzX2w3QzRWN2xkVkU3ME9pMC16dktQbWxZX2JobUMtUUVuaFZXWlBieGtIYTYzcWE1eTFtR0tOb09hWDJQencwZGJ2OHFrX0prSldaRmZja0ZiOE1kSWM5T3PSAb8BQVVfeXFMTTRaYjR6dE9WazRfYjhIMTA1MFg0OW9OMnRVeXhsMzc3Rl9GSC1ja0FlUzlnOHd4QjBUeU1MRC0wczJFamhwZzhDOGx5Z2dFNHRtSk5KUDA2UjhBU0cxeEdibFhEVGtqMWJKRkNDTFFhdlRHTzB2UWU3UDQ4NUx1cDNBNEwyUnpKcXowNFlVeFg3dzVoTHZmRlp4bUMzN3lLdXdFX2d0ME9Ub1JsUWFWN0ZGU01pVGFvT0s3VHcwRXM?oc=5",
+      "publisher": "WLOX",
+      "published_at": "2026-11-15T21:41:00Z",
+      "detected_at": "2026-11-16T08:00:37.780964Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "835625c4712cc4148df2",
       "title": "Chief Justice speaks out after Arizona voters oust 3 judges - Your Valley",
       "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNVEpzU21MSmE2dWZ5bHAyUlNkTmJ4WGdpZUpheWFoU3p6RVlBZ0ZtelpkLU5kRC04ZDhXWjlBQjRZOW1ERU1PalNfOFJzc2w1OW5aZUpEVGQwZXh4a1o3dDFwQXA4RUJUTmlpbFN1WFpuTC1nd1pPNHNxY2RnQ0Npa290ajZNV1hTQkx6V0xpMDhLSlJzLUd4dEhLMWlYZjNyNXVv?oc=5",
@@ -281,6 +317,26 @@
       ],
       "headline_numbers_unverified": [
         "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3eb3a6895f34f4cd5c76",
+      "title": "Elections Lawsuit Norway 2026: Filing Rules and Deadlines - LawFold.com",
+      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE84Tmo3Mk4ycG52UWlpTU0ycy1IOUx4bW5fSkdDTXJoNXowU2tqRjdzZ01NQVlVakRiekRhT2JTNlJQY3VONTVERlpjNGZmdzUwMDZqUnExTkhrVzhJVFg0?oc=5",
+      "publisher": "LawFold.com",
+      "published_at": "2026-11-15T19:15:08Z",
+      "detected_at": "2026-11-16T08:00:37.780964Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
@@ -4907,24 +4963,6 @@
       "promoted_to_incident_id": null
     },
     {
-      "id": "3e9743eff0236f30b7a8",
-      "title": "The Real Threat of Election Interference - The Atlantic",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPX3E1eHBlcUhEYUxlVDZaTmFzQjl4TGxENjRySUhaZk5kZDdoT3diSjR0R2pyMjVJMHh2cXI0M2N5RTNISFNBbkVFZzA3U3hLUllrdmxvNkVlZlVpYXhxS2V0bFBadG9VUEdRYW5fR0Fhcnp4RWZIMC1aRG5OaXRtUlJtS1NtRXJrTmlUUW1ya0RZUTRJd19XcUExc1h0UGNqb0pwbQ?oc=5",
-      "publisher": "The Atlantic",
-      "published_at": "2026-10-30T11:00:00Z",
-      "detected_at": "2026-10-30T23:47:10.924158Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
       "id": "93ffda5e7658f1a8b047",
       "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - \u6bce\u65e5\u65b0\u805e",
       "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE9WR05EWnQ2ZWNqby1TcHhVUmpHWHR3WkFuMEt5RElRem5LeG1MakNCd3F6Y0Q4c2pSRmJvZGdnV1BjSk1NNENQZkpxXzdWOG5sblB3U2JBOU13YWNlckVacUxOa0xVQjR5alRSY3B5NUFtczA?oc=5",
@@ -4966,23 +5004,6 @@
       "promoted_to_incident_id": null,
       "review_notes": "Reviewed two linked document TEXT copies for DSCC v. Trump, D.D.C. 1:26-cv-03674-JEB, distinct from the older nine-state N.D.Cal. DHS order. The October29 item is a PacerPro-generated reproduction of a text-only docket entry, not an official-court-host original: it grants and denies expedited discovery in part, sets an Interrogatory1 response deadline at noonOctober30, standing supplementOctober31, responseNovember1 and a ruling byNovember2, as reproduced. It does not grant the requested substantive injunction. Copied October30 Document29 is defendants notice asserting service of objections,responses and a state list; it is not a court finding that responses were complete or accurate, and the checked notice does not supply the list itself. No later merits ruling, actual voter impact or ballot loss is established. Reader text only; no owned native PDF bytes/hash or official-host authentication. No change to the older DHS injunction status, incident counts, risk/probabilities or election-results/call authority.",
       "reviewed_as_of": "2026-10-30"
-    },
-    {
-      "id": "5f03a22536a8a26fa45b",
-      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9oVVplR3lNOGRZeDZKd0h6d0tmeTVsb0xkM0xmem50YkRkRUh6SVIzRV9qcW9TcmNpb1dJRG5KaDFudEMzUWItU0tQN0I0Yl8xUmttVmEzQWM1aEJ4MFc5VGdzNXl0Um9kbklyYkxxQ3N2TkxLeWhFU3d6QThEQWs?oc=5",
-      "publisher": "Daily Bulletin",
-      "published_at": "2026-10-30T04:25:03Z",
-      "detected_at": "2026-10-30T10:01:36.017664Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
     },
     {
       "id": "47ab0a979e521504a84a",
@@ -5119,28 +5140,6 @@
       "promoted_to_incident_id": null,
       "review_notes": "Procedural background only, checked October 31, 2026 UTC (October 30 Eastern). Supreme Court docket 26-536 identifies Cole Jester et al. v. Get Loud Arkansas et al. (Eighth Circuit 24-2810): certiorari petition filed October 19, docketed October 22, response due November 23 (date only, no time zone stated). The shown Supreme Court order grants filing time, not review, a stay or reversal. The March 31, 2026 opinion reproduced in an applicant exhibit affirms a preliminary injunction; its registration process captures a signature electronically then prints/submits the application. It does not establish state-run online registration or the rule applicable to every 2026 voter. Official-host reader extractions only; native bytes/hashes not owned and cached docket completeness is limited. News article was tool-inaccessible and the separate petition appendix was Cache miss; both stopped without workaround. No voter-impact count, incident, risk score, fraud finding, election/call/result-source authority or current registration advice is supported.",
       "reviewed_as_of": "2026-10-31"
-    },
-    {
-      "id": "54ad5ea762c6d948ae99",
-      "title": "Mississippi absentee voting surges ahead of 2026 General Election - AOL.com",
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQaFdkTzFHSFI3QzB0YldGUE1leWhLZHNRVDg5aTVUdU1PMGxHbTk5MTdmRjRnUHNQWGcxekE0MmRaRlNtRTVRV1ZRRnBDS01SRVRLcGtBRW54dC1FZ0twWXFGd0I1RkYwMnNnSUFIUkNObTlDN1FCbkxRZm95LUFqbXRvT1JuYndDQ20xaA?oc=5",
-      "publisher": "AOL.com",
-      "published_at": "2026-10-29T23:44:58Z",
-      "detected_at": "2026-10-30T01:14:10.175238Z",
-      "state_hints": [
-        "MS"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
     },
     {
       "id": "b42b72d21f635f8a0ed7",
