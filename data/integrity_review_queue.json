@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-16T08:00:37.780964Z",
+  "updated_at": "2026-11-16T18:35:11.325918Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 3,
@@ -7,8 +7,8 @@
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 55
+    "advisory_related_headline_buckets": 25,
+    "advisory_related_headlines": 57
   },
   "advisory_related_headlines": [
     {
@@ -265,6 +265,62 @@
     }
   ],
   "items": [
+    {
+      "id": "034f40ce4d748ddfe3da",
+      "title": "DOJ drops California ballot lawsuit after Supreme Court denies case - The UCSD Guardian",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQSDBSQVdFcGRSMmRxRlYySG04OEtXYkgtVEoyRHVGTGotSTNEenJsM1NTSVhoeUNBWVNLMjJwQjhDT09WdkVwZzVoZDRCTjM5cjRKUV9INHFPU2FxM2s3UDJ6VTNNajFPdlJYaDFXM1htTVZOTmt2dUx1cUp4c2Z6Sl9XcXZINDIzS0h0SElpUkdDZzZvVV9SaW9MU2FSS3ZUYzFXamxkRQ?oc=5",
+      "publisher": "The UCSD Guardian",
+      "published_at": "2026-11-16T16:57:38Z",
+      "detected_at": "2026-11-16T18:35:11.325918Z",
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "fb8ddfcf28ed8a9f76a5",
+      "title": "How Ethnic Voters Shaped The 2026 Midterm Election Outcome - India Currents",
+      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNTkYwUmY5YTNneHNQVGl5VXo1T2ZYZ1JCZjhGcEF5enMzNkszUHRxdERJMWlCUTFleTBpWm5pbUpvZHlhUVdySXRXR0hQTzd1LWhBQnZPYnNzVi1kM2hvaU1aektDMEFCUkQtOGxPTV9MU0NKRUttU3dPRXpLWFZrb2NiV29oZTFBdlJfc0hR?oc=5",
+      "publisher": "India Currents",
+      "published_at": "2026-11-16T16:00:00Z",
+      "detected_at": "2026-11-16T18:35:11.325918Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "599b5be057570c818413",
+      "title": "\u2018No threat of death will keep me away\u2019: Hasina vows Bangladesh return - Aaj English TV",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOXzJWZTFrc1ZWZG4wbjRKTWQtVkdVNThEMHBieFlzalIzVWtQOGE1VFd3RlE1aVNLVTNzdnRPS3ktUFZvb0M0bkYyS1pJTnFFLU1ZcG11Zl9pbUxGUDl2Q1ZWd2xINHRkcWQ0V0RhSHNLRUx1OUJFMlFfTHBpVUM0cHhtUDVLX1c4aTh1dnFCQUY0Ylc2enJNaDZ3cHhubjlpd1gtN3FzSQ?oc=5",
+      "publisher": "Aaj English TV",
+      "published_at": "2026-11-16T11:23:16Z",
+      "detected_at": "2026-11-16T18:35:11.325918Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "f3a00c8b6fb4472cb755",
       "title": "N.Y. Dems Score Big Wins After Changing Election Laws - Newsmax",
@@ -4848,26 +4904,6 @@
       "review_notes": "Legal-background review only; this is not a verified Mississippi incident or deployment. The Mississippi Today item is a guest legal opinion. Reader text of the published 2023 U.S. Code, 18 U.S.C. 592, describes specified federal-service conduct involving troops or armed men where elections are held, with an armed-enemies exception and qualified military members voting for themselves. This older edition does not authenticate every current 2026 amendment. The October 27, 2026 New York Attorney General advisory states that agency\u2019s interpretation, including armed ICE, CBP and FBI officers; its separate New York judicial-warrant/court-order access guidance is not a nationwide federal exception or Mississippi rule. The DOJ observer-program page is dated October 16, 2024 and does not prove a 2026 assignment. These sources do not establish the headline\u2019s full legislative history, a categorical ban on every federal presence, an actual deployment, a violation, a controlling court ruling, voter harm or a granted remedy. Current House Code URL returned404; historical DOJ manual was inaccessible and stopped. Source review is limited to attributed published text and agency positions, not native original-byte authentication, incident promotion or election-source authority."
     },
     {
-      "id": "ad403963b4e37f54005e",
-      "title": "California officials confirm grand jury subpoenas as states, civil groups brace to protect elections from federal encroachment - CyberScoop",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE0zcEYxc1NBcGpnWml3UDhSZFlTWjAzMDNJdDNLSVVZcm9uMHNSMjRWbWlVcXBuQTJ0akVpZ25ZMzlJTUNZS2YtTExDSlRfRlVLUExNSUphQWYzV09vcVE2R3paWDZWX0h0eDJrT3FuSklzeXhXblJoYw?oc=5",
-      "publisher": "CyberScoop",
-      "published_at": "2026-10-30T15:59:22Z",
-      "detected_at": "2026-10-30T15:59:44.939883Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
       "id": "41e548bbb7bed5b4eeba",
       "title": "How to \u2018Vote Without Fear\u2019 in Minnesota? Election officials and advocates offer advice for a safe Election Day. - Sahan Journal",
       "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQX1FERndiZHhKcjFQLTVHdzlrN216STh0QzZHSk1ieGdyOHNfbVVQQ1JJSHNsYUp2THVsdGVNN2dZTXVqbVJGU2FybG94R3NOQUF3MVJMVzUydWFObFpDaW9FZERZM2JsNGFLamIyTTV2SFJ5NGIydW9PZFhOVU9rRGltY2lHbW1oRXk0eFVfVFpOTEJVbGVDMVZUcw?oc=5",
@@ -4926,41 +4962,6 @@
       "promoted_to_incident_id": null,
       "review_notes": "General voting-guidance background only. Official Minnesota AG October20,2026 release supplies a reporting channel for possible election intimidation/deceptive information during September18\u2013November3; the AG voting-rights page and SOS polling-place rules explain access, assistance and restricted challengers. Linked Revisor204C.06 displays2026 statutory text with authorized-person exceptions. Guidance/reporting invitations are not evidence of intimidation, actual federal presence, voter harm, verified complaints or enforcement. Federal-officer interpretation is an agency position, not a court holding or categorical federal-presence ban. The Sahan RSS article URL was tool-inaccessible and stopped; its body, quotations and exact cited-link chain were not checked, so these official URLs are independently found topical background rather than claimed article citations. Cached reader text only, no owned native HTML/PDF or original-byte authentication. No incident, risk/probability, voter-impact, election-results or call-source admission.",
       "reviewed_as_of": "2026-10-31"
-    },
-    {
-      "id": "20cd09bc944233d50b09",
-      "title": "Election groups, Democrats dig in on midterm prep - Roll Call",
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOb0RFRC1JOTAtbGotbkd3dlpJQlhUdTVIcE1TRkU0QXFkUk9MdTZDNnB5REc5ZTVNeWZUZ2JFbDJsTnliQTQ3SmFycDNrUk5FUDNBSk5rdHZPb05rUEgtVjdncDFZQWpTbHkxOW5KWlB2VC1jTllYRFFrdTVoM2NYT2FkR3M?oc=5",
-      "publisher": "Roll Call",
-      "published_at": "2026-10-30T15:14:20Z",
-      "detected_at": "2026-10-30T15:59:44.939883Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "771377c5737f93a379eb",
-      "title": "Dead Registrants Still Haunt Voter Rolls in These Battleground States Days Ahead of Midterms - The Daily Signal",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPamFWUVZYTlNxRGV3amJ0TTZkbVE3TzNjUHRmRHZaZzE2ckJqTjdzaHFJeWVnVWp2amEtTlNuRmx2c3VibzNUWmRNcmFsZmw0bEJPb2hVOG4xYlRlUFBPSTVTOW56RUFuLXNhb05zYTRZMHpXWlh4WmFtM3dlNUFZRHFQOE1UWHJSSWZIbFNIeTVuRVV6X2JZbTVydUNKaHJfRVhXdEZaR3czM3pnMHJZdEpQV3RJdVhTamJEZU1ZN3FyODF6QjZ3Z1VmM0c?oc=5",
-      "publisher": "The Daily Signal",
-      "published_at": "2026-10-30T12:00:00Z",
-      "detected_at": "2026-10-30T15:05:53.782591Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
     },
     {
       "id": "93ffda5e7658f1a8b047",
