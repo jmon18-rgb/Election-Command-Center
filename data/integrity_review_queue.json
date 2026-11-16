@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-15T20:24:12.705546Z",
+  "updated_at": "2026-11-16T01:03:55.297142Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 26,
-    "advisory_related_headlines": 60
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 55
   },
   "advisory_related_headlines": [
     {
@@ -20,17 +20,6 @@
       "topic_hints": [
         "ballot_access",
         "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "5f03a22536a8a26fa45b",
-      "headline": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Daily Bulletin",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 3,
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -94,20 +83,6 @@
       "topic_hints": [
         "election_admin",
         "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "54ad5ea762c6d948ae99",
-      "headline": "Mississippi absentee voting surges ahead of 2026 General Election - AOL.com",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "MS"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -260,9 +235,78 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "0e54062673fc241b4ab7",
+      "headline": "Federal judge dismisses DOJ lawsuit seeking Delaware voter registration data - CoastTV",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "DE"
+      ],
+      "topic_hints": [
+        "litigation",
+        "registration"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "7ef2cb6dc62508d43d63",
+      "headline": "Federal appeals court hears arguments in Trump administration's voting lawsuit against California - ABC News - Breaking News, Latest News and Videos",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "835625c4712cc4148df2",
+      "title": "Chief Justice speaks out after Arizona voters oust 3 judges - Your Valley",
+      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNVEpzU21MSmE2dWZ5bHAyUlNkTmJ4WGdpZUpheWFoU3p6RVlBZ0ZtelpkLU5kRC04ZDhXWjlBQjRZOW1ERU1PalNfOFJzc2w1OW5aZUpEVGQwZXh4a1o3dDFwQXA4RUJUTmlpbFN1WFpuTC1nd1pPNHNxY2RnQ0Npa290ajZNV1hTQkx6V0xpMDhLSlJzLUd4dEhLMWlYZjNyNXVv?oc=5",
+      "publisher": "Your Valley",
+      "published_at": "2026-11-15T20:01:00Z",
+      "detected_at": "2026-11-16T01:03:55.297142Z",
+      "state_hints": [
+        "AZ"
+      ],
+      "topic_hints": [
+        "litigation",
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "6a682243ae4ac0283250",
+      "title": "How lower courts became the last line of defense for the 2026 elections - The Hill",
+      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQdVlTcmtvZHF0bGJmWDlfLUZXZkZzSjRwZy1oeVBDMnlVem4tb2FURmNCYXQwZXdRNUZBWDFUR1dyelhUd2JYOGg2dnk2ZUFVZWVEc2QzSS1vNEVyR2NiTVFBcVQzLW83djdwZ1BTb2I0TEZRMXh4TU9LdUpRVkROWHIyeHJ3YUFNS3JYdXF0WW5wOFNPV1l4QmMzc2ZYZ0dr0gGgAUFVX3lxTFB1WVNya29kcXRsYmZYOV8tRldmRnNKNHBnLWh5UEMyeVV6bi1vYVRGY0JhdDBld1E1RkFYMVRHV3J6WFR3Ylg4aDZ2eTZlQVVlZURzZDNJLW80RXJHY2JNUUFxVDMtbzd2N3BnUFNvYjRMRlExeHhNT0t1SlFWRE5YcjJ4cndhQU1Lclh1cXRZbnA4U09XWXhCYzNzZlhnR2s?oc=5",
+      "publisher": "The Hill",
+      "published_at": "2026-11-15T13:00:00Z",
+      "detected_at": "2026-11-16T01:03:55.297142Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "c603900aa22f6eeccbc4",
       "title": "There's a reason Trump\u2019s favorite boogeyman went missing on Election Day | Opinion - The Columbus Dispatch",
@@ -273,6 +317,23 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "8c9351ed30234e755f7b",
+      "title": "ECI Tells Supreme Court Left-Out SIR Voters Can Submit Enumeration Forms In Seven States And UTs - LawChakra",
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBrVWR1MEdOX2kxWVNlX3A2aFZON2E2enN3OHZTTTY5TkM3SXVfeFVXUlczYjNwelR6eEpvRUFjY0xtYnNhSmRUMnhQSXlmWEtJWDE4YnM4R2tidUV6aWVqTDNjX1NXd3RGZTZv?oc=5",
+      "publisher": "LawChakra",
+      "published_at": "2026-11-14T08:00:00Z",
+      "detected_at": "2026-11-16T01:03:55.297142Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -5076,62 +5137,6 @@
       "headline_numbers_unverified": [
         "2026 "
       ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7b5e696be2cf723772ff",
-      "title": "Mississippi absentee voting surges ahead of 2026 General Election - WJTV",
-      "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQenFUOURJMnFMem5idTAxSEtvc0xPMWtvQlJXRVlWbFhrOTRZdE9wbl9QbndOTUhZbk5JY1pUX2JjTnFxZXdzbzJkVzd6SElKMmhTR2JBMnc1cURPZ0o1UEFESlJ2N0FvSzl1d3lISW9OUDdUN2NfZTgwVmxjMEZJSEdwOFlzV3VtMEFlV0Z2N3pLSThqbjA2aGtMV21zdGZJNWln?oc=5",
-      "publisher": "WJTV",
-      "published_at": "2026-10-29T23:44:56Z",
-      "detected_at": "2026-10-30T10:01:36.017664Z",
-      "state_hints": [
-        "MS"
-      ],
-      "topic_hints": [
-        "ballot_access",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "e788c459cf4fd32da44a",
-      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - The Morning Call",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE53WWl1RVRoa3NZbnByakdxbWcwNW5QZnVnc05OZm5GMllCMGZJZ1hNWWlHZDZqTFo5RzJqUEtCeDRObjZZYkFscDFiVzJRcWpCQk5MR18yUFJiNmVtMkQ4LWo3c0xGUDhEZTNvVFh6aHRUUG45?oc=5",
-      "publisher": "The Morning Call",
-      "published_at": "2026-10-29T22:25:30Z",
-      "detected_at": "2026-10-29T23:48:57.693451Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "62227e0a4bcba9ca9f70",
-      "title": "Judge presses the Trump administration for details on its campaign to stop noncitizens from voting - Hartford Courant",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTFA3cmJJT0RFZENNV1J1MGhhQTFrRVNQYkNMX3laZ3luUklWeE53UGphRG9rU0FULUdsX3VWMGw4NFQ5RDVBX0hnZlJRZERUeURpN0R5eVhVSGtFR2hzR1czWE5nSFVwNFh2c2tYX1BsTk1rdGdVWnZr?oc=5",
-      "publisher": "Hartford Courant",
-      "published_at": "2026-10-29T22:22:55Z",
-      "detected_at": "2026-10-30T10:50:11.207469Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
