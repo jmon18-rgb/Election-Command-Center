@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-17T02:28:39.338526Z",
+  "updated_at": "2026-11-17T11:54:45.783213Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 6,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 25,
-    "advisory_related_headlines": 57
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 54
   },
   "advisory_related_headlines": [
     {
@@ -19,17 +19,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "776ba768acda54bdd91b",
-      "headline": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - Modern Ghana",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 3,
-      "state_hints": [],
-      "topic_hints": [
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
@@ -262,9 +251,116 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "dfc7f468ed3b5ed4d0e8",
+      "headline": "Alaska judge rules against Democratic US \u200bSenate candidate's request for absentee ballot data - Reuters",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "ccf3a7aece8340f85150",
+      "title": "ICE may have cost Republicans more votes than inflation did in 2026 - Strength In Numbers | G. Elliott Morris",
+      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxOanl5eEtNX3JyTy0tankzUjhScWVubUVLbTdzaHhTeU9xbURMclVqRk94UFdYdkpJUzdhV2VYUTdQbm1Nb3VKRHFKNzR2TzdXZzhXUk5LcXE4dThuMGxnQnRTNzBidHZweldQSjFrVmFNRDVpWVd2SzBHcDJmdXlNZzFYWFlnX3RfZ3kzZw?oc=5",
+      "publisher": "Strength In Numbers | G. Elliott Morris",
+      "published_at": "2026-11-17T11:02:20Z",
+      "detected_at": "2026-11-17T11:54:45.783213Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "2026"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "bedb34b0a971633e4159",
+      "title": "Commentary: The exhausting 2026 election is behind us. Now, the work of improving Idaho elections begins. - Idaho Capital Sun",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQRm5qWHN0UFBuZmtoclRLdEx1YkZsTXFyUUQ0b2ljZVRJZDMtNkM2V0M1RkVTM3oyY2ZZajI2LVJjQzJBMlFGdVVNM3haR0hjajJoTUhVWkRHSWF1MEhCNTJYdUh1MzF2ek9uaFptdlhJQjNqOFRqUmpERVlfNFByOVJBWDN6LUItdHNnZTVZY0hsTmRaMEJpdG1tLVJQcXBsZG00VlExdEE4dEN5MlpISi1kMF8yTDRqOV9yMXZLX2FUZW5pbnJaVVlB?oc=5",
+      "publisher": "Idaho Capital Sun",
+      "published_at": "2026-11-17T11:01:51Z",
+      "detected_at": "2026-11-17T11:54:45.783213Z",
+      "state_hints": [
+        "ID"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "a580101544827834a748",
+      "title": "Report: INEC\u2019s Data Secrecy Risks Public Trust ahead 2027 Elections - THISDAYLIVE",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYW1WeWJGMVd0dHdqanhQWE5lVVZMa19wR2pyeHNITmhMOFB3Qkt5Mi1kcV9BQ25KblJERjBvZEpIb1M5anVkeC1jQlFYT0cxeHJ3aVBRWFhtRzJyYmVaU2RTY2dIbnpXSE1sZkJteFZPdktxY2lTeEx1YVRZTkwyVV9PSFlTN3RZSVBtZ2FnTWxjdUtIeWQ5R014VjdEdEM1akZQak00RGI?oc=5",
+      "publisher": "THISDAYLIVE",
+      "published_at": "2026-11-17T04:43:07Z",
+      "detected_at": "2026-11-17T11:54:45.783213Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2027 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "0a469209c727ae0109a6",
+      "title": "Conservative provocateurs appear in court on identity theft, voting charges - MPR News",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQa3N6R2p4Q205ci1QNnVCQklKU3RkSDRZMXA5dmNnNnQzVWNVR2V1T0dqTUFRdmdUQm9UbkJjSGE3T2tGeGk4V2w0Z19rQmNYdkpLck14bUoyUlZfTEN2dVd2UTdFTnU2TUkxcm1PSDhSM2VYNTJWRjFyNklsUk1tS2VkSU1oZ2lDWnpCRXRtVFM0UzJ3TENmRkVkV2V1Mkl5WVRCYU4tb0xKUW54NVh2aDhlQjNrVk0?oc=5",
+      "publisher": "MPR News",
+      "published_at": "2026-11-17T01:10:00Z",
+      "detected_at": "2026-11-17T11:54:45.783213Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "3360bd79f78993bd2766",
+      "title": "UCLA VRP Asks Court To Find ROV, Sheriff Responsible For Attorneys\u2019 Fees - The Riverside Record",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNcmV4Z0R0TkVHNjdNdk5ybXR3N2xWSUJaYUR2R0xxQTRhT1F0aTJ5TndSU3NIbDZzd3VweWVOY183RHVCaDh3Nmhzc3ViUmx5bVJ0U1E1R1BYWk1oOUhOcy1PSzExTHRLa1RfZzdOdDZNWEhaVHFxeGRFc3pxR2QxblBPc3NmR3BW?oc=5",
+      "publisher": "The Riverside Record",
+      "published_at": "2026-11-17T00:47:33Z",
+      "detected_at": "2026-11-17T11:54:45.783213Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "f4ef646548603922226a",
       "title": "Poll of naturalized citizens found ICE activity, economy drove them to vote - BorderReport",
@@ -275,6 +371,24 @@
       "state_hints": [],
       "topic_hints": [
         "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "0295f7d787e19041ee3a",
+      "title": "Amid chaotic scene, conservative influencers appear in court in voter fraud case - Star Tribune",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxNNUU4aGhxbElOZW9DTjlVVWZNS19Kbk5UU25ZSkp5Sng4OFJnMWlEUjJ0TDhNdExsYWl1YVdIZlFYREZhV0xITW02aEZVMW9ydFhfdG5pVXFJdEtVUUxIMlZ1N25pcHhWRS1zR2EyVjd1NTloZ0VYSHFnRzZjanNlZnZQMkk?oc=5",
+      "publisher": "Star Tribune",
+      "published_at": "2026-11-16T21:31:44Z",
+      "detected_at": "2026-11-17T11:54:45.783213Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
@@ -4642,116 +4756,6 @@
       ],
       "headline_numbers_unverified": [
         "2026 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a8ee1eceed79cf3675c5",
-      "title": "Volunteer Poll Monitors Are Hoping for a Smooth Election Day, But Training for Trouble - Mother Jones",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOOXRwN2ZfU3dBQ0dBWU1iRVdpTUxCS2R5V3JBQkplNWRSam1tTFZ5dkxLSkxkcnJMWTBrV05TMTk3cTY3NFJKQ2VKUEszdGwtWUdESUxMazdDNEZXa09Xd0RZWmptRWhZWnp4RWcwV0liSmRCMzAzVU4tQjZRRmF6TXR0azBCRUFtOWpiaDRfVnk5eXdKUjRkWUxmOVgxbDEtdG1VekNWNjhuS3QzVllXaGlPNmI4Z215ZTFuX1E2VVEtZGt0WkZWNVRpZ1lRNG8?oc=5",
-      "publisher": "Mother Jones",
-      "published_at": "2026-10-31T11:30:06Z",
-      "detected_at": "2026-10-31T11:47:07.968385Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bc422c443af4528f8fe0",
-      "title": "Trump Moves To Curtail Voting Rights Ahead Of November 3 Midterms, SAVE Act Targets Proof Of Citizenship - NewsCord",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxNcDgyMU4tSjBwQnZqOTVOS1k5QW5ZTDhxWXBZMWgwVzZrbjFKR25fSXZvYkFoNS1hOExIZElURGpJV3VXc3VxTkVSUG4zZEM5LWZRbWRFbmFUOVozaHBObl95UHd1cDA1ZmpSSGhQVE1VdjdKRzRmcU5PU0NrRy1vLV9PLVVhakE3UVpYNWxUYVJzb244OFR3c1FjZnVFa0JOLW9xNFdndWxjVWlPLWxCUmZSdkg0RnNQYU9taWF1aXVoVWF0QVZ0NV9Bal85UUU?oc=5",
-      "publisher": "NewsCord",
-      "published_at": "2026-10-31T11:22:28Z",
-      "detected_at": "2026-10-31T11:47:07.968385Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "3 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "776ba768acda54bdd91b",
-      "title": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - Modern Ghana",
-      "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxON0Y5bVo0N1lyUzNJS1Q2OXRDdkdhU3FCSHdQVnhHVXd0VXVtRy1ESmJFaGpfUV9Pc2pHTEcyRnVmSjRPY2ZiTzNjZmZ0c1VSNldGNHRJRFl6endKRk0tbXFnUmxwTXMzTEJaRmdwSDBtVnp4R3NYc3VpNzd2Q1BkXzhLQWp1NVVIOEZScXVCalQ0RjdqN0xXRdIBlwFBVV95cUxQNDl5NzZjbG0tcDU5MXZXY0Y4YmVfUTd4T3lUNjcyV29QYzlrUWRPYmJpQjdUdVRPT0FvR0Jkd0swWFNydjFRN3ZvTlFOVDVnWTEwemk2NktRanI2bU4yVGdfWnVuTThsWmRqOV80VXR5TVFiNXFtb3VxUGFBRnpjMmd5SW9zTF9fRnV0SEk0SkUzZ2loRkVR?oc=5",
-      "publisher": "Modern Ghana",
-      "published_at": "2026-10-31T11:21:00Z",
-      "detected_at": "2026-10-31T11:47:07.968385Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "d2927ba40f57c51b47b7",
-      "title": "US Supreme Court allows states to use SAVE database \u2014 France 24 - UA.NEWS",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQZ19pNE1oUXhuczh0eGd4ZkV6dk8zMWdGSURQWGZ2RjUxbDdZWENtUU92czEtRlJ2Z1dLUnFLQ2FrcW5PZ3BWRHJXQlNoRV9yME9QLTJ1WE9uUjdHWm43RHp1Njh5cEIwdDdqOFFzcV9qemkxalJ5M05QOGxGQ1dXNEJxRWZGdjI0ci1YcllLN0pCYW5HMUNRa1p5X2hwUQ?oc=5",
-      "publisher": "UA.NEWS",
-      "published_at": "2026-10-31T09:56:23Z",
-      "detected_at": "2026-10-31T10:47:21.080766Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [
-        "24"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "b0dd5cfb27c75efee917",
-      "title": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - inkl",
-      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRnlIc1MzM0pLTU9mSHYzeEQ3Y2liNi1NVnpkRUc1LTE4NFRYTE1KMmd5MG5uamhZNks1SmtmMDJNTzVlMXhfNHFKa1BGTk9EZXJoM0NUUC1QczlCTzhGQ1hVSFRMNUxkQUNsWWNqX21pX3hfQmlzczg5ZHdUY05NbUF0MmxXd1Q1cUhoenB4bm9icHBHU0JMNFVhREZTdDdGVFo5blZR?oc=5",
-      "publisher": "inkl",
-      "published_at": "2026-10-31T09:40:54Z",
-      "detected_at": "2026-10-31T09:51:46.252402Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "933bd6f18190fc4a222a",
-      "title": "'Atmosphere of fear': Trump moves to curtail voting rights ahead of the midterms - France 24",
-      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNd2xHSGlWUWZwM0R0N3pISWQzdFF6Znc2RzBiMDFMQXZMeEp5NElSZmJyS1VyMWk5SHY0SFhVNjh4aF9sZnhqQWZkNllRUzVZcEZUVVBrLVk4V0trMHJ4MDdtYS1uLUFYSG5wbGxydWUtVlUza2JEdFgweGJfOUU5TmRBeVFkME5RcEQ1VmlSMXlDRk05a2JUaHNZMmwwUmx5eXhOdmtqbzR6M1pTNTZzRUlCcGhaLWl1ZXFnSWh6cDR1dmFuRmlsZVF5ZDN6aXNYM1pJ?oc=5",
-      "publisher": "France 24",
-      "published_at": "2026-10-31T09:40:54Z",
-      "detected_at": "2026-10-31T16:48:48.064675Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "24"
       ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
