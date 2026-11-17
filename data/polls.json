@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-17T11:54:46.126296Z",
+  "updated_at": "2026-11-17T20:57:24.420197Z",
   "generic_ballot": {
     "summary": {
       "dem": 51.1,
@@ -7658,11 +7658,13 @@
           "other_name": null,
           "first_seen_at": "2026-11-02T20:54:55.564125+00:00",
           "release_date": null,
-          "upstream_posted_date": null,
-          "source_poll_url": "https://www.survey160.com/methodological-research-blog/survey-160-pre-election-surveys-in-four-states",
-          "sample_population": "lv",
           "question_id": "56916ac6-ce85-4f86-a798-dbffb7297e80",
-          "date_provenance": "PollResults ingestion date, NOT public release date"
+          "sample_population": "lv",
+          "upstream_posted_date": "2026-11-02",
+          "source_poll_url": "https://www.survey160.com/methodological-research-blog/survey-160-pre-election-surveys-in-four-states",
+          "date_provenance": "PollResults ingestion date, NOT public release date",
+          "model_source": "pollresults_secondary_fallback",
+          "lv_selected_over_rv": true
         },
         {
           "poll_id": "874e66b5-2a4c-4aca-98bf-0a195be794af",
@@ -19993,7 +19995,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-11-17T11:54:46.126296Z",
+    "last_attempt_at": "2026-11-17T20:57:24.420197Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -20005,8 +20007,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-11-17T11:54:46.126296Z",
-    "previous_snapshot_at": "2026-11-17T02:28:39.714340Z",
+    "comparison_at": "2026-11-17T20:57:24.420197Z",
+    "previous_snapshot_at": "2026-11-17T11:54:46.126296Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [

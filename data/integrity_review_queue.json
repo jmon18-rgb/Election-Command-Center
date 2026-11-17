@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-17T11:54:45.783213Z",
+  "updated_at": "2026-11-17T20:57:24.051805Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 6,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -268,6 +268,62 @@
     }
   ],
   "items": [
+    {
+      "id": "59775c570ba8791d76ef",
+      "title": "DeSantis sued (again) for delaying special election for Senate seat in Miami-Dade - Florida Phoenix",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNOG1NdjRkbEk3SzlXQlhGdnpCSTNEcjFESHR2eEp2OHBxWlhvTDNrTFZfVzlhNWJ2bUlkWjV5Y2xuM09GSDVaNlBMdjRiWmR4Y3J1ZGJ2SDJzLWpSek1WSzFFaThBWUV1UUx3UEN2RGFaYU93Y1F0NXNYU1E0NENmajN2c09JVWV6SU50UWhlZzB6azJrdkN3RWlQQWpBNnhNbmZzajJUSVRBZk84Z29VNDlzNHpobFJIQnc?oc=5",
+      "publisher": "Florida Phoenix",
+      "published_at": "2026-11-17T16:25:43Z",
+      "detected_at": "2026-11-17T20:57:24.051805Z",
+      "state_hints": [
+        "FL"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "beed9f8608ee9a530ca3",
+      "title": "\u2018No religion, caste data\u2019: UP poll officer amid Yogi's claim of 1.27 crore Hindu voters missing from electoral roll | India News - Hindustan Times",
+      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOVGNGNEFUOGx3aEs0MWlUdmFSNVl0SFJHTFBaTDBVUXB5NC0xUVZBN0xOSjdaRnhxdUZ5NG1uUWEyRE04RzBkNGU3cnNWRnZUNFhzQ256QktScllqcE1yc1pvUjNvTWFRMmxycFZmQ0hjVlJSYWZVeC1JRWJ6QWVPQkcxYi1mekdaQ1RPaE9TdHNOODBSQWV2YThMMmxHVUlqZlh1akZVUm5IR1dfQ1ltTkMwWTNESC0yeWo5aW50V0JqRkNJbzRvT2lHTjhCbVA2RF9TUjA2SkhJbXRKNDNienpOejIxbVdVQlliLThKd0taMVBra1BERHZSR1pDaFBTdmpVRTNlMjFxQ3Iy0gGSAkFVX3lxTE9Vekd1Q0ZIV3JwMDFuM3ItWU1JVkY0ZmR2ejN1bjJvc2xMQWlOcjBhQXdXcy14WkROeEV4VmxEX3JjUUd4QVRkRHEzMkJtMnR6ajVTcldaTUdTT2VQZElsMlo5U08yWXRxSEJsVnVKakVHYjBSR2MzV19yd3ozVVRuejk1MXQ0TGs3dmo3UXlobm9RbTl2aEtJMzRuY0U2a09DUDhLekF0U2h4THRXNi12cmxzbUpjd2xuWGlrMmFURkNOZmRvSUpNNENyUjFKaFdBOS1uRDdTeFdDQmxVVGRRa3Z3V3oxWmpFM1p2VldwT1BVYld4OUc5RW5SRFpWeUk5WVhONEJ0RmRydmtOVmdsOFE?oc=5",
+      "publisher": "Hindustan Times",
+      "published_at": "2026-11-17T13:04:33Z",
+      "detected_at": "2026-11-17T20:57:24.051805Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [
+        "1.27 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9501f040fbd4acec716b",
+      "title": "AAP Registration: Court permits group to proceed with judgement enforcement suit against INEC - Premium Times Nigeria",
+      "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxPU1ZGZEh0QWVoR3pSZG9VcjBOMXlkWjcwWFloMG94YWN3WEp1RmpZLTNlci1vQkFja0tWdXE3dVVyQ0VPTDFRTEtFRnUtSVg1U3dBdjhOa0tGeHRVckhGSmFJU01tWW9HX0laY29UbFF1UEJKbVRCQXFCLWtCb1hnZ0VFd2Z1V1MwUUI0X1RyT1JndjRaaUJEb2d4aXlualJ0UHNNWXV4SkxVdmJTei12bW1Yb0hsVHlKSWM1emJGT2lPdUN4dnB4bUlTUUJKX1dqUXlrTjQzUkFpQlZDRllvM0lBUQ?oc=5",
+      "publisher": "Premium Times Nigeria",
+      "published_at": "2026-11-17T12:23:58Z",
+      "detected_at": "2026-11-17T20:57:24.051805Z",
+      "state_hints": [],
+      "topic_hints": [
+        "registration",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "ccf3a7aece8340f85150",
       "title": "ICE may have cost Republicans more votes than inflation did in 2026 - Strength In Numbers | G. Elliott Morris",
@@ -4703,60 +4759,6 @@
         "election_admin"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "bde6610a8168d2351477",
-      "title": "How Trump and his allies seek to interfere in the US midterm elections - The Guardian",
-      "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQUkl2NzcxQzJaWTM4S0NiaXAzNkw1QWdLd1ZPa19tOTloZWRFQVZSR1FqVzZ3SGY1QTdILUU2NkJZcVBmWG84bmdoZEd6eHVxQTF1LTN2WUY5dExBWmFGSExDUDRzOXY3ZlN0eXBsSnNIa2JwdkNBODJVZWlrRjZnd2VaZy1UblpOYkw2NzF4ZGNpS2hQWWJYOVp5TVlQbF9CSnh6aVdPN1A4Zw?oc=5",
-      "publisher": "The Guardian",
-      "published_at": "2026-10-31T15:00:00Z",
-      "detected_at": "2026-10-31T15:46:46.662004Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "39d0eed8e4edc2de0958",
-      "title": "Trump DOJ Blocked Nationwide From Threatening Election Officials - Newsweek",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPc0Y2REZpLUlJSmhwU0M4Mlg0MWpFMVBESENRLVpncE82a1VyaXJKUjhINXppVnFfd1ZoWVJSZHNIc1ZRYnY4Q1ZYWXp4Y2Vic3RDLTZDLWhudVJPRXlpemVvUGM0UGVEMWZqeVkwdFg4a1h4dFBtN3RlTGpaeXVmRWNqLU9nU0JGSkc1eGdfV0Rtb19tQ1Z3R0J5VnZ6SFk?oc=5",
-      "publisher": "Newsweek",
-      "published_at": "2026-10-31T14:57:00Z",
-      "detected_at": "2026-10-31T15:46:46.662004Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c8dff0ab88daece56461",
-      "title": "Who will win the 2026 midterm elections? Polls and predictions - The Times",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQVTQ3c210WFhibU1kMk1ZS0ZCMGwyenJEampyWkhCdUlwV3AzTjVSb0JkQ196QTlYU1RORU1WSmQtalo0NzZ2cVZtajFTSWg1Q3BLRVpFQm5qeWl5NzRVM2JockdHazktMERtbW5HSEtYc2pDUmRhNDdDVm55RlRpUC1iZDBXelU2RUdWYXZ2MHViUDJfalRNM0M1aUJYeUxNWVlWd00xNEs?oc=5",
-      "publisher": "The Times",
-      "published_at": "2026-10-31T13:48:30Z",
-      "detected_at": "2026-10-31T13:53:17.254786Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026 "
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
