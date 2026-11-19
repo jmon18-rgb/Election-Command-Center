@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-19T11:42:52.255098Z",
+  "updated_at": "2026-11-19T20:39:40.013622Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 5,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 50
+    "advisory_related_headline_buckets": 23,
+    "advisory_related_headlines": 52
   },
   "advisory_related_headlines": [
     {
@@ -270,6 +270,87 @@
   ],
   "items": [
     {
+      "id": "d9028d6eac2d992c0964",
+      "title": "Mississippi saw a spike in 'inactive' voters for the midterms. Democrats want answers - Union-Bulletin",
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNYzlwZWQ4YzJ1XzhYMDllRm5mcWEtay0zRXd5NVpxLWRtWGdGeEVQT2RhdjRYU0UwSkhKUHZGTTJIVWs5S2YwU2VsZFpoWndQTXYwTy1xRXhDczlnU1BKRWUwaDk2ZjhsTGNVRUgyY1hGeXFsRmZXOFlKMFl4Y20yNGtFNlJrdjVaMHprekRVNUJyVmc0T21uUGU0SGlxa3JZWEFBS1FmNkNmOFlpVGhYaGpuUmcyT3pQRFhDUlNuWEotUTh6akQxU2U2cnRRVU1tRUtIVmF0MmsxbHUwLVRiejgyNzY5ZzRlcDdqT1laVl91c3ptaFlHYmVKaFFReEdRUTNraTJNN2s?oc=5",
+      "publisher": "Union-Bulletin",
+      "published_at": "2026-11-19T19:47:46Z",
+      "detected_at": "2026-11-19T20:39:40.013622Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "9756a1b793c1f9db21c9",
+      "title": "Election 2026 Mississippi Voter Purge - Rutland Herald",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPaTVva2xXTnh4MnBNcHZTTEYycTMxaXU4eV9jckNpa0VTRG00bm4xU01OTzBrc3JtNno5cV9hUjdyTHBqbXY1WjFSX2ZHWFh2TGwtRlRPWFVuN1pFaUpkVVRENGoxUzJCbG1vOEc2R2hBdk5US0RxbXZwRE1Md25CMkF2ekVwWm5RYUtCX1ZMbFR5dG5GM3diYnAwX3U2STkxSVpfcWpPR0hvTWJld3dlRHJxVzFSb2plMlNhS2xLNlMteWlVa3c?oc=5",
+      "publisher": "Rutland Herald",
+      "published_at": "2026-11-19T18:40:57Z",
+      "detected_at": "2026-11-19T20:39:40.013622Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "registration",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "196ab8c7425148614225",
+      "title": "DOJ\u2019s cascade of voter fraud cases slows to a trickle post-midterms - Missouri Lawyers Media",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxNeFZxU3Jfb2c4M2RVWEw3cGRHNER0UHR6S1JwdjdNMmN6WjF4NG4zLWNUMm9WVzdwdk1zc2VHR0ZFbzlOSkZoVTg0MmNwU2tqVk9tb1h1MkVub0o5eU52VGV1aHc1X2xTM1plZ0ZOOUdZbnNxWUZzMjNwdHM4THBxUUR0dEs3VzN3Mnh2TEZDN09rZUpyYWxzTDU3bmU?oc=5",
+      "publisher": "Missouri Lawyers Media",
+      "published_at": "2026-11-19T17:47:38Z",
+      "detected_at": "2026-11-19T20:39:40.013622Z",
+      "state_hints": [
+        "MO"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e5509b1af4c42df19d35",
+      "title": "Voters hit a few snags in the 2026 election. Let\u2019s find some solutions. - ACLU of South Carolina",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPcUczV19yOG43ZmxHdXkyaG9MU2FrdmRwamF3SHdrcFNiM2xoSFNxQjQ1aVFlbUx4ZmUyMjE5ZGVGSnVBRE9rRGdiYVRDc042WklYZGRiT2ltSTZmZ0tkUE9zandEV1pVZzBfZXl0ekJENGNCb3dlVzZOQTRzX2hfMkZnOFlSTlFVdlpnVmFTU19DbnRqcG1kLS12aW9odw?oc=5",
+      "publisher": "ACLU of South Carolina",
+      "published_at": "2026-11-19T16:23:25Z",
+      "detected_at": "2026-11-19T20:39:40.013622Z",
+      "state_hints": [
+        "SC"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "7915956a586c9d4d2295",
       "title": "What Really Went Wrong in Apache County\u2019s 2024 Election Meltdown - The Fulcrum",
       "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBWTXBNV0NTUl93NEtwaVpOTGRYZGh0NFVfdk5fV29ISFRUQUpRVVlHQTNsbWJYNy1hcWJ0U2h5OWZqbEtvanhuWFM1NzVpQ0JoNVhxTm5GZy1uWWI3WUx5TG1CNmNsdTk3Y1IxZHd1SHotTXk0a1dqTDBMQQ?oc=5",
@@ -283,6 +364,23 @@
       "headline_numbers_unverified": [
         "2024 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1ba997065e00e9c03418",
+      "title": "Cantwell Celebrates Hard Work of Voting Rights Coalitions and Election Workers That Protected Midterms from Trump\u2019s Overreach - Maria Cantwell (.gov)",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQQk5XTzNQVXk0RWZtR1V1MjZWT2VvVGo0THozVFh1aTJFeVhUak9kblBuN2JSR1VvYXhRRDI4dl9PbkpYMTdGSUprWjBVNGJmckRGeFRLNkNLakMwUVFGc24yQzg1N1VPMXEtWXNlRy1KV05kcGNYdjd0Z3lHNW91QTNveEJ2dVpsa1NQZVpMWVdTMXpQS1RZTC00LUNVMUs0Y3pWNllCcEMyT2FIZVRPRXZUZVc0ZVpNVV9KX2wzSVpLUUlKV1lSUEViUlNPUFZrcnYza1JULUFGZDVGeVhjQ1EzRDBoVXMtRC1sRDlNYkhWZVU0aE5UU2lNMjltUkp5UGQ5NnJaTQ?oc=5",
+      "publisher": "Maria Cantwell (.gov)",
+      "published_at": "2026-11-19T01:09:27Z",
+      "detected_at": "2026-11-19T20:39:40.013622Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4671,98 +4769,6 @@
       ],
       "topic_hints": [
         "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "018a3a4786034065baa7",
-      "title": "Mail Bag: Find out what your neighbors are endorsing this election - The Napa Valley Register",
-      "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQYWR3Z2otby1acDJKWFdibFZ0QW12NkxYdG9QMEswM1R3TUhycTBWQ2xnanUydXgwdm5wYjMwNkVsWTdFM0hzUGJ0SnA4YzF2NHdTdEdHTHJZanpoTzJzQXNQQnlSNnhhSXJFU1pOZ3JMeWtWRExXaFQ4ODdhRm95U0laVVpaNzB0NW15QlhORVJNNVk0Z0pfTXQyRi0tSmZxT2xYWWFsbEdndExRcEE4XzMyM0tTN3NZam1pSnpkQ1VUVFh3bWgwTmVNd0I3WlprSWFfczNHZUNxWVZGZkZiRktRYkFuN1ZGQ2NRdF9B?oc=5",
-      "publisher": "The Napa Valley Register",
-      "published_at": "2026-11-01T15:00:00Z",
-      "detected_at": "2026-11-01T15:46:32.431708Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f4ab69bd4b1a31cca8eb",
-      "title": "Delhi rally demands election chief resign over voter list cuts - Business Day",
-      "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOZXNYSmNxa0VDallwVXhtd25JSVlqWGdfZnBiVUxIM09WS21lN3ZQRDJZcjhYbUhYQVkybGdldXlmRk5zeXBsN1pQSnNPaU8zZmdTZzlqWjVxazdaTlRxT29iTFZlbUw2Y1Z0QllwTHBSaUc0N3hxNFdTVFk2dm54MF9EN1lMX2ZBWHRKbzBXZVU0U3kwS3NFdDhpcHJTN1lPdHBVdHRycEVObHVpdmlJMEMySUdPQQ?oc=5",
-      "publisher": "Business Day",
-      "published_at": "2026-11-01T13:25:05Z",
-      "detected_at": "2026-11-01T22:46:46.751222Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "edacaad2c0a58a3b33ec",
-      "title": "Confirmed | More than 210,000 Spaniards in the United States will be able to vote in the Nov. 29 election - El Cronista",
-      "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOcWJuUFlGRHVWSWRLRS0ySzdzS3JkejZvdl93aWU3eDJyVjJRaU5aWUNraW5LY3Vpb05pSUtMRlVMeVZPOVhkWlNlVllRR2hXb09NbUNzSGloOUVZaEIzaFhhR0dudUZXb2E5cXRBenltaV8xWVdmaUtKRFd2TlVENXRuYVBrekM1Ni1tVUdLOFFLMGQ4YlBjQjFaZWdoakwzMXhlNXdtOWkxSUtTcUdxRzZnVXpVdkNkS2VJZkNrOHpOS3oxZ1dka1BlazRkaG5pNkE?oc=5",
-      "publisher": "El Cronista",
-      "published_at": "2026-11-01T11:23:00Z",
-      "detected_at": "2026-11-01T13:55:15.220099Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "210,000 ",
-        "29 "
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "ddc13aea8c06df5006e3",
-      "title": "Election officials brace for foreign threats \u2014 and an unpredictable Washington - CNN",
-      "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxOU0UzclNmaEV4eUMzQ3ZBM0hPVlNiRGJDRnhYWjVYeFZZMURTaTd5OGdHcnVDaDJDMmlQeE1yLW1ueGxpeHRGZE1EUV9QTFBHb09fMnJiSzhmRWMyZW9xR2puXzg2RHZjTUlJVnpiUUNCRlI1UjJvMWJObGJjYklkUXdnVQ?oc=5",
-      "publisher": "CNN",
-      "published_at": "2026-11-01T10:00:15Z",
-      "detected_at": "2026-11-02T04:08:39.266239Z",
-      "state_hints": [
-        "WA"
-      ],
-      "topic_hints": [
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c01889f81a3f5c39508c",
-      "title": "Supreme Court allows Trump to implement parts of his mail-in voting executive order - ABC News - Breaking News, Latest News and Videos",
-      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxQLUpWVmxZNkVNNGxlamhNRjkteVhjUVJNMXhDQ3Vyc3V3UkdTVEcyeUM0ZnEzTUlJQXRYMUZsNkZ5LTN5Q0VzWDFrVmVFSVlpOFBSaEpwa19qd0Q4SExzankxMEpIQjMxT2k5R0Z3emE0cDFCNng3V3lwVjBQUDg1NNIBhgFBVV95cUxOWGtmd1BpZ1U2QlJOeTZIcXhKMTVTOVFEZDJKcDJPS1NzX2NsOG1RT2w2TkpUMDkwTWY1QzlZcGt4LVlmNV9NZlFVUG04S0Y1U2hUSUdFSk5sUlFId1VsZzlnd1JvOGlWQnY2LThiN1J6cjZDSjdSWHd3elNWS3FpYWJqMXFnUQ?oc=5",
-      "publisher": "ABC News - Breaking News, Latest News and Videos",
-      "published_at": "2026-11-01T09:26:06Z",
-      "detected_at": "2026-11-01T11:46:53.894500Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
