@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-19T02:35:25.814685Z",
+  "updated_at": "2026-11-19T11:42:52.255098Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -269,6 +269,25 @@
     }
   ],
   "items": [
+    {
+      "id": "7915956a586c9d4d2295",
+      "title": "What Really Went Wrong in Apache County\u2019s 2024 Election Meltdown - The Fulcrum",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBWTXBNV0NTUl93NEtwaVpOTGRYZGh0NFVfdk5fV29ISFRUQUpRVVlHQTNsbWJYNy1hcWJ0U2h5OWZqbEtvanhuWFM1NzVpQ0JoNVhxTm5GZy1uWWI3WUx5TG1CNmNsdTk3Y1IxZHd1SHotTXk0a1dqTDBMQQ?oc=5",
+      "publisher": "The Fulcrum",
+      "published_at": "2026-11-19T05:13:06Z",
+      "detected_at": "2026-11-19T11:42:52.255098Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2024 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "36d33cffbce2f58264c1",
       "title": "Cantwell Celebrates Hard Work of Voting Rights Coalitions and Election Workers That Protected Midterms from Trump\u2019s Overreach - Senator Maria Cantwell (.gov)",
@@ -4744,23 +4763,6 @@
       "state_hints": [],
       "topic_hints": [
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a6df10dcfeab5d11a2eb",
-      "title": "Bulgarians vote in a presidential runoff marked by regional security threats - NBC News",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPLThLRFFnU0JSQWJ0X28wUHRnOXZNRGVPbXNuUFpWdzUySzNSNUkxVElnY3RCNW5jUjdVQlhfU0tXZGFoYy1DcUhSZFpRMDFrTDYtS1Jqem03VHFLTDNVVmZ3VFBkeHNGUFI0enhQVjR0azhwUWRiakktNXNBQmt6TF9ubG9qUzRRd1NTZkFfc1lNdDZMbzJFT0lnVWI2UC0wamJmQjZ4MEpEZDhRMTBFTWRnNF9iaTg?oc=5",
-      "publisher": "NBC News",
-      "published_at": "2026-11-01T08:40:17Z",
-      "detected_at": "2026-11-01T17:44:00.656532Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
