@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-18T20:34:01.889343Z",
+  "updated_at": "2026-11-19T02:35:25.814685Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 3,
@@ -269,6 +269,59 @@
     }
   ],
   "items": [
+    {
+      "id": "36d33cffbce2f58264c1",
+      "title": "Cantwell Celebrates Hard Work of Voting Rights Coalitions and Election Workers That Protected Midterms from Trump\u2019s Overreach - Senator Maria Cantwell (.gov)",
+      "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQQk5XTzNQVXk0RWZtR1V1MjZWT2VvVGo0THozVFh1aTJFeVhUak9kblBuN2JSR1VvYXhRRDI4dl9PbkpYMTdGSUprWjBVNGJmckRGeFRLNkNLakMwUVFGc24yQzg1N1VPMXEtWXNlRy1KV05kcGNYdjd0Z3lHNW91QTNveEJ2dVpsa1NQZVpMWVdTMXpQS1RZTC00LUNVMUs0Y3pWNllCcEMyT2FIZVRPRXZUZVc0ZVpNVV9KX2wzSVpLUUlKV1lSUEViUlNPUFZrcnYza1JULUFGZDVGeVhjQ1EzRDBoVXMtRC1sRDlNYkhWZVU0aE5UU2lNMjltUkp5UGQ5NnJaTQ?oc=5",
+      "publisher": "Senator Maria Cantwell (.gov)",
+      "published_at": "2026-11-19T01:07:51Z",
+      "detected_at": "2026-11-19T02:35:25.814685Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "990388ba3471e4fa0f0e",
+      "title": "Dauphin County jail policy limiting cooperation with ICE dies in tie vote - PennLive.com",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQdWJhai1zS2FfM21DOE11MzRrcEZVNUhSNnhLMGIwUGFWWGJmZ0o4MGhKeVVmRDExZWE0RnlLd0FtUXduMU8xSzdacHZBbDdJa2J0OUFQa3pISkk4cWtaYVBub0lXckFhRU9wenVhTVZFcWxMMW1XdElnMk42eWFZeEZZUVB2OXF1a1hjdVkta2VzeDY0V0xSMDJDaWRpeTFZUDRiZEVXS1RRUHRkbEt2ZzdxWlUyd3fSAcsBQVVfeXFMTWxaYko3U1BScE04emIyRERqcFlHQ1BUSWxPVk1rX0hITERPMDh1UVVpemZqZmZzcU05bDNIcTJaWTZ0Q2R0emktdHNNWk5qZGpKWng0MHk5djEwWHFqdWdOREFGdmxza1NUSlp5cTdUektHUXJua2dtSTNhR1hWeTlCVHdNeS1QcDlyR1RVSUxmZDJRQzBuMW9IdUJoc1hfbmM3NEdxeXBJdVhkZmhyV3BjdU1fcnBkVC03N1hiWFJXNnU3dktzN00yX3M?oc=5",
+      "publisher": "PennLive.com",
+      "published_at": "2026-11-18T23:12:00Z",
+      "detected_at": "2026-11-19T02:35:25.814685Z",
+      "state_hints": [],
+      "topic_hints": [
+        "security"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "53121e242b8178bb5dfe",
+      "title": "Lessons From the 2026 Midterms: An Opportunity to Build Best-in-Class Voting Systems - Voting Rights Lab",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNLTlFTTN4WnhOWS04eXBFVUdmZS1ORFRGYVJVdlVGejVPSmFnNVdCbnFabGM1R193ZVhrNldHRkV4WnJsbGp3a1dhbjVlNFpyaHl5QVlpNVhYMXJ6X0VFbXY0bWZLNzY5bGMwV1BsMW04ZlRzU3hpa1R1Wm1nNGx5dGptZjBlbkdzZUJEYVlVSE90aFE?oc=5",
+      "publisher": "Voting Rights Lab",
+      "published_at": "2026-11-18T20:59:53Z",
+      "detected_at": "2026-11-19T02:35:25.814685Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2026 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "1c0d5904e51f22bd97f1",
       "title": "Top Democrat Has Perfectly Petty Response to Trump Team Threat - The New Republic",
@@ -4710,59 +4763,6 @@
         "security"
       ],
       "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "52fbae6d50ab0e505538",
-      "title": "India opposition holds major rally against voter roll revisions - DW.com",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNS09QVUljNWxnMDB1UndSazY1QlZLZUNFbVR3d3Zwa0lySC1MQjI0eGozYl90Rjhwb3Fma3ZpeXFxbVVub21leERkczJNZGxSQXQ4WnF0N0dVbWl0cGFEM291d3Q3Q24zc3JxM3hDek9oSk1oWVFrZlh5bUo5RFZVZ19YQno4dHBoYkFRd0s4SEdmSjk2Qmx4Zmk4SVNWRU4tN2F4THhCeW9NTlVoUVZv?oc=5",
-      "publisher": "DW.com",
-      "published_at": "2026-11-01T06:59:52Z",
-      "detected_at": "2026-11-01T13:00:38.609018Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5e530f175274c80ca44f",
-      "title": "India news: Opposition holds major rally in Delhi over voter roll revisions - DW.com",
-      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNS09QVUljNWxnMDB1UndSazY1QlZLZUNFbVR3d3Zwa0lySC1MQjI0eGozYl90Rjhwb3Fma3ZpeXFxbVVub21leERkczJNZGxSQXQ4WnF0N0dVbWl0cGFEM291d3Q3Q24zc3JxM3hDek9oSk1oWVFrZlh5bUo5RFZVZ19YQno4dHBoYkFRd0s4SEdmSjk2Qmx4Zmk4SVNWRU4tN2F4THhCeW9NTlVoUVZv?oc=5",
-      "publisher": "DW.com",
-      "published_at": "2026-11-01T06:59:52Z",
-      "detected_at": "2026-11-01T13:55:15.220099Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "0ec4ca3d430d5c57718e",
-      "title": "Over 40% of names on DOJ list of alleged noncitizens are not on Calif. voter rolls, analysis finds - NanaimoNewsNOW",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNSjY3RGtlWWt2c2xPVU5Tb0RWWHlUdW41MEtEZnJJeDVZdE5ZSTNoSmhVaEZnTWxrcmtNLWNlLUZzc2poRF9uWlF2eGdQVGxydWkwTkFhOGlwQURTTHM2ajBBaGVUWEpROVNaZ2tXRVc1Y1A2RmVROXY4aHJZX2Mxc1g4WjU2cGRtd09NY0N2OVJmV2RlYVA0a2YtdzhoYlRPTlJTTG4zOXBSMW1qbHpjSm15SUx5UVpZOVk0LUktQmhJOWZuYW9IbTlRWWJCWlNJ?oc=5",
-      "publisher": "NanaimoNewsNOW",
-      "published_at": "2026-11-01T00:40:41Z",
-      "detected_at": "2026-11-01T01:22:02.473422Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [
-        "40"
-      ],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
