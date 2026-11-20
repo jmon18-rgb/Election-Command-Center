@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-19T20:39:40.013622Z",
+  "updated_at": "2026-11-20T02:20:52.879852Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 5,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 52
+    "advisory_related_headline_buckets": 24,
+    "advisory_related_headlines": 54
   },
   "advisory_related_headlines": [
     {
@@ -270,6 +270,44 @@
   ],
   "items": [
     {
+      "id": "41b4ccba579d9f97b9d4",
+      "title": "DOJ abandons lawsuit that sought to pause certification of Alaska\u2019s US Senate election - Alaska Beacon",
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNQTM5YkY2YlN5NlJmcE9PeHlzSmlOQXdpMXA5QTBoa1VWbkdnMUpOMkJuX2lSY1YyQlk5eHNld2Z4UTNlbDJqZ1ktVlFSeWFvV3BtQW9sdHZUelBjWTJ0UVVNSVI0MGM4RW1OMC1RUUJPVXIwR21EdHFKbEJLNC1fc01MZnBxQmxRb0FCa2ZQS3VZLUtYWkJPM0szODA3bVZrcWVCSUllMnNyWXktNER4X3lXT1Zfd3ZidU9EeGt0WQ?oc=5",
+      "publisher": "Alaska Beacon",
+      "published_at": "2026-11-20T01:32:27Z",
+      "detected_at": "2026-11-20T02:20:52.879852Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "2e53f0b60c935989bb69",
+      "title": "The IOP Made Its Election Results Public. It Accidentally Made Every Ballot Public, Too. - The Harvard Crimson",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPT2R4Y2VTUS1fVVFHTDN5NEF4d3R1MXJ2V0o2RGVLakhkWnNKdncwNndJX0dSbDI2YjRXOGlTalZiblhrWlFGWXF4eTJ0Yk5wNmowUnJhNkh6eDh1NmMwblpZVDdKdGhUV1JfZWQxVjhkbW03NFhNWlNQU2JHMXdPYUhWTzRuZlcxa3c?oc=5",
+      "publisher": "The Harvard Crimson",
+      "published_at": "2026-11-19T20:55:09Z",
+      "detected_at": "2026-11-20T02:20:52.879852Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
       "id": "d9028d6eac2d992c0964",
       "title": "Mississippi saw a spike in 'inactive' voters for the midterms. Democrats want answers - Union-Bulletin",
       "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxNYzlwZWQ4YzJ1XzhYMDllRm5mcWEtay0zRXd5NVpxLWRtWGdGeEVQT2RhdjRYU0UwSkhKUHZGTTJIVWs5S2YwU2VsZFpoWndQTXYwTy1xRXhDczlnU1BKRWUwaDk2ZjhsTGNVRUgyY1hGeXFsRmZXOFlKMFl4Y20yNGtFNlJrdjVaMHprekRVNUJyVmc0T21uUGU0SGlxa3JZWEFBS1FmNkNmOFlpVGhYaGpuUmcyT3pQRFhDUlNuWEotUTh6akQxU2U2cnRRVU1tRUtIVmF0MmsxbHUwLVRiejgyNzY5ZzRlcDdqT1laVl91c3ptaFlHYmVKaFFReEdRUTNraTJNN2s?oc=5",
@@ -364,6 +402,25 @@
       "headline_numbers_unverified": [
         "2024 "
       ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "ceb96f87a25223c788c8",
+      "title": "Mississippi saw a spike in 'inactive' voters for the midterms. Democrats want answers - News4JAX",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOUkN1YzZuUmFZT2E2aTRKMU5nN0F6QzZhNjJBelFzODNBTFZnQ1kySDNTeHRrdUVZcWJ0TklvQWhwSF9hTFI0TklqZFA3RTVhTGpMZ2VCSVYzR0g0Q0FzTURrTF8yVG9XY2xIUlc4bXhKWXZtamJSN2ZLb3VHQ2Yya2ZCZlNwN21DcjI4NGZrTWhKaHVSMk1YU1ZzUm9haGt3WUY4SUxKbElOMzFCY3pOeWp4WlJKMkpEZFRUcDFnMGRrZWtIbXQtazFHTUZmQQ?oc=5",
+      "publisher": "News4JAX",
+      "published_at": "2026-11-19T05:01:56Z",
+      "detected_at": "2026-11-20T02:20:52.879852Z",
+      "state_hints": [
+        "MS"
+      ],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
       "primary_sources": [],
       "impact_counts_verified": false,
@@ -4713,62 +4770,6 @@
       "state_hints": [],
       "topic_hints": [
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "24fc8f4d08459d7e51f0",
-      "title": "Judge dismisses Alaska Senate election lawsuit; DOJ vows appeal - CNBC",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPT0oyNEhUWVdvWGt5dFFSNGpPMENlTjJXTjBwVlpEV1pVZWt3eDBxLTN1blEtQ2xaeVQ5d0s4NmtIamd0LXAyR3pfMzZxaWxqSUoyYmRZd2JJSnNkS2oxVTN1NVpHNXJnaHlGYUlIYlBGdXUxR25hUGFLX1kxWGNyaWw1Nk1GODlfT0QtODl0ei1fVXfSAZgBQVVfeXFMTmlxWUoySmdvc1dlU1huZl9YYzYwejRhZ1JROUpLbWtPam83aXRKY3ZkSnVQcmNKcEFFM3V5Y251YWpTbHBMSktINU1DeG9mTm1MTV9GNEQ4NmVTczViOVhGcVpHak1ENFpZbVZySFV0RDIxNW9JLTdSTEU3bnFXQTFrUC1GUGVLYlFyZ3ZBdGdXdzk2UWJMTEE?oc=5",
-      "publisher": "CNBC",
-      "published_at": "2026-11-01T18:27:17Z",
-      "detected_at": "2026-11-02T03:00:10.299988Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "litigation",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "4df0354889c02cd4ec6c",
-      "title": "Thousands of Indians protest voter list change - Taipei Times",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5MZWxBQWFGbkFtaU96dENUX3IyaG5za21xM0s5akhSRVJKRXFVcUcxeVk2eDhkcmF0WEx0MnN2VC1vSHRYNHkzOS1ScnZWODl0eU9DUlFXakkxdDlURXY1OV82OFdLbEFKcVo3ZWp4NVA3OTdlRE5kNQ?oc=5",
-      "publisher": "Taipei Times",
-      "published_at": "2026-11-01T16:00:00Z",
-      "detected_at": "2026-11-01T17:44:00.656532Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a86a2f526dfda9866d51",
-      "title": "Data analysts flag mismatches in Trump administration California voter eligibility list - The Hill",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPb0h2a0xmZzcyZHpwU0FMSjE1NWJvRFJ1b2N4QXRKTVVRNWY3UWJxTVJodGFEd0ZYVmtyRkVEM1FWUmFXWTgxdHpxaXpnajNGc054WVZMUDdhcnBWdDhDbXBkemxmX012a0xVUVdmZVBnalN1RE85MDFDU3lZRUpGU3lIbG4wbUxXZ1pwMUhnbC1jVGPSAZgBQVVfeXFMUDJSTVBmdGR3QXZ0RnY5amtGQlpIemYtc3M0Z0dYNWxCdWJ5Q1FhNUVhVUt1Y2NBXzF2cU82dTN2ckw1bzFEd0ZVWHBMSk9IQ3B3eURSN2cxak9weGo1Y25BWXhxYVdTWFVRLWlsMDQ5ZlpaeVF2bzJMR2JmZzRILVhSeUo0WTVpN2F4d3JjLVdodklLa1lSWGQ?oc=5",
-      "publisher": "The Hill",
-      "published_at": "2026-11-01T15:15:00Z",
-      "detected_at": "2026-11-01T16:48:11.351256Z",
-      "state_hints": [
-        "CA"
-      ],
-      "topic_hints": [
-        "registration"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
