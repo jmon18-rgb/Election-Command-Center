@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-20T02:20:52.879852Z",
+  "updated_at": "2026-11-20T11:43:00.563117Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 3,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 24,
-    "advisory_related_headlines": 54
+    "advisory_related_headline_buckets": 23,
+    "advisory_related_headlines": 51
   },
   "advisory_related_headlines": [
     {
@@ -19,17 +19,6 @@
       "state_hints": [],
       "topic_hints": [
         "ballot_access",
-        "election_admin"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "88a69257c61c8ee8b245",
-      "headline": "Trump could try to overturn midterm election results, former security chiefs warn - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-      "possibly_related_articles": 3,
-      "distinct_publishers": 1,
-      "state_hints": [],
-      "topic_hints": [
         "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
@@ -266,9 +255,62 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "034f40ce4d748ddfe3da",
+      "headline": "DOJ drops California ballot lawsuit after Supreme Court denies case - The UCSD Guardian",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [
+        "CA"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "4b29b8245fc3d51dd945",
+      "title": "Trump DOJ Moves to Drop Alaska Senate Lawsuit After Peltola Win - Law Commentary",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPZ0d1ZnJQTmpjQnlNcjZwQnU5NVVVTU9jUG9jemRnR01kdnNNTE1raUhwQ0ZUaDJheDJ5V3V0ZC1Id2lkS01SZGlhNnp6ZmstTWtublAzX0kyS245RHVvTGZfbkdPMjdSWFljUE1TQ3ZIdWhncnVqdDUtVG9pTjYyTVJQcXREQUZnNGswWHBidEdwZw?oc=5",
+      "publisher": "Law Commentary",
+      "published_at": "2026-11-20T08:25:24Z",
+      "detected_at": "2026-11-20T11:43:00.563117Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "1d48b668cd45d5e013a3",
+      "title": "Ohio Supreme Court orders some uncounted provisional ballots to remain sealed after complaint from Ed Schimmel - Yahoo",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQQ3VLeTdZU01yX2Z1RjlXNGZJcmRWY1B4WUFvcXAyaERMcEQ4amwyTlp0b2NiTERPTmlwM2RTTkVfY2hOUjlqaG1zS1FiLWNSUUFRS0ltMldZT18wV3NnbUlUc2EwZDF1akd4ZkRCUWdfbEM1amg4OHl1ME9IeUt6T3U0MFBxRlkydzBOVGFyclNGeDA3SlpmcHh3aw?oc=5",
+      "publisher": "Yahoo",
+      "published_at": "2026-11-20T03:01:00Z",
+      "detected_at": "2026-11-20T11:43:00.563117Z",
+      "state_hints": [
+        "OH"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "41b4ccba579d9f97b9d4",
       "title": "DOJ abandons lawsuit that sought to pause certification of Alaska\u2019s US Senate election - Alaska Beacon",
@@ -4733,40 +4775,6 @@
       "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
       "published_at": "2026-11-01T18:34:05Z",
       "detected_at": "2026-11-01T18:56:00.636642Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "666c9e5cd54b472e34d3",
-      "title": "Trump could try to overturn midterm election results, warn security chiefs - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVmhNamZHNVVCTGNGVjQ4Zl9aY3p4bnBHam1adEM2amtST05nSl9Wa1RVUFAxbUNkSDV4YWtBeGFPdEhlT3FuUEdXTzY4MTQzX1FydXlhakdzRndDbXg3LVVSREVhYjBONUJHXzBlRG5mRTdGVUV2VmZEenlDWllRdGFzMk5xQUFyUnNnZ0NlWUdiVk9mR0NvUm5BNFV3UEtEbGNyX05Kd251MDJBSnhDcE9aVQ?oc=5",
-      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-      "published_at": "2026-11-01T18:34:05Z",
-      "detected_at": "2026-11-02T03:00:10.299988Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "a657b4cf957ab17fda6b",
-      "title": "Trump could try to overturn midterm election results, security chiefs warn - ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-      "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQVmhNamZHNVVCTGNGVjQ4Zl9aY3p4bnBHam1adEM2amtST05nSl9Wa1RVUFAxbUNkSDV4YWtBeGFPdEhlT3FuUEdXTzY4MTQzX1FydXlhakdzRndDbXg3LVVSREVhYjBONUJHXzBlRG5mRTdGVUV2VmZEenlDWllRdGFzMk5xQUFyUnNnZ0NlWUdiVk9mR0NvUm5BNFV3UEtEbGNyX05Kd251MDJBSnhDcE9aVQ?oc=5",
-      "publisher": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
-      "published_at": "2026-11-01T18:34:05Z",
-      "detected_at": "2026-11-02T04:08:39.266239Z",
       "state_hints": [],
       "topic_hints": [
         "election_admin"
