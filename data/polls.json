@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-21T02:18:01.262559Z",
+  "updated_at": "2026-11-21T11:06:02.079166Z",
   "generic_ballot": {
     "summary": {
       "dem": 51.3,
@@ -7251,13 +7251,11 @@
           "other_name": null,
           "first_seen_at": "2026-11-02T20:54:55.564125+00:00",
           "release_date": null,
-          "question_id": "56916ac6-ce85-4f86-a798-dbffb7297e80",
-          "sample_population": "lv",
-          "upstream_posted_date": "2026-11-02",
+          "upstream_posted_date": null,
           "source_poll_url": "https://www.survey160.com/methodological-research-blog/survey-160-pre-election-surveys-in-four-states",
-          "date_provenance": "PollResults ingestion date, NOT public release date",
-          "model_source": "pollresults_secondary_fallback",
-          "lv_selected_over_rv": true
+          "sample_population": "lv",
+          "question_id": "56916ac6-ce85-4f86-a798-dbffb7297e80",
+          "date_provenance": "PollResults ingestion date, NOT public release date"
         },
         {
           "poll_id": "874e66b5-2a4c-4aca-98bf-0a195be794af",
@@ -18593,7 +18591,7 @@
     "notes": "Descriptive poll observations only; release timestamps aren't supplied by these CSVs. First-seen timestamps are collection times, not official publication dates. Race observations retained up to 60 per race over a rolling 65 days."
   },
   "health": {
-    "last_attempt_at": "2026-11-21T02:18:01.262559Z",
+    "last_attempt_at": "2026-11-21T11:06:02.079166Z",
     "successful_sections": [
       "generic_ballot",
       "races"
@@ -18605,8 +18603,8 @@
     "new_polls": [],
     "new_poll_count": 0,
     "generic_margin_change": 0.0,
-    "comparison_at": "2026-11-21T02:18:01.262559Z",
-    "previous_snapshot_at": "2026-11-20T20:24:01.290209Z",
+    "comparison_at": "2026-11-21T11:06:02.079166Z",
+    "previous_snapshot_at": "2026-11-21T02:18:01.262559Z",
     "method": "New observations compared with previous fetched snapshot; NOT a measure of electoral swing."
   },
   "generic_history": [

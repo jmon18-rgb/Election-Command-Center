@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-21T02:18:00.986745Z",
+  "updated_at": "2026-11-21T11:06:01.759586Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 3,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 23,
-    "advisory_related_headlines": 51
+    "advisory_related_headline_buckets": 22,
+    "advisory_related_headlines": 49
   },
   "advisory_related_headlines": [
     {
@@ -61,20 +61,6 @@
       "topic_hints": [
         "election_admin",
         "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "285230692654f9561ac6",
-      "headline": "Judge tosses Trump's attempt to block Alaska Senate results if GOP incumbent loses - Oregon Public Broadcasting - OPB",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [
-        "AK",
-        "OR"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -269,9 +255,76 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "b8b5369cbf83e65330eb",
+      "headline": "How lower courts became the last line of defense for the 2026 elections - The Hill",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 1,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin",
+        "litigation"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "b58ef4f645f4a3d12511",
+      "title": "State dismisses lawsuit against Latino voting group Jolt Initiative - The Texas Tribune",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOWjlOZVNwN2twc3NtOS1BVFBKMWc0NGlBNEc3NzJBaEFmMVBZcnpLanRJLUp4RndTOTlwcWVKdFVmMzA4X3hla1EwaHpZQUFXVjVjZFJhMkdVVlRUUEdRWVN2cUZlUVJQREE4aUVNVXlUZDdvckNiS0ZaUV90LTg0QnZEbFFJQ294YWpaam9mbDl1TFhuNlE?oc=5",
+      "publisher": "The Texas Tribune",
+      "published_at": "2026-11-21T04:21:37Z",
+      "detected_at": "2026-11-21T11:06:01.759586Z",
+      "state_hints": [
+        "TX"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "e76df855742f129cc974",
+      "title": "Newport Beach council reluctantly schedules March special election for 3 resident-initiated measures - Orange County Register",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxORWZLYXk3eWlYVHNzLVNYZFN5ZnpIdUVqRkUtMTBEMGtZQ2J4WVdIdWN4cktranFfVkdJWXBZSjY0NV9PeVlMTzZ5NTY5ZnN5QUhhdElFZ2xMUFU3RkFxQldhVUUwOVJMNWNXOEd3R0VlbXFESmp2clZzMTgyam5Lam9xSnl0b0J2cjNPT1VybkVnQlVCS3JLcy1GSFJGNnNIYXktUWJ5aFFDeWFBV2w5RnFyeGZxM2E0b0xFQ2dHZGtaSzFNOG50elNIRlpMXzZDZURiTW5B?oc=5",
+      "publisher": "Orange County Register",
+      "published_at": "2026-11-21T02:14:08Z",
+      "detected_at": "2026-11-21T11:06:01.759586Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "3 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "4ee03111dd02139d8397",
+      "title": "Hamilton County board splits again over provisional ballots - Cincinnati Enquirer",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNa2Ffa21VUGp0aXFScU5KN2tlTG5oc3RYVlR5NnBqeWtsc0JzLXFNLW5fZTdtdGlLdUxBYzBuZWFGRnBVejlXRXh3czVySG0xTFprWkcxZW5qMk1DU1B1aE9lLVM1a0x3NnFoa2lIcUtrZmM3SEt5VnE2NVpuSTZ4ODUwNjJRNnNCaXJYUkY5QV9sUmdPR2xmQW94WjBjTDFHZGFCbkxmSVQ3cU8wdWdqV2xQOVdlSmM1R1gxWVBZeFNmNXZlZEE?oc=5",
+      "publisher": "Cincinnati Enquirer",
+      "published_at": "2026-11-20T23:20:00Z",
+      "detected_at": "2026-11-21T11:06:01.759586Z",
+      "state_hints": [],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "633fe73b50f0a34bf6af",
       "title": "Commingled ballots force DOJ to drop 'Decoy Dan' challenge in U.S. Senate race - Alaska Watchman",
@@ -4724,66 +4777,6 @@
       "topic_hints": [
         "litigation",
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "f1012ceecb5c2872e39d",
-      "title": "Pa. election 2026: What to do if you see ICE at your polling place - Metro Philadelphia",
-      "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxOX093aEJ0eUt1R3E5RFJnRVBtSXpMQU1zMFp0Tkl1ZXNBdkx5VmsxTkRIT2s2UURpQXFoRm1WN0VjeDhnMDlBQ0t5RThCN09KS04xMU00NHM1RTFNOU9sNXY5dVVpelpURlNLMEtSMzZTYlVsb0xZSk9YZENUQjA1bEFzamREd1U?oc=5",
-      "publisher": "Metro Philadelphia",
-      "published_at": "2026-11-01T19:49:35Z",
-      "detected_at": "2026-11-01T20:48:57.131232Z",
-      "state_hints": [],
-      "topic_hints": [
-        "ballot_access",
-        "security",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [
-        "2026"
-      ],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "285230692654f9561ac6",
-      "title": "Judge tosses Trump's attempt to block Alaska Senate results if GOP incumbent loses - Oregon Public Broadcasting - OPB",
-      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMFVlRy02czdSQkJpTFl1UEVxRi1WU1lka21BQW9VbnROV3BjQldSa3hHM0NyeUpteUtpRGJkcGdleWlmNE94VlZ3V3paNm1MWW54bVFZRjQwbFpZZ3NnM1FBbTh3dEpPZm0wbGg3NnpqakVnbl9iM2NTX3ZuLW9FVWZFOXlnOGRFQThKNEtLN1N4OGRaQVJz?oc=5",
-      "publisher": "Oregon Public Broadcasting - OPB",
-      "published_at": "2026-11-01T19:20:52Z",
-      "detected_at": "2026-11-01T23:44:20.381742Z",
-      "state_hints": [
-        "AK",
-        "OR"
-      ],
-      "topic_hints": [
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "117dfd66ced171f88779",
-      "title": "Judge tosses Trump's attempt to block Alaska Senate results if GOP incumbent loses - NPR",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPc0tqclpGdHZtME0wZFY2LWpLZHF3TG5BMmk3RUM2SkdvWVI5c0tJa2pOTzJvN19pRFhkQng0ZUloMGVmSUZoQ1V3cE5PWkRWX1ppaHpFV0F4WDVVSVF1eDFPT2N3WnBROEpOdVR3QkYtZVZTcl8wNGpLZ05wSi1fdE5tbU5nNE9UX2VQX0gxbWlhQQ?oc=5",
-      "publisher": "NPR",
-      "published_at": "2026-11-01T19:04:46Z",
-      "detected_at": "2026-11-01T19:49:26.270354Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
