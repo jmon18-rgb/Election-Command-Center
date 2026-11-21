@@ -1,13 +1,13 @@
 {
   "schema_version": "bottom-up-2026-poll-environment-shadow-v1",
   "status": "SELECTION_BIASED_OBSERVATIONAL_DIAGNOSTIC_NOT_HEADLINE",
-  "polling_generated_at": "2026-11-20T20:24:04.137416Z",
+  "polling_generated_at": "2026-11-21T02:18:04.246923Z",
   "presidential_geography_year": 2026,
   "presidential_2024_national_two_party_margin_points": -1.705,
-  "generic_ballot_2026_d_minus_r_points": 8.53,
-  "generic_implied_vs_2024_presidential_swing_points": 10.235,
-  "independent_polling_estimated_presidential_to_race_swing_points": 11.502,
-  "bottom_up_implied_national_margin_points": 9.797,
+  "generic_ballot_2026_d_minus_r_points": 8.55,
+  "generic_implied_vs_2024_presidential_swing_points": 10.255,
+  "independent_polling_estimated_presidential_to_race_swing_points": 11.522,
+  "bottom_up_implied_national_margin_points": 9.817,
   "bottom_up_minus_generic_environment_points": 1.267,
   "candidate_specific_effects_removed": false,
   "candidate_quality_calibration_available": false,
@@ -46,7 +46,7 @@
     {
       "state": "MI",
       "number_qualifying_races": 1,
-      "swing_points": 6.759
+      "swing_points": 6.819
     },
     {
       "state": "FL",
@@ -66,12 +66,12 @@
     {
       "state": "IA",
       "number_qualifying_races": 1,
-      "swing_points": 14.126
+      "swing_points": 14.286
     },
     {
       "state": "OH",
       "number_qualifying_races": 1,
-      "swing_points": 14.563
+      "swing_points": 14.623
     },
     {
       "state": "NC",
@@ -114,9 +114,9 @@
       "raw_swing_points": 1.947,
       "capped_swing_points": 1.947,
       "capped_local_outlier": false,
-      "weight": 0.5777777777777777,
+      "weight": 0.5555555555555556,
       "independent_firms": 7,
-      "latest_age_days": 19
+      "latest_age_days": 20
     },
     {
       "office": "senate",
@@ -127,9 +127,9 @@
       "raw_swing_points": 17.418,
       "capped_swing_points": 17.418,
       "capped_local_outlier": false,
-      "weight": 0.6,
+      "weight": 0.5777777777777777,
       "independent_firms": 17,
-      "latest_age_days": 18
+      "latest_age_days": 19
     }
   ],
   "notes": [

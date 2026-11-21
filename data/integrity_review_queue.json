@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-20T20:24:01.025664Z",
+  "updated_at": "2026-11-21T02:18:00.986745Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
   "new_leads": 2,
@@ -272,6 +272,46 @@
     }
   ],
   "items": [
+    {
+      "id": "633fe73b50f0a34bf6af",
+      "title": "Commingled ballots force DOJ to drop 'Decoy Dan' challenge in U.S. Senate race - Alaska Watchman",
+      "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQUEM2cUlxZVVwRVBtV2dhTlhXeUNpekRRZmEtaW5OOEVSWkJWZDkweTdXWHFmX2hXTjVhTGpNWGtSMTNHTmh0SzlwNEFDZ2FFWFRWU1JCZmNtMFJkLU92cFpWNHIyMDdMUVYtOGN6bDBXNmc1Rnp2Z1dhWXhnSmpIaTF4TndlbFFyaE5sd3hMUERsbGRGeU8zVGEzZE5fVFNCRlpJaTZRWnl5OEZWMnN0RVQ5T3Q?oc=5",
+      "publisher": "Alaska Watchman",
+      "published_at": "2026-11-20T22:41:56Z",
+      "detected_at": "2026-11-21T02:18:00.986745Z",
+      "state_hints": [
+        "AK"
+      ],
+      "topic_hints": [
+        "ballot_access"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "88e032bbe7df8877f9a2",
+      "title": "Judge dismisses bribery lawsuit against Elon Musk over 2025 Wisconsin Supreme Court case - Wisconsin Examiner",
+      "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOanVlZTF0S0YtTGg1VXlrUjRoVkFhN191YUVYa0ZiSmNHXzRTQWdGRFExY2lmX3V1aGFDaktnRmttM3lobWdKbkdKeV9lbVhHcHFGLUVRN05BNF9nc0h5Y1ZjWHdnaUhWTUhIVjE2bHpIOHQwcW5LZmFHQmpRcjVmNTBnbTJ4ZHltSVhDUDl3LXBoMVVyZDVaSlhVOUhibDY3OFk1dzlWc3lNeEZoVjczZEtOSGh3NmFITzlxRTBjWGtnMHlMNW1XYzhB?oc=5",
+      "publisher": "Wisconsin Examiner",
+      "published_at": "2026-11-20T20:05:10Z",
+      "detected_at": "2026-11-21T02:18:00.986745Z",
+      "state_hints": [
+        "WI"
+      ],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [
+        "2025 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "e3177b77f40df7c41091",
       "title": "Trump DOJ Lawyers Fight Sanctions Bid Over Alaska Senate Lawsuit - Newsweek",
@@ -4744,44 +4784,6 @@
       ],
       "topic_hints": [
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7dc0d44283526030602a",
-      "title": "DOJ withheld key data from court-ordered voter list disclosure, experts say - Democracy Docket",
-      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxQamRsdFdVWTRRMTlULWtDSWVkS3FjWllaRlRkS0NLOThnTkJWUGJRT3VPMjBLaElPZG8xY1BOTEdmMEFrN2VESVhUbVVYREpKSHZhX3lMeGM1ak5iSnpackl2MjllQV9CLWloc05YbUZKdG1GZ3VfS3Jzdjl2Snd1QVE0U3puS3prekVSZjlmWjl0dFRXRVNiTjNDbDVyYVJKSWdaeDZWam5mQzg?oc=5",
-      "publisher": "Democracy Docket",
-      "published_at": "2026-11-01T18:56:15Z",
-      "detected_at": "2026-11-01T22:46:46.751222Z",
-      "state_hints": [],
-      "topic_hints": [
-        "registration",
-        "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "12485f371593776f9509",
-      "title": "Judge tosses DOJ lawsuit seeking to delay certification of Alaska Senate race - CBS News",
-      "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNbGZVRGY1b0VRUXRrUE9qWDJMR1czc1pyYWlQVkNMWUR2azItMFcyWEE5NWN4YWhjZkYtWkM3U3EtN0JsUWxuZ3VpU3JqTTdNUW9MR0M5VmYwTFJjSUhRSUJMVXdQN0ZwV211bHJId09mR1BZT1BkNzFuNVhGTS1ReVRtMTgxZw?oc=5",
-      "publisher": "CBS News",
-      "published_at": "2026-11-01T18:39:00Z",
-      "detected_at": "2026-11-02T01:20:50.487920Z",
-      "state_hints": [
-        "AK"
-      ],
-      "topic_hints": [
-        "litigation",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
