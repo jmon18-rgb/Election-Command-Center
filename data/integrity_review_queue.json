@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-21T23:19:41.626154Z",
+  "updated_at": "2026-11-22T06:52:39.051804Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 0,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -270,6 +270,46 @@
     }
   ],
   "items": [
+    {
+      "id": "dde4649298f11a991007",
+      "title": "Senators Propose Redirecting Campaign Fund to Election Security - Wisevoter",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOM1pWUDRKeUUxVC1ZcEdpdHpFcmFxZ1J1NFJMbVUxdUJnQ0VOeUFlMjNuNTllcVFSUW1VM2tlODB0S2RDS0dqelZPMVUyWDJNaWJSX3B0eWVxay02dGQtUDNVZEVFS1ZyS09rUGUxVkxJczRhdVdPaTVPb2puTGlwRklmQURJRG9TNTJqOEtJcTdMYlZyU3ZCTWltUmstWERPZDBYMA?oc=5",
+      "publisher": "Wisevoter",
+      "published_at": "2026-11-22T02:54:16Z",
+      "detected_at": "2026-11-22T06:52:39.051804Z",
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "b6dfbe0ef923f9b3d75d",
+      "title": "Ohio elections chief sidesteps tie vote as 740 ballots hang over 19-vote Cincinnati House race - The Business Journals",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQcjhHbThKTzlQMXNFdmVSN3BXQ1dKTDZObURPMjRjQVplMmpUMmJ2NG9ZZXVNME5vSGJMNWFWdk1IdXUwVjdIRVBhWU5oNkJyXzNWNlJkZHp2cmVlSmJDY3lPTFNHUmpOc2YxVGVoMGFyMlR4cFZGSjVQaE5UUkZ1S0NfNUhtbkZjbXhiSzVTQkhKd3ZPSlpQSXpnTldmbmV3bnNxc05WNA?oc=5",
+      "publisher": "The Business Journals",
+      "published_at": "2026-11-21T16:20:00Z",
+      "detected_at": "2026-11-22T06:52:39.051804Z",
+      "state_hints": [
+        "OH"
+      ],
+      "topic_hints": [
+        "ballot_access",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "740 ballots",
+        "19"
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "b58ef4f645f4a3d12511",
       "title": "State dismisses lawsuit against Latino voting group Jolt Initiative - The Texas Tribune",
@@ -4737,43 +4777,6 @@
       "published_at": "2026-11-02T02:47:01Z",
       "detected_at": "2026-11-02T05:14:17.877461Z",
       "state_hints": [],
-      "topic_hints": [
-        "litigation",
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "c236927f70e2ffae34fc",
-      "title": "Justice Department urges sanctions for database analysis critical of its noncitizen voting claims - PBS",
-      "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxPUGFGR191UVI0NGV4dFNpeFFqWExkSTJFc0xqZk5BZDR2bkhnSVlsNjl3MU82U3J6Rk0xSENOOUdKRmNvRXQ0QkV5NUZxTkFNRDhYeDhXSE45R2xkYUJUZnZFVDZDbmZ5eTY4TkVfbGctRlNoT2FkUUhWdV9vUWw5Q0ZKVGxBeGJkTEdNNFlXOF9yTnNwRmN6MEFJdFo4ZS1oeE8xRkVDQW01cmNHSGQwSFZITlpTaHY5ek9MWm02VVZlXzRhVnNMN29BUXJWZ3E00gHWAUFVX3lxTE83ZTVGSGs1XzVuS1pIWnBSRHVTNVNNX09nakpyNXJYc3lvVzJvYTdkc01uMTZ5Zy0yRWNfaVdCY013bm1Nck5mUjJwSXVNRzBRR1pSR19GNGVJWmxPQmQ4QWxwbWkxWlJzcDRtbEJWQmZpdTdrbk1EVzRuOUJVd3M4SXYzdUZJcWh4RUkzQzN1MGJYb2xLaWdQZWZpZFBsbkY5Z2dsR2xhbEMxVkF4TmplMDQ5QnYwM2tHZzN3RnFvaGNJbEd5QVZzT3p4UnhiVVdvLTVZN2c?oc=5",
-      "publisher": "PBS",
-      "published_at": "2026-11-01T23:18:16Z",
-      "detected_at": "2026-11-01T23:44:20.381742Z",
-      "state_hints": [],
-      "topic_hints": [
-        "security"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7c5d9ddfaaab45d58522",
-      "title": "US judge dismisses Trump election lawsuit in Alaska - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPck1iY1RiSVI0MWpxbGhyZzlYWm9PeGh6WXJnYTVIX0VqTS1UbGpTQUh0WkFxbUpFdlNsbmJCUzg0bENnWmtEUjcxUWxTbmIzMzlKUGdXNGFidFl0Nk10a29rYVlVUkdLRVM2TUtBU0NRcTlXUS0xSjhmOTRZNWVjUW1yMVVIOHh4QnFLTEFiQWZyRWNsSVE?oc=5",
-      "publisher": "Reuters",
-      "published_at": "2026-11-01T21:22:38Z",
-      "detected_at": "2026-11-02T03:00:10.299988Z",
-      "state_hints": [
-        "AK"
-      ],
       "topic_hints": [
         "litigation",
         "election_admin"
