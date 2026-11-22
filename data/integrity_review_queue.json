@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-22T06:52:39.051804Z",
+  "updated_at": "2026-11-22T15:20:13.454682Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 2,
+  "new_leads": 1,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
@@ -270,6 +270,23 @@
     }
   ],
   "items": [
+    {
+      "id": "e159ef244c11b7959473",
+      "title": "SEO: AI voter photos: SERAP drags INEC, NDPC to court - Galaxy Television",
+      "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNV1JQWXNtWXY0eEtzRWV0ZmwzRXUwN0Y5TjJBTERpVlJiaXRDUHg0YzQ1NlhCVERHU1JsZVZVRzJEa3lpQWtCZzVQV1FCUFc2bUIwVzZ2UUxxTjd4VUk5OVRGZzI5Vk1Bc2owdUpmaFJrNGpVNVFqam1zYzVicWxtY25yY1BtU1czT1hQMlkxUkVJRW1JdEtfaThKdnoyLU9NU1ZCazYtNUJEdHZUSlA0?oc=5",
+      "publisher": "Galaxy Television",
+      "published_at": "2026-11-22T08:43:59Z",
+      "detected_at": "2026-11-22T15:20:13.454682Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "dde4649298f11a991007",
       "title": "Senators Propose Redirecting Campaign Fund to Election Security - Wisevoter",
@@ -4762,24 +4779,6 @@
       ],
       "topic_hints": [
         "litigation"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "5a677ede193eac213f1d",
-      "title": "US midterms: Why Trump's hunt for noncitizen voters has landed him in court - Firstpost",
-      "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPZXNIS3VKNWhTQjJFSDBqS1BzNWRuUmZkNUJEOFhuaDNGYVlTYnlDd25yb1drNWJIbVZmZEl4LWFoOUtSbmZsVlc5N056N1NaVE9OZG02dFBFdTB6X3lFV3pvRjIwbHhFcU5WR0lWU1hQdEJHdmdXNk43bE40TkVZZzBpamJXU185MzU5NzVrNjcyUWxQWTlRZWNjVEQ2RnRrUFh4WUx6MmV0Z0J0b1NwX3NUT3B6cjhDR3JlMGM5UmkyWXlEdGxibk5LZnVYR1N5SVdz0gHTAUFVX3lxTE9lc0hLdUo1aFNCMkVIMGpLUHM1ZG5SZmQ1QkQ4WG5oM0ZhWVNieUN3bnJvV2s1YkhtVmZkSXgtYWg5S1JuZmxWVzk3Tno3U1pUT05kbTZ0UEV1MHpfeUVXem9GMjBseEVxTlZHSVZTWFB0Qkd2Z1c2TjdsTjRORVlnMGlqYldTXzkzNTk3NWs2NzJRbFBZOVFlY2NURDZGdGtQWHhZTHoyZXRnQnRvU3Bfc1RPcHpyOENHcmUwYzlSaTJZeUR0bGJuTktmdVhHU3lJV3M?oc=5",
-      "publisher": "Firstpost",
-      "published_at": "2026-11-02T02:47:01Z",
-      "detected_at": "2026-11-02T05:14:17.877461Z",
-      "state_hints": [],
-      "topic_hints": [
-        "litigation",
-        "election_admin"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
