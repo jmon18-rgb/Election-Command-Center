@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-11-22T15:20:13.454682Z",
+  "updated_at": "2026-11-22T21:47:32.499759Z",
   "status": "leads_only_not_verified_incidents",
   "policy": "Do not promote or copy any numeric claim into integrity_impact.json without independently checking the primary source, affected units, scope and overlap.",
-  "new_leads": 1,
+  "new_leads": 2,
   "review_metrics": {
     "total_leads": 250,
     "awaiting_primary_source": 240,
     "primary_source_checked": 10,
-    "advisory_related_headline_buckets": 22,
-    "advisory_related_headlines": 49
+    "advisory_related_headline_buckets": 21,
+    "advisory_related_headlines": 47
   },
   "advisory_related_headlines": [
     {
@@ -61,17 +61,6 @@
       "topic_hints": [
         "election_admin",
         "registration"
-      ],
-      "review_status": "advisory_overlap_only_not_independently_verified"
-    },
-    {
-      "lead_id": "151a3cef83defb7260ae",
-      "headline": "How officials are preparing for Election Day disruptions \u2014 including from Trump - Scripps News",
-      "possibly_related_articles": 2,
-      "distinct_publishers": 2,
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
     },
@@ -267,9 +256,57 @@
         "litigation"
       ],
       "review_status": "advisory_overlap_only_not_independently_verified"
+    },
+    {
+      "lead_id": "1ba997065e00e9c03418",
+      "headline": "Cantwell Celebrates Hard Work of Voting Rights Coalitions and Election Workers That Protected Midterms from Trump\u2019s Overreach - Maria Cantwell (.gov)",
+      "possibly_related_articles": 2,
+      "distinct_publishers": 2,
+      "state_hints": [],
+      "topic_hints": [
+        "election_admin"
+      ],
+      "review_status": "advisory_overlap_only_not_independently_verified"
     }
   ],
   "items": [
+    {
+      "id": "6c165e5755675f08b537",
+      "title": "2027 Elections: SERAP Drags INEC to Court Over Alleged AI Photos in Voters\u2019 Register - Nigeria Startup News",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNRG5KRUNLSkJzdmtBNXF6M2tYSlZUd05ZLWhPU19DTkJjLUw3QWVVNWFzeEhFc3RZMEphMlFJNUV6TklORlRkeFZhaUlqNHNtX1huemt2NUQ4d1N2OUtjNjJuUlJYN2ZCZ255cjM4WE9mRkxONUxLUjJjUUNULUxPTjRXNE9VczdWTHhmNFRKNFFBS29TSWlyLW9GWXdwb0NWX2hVWDd0OUJmZXZlSnQzWENBcXF0dE0?oc=5",
+      "publisher": "Nigeria Startup News",
+      "published_at": "2026-11-22T18:59:43Z",
+      "detected_at": "2026-11-22T21:47:32.499759Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation",
+        "election_admin"
+      ],
+      "headline_numbers_unverified": [
+        "2027 "
+      ],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
+    {
+      "id": "cbe177174a3fa0279797",
+      "title": "SERAP Drags INEC, Nigerian Data Commission To Court Over AI-Generated Photos In Voters\u2019 Register - Sahara Reporters",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNaEQyVGUwU1YxZ3Z6SEkwb1FmaGVZWXNFVTgtQzZwUnJmWkpfMzhON0RRUTRydHRac1BsMlFHVVl6aGs2V0ZZTkNPVl9TUTZEYmV2bGtmR0YxRlRVYi1OQUpnd1MtU3ZIbVFHeGxpeHR2RjZ0QmYtaHJnV2U0cVRyRVNjMTRYQy1EN1JjOE9GX1Z6TXBuX3duYk16d0VhRlg1dEx4Sjl6ZW12NTVGVUNmQlcxRDdaZy1JejRvbFo2ZDhaeWdaUFE?oc=5",
+      "publisher": "Sahara Reporters",
+      "published_at": "2026-11-22T16:30:19Z",
+      "detected_at": "2026-11-22T21:47:32.499759Z",
+      "state_hints": [],
+      "topic_hints": [
+        "litigation"
+      ],
+      "headline_numbers_unverified": [],
+      "review_status": "needs_primary_source",
+      "primary_sources": [],
+      "impact_counts_verified": false,
+      "promoted_to_incident_id": null
+    },
     {
       "id": "e159ef244c11b7959473",
       "title": "SEO: AI voter photos: SERAP drags INEC, NDPC to court - Galaxy Television",
@@ -4742,43 +4779,6 @@
       ],
       "topic_hints": [
         "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "91a0252abb36bb5eb5a6",
-      "title": "How officials are preparing for Election Day disruptions \u2014 including from Trump - CNN",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNdk0yaGZHMWs1czZhSVpoX1hZM1Jyd1BTOE94RURxci03XzdPcjdYR3BxUXd6MFVLM0V3a0trUDlZcmQ2ZlFZS2lqQ1Z0UG1IUXk2azNKTEV5bmQ0TEJUbm8tRWVkXzl4ZW9MUk43Z2NVREhSTFRLWDY5enJlRUNIY1F5UjliamJzT1E?oc=5",
-      "publisher": "CNN",
-      "published_at": "2026-11-02T09:00:15Z",
-      "detected_at": "2026-11-02T10:18:39.542817Z",
-      "state_hints": [],
-      "topic_hints": [
-        "election_admin"
-      ],
-      "headline_numbers_unverified": [],
-      "review_status": "needs_primary_source",
-      "primary_sources": [],
-      "impact_counts_verified": false,
-      "promoted_to_incident_id": null
-    },
-    {
-      "id": "7dce7a300cdf712159a0",
-      "title": "Judge tosses DOJ\u2019s attempt to delay Alaska\u2019s Senate results if Republican loses - The Washington Post",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQb01VY1hzaERwaUN0dGt1enZaNTROVmE5N3ZYMmNjeTgycGhTOFN2NFZHR2NHMkdwTGswMEtGNWxjMlFrNEVMajNWVDBuV1pYWW5mV09DVW5FeHJ5akZXdXFFRlVRWG5kTVNYMGtLZDhwWDNkQkRBdk9zaDR1QW1Relh3ejMzRWtjQncyczAwbVFlN0kyNlpPejAwS1RfczVoclg3X3ZJcmF1T0NVUFNja0otcC1KOEh4NDg5Ul96TXRMMHM?oc=5",
-      "publisher": "The Washington Post",
-      "published_at": "2026-11-02T04:22:05Z",
-      "detected_at": "2026-11-02T10:18:39.542817Z",
-      "state_hints": [
-        "AK",
-        "WA"
-      ],
-      "topic_hints": [
-        "litigation"
       ],
       "headline_numbers_unverified": [],
       "review_status": "needs_primary_source",
